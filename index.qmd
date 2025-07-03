@@ -1,7 +1,27 @@
 ---
-title: "Inicio"
+page-layout: full
+sidebar: false
+course-logo: utils/imgs/logo.png
 ---
 
-This is a Quarto website.
+::: {.grid .title-block}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+::: {.course-details-title-block .g-col-12 .g-col-sm-8 .order-2 .order-sm-1 .text-sm-start}
+::: {.course-meta}
+
+::: {.course-title}
+<p>Programación II</p>
+:::
+
+{{< fa graduation-cap >}} &nbsp; Nombre de carrera  
+{{< fa university >}}     &nbsp; Facultad de Ciencias Económicas y Estadística (UNR)  
+{{< fa calendar-alt >}}   &nbsp; 2° Cuatrimestre 2025  
+{{< fa clock >}}   &nbsp; Horarios? &nbsp; | &nbsp; Horarios?
+:::
+:::
+
+::: {.g-col-12 .g-col-sm-4 .order-1 .order-sm-2 .text-align-center}
+<img src="imgs/serpiente.png" class="img-fluid">
+:::
+
+:::

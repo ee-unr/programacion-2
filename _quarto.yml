@@ -8,12 +8,11 @@ website:
   title: "Programación II"
   description: "Página del curso Programación II - FCEyE (UNR)."
   site-url: "https://ee-unr.github.io/programacion-2/"
-  # favicon: utils/imgs/favicon.png
+  favicon: imgs/terminal-64.png
   page-navigation: true
   navbar:
     pinned: true
     right:
-      - index.qmd
       - text: Información
         file: informacion/programa.qmd
       - text: Teoría
@@ -22,27 +21,53 @@ website:
         file: practica/01_introduccion_a_python.qmd
       - text: Trabajos Prácticos
         file: trabajos_practicos/descripcion.qmd
+      - text: Recursos
+        file: recursos/ejercicios/ejercicio_01.qmd
       - icon: github
         href: "https://github.com/ee-unr/programacion-2"
 
   sidebar:
     - title: Información
-      search: false
       contents:
         - informacion/programa.qmd
         - informacion/aprobacion.qmd
+        - informacion/calendario.qmd
+        - informacion/bibliografia.qmd
+        - informacion/faq.qmd
     - title: Teoría
-      search: false
       contents:
         - teoria/01_introduccion_a_python.qmd
+        - teoria/02_programacion_funcional.qmd
+        - teoria/03_oop.qmd
+        - teoria/04_estructuras.qmd
+        - teoria/05_algoritmos.qmd
     - title: Práctica
-      search: false
       contents:
         - practica/01_introduccion_a_python.qmd
+        - practica/02_programacion_funcional.qmd
+        - practica/03_oop.qmd
+        - practica/04_estructuras.qmd
+        - practica/05_algoritmos.qmd
+    - title: Trabajos Prácticos
+      contents:
+        - trabajos_practicos/descripcion.qmd
+        - trabajos_practicos/trabajo_grupal.qmd
+        - trabajos_practicos/trabajo_individual.qmd
+    - title: Recursos
+      contents:
+        - text: Ejercicios
+          file: recursos/ejercicios/ejercicio_01.qmd
+          contents:
+            - auto: recursos/ejercicios/*.qmd
+            - sort-ui: false
+        - text: Tutoriales
+          file: recursos/tutoriales/tutorial_01.qmd
+          contents:
+            - auto: recursos/tutoriales/*.qmd
+            - sort-ui: false
 
   page-footer:
     right: "Esta página es hecha con ❤️ y [Quarto](https://quarto.org/)."
-    border: false
 
 format:
   html:
@@ -50,5 +75,5 @@ format:
     toc: false
     lang: es
 
-bibliography: references.bib
-csl: chicago-author-date.csl
+bibliography: citas/references.bib
+csl: citas/chicago-author-date.csl

@@ -116,6 +116,7 @@ figure {
 .course-title {
   font-size: 3.5rem;
   margin-top: 0;
+  color: $gray-900;
 }
 
 .course-subtitle {
@@ -199,6 +200,21 @@ figure {
   }
 }
 
+// Links de paginación
+.nav-page a {
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $teal-primary;
+    text-decoration: none;
+  }
+
+  &:active {
+    color: $teal-dark;
+  }
+}
+
 // Sidebar
 div.sidebar-item-container {
   color: $teal-secondary;
@@ -249,3 +265,35 @@ a {
   color: $gray-400;
 }
 
+
+/* Grid layout: por defecto el área central es muy angosta */
+
+@media (min-width: 992px) {
+    body.floating.fullcontent .page-columns {
+        display: grid;
+        gap: 0;
+        grid-template-columns:
+        [screen-start] 1.5em
+        [screen-start-inset] 2fr
+        [page-start] 50px
+        [page-start-inset] minmax(50px, 150px)
+        [body-start-outset] 50px
+        [body-start] 1.5em
+        [body-content-start] minmax(500px, 900px) // Defecto: minmax(500px, calc(800px - 3em));
+        [body-content-end] 1.5em
+        [body-end body-end-outset page-end-inset page-end] 5fr
+        [screen-end-inset] 1.5em
+        [screen-end];
+    }
+}
+
+
+@media (max-width: 575px) {
+  .img-fluid {
+    width: 60%;
+  }
+}
+
+.text-align-center {
+  text-align: center;
+}
