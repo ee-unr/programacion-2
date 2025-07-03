@@ -1,6 +1,34 @@
 ---
 title: Bibliografía
+filters:
+    - section-bibliographies
+citeproc: false
 ---
 
-1. Elemento 1
-2. Elemento 2
+# [Principal]{.h2-font-size}
+
+<div style="visibility: hidden; height: 0;">
+@Cormen2022Introduction
+@Kalb2022Object
+@Kubica2022Data
+@Lott2021Python
+@Lott2022Functional
+@Mertz2015Functional
+@Miller2023Problem
+@Sedgewick2011Algorithms
+@Sedgewick2015Introduction
+@Sweigart2020Beyond
+@Tuckfield2021Dive
+</div>
+
+# [Complementaria]{.h2-font-size}
+
+<div style="visibility: hidden; height: 0;">
+@Downey2024Think
+@Hetland2014Python
+@Mailund2023Functional
+@Sweigart2021Big
+@Vaughan2019Impractical
+@Wickham2019Advanced
+</div>
+
