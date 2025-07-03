@@ -1,0 +1,54 @@
+project:
+  type: website
+  preview:
+    port: 4200
+  output-dir: _site
+
+website:
+  title: "Programación II"
+  description: "Página del curso Programación II - FCEyE (UNR)."
+  site-url: "https://ee-unr.github.io/programacion-2/"
+  # favicon: utils/imgs/favicon.png
+  page-navigation: true
+  navbar:
+    pinned: true
+    right:
+      - index.qmd
+      - text: Información
+        file: informacion/programa.qmd
+      - text: Teoría
+        file: teoria/01_introduccion_a_python.qmd
+      - text: Práctica
+        file: practica/01_introduccion_a_python.qmd
+      - text: Trabajos Prácticos
+        file: trabajos_practicos/descripcion.qmd
+      - icon: github
+        href: "https://github.com/ee-unr/programacion-2"
+
+  sidebar:
+    - title: Información
+      search: false
+      contents:
+        - informacion/programa.qmd
+        - informacion/aprobacion.qmd
+    - title: Teoría
+      search: false
+      contents:
+        - teoria/01_introduccion_a_python.qmd
+    - title: Práctica
+      search: false
+      contents:
+        - practica/01_introduccion_a_python.qmd
+
+  page-footer:
+    right: "Esta página es hecha con ❤️ y [Quarto](https://quarto.org/)."
+    border: false
+
+format:
+  html:
+    theme: styles.scss
+    toc: false
+    lang: es
+
+bibliography: references.bib
+csl: chicago-author-date.csl

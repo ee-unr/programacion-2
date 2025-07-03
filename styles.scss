@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap");
+
+/*-- scss:defaults --*/
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #ddd !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+// Color palette variables
+$teal-primary: #2e7d8a !default;
+$teal-secondary: #4a6c6f !default;
+$teal-dark: #1a4a52 !default;
+$teal-darker: #1e4a52 !default;
+$green-light: #c8e6c9 !default;
+$green-lighter: #e0f2e1 !default;
+$off-white: #fffefd !default;
+$light-gray: #d3d3d3 !default;
+
+$font-family-sans-serif: Atkinson Hyperlegible, sans-serif !default;
+$font-family-serif: Atkinson Hyperlegible, serif !default;
+
+/*-- scss:rules --*/
+
+ul, ol {
+  font-family: $font-family-serif;
+}
+
+// Hacer que los numeros en las listas ordenadas esten en negrita
+// Pero si es una lista dentro de otra lista, usar texto normal
+ol > li::marker {
+  font-weight: bold;
+
+  ol & {
+    font-weight: normal;
+  }
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+  font-weight: 400;
+}
+
+@media (min-width: 1200px) {
+  h2, .h2 {
+    font-size: 1.75rem;
+  }
+
+  h3, .h3 {
+    font-size: 1.5rem;
+  }
+}
+
+// Cambiar tamaño de la fuente en la leyenda
+.panel-caption, caption, .figure-caption {
+  font-size: 0.9rem;
+}
+
+.table-practica {
+  display: block;
+  margin: 0 auto;
+}
+
+figure {
+  display: inline-block;
+
+  img {
+    vertical-align: top;
+  }
+
+  figcaption {
+    margin-top: 0; // Eliminar margin arriba de la leyenda
+    text-align: center; // Centrar la leyenda
+  }
+}
+
+// Course specific styles
+.course-details {
+  margin: 0 0 1em;
+  border-bottom: 3px solid $gray-200;
+  padding-bottom: 1em;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  i {
+    width: 1rem;
+    text-align: center;
+  }
+
+  ul {
+    list-style: none;
+    text-indent: -0.7rem;
+    padding-left: 1.4rem;
+  }
+
+  &.course-details-smaller {
+    li {
+      font-size: 1rem;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.course-title {
+  font-size: 3.5rem;
+  margin-top: 0;
+}
+
+.course-subtitle {
+  font-family: $font-family-serif;
+  font-size: 1.7rem;
+}
+
+.course-meta {
+  font-family: $font-family-serif;
+  font-size: 1.2rem;
+  color: $gray-600;
+
+  i {
+    width: 1.4rem;
+    text-align: center;
+  }
+}
+
+// Navbar and footer
+.navbar {
+  background-color: $teal-primary;
+  color: $off-white;
+
+  .navbar-title {
+    font-family: $font-family-sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  .nav-item {
+    font-family: $font-family-sans-serif;
+    font-size: 1.2rem;
+    font-weight: 200;
+  }
+
+  .nav-link {
+    font-size: 1.3rem;
+  }
+
+  .nav-link i {
+    font-size: 1.3rem;
+  }
+
+  // Navigation states
+  .navbar-nav {
+    .show > .nav-link,
+    .active > .nav-link,
+    .nav-link.active {
+      color: $green-light;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus {
+      color: $green-lighter;
+    }
+  }
+
+  .navbar-brand:hover,
+  .navbar-brand:focus {
+    color: $green-light;
+  }
+
+  // Busqueda
+  #quarto-search.type-overlay .aa-Autocomplete svg.aa-SubmitIcon:hover,
+  #quarto-search.type-overlay .aa-Autocomplete svg.aa-SubmitIcon:focus {
+    color: $green-lighter;
+  }
+}
+
+.nav-footer {
+  background-color: $teal-darker;
+  color: $light-gray;
+
+  a {
+    color: $light-gray;
+
+    &:hover,
+    &:focus {
+      color: $green-lighter;
+    }
+  }
+}
+
+// Sidebar
+div.sidebar-item-container {
+  color: $teal-secondary;
+
+  a {
+    color: $teal-secondary;
+
+    &:hover,
+    &:focus {
+      color: $teal-primary;
+      text-decoration: none;
+    }
+  }
+
+  .active,
+  .show > .nav-link,
+  .sidebar-link > code {
+    color: $teal-dark;
+  }
+
+  code {
+    color: $teal-primary;
+  }
+}
+
+// Links en general
+a {
+  color: $teal-secondary;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $teal-primary;
+    text-decoration: none; // Sin underline
+  }
+
+  &:active {
+    color: $teal-dark;
+  }
+}
+
+// Utilidades
+.five-columns {
+  --bs-columns: 5;
+}
+
+.inactive {
+  color: $gray-400;
+}
+
