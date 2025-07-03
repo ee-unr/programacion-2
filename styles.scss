@@ -114,7 +114,7 @@ figure {
 }
 
 .course-title {
-  font-size: 3.5rem;
+  font-size: 3.25rem;
   margin-top: 0;
   color: $gray-900;
 }
@@ -291,6 +291,9 @@ a {
 @media (max-width: 575px) {
   .img-fluid {
     width: 60%;
+  }
+  .course-title {
+    font-size: 2.5rem;
   }
 }
 
