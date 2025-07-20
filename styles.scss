@@ -86,13 +86,14 @@ figure {
   margin: 0 0 1em;
   border-bottom: 3px solid $gray-200;
   padding-bottom: 1em;
+  column-gap: 0;
 
   h3 {
     margin-top: 0;
   }
 
   i {
-    width: 1rem;
+    width: 0.5rem;
     text-align: center;
   }
 
@@ -102,15 +103,20 @@ figure {
     padding-left: 1.4rem;
   }
 
-  &.course-details-smaller {
     li {
-      font-size: 1rem;
+      font-size: 15px;
+    }
+
+  @media (max-width: 991px) {
+    li {
+      font-size: 19px;
     }
 
     h3 {
       font-size: 1.4rem;
     }
   }
+
 }
 
 .course-title {
