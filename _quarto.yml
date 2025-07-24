@@ -16,7 +16,7 @@ website:
       - text: Información
         file: informacion/programa.qmd
       - text: Teoría
-        file: teoria/01_introduccion_a_python.qmd
+        file: teoria/01_introduccion_a_python.ipynb
       - text: Práctica
         file: practica/01_introduccion_a_python.qmd
       - text: Trabajos Prácticos
@@ -36,7 +36,7 @@ website:
         # - informacion/faq.qmd
     - title: Teoría
       contents:
-        - teoria/01_introduccion_a_python.qmd
+        - teoria/01_introduccion_a_python.ipynb
         - teoria/02_programacion_funcional.qmd
         - teoria/03_oop.qmd
         - teoria/04_estructuras.qmd
