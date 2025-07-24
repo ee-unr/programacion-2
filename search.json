@@ -1,32 +1,10 @@
 [
   {
-    "objectID": "informacion/aprobacion.html",
-    "href": "informacion/aprobacion.html",
-    "title": "Condiciones de aprobación",
-    "section": "",
-    "text": "texto",
-    "crumbs": [
-      "Información",
-      "Condiciones de aprobación"
-    ]
-  },
-  {
-    "objectID": "informacion/aprobacion.html#instancias-de-evaluación",
-    "href": "informacion/aprobacion.html#instancias-de-evaluación",
-    "title": "Condiciones de aprobación",
-    "section": "",
-    "text": "texto",
-    "crumbs": [
-      "Información",
-      "Condiciones de aprobación"
-    ]
-  },
-  {
     "objectID": "informacion/programa.html",
     "href": "informacion/programa.html",
     "title": "Programa",
     "section": "",
-    "text": "texto",
+    "text": "Los profesionales en Estadística y Ciencia de Datos necesitan contar con habilidades avanzadas de programación, que les permitan abordar problemas complejos y desarrollar soluciones eficientes y robustas.\nLa asignatura Programación 2 introduce a los estudiantes a conceptos y prácticas avanzadas de la programación, incorporando herramientas y paradigmas que resultan fundamentales para el desarrollo profesional en Estadística y Ciencia de Datos.\nLa asignatura profundiza en enfoques como la programación funcional y la programación orientada a objetos, promoviendo el desarrollo de soluciones estructuradas, reutilizables, robustas y escalables. Además, se abordan conceptos fundamentales de estructuras de datos y algoritmos, relevantes para el diseño y análisis de programas eficientes, así como para la comprensión de la complejidad computacional. Se focaliza en el lenguaje Python, ampliamente utilizado en la industria y la academia por su versatilidad, su ecosistema de librerías y su capacidad para integrarse con diversas tecnologías.\nDictada en el segundo cuatrimestre del primer año, Programación 2 completa los contenidos del área de Fundamentos Computacionales en el Ciclo de Formación Técnica en Estadística y Ciencia de Datos, iniciada en el primer cuatrimestre con Programación 1. De este modo, consolida las competencias informáticas de los estudiantes y los prepara para afrontar asignaturas más avanzadas y desafíos profesionales que requieren un dominio sólido de la programación. Asimismo, fomenta buenas prácticas de desarrollo de código, el uso eficiente de los recursos computacionales y el pensamiento crítico en la resolución de problemas.",
     "crumbs": [
       "Información",
       "Programa"
@@ -37,7 +15,7 @@
     "href": "informacion/programa.html#fundamentación",
     "title": "Programa",
     "section": "",
-    "text": "texto",
+    "text": "Los profesionales en Estadística y Ciencia de Datos necesitan contar con habilidades avanzadas de programación, que les permitan abordar problemas complejos y desarrollar soluciones eficientes y robustas.\nLa asignatura Programación 2 introduce a los estudiantes a conceptos y prácticas avanzadas de la programación, incorporando herramientas y paradigmas que resultan fundamentales para el desarrollo profesional en Estadística y Ciencia de Datos.\nLa asignatura profundiza en enfoques como la programación funcional y la programación orientada a objetos, promoviendo el desarrollo de soluciones estructuradas, reutilizables, robustas y escalables. Además, se abordan conceptos fundamentales de estructuras de datos y algoritmos, relevantes para el diseño y análisis de programas eficientes, así como para la comprensión de la complejidad computacional. Se focaliza en el lenguaje Python, ampliamente utilizado en la industria y la academia por su versatilidad, su ecosistema de librerías y su capacidad para integrarse con diversas tecnologías.\nDictada en el segundo cuatrimestre del primer año, Programación 2 completa los contenidos del área de Fundamentos Computacionales en el Ciclo de Formación Técnica en Estadística y Ciencia de Datos, iniciada en el primer cuatrimestre con Programación 1. De este modo, consolida las competencias informáticas de los estudiantes y los prepara para afrontar asignaturas más avanzadas y desafíos profesionales que requieren un dominio sólido de la programación. Asimismo, fomenta buenas prácticas de desarrollo de código, el uso eficiente de los recursos computacionales y el pensamiento crítico en la resolución de problemas.",
     "crumbs": [
       "Información",
       "Programa"
@@ -48,21 +26,21 @@
     "href": "informacion/programa.html#objetivos",
     "title": "Programa",
     "section": "Objetivos",
-    "text": "Objetivos\ntexto",
+    "text": "Objetivos\nQue los estudiantes logren:\n\nanalizar problemas computacionales y formular soluciones algorítmicas adecuadas;\nimplementar esas soluciones mediante el desarrollo de programas en Python, seleccionando estructuras de datos apropiadas y evaluando la eficiencia de los algoritmos involucrados;\nidentificar y aplicar los paradigmas funcional y orientado a objetos cuando resulte pertinente, desarrollando programas que integren estos enfoques; y\nutilizar e integrar módulos y librerías que permitan extender, organizar y mejorar las funcionalidades de sus programas.",
     "crumbs": [
       "Información",
       "Programa"
     ]
   },
   {
-    "objectID": "trabajos_practicos/trabajo_individual.html",
-    "href": "trabajos_practicos/trabajo_individual.html",
-    "title": "Trabajo Práctico Final",
-    "section": "",
-    "text": "Trabajo Práctico Final",
+    "objectID": "informacion/programa.html#contenidos",
+    "href": "informacion/programa.html#contenidos",
+    "title": "Programa",
+    "section": "Contenidos",
+    "text": "Contenidos\n\nUnidad 1: Introducción a Python\n\nLenguaje Python y su ecosistema. Uso de la interfaz Positron. Sintaxis de Python. Expresiones. Variables y asignaciones. Tipos de datos elementales. Operadores numéricos, de comparación y lógicos. Funciones. Ejecución condicional de código. Bucles definidos y no definidos. Listas, tuplas y diccionarios. Uso de código externo. Módulos y librerías. Librería estándar de Python. Instalación y gestión de librerías. Scripting. Lectura y escritura de archivos de texto plano. Modularización de programas.\n\nUnidad 2: Programación funcional\n\nPrincipios fundamentales. Funciones como ciudadanos de primera clase. Funciones puras. Funciones anónimas. Closures. Recursión. Funciones de orden superior: map, filter, reduce. Evaluación estricta y no estricta. Evaluación perezosa (lazy) e inmediata (eager). Generadores. Aplicación parcial de funciones. Decoradores.\n\nUnidad 3: Programación orientada a objetos\n\nPrincipios fundamentales. Objetos, clases e instancias. Atributos y métodos. Propiedades públicas y privadas. Métodos de clase y métodos de instancia. Encapsulamiento. Herencia simple y múltiple. Polimorfismo. Métodos especiales (dunder methods). Decoradores aplicados a métodos. Sobrecarga de operadores.\n\nUnidad 4: Estructuras de datos\n\nConcepto y clasificación. Estructuras lineales: listas, listas enlazadas, pilas y colas. Operaciones básicas: agregar, quitar y recorrer. Estructuras no lineales: árboles y grafos. Recorridos de árboles y grafos. Uso de colecciones de Python (list, deque, dict, set). Arreglos multidimensionales de NumPy.\n\nUnidad 5: Algoritmos de búsqueda y ordenamiento\n\nConcepto de algoritmo y complejidad. Notación Big O. Búsqueda lineal y binaria. Algoritmos de ordenamiento: bubble sort, insertion sort, selection sort, quick sort y merge sort. Comparación de eficiencia. Funciones de búsqueda y ordenamiento en Python (sorted, sort, heapq).",
     "crumbs": [
-      "Trabajos Prácticos",
-      "Trabajo Práctico Final"
+      "Información",
+      "Programa"
     ]
   },
   {
@@ -77,17 +55,6 @@
     ]
   },
   {
-    "objectID": "trabajos_practicos/trabajo_grupal.html",
-    "href": "trabajos_practicos/trabajo_grupal.html",
-    "title": "Trabajo Práctico",
-    "section": "",
-    "text": "Trabajo Práctico",
-    "crumbs": [
-      "Trabajos Prácticos",
-      "Trabajo Práctico"
-    ]
-  },
-  {
     "objectID": "trabajos_practicos/descripcion.html",
     "href": "trabajos_practicos/descripcion.html",
     "title": "Descripción",
@@ -99,14 +66,25 @@
     ]
   },
   {
-    "objectID": "informacion/bibliografia.html",
-    "href": "informacion/bibliografia.html",
-    "title": "Bibliografía",
+    "objectID": "trabajos_practicos/trabajo_grupal.html",
+    "href": "trabajos_practicos/trabajo_grupal.html",
+    "title": "Trabajo Práctico",
     "section": "",
-    "text": "Principal\n\nCormen et al. (2022) Kalb (2022) Kubica (2022) Lott y Phillips (2021) Lott (2022) Mertz (2015) Miller, Ranum, y Yasinovskyy (2023) Sedgewick y Wayne (2011) Sedgewick, Wayne, y Dondero (2015) Sweigart (2020) Tuckfield (2021)\n\n\n\nCormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, y Clifford Stein. 2022. Introduction to Algorithms. 4th ed. MIT.\n\n\nKalb, Irv. 2022. Object-Oriented Python. No Starch Press.\n\n\nKubica, Jacek. 2022. Data Structures the Fun Way. 1st ed. No Starch Press.\n\n\nLott, Steven F. 2022. Functional Python Programming. 3rd ed. Packt Publishing.\n\n\nLott, Steven F., y Dusty Phillips. 2021. Python Object-Oriented Programming. 4th ed. Packt Publishing.\n\n\nMertz, David. 2015. Functional Programming in Python. O’Reilly Media.\n\n\nMiller, Bradley, David Ranum, y Jan Yasinovskyy. 2023. Problem Solving with Algorithms and Data Structures Using Python. 3rd ed. Franklin, Beedle & Associates.\n\n\nSedgewick, Robert, y Kevin Wayne. 2011. Algorithms. 4th ed. Addison-Wesley Professional.\n\n\nSedgewick, Robert, Kevin Wayne, y Robert Dondero. 2015. Introduction to Programming in Python. Addison-Wesley Professional.\n\n\nSweigart, Al. 2020. Beyond the Basic Stuff with Python. No Starch Press. https://inventwithpython.com/beyond/.\n\n\nTuckfield, Bradford. 2021. Dive Into Algorithms. No Starch Press.\n\n\n\n\nComplementaria\n\nDowney (2024) Hetland (2014) Mailund (2023) Sweigart (2021) Vaughan (2019) Wickham (2019)\n\n\n\n\n\nDowney, Allen B. 2024. Think Python. 3.ª ed. O’Reilly Media. https://allendowney.github.io/ThinkPython/.\n\n\nHetland, Magnus Lie. 2014. Python Algorithms. 2.ª ed. Apress.\n\n\nMailund, Thomas. 2023. Functional Programming in R 4. 2.ª ed. Apress.\n\n\nSweigart, Al. 2021. The Big Book of Small Python Projects. No Starch Press. https://inventwithpython.com/bigbookpython/.\n\n\nVaughan, Lee. 2019. Impractical Python Projects. No Starch Press.\n\n\nWickham, Hadley. 2019. Advanced R. 2.ª ed. Chapman & Hall/CRC. https://adv-r.hadley.nz/.",
+    "text": "Trabajo Práctico",
     "crumbs": [
-      "Información",
-      "Bibliografía"
+      "Trabajos Prácticos",
+      "Trabajo Práctico"
+    ]
+  },
+  {
+    "objectID": "trabajos_practicos/trabajo_individual.html",
+    "href": "trabajos_practicos/trabajo_individual.html",
+    "title": "Trabajo Práctico Final",
+    "section": "",
+    "text": "Trabajo Práctico Final",
+    "crumbs": [
+      "Trabajos Prácticos",
+      "Trabajo Práctico Final"
     ]
   },
   {
@@ -122,5 +100,49 @@
     "title": "Programación II",
     "section": "Docentes",
     "text": "Docentes\n\n\nTomás Capretto\n\n   tomas.capretto@fcecon.unr.edu.ar\n   Consultas: TBD\n\n\n\nLuciano Anselmino\n\n   luciano.anselmino@fcecon.unr.edu.ar\n   Consultas: TBD\n\n\n\nJoaquín Bermejo\n\n   joaquin.bermejo@fcecon.unr.edu.ar\n   Consultas: TBD\n\n\n\nDolores Sollberger\n\n   dolores.sollberger@fcecon.unr.edu.ar\n   Consultas: TBD"
+  },
+  {
+    "objectID": "informacion/bibliografia.html",
+    "href": "informacion/bibliografia.html",
+    "title": "Bibliografía",
+    "section": "",
+    "text": "Principal\n\nCormen et al. (2022) Downey (2024) Kalb (2022) Kubica (2022) Lott y Phillips (2021) Lott (2022) Mertz (2015) Miller, Ranum, y Yasinovskyy (2023) Sedgewick y Wayne (2011) Sedgewick, Wayne, y Dondero (2015) Sweigart (2020) Tuckfield (2021)\n\n\n\nCormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, y Clifford Stein. 2022. Introduction to Algorithms. 4th ed. MIT.\n\n\nDowney, Allen B. 2024. Think Python. 3.ª ed. O’Reilly Media. https://allendowney.github.io/ThinkPython/.\n\n\nKalb, Irv. 2022. Object-Oriented Python. No Starch Press.\n\n\nKubica, Jacek. 2022. Data Structures the Fun Way. 1st ed. No Starch Press.\n\n\nLott, Steven F. 2022. Functional Python Programming. 3rd ed. Packt Publishing.\n\n\nLott, Steven F., y Dusty Phillips. 2021. Python Object-Oriented Programming. 4th ed. Packt Publishing.\n\n\nMertz, David. 2015. Functional Programming in Python. O’Reilly Media.\n\n\nMiller, Bradley, David Ranum, y Jan Yasinovskyy. 2023. Problem Solving with Algorithms and Data Structures Using Python. 3rd ed. Franklin, Beedle & Associates.\n\n\nSedgewick, Robert, y Kevin Wayne. 2011. Algorithms. 4th ed. Addison-Wesley Professional.\n\n\nSedgewick, Robert, Kevin Wayne, y Robert Dondero. 2015. Introduction to Programming in Python. Addison-Wesley Professional.\n\n\nSweigart, Al. 2020. Beyond the Basic Stuff with Python. No Starch Press. https://inventwithpython.com/beyond/.\n\n\nTuckfield, Bradford. 2021. Dive Into Algorithms. No Starch Press.\n\n\n\n\nComplementaria\n\nHetland (2014) Mailund (2023) Sweigart (2021) Vaughan (2019) Wickham (2019)\n\n\n\n\n\nHetland, Magnus Lie. 2014. Python Algorithms. 2.ª ed. Apress.\n\n\nMailund, Thomas. 2023. Functional Programming in R 4. 2.ª ed. Apress.\n\n\nSweigart, Al. 2021. The Big Book of Small Python Projects. No Starch Press. https://inventwithpython.com/bigbookpython/.\n\n\nVaughan, Lee. 2019. Impractical Python Projects. No Starch Press.\n\n\nWickham, Hadley. 2019. Advanced R. 2.ª ed. Chapman & Hall/CRC. https://adv-r.hadley.nz/.",
+    "crumbs": [
+      "Información",
+      "Bibliografía"
+    ]
+  },
+  {
+    "objectID": "informacion/aprobacion.html",
+    "href": "informacion/aprobacion.html",
+    "title": "Condiciones de aprobación",
+    "section": "",
+    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
+    "crumbs": [
+      "Información",
+      "Condiciones de aprobación"
+    ]
+  },
+  {
+    "objectID": "informacion/aprobacion.html#instancias-de-evaluación",
+    "href": "informacion/aprobacion.html#instancias-de-evaluación",
+    "title": "Condiciones de aprobación",
+    "section": "",
+    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
+    "crumbs": [
+      "Información",
+      "Condiciones de aprobación"
+    ]
+  },
+  {
+    "objectID": "informacion/aprobacion.html#condiciones-de-aprobación",
+    "href": "informacion/aprobacion.html#condiciones-de-aprobación",
+    "title": "Condiciones de aprobación",
+    "section": "Condiciones de aprobación",
+    "text": "Condiciones de aprobación\n\nPromoción\n\nQuienes aprueben el parcial individual (con nota \\(\\text{P}\\)), el trabajo práctico grupal (con nota \\(\\text{T}\\)) y el trabajo práctico individual con defensa oral (con nota \\(\\text{O}\\)), adquieren la condición de estudiante promovido y su nota final se calcula como \\(0.5 \\times \\text{P} + 0.2 \\times \\text{T} + 0.3 \\times \\text{O}\\).\n\nRegularidad\n\nQuienes aprueben el parcial individual (o su recuperatorio) y el trabajo práctico grupal, pero no accedan o no aprueben el trabajo práctico individual, adquieren la condición de estudiante regular.\n\nLibres\n\nQuienes no aprueben el parcial individual (ni su recuperatorio) o el trabajo práctico grupal, adquieren la condición de estudiante libre.",
+    "crumbs": [
+      "Información",
+      "Condiciones de aprobación"
+    ]
   }
 ]
