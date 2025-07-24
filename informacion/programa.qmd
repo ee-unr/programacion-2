@@ -4,8 +4,73 @@ title: Programa
 
 ## Fundamentación
 
-texto
+Los profesionales en Estadística y Ciencia de Datos necesitan contar con habilidades avanzadas de
+programación, que les permitan abordar problemas complejos y desarrollar soluciones eficientes y
+robustas.
+
+La asignatura Programación 2 introduce a los estudiantes a conceptos y prácticas avanzadas de la
+programación, incorporando herramientas y paradigmas que resultan fundamentales para el desarrollo
+profesional en Estadística y Ciencia de Datos.
+
+La asignatura profundiza en enfoques como la programación funcional y la programación orientada a
+objetos, promoviendo el desarrollo de soluciones estructuradas, reutilizables, robustas y escalables.
+Además, se abordan conceptos fundamentales de estructuras de datos y algoritmos, relevantes para el
+diseño y análisis de programas eficientes, así como para la comprensión de la complejidad
+computacional. Se focaliza en el lenguaje Python, ampliamente utilizado en la industria y
+la academia por su versatilidad, su ecosistema de librerías y su capacidad para integrarse con
+diversas tecnologías.
+
+Dictada en el segundo cuatrimestre del primer año, Programación 2 completa los contenidos del área
+de Fundamentos Computacionales en el Ciclo de Formación Técnica en Estadística y Ciencia de Datos,
+iniciada en el primer cuatrimestre con Programación 1. De este modo, consolida las competencias
+informáticas de los estudiantes y los prepara para afrontar asignaturas más avanzadas y desafíos
+profesionales que requieren un dominio sólido de la programación. Asimismo, fomenta buenas prácticas
+de desarrollo de código, el uso eficiente de los recursos computacionales y el pensamiento crítico
+en la resolución de problemas.
+
 
 ## Objetivos
 
-texto
+Que los estudiantes logren:
+
+* analizar problemas computacionales y formular soluciones algorítmicas adecuadas;
+* implementar esas soluciones mediante el desarrollo de programas en Python, seleccionando
+estructuras de datos apropiadas y evaluando la eficiencia de los algoritmos involucrados;
+* identificar y aplicar los paradigmas funcional y orientado a objetos cuando resulte pertinente,
+desarrollando programas que integren estos enfoques; y
+* utilizar e integrar módulos y librerías que permitan extender, organizar y mejorar las
+funcionalidades de sus programas.
+
+
+## Contenidos
+
+**Unidad 1: Introducción a Python**
+: Lenguaje Python y su ecosistema. Uso de la interfaz Positron. Sintaxis de Python. Expresiones.
+Variables y asignaciones. Tipos de datos elementales. Operadores numéricos, de comparación y lógicos.
+Funciones. Ejecución condicional de código. Bucles definidos y no definidos.
+Listas, tuplas y diccionarios. Uso de código externo. Módulos y librerías.
+Librería estándar de Python. Instalación y gestión de librerías. Scripting.
+Lectura y escritura de archivos de texto plano. Modularización de programas.
+
+**Unidad 2: Programación funcional**
+: Principios fundamentales. Funciones como ciudadanos de primera clase. Funciones puras.
+Funciones anónimas. Closures. Recursión. Funciones de orden superior: map, filter, reduce.
+Evaluación estricta y no estricta. Evaluación perezosa (lazy) e inmediata (eager). Generadores.
+Aplicación parcial de funciones. Decoradores.
+
+**Unidad 3: Programación orientada a objetos**
+: Principios fundamentales. Objetos, clases e instancias. Atributos y métodos.
+Propiedades públicas y privadas. Métodos de clase y métodos de instancia. Encapsulamiento.
+Herencia simple y múltiple. Polimorfismo. Métodos especiales (dunder methods).
+Decoradores aplicados a métodos. Sobrecarga de operadores.
+
+**Unidad 4: Estructuras de datos**
+: Concepto y clasificación. Estructuras lineales: listas, listas enlazadas, pilas y colas.
+Operaciones básicas: agregar, quitar y recorrer. Estructuras no lineales: árboles y grafos.
+Recorridos de árboles y grafos.  Uso de colecciones de Python (list, deque, dict, set).
+Arreglos multidimensionales de NumPy.
+
+**Unidad 5: Algoritmos de búsqueda y ordenamiento**
+: Concepto de algoritmo y complejidad. Notación Big O. Búsqueda lineal y binaria.
+Algoritmos de ordenamiento: bubble sort, insertion sort, selection sort, quick sort y merge sort.
+Comparación de eficiencia. Funciones de búsqueda y ordenamiento en Python (sorted, sort, heapq).
