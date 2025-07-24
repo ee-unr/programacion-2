@@ -1,3 +1,9 @@
 ---
 title: Calendario
+tbl-colwidths: [5, 15, 60, 20]
+#page-layout: full
 ---
+
+{{< include _calendario.md >}}
+
+: {.striped .hover}
