@@ -1,8 +1,9 @@
+name: Renderizar y publicar página web
+
 on:
   push:
     branches: main
 
-name: Renderizar y publicar página web
 
 jobs:
   build-deploy:
