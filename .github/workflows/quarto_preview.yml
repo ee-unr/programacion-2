@@ -6,35 +6,6 @@ on:
       - main
 
 jobs:
-  build-deploy:
-    runs-on: ubuntu-22.04 # hay un problema de pandoc-citeproc con Ubuntu 24 ver (1)
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          version: 1.7.32
-          tinytex: true
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Render Webpage
-        shell: bash
-        run: quarto render
-
-      - name: Publish to GitHub
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-          render: false
-          path: _site
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-jobs:
   quarto-preview:
     runs-on: ubuntu-22.04 # hay un problema de pandoc-citeproc con Ubuntu 24 ver (1)
     permissions:
