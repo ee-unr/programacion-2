@@ -261,6 +261,18 @@
     ]
   },
   {
+    "objectID": "teoria/01_introduccion_a_python/clase_1.html#funciones",
+    "href": "teoria/01_introduccion_a_python/clase_1.html#funciones",
+    "title": "Clase 1",
+    "section": "Funciones",
+    "text": "Funciones\nUna función puede pensarse como un “mini-programa” dentro de un programa más grande. Su propósito es cumplir una tarea u objetivo específico, de forma independiente del resto del código.\nEl uso de funciones tiene varias ventajas:\n\nReutilización de código: se define una sola vez y se ejecuta cuando sea necesario.\nMejor organización: dividen el programa en partes más fáciles de leer y mantener.\nModularidad: permiten construir programas como bloques independientes que pueden combinarse entre sí (¡funciones dentro de funciones!).\n\nConsideremos el siguiente caso donde se busca calcuar el precio final de un producto, considerando impuestos y descuentos.\n\nprecio_base = 800   # Precio del producto ($800)\nimpuesto = 0.21     # Impuesto (21%)\ndescuento = 0.10    # Descuento (10%)\n\nprecio_final = precio_base * (1 + impuesto) * (1 - descuento)\nprecio_final\n\n871.2\n\n\n¿Qué pasa si queremos calcular el precio final para otros productos con diferentes precios, impuestos o descuentos?\nUna opción es repetir el código tantas veces como sea necesario…\n\nprecio_base = 500   # Precio del producto ($500)\nimpuesto = 0.105    # Impuesto (10.5%)\ndescuento = 0.0     # Descuento (0%)\n\nprecio_final = precio_base * (1 + impuesto) * (1 - descuento)\nprecio_final\n\n552.5\n\n\n\nprecio_base = 2000  # Precio del producto ($2000)\nimpuesto = 0.21     # Impuesto (21%)\ndescuento = 0.20    # Descuento (20%)\n\nprecio_final = precio_base * (1 + impuesto) * (1 - descuento)\nprecio_final\n\n1936.0\n\n\nOtra opción, mucho mas conveniente, es utilizar funciones.\n\ndef calcular_precio(precio_base, impuesto, descuento):\n    resultado = precio_base * (1 + impuesto) * (1 - descuento)\n    return resultado\n\nLuego, para utilizar la función simplemente la llamamos (o invocamos).\n\ncalcular_precio(800, 0.21, 0.10)\n\n871.2\n\n\nTambién es posible indicar los valores de los argumentos utilizando sus nombres.\n\ncalcular_precio(precio_base=2000, impuesto=0.21, descuento=0.20)\n\n1936.0\n\n\n\nDefinición de funciones\nAnalicemos las diferentes partes que forman la definición de una función en Python:\n\n\n\n\n\n\nLa palabra clave def:\n\nMarca el inicio de la definición de una función.\nEs una palabra reservada (keyword).\n\nEl nombre de la función:\n\nDebe seguir las mismas reglas que los nombres de las variables.\n\nLos argumentos de la función, dentro de paréntesis:\n\nSe separan por comas y pueden ser 0 o más.\n\nLos dos puntos (:):\n\nIndican el final de la línea de definición y el inicio del bloque de código.\n\nEl bloque de código, que es el cuerpo de la función:\n\nEs el código que se ejecuta cada vez que llamamos a la función.\n\nLa sentencia return que indica el resultado que devuelve la función.\n\nLuego del return viene el valor o nombre de la variable a devolver.\nEs opcional (ya vamos a ver ejemplos).",
+    "crumbs": [
+      "Teoría",
+      "U1 - Introducción a Python",
+      "Clase 1"
+    ]
+  },
+  {
     "objectID": "teoria/01_introduccion_a_python/clase_1.html#apéndice",
     "href": "teoria/01_introduccion_a_python/clase_1.html#apéndice",
     "title": "Clase 1",

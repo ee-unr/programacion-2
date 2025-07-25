@@ -255,6 +255,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#operadores-aritméticos" id="toc-operadores-aritméticos" class="nav-link" data-scroll-target="#operadores-aritméticos">Operadores aritméticos</a></li>
   <li><a href="#operadores-lógicos" id="toc-operadores-lógicos" class="nav-link" data-scroll-target="#operadores-lógicos">Operadores lógicos</a></li>
   </ul></li>
+  <li><a href="#funciones" id="toc-funciones" class="nav-link" data-scroll-target="#funciones">Funciones</a>
+  <ul class="collapse">
+  <li><a href="#definición-de-funciones" id="toc-definición-de-funciones" class="nav-link" data-scroll-target="#definición-de-funciones">Definición de funciones</a></li>
+  </ul></li>
   <li><a href="#apéndice" id="toc-apéndice" class="nav-link" data-scroll-target="#apéndice">Apéndice</a>
   <ul class="collapse">
   <li><a href="#palabras-claves-y-funciones-predefinidas" id="toc-palabras-claves-y-funciones-predefinidas" class="nav-link" data-scroll-target="#palabras-claves-y-funciones-predefinidas">Palabras claves y funciones predefinidas</a></li>
@@ -1239,12 +1243,110 @@ Conclusiones
 <div id="cell-152" class="cell">
 <div class="sourceCode cell-code" id="cb156"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">and</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+</section>
+</section>
+<section id="funciones" class="level2">
+<h2 class="anchored" data-anchor-id="funciones">Funciones</h2>
+<p>Una función puede pensarse como un “mini-programa” dentro de un programa más grande. Su propósito es cumplir una tarea u objetivo específico, de forma independiente del resto del código.</p>
+<p>El uso de funciones tiene varias ventajas:</p>
+<ul>
+<li><strong>Reutilización de código</strong>: se define una sola vez y se ejecuta cuando sea necesario.</li>
+<li><strong>Mejor organización</strong>: dividen el programa en partes más fáciles de leer y mantener.</li>
+<li><strong>Modularidad</strong>: permiten construir programas como bloques independientes que pueden combinarse entre sí (¡funciones dentro de funciones!).</li>
+</ul>
+<p>Consideremos el siguiente caso donde se busca calcuar el precio final de un producto, considerando impuestos y descuentos.</p>
+<div id="cell-155" class="cell">
+<div class="sourceCode cell-code" id="cb157"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a>precio_base <span class="op">=</span> <span class="dv">800</span>   <span class="co"># Precio del producto ($800)</span></span>
+<span id="cb157-2"><a href="#cb157-2" aria-hidden="true" tabindex="-1"></a>impuesto <span class="op">=</span> <span class="fl">0.21</span>     <span class="co"># Impuesto (21%)</span></span>
+<span id="cb157-3"><a href="#cb157-3" aria-hidden="true" tabindex="-1"></a>descuento <span class="op">=</span> <span class="fl">0.10</span>    <span class="co"># Descuento (10%)</span></span>
+<span id="cb157-4"><a href="#cb157-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-5"><a href="#cb157-5" aria-hidden="true" tabindex="-1"></a>precio_final <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
+<span id="cb157-6"><a href="#cb157-6" aria-hidden="true" tabindex="-1"></a>precio_final</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>871.2</code></pre>
+</div>
+</div>
+<p>¿Qué pasa si queremos calcular el precio final para otros productos con diferentes precios, impuestos o descuentos?</p>
+<p>Una opción es repetir el código tantas veces como sea necesario…</p>
+<div id="cell-157" class="cell">
+<div class="sourceCode cell-code" id="cb159"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a>precio_base <span class="op">=</span> <span class="dv">500</span>   <span class="co"># Precio del producto ($500)</span></span>
+<span id="cb159-2"><a href="#cb159-2" aria-hidden="true" tabindex="-1"></a>impuesto <span class="op">=</span> <span class="fl">0.105</span>    <span class="co"># Impuesto (10.5%)</span></span>
+<span id="cb159-3"><a href="#cb159-3" aria-hidden="true" tabindex="-1"></a>descuento <span class="op">=</span> <span class="fl">0.0</span>     <span class="co"># Descuento (0%)</span></span>
+<span id="cb159-4"><a href="#cb159-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb159-5"><a href="#cb159-5" aria-hidden="true" tabindex="-1"></a>precio_final <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
+<span id="cb159-6"><a href="#cb159-6" aria-hidden="true" tabindex="-1"></a>precio_final</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>552.5</code></pre>
+</div>
+</div>
+<div id="cell-158" class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb161"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a>precio_base <span class="op">=</span> <span class="dv">2000</span>  <span class="co"># Precio del producto ($2000)</span></span>
+<span id="cb161-2"><a href="#cb161-2" aria-hidden="true" tabindex="-1"></a>impuesto <span class="op">=</span> <span class="fl">0.21</span>     <span class="co"># Impuesto (21%)</span></span>
+<span id="cb161-3"><a href="#cb161-3" aria-hidden="true" tabindex="-1"></a>descuento <span class="op">=</span> <span class="fl">0.20</span>    <span class="co"># Descuento (20%)</span></span>
+<span id="cb161-4"><a href="#cb161-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-5"><a href="#cb161-5" aria-hidden="true" tabindex="-1"></a>precio_final <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
+<span id="cb161-6"><a href="#cb161-6" aria-hidden="true" tabindex="-1"></a>precio_final</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>1936.0</code></pre>
+</div>
+</div>
+<p>Otra opción, mucho mas conveniente, es utilizar funciones.</p>
+<div id="cell-160" class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb163"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_precio(precio_base, impuesto, descuento):</span>
+<span id="cb163-2"><a href="#cb163-2" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
+<span id="cb163-3"><a href="#cb163-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resultado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Luego, para utilizar la función simplemente la <strong>llamamos</strong> (o <strong>invocamos</strong>).</p>
+<div id="cell-162" class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a>calcular_precio(<span class="dv">800</span>, <span class="fl">0.21</span>, <span class="fl">0.10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>871.2</code></pre>
+</div>
+</div>
+<p>También es posible indicar los valores de los argumentos utilizando sus nombres.</p>
+<div id="cell-164" class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb166"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a>calcular_precio(precio_base<span class="op">=</span><span class="dv">2000</span>, impuesto<span class="op">=</span><span class="fl">0.21</span>, descuento<span class="op">=</span><span class="fl">0.20</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>1936.0</code></pre>
+</div>
+</div>
+<section id="definición-de-funciones" class="level3">
+<h3 class="anchored" data-anchor-id="definición-de-funciones">Definición de funciones</h3>
+<p>Analicemos las diferentes partes que forman la definición de una función en Python:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../imgs/trabajo_en_progreso.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="../imgs/definicion_funciones.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
-</section>
+<ul>
+<li>La palabra clave <code>def</code>:
+<ul>
+<li>Marca el inicio de la <strong>definición</strong> de una función.</li>
+<li>Es una palabra reservada (<em>keyword</em>).</li>
+</ul></li>
+<li>El nombre de la función:
+<ul>
+<li>Debe seguir las mismas reglas que los nombres de las variables.</li>
+</ul></li>
+<li>Los argumentos de la función, dentro de paréntesis:
+<ul>
+<li>Se separan por comas y pueden ser 0 o más.</li>
+</ul></li>
+<li>Los dos puntos (<code>:</code>):
+<ul>
+<li>Indican el final de la línea de definición y el inicio del bloque de código.</li>
+</ul></li>
+<li>El bloque de código, que es el cuerpo de la función:
+<ul>
+<li>Es el código que se ejecuta cada vez que llamamos a la función.</li>
+</ul></li>
+<li>La sentencia <code>return</code> que indica el resultado que devuelve la función.
+<ul>
+<li>Luego del <code>return</code> viene el valor o nombre de la variable a devolver.</li>
+<li>Es opcional (ya vamos a ver ejemplos).</li>
+</ul></li>
+</ul>
 </section>
 </section>
 <section id="apéndice" class="level2">
@@ -1256,30 +1358,30 @@ Conclusiones
 <p>Por otro lado, si intentamos utilizar el nombre de una función (o clase) predefinida como nombre de una variable que nosotros creamos, no vamos a obtener un error pero no podremos usar la función nuevamente porque la variable ahora representa otra cosa.</p>
 <section id="palabras-claves" class="level4">
 <h4 class="anchored" data-anchor-id="palabras-claves">Palabras claves</h4>
-<div class="sourceCode" id="cb157"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span>      <span class="cf">await</span>      <span class="cf">else</span>       <span class="im">import</span>     <span class="cf">pass</span></span>
-<span id="cb157-2"><a href="#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="va">None</span>       <span class="cf">break</span>      <span class="cf">except</span>     <span class="kw">in</span>         <span class="cf">raise</span></span>
-<span id="cb157-3"><a href="#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="va">True</span>       <span class="kw">class</span>      <span class="cf">finally</span>    <span class="kw">is</span>         <span class="cf">return</span></span>
-<span id="cb157-4"><a href="#cb157-4" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span>        <span class="cf">continue</span>   <span class="cf">for</span>        <span class="kw">lambda</span>     <span class="cf">try</span></span>
-<span id="cb157-5"><a href="#cb157-5" aria-hidden="true" tabindex="-1"></a><span class="im">as</span>         <span class="kw">def</span>        <span class="im">from</span>       <span class="kw">nonlocal</span>   <span class="cf">while</span></span>
-<span id="cb157-6"><a href="#cb157-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span>     <span class="kw">del</span>        <span class="kw">global</span>     <span class="kw">not</span>        <span class="cf">with</span></span>
-<span id="cb157-7"><a href="#cb157-7" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span>      <span class="cf">elif</span>       <span class="cf">if</span>         <span class="kw">or</span>         <span class="cf">yield</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span>      <span class="cf">await</span>      <span class="cf">else</span>       <span class="im">import</span>     <span class="cf">pass</span></span>
+<span id="cb168-2"><a href="#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="va">None</span>       <span class="cf">break</span>      <span class="cf">except</span>     <span class="kw">in</span>         <span class="cf">raise</span></span>
+<span id="cb168-3"><a href="#cb168-3" aria-hidden="true" tabindex="-1"></a><span class="va">True</span>       <span class="kw">class</span>      <span class="cf">finally</span>    <span class="kw">is</span>         <span class="cf">return</span></span>
+<span id="cb168-4"><a href="#cb168-4" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span>        <span class="cf">continue</span>   <span class="cf">for</span>        <span class="kw">lambda</span>     <span class="cf">try</span></span>
+<span id="cb168-5"><a href="#cb168-5" aria-hidden="true" tabindex="-1"></a><span class="im">as</span>         <span class="kw">def</span>        <span class="im">from</span>       <span class="kw">nonlocal</span>   <span class="cf">while</span></span>
+<span id="cb168-6"><a href="#cb168-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span>     <span class="kw">del</span>        <span class="kw">global</span>     <span class="kw">not</span>        <span class="cf">with</span></span>
+<span id="cb168-7"><a href="#cb168-7" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span>      <span class="cf">elif</span>       <span class="cf">if</span>         <span class="kw">or</span>         <span class="cf">yield</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="funciones-y-clases-pre-definidas" class="level4">
 <h4 class="anchored" data-anchor-id="funciones-y-clases-pre-definidas">Funciones y clases pre-definidas</h4>
-<div class="sourceCode" id="cb158"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="bu">abs</span>()          copyright()    <span class="bu">getattr</span>()      <span class="bu">list</span>()         <span class="bu">range</span>()        <span class="bu">vars</span>()</span>
-<span id="cb158-2"><a href="#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="bu">all</span>()          credits()      <span class="bu">globals</span>()      <span class="bu">locals</span>()       <span class="bu">repr</span>()         <span class="bu">zip</span>()</span>
-<span id="cb158-3"><a href="#cb158-3" aria-hidden="true" tabindex="-1"></a><span class="bu">any</span>()          <span class="bu">delattr</span>()      <span class="bu">hasattr</span>()      <span class="bu">map</span>()          <span class="bu">reversed</span>()</span>
-<span id="cb158-4"><a href="#cb158-4" aria-hidden="true" tabindex="-1"></a><span class="bu">ascii</span>()        <span class="bu">dict</span>()         <span class="bu">hash</span>()         <span class="bu">max</span>()          <span class="bu">round</span>()</span>
-<span id="cb158-5"><a href="#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="bu">bin</span>()          <span class="bu">dir</span>()          <span class="bu">help</span>()         <span class="bu">memoryview</span>()   <span class="bu">set</span>()</span>
-<span id="cb158-6"><a href="#cb158-6" aria-hidden="true" tabindex="-1"></a><span class="bu">bool</span>()         display()      <span class="bu">hex</span>()          <span class="bu">min</span>()          <span class="bu">setattr</span>()</span>
-<span id="cb158-7"><a href="#cb158-7" aria-hidden="true" tabindex="-1"></a><span class="bu">breakpoint</span>()   <span class="bu">divmod</span>()       <span class="bu">id</span>()           <span class="bu">next</span>()         <span class="bu">slice</span>()</span>
-<span id="cb158-8"><a href="#cb158-8" aria-hidden="true" tabindex="-1"></a><span class="bu">bytearray</span>()    <span class="bu">enumerate</span>()    <span class="bu">input</span>()        <span class="bu">object</span>()       <span class="bu">sorted</span>()</span>
-<span id="cb158-9"><a href="#cb158-9" aria-hidden="true" tabindex="-1"></a><span class="bu">bytes</span>()        <span class="bu">eval</span>()         <span class="bu">int</span>()          <span class="bu">oct</span>()          <span class="bu">staticmethod</span>()</span>
-<span id="cb158-10"><a href="#cb158-10" aria-hidden="true" tabindex="-1"></a><span class="bu">callable</span>()     <span class="bu">exec</span>()         <span class="bu">isinstance</span>()   <span class="bu">open</span>()         <span class="bu">str</span>()</span>
-<span id="cb158-11"><a href="#cb158-11" aria-hidden="true" tabindex="-1"></a><span class="bu">chr</span>()          <span class="bu">filter</span>()       <span class="bu">issubclass</span>()   <span class="bu">ord</span>()          <span class="bu">sum</span>()</span>
-<span id="cb158-12"><a href="#cb158-12" aria-hidden="true" tabindex="-1"></a><span class="bu">classmethod</span>()  <span class="bu">float</span>()        <span class="bu">iter</span>()         <span class="bu">pow</span>()          <span class="bu">super</span>()</span>
-<span id="cb158-13"><a href="#cb158-13" aria-hidden="true" tabindex="-1"></a><span class="bu">compile</span>()      <span class="bu">format</span>()       <span class="bu">len</span>()          <span class="bu">print</span>()        <span class="bu">tuple</span>()</span>
-<span id="cb158-14"><a href="#cb158-14" aria-hidden="true" tabindex="-1"></a><span class="bu">complex</span>()      <span class="bu">frozenset</span>()    license()      <span class="bu">property</span>()     <span class="bu">type</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="bu">abs</span>()          copyright()    <span class="bu">getattr</span>()      <span class="bu">list</span>()         <span class="bu">range</span>()        <span class="bu">vars</span>()</span>
+<span id="cb169-2"><a href="#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="bu">all</span>()          credits()      <span class="bu">globals</span>()      <span class="bu">locals</span>()       <span class="bu">repr</span>()         <span class="bu">zip</span>()</span>
+<span id="cb169-3"><a href="#cb169-3" aria-hidden="true" tabindex="-1"></a><span class="bu">any</span>()          <span class="bu">delattr</span>()      <span class="bu">hasattr</span>()      <span class="bu">map</span>()          <span class="bu">reversed</span>()</span>
+<span id="cb169-4"><a href="#cb169-4" aria-hidden="true" tabindex="-1"></a><span class="bu">ascii</span>()        <span class="bu">dict</span>()         <span class="bu">hash</span>()         <span class="bu">max</span>()          <span class="bu">round</span>()</span>
+<span id="cb169-5"><a href="#cb169-5" aria-hidden="true" tabindex="-1"></a><span class="bu">bin</span>()          <span class="bu">dir</span>()          <span class="bu">help</span>()         <span class="bu">memoryview</span>()   <span class="bu">set</span>()</span>
+<span id="cb169-6"><a href="#cb169-6" aria-hidden="true" tabindex="-1"></a><span class="bu">bool</span>()         display()      <span class="bu">hex</span>()          <span class="bu">min</span>()          <span class="bu">setattr</span>()</span>
+<span id="cb169-7"><a href="#cb169-7" aria-hidden="true" tabindex="-1"></a><span class="bu">breakpoint</span>()   <span class="bu">divmod</span>()       <span class="bu">id</span>()           <span class="bu">next</span>()         <span class="bu">slice</span>()</span>
+<span id="cb169-8"><a href="#cb169-8" aria-hidden="true" tabindex="-1"></a><span class="bu">bytearray</span>()    <span class="bu">enumerate</span>()    <span class="bu">input</span>()        <span class="bu">object</span>()       <span class="bu">sorted</span>()</span>
+<span id="cb169-9"><a href="#cb169-9" aria-hidden="true" tabindex="-1"></a><span class="bu">bytes</span>()        <span class="bu">eval</span>()         <span class="bu">int</span>()          <span class="bu">oct</span>()          <span class="bu">staticmethod</span>()</span>
+<span id="cb169-10"><a href="#cb169-10" aria-hidden="true" tabindex="-1"></a><span class="bu">callable</span>()     <span class="bu">exec</span>()         <span class="bu">isinstance</span>()   <span class="bu">open</span>()         <span class="bu">str</span>()</span>
+<span id="cb169-11"><a href="#cb169-11" aria-hidden="true" tabindex="-1"></a><span class="bu">chr</span>()          <span class="bu">filter</span>()       <span class="bu">issubclass</span>()   <span class="bu">ord</span>()          <span class="bu">sum</span>()</span>
+<span id="cb169-12"><a href="#cb169-12" aria-hidden="true" tabindex="-1"></a><span class="bu">classmethod</span>()  <span class="bu">float</span>()        <span class="bu">iter</span>()         <span class="bu">pow</span>()          <span class="bu">super</span>()</span>
+<span id="cb169-13"><a href="#cb169-13" aria-hidden="true" tabindex="-1"></a><span class="bu">compile</span>()      <span class="bu">format</span>()       <span class="bu">len</span>()          <span class="bu">print</span>()        <span class="bu">tuple</span>()</span>
+<span id="cb169-14"><a href="#cb169-14" aria-hidden="true" tabindex="-1"></a><span class="bu">complex</span>()      <span class="bu">frozenset</span>()    license()      <span class="bu">property</span>()     <span class="bu">type</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="asignaciones-múltiples" class="level3">
@@ -1287,20 +1389,20 @@ Conclusiones
 <p>Ya vimos que para asignar, o crear, una variable necesitamos hacer <code>variable = &lt;valor&gt;</code>.</p>
 <p>Si queremos crear multiples variables, podemos escribir las asignaciones en múltiples líneas.</p>
 <p>Por ejemplo</p>
-<div id="cell-156" class="cell">
-<div class="sourceCode cell-code" id="cb159"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a>pi, e <span class="op">=</span> <span class="fl">3.1416</span>, <span class="fl">2.7182</span></span>
-<span id="cb159-2"><a href="#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pi)</span>
-<span id="cb159-3"><a href="#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(e)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-170" class="cell">
+<div class="sourceCode cell-code" id="cb170"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a>pi, e <span class="op">=</span> <span class="fl">3.1416</span>, <span class="fl">2.7182</span></span>
+<span id="cb170-2"><a href="#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pi)</span>
+<span id="cb170-3"><a href="#cb170-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(e)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Una característica conveniente de Python es que permite asignar múltiples variables en una misma línea.</p>
 <p>Otro ejemplo es el siguiente, donde se demuestra que los tipos de las variables no necesitan ser iguales.</p>
-<div id="cell-158" class="cell">
-<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> <span class="dv">100</span> <span class="op">+</span> <span class="dv">20</span>, <span class="st">"un mensaje cualquiera"</span>, <span class="va">None</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-172" class="cell">
+<div class="sourceCode cell-code" id="cb171"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb171-1"><a href="#cb171-1" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> <span class="dv">100</span> <span class="op">+</span> <span class="dv">20</span>, <span class="st">"un mensaje cualquiera"</span>, <span class="va">None</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-159" class="cell">
-<div class="sourceCode cell-code" id="cb161"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
-<span id="cb161-2"><a href="#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span>
-<span id="cb161-3"><a href="#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-173" class="cell">
+<div class="sourceCode cell-code" id="cb172"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
+<span id="cb172-2"><a href="#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span>
+<span id="cb172-3"><a href="#cb172-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Esta característica es muy útil para escribir código más conciso, aunque tampoco debemos abusar de ella. En muchos casos puede resultar en código poco legible.</p>
 
