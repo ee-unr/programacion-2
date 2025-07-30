@@ -48,3 +48,120 @@ title: "🪞 Autoevaluación"
     else:
         print(f"El numero {numero} es 0")
     ```
+
+
+1.  ¿Qué valor contiene la variable `contador` luego de ejecutar el siguiente código?
+
+    ```python
+    contador = 20
+    contador + 1
+    ```
+
+1. ¿Por qué la siguiente comparación resulta en `True`?
+
+    ```python
+    "spam" + "spamspam" == "spam" * 3
+    ```
+
+
+1. ¿Por qué la siguiente expresión resulta en un error? ¿Cómo se puede arreglar?
+
+    ```python
+    "Me comí " + 6 + " panchos."
+    ```
+
+1. ¿Cuáles son los 3 operadores booleanos?
+
+1. Explica qué es una condición y en qué situaciones se utilizaría.
+
+1. Identificá los tres bloques de código en el siguiente ejemplo:
+
+    ```python
+    codigo = 0
+
+    if codigo == 10:
+        print("mensaje 1")
+        if codigo > 5:
+            print("mensaje 2")
+        else:
+            print("mensaje alternativo")
+        print("mensaje final")
+
+    print("Fin del programa")
+    ```
+
+    ¿Tienen sentido las comparaciones utilizadas?
+
+
+1. ¿Cuál es la diferencia entre `break` y `continue`? Considere los siguientes ejemplos:
+    ```python
+    for numero in range(10):
+        if numero == 5:
+            break
+        print(numero)
+    ```
+
+    ```python
+    for numero in range(5):
+        if numero == 2:
+            continue
+        print(numero)
+    ```
+
+1. ¿Cuál es la diferencia entre `range(10)`, `range(0, 10)` y `range(0, 10, 1)` en un bucle `for`?
+
+1.  Escribí un programa corto que imprima los números del 1 al 10 utilizando un bucle `for`.
+    Luego, escribí un programa equivalente que imprima los números del 1 al 10 utilizando un bucle
+    `while`.
+
+
+1.  Escriba un programa que recorra una lista de números y los vaya sumando uno por uno hasta que la
+    suma acumulada sea igual o mayor a un determinado umbral (por ejemplo, 20).
+    Primero, resuelva el problema utilizando un bucle `for`.
+    Luego, implemente una versión equivalente utilizando un bucle `while`.
+    Al finalizar, el programa debe mostrar la suma total acumulada y la cantidad de números que fueron sumados.
+
+    Utilice esta lista de ejemplo:
+
+    ```python
+    numeros = [4, 7, 3, 5, 2, 11, 20]
+    ```
+
+1. ¿Cuándo se ejecuta el código dentro de una función: cuando la función se define o cuando se la llama? Considere el siguiente ejemplo:
+
+    ```python
+    def suma(x, y):
+        print(100 / 0)
+        return x + y
+    ```
+
+1. ¿Cuál es la diferencia entre una función y una llamada a función?
+
+1. ¿Cuál es el valor que devuelve una función que no tiene `return`?
+
+- ¿Qué es `[]`?
+- ¿Cómo asignarías el valor `'hello'` como el tercer valor en una lista almacenada en una variable llamada `spam`? (Asumí que `spam` contiene `[2, 4, 6, 8, 10]`).
+
+  Para las siguientes tres preguntas, asumí que `spam` contiene la lista `['a', 'b', 'c', 'd']`:
+
+- ¿A qué evalúa `spam[int(int('3' * 2) // 11)]`?
+- ¿A qué evalúa `spam[-1]`?
+- ¿A qué evalúa `spam[:2]`?
+
+  Para las siguientes tres preguntas, asumí que `bacon` contiene la lista `[3.14, 'cat', 11, 'cat', True]`:
+
+- ¿A qué evalúa `bacon.index('cat')`?
+- ¿Cómo queda la lista en `bacon` después de ejecutar `bacon.append(99)`?
+- ¿Cómo queda la lista en `bacon` después de ejecutar `bacon.remove('cat')`?
+
+- ¿Cuáles son los operadores para la concatenación y la replicación de listas?
+- ¿Cuál es la diferencia entre los métodos `append()` e `insert()` de las listas?
+- ¿Cuáles son dos formas de eliminar valores de una lista?
+
+
+1. ¿Cómo se escribe en código un diccionario vacío?
+2. ¿Cómo se ve un diccionario que tiene la clave `'foo'` y el valor `42`?
+3. ¿Cuál es la principal diferencia entre un diccionario y una lista?
+4. ¿Qué ocurre si intentás acceder a `spam['foo']` cuando `spam` es `{'bar': 100}`?
+5. Si un diccionario está almacenado en `spam`, ¿cuál es la diferencia entre las expresiones `'cat' in spam` y `'cat' in spam.keys()`?
+6. Si un diccionario está almacenado en `spam`, ¿cuál es la diferencia entre las expresiones `'cat' in spam` y `'cat' in spam.values()`?

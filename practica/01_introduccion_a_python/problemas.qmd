@@ -85,37 +85,3 @@ Tu misión es escribir un programa que:
     * El usuario debe poder especificar el nombre del archivo de salida.
     * Si no lo hace, se generará uno con el sufijo `_limpio` antes de la extensión original
     (por ejemplo, `secreto.txt` → `secreto_limpio.txt`).
-
-### Control interno (ELIMINAR)
-
-* [ ] Tipo de datos elementales (agregar en **Preguntas**)
-* [ ] Asignación múltiple
-* [x] Desestructuración (se podría profundizar más)
-* [x] Operadores numéricos
-* [x] Operadores lógicos
-* [x] Definición de funciones.
-* [x] Ejecución condicional de código.
-* Bucles definidos y no definidos
-    * [x] `for`
-    * [x] `while`
-    * [ ] `break` (no estoy seguro de haberlo incluido)
-    * [ ] `continue` (no estoy seguro de haberlo incluido)
-* Estructuras de datos nativas de Python
-    * [x] listas
-    * [ ] tuplas (puede que haya, pero agregar más)
-    * [ ] conjuntos (no es tan necesario, aparece más adelante)
-    * [ ] diccionarios
-    * [x] `range`
-* Uso de código externo (propio y de terceros).
-    * [x] Librería estándar de Python.
-    * [x] Scripting.
-    * [x] Modularización de programas.
-
-### Comentarios
-
-Temas que no son necesarios de cubrir _per se_ en la práctica:
-
-* Expresiones
-* Variables y asignación
-* Módulos y librerías (cubierto en clases de teoría y de manera implícita en otros temas)
-* Instalación y gestión de librerías (va a aparecer mucho más adelante).
