@@ -1,0 +1,298 @@
+---
+title: "🛠️ Ejercicios"
+---
+
+## Calculadora de área
+
+Escriba un _script_ de Python llamado `calcular_area.py` que reciba el radio de un círculo
+y devuelva su área.
+
+## Calculadora de variación porcentual
+
+Construya un programa que calcule cómo ha variado un precio de un producto o servicio a lo
+largo de una o varias semanas.
+
+El programa debe pedir al usuario:
+
+* Precio inicial
+* Precio final
+* Cantidad de semanas entre precios.
+
+E imprimir un mensaje que incluya la variación porcentual entre periodos y una variación
+porcentual anualizada.
+
+## Calculadora de retenciones
+
+Escriba una función que calcule el monto destinado a retenciones según el tipo de producto y
+la cantidad de toneladas producidas. La función debe recibir como parámetros el nombre del
+producto y la cantidad de toneladas, y devolver la cantidad total que corresponde a las
+retenciones.
+
+Considere que las tasas de retención varían según el producto, como se muestra en la siguiente tabla:
+
+| **Producto** | **Retención** |
+|:------------:|:-------------:|
+|     Soja     |      33%      |
+|     Trigo    |      12%      |
+|     Maiz     |      12%      |
+|     Sorgo    |      12%      |
+|    Girasol   |       7%      |
+
+Por ejemplo, si la función recibe `producto="maiz"` y `cantidad=295`,
+el resultado debe ser `35.4`.
+
+## Calculadora de precios
+
+Escriba una función llamada `calcular_precio` que tome la cantidad de kilogramos de un producto
+y el precio por kilogramo como argumentos, y calcule el precio total a pagar.
+Si la cantidad de kilogramos es superior a 500, se aplicará un descuento del 10% sobre el
+precio total, y si la cantidad es superior a 2000 se aplicará un descuento del 15%.
+
+## Índice de precios
+
+Se cuenta con la serie mensual del Índice de Precios al Consumidor (IPC) del año 2024:
+
+```python
+ipc_2024 = [20.6, 13.2, 11.0, 8.8, 4.2, 4.6, 4.0, 4.2, 3.5, 2.7, 2.4, 2.7]
+```
+
+Realice los siguientes cálculos y análisis:
+
+* Determine el menor y el mayor índice reportado durante el año.
+* Calcule el IPC promedio mensual del 2024.
+* Encuentre la diferencia entre el IPC mínimo y máximo del año.
+    - ¿En qué mes se registró la inflación más alta?
+* Calcule la inflación mediana del 2024.
+* ¿Cómo podría calcular el rango del IPC (diferencia entre el valor máximo y mínimo) sin usar
+las funciones `min()` ni `max()`?
+
+## Resúmenes estadísticos
+
+Cree funciones que, dada una lista de números, calculen los siguientes resúmenes estadísticos:
+
+i. La media
+    $$
+    \text{media}(X) = \frac{1}{n}\sum_{i=1}^n{x_i}
+    $$
+i. El rango
+    $$
+    \text{rango}(X) = \text{max}(X) - \text{min}(X)
+    $$
+i. La varianza
+    $$
+    \text{var}(X) = \frac{1}{n}\sum_{i=1}^n{(x_i - \bar{x})^2}
+    $$
+i. El desvío estándar
+    $$
+    \text{sd}(X) = \sqrt{\text{var}(X)}
+    $$
+i. La mediana
+    $$
+    \begin{array}{lr}
+    \text{mediana}(X) = x_{(\frac{n + 1}{2})} & \text{Si } n \text{ es impar} \\
+    \text{mediana}(X) = \frac{x_{(\frac{n}{2})} + x_{(\frac{n}{2}+1)}}{2} & \text{Si } n \text{ es par}
+    \end{array}
+    $$
+
+    donde los $x_{(i)}$ están ordenados de manera ascendente.
+
+## Potencias
+
+Escriba una función que reciba un número entero `n` y una potencia máxima `b`.
+La función debe calcular las potencias de `n` desde $n^1$ hasta $n^b$.
+Primero, implemente la función para que devuelva todas las potencias en una lista.
+Luego, modifique la función para que devuelva cada potencia como un valor separado.
+Reflexione sobre las diferencias entre devolver una lista
+(un único objeto que contiene todos los resultados) y devolver múltiples valores separados.
+
+## Persiguiendo la meta
+
+En el Parque Independencia, la pista de atletismo del Estadio Municipal tiene una longitud de
+400 metros. Lucio, un atleta rosarino, se estuvo preparando intensamente para una competencia de
+400 los metros llanos.
+
+En su cuenta de Instagram, Lucio publicó una historia que decía:
+
+> "20 días, 100 kilómetros, 1 objetivo."
+
+### Parte 1: Análisis inicial
+
+Con base en esta información, responde las siguientes preguntas:
+
+i. ¿Cuántos metros corrió Lucio por día en promedio?
+i. ¿Cuántas vueltas completas dio por día en promedio? ¿Le sobró algún metro? ¿Cuántos?
+i. ¿Cuántas vueltas completas dio en total durante los 20 días?
+
+### Parte 2: Planificando el entrenamiento
+
+Lucio está diseñando un plan de entrenamiento para su próxima competencia.
+Quiere saber cuántas vueltas dará en promedio por día y cuántas vueltas completará en total al
+final de su entrenamiento.
+
+Escribe un programa que reciba:
+
+* Días de entrenamiento (un número entero).
+* Cantidad de metros a correr por día (un número entero).
+
+Y que devuelva:
+
+* Vueltas completas promedio por día (en una pista de 400 metros).
+* Vueltas completas totales al final del entrenamiento.
+* Metros sobrantes por día, si los hay.
+
+### Parte 3: Plan de entrenamiento avanzado
+
+Lucio quiere un programa más flexible para planificar su entrenamiento.
+Ahora, además de los días de entrenamiento, quiere poder ingresar la cantidad total de vueltas
+**o** la cantidad total de kilómetros que planea correr.
+
+Escribe un programa que reciba:
+
+* Días de entrenamiento (un número entero).
+* Cantidad total de vueltas o cantidad total de kilómetros
+(el usuario debe elegir una de las dos opciones).
+
+Y que devuelva:
+
+* Cantidad de metros y vueltas promedio por día.
+* Cantidad total de metros y vueltas.
+
+### La física del rebote
+
+Una pelota de goma es lanzada desde una altura inicial de 100 metros.
+Cada vez que toca el suelo, rebota alcanzando una altura equivalente a 3/5 de la altura desde
+la que cayó.
+
+Escriba un programa que imprima una tabla mostrando las alturas alcanzadas por la pelota en
+cada uno de sus primeros 10 rebotes.
+
+Luego, implemente este programa como una función que reciba dos parámetros:
+
+* Altura inicial desde la que se lanza la pelota.
+* Cantidad de rebotes que se desea calcular.
+
+La función debe devolver una lista con las alturas alcanzadas en cada rebote.
+
+### Punto extra
+
+Modifique la función para que considere un rebote como "significativo" solo si la altura
+alcanzada es mayor o igual a un valor mínimo especificado (por ejemplo, 1 centímetro).
+
+Si la pelota no alcanza esta altura mínima en algún rebote, se considera que ha completado su
+aterrizaje y queda quieta. En este caso, la función debe devolver únicamente los valores
+correspondientes a los "rebotes significativos"
+
+## Validación de DNI
+
+Crear una función que dada una cadena de caracteres verifique si se corresponde con un DNI.
+
+Si es un DNI, devolver `True`. Caso contrario, devolver `Falso`.
+
+A tener en cuenta:
+
+* Algunos ejemplos de DNI válidos
+    * 39.979.127
+    * 39979127
+    * 4.497.785
+* DNI no válidos
+    * 39,979,127
+    * 39-979-127
+    * 123456
+    * ...
+
+## Un montón de plata
+
+Una mañana ponés un billete en la vereda al lado del Monumento a la Bandera.
+A partir de ahí, cada día vas y duplicás la cantidad de billetes, apilándolos prolijamente.
+¿Cuánto tiempo pasa antes de que la pila de billetes sea más alta que la del Monumento?
+
+::: {.callout-tip collapse="true"}
+
+## Ayuda
+
+Algunas constantes útiles para resolver el problema:
+
+```python
+billete_grosor = 0.11 * 0.001  # grosor de un billete en metros
+altura_monumento = 70          # altura en metros
+```
+
+**Sugerencia**: Usar un bucle `while` para realizar el cálculo.
+:::
+
+### Punto extra
+
+Escribe una función que permita determinar la cantidad de días necesarios para superar
+cualquier altura arbitraria.
+
+### La conjetura de Collatz
+
+La [conjetura de Collatz](https://es.wikipedia.org/wiki/Conjetura_de_Collatz) dice:
+
+> Si tomamos un número natural cualquiera, su secuencia de Collatz termina llegando siempre al
+número 1.
+
+Secuencia de Collatz:
+
+* Si el número es par, se divide entre 2.
+* Si el número es impar, se multiplica por 3 y se le suma 1.
+
+$$
+f(n) =
+\begin{cases}
+    \displaystyle \frac{n}{2} & \text{si } n \text{ es par,} \\ \\
+    3n + 1 & \text{si } n \text{ es impar.}
+\end{cases}
+$$
+
+Escribir una función que calcule la secuencia de Collatz para un número natural cualquiera.
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+* Utilizar bucle `while`.
+* El bucle debe correr solo cuando el valor de la secuencia sigue siendo mayor a 1.
+Si es 1, hay que frenar.
+* Insertar los elementos de la secuencia en una lista.
+
+:::
+
+## Adivina el número
+
+Escriba un programa que implemente el clásico juego "Adivina el número".
+
+El programa debe:
+
+1. Tener un número secreto (entero) que el usuario debe adivinar.
+2. Solicitar al usuario que ingrese un número.
+3. Si el número ingresado no coincide con el número secreto:
+    * Informar si el número ingresado es mayor o menor que el número secreto.
+    * Pedir al usuario que intente nuevamente.
+4. Si el usuario adivina el número, el programa debe terminar mostrando un mensaje de felicitaciones.
+
+::: {.callout-tip collapse="true"}
+
+## Ayuda
+
+Para generar números aleatorios enteros en un rango dado puede utilizar `randint()` del módulo
+`random`:
+
+```python
+import random
+random.randint(-100, 100)     # Genera un número aleatorio entre -100 y 100
+```
+
+:::
+
+## Validador de contraseñas
+
+Escriba un programa que solicite al usuario una contraseña y verifique que cumpla con las
+siguientes condiciones:
+
+* Debe tener entre de 8 y 24 caracteres.
+* Debe incluir letras, números y caracteres especiales (`@#$%^&*()`).
+
+Si la contraseña no es válida, el programa debe informar al usuario qué condición no se cumple
+y permitirle ingresar una nueva contraseña.
+El proceso se repite hasta que el usuario ingrese una contraseña válida o decida no continuar.
