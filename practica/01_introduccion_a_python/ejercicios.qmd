@@ -379,7 +379,7 @@ Si la contraseña no es válida, el programa debe informar al usuario qué condi
 y permitirle ingresar una nueva contraseña.
 El proceso se repite hasta que el usuario ingrese una contraseña válida o decida no continuar.
 
-## Conteo de caracteres a medida 😱
+## Conteo de caracteres II 😱
 
 Agregue a la función `contar_frecuencias` del ejercicio **Conteo de caracteres** un argumento
 llamado `orden` que admita los valores `"aparicion"`, `"alfabetico"` y `"frecuencia"`.

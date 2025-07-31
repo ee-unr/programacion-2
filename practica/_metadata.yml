@@ -1,8 +1,8 @@
 format:
   html:
-    css: ../practica.scss   # Estilos que aplican a todos los .qmd de práctica
+    resources: "practica.css"
+    css: practica.css   # Estilos que aplican a todos los .qmd de práctica
     number-sections: true   # Para tener numerado automático de ejercicios (h2 en nuestro caso)
     number-depth: 2         # Solo numerar hasta el nivel 2 (i.e., no numerar h3, h4, etc.)
-    sass: true              # Para que compile el SCSS a CSS
     toc: true               # Tabla de contenidos a la derecha
     toc-depth: 2            # Incluir hasta h2 en la tabla de contenido a la derecha
