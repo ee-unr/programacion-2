@@ -44,58 +44,207 @@
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python.html",
-    "href": "practica/01_introduccion_a_python.html",
-    "title": "P1 - Introducción a Python",
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html",
+    "href": "practica/01_introduccion_a_python/ejercicios.html",
+    "title": "🛠️ Ejercicios",
     "section": "",
-    "text": "¿Cuál es el resultado de int(True) y de int(False)?\n1 is True, bool(1) is True, 2 == True, bool(2) is True.\n¿Cuál es el resultado de las siguientes expresiones? ¿Por qué?\n\nFalse or not False\nnot (True and True)\nnot True and True\n\"True\" != True\n10 &gt; 5 + 3\nNone is None\n[] is []\n\nComplete la siguiente tabla indicando si el nombre es válido para una variable de Python.\n\n\n\nNombre\n¿Válido?\nJustificación\n\n\n\n\nbalance\n\n\n\n\nbalanceActual\n\n\n\n\nbalance-actual\n\n\n\n\nbalance actual\n\n\n\n\nbalance_actual\n\n\n\n\n0cuenta\n\n\n\n\ncuenta0\n\n\n\n\n_cuenta\n\n\n\n\nSPAM\n\n\n\n\ncantidad$\n\n\n\n\n\n¿Cuál es el resultado de len([])? ¿Y qué pasa si se intenta hacer lo siguiente?\nl = []\nl[0]\n¿Por qué?\n¿Cuál es el problema con el siguiente programa? Proponga una solución.\nnumero = 10\nif numero &lt; 0:\n    print(f\"El numero {numero} es negativo\")\nelif numero &lt; -5:\n    print(f\"El numero {numero} es menor a -5\")\nelif numero &gt; 0:\n    print(f\"El numero {numero} es positivo\")\nelse:\n    print(f\"El numero {numero} es 0\")",
+    "text": "Escriba una función en Python que reciba el radio de un círculo y devuelva su área. Luego, escriba otra función que también reciba el radio de un círculo, pero devuelva su perímetro. Finalmente, escriba una tercera función que reciba el radio de un círculo y devuelva tanto el área como el perímetro.\nUna vez que haya implementado todas las funciones, analice la diferencia entre:\narea, perimetro = calcular_area_y_perimetro(radio=5)\ny\nresultados = calcular_area_y_perimetro(radio=5)\nConsidere el tipo de las variables area, perimetro y resutlados.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\n\\[\n\\begin{aligned}\nA &= \\pi \\cdot r^2 \\\\\nP &= 2 \\cdot \\pi \\cdot r\n\\end{aligned}\n\\]",
     "crumbs": [
       "Práctica",
-      "P1 - Introducción a Python"
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python.html#preguntas",
-    "href": "practica/01_introduccion_a_python.html#preguntas",
-    "title": "P1 - Introducción a Python",
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#área-y-perímetro-de-un-círculo",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#área-y-perímetro-de-un-círculo",
+    "title": "🛠️ Ejercicios",
     "section": "",
-    "text": "¿Cuál es el resultado de int(True) y de int(False)?\n1 is True, bool(1) is True, 2 == True, bool(2) is True.\n¿Cuál es el resultado de las siguientes expresiones? ¿Por qué?\n\nFalse or not False\nnot (True and True)\nnot True and True\n\"True\" != True\n10 &gt; 5 + 3\nNone is None\n[] is []\n\nComplete la siguiente tabla indicando si el nombre es válido para una variable de Python.\n\n\n\nNombre\n¿Válido?\nJustificación\n\n\n\n\nbalance\n\n\n\n\nbalanceActual\n\n\n\n\nbalance-actual\n\n\n\n\nbalance actual\n\n\n\n\nbalance_actual\n\n\n\n\n0cuenta\n\n\n\n\ncuenta0\n\n\n\n\n_cuenta\n\n\n\n\nSPAM\n\n\n\n\ncantidad$\n\n\n\n\n\n¿Cuál es el resultado de len([])? ¿Y qué pasa si se intenta hacer lo siguiente?\nl = []\nl[0]\n¿Por qué?\n¿Cuál es el problema con el siguiente programa? Proponga una solución.\nnumero = 10\nif numero &lt; 0:\n    print(f\"El numero {numero} es negativo\")\nelif numero &lt; -5:\n    print(f\"El numero {numero} es menor a -5\")\nelif numero &gt; 0:\n    print(f\"El numero {numero} es positivo\")\nelse:\n    print(f\"El numero {numero} es 0\")",
+    "text": "Escriba una función en Python que reciba el radio de un círculo y devuelva su área. Luego, escriba otra función que también reciba el radio de un círculo, pero devuelva su perímetro. Finalmente, escriba una tercera función que reciba el radio de un círculo y devuelva tanto el área como el perímetro.\nUna vez que haya implementado todas las funciones, analice la diferencia entre:\narea, perimetro = calcular_area_y_perimetro(radio=5)\ny\nresultados = calcular_area_y_perimetro(radio=5)\nConsidere el tipo de las variables area, perimetro y resutlados.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\n\\[\n\\begin{aligned}\nA &= \\pi \\cdot r^2 \\\\\nP &= 2 \\cdot \\pi \\cdot r\n\\end{aligned}\n\\]",
     "crumbs": [
       "Práctica",
-      "P1 - Introducción a Python"
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python.html#ejercicios",
-    "href": "practica/01_introduccion_a_python.html#ejercicios",
-    "title": "P1 - Introducción a Python",
-    "section": "🛠️ Ejercicios",
-    "text": "🛠️ Ejercicios\n\nCalculadora de área\nEscriba un script de Python llamado calcular_area.py que reciba el radio de un círculo y devuelva su área.\nCalculadora de variación porcentual\nConstruya un programa que calcule cómo ha variado un precio de un producto o servicio a lo largo de una o varias semanas.\nEl programa debe pedir al usuario:\n\nPrecio inicial\nPrecio final\nCantidad de semanas entre precios.\n\nE imprimir un mensaje que incluya la variación porcentual entre periodos y una variación porcentual anualizada.\nCalculadora de retenciones\nEscriba una función que calcule el monto destinado a retenciones según el tipo de producto y la cantidad de toneladas producidas. La función debe recibir como parámetros el nombre del producto y la cantidad de toneladas, y devolver la cantidad total que corresponde a las retenciones.\nConsidere que las tasas de retención varían según el producto, como se muestra en la siguiente tabla:\n\n\n\nProducto\nRetención\n\n\n\n\nSoja\n33%\n\n\nTrigo\n12%\n\n\nMaiz\n12%\n\n\nSorgo\n12%\n\n\nGirasol\n7%\n\n\n\nPor ejemplo, si la función recibe producto=\"maiz\" y cantidad=295, el resultado debe ser 35.4.\nCalculadora de precios\nEscriba una función llamada calcular_precio que tome la cantidad de kilogramos de un producto y el precio por kilogramo como argumentos, y calcule el precio total a pagar. Si la cantidad de kilogramos es superior a 500, se aplicará un descuento del 10% sobre el precio total, y si la cantidad es superior a 2000 se aplicará un descuento del 15%.\nÍndice de precios\nSe cuenta con la serie mensual del Índice de Precios al Consumidor (IPC) del año 2024:\nipc_2024 = [20.6, 13.2, 11.0, 8.8, 4.2, 4.6, 4.0, 4.2, 3.5, 2.7, 2.4, 2.7]\nRealice los siguientes cálculos y análisis:\n\nDetermine el menor y el mayor índice reportado durante el año.\nCalcule el IPC promedio mensual del 2024.\nEncuentre la diferencia entre el IPC mínimo y máximo del año.\n\n¿En qué mes se registró la inflación más alta?\n\nCalcule la inflación mediana del 2024.\n¿Cómo podría calcular el rango del IPC (diferencia entre el valor máximo y mínimo) sin usar las funciones min() ni max()?\n\nResúmenes estadísticos\nCree funciones que, dada una lista de números, calculen los siguientes resúmenes estadísticos:\n\nLa media \\[\n\\text{media}(X) = \\frac{1}{n}\\sum_{i=1}^n{x_i}\n\\]\nEl rango \\[\n\\text{rango}(X) = \\text{max}(X) - \\text{min}(X)\n\\]\nLa varianza \\[\n\\text{var}(X) = \\frac{1}{n}\\sum_{i=1}^n{(x_i - \\bar{x})^2}\n\\]\nEl desvío estándar \\[\n\\text{sd}(X) = \\sqrt{\\text{var}(X)}\n\\]\nLa mediana \\[\n\\begin{array}{lr}\n\\text{mediana}(X) = x_{(\\frac{n + 1}{2})} & \\text{Si } n \\text{ es impar} \\\\\n\\text{mediana}(X) = \\frac{x_{(\\frac{n}{2})} + x_{(\\frac{n}{2}+1)}}{2} & \\text{Si } n \\text{ es par}\n\\end{array}\n\\]\ndonde los \\(x_{(i)}\\) están ordenados de manera ascendente.\n\nPotencias\nEscriba una función que reciba un número entero n y una potencia máxima b. La función debe calcular las potencias de n desde \\(n^1\\) hasta \\(n^b\\). Primero, implemente la función para que devuelva todas las potencias en una lista. Luego, modifique la función para que devuelva cada potencia como un valor separado. Reflexione sobre las diferencias entre devolver una lista (un único objeto que contiene todos los resultados) y devolver múltiples valores separados.\nPersiguiendo la meta\nEn el Parque Independencia, la pista de atletismo del Estadio Municipal tiene una longitud de 400 metros. Lucio, un atleta rosarino, se estuvo preparando intensamente para una competencia de 400 los metros llanos.\nEn su cuenta de Instagram, Lucio publicó una historia que decía:\n\n“20 días, 100 kilómetros, 1 objetivo.”\n\nParte 1: Análisis inicial\nCon base en esta información, responde las siguientes preguntas:\n\n¿Cuántos metros corrió Lucio por día en promedio?\n¿Cuántas vueltas completas dio por día en promedio? ¿Le sobró algún metro? ¿Cuántos?\n¿Cuántas vueltas completas dio en total durante los 20 días?\n\nParte 2: Planificando el entrenamiento\nLucio está diseñando un plan de entrenamiento para su próxima competencia. Quiere saber cuántas vueltas dará en promedio por día y cuántas vueltas completará en total al final de su entrenamiento.\nEscribe un programa que reciba:\n\nDías de entrenamiento (un número entero).\nCantidad de metros a correr por día (un número entero).\n\nY que devuelva:\n\nVueltas completas promedio por día (en una pista de 400 metros).\nVueltas completas totales al final del entrenamiento.\nMetros sobrantes por día, si los hay.\n\nParte 3: Plan de entrenamiento avanzado\nLucio quiere un programa más flexible para planificar su entrenamiento. Ahora, además de los días de entrenamiento, quiere poder ingresar la cantidad total de vueltas o la cantidad total de kilómetros que planea correr.\nEscribe un programa que reciba:\n\nDías de entrenamiento (un número entero).\nCantidad total de vueltas o cantidad total de kilómetros (el usuario debe elegir una de las dos opciones).\n\nY que devuelva:\n\nCantidad de metros y vueltas promedio por día.\nCantidad total de metros y vueltas.\n\nLa física del rebote\nUna pelota de goma es lanzada desde una altura inicial de 100 metros. Cada vez que toca el suelo, rebota alcanzando una altura equivalente a 3/5 de la altura desde la que cayó.\nEscriba un programa que imprima una tabla mostrando las alturas alcanzadas por la pelota en cada uno de sus primeros 10 rebotes.\nLuego, implemente este programa como una función que reciba dos parámetros:\n\nAltura inicial desde la que se lanza la pelota.\nCantidad de rebotes que se desea calcular.\n\nLa función debe devolver una lista con las alturas alcanzadas en cada rebote.\nPunto extra\nModifique la función para que considere un rebote como “significativo” solo si la altura alcanzada es mayor o igual a un valor mínimo especificado (por ejemplo, 1 centímetro).\nSi la pelota no alcanza esta altura mínima en algún rebote, se considera que ha completado su aterrizaje y queda quieta. En este caso, la función debe devolver únicamente los valores correspondientes a los “rebotes significativos”\nValidación de DNI\nCrear una función que dada una cadena de caracteres verifique si se corresponde con un DNI.\nSi es un DNI, devolver True. Caso contrario, devolver Falso.\nA tener en cuenta:\n\nAlgunos ejemplos de DNI válidos\n\n39.979.127\n39979127\n4.497.785\n\nDNI no válidos\n\n39,979,127\n39-979-127\n123456\n…\n\n\nUn montón de plata\nUna mañana ponés un billete en la vereda al lado del Monumento a la Bandera. A partir de ahí, cada día vas y duplicás la cantidad de billetes, apilándolos prolijamente. ¿Cuánto tiempo pasa antes de que la pila de billetes sea más alta que la del Monumento?\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nAlgunas constantes útiles para resolver el problema:\nbillete_grosor = 0.11 * 0.001  # grosor de un billete en metros\naltura_monumento = 70          # altura en metros\nSugerencia: Usar un bucle while para realizar el cálculo.\n\n\n\nPunto extra\nEscribe una función que permita determinar la cantidad de días necesarios para superar cualquier altura arbitraria.\nLa conjetura de Collatz\nLa conjetura de Collatz dice:\n\nSi tomamos un número natural cualquiera, su secuencia de Collatz termina llegando siempre al número 1.\n\nSecuencia de Collatz:\n\nSi el número es par, se divide entre 2.\nSi el número es impar, se multiplica por 3 y se le suma 1.\n\n\\[\nf(n) =\n\\begin{cases}\n    \\displaystyle \\frac{n}{2} & \\text{si } n \\text{ es par,} \\\\ \\\\\n    3n + 1 & \\text{si } n \\text{ es impar.}\n\\end{cases}\n\\]\nEscribir una función que calcule la secuencia de Collatz para un número natural cualquiera.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\n\nUtilizar bucle while.\nEl bucle debe correr solo cuando el valor de la secuencia sigue siendo mayor a 1. Si es 1, hay que frenar.\nInsertar los elementos de la secuencia en una lista.\n\n\n\n\nAdivina el número\nEscriba un programa que implemente el clásico juego “Adivina el número”.\nEl programa debe:\n\nTener un número secreto (entero) que el usuario debe adivinar.\nSolicitar al usuario que ingrese un número.\nSi el número ingresado no coincide con el número secreto:\n\nInformar si el número ingresado es mayor o menor que el número secreto.\nPedir al usuario que intente nuevamente.\n\nSi el usuario adivina el número, el programa debe terminar mostrando un mensaje de felicitaciones.\n\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nPara generar números aleatorios enteros en un rango dado puede utilizar randint() del módulo random:\nimport random\nrandom.randint(-100, 100)     # Genera un número aleatorio entre -100 y 100\n\n\n\nValidador de contraseñas\nEscriba un programa que solicite al usuario una contraseña y verifique que cumpla con las siguientes condiciones:\n\nDebe tener entre de 8 y 24 caracteres.\nDebe incluir letras, números y caracteres especiales (@#$%^&*()).\n\nSi la contraseña no es válida, el programa debe informar al usuario qué condición no se cumple y permitirle ingresar una nueva contraseña. El proceso se repite hasta que el usuario ingrese una contraseña válida o decida no continuar.",
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#promociones",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#promociones",
+    "title": "🛠️ Ejercicios",
+    "section": "2 Promociones",
+    "text": "2 Promociones\nEscriba una función llamada calcular_precio que reciba dos argumentos: el monto total de una compra y el medio de pago utilizado.\nEl medio de pago puede ser \"efectivo\", \"débito\" o \"crédito\", y según el caso se aplicará una modificación sobre el monto:\n\nSi el medio de pago es \"efectivo\", el monto no se modifica.\nSi es \"débito\", se aplica un descuento del 10% sobre el monto.\nSi es \"crédito\", se aplica un recargo del 5% sobre el monto.\n\nLa función debe retornar el monto final a pagar, con el descuento o recargo aplicado según corresponda.\n\nPunto extra\nModifique la función de modo tal que no sea necesario especificar el medio de pago. En tal caso, el medio de pago se asume \"efectivo\". Ayuda: asigne un valor por defecto al argumento medio. Considere una implementación donde este sea \"efectivo\" y otra donde sea None.",
     "crumbs": [
       "Práctica",
-      "P1 - Introducción a Python"
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python.html#problemas",
-    "href": "practica/01_introduccion_a_python.html#problemas",
-    "title": "P1 - Introducción a Python",
-    "section": "🧩 Problemas",
-    "text": "🧩 Problemas\n\nCifrado César\nEn criptografía, el cifrado César es una de las técnicas de cifrado más simples y más usadas.\nEs un tipo de cifrado en el que una letra en el texto original es reemplazada por otra letra que se encuentra un número fijo de posiciones más adelante en el alfabeto.\nPor ejemplo, con un desplazamiento de 3, la A sería sustituida por la D (situada 3 lugares a la derecha de la A), la B sería reemplazada por la E, etc.\n\n\n\n\n\nEscriba una función, y luego un script, que permita cifrar y descifrar cadenas usando el cifrado César con un número arbitrario de posiciones.\nDos funciones incluidas con Python que pueden ser útiles para esta tarea son ord(), que convierte caracteres numéricos a números, y chr(), que realiza la operación inversa.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nPara el cifrado de un único caracter:\n\nDefinir un desplazamiento, por ejemplo 3.\nConvertir el caracter a número usando ord().\nSumarle desplazamiento.\nFinalmente, convertirlo a caracter nuevamente utilizando chr().\n\nY para el descifrado:\n\nConvertir el caracter a número.\nRestarle desplazamiento.\nConvertirlo a caracter nuevamente utilizando chr().\n\nAsí, se debería recuperar el caracter definido al principio.\n\n\n\nGeneración de números aleatorios\nConstruya un programa en Python que genere una cantidad determinada de números aleatorios uniformes dentro de un rango definido por el usuario. El programa debe:\n\nSolicitar al usuario la cantidad de números a generar y los valores mínimo y máximo del rango.\nGenerar los números aleatorios\nGuardar los números en un archivo de texto, uno por línea.\nOfrecer la opción de mostrar un resumen estadístico con mínimo, máximo, media y desvío estándar, solo si el usuario lo solicita.\n\nPara resolver este problema utilice el módulo random y las funciones desarrolladas en el ejercicio Resúmenes estadísticos guardadas en un módulo llamado estadistica.py.\nMensaje al descubierto\nResulta que Franco, un amigo que estudia Ciencias de la Computación en la FCEIA, te envía por WhatsApp un archivo de texto plano con mensajes “encriptados” usando caracteres sobrantes y símbolos extraños:\n  !!!,.,  aY??/u/DAM**e,, se =m!!e\n&&M&&e v!o!?LV...I.O /L/*oC/*o\n     __?e_?l//+ T++**e/*Cl!?aD==*O**\nTiene sentido pensar que está experimentando con nuevos algoritmos de cifrado y, de paso, te lanza el reto de descifrarlo.\nTu misión es escribir un programa que:\n\nLea un archivo de texto plano cualquiera.\nMuestre en pantalla su contenido original (tal cual llega).\nAplique un proceso de limpieza basado en las siguientes reglas:\n\nEliminar todos los caracteres +, *, -, /, =, !, ?, & y _.\nReemplazar cualquier secuencia de espacios múltiples por un solo espacio.\nHomogeinizar la capitalización de los caracteres.\nConservar los saltos de línea tal cual aparecen en el archivo original.\n\nMuestre en pantalla la versión desencriptada del texto.\nGuarde la versión limpia en un nuevo archivo de texto.\n\nEl usuario debe poder especificar el nombre del archivo de salida.\nSi no lo hace, se generará uno con el sufijo _limpio antes de la extensión original (por ejemplo, secreto.txt → secreto_limpio.txt).",
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#etapas-de-la-vida",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#etapas-de-la-vida",
+    "title": "🛠️ Ejercicios",
+    "section": "3 Etapas de la vida",
+    "text": "3 Etapas de la vida\nImplemente una función que reciba una edad y devuelva un mensaje que indique la etapa de la vida correspondiente.\nUtilice una cadena de condicionales if-elif-else para clasificar la edad en alguno de los siguientes grupos:\n\nMenor a 2 años: bebé.\nEntre 2 (inclusive) y 4 años: infante.\nEntre 4 (inclusive) y 13 años: niño/a.\nEntre 13 (inclusive) y 20 años: adolescente.\nEntre 20 (inclusive) y 65 años: adulto/a.\n65 años o más: persona mayor.\n\nLa función debe imprimir un mensaje del tipo: \"La persona es un/a &lt;etapa&gt;\".",
     "crumbs": [
       "Práctica",
-      "P1 - Introducción a Python"
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python.html#control-interno-eliminar",
-    "href": "practica/01_introduccion_a_python.html#control-interno-eliminar",
-    "title": "P1 - Introducción a Python",
-    "section": "Control interno (ELIMINAR)",
-    "text": "Control interno (ELIMINAR)\n\nTipo de datos elementales (agregar en Preguntas)\nAsignación múltiple\nDesestructuración (se podría profundizar más)\nOperadores numéricos\nOperadores lógicos\nDefinición de funciones.\nEjecución condicional de código.\nBucles definidos y no definidos\n\nfor\nwhile\nbreak (no estoy seguro de haberlo incluido)\ncontinue (no estoy seguro de haberlo incluido)\n\nEstructuras de datos nativas de Python\n\nlistas\ntuplas (puede que haya, pero agregar más)\nconjuntos (no es tan necesario, aparece más adelante)\ndiccionarios\nrange\n\nUso de código externo (propio y de terceros).\n\nLibrería estándar de Python.\nScripting.\nModularización de programas.\n\n\n\nComentarios\nTemas que no son necesarios de cubrir per se en la práctica:\n\nExpresiones\nVariables y asignación\nMódulos y librerías (cubierto en clases de teoría y de manera implícita en otros temas)\nInstalación y gestión de librerías (va a aparecer mucho más adelante).",
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres",
+    "title": "🛠️ Ejercicios",
+    "section": "4 Conteo de caracteres",
+    "text": "4 Conteo de caracteres\nEscriba una función que reciba una cadena de texto y devuelva un diccionario que indique cuántas veces aparece cada caracter en la cadena. La función no debe diferenciar entre mayúsculas y minúsculas y debe ignorar espacios. Utilice el siguiente ejemplo como validación:\ncontar_caracteres(\"Ahora es mejor que nunca\")\n# {\"a\": 3, \"h\": 1, \"o\": 2, \"r\": 2, \"e\": 3, \"s\": 1, \"m\": 1, \"j\": 1, \"q\": 1, \"u\": 2, \"n\": 2, \"c\": 1}\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nPara saltear pasos de un bucle cuando se encuentra un espacio se puede utilizar la sentencia continue.\nfor i in ...:\n    # ... &lt;- Se ejecuta en todas las iteraciones\n    if condicion_de_salto:\n        continue\n    # ... &lt;- Se ejecuta en las iteraciones 'condicion_de_salto' es False",
     "crumbs": [
       "Práctica",
-      "P1 - Introducción a Python"
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#orden-de-mérito",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#orden-de-mérito",
+    "title": "🛠️ Ejercicios",
+    "section": "5 Orden de mérito",
+    "text": "5 Orden de mérito\nSe cuenta con una lista de tuplas que contienen las notas del examen final de Programación 2 para un conjunto de alumnos:\nnotas = [\n    (\"Escalada\", 9),\n    (\"Alonso\", 7),\n    (\"Pérez\", 8),\n    (\"Castro\", 8),\n    (\"Rossini\", 10),\n    (\"Martínez\", 9),\n    (\"Pérez\", 6),\n    (\"Riquelme\", 5),\n]\n\nEscriba un programa que a partir de notas genere un diccionario donde las claves se corresponden con los apellidos y los valores con las notas del examen final.\nEscriba un programa que a partir de notas genere un diccionario donde las claves son las notas y el valor asociado sea una lista con los apellidos de quienes tuvieron esa nota.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#rendimento-académico",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#rendimento-académico",
+    "title": "🛠️ Ejercicios",
+    "section": "6 Rendimento académico",
+    "text": "6 Rendimento académico\nSe cuenta con el siguiente diccionario que asocia nombres de estudiantes con una lista de sus calificaciones:\nnotas = {\n    \"Ana\": [8, 9, 10],\n    \"Luis\": [6, 7, 8, 3, 9],\n    \"Carla\": [10, 9, 10],\n    \"Marcos\": [5, 6],\n    \"Sofía\": [7, 7, 8],\n    \"Pedro\": [6, 4, 5, 6, 3, 8],\n    \"Lucía\": [9, 8, 10, 9]\n}\nImplemente una función que resuma el rendimiento académico de los estudiantes. La función debe recibir el diccionario de notas y un argumento adicional llamado modo. Según el valor de modo, se debe devolver un nuevo diccionario con la siguiente información:\n\nSi modo es \"promedio\", se debe devolver el promedio de notas por estudiante.\nSi modo es \"proporcion\", se debe devolver la proporción de exámenes aprobados por estudiante (se considera aprobado todo valor mayor o igual a 6).",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#índice-de-precios",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#índice-de-precios",
+    "title": "🛠️ Ejercicios",
+    "section": "7 Índice de precios",
+    "text": "7 Índice de precios\nSe cuenta con la serie mensual del Índice de Precios al Consumidor (IPC) del año 2024:\nipc_2024 = [20.6, 13.2, 11.0, 8.8, 4.2, 4.6, 4.0, 4.2, 3.5, 2.7, 2.4, 2.7]\nRealice los siguientes cálculos y análisis:\n\nDetermine el menor y el mayor índice reportado durante el año.\nCalcule el IPC promedio mensual del 2024.\nEncuentre la diferencia entre el IPC mínimo y máximo del año.\n\n¿En qué mes se registró la inflación más alta?\n\nCalcule la inflación mediana del 2024.\n¿Cómo podría calcular el rango del IPC (diferencia entre el valor máximo y mínimo) sin usar las funciones min() ni max()?",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#resúmenes-estadísticos",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#resúmenes-estadísticos",
+    "title": "🛠️ Ejercicios",
+    "section": "8 Resúmenes estadísticos",
+    "text": "8 Resúmenes estadísticos\nCree funciones que, dada una lista de números, calculen los siguientes resúmenes estadísticos:\n\nLa media \\[\n\\text{media}(X) = \\frac{1}{n}\\sum_{i=1}^n{x_i}\n\\]\nEl rango \\[\n\\text{rango}(X) = \\text{max}(X) - \\text{min}(X)\n\\]\nLa varianza \\[\n\\text{var}(X) = \\frac{1}{n}\\sum_{i=1}^n{(x_i - \\bar{x})^2}\n\\]\nEl desvío estándar \\[\n\\text{sd}(X) = \\sqrt{\\text{var}(X)}\n\\]\nLa mediana \\[\n\\begin{array}{lr}\n\\text{mediana}(X) = x_{(\\frac{n + 1}{2})} & \\text{Si } n \\text{ es impar} \\\\\n\\text{mediana}(X) = \\frac{x_{(\\frac{n}{2})} + x_{(\\frac{n}{2}+1)}}{2} & \\text{Si } n \\text{ es par}\n\\end{array}\n\\]\ndonde los \\(x_{(i)}\\) están ordenados de manera ascendente.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#validación-de-dni",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#validación-de-dni",
+    "title": "🛠️ Ejercicios",
+    "section": "9 Validación de DNI",
+    "text": "9 Validación de DNI\nCrear una función que dada una cadena de caracteres verifique si se corresponde con un DNI.\nSi es un DNI, devolver True. Caso contrario, devolver Falso.\nA tener en cuenta:\n\nAlgunos ejemplos de DNI válidos\n\n40.094.127\n19053512\n6.392.780\n\nDNI no válidos\n\n40,094,127\n19-053-512\n123456",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#la-física-del-rebote",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#la-física-del-rebote",
+    "title": "🛠️ Ejercicios",
+    "section": "10 La física del rebote",
+    "text": "10 La física del rebote\nUna pelota de goma es lanzada desde una altura inicial de 100 metros. Cada vez que toca el suelo, rebota alcanzando una altura equivalente a 3/5 de la altura desde la que cayó.\nEscriba un programa que imprima una tabla mostrando las alturas alcanzadas por la pelota en cada uno de sus primeros 10 rebotes.\nLuego, implemente este programa como una función que reciba dos parámetros:\n\nAltura inicial desde la que se lanza la pelota.\nCantidad de rebotes que se desea calcular.\n\nLa función debe devolver una lista con las alturas alcanzadas en cada rebote.\n\nPunto extra\nModifique la función para que considere un rebote como “significativo” solo si la altura alcanzada es mayor o igual a un valor mínimo especificado (por ejemplo, 1 centímetro).\nSi la pelota no alcanza esta altura mínima en algún rebote, se considera que ha completado su trayectoria y queda quieta. En este caso, la función debe devolver únicamente los valores correspondientes a los “rebotes significativos”.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#un-montón-de-plata",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#un-montón-de-plata",
+    "title": "🛠️ Ejercicios",
+    "section": "11 Un montón de plata",
+    "text": "11 Un montón de plata\nUna mañana ponés un billete en la vereda al lado del Monumento a la Bandera. A partir de ahí, cada día vas y duplicás la cantidad de billetes, apilándolos prolijamente. ¿Cuánto tiempo pasa antes de que la pila de billetes sea más alta que la del Monumento?\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nAlgunas constantes útiles para resolver el problema:\nbillete_grosor = 0.11 * 0.001  # grosor de un billete en metros\naltura_monumento = 70          # altura en metros\nSugerencia: Usar un bucle while para realizar el cálculo.\n\n\n\n\nPunto extra\nEscribe una función que permita determinar la cantidad de días necesarios para superar cualquier altura arbitraria.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#la-conjetura-de-collatz",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#la-conjetura-de-collatz",
+    "title": "🛠️ Ejercicios",
+    "section": "12 La conjetura de Collatz",
+    "text": "12 La conjetura de Collatz\nLa conjetura de Collatz dice:\n\nSi tomamos un número natural cualquiera, su secuencia de Collatz termina llegando siempre al número 1.\n\nSecuencia de Collatz:\n\nSi el número es par, se divide entre 2.\nSi el número es impar, se multiplica por 3 y se le suma 1.\n\n\\[\nf(n) =\n\\begin{cases}\n    \\displaystyle \\frac{n}{2} & \\text{si } n \\text{ es par,} \\\\ \\\\\n    3n + 1 & \\text{si } n \\text{ es impar.}\n\\end{cases}\n\\]\nEscribir una función que calcule la secuencia de Collatz para un número natural cualquiera.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\n\nUtilizar bucle while.\nEl bucle debe correr solo cuando el valor de la secuencia sigue siendo mayor a 1. Si es 1, hay que frenar.\nInsertar los elementos de la secuencia en una lista.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#adivina-el-número",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#adivina-el-número",
+    "title": "🛠️ Ejercicios",
+    "section": "13 Adivina el número",
+    "text": "13 Adivina el número\nEscriba un programa que implemente el clásico juego “Adivina el número”. El programa debe:\n\nTener un número secreto (entero) que el usuario debe adivinar.\nSolicitar al usuario que ingrese un número.\nSi el número ingresado no coincide con el número secreto:\n\nInformar si el número ingresado es mayor o menor que el número secreto.\nPedir al usuario que intente nuevamente.\n\nSi el usuario adivina el número, el programa debe terminar mostrando un mensaje de felicitaciones.\n\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nPara generar números aleatorios enteros en un rango dado puede utilizar randint() del módulo random:\nimport random\nrandom.randint(-100, 100)     # Genera un número aleatorio entre -100 y 100\n\n\n\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nEl programa que resuelve este problema realiza una cantidad de iteraciones que se desconoce al momento de escribirlo. La solución típica a este tipo de problema involucra el uso de while True junto a la sentencia break.\nwhile True:\n    # realizar alguna accion\n    if condicion_de_salida:\n        break\n\n\n\n\nPunto extra\nImplemente una versión de este programa donde el usuario cuenta con 10 intentos.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-pythonico",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-pythonico",
+    "title": "🛠️ Ejercicios",
+    "section": "14 Conteo de caracteres Pythonico",
+    "text": "14 Conteo de caracteres Pythonico\nLos diccionarios en Python cuentan con un método .get() que devuelve el valor asociado a una clave. Este método permite pasarle un segundo argumento con un valor que se devuelve cuando no se encuentra un elemento asocaido a la clave que le pasamos. Por ejemplo:\nd = {\"a\": 1, \"b\": 20}\nd.get(\"b\", 0)\n20\nd.get(\"c\", 0)\n0\nModifique la función contar_caracteres del ejercicio Conteo de caracteres utilizando el metodo .get() para obtener una implementación más sencilla. Así, debería poder eliminar el bloque if.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#validador-de-contraseñas",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#validador-de-contraseñas",
+    "title": "🛠️ Ejercicios",
+    "section": "15 Validador de contraseñas 😱",
+    "text": "15 Validador de contraseñas 😱\nEscriba un programa que solicite al usuario una contraseña y verifique que cumpla con las siguientes condiciones:\n\nDebe tener entre de 8 y 24 caracteres.\nDebe incluir letras, números y caracteres especiales (@#$%^&*()).\n\nSi la contraseña no es válida, el programa debe informar al usuario qué condición no se cumple y permitirle ingresar una nueva contraseña. El proceso se repite hasta que el usuario ingrese una contraseña válida o decida no continuar.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-a-medida",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-a-medida",
+    "title": "🛠️ Ejercicios",
+    "section": "16 Conteo de caracteres a medida 😱",
+    "text": "16 Conteo de caracteres a medida 😱\nAgregue a la función contar_frecuencias del ejercicio Conteo de caracteres un argumento llamado orden que admita los valores \"aparicion\", \"alfabetico\" y \"frecuencia\".\nEste argumento debe permitir ordenar las claves del diccionario resultante según el siguiente criterio:\n\n\"aparicion\": mantiene el orden en que las palabras aparecen por primera vez en la lista original.\n\"alfabetico\": ordena las palabras alfabéticamente.\n\"frecuencia\": ordena las palabras por su frecuencia, de mayor a menor.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🛠️ Ejercicios"
     ]
   },
   {
@@ -144,6 +293,66 @@
     "title": "Programación II",
     "section": "Docentes",
     "text": "Docentes\n\n\nTomás Capretto\n\n   tomas.capretto@fcecon.unr.edu.ar\n   Consultas: TBD\n\n\n\nLuciano Anselmino\n\n   luciano.anselmino@fcecon.unr.edu.ar\n   Consultas: TBD\n\n\n\nJoaquín Bermejo\n\n   joaquin.bermejo@fcecon.unr.edu.ar\n   Consultas: TBD\n\n\n\nDolores Sollberger\n\n   dolores.sollberger@fcecon.unr.edu.ar\n   Consultas: TBD"
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/problemas.html",
+    "href": "practica/01_introduccion_a_python/problemas.html",
+    "title": "🧩 Problemas",
+    "section": "",
+    "text": "En criptografía, el cifrado César es una de las técnicas de cifrado más simples y más usadas.\nEs un tipo de cifrado en el que una letra en el texto original es reemplazada por otra letra que se encuentra un número fijo de posiciones más adelante en el alfabeto.\nPor ejemplo, con un desplazamiento de 3, la A sería sustituida por la D (situada 3 lugares a la derecha de la A), la B sería reemplazada por la E, etc.\n\n\n\n\n\nEscriba una función, y luego un script, que permita cifrar y descifrar cadenas usando el cifrado César con un número arbitrario de posiciones.\nDos funciones incluidas con Python que pueden ser útiles para esta tarea son ord(), que convierte caracteres numéricos a números, y chr(), que realiza la operación inversa.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nPara el cifrado de un único caracter:\n\nDefinir un desplazamiento, por ejemplo 3.\nConvertir el caracter a número usando ord().\nSumarle desplazamiento.\nFinalmente, convertirlo a caracter nuevamente utilizando chr().\n\nY para el descifrado:\n\nConvertir el caracter a número.\nRestarle desplazamiento.\nConvertirlo a caracter nuevamente utilizando chr().\n\nAsí, se debería recuperar el caracter definido al principio.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🧩 Problemas"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/problemas.html#cifrado-césar",
+    "href": "practica/01_introduccion_a_python/problemas.html#cifrado-césar",
+    "title": "🧩 Problemas",
+    "section": "",
+    "text": "En criptografía, el cifrado César es una de las técnicas de cifrado más simples y más usadas.\nEs un tipo de cifrado en el que una letra en el texto original es reemplazada por otra letra que se encuentra un número fijo de posiciones más adelante en el alfabeto.\nPor ejemplo, con un desplazamiento de 3, la A sería sustituida por la D (situada 3 lugares a la derecha de la A), la B sería reemplazada por la E, etc.\n\n\n\n\n\nEscriba una función, y luego un script, que permita cifrar y descifrar cadenas usando el cifrado César con un número arbitrario de posiciones.\nDos funciones incluidas con Python que pueden ser útiles para esta tarea son ord(), que convierte caracteres numéricos a números, y chr(), que realiza la operación inversa.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nPara el cifrado de un único caracter:\n\nDefinir un desplazamiento, por ejemplo 3.\nConvertir el caracter a número usando ord().\nSumarle desplazamiento.\nFinalmente, convertirlo a caracter nuevamente utilizando chr().\n\nY para el descifrado:\n\nConvertir el caracter a número.\nRestarle desplazamiento.\nConvertirlo a caracter nuevamente utilizando chr().\n\nAsí, se debería recuperar el caracter definido al principio.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🧩 Problemas"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/problemas.html#números-aleatorios",
+    "href": "practica/01_introduccion_a_python/problemas.html#números-aleatorios",
+    "title": "🧩 Problemas",
+    "section": "2 Números aleatorios",
+    "text": "2 Números aleatorios\nConstruya un programa en Python que genere una cantidad determinada de números aleatorios uniformes dentro de un rango definido por el usuario. El programa debe:\n\nSolicitar al usuario la cantidad de números a generar y los valores mínimo y máximo del rango.\nGenerar los números aleatorios\nGuardar los números en un archivo de texto, uno por línea.\nOfrecer la opción de mostrar un resumen estadístico con mínimo, máximo, media y desvío estándar, solo si el usuario lo solicita.\n\nPara resolver este problema utilice el módulo random y las funciones desarrolladas en el ejercicio Resúmenes estadísticos guardadas en un módulo llamado estadistica.py.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🧩 Problemas"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/problemas.html#mensaje-al-descubierto",
+    "href": "practica/01_introduccion_a_python/problemas.html#mensaje-al-descubierto",
+    "title": "🧩 Problemas",
+    "section": "3 Mensaje al descubierto",
+    "text": "3 Mensaje al descubierto\nResulta que Franco, un amigo que estudia Ciencias de la Computación en la FCEIA, te envía por WhatsApp un archivo de texto plano con mensajes “encriptados” usando caracteres sobrantes y símbolos extraños:\n    !!!,.,  aY??/u/DAM**e,, se =m!!e\n&&M&&e v!o!?LV...I.O /L/*oC/*o\n        __?e_?l//+ T++**e/*Cl!?aD==*O**\nTiene sentido pensar que está experimentando con nuevos algoritmos de cifrado y, de paso, te lanza el reto de descifrarlo.\nTu misión es escribir un programa que:\n\nLea un archivo de texto plano cualquiera.\nMuestre en pantalla su contenido original (tal cual llega).\nAplique un proceso de limpieza basado en las siguientes reglas:\n\nEliminar todos los caracteres +, *, -, /, =, !, ?, & y _.\nReemplazar cualquier secuencia de espacios múltiples por un solo espacio.\nHomogeinizar la capitalización de los caracteres.\nConservar los saltos de línea tal cual aparecen en el archivo original.\n\nMuestre en pantalla la versión desencriptada del texto.\nGuarde la versión limpia en un nuevo archivo de texto.\n\nEl usuario debe poder especificar el nombre del archivo de salida.\nSi no lo hace, se generará uno con el sufijo _limpio antes de la extensión original (por ejemplo, secreto.txt → secreto_limpio.txt).",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🧩 Problemas"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/problemas.html#código-morse",
+    "href": "practica/01_introduccion_a_python/problemas.html#código-morse",
+    "title": "🧩 Problemas",
+    "section": "4 Código Morse",
+    "text": "4 Código Morse\nEl código Morse es un sistema utilizado para representar letras mediante combinaciones específicas de señales cortas y largas, denominadas puntos (.) y rayas (-). A continuación se muestra un diccionario con el mapeo de caracteres alfabéticos, dígitos del 0 al 9 y algunos símbolos de puntuación comunes:\nmapeo_morse = {\n    \"A\": \".-\",\n    \"B\": \"-...\",\n    \"C\": \"-.-.\",\n    \"D\": \"-..\",\n    \"E\": \".\",\n    \"F\": \"..-.\",\n    \"G\": \"--.\",\n    \"H\": \"....\",\n    \"I\": \"..\",\n    \"J\": \".---\",\n    \"K\": \"-.-\",\n    \"L\": \".-..\",\n    \"M\": \"--\",\n    \"N\": \"-.\",\n    \"O\": \"---\",\n    \"P\": \".--.\",\n    \"Q\": \"--.-\",\n    \"R\": \".-.\",\n    \"S\": \"...\",\n    \"T\": \"-\",\n    \"U\": \"..-\",\n    \"V\": \"...-\",\n    \"W\": \".--\",\n    \"X\": \"-..-\",\n    \"Y\": \"-.--\",\n    \"Z\": \"--..\",\n    \"1\": \".----\",\n    \"2\": \"..---\",\n    \"3\": \"...--\",\n    \"4\": \"....-\",\n    \"5\": \".....\",\n    \"6\": \"-....\",\n    \"7\": \"--...\",\n    \"8\": \"---..\",\n    \"9\": \"----.\",\n    \"0\": \"-----\",\n    \", \": \"--..--\",\n    \".\": \".-.-.-\",\n}\nEscriba una función en Python que permita convertir cualquier palabra a código Morse utilizando este diccionario. Luego, escriba otra función que haga exactamente lo contrario: dada una secuencia en código Morse, debe recuperar la palabra original. Finalmente, incorpore ambas funciones en un script principal que combine ambas funciones y permita encriptar o desencriptar texto desde un archivo de texto plano. El programa debe recibir:\n\nEl nombre del archivo de entrada.\nEl nombre del archivo de salida.\nLa operación a realizar (encriptar o desencriptar).\n\nAyuda: Para indicar espacios en código Morse utilice /.",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🧩 Problemas"
+    ]
   },
   {
     "objectID": "informacion/calendario.html",

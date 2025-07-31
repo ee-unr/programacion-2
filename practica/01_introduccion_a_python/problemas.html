@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Clase 3 – Programación II</title>
+<title>🧩 Problemas – Programación II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../teoria/02_programacion_funcional.html" rel="next">
-<link href="../../teoria/01_introduccion_a_python/clase_2.html" rel="prev">
+<link href="../../practica/02_programacion_funcional/autoevaluacion.html" rel="next">
+<link href="../../practica/01_introduccion_a_python/ejercicios.html" rel="prev">
 <link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -71,6 +106,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="../../practica.scss">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -95,11 +131,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Información</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../teoria/01_introduccion_a_python/clase_1.html" aria-current="page"> 
+    <a class="nav-link" href="../../teoria/01_introduccion_a_python/clase_1.html"> 
 <span class="menu-text">Teoría</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../practica/01_introduccion_a_python/ejercicios.html"> 
+    <a class="nav-link active" href="../../practica/01_introduccion_a_python/ejercicios.html" aria-current="page"> 
 <span class="menu-text">Práctica</span></a>
   </li>  
   <li class="nav-item">
@@ -126,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_introduccion_a_python/clase_1.html">U1 - Introducción a Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_introduccion_a_python/clase_3.html">Clase 3</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../practica/01_introduccion_a_python/autoevaluacion.html">U1 - Introducción a Python</a></li><li class="breadcrumb-item"><a href="../../practica/01_introduccion_a_python/problemas.html">🧩 Problemas</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -149,62 +185,163 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/01_introduccion_a_python/clase_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Clase 1</span></a>
+  <a href="../../practica/01_introduccion_a_python/autoevaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/01_introduccion_a_python/clase_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Clase 2</span></a>
+  <a href="../../practica/01_introduccion_a_python/ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/01_introduccion_a_python/clase_3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Clase 3</span></a>
+  <a href="../../practica/01_introduccion_a_python/problemas.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">🧩 Problemas</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U2 - Programación funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/02_programacion_funcional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">U2 - Programación Funcional</span></a>
+  <a href="../../practica/02_programacion_funcional/autoevaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/03_oop.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">U3 - Programación Orientada a Objetos</span></a>
+  <a href="../../practica/02_programacion_funcional/ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/04_estructuras.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">U4 - Estructuras de Datos</span></a>
+  <a href="../../practica/02_programacion_funcional/problemas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧩 Problemas</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U3 - Programación orientada a objetos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/05_algoritmos.html" class="sidebar-item-text sidebar-link">
+  <a href="../../practica/03_oop/autoevaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/03_oop/ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/03_oop/problemas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧩 Problemas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U4 - Estructuras de datos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/04_estructuras/autoevaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/04_estructuras/ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/04_estructuras/problemas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧩 Problemas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
  <span class="menu-text">U5 - Algoritmos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/05_algoritmos/autoevaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/05_algoritmos/ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/05_algoritmos/problemas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧩 Problemas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#cifrado-césar" id="toc-cifrado-césar" class="nav-link active" data-scroll-target="#cifrado-césar"><span class="header-section-number">1</span> Cifrado César</a></li>
+  <li><a href="#números-aleatorios" id="toc-números-aleatorios" class="nav-link" data-scroll-target="#números-aleatorios"><span class="header-section-number">2</span> Números aleatorios</a></li>
+  <li><a href="#mensaje-al-descubierto" id="toc-mensaje-al-descubierto" class="nav-link" data-scroll-target="#mensaje-al-descubierto"><span class="header-section-number">3</span> Mensaje al descubierto</a></li>
+  <li><a href="#código-morse" id="toc-código-morse" class="nav-link" data-scroll-target="#código-morse"><span class="header-section-number">4</span> Código Morse</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_introduccion_a_python/clase_1.html">U1 - Introducción a Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_introduccion_a_python/clase_3.html">Clase 3</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../practica/01_introduccion_a_python/autoevaluacion.html">U1 - Introducción a Python</a></li><li class="breadcrumb-item"><a href="../../practica/01_introduccion_a_python/problemas.html">🧩 Problemas</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Clase 3</h1>
+<h1 class="title">🧩 Problemas</h1>
 </div>
 
 
@@ -221,13 +358,138 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="cifrado-césar" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="cifrado-césar"><span class="header-section-number">1</span> Cifrado César</h2>
+<p>En criptografía, el <a href="https://es.wikipedia.org/wiki/Cifrado_C%C3%A9sar">cifrado César</a> es una de las técnicas de cifrado más simples y más usadas.</p>
+<p>Es un tipo de cifrado en el que una letra en el texto original es reemplazada por otra letra que se encuentra un número fijo de posiciones más adelante en el alfabeto.</p>
+<p>Por ejemplo, con un desplazamiento de 3, la A sería sustituida por la D (situada 3 lugares a la derecha de la A), la B sería reemplazada por la E, etc.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../imgs/trabajo_en_progreso.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="imgs/cifrado_cesar.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
+<p>Escriba una función, y luego un <em>script</em>, que permita cifrar y descifrar cadenas usando el cifrado César con un número arbitrario de posiciones.</p>
+<p>Dos funciones incluidas con Python que pueden ser útiles para esta tarea son <code>ord()</code>, que convierte caracteres numéricos a números, y <code>chr()</code>, que realiza la operación inversa.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Para el cifrado de un único caracter:</p>
+<ul>
+<li>Definir un <code>desplazamiento</code>, por ejemplo <code>3</code>.</li>
+<li>Convertir el caracter a número usando <code>ord()</code>.</li>
+<li>Sumarle <code>desplazamiento</code>.</li>
+<li>Finalmente, convertirlo a caracter nuevamente utilizando <code>chr()</code>.</li>
+</ul>
+<p>Y para el descifrado:</p>
+<ul>
+<li>Convertir el caracter a número.</li>
+<li>Restarle <code>desplazamiento</code>.</li>
+<li>Convertirlo a caracter nuevamente utilizando <code>chr()</code>.</li>
+</ul>
+<p>Así, se debería recuperar el caracter definido al principio.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="números-aleatorios" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="números-aleatorios"><span class="header-section-number">2</span> Números aleatorios</h2>
+<p>Construya un programa en Python que genere una cantidad determinada de números aleatorios uniformes dentro de un rango definido por el usuario. El programa debe:</p>
+<ul>
+<li>Solicitar al usuario la cantidad de números a generar y los valores mínimo y máximo del rango.</li>
+<li>Generar los números aleatorios</li>
+<li>Guardar los números en un archivo de texto, uno por línea.</li>
+<li>Ofrecer la opción de mostrar un resumen estadístico con mínimo, máximo, media y desvío estándar, solo si el usuario lo solicita.</li>
+</ul>
+<p>Para resolver este problema utilice el módulo <code>random</code> y las funciones desarrolladas en el ejercicio <strong>Resúmenes estadísticos</strong> guardadas en un módulo llamado <code>estadistica.py</code>.</p>
+</section>
+<section id="mensaje-al-descubierto" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="mensaje-al-descubierto"><span class="header-section-number">3</span> Mensaje al descubierto</h2>
+<p>Resulta que Franco, un amigo que estudia Ciencias de la Computación en la FCEIA, te envía por WhatsApp un archivo de texto plano con mensajes “encriptados” usando caracteres sobrantes y símbolos extraños:</p>
+<pre><code>    !!!,.,  aY??/u/DAM**e,, se =m!!e
+&amp;&amp;M&amp;&amp;e v!o!?LV...I.O /L/*oC/*o
+        __?e_?l//+ T++**e/*Cl!?aD==*O**</code></pre>
+<p>Tiene sentido pensar que está experimentando con nuevos algoritmos de cifrado y, de paso, te lanza el reto de descifrarlo.</p>
+<p>Tu misión es escribir un programa que:</p>
+<ol type="1">
+<li>Lea un archivo de texto plano cualquiera.</li>
+<li>Muestre en pantalla su contenido original (tal cual llega).</li>
+<li>Aplique un proceso de limpieza basado en las siguientes reglas:
+<ol type="i">
+<li>Eliminar todos los caracteres <code>+</code>, <code>*</code>, <code>-</code>, <code>/</code>, <code>=</code>, <code>!</code>, <code>?</code>, <code>&amp;</code> y <code>_</code>.</li>
+<li>Reemplazar cualquier secuencia de espacios múltiples por un solo espacio.</li>
+<li>Homogeinizar la capitalización de los caracteres.</li>
+<li>Conservar los saltos de línea tal cual aparecen en el archivo original.</li>
+</ol></li>
+<li>Muestre en pantalla la versión desencriptada del texto.</li>
+<li>Guarde la versión limpia en un nuevo archivo de texto.
+<ul>
+<li>El usuario debe poder especificar el nombre del archivo de salida.</li>
+<li>Si no lo hace, se generará uno con el sufijo <code>_limpio</code> antes de la extensión original (por ejemplo, <code>secreto.txt</code> → <code>secreto_limpio.txt</code>).</li>
+</ul></li>
+</ol>
+</section>
+<section id="código-morse" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="código-morse"><span class="header-section-number">4</span> Código Morse</h2>
+<p>El código Morse es un sistema utilizado para representar letras mediante combinaciones específicas de señales cortas y largas, denominadas puntos (<code>.</code>) y rayas (<code>-</code>). A continuación se muestra un diccionario con el mapeo de caracteres alfabéticos, dígitos del 0 al 9 y algunos símbolos de puntuación comunes:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mapeo_morse <span class="op">=</span> {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A"</span>: <span class="st">".-"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B"</span>: <span class="st">"-..."</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"C"</span>: <span class="st">"-.-."</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"D"</span>: <span class="st">"-.."</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"E"</span>: <span class="st">"."</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"F"</span>: <span class="st">"..-."</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"G"</span>: <span class="st">"--."</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"H"</span>: <span class="st">"...."</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I"</span>: <span class="st">".."</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"J"</span>: <span class="st">".---"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"K"</span>: <span class="st">"-.-"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"L"</span>: <span class="st">".-.."</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"M"</span>: <span class="st">"--"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"N"</span>: <span class="st">"-."</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"O"</span>: <span class="st">"---"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"P"</span>: <span class="st">".--."</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Q"</span>: <span class="st">"--.-"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"R"</span>: <span class="st">".-."</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"S"</span>: <span class="st">"..."</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"T"</span>: <span class="st">"-"</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"U"</span>: <span class="st">"..-"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"V"</span>: <span class="st">"...-"</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"W"</span>: <span class="st">".--"</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"X"</span>: <span class="st">"-..-"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Y"</span>: <span class="st">"-.--"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Z"</span>: <span class="st">"--.."</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1"</span>: <span class="st">".----"</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"2"</span>: <span class="st">"..---"</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"3"</span>: <span class="st">"...--"</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"4"</span>: <span class="st">"....-"</span>,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"5"</span>: <span class="st">"....."</span>,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"6"</span>: <span class="st">"-...."</span>,</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"7"</span>: <span class="st">"--..."</span>,</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"8"</span>: <span class="st">"---.."</span>,</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"9"</span>: <span class="st">"----."</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"0"</span>: <span class="st">"-----"</span>,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">", "</span>: <span class="st">"--..--"</span>,</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"."</span>: <span class="st">".-.-.-"</span>,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Escriba una función en Python que permita convertir cualquier palabra a código Morse utilizando este diccionario. Luego, escriba otra función que haga exactamente lo contrario: dada una secuencia en código Morse, debe recuperar la palabra original. Finalmente, incorpore ambas funciones en un <em>script</em> principal que combine ambas funciones y permita encriptar o desencriptar texto desde un archivo de texto plano. El programa debe recibir:</p>
+<ul>
+<li>El nombre del archivo de entrada.</li>
+<li>El nombre del archivo de salida.</li>
+<li>La operación a realizar (encriptar o desencriptar).</li>
+</ul>
+<p><strong>Ayuda</strong>: Para indicar espacios en código Morse utilice <code>/</code>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -631,13 +893,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../teoria/01_introduccion_a_python/clase_2.html" class="pagination-link" aria-label="Clase 2">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Clase 2</span>
+      <a href="../../practica/01_introduccion_a_python/ejercicios.html" class="pagination-link" aria-label="🛠️ Ejercicios">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">🛠️ Ejercicios</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../teoria/02_programacion_funcional.html" class="pagination-link" aria-label="U2 - Programación Funcional">
-        <span class="nav-page-text">U2 - Programación Funcional</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../practica/02_programacion_funcional/autoevaluacion.html" class="pagination-link" aria-label="🪞 Autoevaluación">
+        <span class="nav-page-text">🪞 Autoevaluación</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
