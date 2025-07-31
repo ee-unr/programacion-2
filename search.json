@@ -236,11 +236,11 @@
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-a-medida",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-a-medida",
+    "objectID": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-ii",
+    "href": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-ii",
     "title": "🛠️ Ejercicios",
-    "section": "16 Conteo de caracteres a medida 😱",
-    "text": "16 Conteo de caracteres a medida 😱\nAgregue a la función contar_frecuencias del ejercicio Conteo de caracteres un argumento llamado orden que admita los valores \"aparicion\", \"alfabetico\" y \"frecuencia\".\nEste argumento debe permitir ordenar las claves del diccionario resultante según el siguiente criterio:\n\n\"aparicion\": mantiene el orden en que las palabras aparecen por primera vez en la lista original.\n\"alfabetico\": ordena las palabras alfabéticamente.\n\"frecuencia\": ordena las palabras por su frecuencia, de mayor a menor.",
+    "section": "16 Conteo de caracteres II 😱",
+    "text": "16 Conteo de caracteres II 😱\nAgregue a la función contar_frecuencias del ejercicio Conteo de caracteres un argumento llamado orden que admita los valores \"aparicion\", \"alfabetico\" y \"frecuencia\".\nEste argumento debe permitir ordenar las claves del diccionario resultante según el siguiente criterio:\n\n\"aparicion\": mantiene el orden en que las palabras aparecen por primera vez en la lista original.\n\"alfabetico\": ordena las palabras alfabéticamente.\n\"frecuencia\": ordena las palabras por su frecuencia, de mayor a menor.",
     "crumbs": [
       "Práctica",
       "U1 - Introducción a Python",
