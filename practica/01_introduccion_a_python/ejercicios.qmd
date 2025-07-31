@@ -1,0 +1,392 @@
+---
+title: "🛠️ Ejercicios"
+---
+
+## Área y perímetro de un círculo
+
+Escriba una función en Python que reciba el radio de un círculo y devuelva su área.
+Luego, escriba otra función que también reciba el radio de un círculo, pero devuelva su perímetro.
+Finalmente, escriba una tercera función que reciba el radio de un círculo y devuelva tanto el área
+como el perímetro.
+
+Una vez que haya implementado todas las funciones, analice la diferencia entre:
+
+```python
+area, perimetro = calcular_area_y_perimetro(radio=5)
+```
+
+y
+
+```python
+resultados = calcular_area_y_perimetro(radio=5)
+```
+
+Considere el tipo de las variables `area`, `perimetro` y `resutlados`.
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+$$
+\begin{aligned}
+A &= \pi \cdot r^2 \\
+P &= 2 \cdot \pi \cdot r
+\end{aligned}
+$$
+
+:::
+
+## Promociones
+
+Escriba una función llamada `calcular_precio` que reciba dos argumentos:
+el monto total de una compra y el medio de pago utilizado.
+
+El medio de pago puede ser `"efectivo"`, `"débito"` o `"crédito"`, y según el caso se aplicará una
+modificación sobre el monto:
+
+- Si el medio de pago es `"efectivo"`, el monto no se modifica.
+- Si es `"débito"`, se aplica un descuento del 10% sobre el monto.
+- Si es `"crédito"`, se aplica un recargo del 5% sobre el monto.
+
+La función debe retornar el monto final a pagar, con el descuento o recargo aplicado según
+corresponda.
+
+### Punto extra
+
+Modifique la función de modo tal que no sea necesario especificar el medio de pago. En tal caso,
+el medio de pago se asume `"efectivo"`. Ayuda: asigne un valor por defecto al argumento `medio`.
+Considere una implementación donde este sea `"efectivo"` y otra donde sea `None`.
+
+## Etapas de la vida
+
+Implemente una función que reciba una edad y devuelva un mensaje que indique la etapa de la vida
+correspondiente.
+
+Utilice una cadena de condicionales `if-elif-else` para clasificar la edad en alguno de los
+siguientes grupos:
+
+- Menor a 2 años: bebé.
+- Entre 2 (inclusive) y 4 años: infante.
+- Entre 4 (inclusive) y 13 años: niño/a.
+- Entre 13 (inclusive) y 20 años: adolescente.
+- Entre 20 (inclusive) y 65 años: adulto/a.
+- 65 años o más: persona mayor.
+
+La función debe imprimir un mensaje del tipo: `"La persona es un/a <etapa>"`.
+
+## Conteo de caracteres
+
+Escriba una función que reciba una cadena de texto y devuelva un diccionario que indique cuántas
+veces aparece cada caracter en la cadena. La función no debe diferenciar entre mayúsculas y
+minúsculas y debe ignorar espacios. Utilice el siguiente ejemplo como validación:
+
+```python
+contar_caracteres("Ahora es mejor que nunca")
+# {"a": 3, "h": 1, "o": 2, "r": 2, "e": 3, "s": 1, "m": 1, "j": 1, "q": 1, "u": 2, "n": 2, "c": 1}
+```
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+Para saltear pasos de un bucle cuando se encuentra un espacio se puede utilizar la sentencia `continue`.
+
+``` python
+for i in ...:
+    # ... <- Se ejecuta en todas las iteraciones
+    if condicion_de_salto:
+        continue
+    # ... <- Se ejecuta en las iteraciones 'condicion_de_salto' es False
+```
+
+:::
+
+
+## Orden de mérito
+
+Se cuenta con una lista de tuplas que contienen las notas del examen final de Programación 2 para
+un conjunto de alumnos:
+
+```python
+notas = [
+    ("Escalada", 9),
+    ("Alonso", 7),
+    ("Pérez", 8),
+    ("Castro", 8),
+    ("Rossini", 10),
+    ("Martínez", 9),
+    ("Pérez", 6),
+    ("Riquelme", 5),
+]
+```
+
+1. Escriba un programa que a partir de `notas` genere un diccionario donde las claves se
+corresponden con los apellidos y los valores con las notas del examen final.
+1. Escriba un programa que a partir de `notas` genere un diccionario donde las claves son las
+notas y el valor asociado sea una lista con los apellidos de quienes tuvieron esa nota.
+
+
+## Rendimento académico
+
+Se cuenta con el siguiente diccionario que asocia nombres de estudiantes con una lista de sus
+calificaciones:
+
+```python
+notas = {
+    "Ana": [8, 9, 10],
+    "Luis": [6, 7, 8, 3, 9],
+    "Carla": [10, 9, 10],
+    "Marcos": [5, 6],
+    "Sofía": [7, 7, 8],
+    "Pedro": [6, 4, 5, 6, 3, 8],
+    "Lucía": [9, 8, 10, 9]
+}
+```
+
+Implemente una función que resuma el rendimiento académico de los estudiantes.
+La función debe recibir el diccionario de notas y un argumento adicional llamado `modo`.
+Según el valor de `modo`, se debe devolver un nuevo diccionario con la siguiente información:
+
+* Si modo es `"promedio"`, se debe devolver el promedio de notas por estudiante.
+* Si modo es `"proporcion"`, se debe devolver la proporción de exámenes aprobados por estudiante
+(se considera aprobado todo valor mayor o igual a 6).
+
+## Índice de precios
+
+Se cuenta con la serie mensual del Índice de Precios al Consumidor (IPC) del año 2024:
+
+```python
+ipc_2024 = [20.6, 13.2, 11.0, 8.8, 4.2, 4.6, 4.0, 4.2, 3.5, 2.7, 2.4, 2.7]
+```
+
+Realice los siguientes cálculos y análisis:
+
+* Determine el menor y el mayor índice reportado durante el año.
+* Calcule el IPC promedio mensual del 2024.
+* Encuentre la diferencia entre el IPC mínimo y máximo del año.
+    - ¿En qué mes se registró la inflación más alta?
+* Calcule la inflación mediana del 2024.
+* ¿Cómo podría calcular el rango del IPC (diferencia entre el valor máximo y mínimo) sin usar
+las funciones `min()` ni `max()`?
+
+## Resúmenes estadísticos
+
+Cree funciones que, dada una lista de números, calculen los siguientes resúmenes estadísticos:
+
+i. La media
+    $$
+    \text{media}(X) = \frac{1}{n}\sum_{i=1}^n{x_i}
+    $$
+i. El rango
+    $$
+    \text{rango}(X) = \text{max}(X) - \text{min}(X)
+    $$
+i. La varianza
+    $$
+    \text{var}(X) = \frac{1}{n}\sum_{i=1}^n{(x_i - \bar{x})^2}
+    $$
+i. El desvío estándar
+    $$
+    \text{sd}(X) = \sqrt{\text{var}(X)}
+    $$
+i. La mediana
+    $$
+    \begin{array}{lr}
+    \text{mediana}(X) = x_{(\frac{n + 1}{2})} & \text{Si } n \text{ es impar} \\
+    \text{mediana}(X) = \frac{x_{(\frac{n}{2})} + x_{(\frac{n}{2}+1)}}{2} & \text{Si } n \text{ es par}
+    \end{array}
+    $$
+
+    donde los $x_{(i)}$ están ordenados de manera ascendente.
+
+## Validación de DNI
+
+Crear una función que dada una cadena de caracteres verifique si se corresponde con un DNI.
+
+Si es un DNI, devolver `True`. Caso contrario, devolver `Falso`.
+
+A tener en cuenta:
+
+* Algunos ejemplos de DNI válidos
+    * 40.094.127
+    * 19053512
+    * 6.392.780
+* DNI no válidos
+    * 40,094,127
+    * 19-053-512
+    * 123456
+
+## La física del rebote
+
+Una pelota de goma es lanzada desde una altura inicial de 100 metros.
+Cada vez que toca el suelo, rebota alcanzando una altura equivalente a 3/5 de la altura desde
+la que cayó.
+
+Escriba un programa que imprima una tabla mostrando las alturas alcanzadas por la pelota en
+cada uno de sus primeros 10 rebotes.
+
+Luego, implemente este programa como una función que reciba dos parámetros:
+
+* Altura inicial desde la que se lanza la pelota.
+* Cantidad de rebotes que se desea calcular.
+
+La función debe devolver una lista con las alturas alcanzadas en cada rebote.
+
+### Punto extra
+
+Modifique la función para que considere un rebote como "significativo" solo si la altura
+alcanzada es mayor o igual a un valor mínimo especificado (por ejemplo, 1 centímetro).
+
+Si la pelota no alcanza esta altura mínima en algún rebote, se considera que ha completado su
+trayectoria y queda quieta. En este caso, la función debe devolver únicamente los valores
+correspondientes a los "rebotes significativos".
+
+## Un montón de plata
+
+Una mañana ponés un billete en la vereda al lado del Monumento a la Bandera.
+A partir de ahí, cada día vas y duplicás la cantidad de billetes, apilándolos prolijamente.
+¿Cuánto tiempo pasa antes de que la pila de billetes sea más alta que la del Monumento?
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+Algunas constantes útiles para resolver el problema:
+
+```python
+billete_grosor = 0.11 * 0.001  # grosor de un billete en metros
+altura_monumento = 70          # altura en metros
+```
+
+**Sugerencia**: Usar un bucle `while` para realizar el cálculo.
+:::
+
+### Punto extra
+
+Escribe una función que permita determinar la cantidad de días necesarios para superar
+cualquier altura arbitraria.
+
+## La conjetura de Collatz
+
+La [conjetura de Collatz](https://es.wikipedia.org/wiki/Conjetura_de_Collatz) dice:
+
+> Si tomamos un número natural cualquiera, su secuencia de Collatz termina llegando siempre al
+número 1.
+
+Secuencia de Collatz:
+
+* Si el número es par, se divide entre 2.
+* Si el número es impar, se multiplica por 3 y se le suma 1.
+
+$$
+f(n) =
+\begin{cases}
+    \displaystyle \frac{n}{2} & \text{si } n \text{ es par,} \\ \\
+    3n + 1 & \text{si } n \text{ es impar.}
+\end{cases}
+$$
+
+Escribir una función que calcule la secuencia de Collatz para un número natural cualquiera.
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+* Utilizar bucle `while`.
+* El bucle debe correr solo cuando el valor de la secuencia sigue siendo mayor a 1.
+Si es 1, hay que frenar.
+* Insertar los elementos de la secuencia en una lista.
+
+:::
+
+## Adivina el número
+
+Escriba un programa que implemente el clásico juego "Adivina el número". El programa debe:
+
+1. Tener un número secreto (entero) que el usuario debe adivinar.
+2. Solicitar al usuario que ingrese un número.
+3. Si el número ingresado no coincide con el número secreto:
+    * Informar si el número ingresado es mayor o menor que el número secreto.
+    * Pedir al usuario que intente nuevamente.
+4. Si el usuario adivina el número, el programa debe terminar mostrando un mensaje de
+felicitaciones.
+
+::: {.callout-tip collapse="true"}
+### Ayuda
+
+Para generar números aleatorios enteros en un rango dado puede utilizar `randint()` del módulo
+`random`:
+
+```python
+import random
+random.randint(-100, 100)     # Genera un número aleatorio entre -100 y 100
+```
+:::
+
+::: {.callout-tip collapse="true"}
+### Ayuda
+
+El programa que resuelve este problema realiza una cantidad de iteraciones que se desconoce al
+momento de escribirlo. La solución típica a este tipo de problema involucra el uso de `while True`
+junto a la sentencia `break`.
+
+```python
+while True:
+    # realizar alguna accion
+    if condicion_de_salida:
+        break
+```
+:::
+
+### Punto extra
+
+Implemente una versión de este programa donde el usuario cuenta con 10 intentos.
+
+## Conteo de caracteres Pythonico
+
+Los diccionarios en Python cuentan con un método `.get()` que devuelve el valor asociado a una clave.
+Este método permite pasarle un segundo argumento con un valor que se devuelve cuando no se encuentra
+un elemento asocaido a la clave que le pasamos. Por ejemplo:
+
+```python
+d = {"a": 1, "b": 20}
+d.get("b", 0)
+```
+```
+20
+```
+
+```python
+d.get("c", 0)
+```
+```
+0
+```
+
+Modifique la función `contar_caracteres` del ejercicio **Conteo de caracteres** utilizando
+el metodo `.get()` para obtener una implementación más sencilla.
+Así, debería poder eliminar el bloque `if`.
+
+## Validador de contraseñas 😱
+
+Escriba un programa que solicite al usuario una contraseña y verifique que cumpla con las
+siguientes condiciones:
+
+* Debe tener entre de 8 y 24 caracteres.
+* Debe incluir letras, números y caracteres especiales (`@#$%^&*()`).
+
+Si la contraseña no es válida, el programa debe informar al usuario qué condición no se cumple
+y permitirle ingresar una nueva contraseña.
+El proceso se repite hasta que el usuario ingrese una contraseña válida o decida no continuar.
+
+## Conteo de caracteres a medida 😱
+
+Agregue a la función `contar_frecuencias` del ejercicio **Conteo de caracteres** un argumento
+llamado `orden` que admita los valores `"aparicion"`, `"alfabetico"` y `"frecuencia"`.
+
+Este argumento debe permitir ordenar las claves del diccionario resultante según el siguiente
+criterio:
+
+* `"aparicion"`: mantiene el orden en que las palabras aparecen por primera vez en la lista original.
+* `"alfabetico"`: ordena las palabras alfabéticamente.
+* `"frecuencia"`: ordena las palabras por su frecuencia, de mayor a menor.

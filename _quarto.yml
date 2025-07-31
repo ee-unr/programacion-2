@@ -18,7 +18,7 @@ website:
       - text: Teoría
         file: teoria/01_introduccion_a_python/clase_1.ipynb
       - text: Práctica
-        file: practica/01_introduccion_a_python.qmd
+        file: practica/01_introduccion_a_python/ejercicios.qmd
       - text: Trabajos Prácticos
         file: trabajos_practicos/descripcion.qmd
       - text: Recursos
@@ -45,12 +45,34 @@ website:
         - teoria/04_estructuras.qmd
         - teoria/05_algoritmos.qmd
     - title: Práctica
+      collapse-level: 2
+      collapse: true
       contents:
-        - practica/01_introduccion_a_python.qmd
-        - practica/02_programacion_funcional.qmd
-        - practica/03_oop.qmd
-        - practica/04_estructuras.qmd
-        - practica/05_algoritmos.qmd
+        - text: U1 - Introducción a Python
+          contents:
+            - practica/01_introduccion_a_python/autoevaluacion.qmd
+            - practica/01_introduccion_a_python/ejercicios.qmd
+            - practica/01_introduccion_a_python/problemas.qmd
+        - text: U2 - Programación funcional
+          contents:
+            - practica/02_programacion_funcional/autoevaluacion.qmd
+            - practica/02_programacion_funcional/ejercicios.qmd
+            - practica/02_programacion_funcional/problemas.qmd
+        - text: U3 - Programación orientada a objetos
+          contents:
+            - practica/03_oop/autoevaluacion.qmd
+            - practica/03_oop/ejercicios.qmd
+            - practica/03_oop/problemas.qmd
+        - text: U4 - Estructuras de datos
+          contents:
+            - practica/04_estructuras/autoevaluacion.qmd
+            - practica/04_estructuras/ejercicios.qmd
+            - practica/04_estructuras/problemas.qmd
+        - text: U5 - Algoritmos
+          contents:
+            - practica/05_algoritmos/autoevaluacion.qmd
+            - practica/05_algoritmos/ejercicios.qmd
+            - practica/05_algoritmos/problemas.qmd
     - title: Trabajos Prácticos
       contents:
         - trabajos_practicos/descripcion.qmd
