@@ -1,7 +1,7 @@
 ---
 title: "🪞 Autoevaluación"
 ---
-
+<!-- 
 1. ¿Cuál es el resultado de `int(True)` y de `int(False)`?
 1. `1 is True`, `bool(1) is True`, `2 == True`, `bool(2) is True`.
 1. ¿Cuál es el resultado de las siguientes expresiones? ¿Por qué?
@@ -50,6 +50,10 @@ title: "🪞 Autoevaluación"
     ```
 
 
+1. ¿Cuál es el resultado de `list("abcdefgh")`? ¿Por qué?
+
+1. ¿Por qué `set("abcde")` es distinto de `{"abcde"}`?
+
 1.  ¿Qué valor contiene la variable `contador` luego de ejecutar el siguiente código?
 
     ```python
@@ -92,21 +96,6 @@ title: "🪞 Autoevaluación"
 
     ¿Tienen sentido las comparaciones utilizadas?
 
-
-1. ¿Cuál es la diferencia entre `break` y `continue`? Considere los siguientes ejemplos:
-    ```python
-    for numero in range(10):
-        if numero == 5:
-            break
-        print(numero)
-    ```
-
-    ```python
-    for numero in range(5):
-        if numero == 2:
-            continue
-        print(numero)
-    ```
 
 1. ¿Cuál es la diferencia entre `range(10)`, `range(0, 10)` y `range(0, 10, 1)` en un bucle `for`?
 
@@ -164,4 +153,4 @@ title: "🪞 Autoevaluación"
 3. ¿Cuál es la principal diferencia entre un diccionario y una lista?
 4. ¿Qué ocurre si intentás acceder a `spam['foo']` cuando `spam` es `{'bar': 100}`?
 5. Si un diccionario está almacenado en `spam`, ¿cuál es la diferencia entre las expresiones `'cat' in spam` y `'cat' in spam.keys()`?
-6. Si un diccionario está almacenado en `spam`, ¿cuál es la diferencia entre las expresiones `'cat' in spam` y `'cat' in spam.values()`?
+6. Si un diccionario está almacenado en `spam`, ¿cuál es la diferencia entre las expresiones `'cat' in spam` y `'cat' in spam.values()`? -->

@@ -85,3 +85,65 @@ Tu misión es escribir un programa que:
     * El usuario debe poder especificar el nombre del archivo de salida.
     * Si no lo hace, se generará uno con el sufijo `_limpio` antes de la extensión original
     (por ejemplo, `secreto.txt` → `secreto_limpio.txt`).
+
+## Código Morse
+
+El código Morse es un sistema utilizado para representar letras mediante combinaciones específicas
+de señales cortas y largas, denominadas puntos (`.`) y rayas (`-`).
+A continuación se muestra un diccionario con el mapeo de caracteres alfabéticos,
+dígitos del 0 al 9 y algunos símbolos de puntuación comunes:
+
+```python
+mapeo_morse = {
+    "A": ".-",
+    "B": "-...",
+    "C": "-.-.",
+    "D": "-..",
+    "E": ".",
+    "F": "..-.",
+    "G": "--.",
+    "H": "....",
+    "I": "..",
+    "J": ".---",
+    "K": "-.-",
+    "L": ".-..",
+    "M": "--",
+    "N": "-.",
+    "O": "---",
+    "P": ".--.",
+    "Q": "--.-",
+    "R": ".-.",
+    "S": "...",
+    "T": "-",
+    "U": "..-",
+    "V": "...-",
+    "W": ".--",
+    "X": "-..-",
+    "Y": "-.--",
+    "Z": "--..",
+    "1": ".----",
+    "2": "..---",
+    "3": "...--",
+    "4": "....-",
+    "5": ".....",
+    "6": "-....",
+    "7": "--...",
+    "8": "---..",
+    "9": "----.",
+    "0": "-----",
+    ", ": "--..--",
+    ".": ".-.-.-",
+}
+```
+
+Escriba una función en Python que permita convertir cualquier palabra a código Morse utilizando
+este diccionario. Luego, escriba otra función que haga exactamente lo contrario:
+dada una secuencia en código Morse, debe recuperar la palabra original. Finalmente, incorpore
+ambas funciones en un _script_ principal que combine ambas funciones y permita encriptar o
+desencriptar texto desde un archivo de texto plano. El programa debe recibir:
+
+* El nombre del archivo de entrada.
+* El nombre del archivo de salida.
+* La operación a realizar (encriptar o desencriptar).
+
+**Ayuda**: Para indicar espacios en código Morse utilice `/`. 

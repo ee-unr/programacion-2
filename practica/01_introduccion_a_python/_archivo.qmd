@@ -1,0 +1,238 @@
+## Calculadora de variación porcentual
+
+Construya un programa que calcule cómo ha variado un precio de un producto o servicio a lo
+largo de una o varias semanas.
+
+El programa debe pedir al usuario:
+
+* Precio inicial
+* Precio final
+* Cantidad de semanas entre precios.
+
+E imprimir un mensaje que incluya la variación porcentual entre periodos y una variación
+porcentual anualizada.
+
+
+## Persiguiendo la meta
+
+En el Parque Independencia, la pista de atletismo del Estadio Municipal tiene una longitud de
+400 metros. Lucio, un atleta rosarino, se estuvo preparando intensamente para una competencia de
+400 los metros llanos.
+
+En su cuenta de Instagram, Lucio publicó una historia que decía:
+
+> "20 días, 100 kilómetros, 1 objetivo."
+
+### Parte 1: Análisis inicial
+
+Con base en esta información, responde las siguientes preguntas:
+
+i. ¿Cuántos metros corrió Lucio por día en promedio?
+i. ¿Cuántas vueltas completas dio por día en promedio? ¿Le sobró algún metro? ¿Cuántos?
+i. ¿Cuántas vueltas completas dio en total durante los 20 días?
+
+### Parte 2: Planificando el entrenamiento
+
+Lucio está diseñando un plan de entrenamiento para su próxima competencia.
+Quiere saber cuántas vueltas dará en promedio por día y cuántas vueltas completará en total al
+final de su entrenamiento.
+
+Escribe un programa que reciba:
+
+* Días de entrenamiento (un número entero).
+* Cantidad de metros a correr por día (un número entero).
+
+Y que devuelva:
+
+* Vueltas completas promedio por día (en una pista de 400 metros).
+* Vueltas completas totales al final del entrenamiento.
+* Metros sobrantes por día, si los hay.
+
+### Parte 3: Plan de entrenamiento avanzado
+
+Lucio quiere un programa más flexible para planificar su entrenamiento.
+Ahora, además de los días de entrenamiento, quiere poder ingresar la cantidad total de vueltas
+**o** la cantidad total de kilómetros que planea correr.
+
+Escribe un programa que reciba:
+
+* Días de entrenamiento (un número entero).
+* Cantidad total de vueltas o cantidad total de kilómetros
+(el usuario debe elegir una de las dos opciones).
+
+Y que devuelva:
+
+* Cantidad de metros y vueltas promedio por día.
+* Cantidad total de metros y vueltas.
+
+
+## Números impares
+
+Utilice el tercer argumento de la función `range()` para construir una lista con los números impares
+del 1 al 20. Luego, utilice un ciclo `for` para imprimir cada uno de ellos.
+
+## Cubos
+
+Un número elevado a la tercera potencia se llama **cubo**. Por ejemplo, el cubo de 2 se escribe como
+`2**3` en Python.
+
+Cree una lista con los primeros 10 cubos (es decir, el cubo de los números del 1 al 10).
+Luego, utilice un ciclo `for` para imprimir el valor de cada cubo.
+
+
+## Potencias
+
+Escriba una función que reciba un número entero `n` y una potencia máxima `b`.
+La función debe calcular las potencias de `n` desde $n^1$ hasta $n^b$.
+Primero, implemente la función para que devuelva todas las potencias en una lista.
+Luego, modifique la función para que devuelva cada potencia como un valor separado.
+Reflexione sobre las diferencias entre devolver una lista
+(un único objeto que contiene todos los resultados) y devolver múltiples valores separados.
+
+
+## break y continue
+
+¿Cuál es la diferencia entre `break` y `continue`? Considere los siguientes ejemplos:
+
+```python
+for numero in range(10):
+    if numero == 5:
+        break
+    print(numero)
+```
+
+```python
+for numero in range(5):
+    if numero == 2:
+        continue
+    print(numero)
+```
+
+
+1. 
+
+Escriba una función llamada triangulo que reciba una cadena de texto y un número entero, y dibuje una pirámide de la altura indicada, construida usando copias de la cadena. A continuación se muestra un ejemplo de una pirámide de 5 niveles utilizando la cadena 'L'.
+
+```python
+triangulo("L", 5)
+```
+
+```
+L
+LL
+LLL
+LLLL
+LLLLL
+```
+
+
+1. 
+
+Escriba una función llamada rectangulo que reciba una cadena de texto y dos números enteros, y
+ dibuje un rectángulo con el ancho y el alto indicados, construido usando copias de la cadena. 
+ A continuación se muestra un ejemplo de un rectángulo de ancho 5 y alto 4 utilizando la cadena 'H'.
+
+ ```python
+ rectangulo('H', 5, 4)
+ ```
+ 
+ ```
+HHHHH
+HHHHH
+HHHHH
+HHHHH
+```
+
+1. Entradas de cine
+
+Un cine cobra distintos precios según la edad de cada persona: la entrada es gratis para menores de
+3 años, cuesta $10 para personas de entre 3 y 12 años, y $15 para mayores de 12 años.
+
+Escriba un programa que pregunte repetidamente la edad de los usuarios e informe en cada caso
+cuánto cuesta la entrada correspondiente.
+
+Luego, modifique el programa para resolver esta nueva situación: primero debe preguntar al usuario
+cuántas entradas desea comprar, después solicitar la edad de cada persona individualmente y
+calcular el precio de cada entrada. Al finalizar, el programa debe mostrar el monto total a pagar
+por todas las entradas.
+
+
+
+PARA ACTIVIDADES EN CLASE
+
+1. Cree un diccionario llamado ciudades. Use los nombres de tres ciudades como claves en su
+diccionario. Cree un diccionario con información sobre cada ciudad, e incluya el país en el que se
+encuentra la ciudad, su población aproximada y un dato curioso sobre esa ciudad.
+Las claves del diccionario de cada ciudad deben ser algo como pais, poblacion y dato.
+Imprima el nombre de cada ciudad y toda la información que haya almacenado sobre ella.
+
+1. Múltiplos: Escriba un programa que primero le pida al usuario que ingrese un número y luego le
+informe si ese número es o no un múltiplo de 10. A continuación, haga una versión más general del
+programa: solicite al usuario que ingrese dos números e informe si el segundo número es múltiplo del primero.
+
+
+
+
+
+---
+
+1. Palíndromos
+
+Python proporciona una función incorporada llamada `reversed` que, al recibir una secuencia
+(como una cadena o una lista), devuelve un objeto con los elementos en orden inverso.
+
+Por ejemplo:
+
+```python
+list(reversed('perro'))        # ['o', 'r', 'r', 'e', 'p']
+''.join(reversed('perro'))     # 'orrep'
+```
+
+Podemos usar esto para definir una función que invierte una palabra:
+
+```python
+def invertir_palabra(palabra):
+    return ''.join(reversed(palabra))
+```
+
+Un **palíndromo** es una palabra que se lee igual hacia adelante y hacia atrás, como "reconocer" o "anilina".
+
+Escriba una función llamada `es_palindromo` que reciba una cadena y devuelva `True` si es un palíndromo, y `False` en caso contrario.
+
+Luego, utilizando esta función y una lista de palabras (`lista_palabras`), imprima todos los palíndromos que tengan al menos 7 letras:
+
+```python
+for palabra in lista_palabras:
+    if len(palabra) >= 7 and es_palindromo(palabra):
+        print(palabra)
+```
+
+#### 💡 Ejemplo:
+
+Si `lista_palabras` contiene:
+
+```python
+lista_palabras = ['reconocer', 'anilina', 'oso', 'radar', 'neuquén', 'somos']
+```
+
+La salida esperada sería:
+
+```
+reconocer
+anilina
+```
+
+PARA RECURSION
+
+1. 
+
+El máximo común divisor (MCD) de dos números a y b es el mayor número que los divide a ambos sin dejar resto.
+
+Una forma de calcular el MCD de dos números se basa en la siguiente observación: si r es el resto de dividir a entre b, entonces mcd(a, b) = mcd(b, r). Como caso base, se puede usar que mcd(a, 0) = a.
+
+Escriba una función llamada mcd que reciba como parámetros a y b, y devuelva su máximo común divisor.
+
+
+Hashing
+
+https://allendowney.github.io/ThinkPython/chap11.html#exercise
