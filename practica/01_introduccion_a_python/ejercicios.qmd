@@ -21,7 +21,7 @@ y
 resultados = calcular_area_y_perimetro(radio=5)
 ```
 
-Considere el tipo de las variables `area`, `perimetro` y `resutlados`.
+Considere el tipo de las variables `area`, `perimetro` y `resultados`.
 
 ::: {.callout-tip collapse="true"}
 
@@ -203,7 +203,7 @@ i. La mediana
 
 Crear una función que dada una cadena de caracteres verifique si se corresponde con un DNI.
 
-Si es un DNI, devolver `True`. Caso contrario, devolver `Falso`.
+Si es un DNI, devolver `True`. Caso contrario, devolver `False`.
 
 A tener en cuenta:
 
@@ -346,7 +346,7 @@ Implemente una versión de este programa donde el usuario cuenta con 10 intentos
 
 Los diccionarios en Python cuentan con un método `.get()` que devuelve el valor asociado a una clave.
 Este método permite pasarle un segundo argumento con un valor que se devuelve cuando no se encuentra
-un elemento asocaido a la clave que le pasamos. Por ejemplo:
+un elemento asociado a la clave que le pasamos. Por ejemplo:
 
 ```python
 d = {"a": 1, "b": 20}
