@@ -30,6 +30,14 @@ toc-depth: 3
     | `cantidad$`       |          |               |
 
 
+## Números
+
+1. ¿Cuál es el tipo de `10 / 2`? ¿Por qué?
+
+1. ¿Cuál es el tipo de `5 * 2`? ¿Por qué?
+
+1. ¿Por qué `5 == 5.0` es `True`?
+
 ## Booleanos
 
 1. ¿Cuál es el resultado de las siguientes expresiones? ¿Por qué?
@@ -91,6 +99,31 @@ toc-depth: 3
     ```python
     "Me comí " + 6 + " panchos."
     ```
+
+1. ¿Encuentra algo extraño en la siguiente expresión? ¿Cómo lo mejorarían?
+
+    ```python
+    materia = "Programación 2"
+    print("¡Sean bienvenidos a la materia {materia}!")
+    ```
+
+1. Explique por qué es redundante utilizar `str()` en el siguiente bloque de código:
+
+    ```python
+    x, y = 10, 20
+    print(f"La suma de {str(x)} y {str(y)} es: {str(x + y)}.")
+    ```
+
+1. Considere el siguiente bloque de código:
+
+    ```python
+    mensaje = "Hola, ¿cómo estes?"
+    mensaje[-3] = "á"
+    ```
+
+    - ¿Cuál es la intención detrás del programa?
+    - ¿Por qué no funciona?
+    - ¿Cómo podría arreglarlo? Alerta: la solución no es muy elegante.
 
 1. ¿Cuál es el resultado de `list("abcdefgh")`? ¿Por qué?
 
