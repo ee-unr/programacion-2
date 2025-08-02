@@ -185,6 +185,41 @@ llamada `cosas`? Asuma que `cosas` contiene `[2, 4, 6, 8, 10]`.
 
 1. ¿Cuáles son dos formas de eliminar valores de una lista?
 
+1. El siguiente bloque de código imprime `['a', 'b', True, 30]`. ¿Por qué?
+
+    ```python
+    cosas = ["a", "b", True]
+    bartulos = cosas
+    bartulos.append(20 + 10)
+    print(cosas)
+    ```
+
+## Tuplas
+
+1. ¿Por qué la tupla no implementa un método similar al método `.extend()` de las listas?
+
+1. Las tuplas de Python son conocidas por ser inmutables. Por ejemplo, el siguiente bloque de código
+resulta en un error:
+
+    ```python
+    tupla = (1, 2, 3)
+    tupla[1] = 10
+    ```
+
+    Sin embargo, el siguiente bloque no arroja ningún error y pareciera que se logra modificar la 
+    tupla exitosamente:
+
+    ```python
+    bartulos = ["Hola", 10, None]
+    tupla = (1, bartulos, 3)
+
+    tupla[1].append("¡Sorpesa!")
+
+    print(tupla)
+    ```
+
+    ¿Qué pasó?
+
 ## Diccionarios
 
 1. ¿Cómo se escribe en código un diccionario vacío?
