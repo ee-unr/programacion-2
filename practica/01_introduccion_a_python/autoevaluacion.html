@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -288,8 +323,26 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#variables" id="toc-variables" class="nav-link active" data-scroll-target="#variables"><span class="header-section-number">1</span> Variables</a></li>
+  <li><a href="#números" id="toc-números" class="nav-link" data-scroll-target="#números"><span class="header-section-number">2</span> Números</a></li>
+  <li><a href="#booleanos" id="toc-booleanos" class="nav-link" data-scroll-target="#booleanos"><span class="header-section-number">3</span> Booleanos</a></li>
+  <li><a href="#cadenas-de-caracteres" id="toc-cadenas-de-caracteres" class="nav-link" data-scroll-target="#cadenas-de-caracteres"><span class="header-section-number">4</span> Cadenas de caracteres</a></li>
+  <li><a href="#funciones" id="toc-funciones" class="nav-link" data-scroll-target="#funciones"><span class="header-section-number">5</span> Funciones</a></li>
+  <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="header-section-number">6</span> Listas</a></li>
+  <li><a href="#tuplas" id="toc-tuplas" class="nav-link" data-scroll-target="#tuplas"><span class="header-section-number">7</span> Tuplas</a></li>
+  <li><a href="#diccionarios" id="toc-diccionarios" class="nav-link" data-scroll-target="#diccionarios"><span class="header-section-number">8</span> Diccionarios</a></li>
+  <li><a href="#control-de-flujo" id="toc-control-de-flujo" class="nav-link" data-scroll-target="#control-de-flujo"><span class="header-section-number">9</span> Control de flujo</a>
+  <ul class="collapse">
+  <li><a href="#condicionales" id="toc-condicionales" class="nav-link" data-scroll-target="#condicionales"><span class="header-section-number">9.1</span> Condicionales</a></li>
+  <li><a href="#bucles" id="toc-bucles" class="nav-link" data-scroll-target="#bucles"><span class="header-section-number">9.2</span> Bucles</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -313,161 +366,278 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!-- 
-1. ¿Cuál es el resultado de `int(True)` y de `int(False)`?
-1. `1 is True`, `bool(1) is True`, `2 == True`, `bool(2) is True`.
-1. ¿Cuál es el resultado de las siguientes expresiones? ¿Por qué?
-    i. `False or not False`
-    i. `not (True and True)`
-    i. `not True and True`
-    i. `"True" != True`
-    i. `10 > 5 + 3`
-    i. `None is None`
-    i. `[] is []`
-1. Complete la siguiente tabla indicando si el nombre es válido para una variable de Python.
+<section id="variables" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="variables"><span class="header-section-number">1</span> Variables</h2>
+<ol type="1">
+<li><p>¿Qué valor contiene la variable <code>contador</code> luego de ejecutar el siguiente código?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>contador <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>contador <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Complete la siguiente tabla indicando si el nombre es válido para una variable de Python.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Nombre</th>
+<th style="text-align: center;">¿Válido?</th>
+<th style="text-align: center;">Justificación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>balance</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>balanceActual</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>balance-actual</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>balance actual</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>balance_actual</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>mis.datos</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>0cuenta</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>cuenta0</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>_cuenta</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>SPAM</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>cantidad$</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+</section>
+<section id="números" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="números"><span class="header-section-number">2</span> Números</h2>
+<ol type="1">
+<li><p>¿Cuál es el tipo de <code>10 / 2</code>? ¿Por qué?</p></li>
+<li><p>¿Cuál es el tipo de <code>5 * 2</code>? ¿Por qué?</p></li>
+<li><p>¿Por qué <code>5 == 5.0</code> es <code>True</code>?</p></li>
+</ol>
+</section>
+<section id="booleanos" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="booleanos"><span class="header-section-number">3</span> Booleanos</h2>
+<ol type="1">
+<li><p>¿Cuál es el resultado de las siguientes expresiones? ¿Por qué?</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">or</span> <span class="kw">not</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> (<span class="va">True</span> <span class="kw">and</span> <span class="va">True</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> <span class="va">True</span> <span class="kw">and</span> <span class="va">True</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">"True"</span> <span class="op">!=</span> <span class="va">True</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">&gt;</span> <span class="dv">5</span> <span class="op">+</span> <span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">None</span> <span class="kw">is</span> <span class="va">None</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">is</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Ejecute línea por línea los siguientes bloques y analice los resultados.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">int</span>(<span class="va">True</span>) <span class="op">*</span> <span class="dv">50</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="op">*</span> <span class="dv">50</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">bool</span>(<span class="dv">1</span>) <span class="kw">is</span> <span class="va">True</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(<span class="va">True</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(<span class="bu">bool</span>(<span class="dv">1</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(<span class="bu">bool</span>(<span class="dv">1024</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Cuáles son los 3 operadores booleanos?</p></li>
+</ol>
+</section>
+<section id="cadenas-de-caracteres" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="cadenas-de-caracteres"><span class="header-section-number">4</span> Cadenas de caracteres</h2>
+<ol type="1">
+<li><p>¿Por qué la siguiente comparación resulta en <code>True</code>?</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">"spam"</span> <span class="op">+</span> <span class="st">"spamspam"</span> <span class="op">==</span> <span class="st">"spam"</span> <span class="op">*</span> <span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Por qué la siguiente expresión resulta en un error? ¿Cómo se puede arreglar?</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">"Me comí "</span> <span class="op">+</span> <span class="dv">6</span> <span class="op">+</span> <span class="st">" panchos."</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Encuentra algo extraño en la siguiente expresión? ¿Cómo la mejoraría?</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>materia <span class="op">=</span> <span class="st">"Programación 2"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"¡Sean bienvenidos a la materia </span><span class="sc">{materia}</span><span class="st">!"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Explique por qué es redundante utilizar <code>str()</code> en el siguiente bloque de código:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="dv">10</span>, <span class="dv">20</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La suma de </span><span class="sc">{</span><span class="bu">str</span>(x)<span class="sc">}</span><span class="ss"> y </span><span class="sc">{</span><span class="bu">str</span>(y)<span class="sc">}</span><span class="ss"> es: </span><span class="sc">{</span><span class="bu">str</span>(x <span class="op">+</span> y)<span class="sc">}</span><span class="ss">."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Considere el siguiente bloque de código:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>mensaje <span class="op">=</span> <span class="st">"Hola, ¿cómo estes?"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mensaje[<span class="op">-</span><span class="dv">3</span>] <span class="op">=</span> <span class="st">"á"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>¿Cuál es la intención detrás del programa?</li>
+<li>¿Por qué no funciona?</li>
+<li>¿Cómo podría arreglarlo? Alerta: la solución no es muy elegante.</li>
+</ul></li>
+<li><p>¿Cuál es el resultado de <code>list("abcdefgh")</code>? ¿Por qué?</p></li>
+<li><p>¿Por qué <code>set("abcde")</code> es distinto de <code>{"abcde"}</code>?</p></li>
+</ol>
+</section>
+<section id="funciones" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="funciones"><span class="header-section-number">5</span> Funciones</h2>
+<ol type="1">
+<li><p>¿Cuál es la diferencia entre una función y una llamada a función?</p></li>
+<li><p>¿Cuál es el valor que devuelve una función que no tiene <code>return</code>?</p></li>
+<li><p>¿Cuándo se ejecuta el código dentro de una función: cuando la función se define o cuando se la llama? Considere la siguiente función:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> suma(x, y):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="dv">100</span> <span class="op">/</span> <span class="dv">0</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Luego, ejecute el siguiente bloque:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>suma(<span class="dv">2</span>, <span class="dv">4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="listas" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="listas"><span class="header-section-number">6</span> Listas</h2>
+<ol type="1">
+<li><p>¿Qué es <code>[]</code>? ¿Cuál es el resultado de <code>len([])</code>?</p></li>
+<li><p>¿Por qué la siguiente expresión resulta en <code>False</code>? Ayuda: use la función <code>id()</code>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>[] <span class="kw">is</span> []</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Por qué se obtiene un error en el siguiente bloque de código?</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> []</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>l[<span class="dv">0</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Cómo le asignaría el valor <code>"hola"</code> como el tercer valor en una lista almacenada en una variable llamada <code>cosas</code>? Asuma que <code>cosas</code> contiene <code>[2, 4, 6, 8, 10]</code>.</p></li>
+<li><p>Asuma que <code>letras</code> contiene la lista <code>["a", "b", "c", "d"]</code>:</p>
+<ul>
+<li>¿A qué evalúa <code>letras[-1]</code>?</li>
+<li>¿A qué evalúa <code>letras[:2]</code>?</li>
+<li>¿A qué evalúa <code>letras[int(int('3' * 2) // 11)]</code>? ¿Es necesario usar dos veces <code>int()</code>?</li>
+</ul></li>
+<li><p>Asuma que <code>bartulos</code> contiene la lista <code>[3.14, "casa", 11, "casa", True]</code>:</p>
+<ul>
+<li>¿A qué evalúa <code>bartulos.index("casa")</code>? ¿Por qué?</li>
+<li>¿Cómo queda la lista en <code>bartulos</code> después de ejecutar <code>bartulos.append(99)</code>?</li>
+<li>¿Cómo queda la lista en <code>bartulos</code> después de ejecutar <code>bartulos.remove("casa"')</code> ?¿Por qué?</li>
+</ul></li>
+<li><p>¿Cuáles son los operadores para la concatenación y la replicación de listas?</p></li>
+<li><p>¿Cuál es la diferencia entre los métodos <code>append()</code> e <code>insert()</code> de las listas?</p></li>
+<li><p>¿Cuáles son dos formas de eliminar valores de una lista?</p></li>
+<li><p>El siguiente bloque de código imprime <code>['a', 'b', True, 30]</code>. ¿Por qué?</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cosas <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="va">True</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>bartulos <span class="op">=</span> cosas</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>bartulos.append(<span class="dv">20</span> <span class="op">+</span> <span class="dv">10</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cosas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Considere el siguiente bloque de código:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>marcas <span class="op">=</span> [<span class="st">"Milka"</span>, <span class="st">"Cofler"</span>, <span class="st">"Águila"</span>, <span class="st">"Cadbury"</span>, <span class="st">"Lindt"</span>, <span class="st">"Toblerone"</span>, <span class="st">"After Eight"</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>marcas[<span class="dv">2</span>:<span class="dv">5</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>que correctamente muestra <code>["Águila", "Cadbury", "Lindt"]</code>. ¿Por qué el siguiente bloque de código no funciona?</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>marcas <span class="op">=</span> [<span class="st">"Milka"</span>, <span class="st">"Cofler"</span>, <span class="st">"Águila"</span>, <span class="st">"Cadbury"</span>, <span class="st">"Lindt"</span>, <span class="st">"Toblerone"</span>, <span class="st">"After Eight"</span>]</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> <span class="dv">2</span>:<span class="dv">5</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>marcas[indices]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="tuplas" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="tuplas"><span class="header-section-number">7</span> Tuplas</h2>
+<ol type="1">
+<li><p>¿Por qué la tupla no implementa un método similar al método <code>.extend()</code> de las listas?</p></li>
+<li><p>Las tuplas de Python son conocidas por ser inmutables. Por ejemplo, el siguiente bloque de código resulta en un error:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tupla <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>tupla[<span class="dv">1</span>] <span class="op">=</span> <span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sin embargo, el siguiente bloque no arroja ningún error y pareciera que se logra modificar la tupla exitosamente:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>bartulos <span class="op">=</span> [<span class="st">"Hola"</span>, <span class="dv">10</span>, <span class="va">None</span>]</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>tupla <span class="op">=</span> (<span class="dv">1</span>, bartulos, <span class="dv">3</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>tupla[<span class="dv">1</span>].append(<span class="st">"¡Sorpesa!"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tupla)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Qué pasó?</p></li>
+</ol>
+</section>
+<section id="diccionarios" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="diccionarios"><span class="header-section-number">8</span> Diccionarios</h2>
+<ol type="1">
+<li><p>¿Cómo se escribe en código un diccionario vacío?</p></li>
+<li><p>¿Cómo se ve un diccionario que tiene la clave <code>"cosa"</code> y el valor <code>15</code>?</p></li>
+<li><p>¿Cuál es la principal diferencia entre un diccionario y una lista?</p></li>
+<li><p>¿Qué ocurre si se intenta acceder a <code>bartulos["cosa"]</code> cuando <code>bartulos</code> es <code>{"coso": 100}</code>?</p></li>
+<li><p>Si un diccionario está almacenado en <code>bartulos</code>, ¿cuál es la diferencia entre las siguientes expresiones?</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">"cosa"</span> <span class="kw">in</span> bartulos</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">"cosa"</span> <span class="kw">in</span> bartulos.keys()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Suponga el diccionario <code>datos = {"nombre": "Juan"}</code>. ¿Por qué la siguiente expresión resulta en <code>False</code>?</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">"Juan"</span> <span class="kw">in</span> datos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="control-de-flujo" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="control-de-flujo"><span class="header-section-number">9</span> Control de flujo</h2>
+<section id="condicionales" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="condicionales"><span class="header-section-number">9.1</span> Condicionales</h3>
+<ol type="1">
+<li><p>Explique qué es una condición y en qué situaciones se utilizaría.</p></li>
+<li><p>Identifique los tres bloques de código en el siguiente ejemplo:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>codigo <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> codigo <span class="op">==</span> <span class="dv">10</span>:</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"mensaje 1"</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> codigo <span class="op">&gt;</span> <span class="dv">5</span>:</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"mensaje 2"</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"mensaje alternativo"</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"mensaje final"</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fin del programa"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Tienen sentido las comparaciones utilizadas?</p></li>
+<li><p>¿Cuál es el problema con el siguiente programa? Proponga una solución.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>numero <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> numero <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"El numero </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es negativo"</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> numero <span class="op">&lt;</span> <span class="op">-</span><span class="dv">5</span>:</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"El numero </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es menor a -5"</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> numero <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"El numero </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es positivo"</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"El numero </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es 0"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="bucles" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="bucles"><span class="header-section-number">9.2</span> Bucles</h3>
+<ol type="1">
+<li><p>Considere el siguiente programa:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Escriba un programa que realice la misma tarea utilizando un bucle <code>while</code>.</p></li>
+<li><p>¿Cuál es la diferencia entre <code>range(10)</code>, <code>range(0, 10)</code> y <code>range(0, 10, 1)</code> en un bucle <code>for</code>?</p></li>
+<li><p>Suponga que <code>numeros</code> es una lista que contiene numeros enteros, ¿en qué se diferencian los siguientes bloques de código?</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> numeros:</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> numeros:</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Es posible re-escribir el siguiente bloque de código usando <code>while True</code>? ¿Qué modificaciones habría que hacer?</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>suma <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> suma <span class="op">&lt;=</span> limite:</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    suma <span class="op">+=</span> numeros[i]</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
 
-    |     Nombre        | ¿Válido? | Justificación |
-    |:-----------------:|:--------:|:-------------:|
-    | `balance`         |          |               |
-    | `balanceActual`   |          |               |
-    | `balance-actual`  |          |               |
-    | `balance actual`  |          |               |
-    | `balance_actual`  |          |               |
-    | `0cuenta`         |          |               |
-    | `cuenta0`         |          |               |
-    | `_cuenta`         |          |               |
-    | `SPAM`            |          |               |
-    | `cantidad$`       |          |               |
 
-1. ¿Cuál es el resultado de `len([])`? ¿Y qué pasa si se intenta hacer lo siguiente?
-
-    ```python
-    l = []
-    l[0]
-    ```
-
-    ¿Por qué?
-1. ¿Cuál es el problema con el siguiente programa? Proponga una solución.
-
-    ```python
-    numero = 10
-    if numero < 0:
-        print(f"El numero {numero} es negativo")
-    elif numero < -5:
-        print(f"El numero {numero} es menor a -5")
-    elif numero > 0:
-        print(f"El numero {numero} es positivo")
-    else:
-        print(f"El numero {numero} es 0")
-    ```
-
-
-1. ¿Cuál es el resultado de `list("abcdefgh")`? ¿Por qué?
-
-1. ¿Por qué `set("abcde")` es distinto de `{"abcde"}`?
-
-1.  ¿Qué valor contiene la variable `contador` luego de ejecutar el siguiente código?
-
-    ```python
-    contador = 20
-    contador + 1
-    ```
-
-1. ¿Por qué la siguiente comparación resulta en `True`?
-
-    ```python
-    "spam" + "spamspam" == "spam" * 3
-    ```
-
-
-1. ¿Por qué la siguiente expresión resulta en un error? ¿Cómo se puede arreglar?
-
-    ```python
-    "Me comí " + 6 + " panchos."
-    ```
-
-1. ¿Cuáles son los 3 operadores booleanos?
-
-1. Explica qué es una condición y en qué situaciones se utilizaría.
-
-1. Identificá los tres bloques de código en el siguiente ejemplo:
-
-    ```python
-    codigo = 0
-
-    if codigo == 10:
-        print("mensaje 1")
-        if codigo > 5:
-            print("mensaje 2")
-        else:
-            print("mensaje alternativo")
-        print("mensaje final")
-
-    print("Fin del programa")
-    ```
-
-    ¿Tienen sentido las comparaciones utilizadas?
-
-
-1. ¿Cuál es la diferencia entre `range(10)`, `range(0, 10)` y `range(0, 10, 1)` en un bucle `for`?
-
-1.  Escribí un programa corto que imprima los números del 1 al 10 utilizando un bucle `for`.
-    Luego, escribí un programa equivalente que imprima los números del 1 al 10 utilizando un bucle
-    `while`.
-
-
-1.  Escriba un programa que recorra una lista de números y los vaya sumando uno por uno hasta que la
-    suma acumulada sea igual o mayor a un determinado umbral (por ejemplo, 20).
-    Primero, resuelva el problema utilizando un bucle `for`.
-    Luego, implemente una versión equivalente utilizando un bucle `while`.
-    Al finalizar, el programa debe mostrar la suma total acumulada y la cantidad de números que fueron sumados.
-
-    Utilice esta lista de ejemplo:
-
-    ```python
-    numeros = [4, 7, 3, 5, 2, 11, 20]
-    ```
-
-1. ¿Cuándo se ejecuta el código dentro de una función: cuando la función se define o cuando se la llama? Considere el siguiente ejemplo:
-
-    ```python
-    def suma(x, y):
-        print(100 / 0)
-        return x + y
-    ```
-
-1. ¿Cuál es la diferencia entre una función y una llamada a función?
-
-1. ¿Cuál es el valor que devuelve una función que no tiene `return`?
-
-- ¿Qué es `[]`?
-- ¿Cómo asignarías el valor `'hello'` como el tercer valor en una lista almacenada en una variable llamada `spam`? (Asumí que `spam` contiene `[2, 4, 6, 8, 10]`).
-
-  Para las siguientes tres preguntas, asumí que `spam` contiene la lista `['a', 'b', 'c', 'd']`:
-
-- ¿A qué evalúa `spam[int(int('3' * 2) // 11)]`?
-- ¿A qué evalúa `spam[-1]`?
-- ¿A qué evalúa `spam[:2]`?
-
-  Para las siguientes tres preguntas, asumí que `bacon` contiene la lista `[3.14, 'cat', 11, 'cat', True]`:
-
-- ¿A qué evalúa `bacon.index('cat')`?
-- ¿Cómo queda la lista en `bacon` después de ejecutar `bacon.append(99)`?
-- ¿Cómo queda la lista en `bacon` después de ejecutar `bacon.remove('cat')`?
-
-- ¿Cuáles son los operadores para la concatenación y la replicación de listas?
-- ¿Cuál es la diferencia entre los métodos `append()` e `insert()` de las listas?
-- ¿Cuáles son dos formas de eliminar valores de una lista?
-
-
-1. ¿Cómo se escribe en código un diccionario vacío?
-2. ¿Cómo se ve un diccionario que tiene la clave `'foo'` y el valor `42`?
-3. ¿Cuál es la principal diferencia entre un diccionario y una lista?
-4. ¿Qué ocurre si intentás acceder a `spam['foo']` cuando `spam` es `{'bar': 100}`?
-5. Si un diccionario está almacenado en `spam`, ¿cuál es la diferencia entre las expresiones `'cat' in spam` y `'cat' in spam.keys()`?
-6. Si un diccionario está almacenado en `spam`, ¿cuál es la diferencia entre las expresiones `'cat' in spam` y `'cat' in spam.values()`? -->
-
-
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

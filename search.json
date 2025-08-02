@@ -44,11 +44,131 @@
     ]
   },
   {
+    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html",
+    "href": "practica/01_introduccion_a_python/autoevaluacion.html",
+    "title": "🪞 Autoevaluación",
+    "section": "",
+    "text": "¿Qué valor contiene la variable contador luego de ejecutar el siguiente código?\ncontador = 20\ncontador + 1\nComplete la siguiente tabla indicando si el nombre es válido para una variable de Python.\n\n\n\nNombre\n¿Válido?\nJustificación\n\n\n\n\nbalance\n\n\n\n\nbalanceActual\n\n\n\n\nbalance-actual\n\n\n\n\nbalance actual\n\n\n\n\nbalance_actual\n\n\n\n\nmis.datos\n\n\n\n\n0cuenta\n\n\n\n\ncuenta0\n\n\n\n\n_cuenta\n\n\n\n\nSPAM\n\n\n\n\ncantidad$",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#variables",
+    "href": "practica/01_introduccion_a_python/autoevaluacion.html#variables",
+    "title": "🪞 Autoevaluación",
+    "section": "",
+    "text": "¿Qué valor contiene la variable contador luego de ejecutar el siguiente código?\ncontador = 20\ncontador + 1\nComplete la siguiente tabla indicando si el nombre es válido para una variable de Python.\n\n\n\nNombre\n¿Válido?\nJustificación\n\n\n\n\nbalance\n\n\n\n\nbalanceActual\n\n\n\n\nbalance-actual\n\n\n\n\nbalance actual\n\n\n\n\nbalance_actual\n\n\n\n\nmis.datos\n\n\n\n\n0cuenta\n\n\n\n\ncuenta0\n\n\n\n\n_cuenta\n\n\n\n\nSPAM\n\n\n\n\ncantidad$",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#números",
+    "href": "practica/01_introduccion_a_python/autoevaluacion.html#números",
+    "title": "🪞 Autoevaluación",
+    "section": "2 Números",
+    "text": "2 Números\n\n¿Cuál es el tipo de 10 / 2? ¿Por qué?\n¿Cuál es el tipo de 5 * 2? ¿Por qué?\n¿Por qué 5 == 5.0 es True?",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#booleanos",
+    "href": "practica/01_introduccion_a_python/autoevaluacion.html#booleanos",
+    "title": "🪞 Autoevaluación",
+    "section": "3 Booleanos",
+    "text": "3 Booleanos\n\n¿Cuál es el resultado de las siguientes expresiones? ¿Por qué?\nFalse or not False\nnot (True and True)\nnot True and True\n\"True\" != True\n10 &gt; 5 + 3\nNone is None\nFalse is False\nEjecute línea por línea los siguientes bloques y analice los resultados.\nint(True) * 50\nTrue * 50\n1 is True\nbool(1) is True\nid(True)\nid(bool(1))\nid(bool(1024))\n¿Cuáles son los 3 operadores booleanos?",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#cadenas-de-caracteres",
+    "href": "practica/01_introduccion_a_python/autoevaluacion.html#cadenas-de-caracteres",
+    "title": "🪞 Autoevaluación",
+    "section": "4 Cadenas de caracteres",
+    "text": "4 Cadenas de caracteres\n\n¿Por qué la siguiente comparación resulta en True?\n\"spam\" + \"spamspam\" == \"spam\" * 3\n¿Por qué la siguiente expresión resulta en un error? ¿Cómo se puede arreglar?\n\"Me comí \" + 6 + \" panchos.\"\n¿Encuentra algo extraño en la siguiente expresión? ¿Cómo la mejoraría?\nmateria = \"Programación 2\"\nprint(\"¡Sean bienvenidos a la materia {materia}!\")\nExplique por qué es redundante utilizar str() en el siguiente bloque de código:\nx, y = 10, 20\nprint(f\"La suma de {str(x)} y {str(y)} es: {str(x + y)}.\")\nConsidere el siguiente bloque de código:\nmensaje = \"Hola, ¿cómo estes?\"\nmensaje[-3] = \"á\"\n\n¿Cuál es la intención detrás del programa?\n¿Por qué no funciona?\n¿Cómo podría arreglarlo? Alerta: la solución no es muy elegante.\n\n¿Cuál es el resultado de list(\"abcdefgh\")? ¿Por qué?\n¿Por qué set(\"abcde\") es distinto de {\"abcde\"}?",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#funciones",
+    "href": "practica/01_introduccion_a_python/autoevaluacion.html#funciones",
+    "title": "🪞 Autoevaluación",
+    "section": "5 Funciones",
+    "text": "5 Funciones\n\n¿Cuál es la diferencia entre una función y una llamada a función?\n¿Cuál es el valor que devuelve una función que no tiene return?\n¿Cuándo se ejecuta el código dentro de una función: cuando la función se define o cuando se la llama? Considere la siguiente función:\ndef suma(x, y):\n    print(100 / 0)\n    return x + y\nLuego, ejecute el siguiente bloque:\nsuma(2, 4)",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#listas",
+    "href": "practica/01_introduccion_a_python/autoevaluacion.html#listas",
+    "title": "🪞 Autoevaluación",
+    "section": "6 Listas",
+    "text": "6 Listas\n\n¿Qué es []? ¿Cuál es el resultado de len([])?\n¿Por qué la siguiente expresión resulta en False? Ayuda: use la función id().\n[] is []\n¿Por qué se obtiene un error en el siguiente bloque de código?\nl = []\nl[0]\n¿Cómo le asignaría el valor \"hola\" como el tercer valor en una lista almacenada en una variable llamada cosas? Asuma que cosas contiene [2, 4, 6, 8, 10].\nAsuma que letras contiene la lista [\"a\", \"b\", \"c\", \"d\"]:\n\n¿A qué evalúa letras[-1]?\n¿A qué evalúa letras[:2]?\n¿A qué evalúa letras[int(int('3' * 2) // 11)]? ¿Es necesario usar dos veces int()?\n\nAsuma que bartulos contiene la lista [3.14, \"casa\", 11, \"casa\", True]:\n\n¿A qué evalúa bartulos.index(\"casa\")? ¿Por qué?\n¿Cómo queda la lista en bartulos después de ejecutar bartulos.append(99)?\n¿Cómo queda la lista en bartulos después de ejecutar bartulos.remove(\"casa\"') ?¿Por qué?\n\n¿Cuáles son los operadores para la concatenación y la replicación de listas?\n¿Cuál es la diferencia entre los métodos append() e insert() de las listas?\n¿Cuáles son dos formas de eliminar valores de una lista?\nEl siguiente bloque de código imprime ['a', 'b', True, 30]. ¿Por qué?\ncosas = [\"a\", \"b\", True]\nbartulos = cosas\nbartulos.append(20 + 10)\nprint(cosas)\nConsidere el siguiente bloque de código:\nmarcas = [\"Milka\", \"Cofler\", \"Águila\", \"Cadbury\", \"Lindt\", \"Toblerone\", \"After Eight\"]\nmarcas[2:5]\nque correctamente muestra [\"Águila\", \"Cadbury\", \"Lindt\"]. ¿Por qué el siguiente bloque de código no funciona?\nmarcas = [\"Milka\", \"Cofler\", \"Águila\", \"Cadbury\", \"Lindt\", \"Toblerone\", \"After Eight\"]\nindices = 2:5\nmarcas[indices]",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#tuplas",
+    "href": "practica/01_introduccion_a_python/autoevaluacion.html#tuplas",
+    "title": "🪞 Autoevaluación",
+    "section": "7 Tuplas",
+    "text": "7 Tuplas\n\n¿Por qué la tupla no implementa un método similar al método .extend() de las listas?\nLas tuplas de Python son conocidas por ser inmutables. Por ejemplo, el siguiente bloque de código resulta en un error:\ntupla = (1, 2, 3)\ntupla[1] = 10\nSin embargo, el siguiente bloque no arroja ningún error y pareciera que se logra modificar la tupla exitosamente:\nbartulos = [\"Hola\", 10, None]\ntupla = (1, bartulos, 3)\n\ntupla[1].append(\"¡Sorpesa!\")\n\nprint(tupla)\n¿Qué pasó?",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#diccionarios",
+    "href": "practica/01_introduccion_a_python/autoevaluacion.html#diccionarios",
+    "title": "🪞 Autoevaluación",
+    "section": "8 Diccionarios",
+    "text": "8 Diccionarios\n\n¿Cómo se escribe en código un diccionario vacío?\n¿Cómo se ve un diccionario que tiene la clave \"cosa\" y el valor 15?\n¿Cuál es la principal diferencia entre un diccionario y una lista?\n¿Qué ocurre si se intenta acceder a bartulos[\"cosa\"] cuando bartulos es {\"coso\": 100}?\nSi un diccionario está almacenado en bartulos, ¿cuál es la diferencia entre las siguientes expresiones?\n\"cosa\" in bartulos\n\"cosa\" in bartulos.keys()\nSuponga el diccionario datos = {\"nombre\": \"Juan\"}. ¿Por qué la siguiente expresión resulta en False?\n\"Juan\" in datos",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#control-de-flujo",
+    "href": "practica/01_introduccion_a_python/autoevaluacion.html#control-de-flujo",
+    "title": "🪞 Autoevaluación",
+    "section": "9 Control de flujo",
+    "text": "9 Control de flujo\n\n9.1 Condicionales\n\nExplique qué es una condición y en qué situaciones se utilizaría.\nIdentifique los tres bloques de código en el siguiente ejemplo:\ncodigo = 0\n\nif codigo == 10:\n    print(\"mensaje 1\")\n    if codigo &gt; 5:\n        print(\"mensaje 2\")\n    else:\n        print(\"mensaje alternativo\")\n    print(\"mensaje final\")\n\nprint(\"Fin del programa\")\n¿Tienen sentido las comparaciones utilizadas?\n¿Cuál es el problema con el siguiente programa? Proponga una solución.\nnumero = 10\nif numero &lt; 0:\n    print(f\"El numero {numero} es negativo\")\nelif numero &lt; -5:\n    print(f\"El numero {numero} es menor a -5\")\nelif numero &gt; 0:\n    print(f\"El numero {numero} es positivo\")\nelse:\n    print(f\"El numero {numero} es 0\")\n\n\n\n9.2 Bucles\n\nConsidere el siguiente programa:\nfor i in range(10):\n    print(i)\nEscriba un programa que realice la misma tarea utilizando un bucle while.\n¿Cuál es la diferencia entre range(10), range(0, 10) y range(0, 10, 1) en un bucle for?\nSuponga que numeros es una lista que contiene numeros enteros, ¿en qué se diferencian los siguientes bloques de código?\nfor i in numeros:\n    if i % 2 == 0:\n        break\n    print(i)\nfor i in numeros:\n    if i % 2 == 0:\n        continue\n    print(i)\n¿Es posible re-escribir el siguiente bloque de código usando while True? ¿Qué modificaciones habría que hacer?\nsuma = 0\ni = 0\nwhile suma &lt;= limite:\n    suma += numeros[i]\n    i += 1",
+    "crumbs": [
+      "Práctica",
+      "U1 - Introducción a Python",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
     "objectID": "practica/01_introduccion_a_python/ejercicios.html",
     "href": "practica/01_introduccion_a_python/ejercicios.html",
     "title": "🛠️ Ejercicios",
     "section": "",
-    "text": "Escriba una función en Python que reciba el radio de un círculo y devuelva su área. Luego, escriba otra función que también reciba el radio de un círculo, pero devuelva su perímetro. Finalmente, escriba una tercera función que reciba el radio de un círculo y devuelva tanto el área como el perímetro.\nUna vez que haya implementado todas las funciones, analice la diferencia entre:\narea, perimetro = calcular_area_y_perimetro(radio=5)\ny\nresultados = calcular_area_y_perimetro(radio=5)\nConsidere el tipo de las variables area, perimetro y resutlados.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\n\\[\n\\begin{aligned}\nA &= \\pi \\cdot r^2 \\\\\nP &= 2 \\cdot \\pi \\cdot r\n\\end{aligned}\n\\]",
+    "text": "Escriba una función en Python que reciba el radio de un círculo y devuelva su área. Luego, escriba otra función que también reciba el radio de un círculo, pero devuelva su perímetro. Finalmente, escriba una tercera función que reciba el radio de un círculo y devuelva tanto el área como el perímetro.\nUna vez que haya implementado todas las funciones, analice la diferencia entre:\narea, perimetro = calcular_area_y_perimetro(radio=5)\ny\nresultados = calcular_area_y_perimetro(radio=5)\nConsidere el tipo de las variables area, perimetro y resultados.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\n\\[\n\\begin{aligned}\nA &= \\pi \\cdot r^2 \\\\\nP &= 2 \\cdot \\pi \\cdot r\n\\end{aligned}\n\\]",
     "crumbs": [
       "Práctica",
       "U1 - Introducción a Python",
@@ -60,7 +180,7 @@
     "href": "practica/01_introduccion_a_python/ejercicios.html#área-y-perímetro-de-un-círculo",
     "title": "🛠️ Ejercicios",
     "section": "",
-    "text": "Escriba una función en Python que reciba el radio de un círculo y devuelva su área. Luego, escriba otra función que también reciba el radio de un círculo, pero devuelva su perímetro. Finalmente, escriba una tercera función que reciba el radio de un círculo y devuelva tanto el área como el perímetro.\nUna vez que haya implementado todas las funciones, analice la diferencia entre:\narea, perimetro = calcular_area_y_perimetro(radio=5)\ny\nresultados = calcular_area_y_perimetro(radio=5)\nConsidere el tipo de las variables area, perimetro y resutlados.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\n\\[\n\\begin{aligned}\nA &= \\pi \\cdot r^2 \\\\\nP &= 2 \\cdot \\pi \\cdot r\n\\end{aligned}\n\\]",
+    "text": "Escriba una función en Python que reciba el radio de un círculo y devuelva su área. Luego, escriba otra función que también reciba el radio de un círculo, pero devuelva su perímetro. Finalmente, escriba una tercera función que reciba el radio de un círculo y devuelva tanto el área como el perímetro.\nUna vez que haya implementado todas las funciones, analice la diferencia entre:\narea, perimetro = calcular_area_y_perimetro(radio=5)\ny\nresultados = calcular_area_y_perimetro(radio=5)\nConsidere el tipo de las variables area, perimetro y resultados.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\n\\[\n\\begin{aligned}\nA &= \\pi \\cdot r^2 \\\\\nP &= 2 \\cdot \\pi \\cdot r\n\\end{aligned}\n\\]",
     "crumbs": [
       "Práctica",
       "U1 - Introducción a Python",
@@ -156,7 +276,7 @@
     "href": "practica/01_introduccion_a_python/ejercicios.html#validación-de-dni",
     "title": "🛠️ Ejercicios",
     "section": "9 Validación de DNI",
-    "text": "9 Validación de DNI\nCrear una función que dada una cadena de caracteres verifique si se corresponde con un DNI.\nSi es un DNI, devolver True. Caso contrario, devolver Falso.\nA tener en cuenta:\n\nAlgunos ejemplos de DNI válidos\n\n40.094.127\n19053512\n6.392.780\n\nDNI no válidos\n\n40,094,127\n19-053-512\n123456",
+    "text": "9 Validación de DNI\nCrear una función que dada una cadena de caracteres verifique si se corresponde con un DNI.\nSi es un DNI, devolver True. Caso contrario, devolver False.\nA tener en cuenta:\n\nAlgunos ejemplos de DNI válidos\n\n40.094.127\n19053512\n6.392.780\n\nDNI no válidos\n\n40,094,127\n19-053-512\n123456",
     "crumbs": [
       "Práctica",
       "U1 - Introducción a Python",
@@ -216,7 +336,7 @@
     "href": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-pythonico",
     "title": "🛠️ Ejercicios",
     "section": "14 Conteo de caracteres Pythonico",
-    "text": "14 Conteo de caracteres Pythonico\nLos diccionarios en Python cuentan con un método .get() que devuelve el valor asociado a una clave. Este método permite pasarle un segundo argumento con un valor que se devuelve cuando no se encuentra un elemento asocaido a la clave que le pasamos. Por ejemplo:\nd = {\"a\": 1, \"b\": 20}\nd.get(\"b\", 0)\n20\nd.get(\"c\", 0)\n0\nModifique la función contar_caracteres del ejercicio Conteo de caracteres utilizando el metodo .get() para obtener una implementación más sencilla. Así, debería poder eliminar el bloque if.",
+    "text": "14 Conteo de caracteres Pythonico\nLos diccionarios en Python cuentan con un método .get() que devuelve el valor asociado a una clave. Este método permite pasarle un segundo argumento con un valor que se devuelve cuando no se encuentra un elemento asociado a la clave que le pasamos. Por ejemplo:\nd = {\"a\": 1, \"b\": 20}\nd.get(\"b\", 0)\n20\nd.get(\"c\", 0)\n0\nModifique la función contar_caracteres del ejercicio Conteo de caracteres utilizando el metodo .get() para obtener una implementación más sencilla. Así, debería poder eliminar el bloque if.",
     "crumbs": [
       "Práctica",
       "U1 - Introducción a Python",
