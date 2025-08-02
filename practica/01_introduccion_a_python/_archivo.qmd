@@ -90,96 +90,57 @@ Reflexione sobre las diferencias entre devolver una lista
 (un único objeto que contiene todos los resultados) y devolver múltiples valores separados.
 
 
-## break y continue
+1. Escriba una función llamada triangulo que reciba una cadena de texto y un número entero, y dibuje
+una pirámide de la altura indicada, construida usando copias de la cadena. A continuación se muestra
+un ejemplo de una pirámide de 5 niveles utilizando la cadena 'L'.
 
-¿Cuál es la diferencia entre `break` y `continue`? Considere los siguientes ejemplos:
+    ```python
+    triangulo("L", 5)
+    ```
 
-```python
-for numero in range(10):
-    if numero == 5:
-        break
-    print(numero)
-```
-
-```python
-for numero in range(5):
-    if numero == 2:
-        continue
-    print(numero)
-```
+    ```
+    L
+    LL
+    LLL
+    LLLL
+    LLLLL
+    ```
 
 
-1. 
+1. Escriba una función llamada rectangulo que reciba una cadena de texto y dos números enteros, y
+dibuje un rectángulo con el ancho y el alto indicados, construido usando copias de la cadena.
+A continuación se muestra un ejemplo de un rectángulo de ancho 5 y alto 4 utilizando la cadena 'H'.
 
-Escriba una función llamada triangulo que reciba una cadena de texto y un número entero, y dibuje una pirámide de la altura indicada, construida usando copias de la cadena. A continuación se muestra un ejemplo de una pirámide de 5 niveles utilizando la cadena 'L'.
+    ```python
+    rectangulo('H', 5, 4)
+    ```
 
-```python
-triangulo("L", 5)
-```
-
-```
-L
-LL
-LLL
-LLLL
-LLLLL
-```
-
-
-1. 
-
-Escriba una función llamada rectangulo que reciba una cadena de texto y dos números enteros, y
- dibuje un rectángulo con el ancho y el alto indicados, construido usando copias de la cadena. 
- A continuación se muestra un ejemplo de un rectángulo de ancho 5 y alto 4 utilizando la cadena 'H'.
-
- ```python
- rectangulo('H', 5, 4)
- ```
- 
- ```
-HHHHH
-HHHHH
-HHHHH
-HHHHH
-```
-
-1. Entradas de cine
-
-Un cine cobra distintos precios según la edad de cada persona: la entrada es gratis para menores de
-3 años, cuesta $10 para personas de entre 3 y 12 años, y $15 para mayores de 12 años.
-
-Escriba un programa que pregunte repetidamente la edad de los usuarios e informe en cada caso
-cuánto cuesta la entrada correspondiente.
-
-Luego, modifique el programa para resolver esta nueva situación: primero debe preguntar al usuario
-cuántas entradas desea comprar, después solicitar la edad de cada persona individualmente y
-calcular el precio de cada entrada. Al finalizar, el programa debe mostrar el monto total a pagar
-por todas las entradas.
+    ```
+    HHHHH
+    HHHHH
+    HHHHH
+    HHHHH
+    ```
 
 
+1.  Escriba un programa que recorra una lista de números y los vaya sumando uno por uno hasta que la
+    suma acumulada sea igual o mayor a un determinado umbral (por ejemplo, 20).
 
-PARA ACTIVIDADES EN CLASE
+    Primero, resuelva el problema utilizando un bucle `for`.
+    Luego, implemente una versión equivalente utilizando un bucle `while`.
 
-1. Cree un diccionario llamado ciudades. Use los nombres de tres ciudades como claves en su
-diccionario. Cree un diccionario con información sobre cada ciudad, e incluya el país en el que se
-encuentra la ciudad, su población aproximada y un dato curioso sobre esa ciudad.
-Las claves del diccionario de cada ciudad deben ser algo como pais, poblacion y dato.
-Imprima el nombre de cada ciudad y toda la información que haya almacenado sobre ella.
+    Al finalizar, el programa debe mostrar la suma total acumulada y la cantidad de números que
+    fueron sumados.
 
-1. Múltiplos: Escriba un programa que primero le pida al usuario que ingrese un número y luego le
-informe si ese número es o no un múltiplo de 10. A continuación, haga una versión más general del
-programa: solicite al usuario que ingrese dos números e informe si el segundo número es múltiplo del primero.
+    Utilice esta lista de ejemplo:
 
-
+    ```python
+    numeros = [4, 7, 3, 5, 2, 11, 20]
+    ```
 
 
-
----
-
-1. Palíndromos
-
-Python proporciona una función incorporada llamada `reversed` que, al recibir una secuencia
-(como una cadena o una lista), devuelve un objeto con los elementos en orden inverso.
+1. Capicúa (Palíndromos). Python proporciona una función incorporada llamada `reversed` que, al recibir una
+secuencia (como una cadena o una lista), devuelve un objeto con los elementos en orden inverso.
 
 Por ejemplo:
 
@@ -236,3 +197,29 @@ Escriba una función llamada mcd que reciba como parámetros a y b, y devuelva s
 Hashing
 
 https://allendowney.github.io/ThinkPython/chap11.html#exercise
+
+
+PARA ACTIVIDADES EN CLASE
+
+1. Entradas de cine
+
+Un cine cobra distintos precios según la edad de cada persona: la entrada es gratis para menores de
+3 años, cuesta $10 para personas de entre 3 y 12 años, y $15 para mayores de 12 años.
+
+Escriba un programa que pregunte repetidamente la edad de los usuarios e informe en cada caso
+cuánto cuesta la entrada correspondiente.
+
+Luego, modifique el programa para resolver esta nueva situación: primero debe preguntar al usuario
+cuántas entradas desea comprar, después solicitar la edad de cada persona individualmente y
+calcular el precio de cada entrada. Al finalizar, el programa debe mostrar el monto total a pagar
+por todas las entradas.
+
+1. Cree un diccionario llamado ciudades. Use los nombres de tres ciudades como claves en su
+diccionario. Cree un diccionario con información sobre cada ciudad, e incluya el país en el que se
+encuentra la ciudad, su población aproximada y un dato curioso sobre esa ciudad.
+Las claves del diccionario de cada ciudad deben ser algo como pais, poblacion y dato.
+Imprima el nombre de cada ciudad y toda la información que haya almacenado sobre ella.
+
+1. Múltiplos: Escriba un programa que primero le pida al usuario que ingrese un número y luego le
+informe si ese número es o no un múltiplo de 10. A continuación, haga una versión más general del
+programa: solicite al usuario que ingrese dos números e informe si el segundo número es múltiplo del primero.
