@@ -100,7 +100,7 @@ toc-depth: 3
     "Me comí " + 6 + " panchos."
     ```
 
-1. ¿Encuentra algo extraño en la siguiente expresión? ¿Cómo lo mejorarían?
+1. ¿Encuentra algo extraño en la siguiente expresión? ¿Cómo la mejoraría?
 
     ```python
     materia = "Programación 2"
@@ -192,6 +192,22 @@ llamada `cosas`? Asuma que `cosas` contiene `[2, 4, 6, 8, 10]`.
     bartulos = cosas
     bartulos.append(20 + 10)
     print(cosas)
+    ```
+
+1. Considere el siguiente bloque de código:
+
+    ```python
+    marcas = ["Milka", "Cofler", "Águila", "Cadbury", "Lindt", "Toblerone", "After Eight"]
+    marcas[2:5]
+    ```
+
+    que correctamente muestra `["Águila", "Cadbury", "Lindt"]`.
+    ¿Por qué el siguiente bloque de código no funciona?
+
+    ```python
+    marcas = ["Milka", "Cofler", "Águila", "Cadbury", "Lindt", "Toblerone", "After Eight"]
+    indices = 2:5
+    marcas[indices]
     ```
 
 ## Tuplas

@@ -139,6 +139,160 @@ A continuación se muestra un ejemplo de un rectángulo de ancho 5 y alto 4 util
     ```
 
 
+1. Escribir un programa que sirva nos sirva de presentación utilizando f-strings.
+El programa tiene que mostrar nuestro nombre y a que nos dedicamos. 
+Nuestro nombre y dedicación tienen que ser variables que luego incorporamos utilizando f-strings.
+
+    Ejemplos de salida
+
+    * `Mi nombre es Joaquín y soy carnicero`
+    * `Mi nombre es Florencia y soy ingeniera`
+
+
+1. Emiliano es un transportista del sur de la provincia de Santa Fe.
+La cooperativa de su pueblo tiene que enviar a puerto 55 toneladas de poroto de soja y le van a
+encargar todo el transporte a él. Emiliano tiene un camión sin acoplado, cuyo chasis puede
+ transportar 8000 kilos de cereal. Responda las siguientes preguntas:
+
+    * ¿Cuántos viajes tiene que hacer?
+    * ¿Cuántos viajes van a llevar menos que la carga máxima?
+    * ¿Cuántos kilos va a transportar en los viajes que no vaya con la máxima carga?
+    * Si la distancia entre su pueblo y el puerto es 160 kilómetros, ¿cuánta distancia va a recorrer en total?
+
+    ```python
+    total_a_enviar = 55000
+    carga_chasis = 8000
+    total_viajes = total_a_enviar // carga_chasis + 1 # cuantos viajes tiene que hacer
+    total_viajes - total_a_enviar // carga_chasis # cuantos viajes llevan menos que la carga máxima
+    total_a_enviar % carga_chasis # cuantos kilos lleva en los viajes que va sin la carga máxima
+    160 * total_viajes * 2 # distancia total a recorrer, multiplicamos por 2 porque son viajes de ida y vuetla
+    ```
+
+
+1. La siguiente lista contiene números generados al azar:
+
+    ```python
+    numeros = [
+        436, 335, 1727, 357, 883, 752, 346, 1136, 1267, 1729, 1082,
+        1693, 922, 953, 1409, 204, 829, 845, 820, 1043, 724, 1955,
+        1931, 927, 767, 1974, 1891, 1622, 1142, 883, 1593, 97, 1465,
+        1280, 1216, 162, 323, 36, 1507, 1324, 257, 1442, 1618, 584,
+        1967, 1949, 1035, 1497, 1336,  263,  510, 1112, 1045, 1778, 334,
+        369, 62, 931, 997, 49, 450, 1448, 1721, 185, 1356, 1141,
+        1973, 1382, 143, 735, 246, 442,  925, 517, 1633, 1982, 1201,
+        1198, 1354, 1027, 1525, 1675, 1528, 321, 1206, 604, 312, 1449,
+        1207, 1088, 986, 1633, 601, 1048, 375, 1274, 1556, 42, 1256,
+        1978
+    ]
+    ```
+
+    Itere a través de la lista y asigne los números a diferentes listas según si son menores a 200,
+    mayores o iguales a 200 y menores a 1000, o mayores o iguales a 1000.
+
+    ```python
+    lista_1 = [] # Menores a 200
+    lista_2 = [] # Mayores o iguales a 200 y menores a 1000
+    lista_3 = [] # Mayores o iguales a 1000
+
+    for n in numeros:
+        if n < 200:                 # Si el numero es menor a 200
+            lista_1.append(n)
+        # NOTE: n >= 200 es redundante
+        elif n >= 200 and n < 1000: # Si el numero es mayor o igual a 200 y menor a 1000
+            lista_2.append(n)
+        else:                       # Caso contrario (es decir, si es mayor o igual a 1000)
+            lista_3.append(n)
+    ```
+
+1. Escribir un programa que dado un nombre de usuario nos imprima un mensaje con todos sus datos.
+
+    ```python
+    usuarios = {
+        "aeinstein": {
+            "nombre": "albert",
+            "apellido": "einstein",
+            "ciudad": "princenton"
+        },
+        "mcurie": {
+            "nombre": "marie",
+            "apellido": "curie",
+            "ciudad": "paris"
+        },
+        "afleming": {
+            "nombre": "alexander",
+            "apellido": "fleming",
+            "ciudad": "londres"
+        }
+    }
+    ```
+
+    ```python
+    usuario = "mcurie"
+
+    nombre = usuarios[usuario]["nombre"]
+    apellido = usuarios[usuario]["apellido"]
+    ciudad = usuarios[usuario]["ciudad"]
+
+    print(f"El usuario '{usuario}' se llama {nombre} {apellido} y es de {ciudad}.")
+    ```
+
+1. Dada la siguiente lista de palabras:
+
+
+    ```python
+    palabras = [
+        "Cóncavo", "Autopista", "Diagonal", "Equipaje", "Ardilla", "Consultorio", "Roma", "Loco",
+        "Marciano", "Karateca", "Aniversario", "Topadora", "Grabador", "Salir", "Ventoso", "Anunciar",
+        "Rótula", "Estanque", "Quedarse", "Nuevo", "Sordo", "Madurar", "Vestir", "Retoque", "Desvelo",
+        "Hora", "Cochera", "Metal", "Nudo", "Maquillaje", "Barco", "Soda", "Lagartija"
+    ]
+    ```
+
+    * ¿Cuántas palabras hay en total?
+    * ¿Cuántas empiezan con `"A"`?
+    * ¿Cuántas terminan con `"o"`?
+    * ¿Cuántas empiezan con alguna vocal?
+    * ¿Cuántas terminan con alguna consonante?
+
+    ```python
+    len(palabras)
+
+    # Empezamos un contador en 0
+    empieza_con_a = 0
+
+    # Iteramos a traves de las palabras en la lista
+    for p in palabras:
+        # Si la palabra empieza con "A" (mayuscula), sumamos 1 al contador
+        if p[0] == "A":
+            empieza_con_a = empieza_con_a + 1
+    print(empieza_con_a)
+    ```
+
+    ```python
+    termina_con_o = 0
+    for palabra in palabras:
+        if palabra[-1] == "o":
+            termina_con_o = termina_con_o + 1
+    print(termina_con_o)
+    ```
+
+    ```python
+    empieza_con_vocal = 0
+    for palabra in palabras:
+        if palabra[0] in ["A", "E", "I", "O", "U"]:
+            empieza_con_vocal = empieza_con_vocal + 1
+    print(empieza_con_vocal)
+    ```
+
+    ```python
+    termina_con_consonante = 0
+    for palabra in palabras:
+        if palabra[-1] not in ["a", "e", "i", "o", "u"]:
+            termina_con_consonante = termina_con_consonante + 1
+    print(termina_con_consonante)
+    ```
+
+
 1. Capicúa (Palíndromos). Python proporciona una función incorporada llamada `reversed` que, al recibir una
 secuencia (como una cadena o una lista), devuelve un objeto con los elementos en orden inverso.
 
