@@ -17,9 +17,9 @@ website:
       - text: Información
         file: informacion/programa.qmd
       - text: Teoría
-        file: teoria/01_introduccion_a_python/clase_1.ipynb
+        file: teoria/01_programacion_en_python/01_introduccion.ipynb
       - text: Práctica
-        file: practica/01_introduccion_a_python/ejercicios.qmd
+        file: practica/01_programacion_en_python/ejercicios.qmd
       - text: Trabajos Prácticos
         file: trabajos_practicos/descripcion.qmd
       - text: Recursos
@@ -37,9 +37,9 @@ website:
         # - informacion/faq.qmd
     - title: Teoría
       contents:
-        - text: U1 - Introducción a Python
+        - text: U1 - Programación en Python
           contents:
-            - auto: teoria/01_introduccion_a_python/*.ipynb
+            - auto: teoria/01_programacion_en_python/*.ipynb
             - sort-ui: false
         - teoria/02_programacion_funcional.qmd
         - teoria/03_oop.qmd
@@ -49,11 +49,11 @@ website:
       collapse-level: 2
       collapse: true
       contents:
-        - text: U1 - Introducción a Python
+        - text: U1 - Programación en Python
           contents:
-            - practica/01_introduccion_a_python/autoevaluacion.qmd
-            - practica/01_introduccion_a_python/ejercicios.qmd
-            - practica/01_introduccion_a_python/problemas.qmd
+            - practica/01_programacion_en_python/autoevaluacion.qmd
+            - practica/01_programacion_en_python/ejercicios.qmd
+            - practica/01_programacion_en_python/problemas.qmd
         - text: U2 - Programación funcional
           contents:
             - practica/02_programacion_funcional/autoevaluacion.qmd
