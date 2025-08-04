@@ -292,7 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>Veamos un ejemplo.</p>
-<div id="00a16ae7" class="cell" data-execution_count="4">
+<div id="00a16ae7" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>condicion <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condicion:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Se ejecuta el bloque if"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -300,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Se ejecuta el bloque if</code></pre>
 </div>
 </div>
-<div id="5aca410f" class="cell" data-execution_count="5">
+<div id="5aca410f" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>condicion <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condicion:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Se ejecuta el bloque if"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -318,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>El <strong>bloque de código</strong> a evaluar si <strong>condición</strong> es verdadera.</li>
 </ul>
 <p>Veamos otro ejemplo.</p>
-<div id="e59ce68b" class="cell" data-execution_count="6">
+<div id="e59ce68b" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>condicion <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condicion:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Se ejecuta el bloque if"</span>)</span>
@@ -332,7 +332,7 @@ Esto se imprime siempre</code></pre>
 <p>El segundo <code>print()</code> se imprime siempre porque está por fuera del bloque de ejecución condicional.</p>
 <p>¿Cómo nos damos cuenta que no está dentro del bloque condicional?</p>
 <p>Simplemente la indentación vuelve a ser normal. El fin de la indentación indica el fin del bloque de código.</p>
-<div id="0b288393" class="cell" data-execution_count="7">
+<div id="0b288393" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>valor <span class="op">=</span> <span class="dv">12</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> valor <span class="op">&gt;</span> <span class="dv">10</span>:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Se ejecuta el bloque if"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -353,7 +353,7 @@ Esto se imprime siempre</code></pre>
 <p><img src="../imgs/if_else_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
-<div id="fd5af551" class="cell" data-execution_count="8">
+<div id="fd5af551" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="dv">21</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&gt;=</span> <span class="dv">16</span>:</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Tenés la edad suficiente para votar"</span>)</span>
@@ -370,7 +370,7 @@ Esto se imprime siempre</code></pre>
 </div>
 <p>Al igual que con el bloque <code>if</code>, cualquier parte del código que se escriba luego del bloque <code>if</code>-<code>else</code> es ejecutada sin importar el valor de las condiciones.</p>
 <p>Veamos otro ejemplo donde evaluamos si un número es par o impar.</p>
-<div id="cc6a4b50" class="cell" data-execution_count="9">
+<div id="cc6a4b50" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>valor <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(valor)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -404,7 +404,7 @@ Es par</code></pre>
 <li>Personas entre 4 y 18 años, $400.</li>
 <li>Personas de 18 o mas años, $600.</li>
 </ul>
-<div id="83f125ce" class="cell" data-execution_count="10">
+<div id="83f125ce" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&lt;</span> <span class="dv">4</span>:</span>
@@ -427,7 +427,7 @@ Es par</code></pre>
 <h2 class="anchored" data-anchor-id="múltiples-bloques-elif">Múltiples bloques <code>elif</code></h2>
 <p>Hasta ahora utilizamos un único bloque <code>elif</code>, pero podemos usar tantos como sea necesario.</p>
 <p>Por ejemplo, si el parque de diversiones decide realizar un descuento para adultos mayores, dejando el precio en $350, podriamos agregar otro bloque <code>elif</code> que represente la evaluación de esta condición.</p>
-<div id="791c8521" class="cell" data-execution_count="11">
+<div id="791c8521" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="dv">68</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&lt;</span> <span class="dv">4</span>:</span>
@@ -449,7 +449,7 @@ Es par</code></pre>
 <h2 class="anchored" data-anchor-id="omitir-el-bloque-else">Omitir el bloque <code>else</code></h2>
 <p>No hay ninguna regla que nos obligue a terminar un bloque de <code>if</code>-<code>elif</code> con un bloque <code>else</code>.</p>
 <p>Utilizar el bloque <code>else</code> a veces es lo correcto, pero otras veces puede ser mejor poner una condición explícita en un último <code>elif</code> que contemple solamente la condición que realmente nos interesa.</p>
-<div id="8426ef48" class="cell" data-execution_count="12">
+<div id="8426ef48" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&lt;</span> <span class="dv">4</span>:</span>
@@ -469,7 +469,7 @@ Es par</code></pre>
 <p>El bloque <code>elif</code> que agregamos indica que el <code>precio</code> será de $350 cuando la edad de la persona sea mayor o igual a 65 años.</p>
 <p>Esta condición es más explícita y fácil de entender que el bloque <code>else</code> que usábamos antes.</p>
 <p>Sin embargo, todavía hay un problema: el programa sigue funcionando incluso si se ingresan edades fuera de un rango razonable. A continuación se muestra una versión más completa:</p>
-<div id="006639b2" class="cell" data-execution_count="13">
+<div id="006639b2" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="dv">125</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&lt;</span> <span class="dv">0</span>:</span>
