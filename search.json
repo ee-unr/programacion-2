@@ -696,5 +696,89 @@
       "U1 - Programación en Python",
       "Funciones"
     ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/03_ejecucion_condicional.html",
+    "href": "teoria/01_programacion_en_python/03_ejecucion_condicional.html",
+    "title": "Ejecución condicional",
+    "section": "",
+    "text": "Las computadoras son muy buenas para muchísimas cosas. En particular:\n\nDeterminar automáticamente que secciones de un programa se debe ejecutar.\nRealizar tareas repetitivas.\n\nEl primer punto se refiere a la ejecución condicional de código y el segundo a la ejecución repetitiva de código.\nEstos dos puntos pueden ser vistos de manera general como control de flujo del código.\nEn este apunte hablamos de la ejecución condicional de código.",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Ejecución condicional"
+    ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/03_ejecucion_condicional.html#introducción",
+    "href": "teoria/01_programacion_en_python/03_ejecucion_condicional.html#introducción",
+    "title": "Ejecución condicional",
+    "section": "",
+    "text": "Las computadoras son muy buenas para muchísimas cosas. En particular:\n\nDeterminar automáticamente que secciones de un programa se debe ejecutar.\nRealizar tareas repetitivas.\n\nEl primer punto se refiere a la ejecución condicional de código y el segundo a la ejecución repetitiva de código.\nEstos dos puntos pueden ser vistos de manera general como control de flujo del código.\nEn este apunte hablamos de la ejecución condicional de código.",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Ejecución condicional"
+    ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/03_ejecucion_condicional.html#bloques-if",
+    "href": "teoria/01_programacion_en_python/03_ejecucion_condicional.html#bloques-if",
+    "title": "Ejecución condicional",
+    "section": "Bloques if",
+    "text": "Bloques if\nLos bloques if utilizan la keyword if para evaluar una condición y ejecutar una sección de código en base al resultado de esta evaluación.\n\n\n\n\n\nVeamos un ejemplo.\n\ncondicion = True\nif condicion:\n    print(\"Se ejecuta el bloque if\")\n\nSe ejecuta el bloque if\n\n\n\ncondicion = False\nif condicion:\n    print(\"Se ejecuta el bloque if\")\n\nDe manera mas general, un bloque if es de la siguiente forma:\n\n\n\n\n\nTiene los siguientes componentes:\n\nLa palabra clave if.\nLa condición a evaluar, que tiene que ser True o False. Esta va seguida de los dos puntos : que indican el fin de la condición a evaluar y que lo siguiente es el bloque de código a ejecutar condicionalmente.\nEl bloque de código a evaluar si condición es verdadera.\n\nVeamos otro ejemplo.\n\ncondicion = True\nif condicion:\n    print(\"Se ejecuta el bloque if\")\n\nprint(\"Esto se imprime siempre\")\n\nSe ejecuta el bloque if\nEsto se imprime siempre\n\n\nEl segundo print() se imprime siempre porque está por fuera del bloque de ejecución condicional.\n¿Cómo nos damos cuenta que no está dentro del bloque condicional?\nSimplemente la indentación vuelve a ser normal. El fin de la indentación indica el fin del bloque de código.\n\nvalor = 12\nif valor &gt; 10:\n    print(\"Se ejecuta el bloque if\")\n\nSe ejecuta el bloque if",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Ejecución condicional"
+    ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/03_ejecucion_condicional.html#bloques-if---else",
+    "href": "teoria/01_programacion_en_python/03_ejecucion_condicional.html#bloques-if---else",
+    "title": "Ejecución condicional",
+    "section": "Bloques if - else",
+    "text": "Bloques if - else\nVimos que el bloque if nos permite ejecutar un bloque de código de manera condicional, y que luego el programa sigue su ejecución normal.\nTambién es posible que necesitemos ejecutar un bloque de código cuando las condiciones resulten en True y un bloque distinto en el caso contrario.\nPara eso, utilizamos el bloque if-else.\nUn bloque if-else es muy similar a un bloque if.\nLa diferencia es que nos permite definir otro bloque de código que se ejecuta cuando la prueba condicional es False.\n\n\n\n\n\n\nedad = 21\nif edad &gt;= 16:\n    print(\"Tenés la edad suficiente para votar\")\nelse:\n    print(\"Lo siento, aún sos demasiado jóven para votar\")\n\nTenés la edad suficiente para votar\n\n\n\n\n\n\n\nAl igual que con el bloque if, cualquier parte del código que se escriba luego del bloque if-else es ejecutada sin importar el valor de las condiciones.\nVeamos otro ejemplo donde evaluamos si un número es par o impar.\n\nvalor = 10\nprint(valor)\n\nif valor % 2 == 0:\n    mensaje = \"Es par\"\nelse:\n    mensaje = \"Es impar\"\n\nprint(mensaje)\n\n10\nEs par\n\n\nEn este caso, print(mensaje) se ejecuta siempre.\nLo que varía es el valor de la variable mensaje, que depende de si el número es par o impar.",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Ejecución condicional"
+    ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/03_ejecucion_condicional.html#bloques-if-elif-else",
+    "href": "teoria/01_programacion_en_python/03_ejecucion_condicional.html#bloques-if-elif-else",
+    "title": "Ejecución condicional",
+    "section": "Bloques if-elif-else",
+    "text": "Bloques if-elif-else\nEs muy probable que tengamos situaciones donde necesitemos considerar más de dos escenarios posibles.\nPara esto, Python ofrece los bloques if-elif-else.\nEste tipo de programa considera varias condiciones y las evalúa de a una a la vez hasta que alguna es verdadera. Luego se ejecuta solamente el bloque de código que corresponde a la primer condición verdadera.\n\n\n\n\n\nSupongamos que viene un parque de diversiones a Rosario y tiene los siguientes precios para la entrada:\n\nMenores de 4 años, gratis.\nPersonas entre 4 y 18 años, $400.\nPersonas de 18 o mas años, $600.\n\n\nedad = 3\n\nif edad &lt; 4:\n    print(\"El costo de entrada para vos es de $0.\")\nelif edad &lt; 18:\n    print(\"El costo de entrada para vos es de $400.\")\nelse:\n    print(\"El costo de entrada para vos es de $600.\")\n\nEl costo de entrada para vos es de $0.",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Ejecución condicional"
+    ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/03_ejecucion_condicional.html#múltiples-bloques-elif",
+    "href": "teoria/01_programacion_en_python/03_ejecucion_condicional.html#múltiples-bloques-elif",
+    "title": "Ejecución condicional",
+    "section": "Múltiples bloques elif",
+    "text": "Múltiples bloques elif\nHasta ahora utilizamos un único bloque elif, pero podemos usar tantos como sea necesario.\nPor ejemplo, si el parque de diversiones decide realizar un descuento para adultos mayores, dejando el precio en $350, podriamos agregar otro bloque elif que represente la evaluación de esta condición.\n\nedad = 68\n\nif edad &lt; 4:\n    precio = 0\nelif edad &lt; 18:\n    precio = 400\nelif edad &lt; 65:\n    precio = 600\nelse:\n    precio = 350\n\nprint(f\"El precio de entrada para vos es de ${precio}.\")\n\nEl precio de entrada para vos es de $350.",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Ejecución condicional"
+    ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/03_ejecucion_condicional.html#omitir-el-bloque-else",
+    "href": "teoria/01_programacion_en_python/03_ejecucion_condicional.html#omitir-el-bloque-else",
+    "title": "Ejecución condicional",
+    "section": "Omitir el bloque else",
+    "text": "Omitir el bloque else\nNo hay ninguna regla que nos obligue a terminar un bloque de if-elif con un bloque else.\nUtilizar el bloque else a veces es lo correcto, pero otras veces puede ser mejor poner una condición explícita en un último elif que contemple solamente la condición que realmente nos interesa.\n\nedad = 10\n\nif edad &lt; 4:\n    precio = 0\nelif edad &lt; 18:\n    precio = 400\nelif edad &lt; 65:\n    precio = 600\nelif edad &gt;= 65:\n    precio = 350\n\nprint(f\"El precio de entrada para vos es de ${precio}.\")\n\nEl precio de entrada para vos es de $400.\n\n\nEl bloque elif que agregamos indica que el precio será de $350 cuando la edad de la persona sea mayor o igual a 65 años.\nEsta condición es más explícita y fácil de entender que el bloque else que usábamos antes.\nSin embargo, todavía hay un problema: el programa sigue funcionando incluso si se ingresan edades fuera de un rango razonable. A continuación se muestra una versión más completa:\n\nedad = 125\n\nif edad &lt; 0:\n    print(\"¡Error!\")\n    precio = None\nelif edad &lt; 4:\n    precio = 0\nelif edad &lt; 18:\n    precio = 400\nelif edad &lt; 65:\n    precio = 600\nelif edad &gt;= 65 and edad &lt;= 120:\n    precio = 350\nelse:\n    print(\"¡Error!\")\n    precio = None\n\nprint(f\"El precio de entrada para vos es ${precio}.\")\n\n¡Error!\nEl precio de entrada para vos es $None.\n\n\nEl diagrama y el código para el caso solo con elif se ven de la siguiente manera:",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Ejecución condicional"
+    ]
   }
 ]

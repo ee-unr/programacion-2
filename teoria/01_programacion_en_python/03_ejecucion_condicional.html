@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -196,8 +231,19 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#bloques-if" id="toc-bloques-if" class="nav-link" data-scroll-target="#bloques-if">Bloques <code>if</code></a></li>
+  <li><a href="#bloques-if---else" id="toc-bloques-if---else" class="nav-link" data-scroll-target="#bloques-if---else">Bloques <code>if</code> - <code>else</code></a></li>
+  <li><a href="#bloques-if-elif-else" id="toc-bloques-if-elif-else" class="nav-link" data-scroll-target="#bloques-if-elif-else">Bloques <code>if</code>-<code>elif</code>-<code>else</code></a></li>
+  <li><a href="#múltiples-bloques-elif" id="toc-múltiples-bloques-elif" class="nav-link" data-scroll-target="#múltiples-bloques-elif">Múltiples bloques <code>elif</code></a></li>
+  <li><a href="#omitir-el-bloque-else" id="toc-omitir-el-bloque-else" class="nav-link" data-scroll-target="#omitir-el-bloque-else">Omitir el bloque <code>else</code></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -221,13 +267,246 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>Las computadoras son muy buenas para muchísimas cosas. En particular:</p>
+<ul>
+<li>Determinar automáticamente que secciones de un programa se debe ejecutar.</li>
+<li>Realizar tareas repetitivas.</li>
+</ul>
+<p>El primer punto se refiere a la <strong>ejecución condicional de código</strong> y el segundo a la <strong>ejecución repetitiva de código</strong>.</p>
+<p>Estos dos puntos pueden ser vistos de manera general como <strong>control de flujo</strong> del código.</p>
+<p>En este apunte hablamos de la <strong>ejecución condicional de código</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../imgs/trabajo_en_progreso.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+<p><img src="../imgs/control_de_flujo_intro_humo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</section>
+<section id="bloques-if" class="level2">
+<h2 class="anchored" data-anchor-id="bloques-if">Bloques <code>if</code></h2>
+<p>Los bloques <code>if</code> utilizan la <em>keyword</em> <code>if</code> para evaluar una condición y ejecutar una sección de código en base al resultado de esta evaluación.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/if.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+</figure>
+</div>
+<p>Veamos un ejemplo.</p>
+<div id="00a16ae7" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>condicion <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condicion:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Se ejecuta el bloque if"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Se ejecuta el bloque if</code></pre>
+</div>
+</div>
+<div id="5aca410f" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>condicion <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condicion:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Se ejecuta el bloque if"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>De manera mas general, un bloque <code>if</code> es de la siguiente forma:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/if_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>Tiene los siguientes componentes:</p>
+<ul>
+<li>La <strong>palabra clave</strong> <code>if</code>.</li>
+<li>La <strong>condición</strong> a evaluar, que tiene que ser <code>True</code> o <code>False</code>. Esta va seguida de los dos puntos <code>:</code> que indican el fin de la condición a evaluar y que lo siguiente es el bloque de código a ejecutar condicionalmente.</li>
+<li>El <strong>bloque de código</strong> a evaluar si <strong>condición</strong> es verdadera.</li>
+</ul>
+<p>Veamos otro ejemplo.</p>
+<div id="e59ce68b" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>condicion <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> condicion:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Se ejecuta el bloque if"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Esto se imprime siempre"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Se ejecuta el bloque if
+Esto se imprime siempre</code></pre>
+</div>
+</div>
+<p>El segundo <code>print()</code> se imprime siempre porque está por fuera del bloque de ejecución condicional.</p>
+<p>¿Cómo nos damos cuenta que no está dentro del bloque condicional?</p>
+<p>Simplemente la indentación vuelve a ser normal. El fin de la indentación indica el fin del bloque de código.</p>
+<div id="0b288393" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>valor <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> valor <span class="op">&gt;</span> <span class="dv">10</span>:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Se ejecuta el bloque if"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Se ejecuta el bloque if</code></pre>
+</div>
+</div>
+</section>
+<section id="bloques-if---else" class="level2">
+<h2 class="anchored" data-anchor-id="bloques-if---else">Bloques <code>if</code> - <code>else</code></h2>
+<p>Vimos que el bloque <code>if</code> nos permite ejecutar un bloque de código de manera condicional, y que luego el programa sigue su ejecución normal.</p>
+<p>También es posible que necesitemos ejecutar un bloque de código cuando las condiciones resulten en <code>True</code> y un bloque distinto en el caso contrario.</p>
+<p>Para eso, utilizamos el bloque <code>if</code>-<code>else</code>.</p>
+<p>Un bloque <code>if</code>-<code>else</code> es muy similar a un bloque <code>if</code>.</p>
+<p>La diferencia es que nos permite definir otro bloque de código que se ejecuta cuando la prueba condicional es <code>False</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/if_else_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<div id="fd5af551" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="dv">21</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&gt;=</span> <span class="dv">16</span>:</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Tenés la edad suficiente para votar"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Lo siento, aún sos demasiado jóven para votar"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tenés la edad suficiente para votar</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/if_else.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+</figure>
+</div>
+<p>Al igual que con el bloque <code>if</code>, cualquier parte del código que se escriba luego del bloque <code>if</code>-<code>else</code> es ejecutada sin importar el valor de las condiciones.</p>
+<p>Veamos otro ejemplo donde evaluamos si un número es par o impar.</p>
+<div id="cc6a4b50" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>valor <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(valor)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> valor <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    mensaje <span class="op">=</span> <span class="st">"Es par"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    mensaje <span class="op">=</span> <span class="st">"Es impar"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mensaje)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10
+Es par</code></pre>
+</div>
+</div>
+<p>En este caso, <code>print(mensaje)</code> se ejecuta siempre.</p>
+<p>Lo que varía es el valor de la variable <code>mensaje</code>, que depende de si el número es par o impar.</p>
+</section>
+<section id="bloques-if-elif-else" class="level2">
+<h2 class="anchored" data-anchor-id="bloques-if-elif-else">Bloques <code>if</code>-<code>elif</code>-<code>else</code></h2>
+<p>Es muy probable que tengamos situaciones donde necesitemos considerar más de dos escenarios posibles.</p>
+<p>Para esto, Python ofrece los bloques <code>if</code>-<code>elif</code>-<code>else</code>.</p>
+<p>Este tipo de programa considera varias condiciones y las evalúa de a una a la vez hasta que alguna es verdadera. Luego se ejecuta solamente el bloque de código que corresponde a la primer condición verdadera.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/if_elif_else_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>Supongamos que viene un parque de diversiones a Rosario y tiene los siguientes precios para la entrada:</p>
+<ul>
+<li>Menores de 4 años, gratis.</li>
+<li>Personas entre 4 y 18 años, $400.</li>
+<li>Personas de 18 o mas años, $600.</li>
+</ul>
+<div id="83f125ce" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&lt;</span> <span class="dv">4</span>:</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"El costo de entrada para vos es de $0."</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&lt;</span> <span class="dv">18</span>:</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"El costo de entrada para vos es de $400."</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"El costo de entrada para vos es de $600."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>El costo de entrada para vos es de $0.</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/if_elif_else.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+</figure>
+</div>
+</section>
+<section id="múltiples-bloques-elif" class="level2">
+<h2 class="anchored" data-anchor-id="múltiples-bloques-elif">Múltiples bloques <code>elif</code></h2>
+<p>Hasta ahora utilizamos un único bloque <code>elif</code>, pero podemos usar tantos como sea necesario.</p>
+<p>Por ejemplo, si el parque de diversiones decide realizar un descuento para adultos mayores, dejando el precio en $350, podriamos agregar otro bloque <code>elif</code> que represente la evaluación de esta condición.</p>
+<div id="791c8521" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="dv">68</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&lt;</span> <span class="dv">4</span>:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&lt;</span> <span class="dv">18</span>:</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&lt;</span> <span class="dv">65</span>:</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="dv">600</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="dv">350</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El precio de entrada para vos es de $</span><span class="sc">{</span>precio<span class="sc">}</span><span class="ss">."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>El precio de entrada para vos es de $350.</code></pre>
+</div>
+</div>
+</section>
+<section id="omitir-el-bloque-else" class="level2">
+<h2 class="anchored" data-anchor-id="omitir-el-bloque-else">Omitir el bloque <code>else</code></h2>
+<p>No hay ninguna regla que nos obligue a terminar un bloque de <code>if</code>-<code>elif</code> con un bloque <code>else</code>.</p>
+<p>Utilizar el bloque <code>else</code> a veces es lo correcto, pero otras veces puede ser mejor poner una condición explícita en un último <code>elif</code> que contemple solamente la condición que realmente nos interesa.</p>
+<div id="8426ef48" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&lt;</span> <span class="dv">4</span>:</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&lt;</span> <span class="dv">18</span>:</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&lt;</span> <span class="dv">65</span>:</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="dv">600</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&gt;=</span> <span class="dv">65</span>:</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="dv">350</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El precio de entrada para vos es de $</span><span class="sc">{</span>precio<span class="sc">}</span><span class="ss">."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>El precio de entrada para vos es de $400.</code></pre>
+</div>
+</div>
+<p>El bloque <code>elif</code> que agregamos indica que el <code>precio</code> será de $350 cuando la edad de la persona sea mayor o igual a 65 años.</p>
+<p>Esta condición es más explícita y fácil de entender que el bloque <code>else</code> que usábamos antes.</p>
+<p>Sin embargo, todavía hay un problema: el programa sigue funcionando incluso si se ingresan edades fuera de un rango razonable. A continuación se muestra una versión más completa:</p>
+<div id="006639b2" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>edad <span class="op">=</span> <span class="dv">125</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> edad <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Error!"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&lt;</span> <span class="dv">4</span>:</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&lt;</span> <span class="dv">18</span>:</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&lt;</span> <span class="dv">65</span>:</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="dv">600</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> edad <span class="op">&gt;=</span> <span class="dv">65</span> <span class="kw">and</span> edad <span class="op">&lt;=</span> <span class="dv">120</span>:</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="dv">350</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Error!"</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    precio <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El precio de entrada para vos es $</span><span class="sc">{</span>precio<span class="sc">}</span><span class="ss">."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>¡Error!
+El precio de entrada para vos es $None.</code></pre>
+</div>
+</div>
+<p>El diagrama y el código para el caso solo con <code>elif</code> se ven de la siguiente manera:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/if_elif_elif_elif.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/if_elif_elif_elif_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
