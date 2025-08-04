@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Clase 1 – Programación II</title>
+<title>Introducción – Programación II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../teoria/01_introduccion_a_python/clase_2.html" rel="next">
+<link href="../../teoria/01_programacion_en_python/02_funciones.html" rel="next">
 <link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -129,11 +129,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Información</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../teoria/01_introduccion_a_python/clase_1.html" aria-current="page"> 
+    <a class="nav-link active" href="../../teoria/01_programacion_en_python/01_introduccion.html" aria-current="page"> 
 <span class="menu-text">Teoría</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../practica/01_introduccion_a_python/ejercicios.html"> 
+    <a class="nav-link" href="../../practica/01_programacion_en_python/ejercicios.html"> 
 <span class="menu-text">Práctica</span></a>
   </li>  
   <li class="nav-item">
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_introduccion_a_python/clase_1.html">U1 - Introducción a Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_introduccion_a_python/clase_1.html">Clase 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">U1 - Programación en Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">Introducción</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -175,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
- <span class="menu-text">U1 - Introducción a Python</span></a>
+ <span class="menu-text">U1 - Programación en Python</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -183,20 +183,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/01_introduccion_a_python/clase_1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Clase 1</span></a>
+  <a href="../../teoria/01_programacion_en_python/01_introduccion.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introducción</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/01_introduccion_a_python/clase_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Clase 2</span></a>
+  <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funciones</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/01_introduccion_a_python/clase_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Clase 3</span></a>
+  <a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ejecución condicional</span></a>
   </div>
 </li>
       </ul>
@@ -235,7 +235,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#una-super-calculadora" id="toc-una-super-calculadora" class="nav-link active" data-scroll-target="#una-super-calculadora">Una super-calculadora</a></li>
+  <li><a href="#qué-es-python" id="toc-qué-es-python" class="nav-link active" data-scroll-target="#qué-es-python">¿Qué es Python?</a>
+  <ul class="collapse">
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#primeros-pasos-python-como-una-calculadora" id="toc-primeros-pasos-python-como-una-calculadora" class="nav-link" data-scroll-target="#primeros-pasos-python-como-una-calculadora">Primeros pasos: Python como una calculadora</a></li>
+  </ul></li>
   <li><a href="#tipos-de-datos" id="toc-tipos-de-datos" class="nav-link" data-scroll-target="#tipos-de-datos">Tipos de datos</a>
   <ul class="collapse">
   <li><a href="#números" id="toc-números" class="nav-link" data-scroll-target="#números">Números</a></li>
@@ -255,10 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#operadores-aritméticos" id="toc-operadores-aritméticos" class="nav-link" data-scroll-target="#operadores-aritméticos">Operadores aritméticos</a></li>
   <li><a href="#operadores-lógicos" id="toc-operadores-lógicos" class="nav-link" data-scroll-target="#operadores-lógicos">Operadores lógicos</a></li>
-  </ul></li>
-  <li><a href="#funciones" id="toc-funciones" class="nav-link" data-scroll-target="#funciones">Funciones</a>
-  <ul class="collapse">
-  <li><a href="#definición-de-funciones" id="toc-definición-de-funciones" class="nav-link" data-scroll-target="#definición-de-funciones">Definición de funciones</a></li>
+  <li><a href="#operadores-de-comparación" id="toc-operadores-de-comparación" class="nav-link" data-scroll-target="#operadores-de-comparación">Operadores de comparación</a></li>
   </ul></li>
   <li><a href="#apéndice" id="toc-apéndice" class="nav-link" data-scroll-target="#apéndice">Apéndice</a>
   <ul class="collapse">
@@ -270,9 +271,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_introduccion_a_python/clase_1.html">U1 - Introducción a Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_introduccion_a_python/clase_1.html">Clase 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">U1 - Programación en Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">Introducción</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Clase 1</h1>
+<h1 class="title">Introducción</h1>
 </div>
 
 
@@ -289,91 +290,123 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="una-super-calculadora" class="level2">
-<h2 class="anchored" data-anchor-id="una-super-calculadora">Una super-calculadora</h2>
+<section id="qué-es-python" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-python">¿Qué es Python?</h2>
+<section id="introducción" class="level3">
+<h3 class="anchored" data-anchor-id="introducción">Introducción</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../imgs/python.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
-<p>Python es un lenguaje de programación. Pero podemos pensarlo intuitivamente como una super-calculadora. Python nos ayuda a hacer lo mismo que una calculadora, y como vamos a ver, mucho más.</p>
+<p>Python es un lenguaje de programación <strong>interpretado</strong>, de <strong>propósito general</strong> y de <strong>alto nivel</strong>. Fue creado por Guido Van Rossum y su primera versión pública fue en el año 1991.</p>
+<ul>
+<li><strong>Interpretado</strong>: no requiere que realicemos un paso explícito de compilación a lenguaje de máquina antes de ejecutarlo. Además, se puede ejecutar línea por línea.</li>
+<li><strong>Propósito general</strong>: no se limita a un tipo de aplicación específica, es decir, se puede usar para implementar programas en diferentes dominios:
+<ul>
+<li><em>Vox populi</em>: No es el mejor en casi nada, pero suficientemente bueno para casi todo.</li>
+<li>Algunos dominios:
+<ul>
+<li>Análisis estadístico y ciencia de datos.</li>
+<li>Inteligencia artificial.</li>
+<li>Desarrollo web.</li>
+<li>Desarrollo de videojuegos.</li>
+<li><em>Scripting</em>.</li>
+</ul></li>
+</ul></li>
+<li><strong>Alto nivel</strong>: se parece más al lenguaje humano que al lenguaje de las máquinas.</li>
+</ul>
+<p>Además…</p>
+<ul>
+<li>Es <strong>gratis</strong>: no requiere pagar licencias para usarlo, tanto a nivel personal como comercial.</li>
+<li>Es de <strong>código abierto</strong>: su código fuente está disponible públicamente y puede ser modificado por cualquiera.</li>
+<li>Posee un <strong>ecosistema de librerías completísimo</strong>: existen miles de paquetes para todo tipo de tareas.</li>
+<li><strong>Comunidad</strong>: millones de personas lo usan, contribuyen, resuelven dudas y crean contenido, lo que facilita aprender y encontrar ayuda.</li>
+</ul>
+<p>Para utilizar Python es necesario instalar un intérprete de Python. La versión oficial puede ser descargada desde <a href="https://www.python.org/">python.org</a>. Una vez instalado el intérprete, es posible ejecutar <em>scripts</em> de Python y programar en Python de manera interactiva desde la terminal.</p>
+<p>En esta materia se utiliza un editor de código para ciencia de datos llamado <a href="https://positron.posit.co/">Positron</a>. Este editor es desarrollado por Posit, los mismos creadores de RStudio, y permite trabajar tanto con Python como con R.</p>
+<p>Las instrucciones para instalar Python y Positron pueden ser encontradas en <a href="../../recursos/tutoriales/tutorial_01.html">Instalación de Python y Positron en Windows</a>.</p>
+</section>
+<section id="primeros-pasos-python-como-una-calculadora" class="level3">
+<h3 class="anchored" data-anchor-id="primeros-pasos-python-como-una-calculadora">Primeros pasos: Python como una calculadora</h3>
 <p>Empecemos utilizando a Python como si fuese una calculadora. Para eso vamos a crear un <strong>bloque de código</strong> en la <em>notebook</em> y escribimos algunas cuentas tal como lo hacemos en cualquier calculadora.</p>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">*</span> <span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>6</code></pre>
 </div>
 </div>
 <p>No tenemos la necesidad de pisar el código todo el tiempo. Podemos escribir nuevas celdas de código, y así podemos ir mostrando diferentes cómputos y sus resultados.</p>
-<div id="cell-4" class="cell" data-execution_count="2">
+<div id="cell-6" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span> <span class="op">/</span> <span class="fl">3.5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>28.571428571428573</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="3">
+<div id="cell-7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span> <span class="op">+</span> <span class="dv">5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>25</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="4">
+<div id="cell-8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">13</span> <span class="op">-</span> <span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>10</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="5">
+<div id="cell-9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">*</span> <span class="fl">5.5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>55.0</code></pre>
 </div>
 </div>
 </section>
+</section>
 <section id="tipos-de-datos" class="level2">
 <h2 class="anchored" data-anchor-id="tipos-de-datos">Tipos de datos</h2>
-<p>Como cualquier lenguaje de programación, Python ofrece diferentes <strong>tipos de datos</strong>. ¡Una super-calculadora no se puede rebajar a trabajar solo con números!</p>
+<p>Como cualquier lenguaje de programación, Python ofrece diferentes <strong>tipos de datos</strong>.</p>
 <p>Cada tipo de dato nos ayuda a resolver una tarea distinta. Por ejemplo, si quiero hacer operaciones matemáticas voy a necesitar de números, pero si quiero escribir un correo electrónico voy a necesitar de texto.</p>
 <p>A continuación vamos a introducir los tipos de datos más básicos que Python nos ofrece.</p>
-<p>Más adelante también veremos otros tipos de datos más complejos que nos van a permitir resolver problemas más interesantes.</p>
+<p>Más adelante también veremos otros tipos de datos más complejos que nos van a permitir resolver problemas (muchísimo) más interesantes.</p>
 <section id="números" class="level3">
 <h3 class="anchored" data-anchor-id="números">Números</h3>
 <p>Acabamos de hacer cuentas matemáticas somo si tuvieramos una calculadora. Para eso usamos números, los conocidos de toda la vida.</p>
 <p>Sin notarlo, utilizamos dos tipos de números distintos: los números de tipo entero (<code>int</code>) y los números de tipo flotante (<code>float</code>).</p>
 <p>Lo siguiente es un número entero:</p>
-<div id="cell-10" class="cell" data-execution_count="6">
+<div id="cell-12" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">50</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>50</code></pre>
 </div>
 </div>
 <p>Y el siguiente es un ejemplo de un número flotante:</p>
-<div id="cell-12" class="cell" data-execution_count="7">
+<div id="cell-14" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fl">36.8</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>36.8</code></pre>
 </div>
 </div>
 <p>Utilizando la función <code>type()</code> Python nos devuelve el tipo del objeto.</p>
-<div id="cell-14" class="cell" data-execution_count="8">
+<div id="cell-16" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>int</code></pre>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="9">
+<div id="cell-17" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="fl">10.5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>float</code></pre>
 </div>
 </div>
-<div id="cell-16" class="cell" data-execution_count="10">
+<div id="cell-18" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="fl">10.0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>float</code></pre>
 </div>
 </div>
-<div id="cell-17" class="cell" data-execution_count="11">
+<div id="cell-19" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="fl">10.</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>float</code></pre>
@@ -396,17 +429,16 @@ Observación 👀
 </section>
 <section id="cadenas-de-texto" class="level3">
 <h3 class="anchored" data-anchor-id="cadenas-de-texto">Cadenas de texto</h3>
-<p>Para ser una super-calculadora, Python tiene que ser capaz de trabajar con objetos más complejos que los números.</p>
-<p>Un ejemplo de esto es el texto. El texto se representa con un objeto llamado <strong>cadena de texto</strong>.</p>
-<p><strong>Para construir una cadena de texto se utilizan comillas</strong>.</p>
-<p>Estas se ponen al principio y al final del texto e indican el principio y el final de la cadena. Las comillas pueden ser dobles <code>"</code> o simples <code>'</code>.</p>
-<div id="cell-20" class="cell" data-execution_count="12">
+<p>Para ser una lenguaje de programación tan afamado, Python tiene que ser capaz de trabajar con objetos más complejos que los números.</p>
+<p>Un ejemplo de esto es el texto, que se representa con un objeto llamado <strong>cadena de texto</strong> y se construyen utilizando comillas.</p>
+<p>Como en la mayoría de los lenguajes de programación, las comillas se ponen al principio y al final del texto e indican el principio y el final de la cadena; estas pueden pueden ser dobles <code>"</code> o simples <code>'</code>.</p>
+<div id="cell-22" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">"Programando en Python"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>'Programando en Python'</code></pre>
 </div>
 </div>
-<div id="cell-21" class="cell" data-execution_count="13">
+<div id="cell-23" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">'Con comillas simples, también.'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>'Con comillas simples, también.'</code></pre>
@@ -414,14 +446,14 @@ Observación 👀
 </div>
 <p>En Python no hay diferencia entre usar comillas simples <code>'</code> o dobles <code>"</code>, pero es importante que el tipo de comilla que se usa para abrir la cadena sea el mismo que se usa para cerrarla.</p>
 <p>Cuando imprimimos una cadena, las comillas no se muestran en la salida. Para imprimir cualquier objeto de Python utilizamos la función <code>print()</code>.</p>
-<div id="cell-23" class="cell">
+<div id="cell-25" class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Con comillas simples, ¡también!'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Con comillas simples, también!</code></pre>
 </div>
 </div>
 <p>Una forma un poco más exótica, pero muy útil, de crear cadenas es utilizando <strong>comillas triples</strong>. Con esta sintaxis, se repiten tres comillas seguidas, lo que permite definir cadenas de texto que ocupan varias líneas.</p>
-<div id="cell-25" class="cell" data-execution_count="15">
+<div id="cell-27" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""Se puede escribir texto</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="st">en varias lineas.</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="st">¡Está muy bueno!"""</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -432,7 +464,7 @@ en varias lineas.
 </div>
 </div>
 <p>Otra manera de escribir texto que abarca múltiples líneas es usando el carácter especial <code>\n</code>, que representa un salto de línea.</p>
-<div id="cell-27" class="cell" data-execution_count="16">
+<div id="cell-29" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Primera línea</span><span class="ch">\n</span><span class="st">segunda línea</span><span class="ch">\n</span><span class="st">tercera línea."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Primera línea
@@ -441,7 +473,7 @@ tercera línea.</code></pre>
 </div>
 </div>
 <p>En cambio, si mostramos una representación del texto (sin usar <code>print()</code>), los <code>\n</code> sí se visualizan.</p>
-<div id="cell-29" class="cell" data-execution_count="17">
+<div id="cell-31" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">"Primera línea</span><span class="ch">\n</span><span class="co">segunda línea</span><span class="ch">\n</span><span class="co">tercera línea."</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>'Primera línea\nsegunda línea\ntercera línea.'</code></pre>
@@ -467,8 +499,8 @@ tercera línea.</code></pre>
 </ul>
 </div>
 </div>
-<p>Otra situación en la que usar <code>print()</code> genera una diferencia es cuando se quieren mostrar varios objetos. Por ejemplo, comparemos el resultado de los siguientes bloques:</p>
-<div id="cell-32" class="cell" data-execution_count="18">
+<p>Otra situación en la que usar <code>print()</code> genera una diferencia es cuando se quieren mostrar varios objetos en una <em>notebook</em>. Por ejemplo, comparemos el resultado de los siguientes bloques:</p>
+<div id="cell-34" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">"mensaje 1"</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">"mensaje 2"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -476,7 +508,7 @@ tercera línea.</code></pre>
 <pre><code>'mensaje 2'</code></pre>
 </div>
 </div>
-<div id="cell-33" class="cell" data-execution_count="19">
+<div id="cell-35" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"mensaje 1"</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">10</span>)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"mensaje 2"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -492,25 +524,25 @@ mensaje 2</code></pre>
 <p>Como veremos más adelante, nuestros programas suelen tener que decidir entre diferentes acciones a tomar según se cumpla o no cierta condición.</p>
 <p>Para representar esta situación utilizamos un tipo especial de dato conocido como <strong>lógico</strong> o <strong>booleano</strong>, que puede tomar únicamente dos valores: <code>True</code> o <code>False</code>.</p>
 <p>Si la condición se cumple, el resultado será <code>True</code>; de lo contrario, será <code>False</code>.</p>
-<div id="cell-35" class="cell" data-execution_count="20">
+<div id="cell-37" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="cell-36" class="cell" data-execution_count="21">
+<div id="cell-38" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="cell-37" class="cell" data-execution_count="22">
+<div id="cell-39" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="va">True</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>bool</code></pre>
 </div>
 </div>
-<div id="cell-38" class="cell" data-execution_count="23">
+<div id="cell-40" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="va">False</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>bool</code></pre>
@@ -532,21 +564,19 @@ Reseña histórica 📜
 </section>
 <section id="nulo" class="level3">
 <h3 class="anchored" data-anchor-id="nulo">Nulo</h3>
-<p>El valor nulo, llamado <code>None</code> en Python, representa la ausencia de valor o el vacío.</p>
-<p>Se utiliza habitualmente para indicar que algo no tiene un valor asignado.</p>
-<p>Si intentamos mostrar el valor de <code>None</code>, veremos que no aparece nada.</p>
-<div id="cell-41" class="cell" data-execution_count="24">
+<p>El valor nulo, llamado <code>None</code> en Python, representa la ausencia de valor o el vacío. Se utiliza habitualmente para indicar que algo no tiene un valor asignado. Si intentamos mostrar el valor de <code>None</code>, veremos que no aparece nada.</p>
+<div id="cell-43" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="va">None</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>En cambio, si imprimimos el objeto <code>None</code>, vemos el mensaje <code>None</code>.</p>
-<div id="cell-43" class="cell" data-execution_count="25">
+<div id="cell-45" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="va">None</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>None</code></pre>
 </div>
 </div>
 <p>¿Y cuál es su tipo?</p>
-<div id="cell-45" class="cell" data-execution_count="26">
+<div id="cell-47" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="va">None</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>NoneType</code></pre>
@@ -564,7 +594,7 @@ Reseña histórica 📜
 </div>
 <div class="callout-body-container callout-body">
 <p>Muchas veces nuestro programa, o alguna parte del mismo, realiza una tarea que no devuelve ningún resultado.</p>
-<p>Podríamos ponernos de acuerdo en representar “ningún resultado” usando un número (<code>0</code>), una cadena vacía (<code>""</code>) o algo parecido. Pero estos valores representan algo específico, no la ausencia total de valor.</p>
+<p>Podríamos ponernos de acuerdo en representar “ningún resultado” usando un número (e.g., <code>0</code>), una cadena vacía (<code>""</code>), o algo similar. Pero estos valores representan algo específico, no la ausencia total de valor.</p>
 <p>Para expresar claramente que no hay ningún resultado, Python incluye un valor especial llamado <code>None</code>.</p>
 </div>
 </div>
@@ -595,37 +625,37 @@ Observación 👀
 <p>En muchos casos es posible convertir entre tipos de datos. Por ejemplo, un número siempre se puede convertir a una cadena de caracteres, pero no cualquier cadena puede convertirse a un número.</p>
 <p>Para convertir un objeto a otro tipo utilizamos funciones con el nombre del tipo al que queremos convertir, como <code>str()</code>, <code>int()</code> o <code>bool()</code>. Estas funciones reciben como argumento el objeto a convertir.</p>
 <p>Veamos algunos ejemplos:</p>
-<div id="cell-51" class="cell" data-execution_count="27">
+<div id="cell-53" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="bu">str</span>(<span class="dv">256</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>'256'</code></pre>
 </div>
 </div>
-<div id="cell-52" class="cell" data-execution_count="28">
+<div id="cell-54" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">str</span>(<span class="va">None</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>'None'</code></pre>
 </div>
 </div>
-<div id="cell-53" class="cell" data-execution_count="29">
+<div id="cell-55" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">int</span>(<span class="fl">165.5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>165</code></pre>
 </div>
 </div>
-<div id="cell-54" class="cell" data-execution_count="30">
+<div id="cell-56" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="bu">int</span>(<span class="fl">165.8</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>165</code></pre>
 </div>
 </div>
-<div id="cell-55" class="cell" data-execution_count="31">
+<div id="cell-57" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="bu">int</span>(<span class="st">"165"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>165</code></pre>
 </div>
 </div>
-<div id="cell-56" class="cell" data-execution_count="32">
+<div id="cell-58" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="bu">float</span>(<span class="st">"165.0"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>165.0</code></pre>
@@ -638,7 +668,7 @@ Observación 👀
 <li>Python tiene distintos tipos de datos.</li>
 <li>Cada tipo de dato es útil para resolver diferentes problemas.
 <ul>
-<li>A lo largo del curso veremos muchísimos ejemplos.</li>
+<li>A lo largo de la materia veremos muchísimos ejemplos.</li>
 </ul></li>
 <li>Al principio, tener varios tipos de datos puede parecer complejo.
 <ul>
@@ -687,14 +717,14 @@ Observación 👀
 <p>Los lenguajes de programación más populares permiten usar <strong>variables</strong>.</p>
 <p>Podemos pensar las variables como etiquetas o nombres que asignamos a los objetos en nuestro programa.</p>
 <p>Una vez creada una variable con cierto valor, podemos usar directamente su nombre en lugar de volver a escribir el valor completo.</p>
-<div id="cell-59" class="cell" data-execution_count="33">
+<div id="cell-61" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>mensaje <span class="op">=</span> <span class="st">"¡Hola, curso!"</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mensaje)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>¡Hola, curso!</code></pre>
 </div>
 </div>
-<div id="cell-60" class="cell" data-execution_count="34">
+<div id="cell-62" class="cell">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"¡Hola, curso!"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>¡Hola, curso!</code></pre>
@@ -709,7 +739,7 @@ Observación 👀
 <p>En nuestro caso, el nombre de la variable es <code>mensaje</code> y el valor es <code>"¡Hola, curso!"</code>.</p>
 <p>Luego, cuando accedemos a la variable <code>mensaje</code> dentro de la función <code>print()</code>, Python nos devuelve el valor de la variable, es decir, <code>¡Hola, curso!"</code>.</p>
 <p>Veamos otros ejemplos…</p>
-<div id="cell-62" class="cell" data-execution_count="35">
+<div id="cell-64" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> <span class="fl">3.14159</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>fruta_favorita <span class="op">=</span> <span class="st">"manzana"</span></span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>python_bueno <span class="op">=</span> <span class="va">True</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -721,19 +751,19 @@ Observación 👀
 <p><img src="../imgs/variables.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
-<div id="cell-64" class="cell" data-execution_count="36">
+<div id="cell-66" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pi <span class="op">*</span> <span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>31.4159</code></pre>
 </div>
 </div>
-<div id="cell-65" class="cell" data-execution_count="37">
+<div id="cell-67" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>fruta_favorita</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>'manzana'</code></pre>
 </div>
 </div>
-<div id="cell-66" class="cell" data-execution_count="38">
+<div id="cell-68" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>python_bueno</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
@@ -751,13 +781,13 @@ Observación 👀
 </ul></li>
 </ul>
 <p>Por ejemplo, los siguientes bloques de código producen el mismo resultado, pero el segundo es mucho más informativo:</p>
-<div id="cell-68" class="cell" data-execution_count="39">
+<div id="cell-70" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1500</span> <span class="op">*</span> <span class="dv">8</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>12000</code></pre>
 </div>
 </div>
-<div id="cell-69" class="cell" data-execution_count="40">
+<div id="cell-71" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>precio <span class="op">=</span> <span class="dv">1500</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>cantidad <span class="op">=</span> <span class="dv">8</span></span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>precio <span class="op">*</span> cantidad</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -798,7 +828,7 @@ Observación 👀
 <h3 class="anchored" data-anchor-id="eliminar-variables">Eliminar variables</h3>
 <p>Es posible que, después de crear nuestras variables y realizar las operaciones necesarias, queramos eliminarlas.</p>
 <p>Para borrar una variable, Python ofrece la sentencia <code>del</code> (del inglés <em>delete</em>, que significa eliminar o borrar).</p>
-<div id="cell-72" class="cell" data-execution_count="41">
+<div id="cell-74" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> fruta_favorita</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -806,7 +836,7 @@ Observación 👀
 <h3 class="anchored" data-anchor-id="asignación-múltiple">Asignación múltiple</h3>
 <p>Ya vimos que para asignar (o crear) una variable necesitamos hacer <code>variable = &lt;valor&gt;</code>.</p>
 <p>Si queremos crear varias variables, podemos hacerlo en líneas separadas:</p>
-<div id="cell-74" class="cell" data-execution_count="42">
+<div id="cell-76" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> <span class="fl">3.1416</span></span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> <span class="fl">2.7182</span></span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -818,7 +848,7 @@ Observación 👀
 </div>
 </div>
 <p>Una característica conveniente de Python es que permite asignar múltiples variables en una misma línea:</p>
-<div id="cell-76" class="cell" data-execution_count="43">
+<div id="cell-78" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>pi, e <span class="op">=</span> <span class="fl">3.1416</span>, <span class="fl">2.7182</span></span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pi)</span>
@@ -829,7 +859,7 @@ Observación 👀
 </div>
 </div>
 <p>Otra ventaja es que las variables no tienen que ser del mismo tipo:</p>
-<div id="cell-78" class="cell" data-execution_count="44">
+<div id="cell-80" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> <span class="dv">100</span> <span class="op">+</span> <span class="dv">20</span>, <span class="st">"un mensaje cualquiera"</span>, <span class="va">None</span></span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
@@ -842,6 +872,21 @@ None</code></pre>
 </div>
 </div>
 <p>Esta técnica es útil para escribir código más conciso, pero no conviene abusar de ella porque puede resultar en código poco legible.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Observación 👀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La vida es más compleja de lo que parece, y los lenguajes de programación no son una excepción.</p>
+<p>En Python, lo que parece una asignación múltiple de variables es en realidad el uso de una técnica más avanzada llamada <em>unpacking</em>.</p>
+<p>A no desesperarse, más adelante vamos a aprender de qué se trata.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="operadores" class="level2">
@@ -865,26 +910,26 @@ None</code></pre>
 </ul>
 <section id="suma" class="level4">
 <h4 class="anchored" data-anchor-id="suma">Suma (<code>+</code>)</h4>
-<div id="cell-83" class="cell" data-execution_count="45">
+<div id="cell-86" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">+</span> <span class="dv">25</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>35</code></pre>
 </div>
 </div>
-<div id="cell-84" class="cell" data-execution_count="46">
+<div id="cell-87" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fl">10.0</span> <span class="op">+</span> <span class="fl">25.0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>35.0</code></pre>
 </div>
 </div>
-<div id="cell-85" class="cell" data-execution_count="47">
+<div id="cell-88" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">8</span> <span class="op">+</span> <span class="fl">12.1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>4.1</code></pre>
 </div>
 </div>
 <p>El operador suma también puede ser usado con un solo argumento:</p>
-<div id="cell-87" class="cell" data-execution_count="99">
+<div id="cell-90" class="cell" data-execution_count="99">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> <span class="dv">8</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>8</code></pre>
@@ -895,26 +940,26 @@ None</code></pre>
 </section>
 <section id="resta--" class="level4">
 <h4 class="anchored" data-anchor-id="resta--">Resta (<code>-</code>)</h4>
-<div id="cell-90" class="cell" data-execution_count="48">
+<div id="cell-93" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> <span class="op">-</span> <span class="dv">8</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>3</code></pre>
 </div>
 </div>
-<div id="cell-91" class="cell" data-execution_count="49">
+<div id="cell-94" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span> <span class="op">-</span> <span class="fl">100.0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>0.0</code></pre>
 </div>
 </div>
-<div id="cell-92" class="cell" data-execution_count="50">
+<div id="cell-95" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">35</span> <span class="op">-</span> <span class="dv">28</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>-63</code></pre>
 </div>
 </div>
 <p>El operador resta también puede ser usado con un solo argumento:</p>
-<div id="cell-94" class="cell" data-execution_count="51">
+<div id="cell-97" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="dv">7</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>-7</code></pre>
@@ -923,31 +968,31 @@ None</code></pre>
 </section>
 <section id="multiplicación-y-potencia" class="level4">
 <h4 class="anchored" data-anchor-id="multiplicación-y-potencia">Multiplicación (<code>*</code>) y potencia (<code>**</code>)</h4>
-<div id="cell-96" class="cell" data-execution_count="52">
+<div id="cell-99" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="dv">21</span> <span class="op">*</span> <span class="dv">5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>105</code></pre>
 </div>
 </div>
-<div id="cell-97" class="cell" data-execution_count="53">
+<div id="cell-100" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="dv">21</span> <span class="op">*</span> <span class="fl">5.0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>105.0</code></pre>
 </div>
 </div>
-<div id="cell-98" class="cell" data-execution_count="54">
+<div id="cell-101" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fl">21.0</span> <span class="op">*</span> <span class="fl">5.0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>105.0</code></pre>
 </div>
 </div>
-<div id="cell-99" class="cell" data-execution_count="55">
+<div id="cell-102" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">**</span> <span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>8</code></pre>
 </div>
 </div>
-<div id="cell-100" class="cell" data-execution_count="56">
+<div id="cell-103" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">**</span> <span class="fl">3.0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>8.0</code></pre>
@@ -979,39 +1024,39 @@ Conclusiones
 <li>El operador <code>//</code> que calcula la <strong>división entera</strong>.</li>
 </ul>
 <p>El operador <code>/</code> es el que más se utiliza y <strong>siempre devuelve un número de tipo flotante</strong>.</p>
-<div id="cell-103" class="cell" data-execution_count="57">
+<div id="cell-106" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">/</span> <span class="dv">5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>2.0</code></pre>
 </div>
 </div>
-<div id="cell-104" class="cell" data-execution_count="58">
+<div id="cell-107" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">/</span> <span class="fl">5.5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>1.8181818181818181</code></pre>
 </div>
 </div>
 <p>La división entera se suele utilizar cuando uno quiere el resultado entero de la división, sin importar si el resto es 0 o no.</p>
-<div id="cell-106" class="cell" data-execution_count="59">
+<div id="cell-109" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">//</span> <span class="dv">5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>2</code></pre>
 </div>
 </div>
-<div id="cell-107" class="cell" data-execution_count="60">
+<div id="cell-110" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">//</span> <span class="fl">5.5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>1.0</code></pre>
 </div>
 </div>
 <p>Veamos los siguientes ejemplos donde comparamos la división flotante con la división entera, utilizando los mismos argumentos.</p>
-<div id="cell-109" class="cell" data-execution_count="61">
+<div id="cell-112" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb120"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span> <span class="op">/</span> <span class="dv">4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>3.75</code></pre>
 </div>
 </div>
-<div id="cell-110" class="cell" data-execution_count="62">
+<div id="cell-113" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb122"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fl">15.0</span> <span class="op">//</span> <span class="fl">4.0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>3.0</code></pre>
@@ -1023,7 +1068,7 @@ Conclusiones
 <h4 class="anchored" data-anchor-id="módulo">Módulo (<code>%</code>)</h4>
 <p>Otro operador relacionado a la división entera es el operador <strong>módulo</strong> o <strong>resto</strong> (<code>%</code>).</p>
 <p>Esta operación nos devuelve el resto que se obtiene al realizar la división entera entre dos números.</p>
-<div id="cell-113" class="cell" data-execution_count="63">
+<div id="cell-116" class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb124"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span> <span class="op">%</span> <span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>2</code></pre>
@@ -1058,13 +1103,13 @@ Observación 👀
 <p>Por supuesto, al momento de hacer cálculos podemos combinar los operadores que ya conocemos, de la misma forma en que lo hacemos al resolver cuentas a mano.</p>
 <p>Un punto importante a tener en cuenta es que, al igual que cuando hacemos cuentas a mano, algunas operaciones se resuelven antes que otras, sin importar el orden en que aparecen. Esto ocurre porque algunos operadores tienen mayor <strong>prioridad</strong> y, por lo tanto, se evalúan antes.</p>
 <p>En el siguiente ejemplo, ¿por qué se obtienen resultados distintos?</p>
-<div id="cell-117" class="cell" data-execution_count="64">
+<div id="cell-120" class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb126"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>2</code></pre>
 </div>
 </div>
-<div id="cell-118" class="cell" data-execution_count="65">
+<div id="cell-121" class="cell" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10</span> <span class="op">-</span> <span class="dv">2</span>) <span class="op">*</span> <span class="dv">4</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>32</code></pre>
@@ -1074,13 +1119,13 @@ Observación 👀
 <p>Al igual que cuando hacemos cuentas a mano, <strong>la multiplicación tiene mayor prioridad que la suma</strong>.</p>
 <p>Si queremos forzar a Python a realizar una operación antes que otra, sin importar la prioridad de los operadores, debemos <strong>usar paréntesis</strong>.</p>
 <p>Otro ejemplo es el siguiente…</p>
-<div id="cell-120" class="cell" data-execution_count="66">
+<div id="cell-123" class="cell" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb130"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="op">+</span> <span class="dv">8</span> <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>11.0</code></pre>
 </div>
 </div>
-<div id="cell-121" class="cell" data-execution_count="67">
+<div id="cell-124" class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb132"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">7</span> <span class="op">+</span> <span class="dv">8</span>) <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>7.5</code></pre>
@@ -1124,19 +1169,17 @@ Observación 👀
 </section>
 <section id="operadores-lógicos" class="level3">
 <h3 class="anchored" data-anchor-id="operadores-lógicos">Operadores lógicos</h3>
-<p>Los operadores lógicos se llaman así porque el resultado que devuelven es de tipo lógico (<code>bool</code>).</p>
-<p>En algunos casos se utilizan símbolos, en otros se utilizan palabras claves.</p>
-<p>A partir de ahora vamos a ver varias operaciones que puedan resultar familiares para quienes hicieron alguna materia relacionada a lógica.</p>
+<p>Los operadores lógicos en Python son tres: <code>not</code>, <code>and</code> y <code>or</code>. Se llaman así porque combinan expresiones lógicas (o directamente valores lógicos) y devuelven también valores lógicos, es decir, del tipo <code>bool</code>, que pueden ser <code>True</code> o <code>False</code>. Estos operadores se utilizan para combinar o invertir condiciones en expresiones lógicas.</p>
 <section id="negación-not" class="level4">
 <h4 class="anchored" data-anchor-id="negación-not">Negación (<code>not</code>)</h4>
 <p>Devuelve el opuesto del valor que le pasamos.</p>
-<div id="cell-125" class="cell" data-execution_count="68">
+<div id="cell-128" class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb134"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="cell-126" class="cell" data-execution_count="69">
+<div id="cell-129" class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb136"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> <span class="va">True</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>False</code></pre>
@@ -1146,13 +1189,13 @@ Observación 👀
 <section id="conjunción-o-intersección-and" class="level4">
 <h4 class="anchored" data-anchor-id="conjunción-o-intersección-and">Conjunción o intersección (<code>and</code>)</h4>
 <p>Esta operación devuelve <code>True</code> solamente cuando los dos operadores que le pasamos son <code>True</code>.</p>
-<div id="cell-128" class="cell" data-execution_count="70">
+<div id="cell-131" class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb138"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="va">True</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="cell-129" class="cell" data-execution_count="71">
+<div id="cell-132" class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb140"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">and</span> <span class="va">True</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>False</code></pre>
@@ -1162,49 +1205,71 @@ Observación 👀
 <section id="disyunción-o-unión-or" class="level4">
 <h4 class="anchored" data-anchor-id="disyunción-o-unión-or">Disyunción o unión (<code>or</code>)</h4>
 <p>Esta operación devuelve <code>True</code> cuando cualquiera de sus argumentos es <code>True</code>.</p>
-<div id="cell-131" class="cell" data-execution_count="72">
+<div id="cell-134" class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb142"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="va">True</span> <span class="kw">or</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p>Solo devuelve <code>False</code> cuando sus dos argumentos son <code>False</code>.</p>
-<div id="cell-133" class="cell" data-execution_count="73">
+<div id="cell-136" class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb144"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">or</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>False</code></pre>
 </div>
 </div>
 </section>
-<section id="identidad-is" class="level4">
-<h4 class="anchored" data-anchor-id="identidad-is">Identidad (<code>is</code>)</h4>
-<p>Existen dos operadores para evaluar la identidad de los objetos.</p>
+</section>
+<section id="operadores-de-comparación" class="level3">
+<h3 class="anchored" data-anchor-id="operadores-de-comparación">Operadores de comparación</h3>
+<section id="comparación-por-identidad" class="level4">
+<h4 class="anchored" data-anchor-id="comparación-por-identidad">Comparación por identidad</h4>
+<p>Python ofrece dos operadores para verificar si dos objetos son o no el mismo <strong>en identidad</strong> (es decir, <strong>en memoria</strong>):</p>
 <ul>
-<li>Operador <code>is</code>: es <code>True</code> cuando ambos operandos <strong>son el mismo objeto</strong></li>
-<li>Operador <code>is not</code>: es <code>True</code> cuando los operandos <strong>no son el mismo objeto</strong>.</li>
+<li><code>is</code>: devuelve <code>True</code> si ambos operandos <strong>son el mismo objeto</strong>.</li>
+<li><code>is not</code>: devuelve <code>True</code> si los operandos <strong>no son el mismo objeto</strong>.</li>
 </ul>
-<div id="cell-135" class="cell" data-execution_count="74">
+<div id="cell-139" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb146"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">is</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="cell-136" class="cell" data-execution_count="75">
+<div id="cell-140" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb148"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">is</span> <span class="va">True</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="cell-137" class="cell" data-execution_count="76">
+<div id="cell-141" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb150"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="va">None</span> <span class="kw">is</span> <span class="va">None</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
+<p>Este tipo de comparación es posible porque cada objeto en Python existe en la memoria de la computadora y tiene una identificación única (ID). Para conocer el ID de un objeto, se puede usar la función <code>id()</code>.</p>
+<div id="cell-143" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(<span class="va">False</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>94778385025792</code></pre>
+</div>
+</div>
+<div id="cell-144" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(<span class="va">False</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>94778385025792</code></pre>
+</div>
+</div>
+<div id="cell-145" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb156"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(<span class="va">None</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>94778384937120</code></pre>
+</div>
+</div>
 </section>
-<section id="comparación" class="level4">
-<h4 class="anchored" data-anchor-id="comparación">Comparación</h4>
-<p>Python provee varios operadores para realizar comparaciones entre objetos.</p>
+<section id="comparación-por-valor" class="level4">
+<h4 class="anchored" data-anchor-id="comparación-por-valor">Comparación por valor</h4>
+<p>Por otro lado, Python también provee operadores para realizar comparaciones entre objetos en términos de sus valores.</p>
 <p>Los operadores que vemos a continuación son los mismos que aprendimos en la secundaria.</p>
 <table class="table-striped table-hover caption-top table">
 <colgroup>
@@ -1245,38 +1310,38 @@ Observación 👀
 </tbody>
 </table>
 <p>Algunos ejemplos…</p>
-<div id="cell-140" class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">&gt;</span> <span class="dv">5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-148" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb158"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">&gt;</span> <span class="dv">5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="cell-141" class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">&gt;</span> <span class="dv">5</span> <span class="op">+</span> <span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-149" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="op">&gt;</span> <span class="dv">5</span> <span class="op">+</span> <span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="cell-142" class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb156"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="op">&lt;</span> <span class="dv">0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-150" class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb162"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="op">&lt;</span> <span class="dv">0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="cell-143" class="cell" data-execution_count="80">
-<div class="sourceCode cell-code" id="cb158"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">&gt;=</span> <span class="dv">1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-151" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">&gt;=</span> <span class="dv">1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="cell-144" class="cell" data-execution_count="81">
-<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fl">10.0</span> <span class="op">!=</span> <span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-152" class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb166"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fl">10.0</span> <span class="op">!=</span> <span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="cell-145" class="cell" data-execution_count="82">
-<div class="sourceCode cell-code" id="cb162"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fl">10.0</span> <span class="op">==</span> <span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-153" class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb168"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fl">10.0</span> <span class="op">==</span> <span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
@@ -1284,61 +1349,61 @@ Observación 👀
 <p>A pesar de que <code>10.0</code> es de tipo flotante y <code>10</code> es de tipo entero, vemos que la comparación de igualdad <code>==</code> dice que son iguales.</p>
 <p>No siempre que comparemos objetos de distinto tipo va a suceder algo así.</p>
 <p>La comparación de cadenas de texto distingue mayúsculas de minúsculas</p>
-<div id="cell-147" class="cell" data-execution_count="83">
-<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co">"UNR"</span> <span class="op">==</span> <span class="st">"unr"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-155" class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb170"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co">"UNR"</span> <span class="op">==</span> <span class="st">"unr"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>False</code></pre>
 </div>
 </div>
 <p>Es posible comparar objetos de distinto tipo, como lo vimos en el ejemplo anterior donde comparamos <code>10</code> y <code>10.0</code>.</p>
 <p>Salvo casos particulares, como son los valores numéricos, estos objetos son considerados siempre distintos.</p>
-<div id="cell-149" class="cell" data-execution_count="84">
-<div class="sourceCode cell-code" id="cb166"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co">"10"</span> <span class="op">==</span> <span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-157" class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb172"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co">"10"</span> <span class="op">==</span> <span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>False</code></pre>
 </div>
 </div>
-<div id="cell-150" class="cell" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb168"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co">"False"</span> <span class="op">==</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-158" class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb174"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co">"False"</span> <span class="op">==</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>False</code></pre>
 </div>
 </div>
 <p>Es posible combinar mas de una comparación en la misma línea.</p>
-<div id="cell-152" class="cell" data-execution_count="86">
-<div class="sourceCode cell-code" id="cb170"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">&lt;</span> <span class="dv">2</span> <span class="kw">and</span> <span class="dv">2</span> <span class="op">&lt;</span> <span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-160" class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb176"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">&lt;</span> <span class="dv">2</span> <span class="kw">and</span> <span class="dv">2</span> <span class="op">&lt;</span> <span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p>Incluso es posible omitir el operador <code>and</code> y tener una expresión más clara</p>
-<div id="cell-154" class="cell" data-execution_count="87">
-<div class="sourceCode cell-code" id="cb172"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">&lt;</span> <span class="dv">2</span> <span class="op">&lt;</span> <span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-162" class="cell" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb178"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb178-1"><a href="#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">&lt;</span> <span class="dv">2</span> <span class="op">&lt;</span> <span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="cell-155" class="cell" data-execution_count="88">
-<div class="sourceCode cell-code" id="cb174"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">5</span> <span class="op">&lt;</span> <span class="op">-</span><span class="dv">4</span> <span class="op">&lt;</span> <span class="op">-</span><span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-163" class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb180"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb180-1"><a href="#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">5</span> <span class="op">&lt;</span> <span class="op">-</span><span class="dv">4</span> <span class="op">&lt;</span> <span class="op">-</span><span class="dv">3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p>También podemos mezclar <code>not</code>, <code>and</code> y <code>or</code> a gusto.</p>
-<div id="cell-157" class="cell" data-execution_count="89">
-<div class="sourceCode cell-code" id="cb176"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">or</span> <span class="kw">not</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-165" class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb182"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb182-1"><a href="#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">or</span> <span class="kw">not</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p>Y es válido utilizar paréntesis para agrupar operaciones.</p>
-<div id="cell-159" class="cell" data-execution_count="90">
-<div class="sourceCode cell-code" id="cb178"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb178-1"><a href="#cb178-1" aria-hidden="true" tabindex="-1"></a>(<span class="va">False</span> <span class="kw">or</span> <span class="va">True</span>) <span class="kw">and</span> (<span class="va">True</span> <span class="kw">or</span> <span class="va">False</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-167" class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb184"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a>(<span class="va">False</span> <span class="kw">or</span> <span class="va">True</span>) <span class="kw">and</span> (<span class="va">True</span> <span class="kw">or</span> <span class="va">False</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>True</code></pre>
 </div>
 </div>
-<p>A continuación se incluye una tabla con los operadores lógicos y la prioridad que tiene cada uno.</p>
+<p>A continuación se incluye una tabla con los operadores de comparación y la prioridad que tiene cada uno.</p>
 <p>Los operadores que aparecen más arriba tienen mayor prioridad.</p>
 <p>Los operadores que aparecen en la misma fila tienen el mismo nivel de prioridad y se resuelven según el orden en que aparecen en el código (de izquierda a derecha).</p>
 <table class="table-striped table-hover caption-top table">
@@ -1371,127 +1436,41 @@ Observación 👀
 </tr>
 </tbody>
 </table>
-<p>Todos los operadores lógicos tienen menor prioridad que los operadores aritméticos que vimos arriba.</p>
+<p>Todos los operadores de comparación tienen menor prioridad que los operadores aritméticos que vimos arriba.</p>
 <p>En otras palabras, si pegaramos ambas tablas, ésta última quedaría por debajo.</p>
 <p>Analicemos nuevamente uno de los ejemplos que ya vimos.</p>
-<div id="cell-162" class="cell" data-execution_count="91">
-<div class="sourceCode cell-code" id="cb180"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb180-1"><a href="#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> <span class="va">True</span> <span class="kw">and</span> <span class="kw">not</span> <span class="va">True</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-170" class="cell" data-execution_count="91">
+<div class="sourceCode cell-code" id="cb186"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="kw">not</span> <span class="va">True</span> <span class="kw">and</span> <span class="kw">not</span> <span class="va">True</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>False</code></pre>
 </div>
 </div>
 <p>El operador <code>not</code> tiene mayor prioridad que el operador <code>and</code> porque aparece primero en la tabla.</p>
 <p>En consecuencia, en el código anterior primero se resuelven los <code>not True</code> y luego el <code>and</code>. Esto es lo mismo que hacer</p>
-<div id="cell-164" class="cell" data-execution_count="92">
-<div class="sourceCode cell-code" id="cb182"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb182-1"><a href="#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">and</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-172" class="cell" data-execution_count="92">
+<div class="sourceCode cell-code" id="cb188"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span> <span class="kw">and</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>False</code></pre>
 </div>
 </div>
-</section>
-</section>
-</section>
-<section id="funciones" class="level2">
-<h2 class="anchored" data-anchor-id="funciones">Funciones</h2>
-<p>Una función puede pensarse como un “mini-programa” dentro de un programa más grande. Su propósito es cumplir una tarea u objetivo específico, de forma independiente del resto del código.</p>
-<p>El uso de funciones tiene varias ventajas:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Resumen 📝
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Existen dos operadores para comparar igualdad entre dos objetos de Python:</p>
 <ul>
-<li><strong>Reutilización de código</strong>: se define una sola vez y se ejecuta cuando sea necesario.</li>
-<li><strong>Mejor organización</strong>: dividen el programa en partes más fáciles de leer y mantener.</li>
-<li><strong>Modularidad</strong>: permiten construir programas como bloques independientes que pueden combinarse entre sí (¡funciones dentro de funciones!).</li>
+<li><code>==</code> → compara el valor (contenido).</li>
+<li><code>is</code> → compara la identidad (ubicación en memoria).</li>
 </ul>
-<p>Consideremos el siguiente caso donde se busca calcuar el precio final de un producto, considerando impuestos y descuentos.</p>
-<div id="cell-167" class="cell" data-execution_count="93">
-<div class="sourceCode cell-code" id="cb184"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a>precio_base <span class="op">=</span> <span class="dv">800</span>   <span class="co"># Precio del producto ($800)</span></span>
-<span id="cb184-2"><a href="#cb184-2" aria-hidden="true" tabindex="-1"></a>impuesto <span class="op">=</span> <span class="fl">0.21</span>     <span class="co"># Impuesto (21%)</span></span>
-<span id="cb184-3"><a href="#cb184-3" aria-hidden="true" tabindex="-1"></a>descuento <span class="op">=</span> <span class="fl">0.10</span>    <span class="co"># Descuento (10%)</span></span>
-<span id="cb184-4"><a href="#cb184-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb184-5"><a href="#cb184-5" aria-hidden="true" tabindex="-1"></a>precio_final <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
-<span id="cb184-6"><a href="#cb184-6" aria-hidden="true" tabindex="-1"></a>precio_final</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>871.2</code></pre>
 </div>
 </div>
-<p>¿Qué pasa si queremos calcular el precio final para otros productos con diferentes precios, impuestos o descuentos?</p>
-<p>Una opción es repetir el código tantas veces como sea necesario…</p>
-<div id="cell-169" class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb186"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a>precio_base <span class="op">=</span> <span class="dv">500</span>   <span class="co"># Precio del producto ($500)</span></span>
-<span id="cb186-2"><a href="#cb186-2" aria-hidden="true" tabindex="-1"></a>impuesto <span class="op">=</span> <span class="fl">0.105</span>    <span class="co"># Impuesto (10.5%)</span></span>
-<span id="cb186-3"><a href="#cb186-3" aria-hidden="true" tabindex="-1"></a>descuento <span class="op">=</span> <span class="fl">0.0</span>     <span class="co"># Descuento (0%)</span></span>
-<span id="cb186-4"><a href="#cb186-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb186-5"><a href="#cb186-5" aria-hidden="true" tabindex="-1"></a>precio_final <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
-<span id="cb186-6"><a href="#cb186-6" aria-hidden="true" tabindex="-1"></a>precio_final</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>552.5</code></pre>
-</div>
-</div>
-<div id="cell-170" class="cell" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb188"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a>precio_base <span class="op">=</span> <span class="dv">2000</span>  <span class="co"># Precio del producto ($2000)</span></span>
-<span id="cb188-2"><a href="#cb188-2" aria-hidden="true" tabindex="-1"></a>impuesto <span class="op">=</span> <span class="fl">0.21</span>     <span class="co"># Impuesto (21%)</span></span>
-<span id="cb188-3"><a href="#cb188-3" aria-hidden="true" tabindex="-1"></a>descuento <span class="op">=</span> <span class="fl">0.20</span>    <span class="co"># Descuento (20%)</span></span>
-<span id="cb188-4"><a href="#cb188-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb188-5"><a href="#cb188-5" aria-hidden="true" tabindex="-1"></a>precio_final <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
-<span id="cb188-6"><a href="#cb188-6" aria-hidden="true" tabindex="-1"></a>precio_final</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>1936.0</code></pre>
-</div>
-</div>
-<p>Otra opción, mucho mas conveniente, es utilizar funciones.</p>
-<div id="cell-172" class="cell" data-execution_count="96">
-<div class="sourceCode cell-code" id="cb190"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_precio(precio_base, impuesto, descuento):</span>
-<span id="cb190-2"><a href="#cb190-2" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
-<span id="cb190-3"><a href="#cb190-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resultado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Luego, para utilizar la función simplemente la <strong>llamamos</strong> (o <strong>invocamos</strong>).</p>
-<div id="cell-174" class="cell" data-execution_count="97">
-<div class="sourceCode cell-code" id="cb191"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a>calcular_precio(<span class="dv">800</span>, <span class="fl">0.21</span>, <span class="fl">0.10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>871.2</code></pre>
-</div>
-</div>
-<p>También es posible indicar los valores de los argumentos utilizando sus nombres.</p>
-<div id="cell-176" class="cell" data-execution_count="98">
-<div class="sourceCode cell-code" id="cb193"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a>calcular_precio(precio_base<span class="op">=</span><span class="dv">2000</span>, impuesto<span class="op">=</span><span class="fl">0.21</span>, descuento<span class="op">=</span><span class="fl">0.20</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>1936.0</code></pre>
-</div>
-</div>
-<section id="definición-de-funciones" class="level3">
-<h3 class="anchored" data-anchor-id="definición-de-funciones">Definición de funciones</h3>
-<p>Analicemos las diferentes partes que forman la definición de una función en Python:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../imgs/definicion_funciones.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
-</figure>
-</div>
-<ul>
-<li>La palabra clave <code>def</code>:
-<ul>
-<li>Marca el inicio de la <strong>definición</strong> de una función.</li>
-<li>Es una palabra reservada (<em>keyword</em>).</li>
-</ul></li>
-<li>El nombre de la función:
-<ul>
-<li>Debe seguir las mismas reglas que los nombres de las variables.</li>
-</ul></li>
-<li>Los argumentos de la función, dentro de paréntesis:
-<ul>
-<li>Se separan por comas y pueden ser 0 o más.</li>
-</ul></li>
-<li>Los dos puntos (<code>:</code>):
-<ul>
-<li>Indican el final de la línea de definición y el inicio del bloque de código.</li>
-</ul></li>
-<li>El bloque de código, que es el cuerpo de la función:
-<ul>
-<li>Es el código que se ejecuta cada vez que llamamos a la función.</li>
-</ul></li>
-<li>La sentencia <code>return</code> que indica el resultado que devuelve la función.
-<ul>
-<li>Luego del <code>return</code> viene el valor o nombre de la variable a devolver.</li>
-<li>Es opcional (ya vamos a ver ejemplos).</li>
-</ul></li>
-</ul>
+</section>
 </section>
 </section>
 <section id="apéndice" class="level2">
@@ -1503,30 +1482,30 @@ Observación 👀
 <p>Por otro lado, si intentamos utilizar el nombre de una función (o clase) predefinida como nombre de una variable que nosotros creamos, no vamos a obtener un error pero no podremos usar la función nuevamente porque la variable ahora representa otra cosa.</p>
 <section id="palabras-claves" class="level4">
 <h4 class="anchored" data-anchor-id="palabras-claves">Palabras claves</h4>
-<div class="sourceCode" id="cb195"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span>      <span class="cf">await</span>      <span class="cf">else</span>       <span class="im">import</span>     <span class="cf">pass</span></span>
-<span id="cb195-2"><a href="#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="va">None</span>       <span class="cf">break</span>      <span class="cf">except</span>     <span class="kw">in</span>         <span class="cf">raise</span></span>
-<span id="cb195-3"><a href="#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="va">True</span>       <span class="kw">class</span>      <span class="cf">finally</span>    <span class="kw">is</span>         <span class="cf">return</span></span>
-<span id="cb195-4"><a href="#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span>        <span class="cf">continue</span>   <span class="cf">for</span>        <span class="kw">lambda</span>     <span class="cf">try</span></span>
-<span id="cb195-5"><a href="#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="im">as</span>         <span class="kw">def</span>        <span class="im">from</span>       <span class="kw">nonlocal</span>   <span class="cf">while</span></span>
-<span id="cb195-6"><a href="#cb195-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span>     <span class="kw">del</span>        <span class="kw">global</span>     <span class="kw">not</span>        <span class="cf">with</span></span>
-<span id="cb195-7"><a href="#cb195-7" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span>      <span class="cf">elif</span>       <span class="cf">if</span>         <span class="kw">or</span>         <span class="cf">yield</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="va">False</span>      <span class="cf">await</span>      <span class="cf">else</span>       <span class="im">import</span>     <span class="cf">pass</span></span>
+<span id="cb190-2"><a href="#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="va">None</span>       <span class="cf">break</span>      <span class="cf">except</span>     <span class="kw">in</span>         <span class="cf">raise</span></span>
+<span id="cb190-3"><a href="#cb190-3" aria-hidden="true" tabindex="-1"></a><span class="va">True</span>       <span class="kw">class</span>      <span class="cf">finally</span>    <span class="kw">is</span>         <span class="cf">return</span></span>
+<span id="cb190-4"><a href="#cb190-4" aria-hidden="true" tabindex="-1"></a><span class="kw">and</span>        <span class="cf">continue</span>   <span class="cf">for</span>        <span class="kw">lambda</span>     <span class="cf">try</span></span>
+<span id="cb190-5"><a href="#cb190-5" aria-hidden="true" tabindex="-1"></a><span class="im">as</span>         <span class="kw">def</span>        <span class="im">from</span>       <span class="kw">nonlocal</span>   <span class="cf">while</span></span>
+<span id="cb190-6"><a href="#cb190-6" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span>     <span class="kw">del</span>        <span class="kw">global</span>     <span class="kw">not</span>        <span class="cf">with</span></span>
+<span id="cb190-7"><a href="#cb190-7" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span>      <span class="cf">elif</span>       <span class="cf">if</span>         <span class="kw">or</span>         <span class="cf">yield</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="funciones-y-clases-pre-definidas" class="level4">
 <h4 class="anchored" data-anchor-id="funciones-y-clases-pre-definidas">Funciones y clases pre-definidas</h4>
-<div class="sourceCode" id="cb196"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb196-1"><a href="#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="bu">abs</span>()          copyright()    <span class="bu">getattr</span>()      <span class="bu">list</span>()         <span class="bu">range</span>()        <span class="bu">vars</span>()</span>
-<span id="cb196-2"><a href="#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="bu">all</span>()          credits()      <span class="bu">globals</span>()      <span class="bu">locals</span>()       <span class="bu">repr</span>()         <span class="bu">zip</span>()</span>
-<span id="cb196-3"><a href="#cb196-3" aria-hidden="true" tabindex="-1"></a><span class="bu">any</span>()          <span class="bu">delattr</span>()      <span class="bu">hasattr</span>()      <span class="bu">map</span>()          <span class="bu">reversed</span>()</span>
-<span id="cb196-4"><a href="#cb196-4" aria-hidden="true" tabindex="-1"></a><span class="bu">ascii</span>()        <span class="bu">dict</span>()         <span class="bu">hash</span>()         <span class="bu">max</span>()          <span class="bu">round</span>()</span>
-<span id="cb196-5"><a href="#cb196-5" aria-hidden="true" tabindex="-1"></a><span class="bu">bin</span>()          <span class="bu">dir</span>()          <span class="bu">help</span>()         <span class="bu">memoryview</span>()   <span class="bu">set</span>()</span>
-<span id="cb196-6"><a href="#cb196-6" aria-hidden="true" tabindex="-1"></a><span class="bu">bool</span>()         display()      <span class="bu">hex</span>()          <span class="bu">min</span>()          <span class="bu">setattr</span>()</span>
-<span id="cb196-7"><a href="#cb196-7" aria-hidden="true" tabindex="-1"></a><span class="bu">breakpoint</span>()   <span class="bu">divmod</span>()       <span class="bu">id</span>()           <span class="bu">next</span>()         <span class="bu">slice</span>()</span>
-<span id="cb196-8"><a href="#cb196-8" aria-hidden="true" tabindex="-1"></a><span class="bu">bytearray</span>()    <span class="bu">enumerate</span>()    <span class="bu">input</span>()        <span class="bu">object</span>()       <span class="bu">sorted</span>()</span>
-<span id="cb196-9"><a href="#cb196-9" aria-hidden="true" tabindex="-1"></a><span class="bu">bytes</span>()        <span class="bu">eval</span>()         <span class="bu">int</span>()          <span class="bu">oct</span>()          <span class="bu">staticmethod</span>()</span>
-<span id="cb196-10"><a href="#cb196-10" aria-hidden="true" tabindex="-1"></a><span class="bu">callable</span>()     <span class="bu">exec</span>()         <span class="bu">isinstance</span>()   <span class="bu">open</span>()         <span class="bu">str</span>()</span>
-<span id="cb196-11"><a href="#cb196-11" aria-hidden="true" tabindex="-1"></a><span class="bu">chr</span>()          <span class="bu">filter</span>()       <span class="bu">issubclass</span>()   <span class="bu">ord</span>()          <span class="bu">sum</span>()</span>
-<span id="cb196-12"><a href="#cb196-12" aria-hidden="true" tabindex="-1"></a><span class="bu">classmethod</span>()  <span class="bu">float</span>()        <span class="bu">iter</span>()         <span class="bu">pow</span>()          <span class="bu">super</span>()</span>
-<span id="cb196-13"><a href="#cb196-13" aria-hidden="true" tabindex="-1"></a><span class="bu">compile</span>()      <span class="bu">format</span>()       <span class="bu">len</span>()          <span class="bu">print</span>()        <span class="bu">tuple</span>()</span>
-<span id="cb196-14"><a href="#cb196-14" aria-hidden="true" tabindex="-1"></a><span class="bu">complex</span>()      <span class="bu">frozenset</span>()    license()      <span class="bu">property</span>()     <span class="bu">type</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="bu">abs</span>()          copyright()    <span class="bu">getattr</span>()      <span class="bu">list</span>()         <span class="bu">range</span>()        <span class="bu">vars</span>()</span>
+<span id="cb191-2"><a href="#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="bu">all</span>()          credits()      <span class="bu">globals</span>()      <span class="bu">locals</span>()       <span class="bu">repr</span>()         <span class="bu">zip</span>()</span>
+<span id="cb191-3"><a href="#cb191-3" aria-hidden="true" tabindex="-1"></a><span class="bu">any</span>()          <span class="bu">delattr</span>()      <span class="bu">hasattr</span>()      <span class="bu">map</span>()          <span class="bu">reversed</span>()</span>
+<span id="cb191-4"><a href="#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="bu">ascii</span>()        <span class="bu">dict</span>()         <span class="bu">hash</span>()         <span class="bu">max</span>()          <span class="bu">round</span>()</span>
+<span id="cb191-5"><a href="#cb191-5" aria-hidden="true" tabindex="-1"></a><span class="bu">bin</span>()          <span class="bu">dir</span>()          <span class="bu">help</span>()         <span class="bu">memoryview</span>()   <span class="bu">set</span>()</span>
+<span id="cb191-6"><a href="#cb191-6" aria-hidden="true" tabindex="-1"></a><span class="bu">bool</span>()         display()      <span class="bu">hex</span>()          <span class="bu">min</span>()          <span class="bu">setattr</span>()</span>
+<span id="cb191-7"><a href="#cb191-7" aria-hidden="true" tabindex="-1"></a><span class="bu">breakpoint</span>()   <span class="bu">divmod</span>()       <span class="bu">id</span>()           <span class="bu">next</span>()         <span class="bu">slice</span>()</span>
+<span id="cb191-8"><a href="#cb191-8" aria-hidden="true" tabindex="-1"></a><span class="bu">bytearray</span>()    <span class="bu">enumerate</span>()    <span class="bu">input</span>()        <span class="bu">object</span>()       <span class="bu">sorted</span>()</span>
+<span id="cb191-9"><a href="#cb191-9" aria-hidden="true" tabindex="-1"></a><span class="bu">bytes</span>()        <span class="bu">eval</span>()         <span class="bu">int</span>()          <span class="bu">oct</span>()          <span class="bu">staticmethod</span>()</span>
+<span id="cb191-10"><a href="#cb191-10" aria-hidden="true" tabindex="-1"></a><span class="bu">callable</span>()     <span class="bu">exec</span>()         <span class="bu">isinstance</span>()   <span class="bu">open</span>()         <span class="bu">str</span>()</span>
+<span id="cb191-11"><a href="#cb191-11" aria-hidden="true" tabindex="-1"></a><span class="bu">chr</span>()          <span class="bu">filter</span>()       <span class="bu">issubclass</span>()   <span class="bu">ord</span>()          <span class="bu">sum</span>()</span>
+<span id="cb191-12"><a href="#cb191-12" aria-hidden="true" tabindex="-1"></a><span class="bu">classmethod</span>()  <span class="bu">float</span>()        <span class="bu">iter</span>()         <span class="bu">pow</span>()          <span class="bu">super</span>()</span>
+<span id="cb191-13"><a href="#cb191-13" aria-hidden="true" tabindex="-1"></a><span class="bu">compile</span>()      <span class="bu">format</span>()       <span class="bu">len</span>()          <span class="bu">print</span>()        <span class="bu">tuple</span>()</span>
+<span id="cb191-14"><a href="#cb191-14" aria-hidden="true" tabindex="-1"></a><span class="bu">complex</span>()      <span class="bu">frozenset</span>()    license()      <span class="bu">property</span>()     <span class="bu">type</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -1937,8 +1916,8 @@ Observación 👀
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../teoria/01_introduccion_a_python/clase_2.html" class="pagination-link" aria-label="Clase 2">
-        <span class="nav-page-text">Clase 2</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="pagination-link" aria-label="Funciones">
+        <span class="nav-page-text">Funciones</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,5 +1,77 @@
 [
   {
+    "objectID": "teoria/01_programacion_en_python/01_introduccion.html",
+    "href": "teoria/01_programacion_en_python/01_introduccion.html",
+    "title": "Introducción",
+    "section": "",
+    "text": "Python es un lenguaje de programación interpretado, de propósito general y de alto nivel. Fue creado por Guido Van Rossum y su primera versión pública fue en el año 1991.\n\nInterpretado: no requiere que realicemos un paso explícito de compilación a lenguaje de máquina antes de ejecutarlo. Además, se puede ejecutar línea por línea.\nPropósito general: no se limita a un tipo de aplicación específica, es decir, se puede usar para implementar programas en diferentes dominios:\n\nVox populi: No es el mejor en casi nada, pero suficientemente bueno para casi todo.\nAlgunos dominios:\n\nAnálisis estadístico y ciencia de datos.\nInteligencia artificial.\nDesarrollo web.\nDesarrollo de videojuegos.\nScripting.\n\n\nAlto nivel: se parece más al lenguaje humano que al lenguaje de las máquinas.\n\nAdemás…\n\nEs gratis: no requiere pagar licencias para usarlo, tanto a nivel personal como comercial.\nEs de código abierto: su código fuente está disponible públicamente y puede ser modificado por cualquiera.\nPosee un ecosistema de librerías completísimo: existen miles de paquetes para todo tipo de tareas.\nComunidad: millones de personas lo usan, contribuyen, resuelven dudas y crean contenido, lo que facilita aprender y encontrar ayuda.\n\nPara utilizar Python es necesario instalar un intérprete de Python. La versión oficial puede ser descargada desde python.org. Una vez instalado el intérprete, es posible ejecutar scripts de Python y programar en Python de manera interactiva desde la terminal.\nEn esta materia se utiliza un editor de código para ciencia de datos llamado Positron. Este editor es desarrollado por Posit, los mismos creadores de RStudio, y permite trabajar tanto con Python como con R.\nLas instrucciones para instalar Python y Positron pueden ser encontradas en Instalación de Python y Positron en Windows.\n\n\n\nEmpecemos utilizando a Python como si fuese una calculadora. Para eso vamos a crear un bloque de código en la notebook y escribimos algunas cuentas tal como lo hacemos en cualquier calculadora.\n\n2 * 3\n\n6\n\n\nNo tenemos la necesidad de pisar el código todo el tiempo. Podemos escribir nuevas celdas de código, y así podemos ir mostrando diferentes cómputos y sus resultados.\n\n100 / 3.5\n\n28.571428571428573\n\n\n\n20 + 5\n\n25\n\n\n\n13 - 3\n\n10\n\n\n\n10 * 5.5\n\n55.0",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/01_introduccion.html#qué-es-python",
+    "href": "teoria/01_programacion_en_python/01_introduccion.html#qué-es-python",
+    "title": "Introducción",
+    "section": "",
+    "text": "Python es un lenguaje de programación interpretado, de propósito general y de alto nivel. Fue creado por Guido Van Rossum y su primera versión pública fue en el año 1991.\n\nInterpretado: no requiere que realicemos un paso explícito de compilación a lenguaje de máquina antes de ejecutarlo. Además, se puede ejecutar línea por línea.\nPropósito general: no se limita a un tipo de aplicación específica, es decir, se puede usar para implementar programas en diferentes dominios:\n\nVox populi: No es el mejor en casi nada, pero suficientemente bueno para casi todo.\nAlgunos dominios:\n\nAnálisis estadístico y ciencia de datos.\nInteligencia artificial.\nDesarrollo web.\nDesarrollo de videojuegos.\nScripting.\n\n\nAlto nivel: se parece más al lenguaje humano que al lenguaje de las máquinas.\n\nAdemás…\n\nEs gratis: no requiere pagar licencias para usarlo, tanto a nivel personal como comercial.\nEs de código abierto: su código fuente está disponible públicamente y puede ser modificado por cualquiera.\nPosee un ecosistema de librerías completísimo: existen miles de paquetes para todo tipo de tareas.\nComunidad: millones de personas lo usan, contribuyen, resuelven dudas y crean contenido, lo que facilita aprender y encontrar ayuda.\n\nPara utilizar Python es necesario instalar un intérprete de Python. La versión oficial puede ser descargada desde python.org. Una vez instalado el intérprete, es posible ejecutar scripts de Python y programar en Python de manera interactiva desde la terminal.\nEn esta materia se utiliza un editor de código para ciencia de datos llamado Positron. Este editor es desarrollado por Posit, los mismos creadores de RStudio, y permite trabajar tanto con Python como con R.\nLas instrucciones para instalar Python y Positron pueden ser encontradas en Instalación de Python y Positron en Windows.\n\n\n\nEmpecemos utilizando a Python como si fuese una calculadora. Para eso vamos a crear un bloque de código en la notebook y escribimos algunas cuentas tal como lo hacemos en cualquier calculadora.\n\n2 * 3\n\n6\n\n\nNo tenemos la necesidad de pisar el código todo el tiempo. Podemos escribir nuevas celdas de código, y así podemos ir mostrando diferentes cómputos y sus resultados.\n\n100 / 3.5\n\n28.571428571428573\n\n\n\n20 + 5\n\n25\n\n\n\n13 - 3\n\n10\n\n\n\n10 * 5.5\n\n55.0",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/01_introduccion.html#tipos-de-datos",
+    "href": "teoria/01_programacion_en_python/01_introduccion.html#tipos-de-datos",
+    "title": "Introducción",
+    "section": "Tipos de datos",
+    "text": "Tipos de datos\nComo cualquier lenguaje de programación, Python ofrece diferentes tipos de datos.\nCada tipo de dato nos ayuda a resolver una tarea distinta. Por ejemplo, si quiero hacer operaciones matemáticas voy a necesitar de números, pero si quiero escribir un correo electrónico voy a necesitar de texto.\nA continuación vamos a introducir los tipos de datos más básicos que Python nos ofrece.\nMás adelante también veremos otros tipos de datos más complejos que nos van a permitir resolver problemas (muchísimo) más interesantes.\n\nNúmeros\nAcabamos de hacer cuentas matemáticas somo si tuvieramos una calculadora. Para eso usamos números, los conocidos de toda la vida.\nSin notarlo, utilizamos dos tipos de números distintos: los números de tipo entero (int) y los números de tipo flotante (float).\nLo siguiente es un número entero:\n\n50\n\n50\n\n\nY el siguiente es un ejemplo de un número flotante:\n\n36.8\n\n36.8\n\n\nUtilizando la función type() Python nos devuelve el tipo del objeto.\n\ntype(10)\n\nint\n\n\n\ntype(10.5)\n\nfloat\n\n\n\ntype(10.0)\n\nfloat\n\n\n\ntype(10.)\n\nfloat\n\n\n\n\n\n\n\n\nObservación 👀\n\n\n\nA diferencia de R, Python no es un lenguaje vectorizado. Por lo tanto, los tipos int y float representan valores escalares, no vectores de longitud 1 como ocurre en R.\nEsta observación aplica a todos los tipos de datos elementales que vienen a continuación.\n\n\n\n\nCadenas de texto\nPara ser una lenguaje de programación tan afamado, Python tiene que ser capaz de trabajar con objetos más complejos que los números.\nUn ejemplo de esto es el texto, que se representa con un objeto llamado cadena de texto y se construyen utilizando comillas.\nComo en la mayoría de los lenguajes de programación, las comillas se ponen al principio y al final del texto e indican el principio y el final de la cadena; estas pueden pueden ser dobles \" o simples '.\n\n\"Programando en Python\"\n\n'Programando en Python'\n\n\n\n'Con comillas simples, también.'\n\n'Con comillas simples, también.'\n\n\nEn Python no hay diferencia entre usar comillas simples ' o dobles \", pero es importante que el tipo de comilla que se usa para abrir la cadena sea el mismo que se usa para cerrarla.\nCuando imprimimos una cadena, las comillas no se muestran en la salida. Para imprimir cualquier objeto de Python utilizamos la función print().\n\nprint('Con comillas simples, ¡también!')\n\nCon comillas simples, también!\n\n\nUna forma un poco más exótica, pero muy útil, de crear cadenas es utilizando comillas triples. Con esta sintaxis, se repiten tres comillas seguidas, lo que permite definir cadenas de texto que ocupan varias líneas.\n\nprint(\"\"\"Se puede escribir texto\nen varias lineas.\n¡Está muy bueno!\"\"\")\n\nSe puede escribir texto\nen varias lineas.\n¡Está muy bueno!\n\n\nOtra manera de escribir texto que abarca múltiples líneas es usando el carácter especial \\n, que representa un salto de línea.\n\nprint(\"Primera línea\\nsegunda línea\\ntercera línea.\")\n\nPrimera línea\nsegunda línea\ntercera línea.\n\n\nEn cambio, si mostramos una representación del texto (sin usar print()), los \\n sí se visualizan.\n\n\"Primera línea\\nsegunda línea\\ntercera línea.\"\n\n'Primera línea\\nsegunda línea\\ntercera línea.'\n\n\n\n\n\n\n\n\n¡Atencion! 🤓\n\n\n\n¿Cuál es la diferencia entre usar print() y no usarlo?\n\nCuando usamos print() se imprime el objeto de una manera humanamente legible.\nCuando no lo usamos, se muestra una representación del objeto. Esta representación tiene que ser lo menos ambigua posible.\n\nPor este motivo es que se muestran las comillas a la hora de representar una cadena.\n\n\n\n\nOtra situación en la que usar print() genera una diferencia es cuando se quieren mostrar varios objetos en una notebook. Por ejemplo, comparemos el resultado de los siguientes bloques:\n\n\"mensaje 1\"\n10\n\"mensaje 2\"\n\n'mensaje 2'\n\n\n\nprint(\"mensaje 1\")\nprint(10)\nprint(\"mensaje 2\")\n\nmensaje 1\n10\nmensaje 2\n\n\n\n\nLógicos (o Booleanos)\nComo veremos más adelante, nuestros programas suelen tener que decidir entre diferentes acciones a tomar según se cumpla o no cierta condición.\nPara representar esta situación utilizamos un tipo especial de dato conocido como lógico o booleano, que puede tomar únicamente dos valores: True o False.\nSi la condición se cumple, el resultado será True; de lo contrario, será False.\n\nTrue\n\nTrue\n\n\n\nFalse\n\nFalse\n\n\n\ntype(True)\n\nbool\n\n\n\ntype(False)\n\nbool\n\n\n\n\n\n\n\n\nReseña histórica 📜\n\n\n\nEste tipo de datos se llama Booleano en honor al matemático George Boole.\n\n\n\n\nNulo\nEl valor nulo, llamado None en Python, representa la ausencia de valor o el vacío. Se utiliza habitualmente para indicar que algo no tiene un valor asignado. Si intentamos mostrar el valor de None, veremos que no aparece nada.\n\nNone\n\nEn cambio, si imprimimos el objeto None, vemos el mensaje None.\n\nprint(None)\n\nNone\n\n\n¿Y cuál es su tipo?\n\ntype(None)\n\nNoneType\n\n\nSolamente los objetos None son del tipo NoneType.\n\n\n\n\n\n\n¿Por qué existe el valor nulo? 🤔\n\n\n\nMuchas veces nuestro programa, o alguna parte del mismo, realiza una tarea que no devuelve ningún resultado.\nPodríamos ponernos de acuerdo en representar “ningún resultado” usando un número (e.g., 0), una cadena vacía (\"\"), o algo similar. Pero estos valores representan algo específico, no la ausencia total de valor.\nPara expresar claramente que no hay ningún resultado, Python incluye un valor especial llamado None.\n\n\nEjemplos\n\nUn usuario completa un formulario con datos personales, pero algunos campos no son obligatorios y quedan sin completar.\nUna función busca un elemento en una lista; cuando no encuentra lo buscado, devuelve un valor especial indicando que el resultado está ausente.\n\nEn general, cuando se quiera representar la ausencia de información se utilizará None.\n\n\n\n\n\n\nObservación 👀\n\n\n\nEn R existen dos tipos de datos para representar valores faltantes: NULL y NA. El None de Python equivale a NULL en R, ya que ambos indican ausencia de valor.\nPor otro lado, NA en R representa un valor existente pero desconocido, por ejemplo, porque se ha perdido. Python no ofrece un tipo de dato equivalente de forma nativa, aunque algunas librerías sí lo implementan.\n\n\n\n\nConversión entre tipos de datos\nQue existan distintos tipos de datos no significa que un objeto de un tipo no pueda “convertirse” a otro.\nEn muchos casos es posible convertir entre tipos de datos. Por ejemplo, un número siempre se puede convertir a una cadena de caracteres, pero no cualquier cadena puede convertirse a un número.\nPara convertir un objeto a otro tipo utilizamos funciones con el nombre del tipo al que queremos convertir, como str(), int() o bool(). Estas funciones reciben como argumento el objeto a convertir.\nVeamos algunos ejemplos:\n\nstr(256)\n\n'256'\n\n\n\nstr(None)\n\n'None'\n\n\n\nint(165.5)\n\n165\n\n\n\nint(165.8)\n\n165\n\n\n\nint(\"165\")\n\n165\n\n\n\nfloat(\"165.0\")\n\n165.0\n\n\n\n\nResumen\n\nPython tiene distintos tipos de datos.\nCada tipo de dato es útil para resolver diferentes problemas.\n\nA lo largo de la materia veremos muchísimos ejemplos.\n\nAl principio, tener varios tipos de datos puede parecer complejo.\n\nSin embargo, nos resultarán muy naturales a medida que los usemos para resolver problemas concretos.\n\n\n\n\n\n\n\n\n\nTipo de dato\nEjemplos\n\n\n\n\nNúmeros enteros (int)\n-2, -1, 0, 10, 200\n\n\nNúmeros de punto flotante (float)\n-200.789, -1.0, 0.0, 17.8\n\n\nCadenas de texto (str)\n\"a\", \"abc\", \"Rosario, Santa Fe\"\n\n\nBooleanos (bool)\nTrue, False\n\n\nValor nulo (NoneType)\nNone",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/01_introduccion.html#variables",
+    "href": "teoria/01_programacion_en_python/01_introduccion.html#variables",
+    "title": "Introducción",
+    "section": "Variables",
+    "text": "Variables\n¿Es necesario escribir explícitamente los valores con los que trabajamos cada vez que los usamos? Afortunadamente, la respuesta es no.\nLos lenguajes de programación más populares permiten usar variables.\nPodemos pensar las variables como etiquetas o nombres que asignamos a los objetos en nuestro programa.\nUna vez creada una variable con cierto valor, podemos usar directamente su nombre en lugar de volver a escribir el valor completo.\n\nmensaje = \"¡Hola, curso!\"\nprint(mensaje)\n\n¡Hola, curso!\n\n\n\nprint(\"¡Hola, curso!\")\n\n¡Hola, curso!\n\n\nPara crear una variable se necesita:\n\nEl nombre.\nEl operador de asignación.\nEl valor que queremos asignar a la variable.\n\nEn nuestro caso, el nombre de la variable es mensaje y el valor es \"¡Hola, curso!\".\nLuego, cuando accedemos a la variable mensaje dentro de la función print(), Python nos devuelve el valor de la variable, es decir, ¡Hola, curso!\".\nVeamos otros ejemplos…\n\npi = 3.14159\nfruta_favorita = \"manzana\"\npython_bueno = True\n\nEn el siguiente diagrama se muestra cómo las variables que creamos funcionan simplemente como etiquetas para los valores asignados.\nCada vez que utilizamos una de estas etiquetas, accedemos directamente al valor que representa.\n\n\n\n\n\n\nprint(pi * 10)\n\n31.4159\n\n\n\nfruta_favorita\n\n'manzana'\n\n\n\npython_bueno\n\nTrue\n\n\nLas variables no solo evitan que escribamos repetidamente los mismos valores en nuestro programa, sino que también permiten:\n\nGeneralizar el programa\n\nAl cambiar el valor de una variable, todas las partes del programa que la usan se actualizan automáticamente.\n\nMejorar la legibilidad del código\n\nSi elegimos nombres claros y descriptivos, el programa será mucho más fácil de leer y entender.\n\n\nPor ejemplo, los siguientes bloques de código producen el mismo resultado, pero el segundo es mucho más informativo:\n\n1500 * 8\n\n12000\n\n\n\nprecio = 1500\ncantidad = 8\nprecio * cantidad\n\n12000\n\n\n\nNombres permitidos\nNo todos los nombres que imaginemos se pueden utilizar como variables en Python.\nTenemos que tener en cuenta las siguientes reglas. Los nombres de variables…\n\nSolo pueden contener letras, números y guiones bajos (_).\nDeben comenzar con una letra o un guión bajo, pero no con un número.\n\nPor ejemplo, mensaje_1 es válido, pero 1_mensaje no lo es.\n\nNo pueden contener espacios.\n\nPor eso usamos fruta_favorita en lugar de fruta favorita.\n\nNo pueden ser palabras reservadas de Python.\n\nLas palabras reservadas se encuentran al final de este apunte.\n\n\nAdemás, también vale la pena tener presente estos consejos:\n\nUsá nombres breves pero descriptivos.\n\nnombre es preferible a n.\nfruta_favorita es preferible a frut_fav.\n\nEvitá utilizar tildes, la letra ñ u otros caracteres específicos del castellano.\n\n\n\nEliminar variables\nEs posible que, después de crear nuestras variables y realizar las operaciones necesarias, queramos eliminarlas.\nPara borrar una variable, Python ofrece la sentencia del (del inglés delete, que significa eliminar o borrar).\n\ndel fruta_favorita\n\n\n\nAsignación múltiple\nYa vimos que para asignar (o crear) una variable necesitamos hacer variable = &lt;valor&gt;.\nSi queremos crear varias variables, podemos hacerlo en líneas separadas:\n\npi = 3.1416\ne = 2.7182\n\nprint(pi)\nprint(e)\n\n3.1416\n2.7182\n\n\nUna característica conveniente de Python es que permite asignar múltiples variables en una misma línea:\n\npi, e = 3.1416, 2.7182\n\nprint(pi)\nprint(e)\n\n3.1416\n2.7182\n\n\nOtra ventaja es que las variables no tienen que ser del mismo tipo:\n\na, b, c = 100 + 20, \"un mensaje cualquiera\", None\n\nprint(a)\nprint(b)\nprint(c)\n\n120\nun mensaje cualquiera\nNone\n\n\nEsta técnica es útil para escribir código más conciso, pero no conviene abusar de ella porque puede resultar en código poco legible.\n\n\n\n\n\n\nObservación 👀\n\n\n\nLa vida es más compleja de lo que parece, y los lenguajes de programación no son una excepción.\nEn Python, lo que parece una asignación múltiple de variables es en realidad el uso de una técnica más avanzada llamada unpacking.\nA no desesperarse, más adelante vamos a aprender de qué se trata.",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/01_introduccion.html#operadores",
+    "href": "teoria/01_programacion_en_python/01_introduccion.html#operadores",
+    "title": "Introducción",
+    "section": "Operadores",
+    "text": "Operadores\nLos operadores son símbolos que se utilizan para realizar operaciones o acciones sobre los objetos con los que estamos trabajando.\nHasta ahora, vimos que podemos tener números, texto, y otras objetos un poco mas extraños como los booleanos e incluso algo que representa a la nada misma.\nA continuación, comenzamos a ver algunas de las tareas que podemos hacer con ellos.\n\nOperadores aritméticos\nPython incluye los mismos operadores aritméticos que solemos utilizar en nuestro día a día para hacer operaciones matemáticas.\nEstos se parecen muchísimo a los que usamos en una calculadora, por lo que podríamos entenderlo incluso sin saber de Python.\nAlgunos operadores son los siguientes:\n\nSuma (+)\nResta (-)\nMultiplicación (*)\nPotencia (**)\nDivisión (/)\nDivisión entera (//)\nMódulo (%)\n\n\nSuma (+)\n\n10 + 25\n\n35\n\n\n\n10.0 + 25.0\n\n35.0\n\n\n\n-8 + 12.1\n\n4.1\n\n\nEl operador suma también puede ser usado con un solo argumento:\n\n+ 8\n\n8\n\n\nEn este caso no modifica en nada al valor 8.\n\n\n\nResta (-)\n\n11 - 8\n\n3\n\n\n\n100 - 100.0\n\n0.0\n\n\n\n-35 - 28\n\n-63\n\n\nEl operador resta también puede ser usado con un solo argumento:\n\n- 7\n\n-7\n\n\n\n\nMultiplicación (*) y potencia (**)\n\n21 * 5\n\n105\n\n\n\n21 * 5.0\n\n105.0\n\n\n\n21.0 * 5.0\n\n105.0\n\n\n\n2 ** 3\n\n8\n\n\n\n2 ** 3.0\n\n8.0\n\n\n\n\n\n\n\n\nConclusiones\n\n\n\nPara las operaciones de suma, resta, multiplicación y potencia se cumple:\n\nSi ambos valores son enteros, el resultado será un entero.\nSi al menos uno de los valores es flotante, el resultado será flotante.\n\n\n\n\n\nDivisión (/ y //)\nPython provee dos operadores distintos para calcular el cociente entre dos números.\n\nEl operador / que calcula la división flotante.\nEl operador // que calcula la división entera.\n\nEl operador / es el que más se utiliza y siempre devuelve un número de tipo flotante.\n\n10 / 5\n\n2.0\n\n\n\n10 / 5.5\n\n1.8181818181818181\n\n\nLa división entera se suele utilizar cuando uno quiere el resultado entero de la división, sin importar si el resto es 0 o no.\n\n10 // 5\n\n2\n\n\n\n10 // 5.5\n\n1.0\n\n\nVeamos los siguientes ejemplos donde comparamos la división flotante con la división entera, utilizando los mismos argumentos.\n\n15 / 4\n\n3.75\n\n\n\n15.0 // 4.0\n\n3.0\n\n\nConclusión: La división entera no redondea el resultado de la división flotante. Más sobre esto debajo.\n\n\nMódulo (%)\nOtro operador relacionado a la división entera es el operador módulo o resto (%).\nEsta operación nos devuelve el resto que se obtiene al realizar la división entera entre dos números.\n\n17 % 3\n\n2\n\n\nDebajo se puede ver la relación entre la división entera y el módulo:\n\n\n\n\n\nAunque ahora pueda parecer difícil encontrar una aplicación práctica para los operadores de división entera // y resto %, más adelante veremos ejemplos donde haremos un uso intensivo de ellos.\n\n\n\n\n\n\nObservación 👀\n\n\n\nProbablemente en R hayan utilizado principalmente el operador /, que también corresponde a la división flotante.\nEn ese lenguaje, los operadores para división entera y resto son %/% y %%, respectivamente.\n\n\n\n\nPrioridad de los operadores\nHasta ahora vimos operaciones bastante sencillas.\nCuando presentamos la suma, realizamos simplemente una suma. Cuando presentamos la multiplicación, hicimos solo una multiplicación.\nPor supuesto, al momento de hacer cálculos podemos combinar los operadores que ya conocemos, de la misma forma en que lo hacemos al resolver cuentas a mano.\nUn punto importante a tener en cuenta es que, al igual que cuando hacemos cuentas a mano, algunas operaciones se resuelven antes que otras, sin importar el orden en que aparecen. Esto ocurre porque algunos operadores tienen mayor prioridad y, por lo tanto, se evalúan antes.\nEn el siguiente ejemplo, ¿por qué se obtienen resultados distintos?\n\n10 - 2 * 4\n\n2\n\n\n\n(10 - 2) * 4\n\n32\n\n\nIndependientemente de que el símbolo + aparezca antes que el símbolo * en una expresión, Python realiza primero la multiplicación.\nAl igual que cuando hacemos cuentas a mano, la multiplicación tiene mayor prioridad que la suma.\nSi queremos forzar a Python a realizar una operación antes que otra, sin importar la prioridad de los operadores, debemos usar paréntesis.\nOtro ejemplo es el siguiente…\n\n7 + 8 / 2\n\n11.0\n\n\n\n(7 + 8) / 2\n\n7.5\n\n\nA continuación se incluye una tabla con los operadores que vimos y la prioridad que tiene cada uno.\nLos operadores que aparecen más arriba tienen mayor prioridad.\nLos operadores que aparecen en la misma fila tienen el mismo nivel de prioridad y se resuelven según el orden en que aparecen en el código (de izquierda a derecha).\n\n\n\n\n\n\n\nOperador\nSignificado\n\n\n\n\n()\nAgrupamiento\n\n\n**\nPotencia\n\n\n*, /, //, %\nMultiplicación, División, División entera, Módulo\n\n\n+, -\nSuma, Resta\n\n\n\nEsta lista es una versión más sencilla y resumida de la tabla de prioridades de todos los operadores que hay en Python. Una versión más completa se puede encontrar en Programiz.\n\n\n\nOperadores lógicos\nLos operadores lógicos en Python son tres: not, and y or. Se llaman así porque combinan expresiones lógicas (o directamente valores lógicos) y devuelven también valores lógicos, es decir, del tipo bool, que pueden ser True o False. Estos operadores se utilizan para combinar o invertir condiciones en expresiones lógicas.\n\nNegación (not)\nDevuelve el opuesto del valor que le pasamos.\n\nnot False\n\nTrue\n\n\n\nnot True\n\nFalse\n\n\n\n\nConjunción o intersección (and)\nEsta operación devuelve True solamente cuando los dos operadores que le pasamos son True.\n\nTrue and True\n\nTrue\n\n\n\nFalse and True\n\nFalse\n\n\n\n\nDisyunción o unión (or)\nEsta operación devuelve True cuando cualquiera de sus argumentos es True.\n\nTrue or False\n\nTrue\n\n\nSolo devuelve False cuando sus dos argumentos son False.\n\nFalse or False\n\nFalse\n\n\n\n\n\nOperadores de comparación\n\nComparación por identidad\nPython ofrece dos operadores para verificar si dos objetos son o no el mismo en identidad (es decir, en memoria):\n\nis: devuelve True si ambos operandos son el mismo objeto.\nis not: devuelve True si los operandos no son el mismo objeto.\n\n\nFalse is False\n\nTrue\n\n\n\nFalse is True\n\nFalse\n\n\n\nNone is None\n\nTrue\n\n\nEste tipo de comparación es posible porque cada objeto en Python existe en la memoria de la computadora y tiene una identificación única (ID). Para conocer el ID de un objeto, se puede usar la función id().\n\nid(False)\n\n94778385025792\n\n\n\nid(False)\n\n94778385025792\n\n\n\nid(None)\n\n94778384937120\n\n\n\n\nComparación por valor\nPor otro lado, Python también provee operadores para realizar comparaciones entre objetos en términos de sus valores.\nLos operadores que vemos a continuación son los mismos que aprendimos en la secundaria.\n\n\n\n\n\n\n\nOperador\nDescripción\n\n\n\n\n==\nIgualdad: El resultado es True cuando los dos operandos son iguales.\n\n\n!=\nDesigualdad: El resultado es True si los operandos son distintos.\n\n\n&gt;\nMayor a: El resultado es True si el operando de la izquierda es mayor que el de la derecha.\n\n\n&gt;=\nMayor o igual a: El resultado es True si el operando de la izquierda es mayor o igual que el de la derecha.\n\n\n&lt;\nMenor a: El resultado es True si el operando de la izquierda es menor que el de la derecha.\n\n\n&lt;=\nMenor o igual a: El resultado es True si el operando de la izquierda es menor o igual que el de la derecha.\n\n\n\nAlgunos ejemplos…\n\n10 &gt; 5\n\nTrue\n\n\n\n10 &gt; 5 + 3\n\nTrue\n\n\n\n0 &lt; 0\n\nFalse\n\n\n\n1 &gt;= 1\n\nTrue\n\n\n\n10.0 != 10\n\nFalse\n\n\n\n10.0 == 10\n\nTrue\n\n\nA pesar de que 10.0 es de tipo flotante y 10 es de tipo entero, vemos que la comparación de igualdad == dice que son iguales.\nNo siempre que comparemos objetos de distinto tipo va a suceder algo así.\nLa comparación de cadenas de texto distingue mayúsculas de minúsculas\n\n\"UNR\" == \"unr\"\n\nFalse\n\n\nEs posible comparar objetos de distinto tipo, como lo vimos en el ejemplo anterior donde comparamos 10 y 10.0.\nSalvo casos particulares, como son los valores numéricos, estos objetos son considerados siempre distintos.\n\n\"10\" == 10\n\nFalse\n\n\n\n\"False\" == False\n\nFalse\n\n\nEs posible combinar mas de una comparación en la misma línea.\n\n1 &lt; 2 and 2 &lt; 3\n\nTrue\n\n\nIncluso es posible omitir el operador and y tener una expresión más clara\n\n1 &lt; 2 &lt; 3\n\nTrue\n\n\n\n-5 &lt; -4 &lt; -3\n\nTrue\n\n\nTambién podemos mezclar not, and y or a gusto.\n\nFalse or not False\n\nTrue\n\n\nY es válido utilizar paréntesis para agrupar operaciones.\n\n(False or True) and (True or False)\n\nTrue\n\n\nA continuación se incluye una tabla con los operadores de comparación y la prioridad que tiene cada uno.\nLos operadores que aparecen más arriba tienen mayor prioridad.\nLos operadores que aparecen en la misma fila tienen el mismo nivel de prioridad y se resuelven según el orden en que aparecen en el código (de izquierda a derecha).\n\n\n\n\n\n\n\nOperadores\nSignificado\n\n\n\n\n==, !=, &gt;, &gt;=, &lt;, &lt;=, is, is not, in, not in\nComparaciones, identidad, pertenencia\n\n\nnot\nNegación\n\n\nand\nConjunción o intersección\n\n\nor\nDisyunción o unión\n\n\n\nTodos los operadores de comparación tienen menor prioridad que los operadores aritméticos que vimos arriba.\nEn otras palabras, si pegaramos ambas tablas, ésta última quedaría por debajo.\nAnalicemos nuevamente uno de los ejemplos que ya vimos.\n\nnot True and not True\n\nFalse\n\n\nEl operador not tiene mayor prioridad que el operador and porque aparece primero en la tabla.\nEn consecuencia, en el código anterior primero se resuelven los not True y luego el and. Esto es lo mismo que hacer\n\nFalse and False\n\nFalse\n\n\n\n\n\n\n\n\nResumen 📝\n\n\n\nExisten dos operadores para comparar igualdad entre dos objetos de Python:\n\n== → compara el valor (contenido).\nis → compara la identidad (ubicación en memoria).",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/01_introduccion.html#apéndice",
+    "href": "teoria/01_programacion_en_python/01_introduccion.html#apéndice",
+    "title": "Introducción",
+    "section": "Apéndice",
+    "text": "Apéndice\n\nPalabras claves y funciones predefinidas\nPython tiene un conjunto de palabras conocidas como keywords que sirven para realizar acciones especificas y que no podemos utilizar como nombres de variables.\nCuando intentemos utilizar una keyword como nombre de variable, obtendremos un error.\nPor otro lado, si intentamos utilizar el nombre de una función (o clase) predefinida como nombre de una variable que nosotros creamos, no vamos a obtener un error pero no podremos usar la función nuevamente porque la variable ahora representa otra cosa.\n\nPalabras claves\nFalse      await      else       import     pass\nNone       break      except     in         raise\nTrue       class      finally    is         return\nand        continue   for        lambda     try\nas         def        from       nonlocal   while\nassert     del        global     not        with\nasync      elif       if         or         yield\n\n\nFunciones y clases pre-definidas\nabs()          copyright()    getattr()      list()         range()        vars()\nall()          credits()      globals()      locals()       repr()         zip()\nany()          delattr()      hasattr()      map()          reversed()\nascii()        dict()         hash()         max()          round()\nbin()          dir()          help()         memoryview()   set()\nbool()         display()      hex()          min()          setattr()\nbreakpoint()   divmod()       id()           next()         slice()\nbytearray()    enumerate()    input()        object()       sorted()\nbytes()        eval()         int()          oct()          staticmethod()\ncallable()     exec()         isinstance()   open()         str()\nchr()          filter()       issubclass()   ord()          sum()\nclassmethod()  float()        iter()         pow()          super()\ncompile()      format()       len()          print()        tuple()\ncomplex()      frozenset()    license()      property()     type()",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Introducción"
+    ]
+  },
+  {
     "objectID": "informacion/programa.html",
     "href": "informacion/programa.html",
     "title": "Programa",
@@ -44,326 +116,326 @@
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html",
-    "href": "practica/01_introduccion_a_python/autoevaluacion.html",
+    "objectID": "practica/01_programacion_en_python/autoevaluacion.html",
+    "href": "practica/01_programacion_en_python/autoevaluacion.html",
     "title": "🪞 Autoevaluación",
     "section": "",
     "text": "¿Qué valor contiene la variable contador luego de ejecutar el siguiente código?\ncontador = 20\ncontador + 1\nComplete la siguiente tabla indicando si el nombre es válido para una variable de Python.\n\n\n\nNombre\n¿Válido?\nJustificación\n\n\n\n\nbalance\n\n\n\n\nbalanceActual\n\n\n\n\nbalance-actual\n\n\n\n\nbalance actual\n\n\n\n\nbalance_actual\n\n\n\n\nmis.datos\n\n\n\n\n0cuenta\n\n\n\n\ncuenta0\n\n\n\n\n_cuenta\n\n\n\n\nSPAM\n\n\n\n\ncantidad$",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🪞 Autoevaluación"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#variables",
-    "href": "practica/01_introduccion_a_python/autoevaluacion.html#variables",
+    "objectID": "practica/01_programacion_en_python/autoevaluacion.html#variables",
+    "href": "practica/01_programacion_en_python/autoevaluacion.html#variables",
     "title": "🪞 Autoevaluación",
     "section": "",
     "text": "¿Qué valor contiene la variable contador luego de ejecutar el siguiente código?\ncontador = 20\ncontador + 1\nComplete la siguiente tabla indicando si el nombre es válido para una variable de Python.\n\n\n\nNombre\n¿Válido?\nJustificación\n\n\n\n\nbalance\n\n\n\n\nbalanceActual\n\n\n\n\nbalance-actual\n\n\n\n\nbalance actual\n\n\n\n\nbalance_actual\n\n\n\n\nmis.datos\n\n\n\n\n0cuenta\n\n\n\n\ncuenta0\n\n\n\n\n_cuenta\n\n\n\n\nSPAM\n\n\n\n\ncantidad$",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🪞 Autoevaluación"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#números",
-    "href": "practica/01_introduccion_a_python/autoevaluacion.html#números",
+    "objectID": "practica/01_programacion_en_python/autoevaluacion.html#números",
+    "href": "practica/01_programacion_en_python/autoevaluacion.html#números",
     "title": "🪞 Autoevaluación",
     "section": "2 Números",
     "text": "2 Números\n\n¿Cuál es el tipo de 10 / 2? ¿Por qué?\n¿Cuál es el tipo de 5 * 2? ¿Por qué?\n¿Por qué 5 == 5.0 es True?",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🪞 Autoevaluación"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#booleanos",
-    "href": "practica/01_introduccion_a_python/autoevaluacion.html#booleanos",
+    "objectID": "practica/01_programacion_en_python/autoevaluacion.html#booleanos",
+    "href": "practica/01_programacion_en_python/autoevaluacion.html#booleanos",
     "title": "🪞 Autoevaluación",
     "section": "3 Booleanos",
     "text": "3 Booleanos\n\n¿Cuál es el resultado de las siguientes expresiones? ¿Por qué?\nFalse or not False\nnot (True and True)\nnot True and True\n\"True\" != True\n10 &gt; 5 + 3\nNone is None\nFalse is False\nEjecute línea por línea los siguientes bloques y analice los resultados.\nint(True) * 50\nTrue * 50\n1 is True\nbool(1) is True\nid(True)\nid(bool(1))\nid(bool(1024))\n¿Cuáles son los 3 operadores booleanos?",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🪞 Autoevaluación"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#cadenas-de-caracteres",
-    "href": "practica/01_introduccion_a_python/autoevaluacion.html#cadenas-de-caracteres",
+    "objectID": "practica/01_programacion_en_python/autoevaluacion.html#cadenas-de-caracteres",
+    "href": "practica/01_programacion_en_python/autoevaluacion.html#cadenas-de-caracteres",
     "title": "🪞 Autoevaluación",
     "section": "4 Cadenas de caracteres",
     "text": "4 Cadenas de caracteres\n\n¿Por qué la siguiente comparación resulta en True?\n\"spam\" + \"spamspam\" == \"spam\" * 3\n¿Por qué la siguiente expresión resulta en un error? ¿Cómo se puede arreglar?\n\"Me comí \" + 6 + \" panchos.\"\n¿Encuentra algo extraño en la siguiente expresión? ¿Cómo la mejoraría?\nmateria = \"Programación 2\"\nprint(\"¡Sean bienvenidos a la materia {materia}!\")\nExplique por qué es redundante utilizar str() en el siguiente bloque de código:\nx, y = 10, 20\nprint(f\"La suma de {str(x)} y {str(y)} es: {str(x + y)}.\")\nConsidere el siguiente bloque de código:\nmensaje = \"Hola, ¿cómo estes?\"\nmensaje[-3] = \"á\"\n\n¿Cuál es la intención detrás del programa?\n¿Por qué no funciona?\n¿Cómo podría arreglarlo? Alerta: la solución no es muy elegante.\n\n¿Cuál es el resultado de list(\"abcdefgh\")? ¿Por qué?\n¿Por qué set(\"abcde\") es distinto de {\"abcde\"}?",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🪞 Autoevaluación"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#funciones",
-    "href": "practica/01_introduccion_a_python/autoevaluacion.html#funciones",
+    "objectID": "practica/01_programacion_en_python/autoevaluacion.html#funciones",
+    "href": "practica/01_programacion_en_python/autoevaluacion.html#funciones",
     "title": "🪞 Autoevaluación",
     "section": "5 Funciones",
     "text": "5 Funciones\n\n¿Cuál es la diferencia entre una función y una llamada a función?\n¿Cuál es el valor que devuelve una función que no tiene return?\n¿Cuándo se ejecuta el código dentro de una función: cuando la función se define o cuando se la llama? Considere la siguiente función:\ndef suma(x, y):\n    print(100 / 0)\n    return x + y\nLuego, ejecute el siguiente bloque:\nsuma(2, 4)",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🪞 Autoevaluación"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#listas",
-    "href": "practica/01_introduccion_a_python/autoevaluacion.html#listas",
+    "objectID": "practica/01_programacion_en_python/autoevaluacion.html#listas",
+    "href": "practica/01_programacion_en_python/autoevaluacion.html#listas",
     "title": "🪞 Autoevaluación",
     "section": "6 Listas",
     "text": "6 Listas\n\n¿Qué es []? ¿Cuál es el resultado de len([])?\n¿Por qué la siguiente expresión resulta en False? Ayuda: use la función id().\n[] is []\n¿Por qué se obtiene un error en el siguiente bloque de código?\nl = []\nl[0]\n¿Cómo le asignaría el valor \"hola\" como el tercer valor en una lista almacenada en una variable llamada cosas? Asuma que cosas contiene [2, 4, 6, 8, 10].\nAsuma que letras contiene la lista [\"a\", \"b\", \"c\", \"d\"]:\n\n¿A qué evalúa letras[-1]?\n¿A qué evalúa letras[:2]?\n¿A qué evalúa letras[int(int('3' * 2) // 11)]? ¿Es necesario usar dos veces int()?\n\nAsuma que bartulos contiene la lista [3.14, \"casa\", 11, \"casa\", True]:\n\n¿A qué evalúa bartulos.index(\"casa\")? ¿Por qué?\n¿Cómo queda la lista en bartulos después de ejecutar bartulos.append(99)?\n¿Cómo queda la lista en bartulos después de ejecutar bartulos.remove(\"casa\"') ?¿Por qué?\n\n¿Cuáles son los operadores para la concatenación y la replicación de listas?\n¿Cuál es la diferencia entre los métodos append() e insert() de las listas?\n¿Cuáles son dos formas de eliminar valores de una lista?\nEl siguiente bloque de código imprime ['a', 'b', True, 30]. ¿Por qué?\ncosas = [\"a\", \"b\", True]\nbartulos = cosas\nbartulos.append(20 + 10)\nprint(cosas)\nConsidere el siguiente bloque de código:\nmarcas = [\"Milka\", \"Cofler\", \"Águila\", \"Cadbury\", \"Lindt\", \"Toblerone\", \"After Eight\"]\nmarcas[2:5]\nque correctamente muestra [\"Águila\", \"Cadbury\", \"Lindt\"]. ¿Por qué el siguiente bloque de código no funciona?\nmarcas = [\"Milka\", \"Cofler\", \"Águila\", \"Cadbury\", \"Lindt\", \"Toblerone\", \"After Eight\"]\nindices = 2:5\nmarcas[indices]",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🪞 Autoevaluación"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#tuplas",
-    "href": "practica/01_introduccion_a_python/autoevaluacion.html#tuplas",
+    "objectID": "practica/01_programacion_en_python/autoevaluacion.html#tuplas",
+    "href": "practica/01_programacion_en_python/autoevaluacion.html#tuplas",
     "title": "🪞 Autoevaluación",
     "section": "7 Tuplas",
     "text": "7 Tuplas\n\n¿Por qué la tupla no implementa un método similar al método .extend() de las listas?\nLas tuplas de Python son conocidas por ser inmutables. Por ejemplo, el siguiente bloque de código resulta en un error:\ntupla = (1, 2, 3)\ntupla[1] = 10\nSin embargo, el siguiente bloque no arroja ningún error y pareciera que se logra modificar la tupla exitosamente:\nbartulos = [\"Hola\", 10, None]\ntupla = (1, bartulos, 3)\n\ntupla[1].append(\"¡Sorpesa!\")\n\nprint(tupla)\n¿Qué pasó?",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🪞 Autoevaluación"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#diccionarios",
-    "href": "practica/01_introduccion_a_python/autoevaluacion.html#diccionarios",
+    "objectID": "practica/01_programacion_en_python/autoevaluacion.html#diccionarios",
+    "href": "practica/01_programacion_en_python/autoevaluacion.html#diccionarios",
     "title": "🪞 Autoevaluación",
     "section": "8 Diccionarios",
     "text": "8 Diccionarios\n\n¿Cómo se escribe en código un diccionario vacío?\n¿Cómo se ve un diccionario que tiene la clave \"cosa\" y el valor 15?\n¿Cuál es la principal diferencia entre un diccionario y una lista?\n¿Qué ocurre si se intenta acceder a bartulos[\"cosa\"] cuando bartulos es {\"coso\": 100}?\nSi un diccionario está almacenado en bartulos, ¿cuál es la diferencia entre las siguientes expresiones?\n\"cosa\" in bartulos\n\"cosa\" in bartulos.keys()\nSuponga el diccionario datos = {\"nombre\": \"Juan\"}. ¿Por qué la siguiente expresión resulta en False?\n\"Juan\" in datos",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🪞 Autoevaluación"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/autoevaluacion.html#control-de-flujo",
-    "href": "practica/01_introduccion_a_python/autoevaluacion.html#control-de-flujo",
+    "objectID": "practica/01_programacion_en_python/autoevaluacion.html#control-de-flujo",
+    "href": "practica/01_programacion_en_python/autoevaluacion.html#control-de-flujo",
     "title": "🪞 Autoevaluación",
     "section": "9 Control de flujo",
     "text": "9 Control de flujo\n\n9.1 Condicionales\n\nExplique qué es una condición y en qué situaciones se utilizaría.\nIdentifique los tres bloques de código en el siguiente ejemplo:\ncodigo = 0\n\nif codigo == 10:\n    print(\"mensaje 1\")\n    if codigo &gt; 5:\n        print(\"mensaje 2\")\n    else:\n        print(\"mensaje alternativo\")\n    print(\"mensaje final\")\n\nprint(\"Fin del programa\")\n¿Tienen sentido las comparaciones utilizadas?\n¿Cuál es el problema con el siguiente programa? Proponga una solución.\nnumero = 10\nif numero &lt; 0:\n    print(f\"El numero {numero} es negativo\")\nelif numero &lt; -5:\n    print(f\"El numero {numero} es menor a -5\")\nelif numero &gt; 0:\n    print(f\"El numero {numero} es positivo\")\nelse:\n    print(f\"El numero {numero} es 0\")\n\n\n\n9.2 Bucles\n\nConsidere el siguiente programa:\nfor i in range(10):\n    print(i)\nEscriba un programa que realice la misma tarea utilizando un bucle while.\n¿Cuál es la diferencia entre range(10), range(0, 10) y range(0, 10, 1) en un bucle for?\nSuponga que numeros es una lista que contiene numeros enteros, ¿en qué se diferencian los siguientes bloques de código?\nfor i in numeros:\n    if i % 2 == 0:\n        break\n    print(i)\nfor i in numeros:\n    if i % 2 == 0:\n        continue\n    print(i)\n¿Es posible re-escribir el siguiente bloque de código usando while True? ¿Qué modificaciones habría que hacer?\nsuma = 0\ni = 0\nwhile suma &lt;= limite:\n    suma += numeros[i]\n    i += 1",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🪞 Autoevaluación"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html",
-    "href": "practica/01_introduccion_a_python/ejercicios.html",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html",
+    "href": "practica/01_programacion_en_python/ejercicios.html",
     "title": "🛠️ Ejercicios",
     "section": "",
     "text": "Escriba una función en Python que reciba el radio de un círculo y devuelva su área. Luego, escriba otra función que también reciba el radio de un círculo, pero devuelva su perímetro. Finalmente, escriba una tercera función que reciba el radio de un círculo y devuelva tanto el área como el perímetro.\nUna vez que haya implementado todas las funciones, analice la diferencia entre:\narea, perimetro = calcular_area_y_perimetro(radio=5)\ny\nresultados = calcular_area_y_perimetro(radio=5)\nConsidere el tipo de las variables area, perimetro y resultados.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\n\\[\n\\begin{aligned}\nA &= \\pi \\cdot r^2 \\\\\nP &= 2 \\cdot \\pi \\cdot r\n\\end{aligned}\n\\]",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#área-y-perímetro-de-un-círculo",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#área-y-perímetro-de-un-círculo",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#área-y-perímetro-de-un-círculo",
+    "href": "practica/01_programacion_en_python/ejercicios.html#área-y-perímetro-de-un-círculo",
     "title": "🛠️ Ejercicios",
     "section": "",
     "text": "Escriba una función en Python que reciba el radio de un círculo y devuelva su área. Luego, escriba otra función que también reciba el radio de un círculo, pero devuelva su perímetro. Finalmente, escriba una tercera función que reciba el radio de un círculo y devuelva tanto el área como el perímetro.\nUna vez que haya implementado todas las funciones, analice la diferencia entre:\narea, perimetro = calcular_area_y_perimetro(radio=5)\ny\nresultados = calcular_area_y_perimetro(radio=5)\nConsidere el tipo de las variables area, perimetro y resultados.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\n\\[\n\\begin{aligned}\nA &= \\pi \\cdot r^2 \\\\\nP &= 2 \\cdot \\pi \\cdot r\n\\end{aligned}\n\\]",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#promociones",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#promociones",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#promociones",
+    "href": "practica/01_programacion_en_python/ejercicios.html#promociones",
     "title": "🛠️ Ejercicios",
     "section": "2 Promociones",
     "text": "2 Promociones\nEscriba una función llamada calcular_precio que reciba dos argumentos: el monto total de una compra y el medio de pago utilizado.\nEl medio de pago puede ser \"efectivo\", \"débito\" o \"crédito\", y según el caso se aplicará una modificación sobre el monto:\n\nSi el medio de pago es \"efectivo\", el monto no se modifica.\nSi es \"débito\", se aplica un descuento del 10% sobre el monto.\nSi es \"crédito\", se aplica un recargo del 5% sobre el monto.\n\nLa función debe retornar el monto final a pagar, con el descuento o recargo aplicado según corresponda.\n\nPunto extra\nModifique la función de modo tal que no sea necesario especificar el medio de pago. En tal caso, el medio de pago se asume \"efectivo\". Ayuda: asigne un valor por defecto al argumento medio. Considere una implementación donde este sea \"efectivo\" y otra donde sea None.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#etapas-de-la-vida",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#etapas-de-la-vida",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#etapas-de-la-vida",
+    "href": "practica/01_programacion_en_python/ejercicios.html#etapas-de-la-vida",
     "title": "🛠️ Ejercicios",
     "section": "3 Etapas de la vida",
     "text": "3 Etapas de la vida\nImplemente una función que reciba una edad y devuelva un mensaje que indique la etapa de la vida correspondiente.\nUtilice una cadena de condicionales if-elif-else para clasificar la edad en alguno de los siguientes grupos:\n\nMenor a 2 años: bebé.\nEntre 2 (inclusive) y 4 años: infante.\nEntre 4 (inclusive) y 13 años: niño/a.\nEntre 13 (inclusive) y 20 años: adolescente.\nEntre 20 (inclusive) y 65 años: adulto/a.\n65 años o más: persona mayor.\n\nLa función debe imprimir un mensaje del tipo: \"La persona es un/a &lt;etapa&gt;\".",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#conteo-de-caracteres",
+    "href": "practica/01_programacion_en_python/ejercicios.html#conteo-de-caracteres",
     "title": "🛠️ Ejercicios",
     "section": "4 Conteo de caracteres",
     "text": "4 Conteo de caracteres\nEscriba una función que reciba una cadena de texto y devuelva un diccionario que indique cuántas veces aparece cada caracter en la cadena. La función no debe diferenciar entre mayúsculas y minúsculas y debe ignorar espacios. Utilice el siguiente ejemplo como validación:\ncontar_caracteres(\"Ahora es mejor que nunca\")\n# {\"a\": 3, \"h\": 1, \"o\": 2, \"r\": 2, \"e\": 3, \"s\": 1, \"m\": 1, \"j\": 1, \"q\": 1, \"u\": 2, \"n\": 2, \"c\": 1}\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nPara saltear pasos de un bucle cuando se encuentra un espacio se puede utilizar la sentencia continue.\nfor i in ...:\n    # ... &lt;- Se ejecuta en todas las iteraciones\n    if condicion_de_salto:\n        continue\n    # ... &lt;- Se ejecuta en las iteraciones 'condicion_de_salto' es False",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#orden-de-mérito",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#orden-de-mérito",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#orden-de-mérito",
+    "href": "practica/01_programacion_en_python/ejercicios.html#orden-de-mérito",
     "title": "🛠️ Ejercicios",
     "section": "5 Orden de mérito",
     "text": "5 Orden de mérito\nSe cuenta con una lista de tuplas que contienen las notas del examen final de Programación 2 para un conjunto de alumnos:\nnotas = [\n    (\"Escalada\", 9),\n    (\"Alonso\", 7),\n    (\"Pérez\", 8),\n    (\"Castro\", 8),\n    (\"Rossini\", 10),\n    (\"Martínez\", 9),\n    (\"Pérez\", 6),\n    (\"Riquelme\", 5),\n]\n\nEscriba un programa que a partir de notas genere un diccionario donde las claves se corresponden con los apellidos y los valores con las notas del examen final.\nEscriba un programa que a partir de notas genere un diccionario donde las claves son las notas y el valor asociado sea una lista con los apellidos de quienes tuvieron esa nota.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#rendimento-académico",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#rendimento-académico",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#rendimento-académico",
+    "href": "practica/01_programacion_en_python/ejercicios.html#rendimento-académico",
     "title": "🛠️ Ejercicios",
     "section": "6 Rendimento académico",
     "text": "6 Rendimento académico\nSe cuenta con el siguiente diccionario que asocia nombres de estudiantes con una lista de sus calificaciones:\nnotas = {\n    \"Ana\": [8, 9, 10],\n    \"Luis\": [6, 7, 8, 3, 9],\n    \"Carla\": [10, 9, 10],\n    \"Marcos\": [5, 6],\n    \"Sofía\": [7, 7, 8],\n    \"Pedro\": [6, 4, 5, 6, 3, 8],\n    \"Lucía\": [9, 8, 10, 9]\n}\nImplemente una función que resuma el rendimiento académico de los estudiantes. La función debe recibir el diccionario de notas y un argumento adicional llamado modo. Según el valor de modo, se debe devolver un nuevo diccionario con la siguiente información:\n\nSi modo es \"promedio\", se debe devolver el promedio de notas por estudiante.\nSi modo es \"proporcion\", se debe devolver la proporción de exámenes aprobados por estudiante (se considera aprobado todo valor mayor o igual a 6).",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#índice-de-precios",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#índice-de-precios",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#índice-de-precios",
+    "href": "practica/01_programacion_en_python/ejercicios.html#índice-de-precios",
     "title": "🛠️ Ejercicios",
     "section": "7 Índice de precios",
     "text": "7 Índice de precios\nSe cuenta con la serie mensual del Índice de Precios al Consumidor (IPC) del año 2024:\nipc_2024 = [20.6, 13.2, 11.0, 8.8, 4.2, 4.6, 4.0, 4.2, 3.5, 2.7, 2.4, 2.7]\nRealice los siguientes cálculos y análisis:\n\nDetermine el menor y el mayor índice reportado durante el año.\nCalcule el IPC promedio mensual del 2024.\nEncuentre la diferencia entre el IPC mínimo y máximo del año.\n\n¿En qué mes se registró la inflación más alta?\n\nCalcule la inflación mediana del 2024.\n¿Cómo podría calcular el rango del IPC (diferencia entre el valor máximo y mínimo) sin usar las funciones min() ni max()?",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#resúmenes-estadísticos",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#resúmenes-estadísticos",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#resúmenes-estadísticos",
+    "href": "practica/01_programacion_en_python/ejercicios.html#resúmenes-estadísticos",
     "title": "🛠️ Ejercicios",
     "section": "8 Resúmenes estadísticos",
     "text": "8 Resúmenes estadísticos\nCree funciones que, dada una lista de números, calculen los siguientes resúmenes estadísticos:\n\nLa media \\[\n\\text{media}(X) = \\frac{1}{n}\\sum_{i=1}^n{x_i}\n\\]\nEl rango \\[\n\\text{rango}(X) = \\text{max}(X) - \\text{min}(X)\n\\]\nLa varianza \\[\n\\text{var}(X) = \\frac{1}{n}\\sum_{i=1}^n{(x_i - \\bar{x})^2}\n\\]\nEl desvío estándar \\[\n\\text{sd}(X) = \\sqrt{\\text{var}(X)}\n\\]\nLa mediana \\[\n\\begin{array}{lr}\n\\text{mediana}(X) = x_{(\\frac{n + 1}{2})} & \\text{Si } n \\text{ es impar} \\\\\n\\text{mediana}(X) = \\frac{x_{(\\frac{n}{2})} + x_{(\\frac{n}{2}+1)}}{2} & \\text{Si } n \\text{ es par}\n\\end{array}\n\\]\ndonde los \\(x_{(i)}\\) están ordenados de manera ascendente.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#validación-de-dni",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#validación-de-dni",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#validación-de-dni",
+    "href": "practica/01_programacion_en_python/ejercicios.html#validación-de-dni",
     "title": "🛠️ Ejercicios",
     "section": "9 Validación de DNI",
     "text": "9 Validación de DNI\nCrear una función que dada una cadena de caracteres verifique si se corresponde con un DNI.\nSi es un DNI, devolver True. Caso contrario, devolver False.\nA tener en cuenta:\n\nAlgunos ejemplos de DNI válidos\n\n40.094.127\n19053512\n6.392.780\n\nDNI no válidos\n\n40,094,127\n19-053-512\n123456",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#la-física-del-rebote",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#la-física-del-rebote",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#la-física-del-rebote",
+    "href": "practica/01_programacion_en_python/ejercicios.html#la-física-del-rebote",
     "title": "🛠️ Ejercicios",
     "section": "10 La física del rebote",
     "text": "10 La física del rebote\nUna pelota de goma es lanzada desde una altura inicial de 100 metros. Cada vez que toca el suelo, rebota alcanzando una altura equivalente a 3/5 de la altura desde la que cayó.\nEscriba un programa que imprima una tabla mostrando las alturas alcanzadas por la pelota en cada uno de sus primeros 10 rebotes.\nLuego, implemente este programa como una función que reciba dos parámetros:\n\nAltura inicial desde la que se lanza la pelota.\nCantidad de rebotes que se desea calcular.\n\nLa función debe devolver una lista con las alturas alcanzadas en cada rebote.\n\nPunto extra\nModifique la función para que considere un rebote como “significativo” solo si la altura alcanzada es mayor o igual a un valor mínimo especificado (por ejemplo, 1 centímetro).\nSi la pelota no alcanza esta altura mínima en algún rebote, se considera que ha completado su trayectoria y queda quieta. En este caso, la función debe devolver únicamente los valores correspondientes a los “rebotes significativos”.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#un-montón-de-plata",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#un-montón-de-plata",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#un-montón-de-plata",
+    "href": "practica/01_programacion_en_python/ejercicios.html#un-montón-de-plata",
     "title": "🛠️ Ejercicios",
     "section": "11 Un montón de plata",
     "text": "11 Un montón de plata\nUna mañana ponés un billete en la vereda al lado del Monumento a la Bandera. A partir de ahí, cada día vas y duplicás la cantidad de billetes, apilándolos prolijamente. ¿Cuánto tiempo pasa antes de que la pila de billetes sea más alta que la del Monumento?\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nAlgunas constantes útiles para resolver el problema:\nbillete_grosor = 0.11 * 0.001  # grosor de un billete en metros\naltura_monumento = 70          # altura en metros\nSugerencia: Usar un bucle while para realizar el cálculo.\n\n\n\n\nPunto extra\nEscribe una función que permita determinar la cantidad de días necesarios para superar cualquier altura arbitraria.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#la-conjetura-de-collatz",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#la-conjetura-de-collatz",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#la-conjetura-de-collatz",
+    "href": "practica/01_programacion_en_python/ejercicios.html#la-conjetura-de-collatz",
     "title": "🛠️ Ejercicios",
     "section": "12 La conjetura de Collatz",
     "text": "12 La conjetura de Collatz\nLa conjetura de Collatz dice:\n\nSi tomamos un número natural cualquiera, su secuencia de Collatz termina llegando siempre al número 1.\n\nSecuencia de Collatz:\n\nSi el número es par, se divide entre 2.\nSi el número es impar, se multiplica por 3 y se le suma 1.\n\n\\[\nf(n) =\n\\begin{cases}\n    \\displaystyle \\frac{n}{2} & \\text{si } n \\text{ es par,} \\\\ \\\\\n    3n + 1 & \\text{si } n \\text{ es impar.}\n\\end{cases}\n\\]\nEscribir una función que calcule la secuencia de Collatz para un número natural cualquiera.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\n\nUtilizar bucle while.\nEl bucle debe correr solo cuando el valor de la secuencia sigue siendo mayor a 1. Si es 1, hay que frenar.\nInsertar los elementos de la secuencia en una lista.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#adivina-el-número",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#adivina-el-número",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#adivina-el-número",
+    "href": "practica/01_programacion_en_python/ejercicios.html#adivina-el-número",
     "title": "🛠️ Ejercicios",
     "section": "13 Adivina el número",
     "text": "13 Adivina el número\nEscriba un programa que implemente el clásico juego “Adivina el número”. El programa debe:\n\nTener un número secreto (entero) que el usuario debe adivinar.\nSolicitar al usuario que ingrese un número.\nSi el número ingresado no coincide con el número secreto:\n\nInformar si el número ingresado es mayor o menor que el número secreto.\nPedir al usuario que intente nuevamente.\n\nSi el usuario adivina el número, el programa debe terminar mostrando un mensaje de felicitaciones.\n\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nPara generar números aleatorios enteros en un rango dado puede utilizar randint() del módulo random:\nimport random\nrandom.randint(-100, 100)     # Genera un número aleatorio entre -100 y 100\n\n\n\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nEl programa que resuelve este problema realiza una cantidad de iteraciones que se desconoce al momento de escribirlo. La solución típica a este tipo de problema involucra el uso de while True junto a la sentencia break.\nwhile True:\n    # realizar alguna accion\n    if condicion_de_salida:\n        break\n\n\n\n\nPunto extra\nImplemente una versión de este programa donde el usuario cuenta con 10 intentos.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-pythonico",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-pythonico",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#conteo-de-caracteres-pythonico",
+    "href": "practica/01_programacion_en_python/ejercicios.html#conteo-de-caracteres-pythonico",
     "title": "🛠️ Ejercicios",
     "section": "14 Conteo de caracteres Pythonico",
     "text": "14 Conteo de caracteres Pythonico\nLos diccionarios en Python cuentan con un método .get() que devuelve el valor asociado a una clave. Este método permite pasarle un segundo argumento con un valor que se devuelve cuando no se encuentra un elemento asociado a la clave que le pasamos. Por ejemplo:\nd = {\"a\": 1, \"b\": 20}\nd.get(\"b\", 0)\n20\nd.get(\"c\", 0)\n0\nModifique la función contar_caracteres del ejercicio Conteo de caracteres utilizando el metodo .get() para obtener una implementación más sencilla. Así, debería poder eliminar el bloque if.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#validador-de-contraseñas",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#validador-de-contraseñas",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#validador-de-contraseñas",
+    "href": "practica/01_programacion_en_python/ejercicios.html#validador-de-contraseñas",
     "title": "🛠️ Ejercicios",
     "section": "15 Validador de contraseñas 😱",
     "text": "15 Validador de contraseñas 😱\nEscriba un programa que solicite al usuario una contraseña y verifique que cumpla con las siguientes condiciones:\n\nDebe tener entre de 8 y 24 caracteres.\nDebe incluir letras, números y caracteres especiales (@#$%^&*()).\n\nSi la contraseña no es válida, el programa debe informar al usuario qué condición no se cumple y permitirle ingresar una nueva contraseña. El proceso se repite hasta que el usuario ingrese una contraseña válida o decida no continuar.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-ii",
-    "href": "practica/01_introduccion_a_python/ejercicios.html#conteo-de-caracteres-ii",
+    "objectID": "practica/01_programacion_en_python/ejercicios.html#conteo-de-caracteres-ii",
+    "href": "practica/01_programacion_en_python/ejercicios.html#conteo-de-caracteres-ii",
     "title": "🛠️ Ejercicios",
     "section": "16 Conteo de caracteres II 😱",
     "text": "16 Conteo de caracteres II 😱\nAgregue a la función contar_frecuencias del ejercicio Conteo de caracteres un argumento llamado orden que admita los valores \"aparicion\", \"alfabetico\" y \"frecuencia\".\nEste argumento debe permitir ordenar las claves del diccionario resultante según el siguiente criterio:\n\n\"aparicion\": mantiene el orden en que las palabras aparecen por primera vez en la lista original.\n\"alfabetico\": ordena las palabras alfabéticamente.\n\"frecuencia\": ordena las palabras por su frecuencia, de mayor a menor.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🛠️ Ejercicios"
     ]
   },
@@ -415,62 +487,62 @@
     "text": "Docentes\n\n\nTomás Capretto\n\n   tomas.capretto@fcecon.unr.edu.ar\n   Consultas: TBD\n\n\n\nLuciano Anselmino\n\n   luciano.anselmino@fcecon.unr.edu.ar\n   Consultas: TBD\n\n\n\nJoaquín Bermejo\n\n   joaquin.bermejo@fcecon.unr.edu.ar\n   Consultas: TBD\n\n\n\nDolores Sollberger\n\n   dolores.sollberger@fcecon.unr.edu.ar\n   Consultas: TBD"
   },
   {
-    "objectID": "practica/01_introduccion_a_python/problemas.html",
-    "href": "practica/01_introduccion_a_python/problemas.html",
+    "objectID": "practica/01_programacion_en_python/problemas.html",
+    "href": "practica/01_programacion_en_python/problemas.html",
     "title": "🧩 Problemas",
     "section": "",
     "text": "En criptografía, el cifrado César es una de las técnicas de cifrado más simples y más usadas.\nEs un tipo de cifrado en el que una letra en el texto original es reemplazada por otra letra que se encuentra un número fijo de posiciones más adelante en el alfabeto.\nPor ejemplo, con un desplazamiento de 3, la A sería sustituida por la D (situada 3 lugares a la derecha de la A), la B sería reemplazada por la E, etc.\n\n\n\n\n\nEscriba una función, y luego un script, que permita cifrar y descifrar cadenas usando el cifrado César con un número arbitrario de posiciones.\nDos funciones incluidas con Python que pueden ser útiles para esta tarea son ord(), que convierte caracteres numéricos a números, y chr(), que realiza la operación inversa.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nPara el cifrado de un único caracter:\n\nDefinir un desplazamiento, por ejemplo 3.\nConvertir el caracter a número usando ord().\nSumarle desplazamiento.\nFinalmente, convertirlo a caracter nuevamente utilizando chr().\n\nY para el descifrado:\n\nConvertir el caracter a número.\nRestarle desplazamiento.\nConvertirlo a caracter nuevamente utilizando chr().\n\nAsí, se debería recuperar el caracter definido al principio.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🧩 Problemas"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/problemas.html#cifrado-césar",
-    "href": "practica/01_introduccion_a_python/problemas.html#cifrado-césar",
+    "objectID": "practica/01_programacion_en_python/problemas.html#cifrado-césar",
+    "href": "practica/01_programacion_en_python/problemas.html#cifrado-césar",
     "title": "🧩 Problemas",
     "section": "",
     "text": "En criptografía, el cifrado César es una de las técnicas de cifrado más simples y más usadas.\nEs un tipo de cifrado en el que una letra en el texto original es reemplazada por otra letra que se encuentra un número fijo de posiciones más adelante en el alfabeto.\nPor ejemplo, con un desplazamiento de 3, la A sería sustituida por la D (situada 3 lugares a la derecha de la A), la B sería reemplazada por la E, etc.\n\n\n\n\n\nEscriba una función, y luego un script, que permita cifrar y descifrar cadenas usando el cifrado César con un número arbitrario de posiciones.\nDos funciones incluidas con Python que pueden ser útiles para esta tarea son ord(), que convierte caracteres numéricos a números, y chr(), que realiza la operación inversa.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nPara el cifrado de un único caracter:\n\nDefinir un desplazamiento, por ejemplo 3.\nConvertir el caracter a número usando ord().\nSumarle desplazamiento.\nFinalmente, convertirlo a caracter nuevamente utilizando chr().\n\nY para el descifrado:\n\nConvertir el caracter a número.\nRestarle desplazamiento.\nConvertirlo a caracter nuevamente utilizando chr().\n\nAsí, se debería recuperar el caracter definido al principio.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🧩 Problemas"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/problemas.html#números-aleatorios",
-    "href": "practica/01_introduccion_a_python/problemas.html#números-aleatorios",
+    "objectID": "practica/01_programacion_en_python/problemas.html#números-aleatorios",
+    "href": "practica/01_programacion_en_python/problemas.html#números-aleatorios",
     "title": "🧩 Problemas",
     "section": "2 Números aleatorios",
     "text": "2 Números aleatorios\nConstruya un programa en Python que genere una cantidad determinada de números aleatorios uniformes dentro de un rango definido por el usuario. El programa debe:\n\nSolicitar al usuario la cantidad de números a generar y los valores mínimo y máximo del rango.\nGenerar los números aleatorios\nGuardar los números en un archivo de texto, uno por línea.\nOfrecer la opción de mostrar un resumen estadístico con mínimo, máximo, media y desvío estándar, solo si el usuario lo solicita.\n\nPara resolver este problema utilice el módulo random y las funciones desarrolladas en el ejercicio Resúmenes estadísticos guardadas en un módulo llamado estadistica.py.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🧩 Problemas"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/problemas.html#mensaje-al-descubierto",
-    "href": "practica/01_introduccion_a_python/problemas.html#mensaje-al-descubierto",
+    "objectID": "practica/01_programacion_en_python/problemas.html#mensaje-al-descubierto",
+    "href": "practica/01_programacion_en_python/problemas.html#mensaje-al-descubierto",
     "title": "🧩 Problemas",
     "section": "3 Mensaje al descubierto",
     "text": "3 Mensaje al descubierto\nResulta que Franco, un amigo que estudia Ciencias de la Computación en la FCEIA, te envía por WhatsApp un archivo de texto plano con mensajes “encriptados” usando caracteres sobrantes y símbolos extraños:\n    !!!,.,  aY??/u/DAM**e,, se =m!!e\n&&M&&e v!o!?LV...I.O /L/*oC/*o\n        __?e_?l//+ T++**e/*Cl!?aD==*O**\nTiene sentido pensar que está experimentando con nuevos algoritmos de cifrado y, de paso, te lanza el reto de descifrarlo.\nTu misión es escribir un programa que:\n\nLea un archivo de texto plano cualquiera.\nMuestre en pantalla su contenido original (tal cual llega).\nAplique un proceso de limpieza basado en las siguientes reglas:\n\nEliminar todos los caracteres +, *, -, /, =, !, ?, & y _.\nReemplazar cualquier secuencia de espacios múltiples por un solo espacio.\nHomogeinizar la capitalización de los caracteres.\nConservar los saltos de línea tal cual aparecen en el archivo original.\n\nMuestre en pantalla la versión desencriptada del texto.\nGuarde la versión limpia en un nuevo archivo de texto.\n\nEl usuario debe poder especificar el nombre del archivo de salida.\nSi no lo hace, se generará uno con el sufijo _limpio antes de la extensión original (por ejemplo, secreto.txt → secreto_limpio.txt).",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🧩 Problemas"
     ]
   },
   {
-    "objectID": "practica/01_introduccion_a_python/problemas.html#código-morse",
-    "href": "practica/01_introduccion_a_python/problemas.html#código-morse",
+    "objectID": "practica/01_programacion_en_python/problemas.html#código-morse",
+    "href": "practica/01_programacion_en_python/problemas.html#código-morse",
     "title": "🧩 Problemas",
     "section": "4 Código Morse",
     "text": "4 Código Morse\nEl código Morse es un sistema utilizado para representar letras mediante combinaciones específicas de señales cortas y largas, denominadas puntos (.) y rayas (-). A continuación se muestra un diccionario con el mapeo de caracteres alfabéticos, dígitos del 0 al 9 y algunos símbolos de puntuación comunes:\nmapeo_morse = {\n    \"A\": \".-\",\n    \"B\": \"-...\",\n    \"C\": \"-.-.\",\n    \"D\": \"-..\",\n    \"E\": \".\",\n    \"F\": \"..-.\",\n    \"G\": \"--.\",\n    \"H\": \"....\",\n    \"I\": \"..\",\n    \"J\": \".---\",\n    \"K\": \"-.-\",\n    \"L\": \".-..\",\n    \"M\": \"--\",\n    \"N\": \"-.\",\n    \"O\": \"---\",\n    \"P\": \".--.\",\n    \"Q\": \"--.-\",\n    \"R\": \".-.\",\n    \"S\": \"...\",\n    \"T\": \"-\",\n    \"U\": \"..-\",\n    \"V\": \"...-\",\n    \"W\": \".--\",\n    \"X\": \"-..-\",\n    \"Y\": \"-.--\",\n    \"Z\": \"--..\",\n    \"1\": \".----\",\n    \"2\": \"..---\",\n    \"3\": \"...--\",\n    \"4\": \"....-\",\n    \"5\": \".....\",\n    \"6\": \"-....\",\n    \"7\": \"--...\",\n    \"8\": \"---..\",\n    \"9\": \"----.\",\n    \"0\": \"-----\",\n    \", \": \"--..--\",\n    \".\": \".-.-.-\",\n}\nEscriba una función en Python que permita convertir cualquier palabra a código Morse utilizando este diccionario. Luego, escriba otra función que haga exactamente lo contrario: dada una secuencia en código Morse, debe recuperar la palabra original. Finalmente, incorpore ambas funciones en un script principal que combine ambas funciones y permita encriptar o desencriptar texto desde un archivo de texto plano. El programa debe recibir:\n\nEl nombre del archivo de entrada.\nEl nombre del archivo de salida.\nLa operación a realizar (encriptar o desencriptar).\n\nAyuda: Para indicar espacios en código Morse utilice /.",
     "crumbs": [
       "Práctica",
-      "U1 - Introducción a Python",
+      "U1 - Programación en Python",
       "🧩 Problemas"
     ]
   },
@@ -530,87 +602,99 @@
     ]
   },
   {
-    "objectID": "teoria/01_introduccion_a_python/clase_1.html",
-    "href": "teoria/01_introduccion_a_python/clase_1.html",
-    "title": "Clase 1",
+    "objectID": "teoria/01_programacion_en_python/02_funciones.html",
+    "href": "teoria/01_programacion_en_python/02_funciones.html",
+    "title": "Funciones",
     "section": "",
-    "text": "Python es un lenguaje de programación. Pero podemos pensarlo intuitivamente como una super-calculadora. Python nos ayuda a hacer lo mismo que una calculadora, y como vamos a ver, mucho más.\nEmpecemos utilizando a Python como si fuese una calculadora. Para eso vamos a crear un bloque de código en la notebook y escribimos algunas cuentas tal como lo hacemos en cualquier calculadora.\n\n2 * 3\n\n6\n\n\nNo tenemos la necesidad de pisar el código todo el tiempo. Podemos escribir nuevas celdas de código, y así podemos ir mostrando diferentes cómputos y sus resultados.\n\n100 / 3.5\n\n28.571428571428573\n\n\n\n20 + 5\n\n25\n\n\n\n13 - 3\n\n10\n\n\n\n10 * 5.5\n\n55.0",
+    "text": "Una función puede pensarse como un “mini-programa” dentro de un programa más grande. Su propósito es cumplir una tarea u objetivo específico, de forma independiente del resto del código.\nEl uso de funciones tiene varias ventajas:\n\nReutilización de código: se define una sola vez y se ejecuta cuando sea necesario.\nMejor organización: dividen el programa en partes más fáciles de leer y mantener.\nModularidad: permiten construir programas como bloques independientes que pueden combinarse entre sí (¡funciones dentro de funciones!).\n\nConsideremos el siguiente caso donde se busca calcuar el precio final de un producto, considerando impuestos y descuentos.\n\nprecio_base = 800   # Precio del producto ($800)\nimpuesto = 0.21     # Impuesto (21%)\ndescuento = 0.10    # Descuento (10%)\n\nprecio_final = precio_base * (1 + impuesto) * (1 - descuento)\nprecio_final\n\n871.2\n\n\n¿Qué pasa si queremos calcular el precio final para otros productos con diferentes precios, impuestos o descuentos?\nUna opción es repetir el código tantas veces como sea necesario…\n\nprecio_base = 500   # Precio del producto ($500)\nimpuesto = 0.105    # Impuesto (10.5%)\ndescuento = 0.0     # Descuento (0%)\n\nprecio_final = precio_base * (1 + impuesto) * (1 - descuento)\nprecio_final\n\n552.5\n\n\n\nprecio_base = 2000  # Precio del producto ($2000)\nimpuesto = 0.21     # Impuesto (21%)\ndescuento = 0.20    # Descuento (20%)\n\nprecio_final = precio_base * (1 + impuesto) * (1 - descuento)\nprecio_final\n\n1936.0\n\n\nOtra opción, mucho mas conveniente, es utilizar funciones.\n\ndef calcular_precio(precio_base, impuesto, descuento):\n    resultado = precio_base * (1 + impuesto) * (1 - descuento)\n    return resultado\n\nLuego, para utilizar la función simplemente la llamamos (o invocamos).\n\ncalcular_precio(800, 0.21, 0.10)\n\n871.2\n\n\nTambién es posible indicar los valores de los argumentos utilizando sus nombres.\n\ncalcular_precio(precio_base=2000, impuesto=0.21, descuento=0.20)\n\n1936.0",
     "crumbs": [
       "Teoría",
-      "U1 - Introducción a Python",
-      "Clase 1"
+      "U1 - Programación en Python",
+      "Funciones"
     ]
   },
   {
-    "objectID": "teoria/01_introduccion_a_python/clase_1.html#una-super-calculadora",
-    "href": "teoria/01_introduccion_a_python/clase_1.html#una-super-calculadora",
-    "title": "Clase 1",
+    "objectID": "teoria/01_programacion_en_python/02_funciones.html#qué-es-una-función",
+    "href": "teoria/01_programacion_en_python/02_funciones.html#qué-es-una-función",
+    "title": "Funciones",
     "section": "",
-    "text": "Python es un lenguaje de programación. Pero podemos pensarlo intuitivamente como una super-calculadora. Python nos ayuda a hacer lo mismo que una calculadora, y como vamos a ver, mucho más.\nEmpecemos utilizando a Python como si fuese una calculadora. Para eso vamos a crear un bloque de código en la notebook y escribimos algunas cuentas tal como lo hacemos en cualquier calculadora.\n\n2 * 3\n\n6\n\n\nNo tenemos la necesidad de pisar el código todo el tiempo. Podemos escribir nuevas celdas de código, y así podemos ir mostrando diferentes cómputos y sus resultados.\n\n100 / 3.5\n\n28.571428571428573\n\n\n\n20 + 5\n\n25\n\n\n\n13 - 3\n\n10\n\n\n\n10 * 5.5\n\n55.0",
+    "text": "Una función puede pensarse como un “mini-programa” dentro de un programa más grande. Su propósito es cumplir una tarea u objetivo específico, de forma independiente del resto del código.\nEl uso de funciones tiene varias ventajas:\n\nReutilización de código: se define una sola vez y se ejecuta cuando sea necesario.\nMejor organización: dividen el programa en partes más fáciles de leer y mantener.\nModularidad: permiten construir programas como bloques independientes que pueden combinarse entre sí (¡funciones dentro de funciones!).\n\nConsideremos el siguiente caso donde se busca calcuar el precio final de un producto, considerando impuestos y descuentos.\n\nprecio_base = 800   # Precio del producto ($800)\nimpuesto = 0.21     # Impuesto (21%)\ndescuento = 0.10    # Descuento (10%)\n\nprecio_final = precio_base * (1 + impuesto) * (1 - descuento)\nprecio_final\n\n871.2\n\n\n¿Qué pasa si queremos calcular el precio final para otros productos con diferentes precios, impuestos o descuentos?\nUna opción es repetir el código tantas veces como sea necesario…\n\nprecio_base = 500   # Precio del producto ($500)\nimpuesto = 0.105    # Impuesto (10.5%)\ndescuento = 0.0     # Descuento (0%)\n\nprecio_final = precio_base * (1 + impuesto) * (1 - descuento)\nprecio_final\n\n552.5\n\n\n\nprecio_base = 2000  # Precio del producto ($2000)\nimpuesto = 0.21     # Impuesto (21%)\ndescuento = 0.20    # Descuento (20%)\n\nprecio_final = precio_base * (1 + impuesto) * (1 - descuento)\nprecio_final\n\n1936.0\n\n\nOtra opción, mucho mas conveniente, es utilizar funciones.\n\ndef calcular_precio(precio_base, impuesto, descuento):\n    resultado = precio_base * (1 + impuesto) * (1 - descuento)\n    return resultado\n\nLuego, para utilizar la función simplemente la llamamos (o invocamos).\n\ncalcular_precio(800, 0.21, 0.10)\n\n871.2\n\n\nTambién es posible indicar los valores de los argumentos utilizando sus nombres.\n\ncalcular_precio(precio_base=2000, impuesto=0.21, descuento=0.20)\n\n1936.0",
     "crumbs": [
       "Teoría",
-      "U1 - Introducción a Python",
-      "Clase 1"
+      "U1 - Programación en Python",
+      "Funciones"
     ]
   },
   {
-    "objectID": "teoria/01_introduccion_a_python/clase_1.html#tipos-de-datos",
-    "href": "teoria/01_introduccion_a_python/clase_1.html#tipos-de-datos",
-    "title": "Clase 1",
-    "section": "Tipos de datos",
-    "text": "Tipos de datos\nComo cualquier lenguaje de programación, Python ofrece diferentes tipos de datos. ¡Una super-calculadora no se puede rebajar a trabajar solo con números!\nCada tipo de dato nos ayuda a resolver una tarea distinta. Por ejemplo, si quiero hacer operaciones matemáticas voy a necesitar de números, pero si quiero escribir un correo electrónico voy a necesitar de texto.\nA continuación vamos a introducir los tipos de datos más básicos que Python nos ofrece.\nMás adelante también veremos otros tipos de datos más complejos que nos van a permitir resolver problemas más interesantes.\n\nNúmeros\nAcabamos de hacer cuentas matemáticas somo si tuvieramos una calculadora. Para eso usamos números, los conocidos de toda la vida.\nSin notarlo, utilizamos dos tipos de números distintos: los números de tipo entero (int) y los números de tipo flotante (float).\nLo siguiente es un número entero:\n\n50\n\n50\n\n\nY el siguiente es un ejemplo de un número flotante:\n\n36.8\n\n36.8\n\n\nUtilizando la función type() Python nos devuelve el tipo del objeto.\n\ntype(10)\n\nint\n\n\n\ntype(10.5)\n\nfloat\n\n\n\ntype(10.0)\n\nfloat\n\n\n\ntype(10.)\n\nfloat\n\n\n\n\n\n\n\n\nObservación 👀\n\n\n\nA diferencia de R, Python no es un lenguaje vectorizado. Por lo tanto, los tipos int y float representan valores escalares, no vectores de longitud 1 como ocurre en R.\nEsta observación aplica a todos los tipos de datos elementales que vienen a continuación.\n\n\n\n\nCadenas de texto\nPara ser una super-calculadora, Python tiene que ser capaz de trabajar con objetos más complejos que los números.\nUn ejemplo de esto es el texto. El texto se representa con un objeto llamado cadena de texto.\nPara construir una cadena de texto se utilizan comillas.\nEstas se ponen al principio y al final del texto e indican el principio y el final de la cadena. Las comillas pueden ser dobles \" o simples '.\n\n\"Programando en Python\"\n\n'Programando en Python'\n\n\n\n'Con comillas simples, también.'\n\n'Con comillas simples, también.'\n\n\nEn Python no hay diferencia entre usar comillas simples ' o dobles \", pero es importante que el tipo de comilla que se usa para abrir la cadena sea el mismo que se usa para cerrarla.\nCuando imprimimos una cadena, las comillas no se muestran en la salida. Para imprimir cualquier objeto de Python utilizamos la función print().\n\nprint('Con comillas simples, ¡también!')\n\nCon comillas simples, también!\n\n\nUna forma un poco más exótica, pero muy útil, de crear cadenas es utilizando comillas triples. Con esta sintaxis, se repiten tres comillas seguidas, lo que permite definir cadenas de texto que ocupan varias líneas.\n\nprint(\"\"\"Se puede escribir texto\nen varias lineas.\n¡Está muy bueno!\"\"\")\n\nSe puede escribir texto\nen varias lineas.\n¡Está muy bueno!\n\n\nOtra manera de escribir texto que abarca múltiples líneas es usando el carácter especial \\n, que representa un salto de línea.\n\nprint(\"Primera línea\\nsegunda línea\\ntercera línea.\")\n\nPrimera línea\nsegunda línea\ntercera línea.\n\n\nEn cambio, si mostramos una representación del texto (sin usar print()), los \\n sí se visualizan.\n\n\"Primera línea\\nsegunda línea\\ntercera línea.\"\n\n'Primera línea\\nsegunda línea\\ntercera línea.'\n\n\n\n\n\n\n\n\n¡Atencion! 🤓\n\n\n\n¿Cuál es la diferencia entre usar print() y no usarlo?\n\nCuando usamos print() se imprime el objeto de una manera humanamente legible.\nCuando no lo usamos, se muestra una representación del objeto. Esta representación tiene que ser lo menos ambigua posible.\n\nPor este motivo es que se muestran las comillas a la hora de representar una cadena.\n\n\n\n\nOtra situación en la que usar print() genera una diferencia es cuando se quieren mostrar varios objetos. Por ejemplo, comparemos el resultado de los siguientes bloques:\n\n\"mensaje 1\"\n10\n\"mensaje 2\"\n\n'mensaje 2'\n\n\n\nprint(\"mensaje 1\")\nprint(10)\nprint(\"mensaje 2\")\n\nmensaje 1\n10\nmensaje 2\n\n\n\n\nLógicos (o Booleanos)\nComo veremos más adelante, nuestros programas suelen tener que decidir entre diferentes acciones a tomar según se cumpla o no cierta condición.\nPara representar esta situación utilizamos un tipo especial de dato conocido como lógico o booleano, que puede tomar únicamente dos valores: True o False.\nSi la condición se cumple, el resultado será True; de lo contrario, será False.\n\nTrue\n\nTrue\n\n\n\nFalse\n\nFalse\n\n\n\ntype(True)\n\nbool\n\n\n\ntype(False)\n\nbool\n\n\n\n\n\n\n\n\nReseña histórica 📜\n\n\n\nEste tipo de datos se llama Booleano en honor al matemático George Boole.\n\n\n\n\nNulo\nEl valor nulo, llamado None en Python, representa la ausencia de valor o el vacío.\nSe utiliza habitualmente para indicar que algo no tiene un valor asignado.\nSi intentamos mostrar el valor de None, veremos que no aparece nada.\n\nNone\n\nEn cambio, si imprimimos el objeto None, vemos el mensaje None.\n\nprint(None)\n\nNone\n\n\n¿Y cuál es su tipo?\n\ntype(None)\n\nNoneType\n\n\nSolamente los objetos None son del tipo NoneType.\n\n\n\n\n\n\n¿Por qué existe el valor nulo? 🤔\n\n\n\nMuchas veces nuestro programa, o alguna parte del mismo, realiza una tarea que no devuelve ningún resultado.\nPodríamos ponernos de acuerdo en representar “ningún resultado” usando un número (0), una cadena vacía (\"\") o algo parecido. Pero estos valores representan algo específico, no la ausencia total de valor.\nPara expresar claramente que no hay ningún resultado, Python incluye un valor especial llamado None.\n\n\nEjemplos\n\nUn usuario completa un formulario con datos personales, pero algunos campos no son obligatorios y quedan sin completar.\nUna función busca un elemento en una lista; cuando no encuentra lo buscado, devuelve un valor especial indicando que el resultado está ausente.\n\nEn general, cuando se quiera representar la ausencia de información se utilizará None.\n\n\n\n\n\n\nObservación 👀\n\n\n\nEn R existen dos tipos de datos para representar valores faltantes: NULL y NA. El None de Python equivale a NULL en R, ya que ambos indican ausencia de valor.\nPor otro lado, NA en R representa un valor existente pero desconocido, por ejemplo, porque se ha perdido. Python no ofrece un tipo de dato equivalente de forma nativa, aunque algunas librerías sí lo implementan.\n\n\n\n\nConversión entre tipos de datos\nQue existan distintos tipos de datos no significa que un objeto de un tipo no pueda “convertirse” a otro.\nEn muchos casos es posible convertir entre tipos de datos. Por ejemplo, un número siempre se puede convertir a una cadena de caracteres, pero no cualquier cadena puede convertirse a un número.\nPara convertir un objeto a otro tipo utilizamos funciones con el nombre del tipo al que queremos convertir, como str(), int() o bool(). Estas funciones reciben como argumento el objeto a convertir.\nVeamos algunos ejemplos:\n\nstr(256)\n\n'256'\n\n\n\nstr(None)\n\n'None'\n\n\n\nint(165.5)\n\n165\n\n\n\nint(165.8)\n\n165\n\n\n\nint(\"165\")\n\n165\n\n\n\nfloat(\"165.0\")\n\n165.0\n\n\n\n\nResumen\n\nPython tiene distintos tipos de datos.\nCada tipo de dato es útil para resolver diferentes problemas.\n\nA lo largo del curso veremos muchísimos ejemplos.\n\nAl principio, tener varios tipos de datos puede parecer complejo.\n\nSin embargo, nos resultarán muy naturales a medida que los usemos para resolver problemas concretos.\n\n\n\n\n\n\n\n\n\nTipo de dato\nEjemplos\n\n\n\n\nNúmeros enteros (int)\n-2, -1, 0, 10, 200\n\n\nNúmeros de punto flotante (float)\n-200.789, -1.0, 0.0, 17.8\n\n\nCadenas de texto (str)\n\"a\", \"abc\", \"Rosario, Santa Fe\"\n\n\nBooleanos (bool)\nTrue, False\n\n\nValor nulo (NoneType)\nNone",
+    "objectID": "teoria/01_programacion_en_python/02_funciones.html#definición-de-funciones",
+    "href": "teoria/01_programacion_en_python/02_funciones.html#definición-de-funciones",
+    "title": "Funciones",
+    "section": "Definición de funciones",
+    "text": "Definición de funciones\nAnalicemos las diferentes partes que forman la definición de una función en Python:\n\n\n\n\n\n\nLa palabra clave def:\n\nMarca el inicio de la definición de una función.\nEs una palabra reservada (keyword).\n\nEl nombre de la función:\n\nDebe seguir las mismas reglas que los nombres de las variables.\n\nLos argumentos de la función, dentro de paréntesis:\n\nSe separan por comas y pueden ser 0 o más.\n\nLos dos puntos (:):\n\nIndican el final de la línea de definición y el inicio del bloque de código.\n\nEl bloque de código, que es el cuerpo de la función:\n\nEs el código que se ejecuta cada vez que llamamos a la función.\n\nLa sentencia return que indica el resultado que devuelve la función.\n\nLuego del return viene el valor o nombre de la variable a devolver.\nEs opcional (ya vamos a ver ejemplos).\n\n\n\n\n\n\n\n\nObservación 👀\n\n\n\nEn R se tiene que asignar de manera explícita una función a una variable. Por ejemplo:\nsumar &lt;- function(x, y) {\n    return(x + y)\n}\nEn cambio, en Python, la sentencia def define la función y le asigna un nombre en un mismo paso.",
     "crumbs": [
       "Teoría",
-      "U1 - Introducción a Python",
-      "Clase 1"
+      "U1 - Programación en Python",
+      "Funciones"
     ]
   },
   {
-    "objectID": "teoria/01_introduccion_a_python/clase_1.html#variables",
-    "href": "teoria/01_introduccion_a_python/clase_1.html#variables",
-    "title": "Clase 1",
-    "section": "Variables",
-    "text": "Variables\n¿Es necesario escribir explícitamente los valores con los que trabajamos cada vez que los usamos? Afortunadamente, la respuesta es no.\nLos lenguajes de programación más populares permiten usar variables.\nPodemos pensar las variables como etiquetas o nombres que asignamos a los objetos en nuestro programa.\nUna vez creada una variable con cierto valor, podemos usar directamente su nombre en lugar de volver a escribir el valor completo.\n\nmensaje = \"¡Hola, curso!\"\nprint(mensaje)\n\n¡Hola, curso!\n\n\n\nprint(\"¡Hola, curso!\")\n\n¡Hola, curso!\n\n\nPara crear una variable se necesita:\n\nEl nombre.\nEl operador de asignación.\nEl valor que queremos asignar a la variable.\n\nEn nuestro caso, el nombre de la variable es mensaje y el valor es \"¡Hola, curso!\".\nLuego, cuando accedemos a la variable mensaje dentro de la función print(), Python nos devuelve el valor de la variable, es decir, ¡Hola, curso!\".\nVeamos otros ejemplos…\n\npi = 3.14159\nfruta_favorita = \"manzana\"\npython_bueno = True\n\nEn el siguiente diagrama se muestra cómo las variables que creamos funcionan simplemente como etiquetas para los valores asignados.\nCada vez que utilizamos una de estas etiquetas, accedemos directamente al valor que representa.\n\n\n\n\n\n\nprint(pi * 10)\n\n31.4159\n\n\n\nfruta_favorita\n\n'manzana'\n\n\n\npython_bueno\n\nTrue\n\n\nLas variables no solo evitan que escribamos repetidamente los mismos valores en nuestro programa, sino que también permiten:\n\nGeneralizar el programa\n\nAl cambiar el valor de una variable, todas las partes del programa que la usan se actualizan automáticamente.\n\nMejorar la legibilidad del código\n\nSi elegimos nombres claros y descriptivos, el programa será mucho más fácil de leer y entender.\n\n\nPor ejemplo, los siguientes bloques de código producen el mismo resultado, pero el segundo es mucho más informativo:\n\n1500 * 8\n\n12000\n\n\n\nprecio = 1500\ncantidad = 8\nprecio * cantidad\n\n12000\n\n\n\nNombres permitidos\nNo todos los nombres que imaginemos se pueden utilizar como variables en Python.\nTenemos que tener en cuenta las siguientes reglas. Los nombres de variables…\n\nSolo pueden contener letras, números y guiones bajos (_).\nDeben comenzar con una letra o un guión bajo, pero no con un número.\n\nPor ejemplo, mensaje_1 es válido, pero 1_mensaje no lo es.\n\nNo pueden contener espacios.\n\nPor eso usamos fruta_favorita en lugar de fruta favorita.\n\nNo pueden ser palabras reservadas de Python.\n\nLas palabras reservadas se encuentran al final de este apunte.\n\n\nAdemás, también vale la pena tener presente estos consejos:\n\nUsá nombres breves pero descriptivos.\n\nnombre es preferible a n.\nfruta_favorita es preferible a frut_fav.\n\nEvitá utilizar tildes, la letra ñ u otros caracteres específicos del castellano.\n\n\n\nEliminar variables\nEs posible que, después de crear nuestras variables y realizar las operaciones necesarias, queramos eliminarlas.\nPara borrar una variable, Python ofrece la sentencia del (del inglés delete, que significa eliminar o borrar).\n\ndel fruta_favorita\n\n\n\nAsignación múltiple\nYa vimos que para asignar (o crear) una variable necesitamos hacer variable = &lt;valor&gt;.\nSi queremos crear varias variables, podemos hacerlo en líneas separadas:\n\npi = 3.1416\ne = 2.7182\n\nprint(pi)\nprint(e)\n\n3.1416\n2.7182\n\n\nUna característica conveniente de Python es que permite asignar múltiples variables en una misma línea:\n\npi, e = 3.1416, 2.7182\n\nprint(pi)\nprint(e)\n\n3.1416\n2.7182\n\n\nOtra ventaja es que las variables no tienen que ser del mismo tipo:\n\na, b, c = 100 + 20, \"un mensaje cualquiera\", None\n\nprint(a)\nprint(b)\nprint(c)\n\n120\nun mensaje cualquiera\nNone\n\n\nEsta técnica es útil para escribir código más conciso, pero no conviene abusar de ella porque puede resultar en código poco legible.",
+    "objectID": "teoria/01_programacion_en_python/02_funciones.html#ejemplos",
+    "href": "teoria/01_programacion_en_python/02_funciones.html#ejemplos",
+    "title": "Funciones",
+    "section": "Ejemplos",
+    "text": "Ejemplos\n\n1. Suma de números\nComencemos con una función super sencilla. La misma se llama sumar, recibe dos argumentos x e y, y devuelve la suma de ambos.\n\ndef sumar(x, y):\n    return x + y\n\n\nsumar(15, 21.9)\n\n36.9\n\n\n\ntype(sumar(15, 21.9))\n\nfloat\n\n\nEl valor que devuelve puede ser tratado como cualquier valor en Python. Por ejemplo, se lo puede asignar a una variable.\n\nresultado = sumar(10, 11)\nresultado\n\n21\n\n\nY el valor de esa variable puede ser luego pasado a una nueva llamada a sumar() (o a cualquier otra función).\n\nsumar(resultado, 2.55)\n\n23.55\n\n\nIncluso es posible pasar expresiones y llamadas a funciones a la hora de pasar un argumento:\n\nsumar(sumar(1, 2), 3)\n\n6\n\n\nEn la línea sumar(sumar(1, 2), 3), Python comienza evaluando la función sumar(). Pero para poder hacerlo, primero necesita conocer los valores de los argumentos. Al revisar el primer argumento, detecta que no es un valor directamente, sino otra llamada a la función sumar(1, 2), por lo que la evalúa primero. El resultado de esa operación es 3, que se toma como valor del primer argumento de la llamada externa. El segundo argumento ya está dado: también es 3. Entonces, Python invoca la función sumar() con los argumentos 3 y 3, cuyo resultado es 6. Finalmente, ese valor se muestra en pantalla.\n\n\n2. Saludo personalizado\nOtro ejemplo sencillo consiste en una función que recibe un nombre e imprime un saludo en pantalla.\n\ndef saludar(nombre):\n    print(\"Hola\", nombre)\n\n\nsaludar(\"Pablo\")\n\nHola Pablo\n\n\nEsta función no devuelve un resultado, sino que utiliza el argumento recibido para mostrar un mensaje en pantalla.\n\nsaludar(\"Juan\" + \" Manuel\")\n\nHola Juan Manuel\n\n\n\n\n3. Sin parámetros\nY podemos tener funciones que no utilicen ningún argumento.\n\ndef decir_hola():\n    print(\"¡Hola!\")\n\n\ndecir_hola()\ndecir_hola()\ndecir_hola()\n\nHola!!\nHola!!\nHola!!\n\n\n\n\n4. Devolución de múltiples valores\nEn Python, las funciones pueden devolver múltiples valores separándolos por comas en la sentencia return. Por ejemplo:\n\ndef potencias(x):\n    cuadrado = x ** 2\n    cubo = x ** 3\n    return cuadrado, cubo\n\npotencias(2)\n\n(4, 8)\n\n\nEl resultado de este tipo de funciones puede ser asignado a múltiples variables. De esta forma, podemos obtener el cuadrado y el cubo de un número con una sola llamada a una función.\n\ncuadrado, cubo = potencias(8)\nprint(cuadrado)\nprint(cubo)\n\n64\n512\n\n\n\n\n\n\n\n\nObservación 👀\n\n\n\nAl igual que en la asignación múltiple de variables, lo que parece ser una función que devuelve múltiples objetos es en realidad una función que devuelve un único objeto llamado tupla (de tipo tuple) que permite la técnica de unpacking.\nNo te preocupes, más adelante vamos a ver bien cómo funciona.",
     "crumbs": [
       "Teoría",
-      "U1 - Introducción a Python",
-      "Clase 1"
+      "U1 - Programación en Python",
+      "Funciones"
     ]
   },
   {
-    "objectID": "teoria/01_introduccion_a_python/clase_1.html#operadores",
-    "href": "teoria/01_introduccion_a_python/clase_1.html#operadores",
-    "title": "Clase 1",
-    "section": "Operadores",
-    "text": "Operadores\nLos operadores son símbolos que se utilizan para realizar operaciones o acciones sobre los objetos con los que estamos trabajando.\nHasta ahora, vimos que podemos tener números, texto, y otras objetos un poco mas extraños como los booleanos e incluso algo que representa a la nada misma.\nA continuación, comenzamos a ver algunas de las tareas que podemos hacer con ellos.\n\nOperadores aritméticos\nPython incluye los mismos operadores aritméticos que solemos utilizar en nuestro día a día para hacer operaciones matemáticas.\nEstos se parecen muchísimo a los que usamos en una calculadora, por lo que podríamos entenderlo incluso sin saber de Python.\nAlgunos operadores son los siguientes:\n\nSuma (+)\nResta (-)\nMultiplicación (*)\nPotencia (**)\nDivisión (/)\nDivisión entera (//)\nMódulo (%)\n\n\nSuma (+)\n\n10 + 25\n\n35\n\n\n\n10.0 + 25.0\n\n35.0\n\n\n\n-8 + 12.1\n\n4.1\n\n\nEl operador suma también puede ser usado con un solo argumento:\n\n+ 8\n\n8\n\n\nEn este caso no modifica en nada al valor 8.\n\n\n\nResta (-)\n\n11 - 8\n\n3\n\n\n\n100 - 100.0\n\n0.0\n\n\n\n-35 - 28\n\n-63\n\n\nEl operador resta también puede ser usado con un solo argumento:\n\n- 7\n\n-7\n\n\n\n\nMultiplicación (*) y potencia (**)\n\n21 * 5\n\n105\n\n\n\n21 * 5.0\n\n105.0\n\n\n\n21.0 * 5.0\n\n105.0\n\n\n\n2 ** 3\n\n8\n\n\n\n2 ** 3.0\n\n8.0\n\n\n\n\n\n\n\n\nConclusiones\n\n\n\nPara las operaciones de suma, resta, multiplicación y potencia se cumple:\n\nSi ambos valores son enteros, el resultado será un entero.\nSi al menos uno de los valores es flotante, el resultado será flotante.\n\n\n\n\n\nDivisión (/ y //)\nPython provee dos operadores distintos para calcular el cociente entre dos números.\n\nEl operador / que calcula la división flotante.\nEl operador // que calcula la división entera.\n\nEl operador / es el que más se utiliza y siempre devuelve un número de tipo flotante.\n\n10 / 5\n\n2.0\n\n\n\n10 / 5.5\n\n1.8181818181818181\n\n\nLa división entera se suele utilizar cuando uno quiere el resultado entero de la división, sin importar si el resto es 0 o no.\n\n10 // 5\n\n2\n\n\n\n10 // 5.5\n\n1.0\n\n\nVeamos los siguientes ejemplos donde comparamos la división flotante con la división entera, utilizando los mismos argumentos.\n\n15 / 4\n\n3.75\n\n\n\n15.0 // 4.0\n\n3.0\n\n\nConclusión: La división entera no redondea el resultado de la división flotante. Más sobre esto debajo.\n\n\nMódulo (%)\nOtro operador relacionado a la división entera es el operador módulo o resto (%).\nEsta operación nos devuelve el resto que se obtiene al realizar la división entera entre dos números.\n\n17 % 3\n\n2\n\n\nDebajo se puede ver la relación entre la división entera y el módulo:\n\n\n\n\n\nAunque ahora pueda parecer difícil encontrar una aplicación práctica para los operadores de división entera // y resto %, más adelante veremos ejemplos donde haremos un uso intensivo de ellos.\n\n\n\n\n\n\nObservación 👀\n\n\n\nProbablemente en R hayan utilizado principalmente el operador /, que también corresponde a la división flotante.\nEn ese lenguaje, los operadores para división entera y resto son %/% y %%, respectivamente.\n\n\n\n\nPrioridad de los operadores\nHasta ahora vimos operaciones bastante sencillas.\nCuando presentamos la suma, realizamos simplemente una suma. Cuando presentamos la multiplicación, hicimos solo una multiplicación.\nPor supuesto, al momento de hacer cálculos podemos combinar los operadores que ya conocemos, de la misma forma en que lo hacemos al resolver cuentas a mano.\nUn punto importante a tener en cuenta es que, al igual que cuando hacemos cuentas a mano, algunas operaciones se resuelven antes que otras, sin importar el orden en que aparecen. Esto ocurre porque algunos operadores tienen mayor prioridad y, por lo tanto, se evalúan antes.\nEn el siguiente ejemplo, ¿por qué se obtienen resultados distintos?\n\n10 - 2 * 4\n\n2\n\n\n\n(10 - 2) * 4\n\n32\n\n\nIndependientemente de que el símbolo + aparezca antes que el símbolo * en una expresión, Python realiza primero la multiplicación.\nAl igual que cuando hacemos cuentas a mano, la multiplicación tiene mayor prioridad que la suma.\nSi queremos forzar a Python a realizar una operación antes que otra, sin importar la prioridad de los operadores, debemos usar paréntesis.\nOtro ejemplo es el siguiente…\n\n7 + 8 / 2\n\n11.0\n\n\n\n(7 + 8) / 2\n\n7.5\n\n\nA continuación se incluye una tabla con los operadores que vimos y la prioridad que tiene cada uno.\nLos operadores que aparecen más arriba tienen mayor prioridad.\nLos operadores que aparecen en la misma fila tienen el mismo nivel de prioridad y se resuelven según el orden en que aparecen en el código (de izquierda a derecha).\n\n\n\n\n\n\n\nOperador\nSignificado\n\n\n\n\n()\nAgrupamiento\n\n\n**\nPotencia\n\n\n*, /, //, %\nMultiplicación, División, División entera, Módulo\n\n\n+, -\nSuma, Resta\n\n\n\nEsta lista es una versión más sencilla y resumida de la tabla de prioridades de todos los operadores que hay en Python. Una versión más completa se puede encontrar en Programiz.\n\n\n\nOperadores lógicos\nLos operadores lógicos se llaman así porque el resultado que devuelven es de tipo lógico (bool).\nEn algunos casos se utilizan símbolos, en otros se utilizan palabras claves.\nA partir de ahora vamos a ver varias operaciones que puedan resultar familiares para quienes hicieron alguna materia relacionada a lógica.\n\nNegación (not)\nDevuelve el opuesto del valor que le pasamos.\n\nnot False\n\nTrue\n\n\n\nnot True\n\nFalse\n\n\n\n\nConjunción o intersección (and)\nEsta operación devuelve True solamente cuando los dos operadores que le pasamos son True.\n\nTrue and True\n\nTrue\n\n\n\nFalse and True\n\nFalse\n\n\n\n\nDisyunción o unión (or)\nEsta operación devuelve True cuando cualquiera de sus argumentos es True.\n\nTrue or False\n\nTrue\n\n\nSolo devuelve False cuando sus dos argumentos son False.\n\nFalse or False\n\nFalse\n\n\n\n\nIdentidad (is)\nExisten dos operadores para evaluar la identidad de los objetos.\n\nOperador is: es True cuando ambos operandos son el mismo objeto\nOperador is not: es True cuando los operandos no son el mismo objeto.\n\n\nFalse is False\n\nTrue\n\n\n\nFalse is True\n\nFalse\n\n\n\nNone is None\n\nTrue\n\n\n\n\nComparación\nPython provee varios operadores para realizar comparaciones entre objetos.\nLos operadores que vemos a continuación son los mismos que aprendimos en la secundaria.\n\n\n\n\n\n\n\nOperador\nDescripción\n\n\n\n\n==\nIgualdad: El resultado es True cuando los dos operandos son iguales.\n\n\n!=\nDesigualdad: El resultado es True si los operandos son distintos.\n\n\n&gt;\nMayor a: El resultado es True si el operando de la izquierda es mayor que el de la derecha.\n\n\n&gt;=\nMayor o igual a: El resultado es True si el operando de la izquierda es mayor o igual que el de la derecha.\n\n\n&lt;\nMenor a: El resultado es True si el operando de la izquierda es menor que el de la derecha.\n\n\n&lt;=\nMenor o igual a: El resultado es True si el operando de la izquierda es menor o igual que el de la derecha.\n\n\n\nAlgunos ejemplos…\n\n10 &gt; 5\n\nTrue\n\n\n\n10 &gt; 5 + 3\n\nTrue\n\n\n\n0 &lt; 0\n\nFalse\n\n\n\n1 &gt;= 1\n\nTrue\n\n\n\n10.0 != 10\n\nFalse\n\n\n\n10.0 == 10\n\nTrue\n\n\nA pesar de que 10.0 es de tipo flotante y 10 es de tipo entero, vemos que la comparación de igualdad == dice que son iguales.\nNo siempre que comparemos objetos de distinto tipo va a suceder algo así.\nLa comparación de cadenas de texto distingue mayúsculas de minúsculas\n\n\"UNR\" == \"unr\"\n\nFalse\n\n\nEs posible comparar objetos de distinto tipo, como lo vimos en el ejemplo anterior donde comparamos 10 y 10.0.\nSalvo casos particulares, como son los valores numéricos, estos objetos son considerados siempre distintos.\n\n\"10\" == 10\n\nFalse\n\n\n\n\"False\" == False\n\nFalse\n\n\nEs posible combinar mas de una comparación en la misma línea.\n\n1 &lt; 2 and 2 &lt; 3\n\nTrue\n\n\nIncluso es posible omitir el operador and y tener una expresión más clara\n\n1 &lt; 2 &lt; 3\n\nTrue\n\n\n\n-5 &lt; -4 &lt; -3\n\nTrue\n\n\nTambién podemos mezclar not, and y or a gusto.\n\nFalse or not False\n\nTrue\n\n\nY es válido utilizar paréntesis para agrupar operaciones.\n\n(False or True) and (True or False)\n\nTrue\n\n\nA continuación se incluye una tabla con los operadores lógicos y la prioridad que tiene cada uno.\nLos operadores que aparecen más arriba tienen mayor prioridad.\nLos operadores que aparecen en la misma fila tienen el mismo nivel de prioridad y se resuelven según el orden en que aparecen en el código (de izquierda a derecha).\n\n\n\n\n\n\n\nOperadores\nSignificado\n\n\n\n\n==, !=, &gt;, &gt;=, &lt;, &lt;=, is, is not, in, not in\nComparaciones, identidad, pertenencia\n\n\nnot\nNegación\n\n\nand\nConjunción o intersección\n\n\nor\nDisyunción o unión\n\n\n\nTodos los operadores lógicos tienen menor prioridad que los operadores aritméticos que vimos arriba.\nEn otras palabras, si pegaramos ambas tablas, ésta última quedaría por debajo.\nAnalicemos nuevamente uno de los ejemplos que ya vimos.\n\nnot True and not True\n\nFalse\n\n\nEl operador not tiene mayor prioridad que el operador and porque aparece primero en la tabla.\nEn consecuencia, en el código anterior primero se resuelven los not True y luego el and. Esto es lo mismo que hacer\n\nFalse and False\n\nFalse",
+    "objectID": "teoria/01_programacion_en_python/02_funciones.html#diagrama-de-una-función",
+    "href": "teoria/01_programacion_en_python/02_funciones.html#diagrama-de-una-función",
+    "title": "Funciones",
+    "section": "Diagrama de una función",
+    "text": "Diagrama de una función\n\n\n\n\n\nAlgunos efectos colaterales pueden ser:\n\nImprimir un texto o un gráfico.\nCambiar el valor de una variable global.\nCrear, eliminar o modificar un archivo de la computadora.\n\n\n\n\n\n\n\n¿Puedo devolver una salida y generar efectos colaterales a la vez? 🤔\n\n\n\nUna función en Python puede realizar múltiples tareas, como devolver un valor e imprimir un mensaje en pantalla.\nPor ejemplo:\ndef producto(x, y):\n    resultado = x * y\n    print(\"El producto es\", resultado)\n    return resultado\nLa función producto() no solo calcula y devuelve el resultado de multiplicar x por y, sino que además muestra un mensaje por pantalla.\nSin embargo, en general no es una buena práctica combinar tareas distintas dentro de una misma función, especialmente si son de distinta naturaleza (como devolver un valor y causar un efecto colateral). Esto puede dificultar la reutilización y el mantenimiento del código.",
     "crumbs": [
       "Teoría",
-      "U1 - Introducción a Python",
-      "Clase 1"
+      "U1 - Programación en Python",
+      "Funciones"
     ]
   },
   {
-    "objectID": "teoria/01_introduccion_a_python/clase_1.html#funciones",
-    "href": "teoria/01_introduccion_a_python/clase_1.html#funciones",
-    "title": "Clase 1",
-    "section": "Funciones",
-    "text": "Funciones\nUna función puede pensarse como un “mini-programa” dentro de un programa más grande. Su propósito es cumplir una tarea u objetivo específico, de forma independiente del resto del código.\nEl uso de funciones tiene varias ventajas:\n\nReutilización de código: se define una sola vez y se ejecuta cuando sea necesario.\nMejor organización: dividen el programa en partes más fáciles de leer y mantener.\nModularidad: permiten construir programas como bloques independientes que pueden combinarse entre sí (¡funciones dentro de funciones!).\n\nConsideremos el siguiente caso donde se busca calcuar el precio final de un producto, considerando impuestos y descuentos.\n\nprecio_base = 800   # Precio del producto ($800)\nimpuesto = 0.21     # Impuesto (21%)\ndescuento = 0.10    # Descuento (10%)\n\nprecio_final = precio_base * (1 + impuesto) * (1 - descuento)\nprecio_final\n\n871.2\n\n\n¿Qué pasa si queremos calcular el precio final para otros productos con diferentes precios, impuestos o descuentos?\nUna opción es repetir el código tantas veces como sea necesario…\n\nprecio_base = 500   # Precio del producto ($500)\nimpuesto = 0.105    # Impuesto (10.5%)\ndescuento = 0.0     # Descuento (0%)\n\nprecio_final = precio_base * (1 + impuesto) * (1 - descuento)\nprecio_final\n\n552.5\n\n\n\nprecio_base = 2000  # Precio del producto ($2000)\nimpuesto = 0.21     # Impuesto (21%)\ndescuento = 0.20    # Descuento (20%)\n\nprecio_final = precio_base * (1 + impuesto) * (1 - descuento)\nprecio_final\n\n1936.0\n\n\nOtra opción, mucho mas conveniente, es utilizar funciones.\n\ndef calcular_precio(precio_base, impuesto, descuento):\n    resultado = precio_base * (1 + impuesto) * (1 - descuento)\n    return resultado\n\nLuego, para utilizar la función simplemente la llamamos (o invocamos).\n\ncalcular_precio(800, 0.21, 0.10)\n\n871.2\n\n\nTambién es posible indicar los valores de los argumentos utilizando sus nombres.\n\ncalcular_precio(precio_base=2000, impuesto=0.21, descuento=0.20)\n\n1936.0\n\n\n\nDefinición de funciones\nAnalicemos las diferentes partes que forman la definición de una función en Python:\n\n\n\n\n\n\nLa palabra clave def:\n\nMarca el inicio de la definición de una función.\nEs una palabra reservada (keyword).\n\nEl nombre de la función:\n\nDebe seguir las mismas reglas que los nombres de las variables.\n\nLos argumentos de la función, dentro de paréntesis:\n\nSe separan por comas y pueden ser 0 o más.\n\nLos dos puntos (:):\n\nIndican el final de la línea de definición y el inicio del bloque de código.\n\nEl bloque de código, que es el cuerpo de la función:\n\nEs el código que se ejecuta cada vez que llamamos a la función.\n\nLa sentencia return que indica el resultado que devuelve la función.\n\nLuego del return viene el valor o nombre de la variable a devolver.\nEs opcional (ya vamos a ver ejemplos).",
+    "objectID": "teoria/01_programacion_en_python/02_funciones.html#argumentos-nombrados-y-posicionales",
+    "href": "teoria/01_programacion_en_python/02_funciones.html#argumentos-nombrados-y-posicionales",
+    "title": "Funciones",
+    "section": "Argumentos nombrados y posicionales",
+    "text": "Argumentos nombrados y posicionales\nAl definir una función, debemos darle un nombre a cada uno de los argumentos que va a recibir.\nAl llamar a la función, podemos pasar los valores de dos formas: por posición o por nombre.\nPor ejemplo, las siguientes llamadas a la función sumar() son equivalentes:\n\nsumar(x = 10, y = 15)\n\n25\n\n\n\nsumar(10, 15)\n\n25\n\n\nSi utilizamos los nombres para pasar los argumentos no hace falta que estén en el mismo orden que en la definición de la función.\n\nsumar(y = 15, x = 10)\n\n25\n\n\n¡Que sea posible no significa que sea una buena práctica!",
     "crumbs": [
       "Teoría",
-      "U1 - Introducción a Python",
-      "Clase 1"
+      "U1 - Programación en Python",
+      "Funciones"
     ]
   },
   {
-    "objectID": "teoria/01_introduccion_a_python/clase_1.html#apéndice",
-    "href": "teoria/01_introduccion_a_python/clase_1.html#apéndice",
-    "title": "Clase 1",
-    "section": "Apéndice",
-    "text": "Apéndice\n\nPalabras claves y funciones predefinidas\nPython tiene un conjunto de palabras conocidas como keywords que sirven para realizar acciones especificas y que no podemos utilizar como nombres de variables.\nCuando intentemos utilizar una keyword como nombre de variable, obtendremos un error.\nPor otro lado, si intentamos utilizar el nombre de una función (o clase) predefinida como nombre de una variable que nosotros creamos, no vamos a obtener un error pero no podremos usar la función nuevamente porque la variable ahora representa otra cosa.\n\nPalabras claves\nFalse      await      else       import     pass\nNone       break      except     in         raise\nTrue       class      finally    is         return\nand        continue   for        lambda     try\nas         def        from       nonlocal   while\nassert     del        global     not        with\nasync      elif       if         or         yield\n\n\nFunciones y clases pre-definidas\nabs()          copyright()    getattr()      list()         range()        vars()\nall()          credits()      globals()      locals()       repr()         zip()\nany()          delattr()      hasattr()      map()          reversed()\nascii()        dict()         hash()         max()          round()\nbin()          dir()          help()         memoryview()   set()\nbool()         display()      hex()          min()          setattr()\nbreakpoint()   divmod()       id()           next()         slice()\nbytearray()    enumerate()    input()        object()       sorted()\nbytes()        eval()         int()          oct()          staticmethod()\ncallable()     exec()         isinstance()   open()         str()\nchr()          filter()       issubclass()   ord()          sum()\nclassmethod()  float()        iter()         pow()          super()\ncompile()      format()       len()          print()        tuple()\ncomplex()      frozenset()    license()      property()     type()",
+    "objectID": "teoria/01_programacion_en_python/02_funciones.html#ausencia-de-return",
+    "href": "teoria/01_programacion_en_python/02_funciones.html#ausencia-de-return",
+    "title": "Funciones",
+    "section": "Ausencia de return",
+    "text": "Ausencia de return\nLa función sumar() termina con la siguiente línea:\n    return x + y\nEs decir, utiliza la sentencia return para devolver un valor.\nPor otro lado, la función saludar() termina con un print() y no tiene ningún return.\n    print(\"Hola\", nombre)\n\nresultado = sumar(1, 2)\nresultado\n\n3\n\n\n\nsaludo = saludar(\"Juan\")\n\nHola Juan!\n\n\n\n¿Cuál es el valor de la variable saludo?\n¿Por qué?\n¿Tiene sentido?\n\n\nprint(saludo)\n\nNone\n\n\nEn Python no existe el concepto de return implícito.\nSi queremos que una función devuelva un valor, es necesario usar la instrucción return de forma explícita.\nEn caso de no hacerlo, la función devuelve automáticamente None.",
     "crumbs": [
       "Teoría",
-      "U1 - Introducción a Python",
-      "Clase 1"
+      "U1 - Programación en Python",
+      "Funciones"
+    ]
+  },
+  {
+    "objectID": "teoria/01_programacion_en_python/02_funciones.html#argumentos-por-defecto",
+    "href": "teoria/01_programacion_en_python/02_funciones.html#argumentos-por-defecto",
+    "title": "Funciones",
+    "section": "Argumentos por defecto",
+    "text": "Argumentos por defecto\nCuando definimos una función podemos determinar valores por defecto para uno o más parámetros.\nSi cuando llamamos a la función le pasamos un valor a ese parámetro, se utiliza el valor que pasamos. Sino, se usa el valor por defecto.\nEsta práctica es útil para simplificar las llamadas que realizamos a una función.\nSupongamos la siguiente función describir_mascota() que tiene los parámetros nombre y tipo\n\ndef describir_mascota(nombre, tipo):\n    print(\"Tengo un\", tipo)\n    print(\"Y su nombre es\", nombre)\n\ndescribir_mascota(\"Bruno\", \"perro\")\n\nTengo un perro\nY su nombre es Bruno\n\n\nAhora, hacemos que el parámetro nombre sea por defecto igual a \"perro\".\n\ndef describir_mascota(nombre, tipo=\"perro\"):\n    print(\"Tengo un\", tipo)\n    print(\"Y su nombre es\", nombre)\n\nDe este modo, es posible llamar a la función solamente pasando valores para aquellos parámetros sin valor por defecto:\n\ndescribir_mascota(\"Bruno\")\n\nTengo un perro\nY su nombre es Bruno\n\n\nComo es de esperar, también es posible pasar valores distintos a los establecidos por defecto:\n\ndescribir_mascota(\"Nemo\", \"pez\")\n\nTengo un pez\nY su nombre es Nemo",
+    "crumbs": [
+      "Teoría",
+      "U1 - Programación en Python",
+      "Funciones"
     ]
   }
 ]
