@@ -1,0 +1,80 @@
+---
+title: "Funciones y bucles: Python vs R"
+---
+
+## Funciones
+
+El siguiente bloque de código define una función en R:
+
+```{.r filename="funcion.R"}
+sumar <- function(a, b) {
+  resultado <- a + b
+  return(resultado)
+}
+```
+
+y el siguiente define una función análoga en Python:
+
+```{.python filename="funcion.py"}
+def sumar(a, b):
+    resultado = a + b
+    return resultado
+```
+
+## Ejecución condicional
+
+Por otro lado, el siguiente bloque muestra el uso de ejecución condicional en R:
+
+```{.r filename="condicional.R"}
+x <- 5
+
+if (x > 0) {
+  mensaje <- "El número es positivo"
+} else {
+  mensaje <- "El número no es positivo"
+}
+
+print(mensaje)
+```
+
+Y debajo se muestra la versión análoga en Python:
+
+```{.python filename="condicional.py"}
+x = 5
+
+if x > 0:
+    mensaje = "El número es positivo"
+else:
+    mensaje = "El número no es positivo"
+
+print(mensaje)
+```
+
+## Resumen de diferencias
+
+### Comunes
+
+* **Uso de bloques**:
+  * En **R** los bloques de código siempre se delimitan con llaves `{}`.
+  * En **Python** los bloques se definen exclusivamente mediante indentación (sin llaves).
+* **Indentación**:
+  * En **Python** la indentación es obligatoria y tiene significado sintáctico.
+  * En **R** la indentación es opcional; sirve únicamente para mejorar la legibilidad.
+* **Uso de los dos puntos (`:`)**:
+  * En **Python** las definiciones de funciones y condiciones terminan con `:`.
+  * En **R** no se utilizan los dos puntos al final de estas estructuras.
+
+### Funciones
+
+* **Forma de definir la función**:
+  * En **R**: `sumar <- function(a, b)`. Se crea la función y se asigna a una variable.
+  * En **Python**: `def sumar(a, b):`. La creación de la función ya crea la variable.
+* **Retorno de valores**:
+  * En **R**, aunque es común usar `return()`, el resultado de la última expresión se devuelve automáticamente (puede omitirse `return`).
+  * En **Python** es **obligatorio** usar `return` si se desea devolver un valor.
+
+### Ejecución condicional
+
+* **Uso de paréntesis en condiciones**:
+  * En **R** es obligatorio usar paréntesis alrededor de la condición (`if (x > 0)`).
+  * En **Python** no se usan paréntesis (`if x > 0:`).

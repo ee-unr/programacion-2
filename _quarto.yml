@@ -81,6 +81,11 @@ website:
         - trabajos_practicos/trabajo_individual.qmd
     - title: Recursos
       contents:
+        - text: Ejemplos
+          file: recursos/ejemplos/01_funciones_y_bucles.qmd
+          contents:
+            - auto: recursos/ejemplos/*.qmd
+            - sort-ui: false
         - text: Ejercicios
           file: recursos/ejercicios/ejercicio_01.qmd
           contents:
