@@ -474,6 +474,50 @@
     ]
   },
   {
+    "objectID": "recursos/ejemplos/01_funciones_y_bucles.html",
+    "href": "recursos/ejemplos/01_funciones_y_bucles.html",
+    "title": "Funciones y bucles: Python vs R",
+    "section": "",
+    "text": "El siguiente bloque de código define una función en R:\n\n\nfuncion.R\n\nsumar &lt;- function(a, b) {\n  resultado &lt;- a + b\n  return(resultado)\n}\n\ny el siguiente define una función análoga en Python:\n\n\nfuncion.py\n\ndef sumar(a, b):\n    resultado = a + b\n    return resultado",
+    "crumbs": [
+      "Recursos",
+      "Ejemplos"
+    ]
+  },
+  {
+    "objectID": "recursos/ejemplos/01_funciones_y_bucles.html#funciones",
+    "href": "recursos/ejemplos/01_funciones_y_bucles.html#funciones",
+    "title": "Funciones y bucles: Python vs R",
+    "section": "",
+    "text": "El siguiente bloque de código define una función en R:\n\n\nfuncion.R\n\nsumar &lt;- function(a, b) {\n  resultado &lt;- a + b\n  return(resultado)\n}\n\ny el siguiente define una función análoga en Python:\n\n\nfuncion.py\n\ndef sumar(a, b):\n    resultado = a + b\n    return resultado",
+    "crumbs": [
+      "Recursos",
+      "Ejemplos"
+    ]
+  },
+  {
+    "objectID": "recursos/ejemplos/01_funciones_y_bucles.html#ejecución-condicional",
+    "href": "recursos/ejemplos/01_funciones_y_bucles.html#ejecución-condicional",
+    "title": "Funciones y bucles: Python vs R",
+    "section": "Ejecución condicional",
+    "text": "Ejecución condicional\nPor otro lado, el siguiente bloque muestra el uso de ejecución condicional en R:\n\n\ncondicional.R\n\nx &lt;- 5\n\nif (x &gt; 0) {\n  mensaje &lt;- \"El número es positivo\"\n} else {\n  mensaje &lt;- \"El número no es positivo\"\n}\n\nprint(mensaje)\n\nY debajo se muestra la versión análoga en Python:\n\n\ncondicional.py\n\nx = 5\n\nif x &gt; 0:\n    mensaje = \"El número es positivo\"\nelse:\n    mensaje = \"El número no es positivo\"\n\nprint(mensaje)",
+    "crumbs": [
+      "Recursos",
+      "Ejemplos"
+    ]
+  },
+  {
+    "objectID": "recursos/ejemplos/01_funciones_y_bucles.html#resumen-de-diferencias",
+    "href": "recursos/ejemplos/01_funciones_y_bucles.html#resumen-de-diferencias",
+    "title": "Funciones y bucles: Python vs R",
+    "section": "Resumen de diferencias",
+    "text": "Resumen de diferencias\n\nComunes\n\nUso de bloques:\n\nEn R los bloques de código siempre se delimitan con llaves {}.\nEn Python los bloques se definen exclusivamente mediante indentación (sin llaves).\n\nIndentación:\n\nEn Python la indentación es obligatoria y tiene significado sintáctico.\nEn R la indentación es opcional; sirve únicamente para mejorar la legibilidad.\n\nUso de los dos puntos (:):\n\nEn Python las definiciones de funciones y condiciones terminan con :.\nEn R no se utilizan los dos puntos al final de estas estructuras.\n\n\n\n\nFunciones\n\nForma de definir la función:\n\nEn R: sumar &lt;- function(a, b). Se crea la función y se asigna a una variable.\nEn Python: def sumar(a, b):. La creación de la función ya crea la variable.\n\nRetorno de valores:\n\nEn R, aunque es común usar return(), el resultado de la última expresión se devuelve automáticamente (puede omitirse return).\nEn Python es obligatorio usar return si se desea devolver un valor.\n\n\n\n\nEjecución condicional\n\nUso de paréntesis en condiciones:\n\nEn R es obligatorio usar paréntesis alrededor de la condición (if (x &gt; 0)).\nEn Python no se usan paréntesis (if x &gt; 0:).",
+    "crumbs": [
+      "Recursos",
+      "Ejemplos"
+    ]
+  },
+  {
     "objectID": "trabajos_practicos/trabajo_individual.html",
     "href": "trabajos_practicos/trabajo_individual.html",
     "title": "Trabajo Práctico Final",
