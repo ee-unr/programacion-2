@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-208adf8d8c5fa9542ec953ba645dbfcb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-65c21cc5305abef7d96645befaab2bc9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -518,6 +518,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>¿Por qué se obtiene un error en el siguiente bloque de código?</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> []</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>l[<span class="dv">0</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Si <code>[0][0]</code> devuelve <code>0</code>, ¿por qué <code>[1][1]</code> no devuelve <code>[1]</code>?</p></li>
+<li><p>¿Cuál es el valor de <code>x</code> en el siguiente bloque de código? ¿Por qué?</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="st">"hola"</span>, <span class="st">"hola hola"</span>, <span class="st">"hasta luego"</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> l.remove(<span class="st">"hola"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>¿Cómo le asignaría el valor <code>"hola"</code> como el tercer valor en una lista almacenada en una variable llamada <code>cosas</code>? Asuma que <code>cosas</code> contiene <code>[2, 4, 6, 8, 10]</code>.</p></li>
 <li><p>Asuma que <code>letras</code> contiene la lista <code>["a", "b", "c", "d"]</code>:</p>
 <ul>
@@ -535,17 +539,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>¿Cuál es la diferencia entre los métodos <code>append()</code> e <code>insert()</code> de las listas?</p></li>
 <li><p>¿Cuáles son dos formas de eliminar valores de una lista?</p></li>
 <li><p>El siguiente bloque de código imprime <code>['a', 'b', True, 30]</code>. ¿Por qué?</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cosas <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="va">True</span>]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>bartulos <span class="op">=</span> cosas</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>bartulos.append(<span class="dv">20</span> <span class="op">+</span> <span class="dv">10</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cosas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>cosas <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="va">True</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>bartulos <span class="op">=</span> cosas</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>bartulos.append(<span class="dv">20</span> <span class="op">+</span> <span class="dv">10</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cosas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Considere el siguiente bloque de código:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>marcas <span class="op">=</span> [<span class="st">"Milka"</span>, <span class="st">"Cofler"</span>, <span class="st">"Águila"</span>, <span class="st">"Cadbury"</span>, <span class="st">"Lindt"</span>, <span class="st">"Toblerone"</span>, <span class="st">"After Eight"</span>]</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>marcas[<span class="dv">2</span>:<span class="dv">5</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>que correctamente muestra <code>["Águila", "Cadbury", "Lindt"]</code>. ¿Por qué el siguiente bloque de código no funciona?</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>marcas <span class="op">=</span> [<span class="st">"Milka"</span>, <span class="st">"Cofler"</span>, <span class="st">"Águila"</span>, <span class="st">"Cadbury"</span>, <span class="st">"Lindt"</span>, <span class="st">"Toblerone"</span>, <span class="st">"After Eight"</span>]</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> <span class="dv">2</span>:<span class="dv">5</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>marcas[indices]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>marcas[<span class="dv">2</span>:<span class="dv">5</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>que correctamente muestra <code>["Águila", "Cadbury", "Lindt"]</code>. ¿Por qué el siguiente bloque de código no funciona?</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>marcas <span class="op">=</span> [<span class="st">"Milka"</span>, <span class="st">"Cofler"</span>, <span class="st">"Águila"</span>, <span class="st">"Cadbury"</span>, <span class="st">"Lindt"</span>, <span class="st">"Toblerone"</span>, <span class="st">"After Eight"</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> <span class="dv">2</span>:<span class="dv">5</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>marcas[indices]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
 <section id="tuplas" class="level2" data-number="7">
@@ -553,15 +557,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p>¿Por qué la tupla no implementa un método similar al método <code>.extend()</code> de las listas?</p></li>
 <li><p>Las tuplas de Python son conocidas por ser inmutables. Por ejemplo, el siguiente bloque de código resulta en un error:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tupla <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>tupla[<span class="dv">1</span>] <span class="op">=</span> <span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tupla <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>tupla[<span class="dv">1</span>] <span class="op">=</span> <span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Sin embargo, el siguiente bloque no arroja ningún error y pareciera que se logra modificar la tupla exitosamente:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>bartulos <span class="op">=</span> [<span class="st">"Hola"</span>, <span class="dv">10</span>, <span class="va">None</span>]</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>tupla <span class="op">=</span> (<span class="dv">1</span>, bartulos, <span class="dv">3</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>tupla[<span class="dv">1</span>].append(<span class="st">"¡Sorpesa!"</span>)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tupla)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>bartulos <span class="op">=</span> [<span class="st">"Hola"</span>, <span class="dv">10</span>, <span class="va">None</span>]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>tupla <span class="op">=</span> (<span class="dv">1</span>, bartulos, <span class="dv">3</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>tupla[<span class="dv">1</span>].append(<span class="st">"¡Sorpesa!"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tupla)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¿Qué pasó?</p></li>
 </ol>
 </section>
@@ -573,10 +577,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>¿Cuál es la principal diferencia entre un diccionario y una lista?</p></li>
 <li><p>¿Qué ocurre si se intenta acceder a <code>bartulos["cosa"]</code> cuando <code>bartulos</code> es <code>{"coso": 100}</code>?</p></li>
 <li><p>Si un diccionario está almacenado en <code>bartulos</code>, ¿cuál es la diferencia entre las siguientes expresiones?</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">"cosa"</span> <span class="kw">in</span> bartulos</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">"cosa"</span> <span class="kw">in</span> bartulos.keys()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">"cosa"</span> <span class="kw">in</span> bartulos</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">"cosa"</span> <span class="kw">in</span> bartulos.keys()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Suponga el diccionario <code>datos = {"nombre": "Juan"}</code>. ¿Por qué la siguiente expresión resulta en <code>False</code>?</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">"Juan"</span> <span class="kw">in</span> datos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">"Juan"</span> <span class="kw">in</span> datos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
 <section id="control-de-flujo" class="level2" data-number="9">
@@ -586,53 +590,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p>Explique qué es una condición y en qué situaciones se utilizaría.</p></li>
 <li><p>Identifique los tres bloques de código en el siguiente ejemplo:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>codigo <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> codigo <span class="op">==</span> <span class="dv">10</span>:</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"mensaje 1"</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> codigo <span class="op">&gt;</span> <span class="dv">5</span>:</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"mensaje 2"</span>)</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"mensaje alternativo"</span>)</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"mensaje final"</span>)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fin del programa"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>codigo <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> codigo <span class="op">==</span> <span class="dv">10</span>:</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"mensaje 1"</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> codigo <span class="op">&gt;</span> <span class="dv">5</span>:</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"mensaje 2"</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"mensaje alternativo"</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"mensaje final"</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fin del programa"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>¿Tienen sentido las comparaciones utilizadas?</p></li>
 <li><p>¿Cuál es el problema con el siguiente programa? Proponga una solución.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>numero <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> numero <span class="op">&lt;</span> <span class="dv">0</span>:</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"El numero </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es negativo"</span>)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> numero <span class="op">&lt;</span> <span class="op">-</span><span class="dv">5</span>:</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"El numero </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es menor a -5"</span>)</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> numero <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"El numero </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es positivo"</span>)</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"El numero </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es 0"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>numero <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> numero <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"El numero </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es negativo"</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> numero <span class="op">&lt;</span> <span class="op">-</span><span class="dv">5</span>:</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"El numero </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es menor a -5"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> numero <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"El numero </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es positivo"</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"El numero </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss"> es 0"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
 <section id="bucles" class="level3" data-number="9.2">
 <h3 data-number="9.2" class="anchored" data-anchor-id="bucles"><span class="header-section-number">9.2</span> Bucles</h3>
 <ol type="1">
 <li><p>Considere el siguiente programa:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Escriba un programa que realice la misma tarea utilizando un bucle <code>while</code>.</p></li>
 <li><p>¿Cuál es la diferencia entre <code>range(10)</code>, <code>range(0, 10)</code> y <code>range(0, 10, 1)</code> en un bucle <code>for</code>?</p></li>
 <li><p>Suponga que <code>numeros</code> es una lista que contiene numeros enteros, ¿en qué se diferencian los siguientes bloques de código?</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> numeros:</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> numeros:</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> numeros:</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>¿Es posible re-escribir el siguiente bloque de código usando <code>while True</code>? ¿Qué modificaciones habría que hacer?</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>suma <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> suma <span class="op">&lt;=</span> limite:</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    suma <span class="op">+=</span> numeros[i]</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>suma <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> suma <span class="op">&lt;=</span> limite:</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    suma <span class="op">+=</span> numeros[i]</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 
 

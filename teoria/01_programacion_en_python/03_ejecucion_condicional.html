@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ejecución condicional – Programación II</title>
+<title>3 - Ejecución condicional – Programación II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../teoria/02_programacion_funcional.html" rel="next">
+<link href="../../teoria/01_programacion_en_python/04_colecciones_de_datos.html" rel="next">
 <link href="../../teoria/01_programacion_en_python/02_funciones.html" rel="prev">
 <link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-208adf8d8c5fa9542ec953ba645dbfcb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-65c21cc5305abef7d96645befaab2bc9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -161,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">U1 - Programación en Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html">Ejecución condicional</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">U1 - Programación en Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html">3 - Ejecución condicional</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -185,19 +185,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../teoria/01_programacion_en_python/01_introduccion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introducción</span></a>
+ <span class="menu-text">1 - Introducción</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Funciones</span></a>
+ <span class="menu-text">2 - Funciones</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Ejecución condicional</span></a>
+ <span class="menu-text">3 - Ejecución condicional</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/04_colecciones_de_datos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Colecciones de datos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/05_ejecucion_repetitiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Ejecución repetitiva</span></a>
   </div>
 </li>
       </ul>
@@ -248,9 +260,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">U1 - Programación en Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html">Ejecución condicional</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">U1 - Programación en Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html">3 - Ejecución condicional</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Ejecución condicional</h1>
+<h1 class="title">3 - Ejecución condicional</h1>
 </div>
 
 
@@ -910,13 +922,13 @@ El precio de entrada para vos es $None.</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="pagination-link" aria-label="Funciones">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Funciones</span>
+      <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="pagination-link" aria-label="2 - Funciones">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2 - Funciones</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../teoria/02_programacion_funcional.html" class="pagination-link" aria-label="U2 - Programación Funcional">
-        <span class="nav-page-text">U2 - Programación Funcional</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../teoria/01_programacion_en_python/04_colecciones_de_datos.html" class="pagination-link" aria-label="4 - Colecciones de datos">
+        <span class="nav-page-text">4 - Colecciones de datos</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
