@@ -166,6 +166,15 @@ toc-depth: 3
     l[0]
     ```
 
+1. Si `[0][0]` devuelve `0`, ¿por qué `[1][1]` no devuelve `[1]`?
+
+1. ¿Cuál es el valor de `x` en el siguiente bloque de código? ¿Por qué?
+
+    ```python
+    l = ["hola", "hola hola", "hasta luego"]
+    x = l.remove("hola")
+    ```
+
 1. ¿Cómo le asignaría el valor `"hola"` como el tercer valor en una lista almacenada en una variable
 llamada `cosas`? Asuma que `cosas` contiene `[2, 4, 6, 8, 10]`.
 
