@@ -1,14 +1,15 @@
-def media(x):
-    """Calcula la media de los numeros en una lista."""
-    if x:
-        return sum(x) / len(x)
+def es_par(n):
+    if n % 2 == 0:
+        return True
+    return False
 
-def filtrar_cadenas(lista):
-    """Conserva los elementos de una lista que son de tipo 'str'"""
-    salida = []
-    for elemento in lista:
-        # 'isinstance()' sirve para preguntar si un elemento es de un tipo determinado
-        # en este caso, isinstance(elemento, str) pregunta si 'elemento' es de tipo 'str'.
-        if isinstance(elemento, str):
-            salida.append(elemento)
-    return salida
+
+def es_primo(n):
+    if n <= 1:
+        return False
+
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+
+    return True
