@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8 - Lectura y esctritura de archivos – Programación II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../teoria/02_programacion_funcional.html" rel="next">
+<link href="../../teoria/01_programacion_en_python/07_scripting.html" rel="prev">
+<link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-ec0a55faf04d048dc7cf4d8bee194688.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Programación II</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../informacion/programa.html"> 
+<span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../teoria/01_programacion_en_python/01_introduccion.html" aria-current="page"> 
+<span class="menu-text">Teoría</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../practica/01_programacion_en_python/ejercicios.html"> 
+<span class="menu-text">Práctica</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../trabajos_practicos/descripcion.html"> 
+<span class="menu-text">Trabajos Prácticos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../recursos/ejercicios/ejercicio_01.html"> 
+<span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ee-unr/programacion-2"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">U1 - Programación en Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/08_io.html">8 - Lectura y esctritura de archivos</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U1 - Programación en Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Introducción</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Funciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Ejecución condicional</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/04_colecciones_de_datos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Colecciones de datos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/05_ejecucion_repetitiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Ejecución repetitiva</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/06_uso_de_codigo_externo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 - Uso de código externo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/07_scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 - <em>Scripting</em></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/08_io.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">8 - Lectura y esctritura de archivos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">U2 - Programación Funcional</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">U3 - Programación Orientada a Objetos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">U4 - Estructuras de Datos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/05_algoritmos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">U5 - Algoritmos</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#lectura-y-escritura" id="toc-lectura-y-escritura" class="nav-link" data-scroll-target="#lectura-y-escritura">Lectura y escritura</a>
+  <ul class="collapse">
+  <li><a href="#archivos-de-texto-vs-archivos-binarios" id="toc-archivos-de-texto-vs-archivos-binarios" class="nav-link" data-scroll-target="#archivos-de-texto-vs-archivos-binarios">Archivos de texto vs archivos binarios</a></li>
+  <li><a href="#los-tres-pasos-fundamentales" id="toc-los-tres-pasos-fundamentales" class="nav-link" data-scroll-target="#los-tres-pasos-fundamentales">Los tres pasos fundamentales</a></li>
+  <li><a href="#leer-archivos" id="toc-leer-archivos" class="nav-link" data-scroll-target="#leer-archivos">Leer archivos</a></li>
+  <li><a href="#escribir-archivos" id="toc-escribir-archivos" class="nav-link" data-scroll-target="#escribir-archivos">Escribir archivos</a></li>
+  <li><a href="#uso-de-la-sentencia-with" id="toc-uso-de-la-sentencia-with" class="nav-link" data-scroll-target="#uso-de-la-sentencia-with">Uso de la sentencia <code>with</code></a></li>
+  </ul></li>
+  <li><a href="#archivos-y-rutas" id="toc-archivos-y-rutas" class="nav-link" data-scroll-target="#archivos-y-rutas">Archivos y rutas</a>
+  <ul class="collapse">
+  <li><a href="#especificación-de-rutas-con-pathlib.path" id="toc-especificación-de-rutas-con-pathlib.path" class="nav-link" data-scroll-target="#especificación-de-rutas-con-pathlib.path">Especificación de rutas con <code>pathlib.Path</code></a></li>
+  <li><a href="#combinación-de-rutas-con-el-operador" id="toc-combinación-de-rutas-con-el-operador" class="nav-link" data-scroll-target="#combinación-de-rutas-con-el-operador">Combinación de rutas con el operador <code>/</code></a></li>
+  <li><a href="#rutas-absolutas-y-relativas" id="toc-rutas-absolutas-y-relativas" class="nav-link" data-scroll-target="#rutas-absolutas-y-relativas">Rutas absolutas y relativas</a></li>
+  <li><a href="#acceso-a-directorios-de-interés" id="toc-acceso-a-directorios-de-interés" class="nav-link" data-scroll-target="#acceso-a-directorios-de-interés">Acceso a directorios de interés</a></li>
+  <li><a href="#utilidades" id="toc-utilidades" class="nav-link" data-scroll-target="#utilidades">Utilidades</a></li>
+  </ul></li>
+  <li><a href="#apéndice" id="toc-apéndice" class="nav-link" data-scroll-target="#apéndice">Apéndice</a>
+  <ul class="collapse">
+  <li><a href="#el-arugmento-mode-de-open" id="toc-el-arugmento-mode-de-open" class="nav-link" data-scroll-target="#el-arugmento-mode-de-open">El arugmento <code>mode</code> de <code>open()</code></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">U1 - Programación en Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/08_io.html">8 - Lectura y esctritura de archivos</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">8 - Lectura y esctritura de archivos</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>En nuestros programas de Python utilizamos variables para almacenar datos durante la ejecución. Estos datos pueden estar escritos directamente en el código o ser ingresados por el usuario (por ejemplo, mediante la función <code>input()</code>). Por otro lado, cuando necesitamos mostrar una salida en pantalla, usamos la función <code>print()</code>.</p>
+<p>Sin embargo, el uso exclusivo de <code>input()</code> y <code>print()</code> para la entrada y salida de datos tiene limitaciones. Por ejemplo:</p>
+<ul>
+<li>Si trabajamos con más de unos pocos datos, o ni siquiera sabemos cuáles datos necesitaremos al momento de ejecutar el programa, no resulta práctico declararlos en el código o ingresarlos manualmente.</li>
+<li>Si el resultado de nuestro programa consiste en una gran cantidad de datos que no pueden analizarse visualmente con rapidez, o si necesitamos reutilizarlos en otro programa o proceso más adelante, se hace necesario almacenarlos de manera persistente.</li>
+</ul>
+<p>En resumen, para resolver problemas de mayor complejidad, vamos a necesitar leer y guardar archivos en la computadora.</p>
+</section>
+<section id="lectura-y-escritura" class="level2">
+<h2 class="anchored" data-anchor-id="lectura-y-escritura">Lectura y escritura</h2>
+<section id="archivos-de-texto-vs-archivos-binarios" class="level3">
+<h3 class="anchored" data-anchor-id="archivos-de-texto-vs-archivos-binarios">Archivos de texto vs archivos binarios</h3>
+<p>En esta sección vamos a aprender a leer y escribir <strong>archivos de texto plano</strong>.</p>
+<p>Los archivos de texto plano contienen únicamente <strong>caracteres básicos de texto</strong>, sin ningún tipo de información adicional. Algunos ejemplos son:</p>
+<ul>
+<li>Archivos de texto genéricos con extensión <strong><code>.txt</code></strong></li>
+<li>Archivos de código Python con extensión <strong><code>.py</code></strong></li>
+</ul>
+<p>Estos archivos pueden abrirse sin dificultad en cualquier editor de texto como el Notepad o Positron, y Python puede leer su contenido y tratarlo como cadenas de texto normales (<code>str</code>).</p>
+<p>En contraste, existen los <strong>archivos binarios</strong>, que contienen secuencias de bits que no se limitan a representar caracteres de texto. Estos pueden almacenar <strong>cualquier tipo de datos</strong>, como imágenes, sonidos, videos, PDFs, ejecutables, etc. Aunque en este apunte nos enfocamos en los archivos de texto plato, muchos de los principios que veremos también se aplican a los archivos binarios.</p>
+</section>
+<section id="los-tres-pasos-fundamentales" class="level3">
+<h3 class="anchored" data-anchor-id="los-tres-pasos-fundamentales">Los tres pasos fundamentales</h3>
+<p>A la hora de trabajar con archivos en Python, normalmente se siguen <strong>tres pasos</strong>:</p>
+<ol type="1">
+<li><strong>Abrir</strong> el archivo con la función <strong><code>open()</code></strong>, que devuelve un objeto de tipo <strong><code>TextIOWrapper</code></strong>.</li>
+<li><strong>Leer o escribir</strong> en el archivo con los métodos <strong><code>read()</code></strong> o <strong><code>write()</code></strong> del objeto <code>TextIOWrapper</code>.</li>
+<li><strong>Cerrar</strong> el archivo con el método <strong><code>close()</code></strong> para liberar los recursos y asegurarse de que todos los cambios se guarden correctamente.</li>
+</ol>
+</section>
+<section id="leer-archivos" class="level3">
+<h3 class="anchored" data-anchor-id="leer-archivos">Leer archivos</h3>
+<p>Para abrir un archivo en Python se utiliza la función <code>open()</code>, a la cual se le pasa como argumento la ruta del archivo. Esta ruta puede estar representada con una cadena de texto <code>str</code> o un objeto <code>Path</code> del módulo <code>pathlib</code> (que veremos en una sección más adelante). La función <code>open()</code> devuelve un objeto de tipo <code>TextIOWrapper</code> que representa al archivo abierto y permite interactuar con él.</p>
+<p>Supongamos que tenemos un archivo llamado <code>pensamientos.txt</code> con el siguiente contenido:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Estoy aprendiendo a leer archivos en Python.</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>No se con qué me voy a encontrar.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Pero acá vamos.</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>y usamos la función <code>open()</code> para abrir el archivo.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>archivo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;</span>_io.TextIOWrapper name='pensamientos.txt' mode='r' encoding='cp1252'<span class="kw">&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Vemos que el objeto devuelto por <code>open()</code> no solo incluye el nombre del archivo (<code>pensamientos.txt</code>), sino también <code>mode="r"</code> y <code>encoding="cp1252"</code>.</p>
+<p>Tanto <code>mode</code> como <code>encoding</code> son argumentos de la función <code>open()</code>. El primero indica el modo en el que se abre el archivo. Por defecto, este valor es <code>"r"</code>, lo que significa que el archivo se abre en modo lectura de texto plano. En este modo es posible leer su contenido, pero no escribir sobre él.</p>
+<p>El segundo argumento, <code>encoding</code>, especifica la codificación que se usará para convertir los <em>bytes</em> del archivo en cadenas de texto de Python. En macOS y Linux el valor por defecto es <code>"utf-8"</code>. En cambio, en Windows, la codificación predeterminada es <code>"cp1252"</code> (ASCII extendido). Como esto puede generar errores al leer archivos de texto UTF-8 que contengan caracteres no ingleses en Windows, se recomienda siempre incluir explícitamente el argumento <code>encoding="utf-8"</code>.</p>
+<p>El objeto de la variable <code>archivo</code> es de tipo <code>TextIOWrapper</code>. A pesar de que el nombre pueda parecer complicado, no es más que otro tipo de objeto en Python, como son las listas o los diccionarios. Cada vez que necesitemos leer o escribir en el archivo, lo haremos a través de los métodos asociados a este objeto.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Puede fallar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si le pasamos a la función <code>open()</code> un nombre de un archivo que no existe, ya sea porque escribimos mal la ruta o cometimos un error de tipeo, obtendremos un <code>FileNotFoundError</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">open</span>(<span class="st">"pensamiento.txt"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>FileNotFoundError: [Errno 2] No such file or directory: 'pensamiento.txt'</code></pre>
+</div>
+</div>
+<section id="leer-todo-el-contenido" class="level4">
+<h4 class="anchored" data-anchor-id="leer-todo-el-contenido">Leer todo el contenido</h4>
+<p>Una forma de leer un archivo de texto plano en Python es cargar todo su contenido de una sola vez como una única cadena de texto. Para ello se utiliza el método <code>.read()</code> del objeto <code>TextIOWrapper</code>.</p>
+<div id="f18b55d3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>contenido <span class="op">=</span> archivo.read()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>contenido</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>'Estoy aprendiendo a leer archivos en Python.\nNo se con qué me voy a encontrar.\nPero acá vamos.'</code></pre>
+</div>
+</div>
+<p>Se puede observar que, salvo la última, cada línea termina con un carácter de nueva línea (<code>\n</code>). Si hubiéramos agregado un salto de línea al final del archivo <code>pensamientos.txt</code>, la cadena resultante también habría terminado en <code>"\n"</code>.</p>
+</section>
+<section id="leer-línea-a-línea" class="level4">
+<h4 class="anchored" data-anchor-id="leer-línea-a-línea">Leer línea a línea</h4>
+<p>Una alternativa al método <code>.read()</code>, que carga todo el contenido como una única cadena de texto, es el método <code>.readlines()</code>. Este devuelve una <strong>lista de cadenas</strong>, donde cada elemento corresponde a una línea del archivo.</p>
+<div id="acee3e64" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>archivo.readlines()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>['Estoy aprendiendo a leer archivos en Python.\n',
+ 'No se con qué me voy a encontrar.\n',
+ 'Pero acá vamos.']</code></pre>
+</div>
+</div>
+<p>Trabajar con una lista de cadenas suele ser más cómodo que manejar un único bloque de texto, ya que te permite acceder directamente a cada línea por separado.</p>
+</section>
+<section id="leer-solo-algunas-líneas" class="level4">
+<h4 class="anchored" data-anchor-id="leer-solo-algunas-líneas">Leer solo algunas líneas</h4>
+<p>También es posible leer un número limitado de líneas en lugar de cargar todo el archivo de una sola vez. Para ello se utiliza el método <code>.readline()</code>, en singular. Cada vez que se invoca, se obtiene la siguiente línea del archivo. Cuando ya no quedan más líneas, devuelve una cadena vacía.</p>
+<div id="6c98e02b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    linea <span class="op">=</span> archivo.readline()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> linea <span class="op">==</span> <span class="st">""</span>:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(linea, end<span class="op">=</span><span class="st">""</span>) <span class="co"># `end=""` para que Python no agregue salto de línea</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Estoy aprendiendo a leer archivos en Python.
+No se con qué me voy a encontrar.
+Pero acá vamos.</code></pre>
+</div>
+</div>
+<p>Este método también acepta un argumento opcional <code>size</code>, que permite especificar la cantidad de caracteres a leer en cada llamada.</p>
+</section>
+<section id="cerrar-archivo" class="level4">
+<h4 class="anchored" data-anchor-id="cerrar-archivo">Cerrar archivo</h4>
+<p>Cuando terminamos de trabajar con un archivo, es importante cerrarlo con el método <code>.close()</code>. Esto libera los recursos asociados y, en caso de escritura, asegura que todo lo que estaba en el búfer se guarde correctamente.</p>
+<p>Aunque Python suele cerrar los archivos automáticamente al final del programa, es una buena práctica hacerlo de forma explícita para evitar comportamientos inesperados.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lecturas sucesivas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cuando se lee un archivo en Python, existe un puntero interno (a veces llamado <em>posición en el búfer</em>) que avanza a medida que se consume el contenido. Por eso, después de una primera lectura completa, las siguientes llamadas a métodos como <code>.read()</code> o <code>.readlines()</code> no devuelven nada: el puntero ya está al final del archivo.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>archivo.read()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>'Estoy aprendiendo a leer archivos en Python.\nNo se con qué me voy a encontrar.\nPero acá vamos.'</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>archivo.read()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>''</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>archivo.readlines()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>[]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para volver a leer desde el inicio, hay dos opciones:</p>
+<ul>
+<li>Cerrar y volver a abrir el archivo.</li>
+<li>Usar el método <code>.seek(0)</code> para mover el puntero de vuelta al principio.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="escribir-archivos" class="level3">
+<h3 class="anchored" data-anchor-id="escribir-archivos">Escribir archivos</h3>
+<p>Para escribir un archivo en Python, primero debemos abrirlo con la función <code>open()</code>, de la misma manera que al leer. Sin embargo, no podemos usar los argumentos por defecto, ya que en ese caso el archivo se abre en <strong>modo lectura</strong>, lo que impide escribir en él.</p>
+<p>Para poder escribir, el archivo debe abrirse en uno de los siguientes modos:</p>
+<ul>
+<li><strong>Modo escritura (<code>"w"</code>)</strong>: sobrescribe por completo el archivo existente, de forma similar a cuando asignamos un nuevo valor a una variable reemplazando el anterior.</li>
+<li><strong>Modo adición (<code>"a"</code>)</strong>: agrega nuevo contenido al final del archivo existente, sin borrar lo que ya contenía.</li>
+</ul>
+<p>Si el archivo indicado en <strong><code>open()</code></strong> no existe, tanto el modo escritura como el modo adición crearán un <strong>archivo nuevo y vacío</strong>.</p>
+<p>Debajo, abrimos un archivo llamado <code>conclusiones.txt</code> en <strong>modo escritura</strong>. Como el archivo todavía no existe, Python lo crea automáticamente. Luego, llamamos a <strong><code>write()</code></strong> sobre el archivo abierto y le pasamos la cadena <code>"Escribir en Python no es tan grave como parece.\n"</code> y el texto se escribe dentro del archivo.</p>
+<div id="78c699d2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"conclusiones.txt"</span>, mode<span class="op">=</span><span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="co"># Este paso ya crea el archivo</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>archivo.write(<span class="st">"Escribir en Python no es tan grave como parece.</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>48</code></pre>
+</div>
+</div>
+<p>El método <code>.write()</code> devuelve el número de caracteres escritos, incluyendo el salto de línea <code>\n</code>. Después, cerramos el archivo.</p>
+<div id="703d52de" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>archivo.close()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para <strong>agregar texto sin reemplazar el contenido existente</strong>, abrimos el archivo en <strong>modo adición</strong>. Escribimos la cadena <code>"Es solo cuestión de practica."</code> y lo cerramos nuevamente.</p>
+<div id="0cfc9163" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"conclusiones.txt"</span>, mode<span class="op">=</span><span class="st">"a"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>archivo.write(<span class="st">"Es solo cuestión de practica."</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>archivo.close()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finalmente, para mostrar en pantalla el contenido de <code>conclusiones.txt</code>, abrimos el archivo en modo lectura, cargamos su contenido con <code>.read()</code>, lo guardamos en la variable <code>texto</code>, cerramos el archivo y luego imprimimos <code>texto</code>.</p>
+<div id="33808653" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"conclusiones.txt"</span>, mode<span class="op">=</span><span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>texto <span class="op">=</span> archivo.read()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>archivo.close()</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(texto)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Escribir en Python no es tan grave como parece.
+Es solo cuestión de practica.</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Saltos de línea
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Es importante tener presente que el método <code>.write()</code> no agrega un salto de línea al final del texto de forma automática, a diferencia de <code>print()</code>. Si queremos que el contenido se escriba en una nueva línea dentro del archivo, debemos incluir manualmente el carácter <code>\n</code>.</p>
+</div>
+</div>
+</section>
+<section id="uso-de-la-sentencia-with" class="level3">
+<h3 class="anchored" data-anchor-id="uso-de-la-sentencia-with">Uso de la sentencia <code>with</code></h3>
+<p>Cuando abrimos un archivo con <code>open()</code>, debemos cerrarlo después con <code>.close()</code>. El problema es que a veces podemos olvidarlo o que el programa falle antes de llegar a esa línea.</p>
+<p>Para evitarlo, Python ofrece la sentencia <code>with</code>, que se encarga de cerrar el archivo automáticamente al terminar el bloque de código, incluso si ocurre un error en el medio.</p>
+<p>Debajo, utilizamos la sentencia <code>with</code> para crear un archivo y escribir texto en él.</p>
+<div id="cell-31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"ejemplo.txt"</span>, mode<span class="op">=</span><span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> archivo:</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    archivo.write(<span class="st">"¡Hola, mundo!</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(archivo.closed) <span class="co"># Verificar que el archivo está cerrado</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>Luego, podemos utilizar un patrón similar, pero pasando <code>mode="r"</code>, para leer el contenido del archivo.</p>
+<div id="8cba1f68" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"ejemplo.txt"</span>, mode<span class="op">=</span><span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> archivo:</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    contenido <span class="op">=</span> archivo.read()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(contenido)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(archivo.closed)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>¡Hola, mundo!
+
+True</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<em>Context managers</em>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La sentencia <code>with</code> no es exclusiva para leer o escribir archivos: en realidad funciona con un objeto especial llamado <strong><em>context manager</em></strong>.</p>
+<p>Un <em>context manager</em> se usa en Python para manejar recursos que necesitan ser <strong>adquiridos y luego liberados</strong> de forma segura, como archivos, conexiones de red o bloqueos de concurrencia.</p>
+<p>La clave es que <code>with</code> define un <strong>bloque de código</strong> dentro del cual el recurso está disponible. Al entrar en el bloque, el recurso se prepara (por ejemplo, se abre un archivo) y, al salir, se libera automáticamente, sin importar si la salida fue normal, si hubo un <code>return</code> o si se produjo una excepción.</p>
+<p>Esto permite que el código sea más claro y seguro, ya que todo el ciclo de vida del recurso queda encapsulado dentro de ese bloque.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="archivos-y-rutas" class="level2">
+<h2 class="anchored" data-anchor-id="archivos-y-rutas">Archivos y rutas</h2>
+<p>Un archivo tiene dos características principales: su <strong>nombre</strong> y su <strong>ruta</strong>.</p>
+<p>La <strong>ruta</strong> indica la ubicación exacta del archivo dentro de la computadora y puede incluir directorios, subdirectorios y el nombre del archivo con su <strong>extensión</strong> (por ejemplo, <code>.txt</code>, <code>.csv</code>, <code>.py</code>).</p>
+<p>A modo de ejemplo, supongamos que tenemos un archivo con el nombre <code>reporte.docx</code>, que se encuentra en la ruta:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>C:\Users\Tomi\Documentos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La parte <strong>C:\</strong> de la ruta es la <strong>carpeta raíz</strong> (conocida como <em>root directory</em> en inglés), la cual contiene a todas las demás carpetas.</p>
+<p>En Windows, la carpeta raíz se llama <strong>C:\</strong> y también se le conoce como la <strong>unidad C:</strong>. En macOS y Linux, la carpeta raíz se representa con una simple barra inclinada: <strong>/</strong>.</p>
+<p>Por otro lado, <strong>Users</strong>, <strong>Tomi</strong> y <strong>Documentos</strong> son carpetas, también llamadas <strong>directorios</strong>. Las carpetas pueden contener <strong>archivos</strong> y también <strong>otras carpetas</strong> (llamadas <strong>subcarpetas</strong> o <strong>subdirectorios</strong>).</p>
+<section id="especificación-de-rutas-con-pathlib.path" class="level3">
+<h3 class="anchored" data-anchor-id="especificación-de-rutas-con-pathlib.path">Especificación de rutas con <code>pathlib.Path</code></h3>
+<section id="por-qué-no-es-suficiente-con-str" class="level4">
+<h4 class="anchored" data-anchor-id="por-qué-no-es-suficiente-con-str">Por qué no es suficiente con <code>str</code></h4>
+<p>Por defecto, Python busca los archivos en el <strong>directorio de trabajo actual</strong> (<em>current working directory</em>). Por ejemplo:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">open</span>(<span class="st">"archivo.txt"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este caso, <code>archivo.txt</code> debe estar en la misma carpeta desde donde se ejecuta el programa. Si no está allí, hay que indicar su ruta absoluta o relativa.</p>
+<p>Aunque se pueden usar cadenas de texto (<code>str</code>) para definir rutas, esto puede generar problemas porque los sistemas operativos usan separadores distintos. Mientras que Windows usa la barra inclinada hacia atrás <code>\</code>, macOS y Linux usan la barra inclinada hacia delante <code>/</code>.</p>
+</section>
+<section id="la-solución" class="level4">
+<h4 class="anchored" data-anchor-id="la-solución">La solución</h4>
+<p>Para evitar errores y escribir código que funcione en cualquier sistema, conviene usar <code>Path</code> del módulo <code>pathlib</code>, que maneja automáticamente las diferencias entre las formas de especificar rutas entre los distintos sistemas operativos.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ruta <span class="op">=</span> Path(<span class="st">"Users/Tomi/Documentos/projecto.docx"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ruta)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En Windows se mostrará como:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>Users\Tomi\Documentos\project.docx</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Y en macOS o Linux como:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Users/Tomi/Documentos/projecto.docx</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si en Windows convertimos al objeto <code>ruta</code> a una cadena de caracteres, nos encontraremos con el siguiente resultado:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">str</span>(ruta)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="st">"Users</span><span class="sc">\\</span><span class="st">Tomi</span><span class="sc">\\</span><span class="st">Documentos</span><span class="sc">\\</span><span class="st">projecto.docx"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Las barras invertidas aparecen como dobles barras invertidas porque en Python cada barra invertida debe <strong>escaparse</strong> con otra barra invertida.</p>
+</section>
+</section>
+<section id="combinación-de-rutas-con-el-operador" class="level3">
+<h3 class="anchored" data-anchor-id="combinación-de-rutas-con-el-operador">Combinación de rutas con el operador <code>/</code></h3>
+<p>El operador <code>/</code>, que normalmente usamos para dividir números, también sirve en Python para <strong>combinar rutas</strong> cuando trabajamos con <code>pathlib.Path</code>. Esto permite construir rutas de forma clara y sin preocuparse por los separadores que cambian según el sistema operativo. Por ejemplo:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>ruta <span class="op">=</span> Path(<span class="st">"datos"</span>) <span class="op">/</span> <span class="st">"usuarios"</span> <span class="op">/</span> <span class="st">"reporte.txt"</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ruta)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El resultado será distinto según el sistema:</p>
+<p>En <strong>Windows</strong>:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>datos\usuarios\reporte.txt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En <strong>macOS/Linux</strong>:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>datos/usuarios/reporte.txt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>De esta manera, podemos ir “pegando” carpetas y archivos paso a paso, evitando concatenar cadenas manualmente y asegurando compatibilidad multiplataforma.</p>
+</section>
+<section id="rutas-absolutas-y-relativas" class="level3">
+<h3 class="anchored" data-anchor-id="rutas-absolutas-y-relativas">Rutas absolutas y relativas</h3>
+<p>Existen dos formas principales de escribir la ruta de un archivo:</p>
+<ul>
+<li><strong>Ruta absoluta</strong>: indica la ubicación completa <strong>desde la carpeta raíz</strong>. En Windows comienza con la letra de unidad, por ejemplo <code>C:\</code>, y en macOS/Linux comienza con <code>/</code>.</li>
+<li><strong>Ruta relativa</strong>: se interpreta <strong>a partir del directorio de trabajo actual</strong> del programa.</li>
+</ul>
+<p>Además, es común usar dos “atajos especiales” dentro de una ruta:</p>
+<ul>
+<li><code>.</code>: indica el directorio actual.</li>
+<li><code>..</code>: indica el directorio padre, del ingles <em>parent directory</em>, que es el directorio que contiene al directorio actual.</li>
+</ul>
+<p>Por ejemplo, si el directorio de trabajo es <code>C:\trabajo</code> y queremos acceder al archivo <code>C:\trabajo\datos.txt</code> mediante una ruta relativa, podemos usar simplemente:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>datos.txt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>o</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>.\datos.txt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Por otro lado, si queremos acceder al archivo <code>C:\estudio\reporte.txt</code>, la ruta relativa sería:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>..\estudio\reporte.txt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esto facilita moverse entre carpetas sin necesidad de escribir rutas absolutas cada vez.</p>
+</section>
+<section id="acceso-a-directorios-de-interés" class="level3">
+<h3 class="anchored" data-anchor-id="acceso-a-directorios-de-interés">Acceso a directorios de interés</h3>
+<section id="directorio-de-trabajo-actual" class="level4">
+<h4 class="anchored" data-anchor-id="directorio-de-trabajo-actual">Directorio de trabajo actual</h4>
+<p>El <strong>directorio de trabajo actual</strong> es la carpeta desde la cual Python busca los archivos cuando usamos rutas relativas. En Python se puede obtener como una cadena de texto usando el método <code>.cwd()</code> (del inglés, <em>current working directory</em>) de <code>Path</code>:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Path.cwd())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si necesitamos cambiar el directorio de trabajo actual, se puede usar <code>chdir</code> del módulo <code>os</code>:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="st">"nueva_ruta"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Precauciones
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hay que tener en cuenta que al modificar el directorio de trabajo cambian todas las rutas relativas en el programa. Por eso, en proyectos grandes suele ser más seguro usar rutas absolutas o construirlas a partir de un directorio base bien definido.</p>
+</div>
+</div>
+</section>
+<section id="directorio-personal-home" class="level4">
+<h4 class="anchored" data-anchor-id="directorio-personal-home">Directorio personal (<em>home</em>)</h4>
+<p>Cada usuario tiene un directorio personal que depende del sistema operativo: en Windows suele estar en <code>C:\Users\&lt;usuario&gt;</code>, en macOS en <code>/Users/&lt;usuario&gt;</code> y en Linux en <code>/home/&lt;usuario&gt;</code>.</p>
+<p>En Python se puede acceder a este directorio con el método <code>Path.home()</code>:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Path.home())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Normalmente, los programas tienen permisos de lectura y escritura dentro de este directorio, por lo que es un lugar seguro y conveniente para guardar archivos y configuraciones creadas por tus <em>scripts</em>.</p>
+</section>
+</section>
+<section id="utilidades" class="level3">
+<h3 class="anchored" data-anchor-id="utilidades">Utilidades</h3>
+<section id="obtención-ruta-absoluta-y-normalizada" class="level4">
+<h4 class="anchored" data-anchor-id="obtención-ruta-absoluta-y-normalizada">Obtención ruta absoluta y normalizada</h4>
+<p>El método <code>.resolve()</code> de <code>Path</code> convierte una ruta relativa en absoluta y, cuando es posible, normaliza la ruta colapsando los atajos <code>.</code> y <code>..</code>. En el siguiente ejemplo, el directorio de trabajo actual es <code>C:\Users\Tomi\Desktop\proyecto</code>:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>ruta <span class="op">=</span> Path(<span class="st">"../datos.txt"</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ruta.resolve()) <span class="co"># ruta absoluta y normalizada</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>C:\Users\Tomi\Desktop\datos.txt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="creación-de-directorios" class="level4">
+<h4 class="anchored" data-anchor-id="creación-de-directorios">Creación de directorios</h4>
+<p>El método <code>.mkdir()</code> de los objetos <code>Path</code> permite crear un directorio a partir de una ruta.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>Path(<span class="st">"nueva_carpeta"</span>).mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Con <code>exist_ok=True</code> evitamos errores si la carpeta ya existe.</p>
+<p>Para crear todos los directorios en una ruta de múltiples directorios en una sola llamada, se puede añadir <code>parents=True</code>:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>Path(<span class="st">"datos/limpios/2025"</span>).mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="verificación-de-validez-y-tipo-de-rutas" class="level4">
+<h4 class="anchored" data-anchor-id="verificación-de-validez-y-tipo-de-rutas">Verificación de validez y tipo de rutas</h4>
+<p>Los objetos <code>Path</code> permiten comprobar si una ruta existe y qué tipo de recurso representa:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>ruta <span class="op">=</span> Path(<span class="st">"C:/Users/Tomi/Documentos/projecto.docx"</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ruta.exists())   <span class="co"># True si existe</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ruta.is_file())  <span class="co"># True si existe y es archivo</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ruta.is_dir())   <span class="co"># True si existe y es directorio</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="apéndice" class="level2">
+<h2 class="anchored" data-anchor-id="apéndice">Apéndice</h2>
+<section id="el-arugmento-mode-de-open" class="level3">
+<h3 class="anchored" data-anchor-id="el-arugmento-mode-de-open">El arugmento <code>mode</code> de <code>open()</code></h3>
+<section id="caracteres-válidos" class="level4">
+<h4 class="anchored" data-anchor-id="caracteres-válidos">Caracteres válidos</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 86%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Caracter</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>r</code></td>
+<td>abrir para lectura (predeterminado)</td>
+</tr>
+<tr class="even">
+<td><code>w</code></td>
+<td>abrir para escritura, truncando primero el archivo</td>
+</tr>
+<tr class="odd">
+<td><code>x</code></td>
+<td>crear un archivo nuevo y abrirlo para escritura</td>
+</tr>
+<tr class="even">
+<td><code>a</code></td>
+<td>abrir para escritura, agregando al final del archivo si existe</td>
+</tr>
+<tr class="odd">
+<td><code>b</code></td>
+<td>modo binario</td>
+</tr>
+<tr class="even">
+<td><code>t</code></td>
+<td>modo texto (predeterminado)</td>
+</tr>
+<tr class="odd">
+<td><code>+</code></td>
+<td>abrir un archivo en disco para actualización (lectura y escritura)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ejemplos" class="level4">
+<h4 class="anchored" data-anchor-id="ejemplos">Ejemplos</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 35%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modo</th>
+<th>Ejemplo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>r</code></td>
+<td><code>open("datos.txt", "r")</code></td>
+<td>Abre <code>datos.txt</code> para leer en modo texto.</td>
+</tr>
+<tr class="even">
+<td><code>rb</code></td>
+<td><code>open("imagen.png", "rb")</code></td>
+<td>Abre <code>imagen.png</code> para leer en modo binario (útil para imágenes, PDFs, etc).</td>
+</tr>
+<tr class="odd">
+<td><code>w</code></td>
+<td><code>open("salida.txt", "w")</code></td>
+<td>Abre <code>salida.txt</code> para escritura en texto, truncando el archivo si existe.</td>
+</tr>
+<tr class="even">
+<td><code>wb</code></td>
+<td><code>open("audio.raw", "wb")</code></td>
+<td>Abre <code>audio.raw</code> para escritura en binario, truncando si existe.</td>
+</tr>
+<tr class="odd">
+<td><code>a</code></td>
+<td><code>open("log.txt", "a")</code></td>
+<td>Abre <code>log.txt</code> para añadir texto al final del archivo.</td>
+</tr>
+<tr class="even">
+<td><code>ab</code></td>
+<td><code>open("video.mp4", "ab")</code></td>
+<td>Abre <code>video.mp4</code> en binario para añadir datos al final.</td>
+</tr>
+<tr class="odd">
+<td><code>x</code></td>
+<td><code>open("nuevo.txt", "x")</code></td>
+<td>Crea <code>nuevo.txt</code> y lo abre para escritura en texto. Falla si ya existe.</td>
+</tr>
+<tr class="even">
+<td><code>xb</code></td>
+<td><code>open("nuevo.dat", "xb")</code></td>
+<td>Crea <code>nuevo.dat</code> y lo abre para escritura en binario. Falla si ya existe.</td>
+</tr>
+<tr class="odd">
+<td><code>r+</code></td>
+<td><code>open("datos.txt", "r+")</code></td>
+<td>Abre <code>datos.txt</code> para leer y escribir en texto.</td>
+</tr>
+<tr class="even">
+<td><code>rb+</code></td>
+<td><code>open("imagen.png", "rb+")</code></td>
+<td>Abre <code>imagen.png</code> para leer y escribir en binario.</td>
+</tr>
+<tr class="odd">
+<td><code>w+</code></td>
+<td><code>open("datos.txt", "w+")</code></td>
+<td>Abre <code>datos.txt</code> para leer y escribir en texto, truncando si existe.</td>
+</tr>
+<tr class="even">
+<td><code>wb+</code></td>
+<td><code>open("datos.bin", "wb+")</code></td>
+<td>Abre <code>datos.bin</code> para leer y escribir en binario, truncando si existe.</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ee-unr\.github\.io\/programacion-2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../teoria/01_programacion_en_python/07_scripting.html" class="pagination-link" aria-label="7 - _Scripting_">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">7 - <em>Scripting</em></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../teoria/02_programacion_funcional.html" class="pagination-link" aria-label="U2 - Programación Funcional">
+        <span class="nav-page-text">U2 - Programación Funcional</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Esta página es hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
