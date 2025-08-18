@@ -41,7 +41,10 @@ website:
           contents:
             - auto: teoria/01_programacion_en_python/*.ipynb
             - sort-ui: false
-        - teoria/02_programacion_funcional.qmd
+        - text: U2 - Programación Funcional
+          contents:
+            - auto: teoria/02_programacion_funcional/*.ipynb
+            - sort-ui: false
         - teoria/03_oop.qmd
         - teoria/04_estructuras.qmd
         - teoria/05_algoritmos.qmd
