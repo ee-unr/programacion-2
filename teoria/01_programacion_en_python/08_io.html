@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8 - Lectura y esctritura de archivos – Programación II</title>
+<title>8 - Lectura y escritura de archivos – Programación II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../teoria/02_programacion_funcional.html" rel="next">
+<link href="../../teoria/02_programacion_funcional/01_introduccion.html" rel="next">
 <link href="../../teoria/01_programacion_en_python/07_scripting.html" rel="prev">
 <link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -161,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">U1 - Programación en Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/08_io.html">8 - Lectura y esctritura de archivos</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">U1 - Programación en Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/08_io.html">8 - Lectura y escritura de archivos</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -227,17 +227,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../teoria/01_programacion_en_python/08_io.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">8 - Lectura y esctritura de archivos</span></a>
+ <span class="menu-text">8 - Lectura y escritura de archivos</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../teoria/02_programacion_funcional.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
  <span class="menu-text">U2 - Programación Funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - WIP</span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../teoria/03_oop.html" class="sidebar-item-text sidebar-link">
@@ -293,9 +304,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">U1 - Programación en Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/08_io.html">8 - Lectura y esctritura de archivos</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/01_introduccion.html">U1 - Programación en Python</a></li><li class="breadcrumb-item"><a href="../../teoria/01_programacion_en_python/08_io.html">8 - Lectura y escritura de archivos</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">8 - Lectura y esctritura de archivos</h1>
+<h1 class="title">8 - Lectura y escritura de archivos</h1>
 </div>
 
 
@@ -377,7 +388,7 @@ Puede fallar
 <section id="leer-todo-el-contenido" class="level4">
 <h4 class="anchored" data-anchor-id="leer-todo-el-contenido">Leer todo el contenido</h4>
 <p>Una forma de leer un archivo de texto plano en Python es cargar todo su contenido de una sola vez como una única cadena de texto. Para ello se utiliza el método <code>.read()</code> del objeto <code>TextIOWrapper</code>.</p>
-<div id="f18b55d3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="1">
+<div id="f18b55d3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>contenido <span class="op">=</span> archivo.read()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>contenido</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -390,7 +401,7 @@ Puede fallar
 <section id="leer-línea-a-línea" class="level4">
 <h4 class="anchored" data-anchor-id="leer-línea-a-línea">Leer línea a línea</h4>
 <p>Una alternativa al método <code>.read()</code>, que carga todo el contenido como una única cadena de texto, es el método <code>.readlines()</code>. Este devuelve una <strong>lista de cadenas</strong>, donde cada elemento corresponde a una línea del archivo.</p>
-<div id="acee3e64" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="2">
+<div id="acee3e64" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>archivo.readlines()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -404,7 +415,7 @@ Puede fallar
 <section id="leer-solo-algunas-líneas" class="level4">
 <h4 class="anchored" data-anchor-id="leer-solo-algunas-líneas">Leer solo algunas líneas</h4>
 <p>También es posible leer un número limitado de líneas en lugar de cargar todo el archivo de una sola vez. Para ello se utiliza el método <code>.readline()</code>, en singular. Cada vez que se invoca, se obtiene la siguiente línea del archivo. Cuando ya no quedan más líneas, devuelve una cadena vacía.</p>
-<div id="6c98e02b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="3">
+<div id="6c98e02b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    linea <span class="op">=</span> archivo.readline()</span>
@@ -460,7 +471,7 @@ Lecturas sucesivas
 </ul>
 <p>Si el archivo indicado en <strong><code>open()</code></strong> no existe, tanto el modo escritura como el modo adición crearán un <strong>archivo nuevo y vacío</strong>.</p>
 <p>Debajo, abrimos un archivo llamado <code>conclusiones.txt</code> en <strong>modo escritura</strong>. Como el archivo todavía no existe, Python lo crea automáticamente. Luego, llamamos a <strong><code>write()</code></strong> sobre el archivo abierto y le pasamos la cadena <code>"Escribir en Python no es tan grave como parece.\n"</code> y el texto se escribe dentro del archivo.</p>
-<div id="78c699d2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="4">
+<div id="78c699d2" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"conclusiones.txt"</span>, mode<span class="op">=</span><span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="co"># Este paso ya crea el archivo</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>archivo.write(<span class="st">"Escribir en Python no es tan grave como parece.</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -468,17 +479,17 @@ Lecturas sucesivas
 </div>
 </div>
 <p>El método <code>.write()</code> devuelve el número de caracteres escritos, incluyendo el salto de línea <code>\n</code>. Después, cerramos el archivo.</p>
-<div id="703d52de" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="5">
+<div id="703d52de" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>archivo.close()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para <strong>agregar texto sin reemplazar el contenido existente</strong>, abrimos el archivo en <strong>modo adición</strong>. Escribimos la cadena <code>"Es solo cuestión de practica."</code> y lo cerramos nuevamente.</p>
-<div id="0cfc9163" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="6">
+<div id="0cfc9163" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"conclusiones.txt"</span>, mode<span class="op">=</span><span class="st">"a"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>archivo.write(<span class="st">"Es solo cuestión de practica."</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>archivo.close()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finalmente, para mostrar en pantalla el contenido de <code>conclusiones.txt</code>, abrimos el archivo en modo lectura, cargamos su contenido con <code>.read()</code>, lo guardamos en la variable <code>texto</code>, cerramos el archivo y luego imprimimos <code>texto</code>.</p>
-<div id="33808653" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="7">
+<div id="33808653" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"conclusiones.txt"</span>, mode<span class="op">=</span><span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>texto <span class="op">=</span> archivo.read()</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>archivo.close()</span>
@@ -507,7 +518,7 @@ Saltos de línea
 <p>Cuando abrimos un archivo con <code>open()</code>, debemos cerrarlo después con <code>.close()</code>. El problema es que a veces podemos olvidarlo o que el programa falle antes de llegar a esa línea.</p>
 <p>Para evitarlo, Python ofrece la sentencia <code>with</code>, que se encarga de cerrar el archivo automáticamente al terminar el bloque de código, incluso si ocurre un error en el medio.</p>
 <p>Debajo, utilizamos la sentencia <code>with</code> para crear un archivo y escribir texto en él.</p>
-<div id="cell-31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="14">
+<div id="cell-31" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"ejemplo.txt"</span>, mode<span class="op">=</span><span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> archivo:</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    archivo.write(<span class="st">"¡Hola, mundo!</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -517,7 +528,7 @@ Saltos de línea
 </div>
 </div>
 <p>Luego, podemos utilizar un patrón similar, pero pasando <code>mode="r"</code>, para leer el contenido del archivo.</p>
-<div id="8cba1f68" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="16">
+<div id="8cba1f68" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"ejemplo.txt"</span>, mode<span class="op">=</span><span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> archivo:</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    contenido <span class="op">=</span> archivo.read()</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1222,8 +1233,8 @@ Precauciones
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../teoria/02_programacion_funcional.html" class="pagination-link" aria-label="U2 - Programación Funcional">
-        <span class="nav-page-text">U2 - Programación Funcional</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../teoria/02_programacion_funcional/01_introduccion.html" class="pagination-link" aria-label="1 - WIP">
+        <span class="nav-page-text">1 - WIP</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

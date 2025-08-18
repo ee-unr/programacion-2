@@ -227,17 +227,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../teoria/01_programacion_en_python/08_io.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8 - Lectura y esctritura de archivos</span></a>
+ <span class="menu-text">8 - Lectura y escritura de archivos</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../teoria/02_programacion_funcional.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
  <span class="menu-text">U2 - Programación Funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - WIP</span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../teoria/03_oop.html" class="sidebar-item-text sidebar-link">
@@ -530,7 +541,7 @@ Misma sintaxis, significados distintos 🎭
 <p>En el siguiente diagrama se muestra que la variable <code>cafeterias</code> referencia a un objeto de tipo <code>list</code>, que a su vez contiene referencias a distintos objetos de tipo <code>str</code>. Cada uno de estos elementos está asociado a un índice, comenzando desde el 0.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/lista_indice.png" class="img-fluid figure-img" width="700"></p>
+<p><img src="imgs/lista_indice.png" class="img-fluid figure-img" width="700"></p>
 <figcaption>Representación gráfica de la lista <code>cafeterias</code> en Python.</figcaption>
 </figure>
 </div>
@@ -556,7 +567,7 @@ Misma sintaxis, significados distintos 🎭
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/lista_indice_invertido.png" class="img-fluid figure-img" width="700"></p>
+<p><img src="imgs/lista_indice_invertido.png" class="img-fluid figure-img" width="700"></p>
 <figcaption>Representación gráfica de <code>cafeterias</code> utilizando índices negativos para cada elemento.</figcaption>
 </figure>
 </div>
@@ -577,7 +588,7 @@ Misma sintaxis, significados distintos 🎭
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/lista_slicing_0.png" class="img-fluid figure-img" width="700"></p>
+<p><img src="imgs/lista_slicing_0.png" class="img-fluid figure-img" width="700"></p>
 <figcaption>Selección de sublista de <code>cafeterias</code> usando el <em>slice</em> <code>1:4</code>.</figcaption>
 </figure>
 </div>
@@ -590,7 +601,7 @@ Misma sintaxis, significados distintos 🎭
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/lista_slicing_3.png" class="img-fluid figure-img" width="700"></p>
+<p><img src="imgs/lista_slicing_3.png" class="img-fluid figure-img" width="700"></p>
 <figcaption>Selección de sublista de <code>cafeterias</code> usando el <em>slice</em> <code>4:6</code>.</figcaption>
 </figure>
 </div>
@@ -608,7 +619,7 @@ Misma sintaxis, significados distintos 🎭
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/lista_slicing_1.png" class="img-fluid figure-img" width="700"></p>
+<p><img src="imgs/lista_slicing_1.png" class="img-fluid figure-img" width="700"></p>
 <figcaption>Selección de sublista de <code>cafeterias</code> hasta el índice <code>3</code> usando el <em>slice</em> de inicio implícito <code>:3</code>.</figcaption>
 </figure>
 </div>
@@ -620,7 +631,7 @@ Misma sintaxis, significados distintos 🎭
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/lista_slicing_2.png" class="img-fluid figure-img" width="700"></p>
+<p><img src="imgs/lista_slicing_2.png" class="img-fluid figure-img" width="700"></p>
 <figcaption>Selección de sublista de <code>cafeterias</code> desde el índice <code>3</code> usando el <em>slice</em> con fin implícito <code>3:</code>.</figcaption>
 </figure>
 </div>
@@ -674,7 +685,7 @@ ID nuevo: 139872198582832</code></pre>
 <p>Este ejemplo muestra que la operación no modificó el objeto que se encontraba originalmente en el índice 0, sino que lo reemplazó por uno nuevo.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/lista_modificar_elemento.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+<p><img src="imgs/lista_modificar_elemento.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 </div>
@@ -699,7 +710,7 @@ ID nuevo: 139872198582832</code></pre>
 <p>Agregar elementos a una lista es una tarea común en programación, y Python nos ofrece varias formas de hacerlo. En esta sección vamos a explorar algunos de estos métodos, entendiendo en qué se diferencian y cuándo conviene utilizar cada uno.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/gran_rosario.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="imgs/gran_rosario.png" class="img-fluid figure-img" width="400"></p>
 <figcaption>Mapa ilustrado del Gran Rosario.</figcaption>
 </figure>
 </div>

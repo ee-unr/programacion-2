@@ -227,17 +227,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../teoria/01_programacion_en_python/08_io.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8 - Lectura y esctritura de archivos</span></a>
+ <span class="menu-text">8 - Lectura y escritura de archivos</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../teoria/02_programacion_funcional.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
  <span class="menu-text">U2 - Programación Funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - WIP</span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../teoria/03_oop.html" class="sidebar-item-text sidebar-link">
@@ -432,7 +443,7 @@ Diferencias con R 🎭
 <p>En Positron, si escribimos <code>math</code> seguido de un punto (<code>math.</code>), el editor desplegará un listado de los objetos disponibles en dicho módulo.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/import_math.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="imgs/import_math.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </section>
@@ -614,7 +625,7 @@ Nota 📝
 <p>Debajo se incluye una captura de la terminal de Windows donde se muestra la ejecución de los comandos antes mencionados y sus respectivas salidas:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/pip_terminal.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="imgs/pip_terminal.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -688,7 +699,7 @@ Ejecutar <code>pip</code> como módulo de Python
 <p>Provee un nuevo tipo de objeto llamado <code>array</code> que permite representar colecciones de datos de un mismo tipo en varias dimensiones y funciones muy eficientes para su manipulación.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/numpy_logo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="imgs/numpy_logo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>Para crear un proyecto, un ambiente con <code>venv</code> e instalar NumPy, seguimos los siguientes pasos:</p>
@@ -700,8 +711,8 @@ Ejecutar <code>pip</code> como módulo de Python
 <span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>python                  # Iniciar el intérprete interactivo de Python</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>El siguiente video muestra los pasos realizados en la terminal de Windows:</p>
 <center>
-<video controls="" width="700" preload="metadata" style="border-radius: 8px;">
-<source src="../imgs/venv_numpy.webm" type="video/webm">
+<video controls="" width="700" preload="metadata" style="border-radius: 8px; max-width: 100%;">
+<source src="imgs/venv_numpy.webm" type="video/webm">
 </video>
 </center>
 <p>Los paquetes de Python suelen importarse utilizando un alias. En el caso de los más populares, como NumPy, la mayoría de la comunidad usa el alias <strong><code>np</code></strong>.</p>

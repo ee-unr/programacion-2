@@ -227,17 +227,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../teoria/01_programacion_en_python/08_io.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8 - Lectura y esctritura de archivos</span></a>
+ <span class="menu-text">8 - Lectura y escritura de archivos</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../teoria/02_programacion_funcional.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
  <span class="menu-text">U2 - Programación Funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - WIP</span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../teoria/03_oop.html" class="sidebar-item-text sidebar-link">
@@ -309,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>En este apunte hablamos de la <strong>ejecución condicional de código</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/control_de_flujo_intro_humo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+<p><img src="imgs/control_de_flujo_intro_humo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 </section>
@@ -318,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Los bloques <code>if</code> utilizan la <em>keyword</em> <code>if</code> para evaluar una condición y ejecutar una sección de código en base al resultado de esta evaluación.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/if.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+<p><img src="imgs/if.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
 </figure>
 </div>
 <p>Veamos un ejemplo.</p>
@@ -338,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>De manera mas general, un bloque <code>if</code> es de la siguiente forma:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/if_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="imgs/if_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>Tiene los siguientes componentes:</p>
@@ -380,7 +391,7 @@ Esto se imprime siempre</code></pre>
 <p>La diferencia es que nos permite definir otro bloque de código que se ejecuta cuando la prueba condicional es <code>False</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/if_else_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="imgs/if_else_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <div id="fd5af551" class="cell" data-execution_count="18">
@@ -395,7 +406,7 @@ Esto se imprime siempre</code></pre>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/if_else.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+<p><img src="imgs/if_else.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
 </figure>
 </div>
 <p>Al igual que con el bloque <code>if</code>, cualquier parte del código que se escriba luego del bloque <code>if</code>-<code>else</code> es ejecutada sin importar el valor de las condiciones.</p>
@@ -425,7 +436,7 @@ Es par</code></pre>
 <p>Este tipo de programa considera varias condiciones y las evalúa de a una a la vez hasta que alguna es verdadera. Luego se ejecuta solamente el bloque de código que corresponde a la primer condición verdadera.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/if_elif_else_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="imgs/if_elif_else_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 <p>Supongamos que viene un parque de diversiones a Rosario y tiene los siguientes precios para la entrada:</p>
@@ -449,7 +460,7 @@ Es par</code></pre>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/if_elif_else.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+<p><img src="imgs/if_elif_else.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
 </figure>
 </div>
 </section>
@@ -526,12 +537,12 @@ El precio de entrada para vos es $None.</code></pre>
 <p>El diagrama y el código para el caso solo con <code>elif</code> se ven de la siguiente manera:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/if_elif_elif_elif.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+<p><img src="imgs/if_elif_elif_elif.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/if_elif_elif_elif_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+<p><img src="imgs/if_elif_elif_elif_codigo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
 </figure>
 </div>
 
