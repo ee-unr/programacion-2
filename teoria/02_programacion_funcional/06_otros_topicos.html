@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1 - WIP – Programación II</title>
+<title>6 - Otros tópicos – Programación II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../teoria/03_oop.html" rel="next">
-<link href="../../teoria/01_programacion_en_python/08_io.html" rel="prev">
+<link href="../../teoria/02_programacion_funcional/05_transformaciones_funcionales.html" rel="prev">
 <link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -126,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/02_programacion_funcional/01_introduccion.html">U2 - Programación Funcional</a></li><li class="breadcrumb-item"><a href="../../teoria/02_programacion_funcional/01_introduccion.html">1 - WIP</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/02_programacion_funcional/01_paradigma.html">U2 - Programación Funcional</a></li><li class="breadcrumb-item"><a href="../../teoria/02_programacion_funcional/06_otros_topicos.html">6 - Otros tópicos</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -208,8 +208,38 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/02_programacion_funcional/01_introduccion.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">1 - WIP</span></a>
+  <a href="../../teoria/02_programacion_funcional/01_paradigma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - El paradigma funcional</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/02_recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Recursión</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/03_funciones_de_orden_superior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Funciones de orden superior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Estrategias de evaluación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/05_transformaciones_funcionales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Transformaciones funcionales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/06_otros_topicos.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">6 - Otros tópicos</span></a>
   </div>
 </li>
       </ul>
@@ -243,9 +273,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/02_programacion_funcional/01_introduccion.html">U2 - Programación Funcional</a></li><li class="breadcrumb-item"><a href="../../teoria/02_programacion_funcional/01_introduccion.html">1 - WIP</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/02_programacion_funcional/01_paradigma.html">U2 - Programación Funcional</a></li><li class="breadcrumb-item"><a href="../../teoria/02_programacion_funcional/06_otros_topicos.html">6 - Otros tópicos</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">1 - WIP</h1>
+<h1 class="title">6 - Otros tópicos</h1>
 </div>
 
 
@@ -262,6 +292,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<ul>
+<li>Funciones con argumentos por defecto mutables</li>
+<li>Funciones con únicamente argumentos posicionales</li>
+<li>Funciones con únicamente argumentos nombrados</li>
+<li>Desestructuraciones de secuencias y de mapeos al llamar a una función
+<ul>
+<li><code>f(*[1, 2, 3])</code></li>
+<li><code>g(**{"a": 1, "b": 2})</code></li>
+<li><code>h(*[1, 2, 3], **{"a": 1, "b": 2})</code></li>
+</ul></li>
+</ul>
 
 
 
@@ -667,8 +708,8 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../teoria/01_programacion_en_python/08_io.html" class="pagination-link" aria-label="8 - Lectura y escritura de archivos">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">8 - Lectura y escritura de archivos</span>
+      <a href="../../teoria/02_programacion_funcional/05_transformaciones_funcionales.html" class="pagination-link" aria-label="5 - Transformaciones funcionales">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">5 - Transformaciones funcionales</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

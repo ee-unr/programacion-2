@@ -360,6 +360,216 @@
     ]
   },
   {
+    "objectID": "teoria/02_programacion_funcional/02_recursion.html",
+    "href": "teoria/02_programacion_funcional/02_recursion.html",
+    "title": "2 - Recursión",
+    "section": "",
+    "text": "Recursión",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "2 - Recursión"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/01_paradigma.html",
+    "href": "teoria/02_programacion_funcional/01_paradigma.html",
+    "title": "1 - El paradigma funcional",
+    "section": "",
+    "text": "La programación funcional es un paradigma de programación que se centra en el uso de funciones puras y en concebir la computación como la evaluación de funciones. En lugar de dar instrucciones paso a paso que cambian variables o estados (como ocurre en la programación imperativa), la idea es construir programas a partir de funciones que transforman datos.\nExisten lenguajes diseñados específicamente para la programación funcional (como Haskell), pero Python no es uno de ellos. Python es un lenguaje multiparadigma, lo que significa que nos permite combinar diferentes estilos de programación. Por este motivo, la programación funcional en Python no suele ser el enfoque principal, pero puede ser muy útil para escribir código más claro, conciso y fácil de probar.",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "1 - El paradigma funcional"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/01_paradigma.html#introducción",
+    "href": "teoria/02_programacion_funcional/01_paradigma.html#introducción",
+    "title": "1 - El paradigma funcional",
+    "section": "",
+    "text": "La programación funcional es un paradigma de programación que se centra en el uso de funciones puras y en concebir la computación como la evaluación de funciones. En lugar de dar instrucciones paso a paso que cambian variables o estados (como ocurre en la programación imperativa), la idea es construir programas a partir de funciones que transforman datos.\nExisten lenguajes diseñados específicamente para la programación funcional (como Haskell), pero Python no es uno de ellos. Python es un lenguaje multiparadigma, lo que significa que nos permite combinar diferentes estilos de programación. Por este motivo, la programación funcional en Python no suele ser el enfoque principal, pero puede ser muy útil para escribir código más claro, conciso y fácil de probar.",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "1 - El paradigma funcional"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/01_paradigma.html#funciones-puras",
+    "href": "teoria/02_programacion_funcional/01_paradigma.html#funciones-puras",
+    "title": "1 - El paradigma funcional",
+    "section": "Funciones puras",
+    "text": "Funciones puras\nUna función es pura cuando su salida depende únicamente de los valores de entrada y no produce ningún efecto secundario o colateral (side effect, en inglés).\nLa función sumar, que calcula y devuelve la suma de dos números, es un ejemplo de función pura: su resultado depende solo de sus argumentos y no genera efectos colaterales.\n\ndef sumar(x, y):\n    return x + y\n\nsumar(3, 11)\n\n14\n\n\nEn cambio, la función agregar no es una función pura. Esto se debe a que modifica un objeto global, lo que se conoce como un efecto secundario. Además, el valor de su salida no depende únicamente de la entrada, sino también de un estado global: la cantidad de elementos en lista.\n\nlista = []\n\ndef agregar(x):\n    \"\"\"Agrega el elemento `x` al final de `lista` y devuelve la longitud de `lista`\"\"\"\n    lista.append(x)\n    return len(lista)\n\n\nagregar(\"azucar\")\n\n1\n\n\n\nagregar(\"flores\")\n\n2\n\n\n\nagregar(\"colores\")\n\n3\n\n\n\nlista\n\n['azucar', 'flores', 'colores']\n\n\n\nEfectos secundarios\nUn efecto secundario (side effect) es cualquier cambio de estado observable que ocurre fuera del ámbito local de una función. En otras palabras, se trata de una modificación del entorno externo de la función que va más allá de simplemente devolver un valor.\nAlgunos ejemplos de side effects son:\n\nModificar una variable global o un objeto mutable.\nImprimir en la consola.\nEscribir en un archivo.\nRealizar una llamada a una API o a una base de datos.\n\nLas funciones con efectos secundarios pueden ser problemáticas porque, al modificar elementos externos, hacen que el código sea impredecible y difícil de probar.\nEn el ejemplo de la función agregar que creamos anteriormente, no es posible predecir el valor de salida para un valor de entrada determinado.\nPor eso, la programación funcional promueve el uso de funciones puras, que no producen efectos secundarios. De esta manera, con las mismas entradas siempre se obtiene la misma salida, logrando un código más confiable, predecible y sencillo de mantener.",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "1 - El paradigma funcional"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/01_paradigma.html#sec-ciudadanos",
+    "href": "teoria/02_programacion_funcional/01_paradigma.html#sec-ciudadanos",
+    "title": "1 - El paradigma funcional",
+    "section": "Ciudadanos de primera clase",
+    "text": "Ciudadanos de primera clase\nDefinamos otra función muy sencilla, restar, que calcula y devuelve la diferencia entre dos objetos.\n\ndef restar(x, y):\n    return x - y\n\nrestar(10, 5)\n\n5\n\n\nPodemos observar que esta función es un objeto de tipo function.\nprint(type(restar))\nprint(restar)\nrestar\n&lt;class 'function'&gt;\n&lt;function restar at 0x7f71cee62020&gt;\n&lt;function __main__.restar(x, y)&gt;\nAl imprimir la función, Python nos muestra su nombre y la dirección de memoria donde está almacenada (en formato hexadecimal). En cambio, al mostrar su representación, obtenemos información adicional: el módulo en el que fue definida (en este caso __main__) y la lista de parámetros que recibe (x e y).\nDado que la función restar es un objeto de Python, podemos asignarla a una nueva variable y realizar una llamada utilizando esa nueva etiqueta en vez de la original.\n\nresta_especial = restar\nresta_especial(10, 5)\n\n5\n\n\nNotemos que resta_especial no es una nueva función; es solamente una nueva referencia a la función antes definida.\n\nresta_especial # muestra 'restar', no 'resta_especial'\n\n&lt;function __main__.restar(x, y)&gt;\n\n\n\nresta_especial is restar\n\nTrue\n\n\nEn Python, las funciones son ciudadanos de primera clase. Esto significa que son objetos, al igual que las cadenas o los números. Por lo tanto, todo lo que se puede hacer con una cadena o un número también puede hacerse con una función.\nPor ejemplo, se pueden almacenar dentro de una lista junto con otros objetos de distintos tipos:\npopurri = [128, restar, None]\nprint(popurri[0])\nprint(popurri[1])\nprint(popurri[2])\n128\n&lt;function restar at 0x7f71cee62020&gt;\nNone\nIncluso una función puede ser almacenada como valor en un diccionario:\n\nmapeo = {\n    \"sum\": sumar,\n    \"sub\": restar,\n}\n\nLuego, se las puede usar de la siguiente manera:\n\nmapeo[\"sum\"](25, 4)\n\n29\n\n\n\nmapeo[\"sub\"](25, 4)\n\n21\n\n\n\nFunciones de orden superior\nComo cualquier objeto de Python, una función puede ser pasada como argumento de otra función. Debajo definimos dos funciones muy simples. Una imprime un mensaje de bienvenida y la otra uno de despedida.\n\ndef bienvenida():\n    print(\"¡Hola!\")\n\ndef despedida():\n    print(\"¡Chau!\")\n\n\nbienvenida()\ndespedida()\n\n¡Hola!\n¡Chau!\n\n\nSe puede otra función, que llamamos externa (del inglés outer function), que tiene un único parámetro interna. En su cuerpo, la función externa llama a la función interna y devuelve lo que sea que interna haya devuelto.\n\ndef externa(interna):\n    return interna()\n\nDe este modo, si llamamos a externa pasándole como argumento a bienvenida, se imprimirá ¡Hola!; y si lo hacemos con despedida, se imprimirá ¡Chau!.\n\nexterna(bienvenida)\n\n¡Hola!\n\n\n\nexterna(despedida)\n\n¡Chau!\n\n\nA esta función podemos pasarle cualquier función que pueda ser llamada sin ningún argumento. Por ejemplo:\n\ndef crear_lista():\n    return []\n\nexterna(crear_lista)\n\n[]\n\n\nTambién es posible que una función devuelva como resultado otra función. Debajo, la función fabrica devuelva una función que computa la suma de dos objetos.\n\ndef fabricar():\n    def interna(x, y):\n        return x + y\n    return interna\n\n# La llamada a 'fabricar' genera y devuelve una función\nf = fabricar()\n\n# La función obtenida puede ser tratada como cualquier otra función\nf(10, 15)\n\n25\n\n\nComo veremos más adelante en este apunte, una función que fabrica otras funciones puede recibir parámetros que luego son utilizados dentro de la función interna.\nEn el bloque siguiente, la función crear_multiplicador recibe un parámetro x, que define el valor por el cual se multiplicará el argumento de la función interna que se devuelve.\n\ndef crear_multiplicador(x):\n    def interna(y):\n        return y * x\n    return interna\n\nAsí, es posible crear funciones para duplicar, triplicar, etc.\n\nduplicar = crear_multiplicador(2)\ntriplicar = crear_multiplicador(3)\n\nprint(duplicar(5))\nprint(triplicar(5))\n\n10\n15\n\n\n\ntriplicar(18)\n\n54\n\n\n\n\n\n\n\n\nObservación 👀\n\n\n\nCada vez que se invoca la función fabricar, se crea y devuelve una nueva función. Por eso, el resultado de la comparación en el siguiente bloque es False.\nf1 = fabricar()\nf2 = fabricar()\nprint(f1 is f2)\nFalse\n\n\n\n\n\n\n\n\nFunction factory 🏭\n\n\n\nA las funciones que crean y devuelven funciones se las conoce como fábrica de funciones, del inglés function factory.\n\n\n\n\nAtributos de una función\nEn Python, las funciones también cuentan con atributos, del mismo modo que otros objetos. En el siguiente ejemplo definimos la función resolvente, que recibe las constantes a, b y c de un polinomio de segundo grado, calcula sus raíces usando la fórmula resolvente y las devuelve en una tupla.\n\ndef resolvente(a, b, c):\n    discriminante = b ** 2 - 4 * a * c\n    x0 = (-b + (discriminante) ** 0.5) / (2 * a)\n    x1 = (-b - (discriminante) ** 0.5) / (2 * a)\n\n    return x0, x1\n\nresolvente(2, 5, -3)\n\n(0.5, -3.0)\n\n\nA través del atributo especial __code__ es posible consultar ciertos atributos o detalles internos de una función:\n\nprint(resolvente.__code__.co_argcount) # Cantidad de argumentos\nprint(resolvente.__code__.co_name)     # Nombre de la función\nprint(resolvente.__code__.co_varnames) #  Variables en el ámbito local\n\n3\nresolvente\n('a', 'b', 'c', 'discriminante', 'x0', 'x1')\n\n\nAcceder a la información de una función a través de __code__ puede resultar poco práctico, ya que los atributos disponibles son técnicos y no siempre coinciden directamente con lo que solemos necesitar (por ejemplo, obtener solo los nombres de los argumentos).\nPara facilitar esta tarea, la librería estándar de Python incluye el módulo inspect que ofrece herramientas más claras e intuitivas para explorar los atributos y detalles de una función.\nComo ejemplo, la función signature que devuelve un objeto que representa la firma de la función resolvente.\n\nimport inspect\n\nfirma = inspect.signature(resolvente)\nfirma\n\n&lt;Signature (a, b, c)&gt;\n\n\nA partir de esta firma podemos consultar distintos aspectos de los parámetros, como sus valores por defecto:\n\nfirma.parameters[\"a\"].default # 'a' no tiene asignado un valor por defecto\n\ninspect._empty\n\n\nFinalmente, inspect también permite acceder al código fuente de la función en forma de cadena de texto:\n\nprint(inspect.getsource(resolvente))\n\ndef resolvente(a, b, c):\n    discriminante = b ** 2 - 4 * a * c\n    x0 = (-b + (discriminante) ** 0.5) / (2 * a)\n    x1 = (-b - (discriminante) ** 0.5) / (2 * a)\n\n    return x0, x1",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "1 - El paradigma funcional"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/01_paradigma.html#funciones-anónimas",
+    "href": "teoria/02_programacion_funcional/01_paradigma.html#funciones-anónimas",
+    "title": "1 - El paradigma funcional",
+    "section": "Funciones anónimas",
+    "text": "Funciones anónimas\nLa programación funcional se basa en llamar funciones y pasarlas, por lo que, naturalmente, implica definir muchas funciones. En Python, además de usar def, podemos crear funciones anónimas de forma rápida con una expresión lambda.\nLa sintaxis es la siguiente:\nlambda &lt;argumentos&gt;: &lt;expresión&gt;\ny devuelve como resultado una función anónima. Un ejemplo es el siguiente:\n\nlambda x, y: x + y\n\n&lt;function __main__.&lt;lambda&gt;(x, y)&gt;\n\n\nComo la función anónima que acabamos de crear no fue asignada a ninguna variable, ya no podemos usarla.\nUna posibilidad es invocarla inmediatamente al momento de su creación:\n\n(lambda x, y: x + y)(7, 15)\n\n22\n\n\nOtra opción es asignarla a una variable para poder llamarla más adelante:\n\nsumar = lambda x, y: x + y\nsumar(7, 15)\n\n22\n\n\n\n\n\n\n\n\nAusencia de return\n\n\n\nA diferencia de las funciones definidas con def, las expresiones lambda no requieren la sentencia return. De forma implícita, siempre devuelven el resultado de la única expresión que contienen.\n\n\n\nUsos de funciones anónimas\nEn ninguno de los ejemplos anteriores parece que obtengamos alguna ventaja frente a usar def para definir una función. De hecho, da la impresión de que estamos complicando innecesariamente las cosas.\nLo cierto es que las funciones anónimas no están pensadas para emplearse de la manera expuesta en nuestros ejemplos. Su uso principal es en operaciones simples y puntuales, cuando no resulta práctico definir una función completa con def.\nUn caso típico es al utilizarlas como argumentos de otras funciones.\nSupongamos que queremos ordenar la siguiente lista de refranes según diferentes criterios.\n\nrefranes = [\n    \"Al mal tiempo, buena cara\",\n    \"Perro que ladra no muerde\",\n    \"A caballo regalado no se le miran los dientes\",\n    \"Cada loco con su tema\",\n    \"El que mucho abarca, poco aprieta\",\n    \"Más vale pájaro en mano que cien volando\",\n]\n\nPor defecto, la función sorted ordena una lista de cadenas de manera alfabética.\n\nsorted(refranes)\n\n['A caballo regalado no se le miran los dientes',\n 'Al mal tiempo, buena cara',\n 'Cada loco con su tema',\n 'El que mucho abarca, poco aprieta',\n 'Más vale pájaro en mano que cien volando',\n 'Perro que ladra no muerde']\n\n\nSi quisiéramos ordenar los refranes por su longitud, podemos usar el argumento opcional key de sorted. Este argumento recibe una función que, aplicada a cada elemento, devuelve el valor a utilizar en la comparación. En nuestro caso, basta con usar len, ya que solo nos interesa la cantidad de caracteres de cada cadena.\n\nsorted(refranes, key=len)\n\n['Cada loco con su tema',\n 'Al mal tiempo, buena cara',\n 'Perro que ladra no muerde',\n 'El que mucho abarca, poco aprieta',\n 'Más vale pájaro en mano que cien volando',\n 'A caballo regalado no se le miran los dientes']\n\n\n¿Y si quisiéramos ordenarlos según la cantidad de palabras? Para eso necesitamos una función que reciba una cadena, la divida en palabras y cuente cuántas tiene.\nSin funciones anónimas podríamos hacer lo siguiente:\n\ndef contar_palabras(x):\n    return len(x.split())\n\nsorted(refranes, key=contar_palabras)\n\n['Al mal tiempo, buena cara',\n 'Perro que ladra no muerde',\n 'Cada loco con su tema',\n 'El que mucho abarca, poco aprieta',\n 'Más vale pájaro en mano que cien volando',\n 'A caballo regalado no se le miran los dientes']\n\n\nEn cambio, con una función anónima podemos escribir todo el programa en una sola línea:\n\nsorted(refranes, key=lambda x: len(x.split(\" \")))\n\n['Al mal tiempo, buena cara',\n 'Perro que ladra no muerde',\n 'Cada loco con su tema',\n 'El que mucho abarca, poco aprieta',\n 'Más vale pájaro en mano que cien volando',\n 'A caballo regalado no se le miran los dientes']\n\n\nDe esta forma el código es más conciso y evitamos definir funciones “descartables” que no volverán a usarse.\n\n\n\n\n\n\nOrigen del nombre lambda λ✨\n\n\n\nEl término lambda proviene del cálculo lambda, un sistema formal de lógica matemática para expresar cálculos basados en la abstracción y aplicación de funciones.\nSe le dio ese nombre porque Alonzo Church, creador del cálculo lambda en la década de 1930, usó la letra griega λ para denotar la operación de abstracción de funciones.\n\n\n\n\n\n\n\n\nFunciones anónimas sin parámetros\n\n\n\nUna función lambda normalmente recibe uno o múltiples parámetros, pero no es obligatorio, por lo que es posibile escribir una función anónima sin parámetros:\ncrear_numero_magico = lambda: 128\ncrear_numero magico()\n128\nLa función anónima crear_numero_magico es equivalente a la siguiente función\ndef f():\n    return 128",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "1 - El paradigma funcional"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/01_paradigma.html#funciones-variádicas",
+    "href": "teoria/02_programacion_funcional/01_paradigma.html#funciones-variádicas",
+    "title": "1 - El paradigma funcional",
+    "section": "Funciones variádicas",
+    "text": "Funciones variádicas\nLas funciones variádicas son funciones que pueden recibir una cantidad variable de argumentos.\nA lo largo de estos apuntes hemos utilizado funciones variádicas en tantísimas oportunidades. Un ejemplo de función variádica es print, que acepta tantos argumentos posicionales como necesitemos.\n\nprint(\"Primero\")\n\nPrimero\n\n\n\nprint(\"Primero\", \"segundo\")\n\nPrimero segundo\n\n\n\nprint(\"Primero\", \"segundo\", \"tercero\")\n\nPrimero segundo tercero\n\n\nLas funciones variádicas no son exclusivas de Python; también podemos implementarlas nosotros mismos.\n\nCantidad variable de argumentos posicionales *args\nSupongamos que queremos una función que recibe una cantidad arbitraria de gustos de helado y e imprime un mensaje como si lo agregase a un pedido. Por ejemplo:\narmar_pedido(\"Dulce de leche\")\nAgregando 'Dulce de leche'\narmar_pedido(\"Dulce de leche\", \"Sambayón\", \"Frutos del bosque\")\nAgregando 'Dulce de leche'\nAgregando 'Sambayón'\nAgregando 'Frutos del bosque'\nUna posible implementación para tal función es:\ndef armar_pedido(gusto_1=None, gusto_2=None, gusto_3=None):\n    if gusto_1 is not None:\n        print(f\"Agregando '{gusto_1}'\")\n    if gusto_2 is not None:\n        print(f\"Agregando '{gusto_2}'\")\n    if gusto_3 is not None:\n        print(f\"Agregando '{gusto_3}'\")\nAunque funciona, esta solución está lejos de ser ideal. Requiere definir un argumento separado para cada gusto, asignarle un valor por defecto y luego verificar si es distinto de None antes de agregarlo al pedido.\nAdemás, el código resulta repetitivo y restrictivo: solo permite un máximo de tres gustos.\nAfortunadamente, en Python es posible crear funciones que acepten una cantidad arbitraria de argumentos posicionales de una manera sencilla.\nPara ello se utiliza un argumento especial precedido por un asterisco (*), lo que le permite recibir una cantidad arbitraria de valores no nombrados.\n\ndef armar_pedido(*args):\n    for gusto in args:\n        print(f\"Agregando '{gusto}'\")\n\n\narmar_pedido(\"Dulce de leche\", \"Sambayón\", \"Frutos del bosque\", \"Menta granizada\")\n\nAgregando 'Dulce de leche'\nAgregando 'Sambayón'\nAgregando 'Frutos del bosque'\nAgregando 'Menta granizada'\n\n\n\narmar_pedido(\"gusto 1\", \"gusto 2\", \"gusto 3\", \"gusto 4\", \"gusto 5\", \"gusto 6\", \"gusto 7\")\n\nAgregando 'gusto 1'\nAgregando 'gusto 2'\nAgregando 'gusto 3'\nAgregando 'gusto 4'\nAgregando 'gusto 5'\nAgregando 'gusto 6'\nAgregando 'gusto 7'\n\n\nPor convención, este argumento suele escribirse como *args, aunque en realidad el nombre del argumento puede ser cualquiera que resulte apropiado. En nuestro caso, resulta más intuitivo usar *gustos, y la función quedaría así:\n\ndef armar_pedido(*gustos):\n    for gusto in gustos:\n        print(f\"Agregando '{gusto}'\")\n\n\narmar_pedido(\"gusto 1\", \"gusto 2\", \"gusto 3\", \"gusto 4\", \"gusto 5\", \"gusto 6\", \"gusto 7\")\n\nAgregando 'gusto 1'\nAgregando 'gusto 2'\nAgregando 'gusto 3'\nAgregando 'gusto 4'\nAgregando 'gusto 5'\nAgregando 'gusto 6'\nAgregando 'gusto 7'\n\n\n\n\n\n\n\n\nQué hay debajo de *args 🔍\n\n\n\nCuando se utilizan valores con el argumento especial *args, Python los reúne automáticamente en una tupla. Esto permite acceder a todos los argumentos como miembros de una colección inmutable.\ndef fun(*args):\n    print(len(args))\n    print(args)\n    print(type(args))\n\nfun(\"que\", \"es\", \"esto\", True, None)\n5\n('que', 'es', 'esto', True, None)\n&lt;class 'tuple'&gt;\n\n\n\n\nCantidad variable de argumentos nombrados **kwargs\nAsí como recibimos una cantidad arbitraria de argumentos posicionales, también podemos recibir una cantidad arbitraria de argumentos nombrados.\nEn este caso, se utilizan dos asteríscos (**) en vez de uno (*).\nLa convención es usar el nombre **kwargs, pero también es válido usar cualquier otro nombre que sea adecuado en nuestro contexto.\nComencemos por un ejemplo elemental, que solo imprime el objeto kwrargs y su tipo:\n\ndef ejemplo(**kwargs):\n    print(kwargs)\n    print(type(kwargs))\n\nejemplo(nombre=\"Mariano\", apellido=\"Pérez\")\n\n{'nombre': 'Mariano', 'apellido': 'Pérez'}\n&lt;class 'dict'&gt;\n\n\nCuando usamos una cantidad variable de argumentos nombrados, Python los agrupa en un diccionario, ya que esta estructura permite asociar cada nombre con su valor de forma natural.\nDentro de la función, se puede manipular al diccionario kwargs como a cualquier otro diccionario de Python.\nImaginemos, por ejemplo, una función que registra información de distintos departamentos. En este caso, no sabemos de antemano qué atributos se van a proporcionar, pero sí sabemos que ciertos atributos deben contar con un valor por defecto si no se especifican.\n\ndef registrar_propiedad(**kwargs):\n    print(\"Diccionario original:\")\n    print(kwargs)\n\n    # Si no se especifica la cantidad de cocheras, se pone 0 por defecto\n    if \"cochera\" not in kwargs:\n        kwargs[\"cochera\"] = 0\n\n    # Si no se especifica la ciudad, se pone 'Desconocido' por defecto\n    if \"ciudad\" not in kwargs:\n        kwargs[\"ciudad\"] = \"Desconocido\"\n\n    return kwargs\n\nCuando no se especifician la cantidad de cocheras, la función nos devuelve un diccionario donde la cantidad de cocheras es 0.\n\ndatos = registrar_propiedad(ambientes=2, ciudad=\"Rosario\")\n\nprint(\"\\nDiccionario sanitizado\")\nprint(datos)\n\nDiccionario original:\n{'ambientes': 2, 'ciudad': 'Rosario'}\n\nDiccionario sanitizado\n{'ambientes': 2, 'ciudad': 'Rosario', 'cochera': 0}\n\n\nSi los atributos requeridos son especificados, se devuelve el diccionario sin cambios.\n\ndatos = registrar_propiedad(ambientes=2, ciudad=\"Santa Fe\", cochera=2)\n\nprint(\"\\nDiccionario sanitizado\")\nprint(datos)\n\nDiccionario original:\n{'ambientes': 2, 'ciudad': 'Santa Fe', 'cochera': 2}\n\nDiccionario sanitizado\n{'ambientes': 2, 'ciudad': 'Santa Fe', 'cochera': 2}\n\n\nY si se pasan atributos inesperados, también se incluyen en la salida.\n\ndatos = registrar_propiedad(ambientes=4, dormitorios=2)\n\nprint(\"\\nDiccionario sanitizado\")\nprint(datos)\n\nDiccionario original:\n{'ambientes': 4, 'dormitorios': 2}\n\nDiccionario sanitizado\n{'ambientes': 4, 'dormitorios': 2, 'cochera': 0, 'ciudad': 'Desconocido'}\n\n\n\n\nCombinando *args y **kwargs\nLas funciones en Python pueden recibir simultáneamente una cantidad variable de argumentos posicionales y nombrados. Para lograrlo, se combinan *args y **kwargs. Es importante recordar que, al definir la función, *args debe colocarse antes que **kwargs, ya que los argumentos posicionales siempre se pasan antes que los nombrados.\n\ndef superfuncion(*args, **kwargs):\n    for arg in args:\n        print(f\"Me pasaron el argumento posicional '{arg}'\")\n\n    for key, value in kwargs.items():\n        print(f\"Me pasaron el argumento con nombre '{key}' y valor '{value}'\")\n\nsuperfuncion(True, 64, nombre=\"Elsa\", apellido=\"Pato\")\n\nMe pasaron el argumento posicional 'True'\nMe pasaron el argumento posicional '64'\nMe pasaron el argumento con nombre 'nombre' y valor 'Elsa'\nMe pasaron el argumento con nombre 'apellido' y valor 'Pato'\n\n\nSi se intenta pasar un argumento posicional (sin nombre) después de un argumento nombrado, obtendríamos un error:\nsuperfuncion(True, nombre=\"Elsa\", apellido=\"Pato\", 64)\n    superfuncion(True, nombre=\"Elsa\", apellido=\"Pato\", 64)\n                                                         ^\nSyntaxError: positional argument follows keyword argument\n\n\n\n\n\n\n¿Y para qué me sirven? 🤔\n\n\n\nA primera vista, los ejemplos de *args y **kwargs pueden dar la impresión de que estas herramientas solo complican la escritura del código. Sin embargo, su verdadero valor aparece al trabajar en programas más complejos, donde se vuelven fundamentales para simplificar la lógica y aportar flexibilidad en la resolución de una gran variedad de problemas.\nYa llegaremos…\n\n\n\n\n\n\n\n\nEs solo una convención 🤝\n\n\n\nPara reforzar que los nombres *args y **kwargs son solamente una convención, podríamos escribir la función superfuncion como:\ndef superfuncion(*posicionales, **nombrados):\n    for arg in posicionales:\n        print(f\"Me pasaron el argumento posicional '{arg}'\")\n\n    for key, value in nombrados.items():\n        print(f\"Me pasaron el argumento con nombre '{key}' y valor '{value}'\")\ny funcionaría de igual modo.",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "1 - El paradigma funcional"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/01_paradigma.html#closures",
+    "href": "teoria/02_programacion_funcional/01_paradigma.html#closures",
+    "title": "1 - El paradigma funcional",
+    "section": "Closures",
+    "text": "Closures\nEn la Sección 3.1 vimos el siguiente ejemplo:\ndef crear_multiplicador(x):\n    def interna(y):\n        return y * x\n    return interna\n\nduplicar = crear_multiplicador(2)\ntriplicar = crear_multiplicador(3)\n\nprint(duplicar(5))\nprint(triplicar(5))\n10\n15\nLa función crear_multiplicador es una fábrica de funciones que devuelve otra función que se encarga de realizar la multiplicación. Lo interesante de esta implementación es que la función interna solo recibe uno de los dos valores necesarios para la multiplicación; el otro queda que fijado cuando se ejecuta la función externa crear_multiplicador.\nPara que duplicar y triplicar funcionen correctamente, ambas funciones internas deben conservar acceso al entorno en el que está definido el valor de x. Ese mecanismo, que permite a una tener acceso a las variables de su contexto incluso después de que la ejecución de la función externa haya concluído, es precisamente lo que se conoce como un closure.\n\ndef crear_multiplicador(x):\n    def interna(y):\n        return y * x\n    return interna\n\nduplicar = crear_multiplicador(2)\ntriplicar = crear_multiplicador(3)\n\nprint(duplicar(5))\nprint(triplicar(5))\n\n10\n15\n\n\nEl siguiente ejemplo hace aún más evidente el funcionamiento de este mecanismo.\nDentro del cuerpo de la function factory externa, se define valor con el número 256. Luego, la función interna hace uso de esta variable valor dentro de print.\n\ndef externa():\n    valor = 256\n    def closure():\n        print(f\"¡El valor es: {valor}!\")\n    return closure\n\nrevelar_numero = externa()\nrevelar_numero()\n\n¡El valor es: 256!\n\n\nAunque desde fuera no podemos acceder directamente a valor:\nvalor\nNameError: name 'valor' is not defined\nla función interna sí puede hacerlo tantas veces como sea necesario:\n\nrevelar_numero()\nrevelar_numero()\nrevelar_numero()\n\n¡El valor es: 256!\n¡El valor es: 256!\n¡El valor es: 256!\n\n\nPara finalizar, veamos un ejemplo similar al anterior, pero donde el valor de la variable numero es desconocido para nosotros. Dicho valor se genera de manera aleatoria cuando se crea ejecuta la fábrica de funciones crear_funcion.\n\nimport random\n\ndef crear_funcion():\n    numero = random.randint(1, 1000)\n    def closure():\n        print(\"El valor es...\", numero)\n    return closure\n\nreveladora = crear_funcion()\n\nLuego, sin importar cuántas veces llamemos a reveladora, el mensaje será siempre el mismo, ya que el valor de numero se definió una sola vez en el momento de crear la función.\n\nreveladora()\n\nEl valor es... 393\n\n\n\nreveladora()\n\nEl valor es... 393\n\n\n\n\n\n\n\n\nUna dosis de precisión 🎯😱\n\n\n\nA menudo se dice que un closure es una función. Así, en el siguiente ejemplo, duplicar sería considerado un closure:\ndef crear_multiplicador(x):\n    def interna(y):\n        return y * x\n    return interna\n\nduplicar = crear_multiplicador(2)\nSin embargo, esa definición es un tanto imprecisa. Un closure no es simplemente una función, sino el mecanismo que permite a las funciones acceder a las variables del entorno en el que fueron definidas, incluso cuando ese entorno ya dejó de existir (por ejemplo, después de que termina la ejecución de la función externa que las creó).\nUf… ¡qué complicado!\n\n\n\n\n\n\n\n\nobject of type 'closure' is not subsettable 😵\n\n\n\nSi en R intentamos seleccionar filas o columnas de data sin haberle asignado un objeto previamente, obtendremos el siguiente error:\nError in data[1] : object of type 'closure' is not subsettable\nEsto ocurre porque data es en realidad una función en R. En este lenguaje, el tipo de los objetos función se denomina closure, haciendo referencia la capacidad que tienen las funciones de acceder a valores del ambiente donde fueron definidas.",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "1 - El paradigma funcional"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/05_transformaciones_funcionales.html",
+    "href": "teoria/02_programacion_funcional/05_transformaciones_funcionales.html",
+    "title": "5 - Transformaciones funcionales",
+    "section": "",
+    "text": "Evaluación parcial de funciones\nDecoradores",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "5 - Transformaciones funcionales"
+    ]
+  },
+  {
+    "objectID": "informacion/calendario.html",
+    "href": "informacion/calendario.html",
+    "title": "Calendario",
+    "section": "",
+    "text": "Semana\nFecha\nTemas\nOtras actividades\n\n\n\n\n1\n4 de agosto\n• Lenguaje Python y su ecosistema.• Uso de Python en la terminal.• Uso de Positron.• Python en Positron.• Python: expresiones; variables y asignaciones; tipos de datos elementales; operadores numéricos, de comparación y lógicos.• Jupyter Notebooks.• Definición de funciones.• Ejecución condicional de código.\n\n\n\n2\n11 de agosto\n• Colecciones de datos en Python: list, tuple, dict y set.• Secuencias.• Las secuencias str y range.• Bucles definidos (for) y no definidos (while).• Sentencias break y continue.\n\n\n\n3\n17 de agosto\n• Uso de código externo (propio y de terceros).• Módulos y librerías.• Librería estándar de Python.• Instalación y gestión de librerías.• Scripting.• Modularización de programas.• Lectura y escritura de archivos de texto plano.\n\n\n\n4\n25 de agosto\n• Funciones como ciudadanos de primera clase.• Funciones puras.• Funciones anónimas.• Closures.• Recursión.\n\n\n\n5\n1 de septiembre\n• Funciones de orden superior: map, filter, reduce.• Evaluación estricta y no estricta.• Evaluación perezosa (lazy) e inmediata (eager).• Generadores.• Aplicación parcial de funciones.• Decoradores.\n\n\n\n6\n15 de septiembre\n• Objetos, clases e instancias.• Atributos y métodos.• Propiedades públicas y privadas.• Métodos de clase y métodos de instancia.\n\n\n\n7\n22 de septiembre\n• Encapsulamiento.• Herencia simple y múltiple.• Polimorfismo.• Abstracción.\n\n\n\n8\n29 de septiembre\n• Métodos especiales (dunder methods).• Decoradores aplicados a métodos.• Sobrecarga de operadores.\nParcial\n\n\n9\n6 de octubre\n• Concepto y clasificación.• Estructuras lineales y no lineales.• Listas y listas enlazadas.• Operaciones básicas: agregar, quitar y recorrer.\nPresentación TP Grupal\n\n\n10\n13 de octubre\n• Hashing.• Diccionarios y conjuntos como estructuras asociativas.• Árboles y grafos.\nRecuperatorio\n\n\n11\n20 de octubre\n• Arreglos multidimensionales de NumPy.\n\n\n\n12\n27 de octubre\n• Concepto de algoritmo y complejidad.• Algoritmos de búsqueda.• Búsqueda lineal y binaria.• Notación Big O.\n\n\n\n13\n3 de noviembre\n• Algoritmos de ordenamiento.• bubble sort, insert sort, select sort, quick sort y merge sort.• Comparación de algoritmos de ordenamiento.\nEntrega TP GrupalPresentación TP Individual\n\n\n14\n10 de noviembre\n• Funciones de búsqueda y ordenamiento en Python.\n\n\n\n15\n17 de noviembre\n\n\n\n\n16\n24 de noviembre\n\nEntrega y defensa TP Individual",
+    "crumbs": [
+      "Información",
+      "Calendario"
+    ]
+  },
+  {
+    "objectID": "informacion/bibliografia.html",
+    "href": "informacion/bibliografia.html",
+    "title": "Bibliografía",
+    "section": "",
+    "text": "Principal\n\nCormen et al. (2022) Downey (2024) Kalb (2022) Kubica (2022) Lott y Phillips (2021) Lott (2022) Mertz (2015) Miller, Ranum, y Yasinovskyy (2023) Sedgewick y Wayne (2011) Sedgewick, Wayne, y Dondero (2015) Sweigart (2020) Tuckfield (2021)\n\n\n\nCormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, y Clifford Stein. 2022. Introduction to Algorithms. 4th ed. MIT.\n\n\nDowney, Allen B. 2024. Think Python. 3.ª ed. O’Reilly Media. https://allendowney.github.io/ThinkPython/.\n\n\nKalb, Irv. 2022. Object-Oriented Python. No Starch Press.\n\n\nKubica, Jacek. 2022. Data Structures the Fun Way. 1st ed. No Starch Press.\n\n\nLott, Steven F. 2022. Functional Python Programming. 3rd ed. Packt Publishing.\n\n\nLott, Steven F., y Dusty Phillips. 2021. Python Object-Oriented Programming. 4th ed. Packt Publishing.\n\n\nMertz, David. 2015. Functional Programming in Python. O’Reilly Media.\n\n\nMiller, Bradley, David Ranum, y Jan Yasinovskyy. 2023. Problem Solving with Algorithms and Data Structures Using Python. 3rd ed. Franklin, Beedle & Associates.\n\n\nSedgewick, Robert, y Kevin Wayne. 2011. Algorithms. 4th ed. Addison-Wesley Professional.\n\n\nSedgewick, Robert, Kevin Wayne, y Robert Dondero. 2015. Introduction to Programming in Python. Addison-Wesley Professional.\n\n\nSweigart, Al. 2020. Beyond the Basic Stuff with Python. No Starch Press. https://inventwithpython.com/beyond/.\n\n\nTuckfield, Bradford. 2021. Dive Into Algorithms. No Starch Press.\n\n\n\n\nComplementaria\n\nHetland (2014) Mailund (2023) Sweigart (2021) Vaughan (2019) Wickham (2019)\n\n\n\n\n\nHetland, Magnus Lie. 2014. Python Algorithms. 2.ª ed. Apress.\n\n\nMailund, Thomas. 2023. Functional Programming in R 4. 2.ª ed. Apress.\n\n\nSweigart, Al. 2021. The Big Book of Small Python Projects. No Starch Press. https://inventwithpython.com/bigbookpython/.\n\n\nVaughan, Lee. 2019. Impractical Python Projects. No Starch Press.\n\n\nWickham, Hadley. 2019. Advanced R. 2.ª ed. Chapman & Hall/CRC. https://adv-r.hadley.nz/.",
+    "crumbs": [
+      "Información",
+      "Bibliografía"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Programación II",
+    "section": "",
+    "text": "Programación II\n\n\n   Ciclo de Formación Técnica - Estadística y Ciencia de Datos\n   Facultad de Ciencias Económicas y Estadística (UNR)\n   2° Cuatrimestre 2025"
+  },
+  {
+    "objectID": "index.html#docentes",
+    "href": "index.html#docentes",
+    "title": "Programación II",
+    "section": "Docentes",
+    "text": "Docentes\n\n\nTomás Capretto\n\n   tomas.capretto@fcecon.unr.edu.ar \n\n\n\nLuciano Anselmino\n\n   luciano.anselmino@fcecon.unr.edu.ar \n\n\n\nJoaquín Bermejo\n\n   joaquin.bermejo@fcecon.unr.edu.ar \n\n\n\nDolores Sollberger\n\n   dolores.sollberger@fcecon.unr.edu.ar"
+  },
+  {
+    "objectID": "trabajos_practicos/trabajo_individual.html",
+    "href": "trabajos_practicos/trabajo_individual.html",
+    "title": "Trabajo Práctico Final",
+    "section": "",
+    "text": "Trabajo Práctico Final",
+    "crumbs": [
+      "Trabajos Prácticos",
+      "Trabajo Práctico Final"
+    ]
+  },
+  {
+    "objectID": "trabajos_practicos/trabajo_grupal.html",
+    "href": "trabajos_practicos/trabajo_grupal.html",
+    "title": "Trabajo Práctico",
+    "section": "",
+    "text": "Trabajo Práctico",
+    "crumbs": [
+      "Trabajos Prácticos",
+      "Trabajo Práctico"
+    ]
+  },
+  {
+    "objectID": "trabajos_practicos/descripcion.html",
+    "href": "trabajos_practicos/descripcion.html",
+    "title": "Descripción",
+    "section": "",
+    "text": "Acá explicamos las pautas para los TP.",
+    "crumbs": [
+      "Trabajos Prácticos",
+      "Descripción"
+    ]
+  },
+  {
+    "objectID": "informacion/aprobacion.html",
+    "href": "informacion/aprobacion.html",
+    "title": "Condiciones de aprobación",
+    "section": "",
+    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
+    "crumbs": [
+      "Información",
+      "Condiciones de aprobación"
+    ]
+  },
+  {
+    "objectID": "informacion/aprobacion.html#instancias-de-evaluación",
+    "href": "informacion/aprobacion.html#instancias-de-evaluación",
+    "title": "Condiciones de aprobación",
+    "section": "",
+    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
+    "crumbs": [
+      "Información",
+      "Condiciones de aprobación"
+    ]
+  },
+  {
+    "objectID": "informacion/aprobacion.html#condiciones-de-aprobación",
+    "href": "informacion/aprobacion.html#condiciones-de-aprobación",
+    "title": "Condiciones de aprobación",
+    "section": "Condiciones de aprobación",
+    "text": "Condiciones de aprobación\n\nPromoción\n\nQuienes aprueben el parcial individual (con nota \\(\\text{P}\\)), el trabajo práctico grupal (con nota \\(\\text{T}\\)) y el trabajo práctico individual con defensa oral (con nota \\(\\text{O}\\)), adquieren la condición de estudiante promovido y su nota final se calcula como \\(0.5 \\times \\text{P} + 0.2 \\times \\text{T} + 0.3 \\times \\text{O}\\).\n\nRegularidad\n\nQuienes aprueben el parcial individual (o su recuperatorio) y el trabajo práctico grupal, pero no accedan o no aprueben el trabajo práctico individual, adquieren la condición de estudiante regular.\n\nLibres\n\nQuienes no aprueben el parcial individual (ni su recuperatorio) o el trabajo práctico grupal, adquieren la condición de estudiante libre.",
+    "crumbs": [
+      "Información",
+      "Condiciones de aprobación"
+    ]
+  },
+  {
     "objectID": "informacion/programa.html",
     "href": "informacion/programa.html",
     "title": "Programa",
@@ -404,105 +614,75 @@
     ]
   },
   {
-    "objectID": "informacion/aprobacion.html",
-    "href": "informacion/aprobacion.html",
-    "title": "Condiciones de aprobación",
+    "objectID": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html",
+    "href": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html",
+    "title": "4 - Estrategias de evaluación",
     "section": "",
-    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
+    "text": "Evaluación perezosa (lazy) e inmediata (eager).\nEvaluación estricta y no estricta.\nGeneradores.\n\nGenerator expression (el for el in seq), (f(el) for el in seq).\nComparación con list comprehension.",
     "crumbs": [
-      "Información",
-      "Condiciones de aprobación"
+      "Teoría",
+      "U2 - Programación Funcional",
+      "4 - Estrategias de evaluación"
     ]
   },
   {
-    "objectID": "informacion/aprobacion.html#instancias-de-evaluación",
-    "href": "informacion/aprobacion.html#instancias-de-evaluación",
-    "title": "Condiciones de aprobación",
+    "objectID": "teoria/02_programacion_funcional/06_otros_topicos.html",
+    "href": "teoria/02_programacion_funcional/06_otros_topicos.html",
+    "title": "6 - Otros tópicos",
     "section": "",
-    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
+    "text": "Funciones con argumentos por defecto mutables\nFunciones con únicamente argumentos posicionales\nFunciones con únicamente argumentos nombrados\nDesestructuraciones de secuencias y de mapeos al llamar a una función\n\nf(*[1, 2, 3])\ng(**{\"a\": 1, \"b\": 2})\nh(*[1, 2, 3], **{\"a\": 1, \"b\": 2})",
     "crumbs": [
-      "Información",
-      "Condiciones de aprobación"
+      "Teoría",
+      "U2 - Programación Funcional",
+      "6 - Otros tópicos"
     ]
   },
   {
-    "objectID": "informacion/aprobacion.html#condiciones-de-aprobación",
-    "href": "informacion/aprobacion.html#condiciones-de-aprobación",
-    "title": "Condiciones de aprobación",
-    "section": "Condiciones de aprobación",
-    "text": "Condiciones de aprobación\n\nPromoción\n\nQuienes aprueben el parcial individual (con nota \\(\\text{P}\\)), el trabajo práctico grupal (con nota \\(\\text{T}\\)) y el trabajo práctico individual con defensa oral (con nota \\(\\text{O}\\)), adquieren la condición de estudiante promovido y su nota final se calcula como \\(0.5 \\times \\text{P} + 0.2 \\times \\text{T} + 0.3 \\times \\text{O}\\).\n\nRegularidad\n\nQuienes aprueben el parcial individual (o su recuperatorio) y el trabajo práctico grupal, pero no accedan o no aprueben el trabajo práctico individual, adquieren la condición de estudiante regular.\n\nLibres\n\nQuienes no aprueben el parcial individual (ni su recuperatorio) o el trabajo práctico grupal, adquieren la condición de estudiante libre.",
+    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#map",
+    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#map",
+    "title": "3 - Funciones de orden superior",
+    "section": "Map",
+    "text": "Map",
     "crumbs": [
-      "Información",
-      "Condiciones de aprobación"
+      "Teoría",
+      "U2 - Programación Funcional",
+      "3 - Funciones de orden superior"
     ]
   },
   {
-    "objectID": "trabajos_practicos/descripcion.html",
-    "href": "trabajos_practicos/descripcion.html",
-    "title": "Descripción",
-    "section": "",
-    "text": "Acá explicamos las pautas para los TP.",
+    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#filter",
+    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#filter",
+    "title": "3 - Funciones de orden superior",
+    "section": "Filter",
+    "text": "Filter",
     "crumbs": [
-      "Trabajos Prácticos",
-      "Descripción"
+      "Teoría",
+      "U2 - Programación Funcional",
+      "3 - Funciones de orden superior"
     ]
   },
   {
-    "objectID": "trabajos_practicos/trabajo_grupal.html",
-    "href": "trabajos_practicos/trabajo_grupal.html",
-    "title": "Trabajo Práctico",
-    "section": "",
-    "text": "Trabajo Práctico",
+    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#reduce",
+    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#reduce",
+    "title": "3 - Funciones de orden superior",
+    "section": "Reduce",
+    "text": "Reduce",
     "crumbs": [
-      "Trabajos Prácticos",
-      "Trabajo Práctico"
+      "Teoría",
+      "U2 - Programación Funcional",
+      "3 - Funciones de orden superior"
     ]
   },
   {
-    "objectID": "trabajos_practicos/trabajo_individual.html",
-    "href": "trabajos_practicos/trabajo_individual.html",
-    "title": "Trabajo Práctico Final",
-    "section": "",
-    "text": "Trabajo Práctico Final",
+    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#comprehensions",
+    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#comprehensions",
+    "title": "3 - Funciones de orden superior",
+    "section": "Comprehensions",
+    "text": "Comprehensions\n\nListas\n\n\nDiccionarios",
     "crumbs": [
-      "Trabajos Prácticos",
-      "Trabajo Práctico Final"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Programación II",
-    "section": "",
-    "text": "Programación II\n\n\n   Ciclo de Formación Técnica - Estadística y Ciencia de Datos\n   Facultad de Ciencias Económicas y Estadística (UNR)\n   2° Cuatrimestre 2025"
-  },
-  {
-    "objectID": "index.html#docentes",
-    "href": "index.html#docentes",
-    "title": "Programación II",
-    "section": "Docentes",
-    "text": "Docentes\n\n\nTomás Capretto\n\n   tomas.capretto@fcecon.unr.edu.ar \n\n\n\nLuciano Anselmino\n\n   luciano.anselmino@fcecon.unr.edu.ar \n\n\n\nJoaquín Bermejo\n\n   joaquin.bermejo@fcecon.unr.edu.ar \n\n\n\nDolores Sollberger\n\n   dolores.sollberger@fcecon.unr.edu.ar"
-  },
-  {
-    "objectID": "informacion/bibliografia.html",
-    "href": "informacion/bibliografia.html",
-    "title": "Bibliografía",
-    "section": "",
-    "text": "Principal\n\nCormen et al. (2022) Downey (2024) Kalb (2022) Kubica (2022) Lott y Phillips (2021) Lott (2022) Mertz (2015) Miller, Ranum, y Yasinovskyy (2023) Sedgewick y Wayne (2011) Sedgewick, Wayne, y Dondero (2015) Sweigart (2020) Tuckfield (2021)\n\n\n\nCormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, y Clifford Stein. 2022. Introduction to Algorithms. 4th ed. MIT.\n\n\nDowney, Allen B. 2024. Think Python. 3.ª ed. O’Reilly Media. https://allendowney.github.io/ThinkPython/.\n\n\nKalb, Irv. 2022. Object-Oriented Python. No Starch Press.\n\n\nKubica, Jacek. 2022. Data Structures the Fun Way. 1st ed. No Starch Press.\n\n\nLott, Steven F. 2022. Functional Python Programming. 3rd ed. Packt Publishing.\n\n\nLott, Steven F., y Dusty Phillips. 2021. Python Object-Oriented Programming. 4th ed. Packt Publishing.\n\n\nMertz, David. 2015. Functional Programming in Python. O’Reilly Media.\n\n\nMiller, Bradley, David Ranum, y Jan Yasinovskyy. 2023. Problem Solving with Algorithms and Data Structures Using Python. 3rd ed. Franklin, Beedle & Associates.\n\n\nSedgewick, Robert, y Kevin Wayne. 2011. Algorithms. 4th ed. Addison-Wesley Professional.\n\n\nSedgewick, Robert, Kevin Wayne, y Robert Dondero. 2015. Introduction to Programming in Python. Addison-Wesley Professional.\n\n\nSweigart, Al. 2020. Beyond the Basic Stuff with Python. No Starch Press. https://inventwithpython.com/beyond/.\n\n\nTuckfield, Bradford. 2021. Dive Into Algorithms. No Starch Press.\n\n\n\n\nComplementaria\n\nHetland (2014) Mailund (2023) Sweigart (2021) Vaughan (2019) Wickham (2019)\n\n\n\n\n\nHetland, Magnus Lie. 2014. Python Algorithms. 2.ª ed. Apress.\n\n\nMailund, Thomas. 2023. Functional Programming in R 4. 2.ª ed. Apress.\n\n\nSweigart, Al. 2021. The Big Book of Small Python Projects. No Starch Press. https://inventwithpython.com/bigbookpython/.\n\n\nVaughan, Lee. 2019. Impractical Python Projects. No Starch Press.\n\n\nWickham, Hadley. 2019. Advanced R. 2.ª ed. Chapman & Hall/CRC. https://adv-r.hadley.nz/.",
-    "crumbs": [
-      "Información",
-      "Bibliografía"
-    ]
-  },
-  {
-    "objectID": "informacion/calendario.html",
-    "href": "informacion/calendario.html",
-    "title": "Calendario",
-    "section": "",
-    "text": "Semana\nFecha\nTemas\nOtras actividades\n\n\n\n\n1\n4 de agosto\n• Lenguaje Python y su ecosistema.• Uso de Python en la terminal.• Uso de Positron.• Python en Positron.• Python: expresiones; variables y asignaciones; tipos de datos elementales; operadores numéricos, de comparación y lógicos.• Jupyter Notebooks.• Definición de funciones.• Ejecución condicional de código.\n\n\n\n2\n11 de agosto\n• Colecciones de datos en Python: list, tuple, dict y set.• Secuencias.• Las secuencias str y range.• Bucles definidos (for) y no definidos (while).• Sentencias break y continue.\n\n\n\n3\n17 de agosto\n• Uso de código externo (propio y de terceros).• Módulos y librerías.• Librería estándar de Python.• Instalación y gestión de librerías.• Scripting.• Modularización de programas.• Lectura y escritura de archivos de texto plano.\n\n\n\n4\n25 de agosto\n• Funciones como ciudadanos de primera clase.• Funciones puras.• Funciones anónimas.• Closures.• Recursión.\n\n\n\n5\n1 de septiembre\n• Funciones de orden superior: map, filter, reduce.• Evaluación estricta y no estricta.• Evaluación perezosa (lazy) e inmediata (eager).• Generadores.• Aplicación parcial de funciones.• Decoradores.\n\n\n\n6\n15 de septiembre\n• Objetos, clases e instancias.• Atributos y métodos.• Propiedades públicas y privadas.• Métodos de clase y métodos de instancia.\n\n\n\n7\n22 de septiembre\n• Encapsulamiento.• Herencia simple y múltiple.• Polimorfismo.• Abstracción.\n\n\n\n8\n29 de septiembre\n• Métodos especiales (dunder methods).• Decoradores aplicados a métodos.• Sobrecarga de operadores.\nParcial\n\n\n9\n6 de octubre\n• Concepto y clasificación.• Estructuras lineales y no lineales.• Listas y listas enlazadas.• Operaciones básicas: agregar, quitar y recorrer.\nPresentación TP Grupal\n\n\n10\n13 de octubre\n• Hashing.• Diccionarios y conjuntos como estructuras asociativas.• Árboles y grafos.\nRecuperatorio\n\n\n11\n20 de octubre\n• Arreglos multidimensionales de NumPy.\n\n\n\n12\n27 de octubre\n• Concepto de algoritmo y complejidad.• Algoritmos de búsqueda.• Búsqueda lineal y binaria.• Notación Big O.\n\n\n\n13\n3 de noviembre\n• Algoritmos de ordenamiento.• bubble sort, insert sort, select sort, quick sort y merge sort.• Comparación de algoritmos de ordenamiento.\nEntrega TP GrupalPresentación TP Individual\n\n\n14\n10 de noviembre\n• Funciones de búsqueda y ordenamiento en Python.\n\n\n\n15\n17 de noviembre\n\n\n\n\n16\n24 de noviembre\n\nEntrega y defensa TP Individual",
-    "crumbs": [
-      "Información",
-      "Calendario"
+      "Teoría",
+      "U2 - Programación Funcional",
+      "3 - Funciones de orden superior"
     ]
   },
   {

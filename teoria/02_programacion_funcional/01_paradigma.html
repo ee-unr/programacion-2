@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1 - El paradigma funcional – Programación II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../teoria/02_programacion_funcional/02_recursion.html" rel="next">
+<link href="../../teoria/01_programacion_en_python/08_io.html" rel="prev">
+<link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-ec0a55faf04d048dc7cf4d8bee194688.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Programación II</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../informacion/programa.html"> 
+<span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../teoria/01_programacion_en_python/01_introduccion.html" aria-current="page"> 
+<span class="menu-text">Teoría</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../practica/01_programacion_en_python/ejercicios.html"> 
+<span class="menu-text">Práctica</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../trabajos_practicos/descripcion.html"> 
+<span class="menu-text">Trabajos Prácticos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../recursos/ejercicios/ejercicio_01.html"> 
+<span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ee-unr/programacion-2"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/02_programacion_funcional/01_paradigma.html">U2 - Programación Funcional</a></li><li class="breadcrumb-item"><a href="../../teoria/02_programacion_funcional/01_paradigma.html">1 - El paradigma funcional</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U1 - Programación en Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Introducción</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Funciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Ejecución condicional</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/04_colecciones_de_datos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Colecciones de datos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/05_ejecucion_repetitiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Ejecución repetitiva</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/06_uso_de_codigo_externo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 - Uso de código externo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/07_scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 - <em>Scripting</em></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/08_io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 - Lectura y escritura de archivos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U2 - Programación Funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/01_paradigma.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1 - El paradigma funcional</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/02_recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Recursión</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/03_funciones_de_orden_superior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Funciones de orden superior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Estrategias de evaluación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/05_transformaciones_funcionales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Transformaciones funcionales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/06_otros_topicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 - Otros tópicos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">U3 - Programación Orientada a Objetos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">U4 - Estructuras de Datos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/05_algoritmos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">U5 - Algoritmos</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#funciones-puras" id="toc-funciones-puras" class="nav-link" data-scroll-target="#funciones-puras">Funciones puras</a>
+  <ul class="collapse">
+  <li><a href="#efectos-secundarios" id="toc-efectos-secundarios" class="nav-link" data-scroll-target="#efectos-secundarios">Efectos secundarios</a></li>
+  </ul></li>
+  <li><a href="#sec-ciudadanos" id="toc-sec-ciudadanos" class="nav-link" data-scroll-target="#sec-ciudadanos">Ciudadanos de primera clase</a>
+  <ul class="collapse">
+  <li><a href="#sec-orden" id="toc-sec-orden" class="nav-link" data-scroll-target="#sec-orden">Funciones de orden superior</a></li>
+  <li><a href="#atributos-de-una-función" id="toc-atributos-de-una-función" class="nav-link" data-scroll-target="#atributos-de-una-función">Atributos de una función</a></li>
+  </ul></li>
+  <li><a href="#funciones-anónimas" id="toc-funciones-anónimas" class="nav-link" data-scroll-target="#funciones-anónimas">Funciones anónimas</a></li>
+  <li><a href="#funciones-variádicas" id="toc-funciones-variádicas" class="nav-link" data-scroll-target="#funciones-variádicas">Funciones variádicas</a>
+  <ul class="collapse">
+  <li><a href="#cantidad-variable-de-argumentos-posicionales-args" id="toc-cantidad-variable-de-argumentos-posicionales-args" class="nav-link" data-scroll-target="#cantidad-variable-de-argumentos-posicionales-args">Cantidad variable de argumentos posicionales <code>*args</code></a></li>
+  <li><a href="#cantidad-variable-de-argumentos-nombrados-kwargs" id="toc-cantidad-variable-de-argumentos-nombrados-kwargs" class="nav-link" data-scroll-target="#cantidad-variable-de-argumentos-nombrados-kwargs">Cantidad variable de argumentos nombrados <code>**kwargs</code></a></li>
+  <li><a href="#combinando-args-y-kwargs" id="toc-combinando-args-y-kwargs" class="nav-link" data-scroll-target="#combinando-args-y-kwargs">Combinando <code>*args</code> y <code>**kwargs</code></a></li>
+  </ul></li>
+  <li><a href="#closures" id="toc-closures" class="nav-link" data-scroll-target="#closures"><em>Closures</em></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/02_programacion_funcional/01_paradigma.html">U2 - Programación Funcional</a></li><li class="breadcrumb-item"><a href="../../teoria/02_programacion_funcional/01_paradigma.html">1 - El paradigma funcional</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">1 - El paradigma funcional</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>La <strong>programación funcional</strong> es un paradigma de programación que se centra en el uso de <strong>funciones puras</strong> y en concebir la computación como la evaluación de funciones. En lugar de dar instrucciones paso a paso que cambian variables o estados (como ocurre en la programación imperativa), la idea es construir programas a partir de funciones que transforman datos.</p>
+<p>Existen lenguajes diseñados específicamente para la programación funcional (como Haskell), pero Python no es uno de ellos. Python es un lenguaje multiparadigma, lo que significa que nos permite combinar diferentes estilos de programación. Por este motivo, la programación funcional en Python no suele ser el enfoque principal, pero puede ser muy útil para escribir código más claro, conciso y fácil de probar.</p>
+</section>
+<section id="funciones-puras" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-puras">Funciones puras</h2>
+<p>Una función es pura cuando su salida depende únicamente de los valores de entrada y no produce ningún efecto secundario o colateral (<em>side effect</em>, en inglés).</p>
+<p>La función <code>sumar</code>, que calcula y devuelve la suma de dos números, es un ejemplo de función pura: su resultado depende solo de sus argumentos y no genera efectos colaterales.</p>
+<div id="27ea7f3c" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumar(x, y):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sumar(<span class="dv">3</span>, <span class="dv">11</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>14</code></pre>
+</div>
+</div>
+<p>En cambio, la función <code>agregar</code> no es una función pura. Esto se debe a que modifica un objeto global, lo que se conoce como un efecto secundario. Además, el valor de su salida no depende únicamente de la entrada, sino también de un estado global: la cantidad de elementos en <code>lista</code>.</p>
+<div id="cffa2bfa" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> []</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> agregar(x):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Agrega el elemento `x` al final de `lista` y devuelve la longitud de `lista`"""</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    lista.append(x)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">len</span>(lista)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="216f2e7e" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>agregar(<span class="st">"azucar"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>1</code></pre>
+</div>
+</div>
+<div id="cf2e5e83" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>agregar(<span class="st">"flores"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>2</code></pre>
+</div>
+</div>
+<div id="045035c1" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>agregar(<span class="st">"colores"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>3</code></pre>
+</div>
+</div>
+<div id="7af48a0c" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lista</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>['azucar', 'flores', 'colores']</code></pre>
+</div>
+</div>
+<section id="efectos-secundarios" class="level3">
+<h3 class="anchored" data-anchor-id="efectos-secundarios">Efectos secundarios</h3>
+<p>Un efecto secundario (<em>side effect</em>) es cualquier cambio de estado observable que ocurre fuera del ámbito local de una función. En otras palabras, se trata de una modificación del entorno externo de la función que va más allá de simplemente devolver un valor.</p>
+<p>Algunos ejemplos de <em>side effects</em> son:</p>
+<ul>
+<li>Modificar una variable global o un objeto mutable.</li>
+<li>Imprimir en la consola.</li>
+<li>Escribir en un archivo.</li>
+<li>Realizar una llamada a una API o a una base de datos.</li>
+</ul>
+<p>Las funciones con efectos secundarios pueden ser problemáticas porque, al modificar elementos externos, hacen que el código sea impredecible y difícil de probar.</p>
+<p>En el ejemplo de la función <code>agregar</code> que creamos anteriormente, no es posible predecir el valor de salida para un valor de entrada determinado.</p>
+<p>Por eso, la programación funcional promueve el uso de funciones puras, que no producen efectos secundarios. De esta manera, con las mismas entradas siempre se obtiene la misma salida, logrando un código más confiable, predecible y sencillo de mantener.</p>
+</section>
+</section>
+<section id="sec-ciudadanos" class="level2">
+<h2 class="anchored" data-anchor-id="sec-ciudadanos">Ciudadanos de primera clase</h2>
+<p>Definamos otra función muy sencilla, <code>restar</code>, que calcula y devuelve la diferencia entre dos objetos.</p>
+<div id="726200bc" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> restar(x, y):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">-</span> y</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>restar(<span class="dv">10</span>, <span class="dv">5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>5</code></pre>
+</div>
+</div>
+<p>Podemos observar que esta función es un <strong>objeto</strong> de tipo <code>function</code>.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(restar))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(restar)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>restar</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;</span>class 'function'<span class="kw">&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;</span>function restar at 0x7f71cee62020<span class="kw">&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;</span>function __main__.restar(x, y<span class="kw">)&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Al imprimir la función, Python nos muestra su nombre y la <strong>dirección de memoria</strong> donde está almacenada (en formato hexadecimal). En cambio, al mostrar su representación, obtenemos información adicional: el módulo en el que fue definida (en este caso <code>__main__</code>) y la lista de parámetros que recibe (<code>x</code> e <code>y</code>).</p>
+<p>Dado que la función <code>restar</code> es un objeto de Python, podemos asignarla a una nueva variable y realizar una llamada utilizando esa nueva etiqueta en vez de la original.</p>
+<div id="41048b62" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>resta_especial <span class="op">=</span> restar</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>resta_especial(<span class="dv">10</span>, <span class="dv">5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>5</code></pre>
+</div>
+</div>
+<p>Notemos que <code>resta_especial</code> <strong>no es una nueva función</strong>; es solamente una nueva referencia a la función antes definida.</p>
+<div id="becb68f2" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>resta_especial <span class="co"># muestra 'restar', no 'resta_especial'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;function __main__.restar(x, y)&gt;</code></pre>
+</div>
+</div>
+<div id="fd0d76c1" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>resta_especial <span class="kw">is</span> restar</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>En Python, las funciones son ciudadanos de primera clase. Esto significa que son objetos, al igual que las cadenas o los números. Por lo tanto, todo lo que se puede hacer con una cadena o un número también puede hacerse con una función.</p>
+<p>Por ejemplo, se pueden almacenar dentro de una lista junto con otros objetos de distintos tipos:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>popurri <span class="op">=</span> [<span class="dv">128</span>, restar, <span class="va">None</span>]</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(popurri[<span class="dv">0</span>])</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(popurri[<span class="dv">1</span>])</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(popurri[<span class="dv">2</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>128</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;</span>function restar at 0x7f71cee62020<span class="kw">&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>None</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Incluso una función puede ser almacenada como valor en un diccionario:</p>
+<div id="f2d2166b" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mapeo <span class="op">=</span> {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sum"</span>: sumar,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sub"</span>: restar,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Luego, se las puede usar de la siguiente manera:</p>
+<div id="8ed374de" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mapeo[<span class="st">"sum"</span>](<span class="dv">25</span>, <span class="dv">4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>29</code></pre>
+</div>
+</div>
+<div id="3c706a08" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>mapeo[<span class="st">"sub"</span>](<span class="dv">25</span>, <span class="dv">4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>21</code></pre>
+</div>
+</div>
+<section id="sec-orden" class="level3">
+<h3 class="anchored" data-anchor-id="sec-orden">Funciones de orden superior</h3>
+<p>Como cualquier objeto de Python, una función puede ser pasada como argumento de otra función. Debajo definimos dos funciones muy simples. Una imprime un mensaje de bienvenida y la otra uno de despedida.</p>
+<div id="7ec1f107" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bienvenida():</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Hola!"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> despedida():</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Chau!"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>bienvenida()</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>despedida()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>¡Hola!
+¡Chau!</code></pre>
+</div>
+</div>
+<p>Se puede otra función, que llamamos <code>externa</code> (del inglés <em>outer function</em>), que tiene un único parámetro <code>interna</code>. En su cuerpo, la función <code>externa</code> llama a la función <code>interna</code> y devuelve lo que sea que <code>interna</code> haya devuelto.</p>
+<div id="25917ef1" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> externa(interna):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> interna()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>De este modo, si llamamos a <code>externa</code> pasándole como argumento a <code>bienvenida</code>, se imprimirá <code>¡Hola!</code>; y si lo hacemos con <code>despedida</code>, se imprimirá <code>¡Chau!</code>.</p>
+<div id="bba57e9d" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>externa(bienvenida)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>¡Hola!</code></pre>
+</div>
+</div>
+<div id="e34a1f10" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>externa(despedida)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>¡Chau!</code></pre>
+</div>
+</div>
+<p>A esta función podemos pasarle cualquier función que pueda ser llamada sin ningún argumento. Por ejemplo:</p>
+<div id="58a9a38c" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crear_lista():</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> []</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>externa(crear_lista)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>[]</code></pre>
+</div>
+</div>
+<p>También es posible que una función devuelva como resultado otra función. Debajo, la función <code>fabrica</code> devuelva una función que computa la suma de dos objetos.</p>
+<div id="95475ca7" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fabricar():</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> interna(x, y):</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x <span class="op">+</span> y</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> interna</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># La llamada a 'fabricar' genera y devuelve una función</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> fabricar()</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="co"># La función obtenida puede ser tratada como cualquier otra función</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>f(<span class="dv">10</span>, <span class="dv">15</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>25</code></pre>
+</div>
+</div>
+<p>Como veremos más adelante en este apunte, una función que fabrica otras funciones puede recibir parámetros que luego son utilizados dentro de la función interna.</p>
+<p>En el bloque siguiente, la función <code>crear_multiplicador</code> recibe un parámetro <code>x</code>, que define el valor por el cual se multiplicará el argumento de la función interna que se devuelve.</p>
+<div id="a107aeaf" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crear_multiplicador(x):</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> interna(y):</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y <span class="op">*</span> x</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> interna</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Así, es posible crear funciones para duplicar, triplicar, etc.</p>
+<div id="6468ac5b" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>duplicar <span class="op">=</span> crear_multiplicador(<span class="dv">2</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>triplicar <span class="op">=</span> crear_multiplicador(<span class="dv">3</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(duplicar(<span class="dv">5</span>))</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(triplicar(<span class="dv">5</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10
+15</code></pre>
+</div>
+</div>
+<div id="53a9f4a1" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>triplicar(<span class="dv">18</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>54</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Observación 👀
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cada vez que se invoca la función <code>fabricar</code>, se crea y devuelve una nueva función. Por eso, el resultado de la comparación en el siguiente bloque es <code>False</code>.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> fabricar()</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>f2 <span class="op">=</span> fabricar()</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f1 <span class="kw">is</span> f2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>False</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<em>Function factory</em> 🏭
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A las funciones que crean y devuelven funciones se las conoce como <strong>fábrica de funciones</strong>, del inglés <em>function factory</em>.</p>
+</div>
+</div>
+</section>
+<section id="atributos-de-una-función" class="level3">
+<h3 class="anchored" data-anchor-id="atributos-de-una-función">Atributos de una función</h3>
+<p>En Python, las funciones también cuentan con atributos, del mismo modo que otros objetos. En el siguiente ejemplo definimos la función <code>resolvente</code>, que recibe las constantes <code>a</code>, <code>b</code> y <code>c</code> de un polinomio de segundo grado, calcula sus raíces usando la fórmula resolvente y las devuelve en una tupla.</p>
+<div id="e81d03bc" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> resolvente(a, b, c):</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    discriminante <span class="op">=</span> b <span class="op">**</span> <span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> a <span class="op">*</span> c</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    x0 <span class="op">=</span> (<span class="op">-</span>b <span class="op">+</span> (discriminante) <span class="op">**</span> <span class="fl">0.5</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> a)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    x1 <span class="op">=</span> (<span class="op">-</span>b <span class="op">-</span> (discriminante) <span class="op">**</span> <span class="fl">0.5</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> a)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x0, x1</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>resolvente(<span class="dv">2</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>(0.5, -3.0)</code></pre>
+</div>
+</div>
+<p>A través del atributo especial <code>__code__</code> es posible consultar ciertos atributos o detalles internos de una función:</p>
+<div id="fc68e946" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(resolvente.__code__.co_argcount) <span class="co"># Cantidad de argumentos</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(resolvente.__code__.co_name)     <span class="co"># Nombre de la función</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(resolvente.__code__.co_varnames) <span class="co">#  Variables en el ámbito local</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3
+resolvente
+('a', 'b', 'c', 'discriminante', 'x0', 'x1')</code></pre>
+</div>
+</div>
+<p>Acceder a la información de una función a través de <code>__code__</code> puede resultar poco práctico, ya que los atributos disponibles son técnicos y no siempre coinciden directamente con lo que solemos necesitar (por ejemplo, obtener solo los nombres de los argumentos).</p>
+<p>Para facilitar esta tarea, la librería estándar de Python incluye el módulo <code>inspect</code> que ofrece herramientas más claras e intuitivas para explorar los atributos y detalles de una función.</p>
+<p>Como ejemplo, la función <code>signature</code> que devuelve un objeto que representa la <strong>firma</strong> de la función <code>resolvente</code>.</p>
+<div id="df0541bc" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inspect</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>firma <span class="op">=</span> inspect.signature(resolvente)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>firma</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Signature (a, b, c)&gt;</code></pre>
+</div>
+</div>
+<p>A partir de esta firma podemos consultar distintos aspectos de los parámetros, como sus valores por defecto:</p>
+<div id="1bb99416" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>firma.parameters[<span class="st">"a"</span>].default <span class="co"># 'a' no tiene asignado un valor por defecto</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>inspect._empty</code></pre>
+</div>
+</div>
+<p>Finalmente, inspect también permite acceder al código fuente de la función en forma de cadena de texto:</p>
+<div id="1866f034" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inspect.getsource(resolvente))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>def resolvente(a, b, c):
+    discriminante = b ** 2 - 4 * a * c
+    x0 = (-b + (discriminante) ** 0.5) / (2 * a)
+    x1 = (-b - (discriminante) ** 0.5) / (2 * a)
+
+    return x0, x1
+</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="funciones-anónimas" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-anónimas">Funciones anónimas</h2>
+<p>La programación funcional se basa en llamar funciones y pasarlas, por lo que, naturalmente, implica definir muchas funciones. En Python, además de usar <code>def</code>, podemos crear funciones <strong>anónimas</strong> de forma rápida con una <strong>expresión <em>lambda</em></strong>.</p>
+<p>La sintaxis es la siguiente:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">lambda</span> <span class="op">&lt;</span>argumentos<span class="op">&gt;</span>: <span class="op">&lt;</span>expresión<span class="op">&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>y devuelve como resultado una función anónima. Un ejemplo es el siguiente:</p>
+<div id="01ef1f14" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">lambda</span> x, y: x <span class="op">+</span> y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;function __main__.&lt;lambda&gt;(x, y)&gt;</code></pre>
+</div>
+</div>
+<p>Como la función anónima que acabamos de crear no fue asignada a ninguna variable, ya no podemos usarla.</p>
+<p>Una posibilidad es invocarla inmediatamente al momento de su creación:</p>
+<div id="cd8206ca" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">lambda</span> x, y: x <span class="op">+</span> y)(<span class="dv">7</span>, <span class="dv">15</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>22</code></pre>
+</div>
+</div>
+<p>Otra opción es asignarla a una variable para poder llamarla más adelante:</p>
+<div id="5f428af7" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>sumar <span class="op">=</span> <span class="kw">lambda</span> x, y: x <span class="op">+</span> y</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>sumar(<span class="dv">7</span>, <span class="dv">15</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>22</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ausencia de <code>return</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A diferencia de las funciones definidas con <code>def</code>, las expresiones <em>lambda</em> no requieren la sentencia <code>return</code>. De forma implícita, siempre devuelven el resultado de la única expresión que contienen.</p>
+</div>
+</div>
+<section id="usos-de-funciones-anónimas" class="level4">
+<h4 class="anchored" data-anchor-id="usos-de-funciones-anónimas">Usos de funciones anónimas</h4>
+<p>En ninguno de los ejemplos anteriores parece que obtengamos alguna ventaja frente a usar <code>def</code> para definir una función. De hecho, da la impresión de que estamos complicando innecesariamente las cosas.</p>
+<p>Lo cierto es que las funciones anónimas no están pensadas para emplearse de la manera expuesta en nuestros ejemplos. Su uso principal es en <strong>operaciones simples y puntuales</strong>, cuando no resulta práctico definir una función completa con <code>def</code>.</p>
+<p>Un caso típico es al utilizarlas como <strong>argumentos de otras funciones</strong>.</p>
+<p>Supongamos que queremos ordenar la siguiente lista de refranes según diferentes criterios.</p>
+<div id="688921f5" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>refranes <span class="op">=</span> [</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Al mal tiempo, buena cara"</span>,</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Perro que ladra no muerde"</span>,</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A caballo regalado no se le miran los dientes"</span>,</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Cada loco con su tema"</span>,</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"El que mucho abarca, poco aprieta"</span>,</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Más vale pájaro en mano que cien volando"</span>,</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Por defecto, la función <code>sorted</code> ordena una lista de cadenas de manera alfabética.</p>
+<div id="e394dc16" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(refranes)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>['A caballo regalado no se le miran los dientes',
+ 'Al mal tiempo, buena cara',
+ 'Cada loco con su tema',
+ 'El que mucho abarca, poco aprieta',
+ 'Más vale pájaro en mano que cien volando',
+ 'Perro que ladra no muerde']</code></pre>
+</div>
+</div>
+<p>Si quisiéramos ordenar los refranes por su longitud, podemos usar el argumento opcional <code>key</code> de <code>sorted</code>. Este argumento recibe una función que, <strong>aplicada a cada elemento</strong>, devuelve el valor a utilizar en la comparación. En nuestro caso, basta con usar <code>len</code>, ya que solo nos interesa la cantidad de caracteres de cada cadena.</p>
+<div id="cb063403" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(refranes, key<span class="op">=</span><span class="bu">len</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>['Cada loco con su tema',
+ 'Al mal tiempo, buena cara',
+ 'Perro que ladra no muerde',
+ 'El que mucho abarca, poco aprieta',
+ 'Más vale pájaro en mano que cien volando',
+ 'A caballo regalado no se le miran los dientes']</code></pre>
+</div>
+</div>
+<p>¿Y si quisiéramos ordenarlos según la <strong>cantidad de palabras</strong>? Para eso necesitamos una función que reciba una cadena, la divida en palabras y cuente cuántas tiene.</p>
+<p>Sin funciones anónimas podríamos hacer lo siguiente:</p>
+<div id="4ca90261" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contar_palabras(x):</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">len</span>(x.split())</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(refranes, key<span class="op">=</span>contar_palabras)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>['Al mal tiempo, buena cara',
+ 'Perro que ladra no muerde',
+ 'Cada loco con su tema',
+ 'El que mucho abarca, poco aprieta',
+ 'Más vale pájaro en mano que cien volando',
+ 'A caballo regalado no se le miran los dientes']</code></pre>
+</div>
+</div>
+<p>En cambio, con una función anónima podemos escribir todo el programa en una sola línea:</p>
+<div id="d10f1150" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(refranes, key<span class="op">=</span><span class="kw">lambda</span> x: <span class="bu">len</span>(x.split(<span class="st">" "</span>)))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>['Al mal tiempo, buena cara',
+ 'Perro que ladra no muerde',
+ 'Cada loco con su tema',
+ 'El que mucho abarca, poco aprieta',
+ 'Más vale pájaro en mano que cien volando',
+ 'A caballo regalado no se le miran los dientes']</code></pre>
+</div>
+</div>
+<p>De esta forma el código es más <strong>conciso</strong> y evitamos definir funciones “descartables” que no volverán a usarse.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Origen del nombre <em>lambda</em> λ✨
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El término <em>lambda</em> proviene del <a href="https://es.wikipedia.org/wiki/C%C3%A1lculo_lambda">cálculo lambda</a>, un sistema formal de lógica matemática para expresar cálculos basados en la abstracción y aplicación de funciones.</p>
+<p>Se le dio ese nombre porque Alonzo Church, creador del cálculo <em>lambda</em> en la década de 1930, usó la letra griega λ para denotar la operación de abstracción de funciones.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Funciones anónimas sin parámetros
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una función <em>lambda</em> normalmente recibe uno o múltiples parámetros, pero no es obligatorio, por lo que es posibile escribir una función anónima sin parámetros:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>crear_numero_magico <span class="op">=</span> <span class="kw">lambda</span>: <span class="dv">128</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>crear_numero magico()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>128</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La función anónima <code>crear_numero_magico</code> es equivalente a la siguiente función</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f():</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">128</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="funciones-variádicas" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-variádicas">Funciones variádicas</h2>
+<p>Las funciones variádicas son funciones que pueden recibir una cantidad variable de argumentos.</p>
+<p>A lo largo de estos apuntes hemos utilizado funciones variádicas en tantísimas oportunidades. Un ejemplo de función variádica es <code>print</code>, que acepta tantos argumentos posicionales como necesitemos.</p>
+<div id="1dc943bc" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Primero"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Primero</code></pre>
+</div>
+</div>
+<div id="7201fb8f" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Primero"</span>, <span class="st">"segundo"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Primero segundo</code></pre>
+</div>
+</div>
+<div id="f025d2fa" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Primero"</span>, <span class="st">"segundo"</span>, <span class="st">"tercero"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Primero segundo tercero</code></pre>
+</div>
+</div>
+<p>Las funciones variádicas no son exclusivas de Python; también podemos implementarlas nosotros mismos.</p>
+<section id="cantidad-variable-de-argumentos-posicionales-args" class="level3">
+<h3 class="anchored" data-anchor-id="cantidad-variable-de-argumentos-posicionales-args">Cantidad variable de argumentos posicionales <code>*args</code></h3>
+<p>Supongamos que queremos una función que recibe una cantidad arbitraria de gustos de helado y e imprime un mensaje como si lo agregase a un pedido. Por ejemplo:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>armar_pedido(<span class="st">"Dulce de leche"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>Agregando 'Dulce de leche'</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>armar_pedido(<span class="st">"Dulce de leche"</span>, <span class="st">"Sambayón"</span>, <span class="st">"Frutos del bosque"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>Agregando 'Dulce de leche'</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>Agregando 'Sambayón'</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>Agregando 'Frutos del bosque'</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Una posible implementación para tal función es:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> armar_pedido(gusto_1<span class="op">=</span><span class="va">None</span>, gusto_2<span class="op">=</span><span class="va">None</span>, gusto_3<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gusto_1 <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Agregando '</span><span class="sc">{</span>gusto_1<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gusto_2 <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Agregando '</span><span class="sc">{</span>gusto_2<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gusto_3 <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Agregando '</span><span class="sc">{</span>gusto_3<span class="sc">}</span><span class="ss">'"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Aunque funciona, esta solución está lejos de ser ideal. Requiere definir un argumento separado para cada gusto, asignarle un valor por defecto y luego verificar si es distinto de <code>None</code> antes de agregarlo al pedido.</p>
+<p>Además, el código resulta repetitivo y restrictivo: solo permite un máximo de tres gustos.</p>
+<p>Afortunadamente, en Python es posible crear funciones que acepten una cantidad arbitraria de argumentos posicionales de una manera sencilla.</p>
+<p>Para ello se utiliza un <strong>argumento especial</strong> precedido por un asterisco (<code>*</code>), lo que le permite recibir una cantidad arbitraria de valores no nombrados.</p>
+<div id="1408674f" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> armar_pedido(<span class="op">*</span>args):</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> gusto <span class="kw">in</span> args:</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Agregando '</span><span class="sc">{</span>gusto<span class="sc">}</span><span class="ss">'"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f78ce6b0" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>armar_pedido(<span class="st">"Dulce de leche"</span>, <span class="st">"Sambayón"</span>, <span class="st">"Frutos del bosque"</span>, <span class="st">"Menta granizada"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Agregando 'Dulce de leche'
+Agregando 'Sambayón'
+Agregando 'Frutos del bosque'
+Agregando 'Menta granizada'</code></pre>
+</div>
+</div>
+<div id="338d7470" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>armar_pedido(<span class="st">"gusto 1"</span>, <span class="st">"gusto 2"</span>, <span class="st">"gusto 3"</span>, <span class="st">"gusto 4"</span>, <span class="st">"gusto 5"</span>, <span class="st">"gusto 6"</span>, <span class="st">"gusto 7"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Agregando 'gusto 1'
+Agregando 'gusto 2'
+Agregando 'gusto 3'
+Agregando 'gusto 4'
+Agregando 'gusto 5'
+Agregando 'gusto 6'
+Agregando 'gusto 7'</code></pre>
+</div>
+</div>
+<p>Por convención, este argumento suele escribirse como <code>*args</code>, aunque en realidad el nombre del argumento puede ser cualquiera que resulte apropiado. En nuestro caso, resulta más intuitivo usar <code>*gustos</code>, y la función quedaría así:</p>
+<div id="4f6c0e72" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> armar_pedido(<span class="op">*</span>gustos):</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> gusto <span class="kw">in</span> gustos:</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Agregando '</span><span class="sc">{</span>gusto<span class="sc">}</span><span class="ss">'"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="78363854" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>armar_pedido(<span class="st">"gusto 1"</span>, <span class="st">"gusto 2"</span>, <span class="st">"gusto 3"</span>, <span class="st">"gusto 4"</span>, <span class="st">"gusto 5"</span>, <span class="st">"gusto 6"</span>, <span class="st">"gusto 7"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Agregando 'gusto 1'
+Agregando 'gusto 2'
+Agregando 'gusto 3'
+Agregando 'gusto 4'
+Agregando 'gusto 5'
+Agregando 'gusto 6'
+Agregando 'gusto 7'</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Qué hay debajo de <code>*args</code> 🔍
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cuando se utilizan valores con el argumento especial <code>*args</code>, Python los reúne automáticamente en una tupla. Esto permite acceder a todos los argumentos como miembros de una colección inmutable.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fun(<span class="op">*</span>args):</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">len</span>(args))</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(args)</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">type</span>(args))</span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>fun(<span class="st">"que"</span>, <span class="st">"es"</span>, <span class="st">"esto"</span>, <span class="va">True</span>, <span class="va">None</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>5
+('que', 'es', 'esto', True, None)
+&lt;class 'tuple'&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="cantidad-variable-de-argumentos-nombrados-kwargs" class="level3">
+<h3 class="anchored" data-anchor-id="cantidad-variable-de-argumentos-nombrados-kwargs">Cantidad variable de argumentos nombrados <code>**kwargs</code></h3>
+<p>Así como recibimos una cantidad arbitraria de argumentos posicionales, también podemos recibir una cantidad arbitraria de argumentos nombrados.</p>
+<p>En este caso, se utilizan dos asteríscos (<code>**</code>) en vez de uno (<code>*</code>).</p>
+<p>La convención es usar el nombre <code>**kwargs</code>, pero también es válido usar cualquier otro nombre que sea adecuado en nuestro contexto.</p>
+<p>Comencemos por un ejemplo elemental, que solo imprime el objeto <code>kwrargs</code> y su tipo:</p>
+<div id="d4e68bcd" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ejemplo(<span class="op">**</span>kwargs):</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(kwargs)</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">type</span>(kwargs))</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>ejemplo(nombre<span class="op">=</span><span class="st">"Mariano"</span>, apellido<span class="op">=</span><span class="st">"Pérez"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'nombre': 'Mariano', 'apellido': 'Pérez'}
+&lt;class 'dict'&gt;</code></pre>
+</div>
+</div>
+<p>Cuando usamos una cantidad variable de argumentos nombrados, Python los agrupa en un diccionario, ya que esta estructura permite asociar cada nombre con su valor de forma natural.</p>
+<p>Dentro de la función, se puede manipular al diccionario <code>kwargs</code> como a cualquier otro diccionario de Python.</p>
+<p>Imaginemos, por ejemplo, una función que registra información de distintos departamentos. En este caso, no sabemos de antemano qué atributos se van a proporcionar, pero sí sabemos que ciertos atributos deben contar con un valor por defecto si no se especifican.</p>
+<div id="83fe9da6" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> registrar_propiedad(<span class="op">**</span>kwargs):</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Diccionario original:"</span>)</span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(kwargs)</span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si no se especifica la cantidad de cocheras, se pone 0 por defecto</span></span>
+<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"cochera"</span> <span class="kw">not</span> <span class="kw">in</span> kwargs:</span>
+<span id="cb99-7"><a href="#cb99-7" aria-hidden="true" tabindex="-1"></a>        kwargs[<span class="st">"cochera"</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb99-8"><a href="#cb99-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-9"><a href="#cb99-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si no se especifica la ciudad, se pone 'Desconocido' por defecto</span></span>
+<span id="cb99-10"><a href="#cb99-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"ciudad"</span> <span class="kw">not</span> <span class="kw">in</span> kwargs:</span>
+<span id="cb99-11"><a href="#cb99-11" aria-hidden="true" tabindex="-1"></a>        kwargs[<span class="st">"ciudad"</span>] <span class="op">=</span> <span class="st">"Desconocido"</span></span>
+<span id="cb99-12"><a href="#cb99-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-13"><a href="#cb99-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> kwargs</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cuando no se especifician la cantidad de cocheras, la función nos devuelve un diccionario donde la cantidad de cocheras es 0.</p>
+<div id="10c25898" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> registrar_propiedad(ambientes<span class="op">=</span><span class="dv">2</span>, ciudad<span class="op">=</span><span class="st">"Rosario"</span>)</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Diccionario sanitizado"</span>)</span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Diccionario original:
+{'ambientes': 2, 'ciudad': 'Rosario'}
+
+Diccionario sanitizado
+{'ambientes': 2, 'ciudad': 'Rosario', 'cochera': 0}</code></pre>
+</div>
+</div>
+<p>Si los atributos requeridos son especificados, se devuelve el diccionario sin cambios.</p>
+<div id="2f20305d" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> registrar_propiedad(ambientes<span class="op">=</span><span class="dv">2</span>, ciudad<span class="op">=</span><span class="st">"Santa Fe"</span>, cochera<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Diccionario sanitizado"</span>)</span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Diccionario original:
+{'ambientes': 2, 'ciudad': 'Santa Fe', 'cochera': 2}
+
+Diccionario sanitizado
+{'ambientes': 2, 'ciudad': 'Santa Fe', 'cochera': 2}</code></pre>
+</div>
+</div>
+<p>Y si se pasan atributos inesperados, también se incluyen en la salida.</p>
+<div id="127bb27b" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> registrar_propiedad(ambientes<span class="op">=</span><span class="dv">4</span>, dormitorios<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Diccionario sanitizado"</span>)</span>
+<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Diccionario original:
+{'ambientes': 4, 'dormitorios': 2}
+
+Diccionario sanitizado
+{'ambientes': 4, 'dormitorios': 2, 'cochera': 0, 'ciudad': 'Desconocido'}</code></pre>
+</div>
+</div>
+</section>
+<section id="combinando-args-y-kwargs" class="level3">
+<h3 class="anchored" data-anchor-id="combinando-args-y-kwargs">Combinando <code>*args</code> y <code>**kwargs</code></h3>
+<p>Las funciones en Python pueden recibir simultáneamente una cantidad variable de argumentos posicionales y nombrados. Para lograrlo, se combinan <code>*args</code> y <code>**kwargs</code>. Es importante recordar que, al definir la función, <code>*args</code> debe colocarse antes que <code>**kwargs</code>, ya que los argumentos posicionales siempre se pasan antes que los nombrados.</p>
+<div id="7e53d751" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> superfuncion(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> arg <span class="kw">in</span> args:</span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Me pasaron el argumento posicional '</span><span class="sc">{</span>arg<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, value <span class="kw">in</span> kwargs.items():</span>
+<span id="cb106-6"><a href="#cb106-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Me pasaron el argumento con nombre '</span><span class="sc">{</span>key<span class="sc">}</span><span class="ss">' y valor '</span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb106-7"><a href="#cb106-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-8"><a href="#cb106-8" aria-hidden="true" tabindex="-1"></a>superfuncion(<span class="va">True</span>, <span class="dv">64</span>, nombre<span class="op">=</span><span class="st">"Elsa"</span>, apellido<span class="op">=</span><span class="st">"Pato"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Me pasaron el argumento posicional 'True'
+Me pasaron el argumento posicional '64'
+Me pasaron el argumento con nombre 'nombre' y valor 'Elsa'
+Me pasaron el argumento con nombre 'apellido' y valor 'Pato'</code></pre>
+</div>
+</div>
+<p>Si se intenta pasar un argumento posicional (sin nombre) después de un argumento nombrado, obtendríamos un error:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>superfuncion(<span class="va">True</span>, nombre<span class="op">=</span><span class="st">"Elsa"</span>, apellido<span class="op">=</span><span class="st">"Pato"</span>, <span class="dv">64</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>    superfuncion(True, nombre=<span class="st">"Elsa"</span>, apellido=<span class="st">"Pato"</span>, 64<span class="kw">)</span></span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>                                                         ^</span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>SyntaxError: positional argument follows keyword argument</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+¿Y para qué me sirven? 🤔
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A primera vista, los ejemplos de <code>*args</code> y <code>**kwargs</code> pueden dar la impresión de que estas herramientas solo complican la escritura del código. Sin embargo, su verdadero valor aparece al trabajar en programas más complejos, donde se vuelven fundamentales para simplificar la lógica y aportar flexibilidad en la resolución de una gran variedad de problemas.</p>
+<p>Ya llegaremos…</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Es solo una convención 🤝
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para reforzar que los nombres <code>*args</code> y <code>**kwargs</code> son solamente una convención, podríamos escribir la función <code>superfuncion</code> como:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> superfuncion(<span class="op">*</span>posicionales, <span class="op">**</span>nombrados):</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> arg <span class="kw">in</span> posicionales:</span>
+<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Me pasaron el argumento posicional '</span><span class="sc">{</span>arg<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-5"><a href="#cb110-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, value <span class="kw">in</span> nombrados.items():</span>
+<span id="cb110-6"><a href="#cb110-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Me pasaron el argumento con nombre '</span><span class="sc">{</span>key<span class="sc">}</span><span class="ss">' y valor '</span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">'"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>y funcionaría de igual modo.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="closures" class="level2">
+<h2 class="anchored" data-anchor-id="closures"><em>Closures</em></h2>
+<p>En la <a href="#sec-orden" class="quarto-xref">Sección&nbsp;3.1</a> vimos el siguiente ejemplo:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crear_multiplicador(x):</span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> interna(y):</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y <span class="op">*</span> x</span>
+<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> interna</span>
+<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-6"><a href="#cb111-6" aria-hidden="true" tabindex="-1"></a>duplicar <span class="op">=</span> crear_multiplicador(<span class="dv">2</span>)</span>
+<span id="cb111-7"><a href="#cb111-7" aria-hidden="true" tabindex="-1"></a>triplicar <span class="op">=</span> crear_multiplicador(<span class="dv">3</span>)</span>
+<span id="cb111-8"><a href="#cb111-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-9"><a href="#cb111-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(duplicar(<span class="dv">5</span>))</span>
+<span id="cb111-10"><a href="#cb111-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(triplicar(<span class="dv">5</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>10</span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>15</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La función <code>crear_multiplicador</code> es una fábrica de funciones que devuelve otra función que se encarga de realizar la multiplicación. Lo interesante de esta implementación es que la función interna solo recibe uno de los dos valores necesarios para la multiplicación; el otro queda que fijado cuando se ejecuta la función externa <code>crear_multiplicador</code>.</p>
+<p>Para que <code>duplicar</code> y <code>triplicar</code> funcionen correctamente, ambas funciones internas deben conservar acceso al entorno en el que está definido el valor de <code>x</code>. Ese mecanismo, que permite a una tener acceso a las variables de su contexto incluso después de que la ejecución de la función externa haya concluído, es precisamente lo que se conoce como un <strong><em>closure</em></strong>.</p>
+<div id="64f30c7d" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crear_multiplicador(x):</span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> interna(y):</span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y <span class="op">*</span> x</span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> interna</span>
+<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>duplicar <span class="op">=</span> crear_multiplicador(<span class="dv">2</span>)</span>
+<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a>triplicar <span class="op">=</span> crear_multiplicador(<span class="dv">3</span>)</span>
+<span id="cb113-8"><a href="#cb113-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-9"><a href="#cb113-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(duplicar(<span class="dv">5</span>))</span>
+<span id="cb113-10"><a href="#cb113-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(triplicar(<span class="dv">5</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10
+15</code></pre>
+</div>
+</div>
+<p>El siguiente ejemplo hace aún más evidente el funcionamiento de este mecanismo.</p>
+<p>Dentro del cuerpo de la <em>function factory</em> <code>externa</code>, se define <code>valor</code> con el número <code>256</code>. Luego, la función interna hace uso de esta variable <code>valor</code> dentro de <code>print</code>.</p>
+<div id="e6c743db" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> externa():</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>    valor <span class="op">=</span> <span class="dv">256</span></span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> closure():</span>
+<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"¡El valor es: </span><span class="sc">{</span>valor<span class="sc">}</span><span class="ss">!"</span>)</span>
+<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> closure</span>
+<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a>revelar_numero <span class="op">=</span> externa()</span>
+<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a>revelar_numero()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>¡El valor es: 256!</code></pre>
+</div>
+</div>
+<p>Aunque desde fuera no podemos acceder directamente a <code>valor</code>:</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>valor</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>NameError: name 'valor' is not defined</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>la función interna sí puede hacerlo tantas veces como sea necesario:</p>
+<div id="dc0bc418" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>revelar_numero()</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>revelar_numero()</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>revelar_numero()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>¡El valor es: 256!
+¡El valor es: 256!
+¡El valor es: 256!</code></pre>
+</div>
+</div>
+<p>Para finalizar, veamos un ejemplo similar al anterior, pero donde el valor de la variable <code>numero</code> es desconocido para nosotros. Dicho valor se genera de manera aleatoria cuando se crea ejecuta la fábrica de funciones <code>crear_funcion</code>.</p>
+<div id="eb96c763" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crear_funcion():</span>
+<span id="cb121-4"><a href="#cb121-4" aria-hidden="true" tabindex="-1"></a>    numero <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">1000</span>)</span>
+<span id="cb121-5"><a href="#cb121-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> closure():</span>
+<span id="cb121-6"><a href="#cb121-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"El valor es..."</span>, numero)</span>
+<span id="cb121-7"><a href="#cb121-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> closure</span>
+<span id="cb121-8"><a href="#cb121-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-9"><a href="#cb121-9" aria-hidden="true" tabindex="-1"></a>reveladora <span class="op">=</span> crear_funcion()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Luego, sin importar cuántas veces llamemos a <code>reveladora</code>, el mensaje será siempre el mismo, ya que el valor de <code>numero</code> se definió una sola vez en el momento de crear la función.</p>
+<div id="e1b6d60b" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>reveladora()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>El valor es... 393</code></pre>
+</div>
+</div>
+<div id="34026389" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>reveladora()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>El valor es... 393</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Una dosis de precisión 🎯😱
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A menudo se dice que un <strong><em>closure</em></strong> es una función. Así, en el siguiente ejemplo, <code>duplicar</code> sería considerado un <em>closure</em>:</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crear_multiplicador(x):</span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> interna(y):</span>
+<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y <span class="op">*</span> x</span>
+<span id="cb126-4"><a href="#cb126-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> interna</span>
+<span id="cb126-5"><a href="#cb126-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-6"><a href="#cb126-6" aria-hidden="true" tabindex="-1"></a>duplicar <span class="op">=</span> crear_multiplicador(<span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sin embargo, esa definición es un tanto imprecisa. Un <em>closure</em> no es simplemente una función, sino el mecanismo que permite a las funciones acceder a las variables del entorno en el que fueron definidas, incluso cuando ese entorno ya dejó de existir (por ejemplo, después de que termina la ejecución de la función externa que las creó).</p>
+<p>Uf… ¡qué complicado!</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>object of type 'closure' is not subsettable</code> 😵
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si en R intentamos seleccionar filas o columnas de <code>data</code> sin haberle asignado un objeto previamente, obtendremos el siguiente error:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>Error in data[1] : object of type 'closure' is not subsettable</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esto ocurre porque <code>data</code> es en realidad una función en R. En este lenguaje, el tipo de los objetos función se denomina <code>closure</code>, haciendo referencia la capacidad que tienen las funciones de acceder a valores del ambiente donde fueron definidas.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ee-unr\.github\.io\/programacion-2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../teoria/01_programacion_en_python/08_io.html" class="pagination-link" aria-label="8 - Lectura y escritura de archivos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">8 - Lectura y escritura de archivos</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../teoria/02_programacion_funcional/02_recursion.html" class="pagination-link" aria-label="2 - Recursión">
+        <span class="nav-page-text">2 - Recursión</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Esta página es hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
