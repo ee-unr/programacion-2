@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -70,6 +105,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -267,8 +331,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#cuenta-regresiva" id="toc-cuenta-regresiva" class="nav-link" data-scroll-target="#cuenta-regresiva">Cuenta regresiva</a>
+  <ul class="collapse">
+  <li><a href="#versión-comentada" id="toc-versión-comentada" class="nav-link" data-scroll-target="#versión-comentada">Versión comentada</a></li>
+  <li><a href="#qué-no-falte-el-caso-base" id="toc-qué-no-falte-el-caso-base" class="nav-link" data-scroll-target="#qué-no-falte-el-caso-base">¡Qué no falte el caso base!</a></li>
+  </ul></li>
+  <li><a href="#factorial" id="toc-factorial" class="nav-link" data-scroll-target="#factorial">Factorial</a>
+  <ul class="collapse">
+  <li><a href="#versión-comentada-1" id="toc-versión-comentada-1" class="nav-link" data-scroll-target="#versión-comentada-1">Versión comentada</a></li>
+  </ul></li>
+  <li><a href="#letra-chica" id="toc-letra-chica" class="nav-link" data-scroll-target="#letra-chica">Letra chica</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -292,11 +372,299 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<ul>
-<li>Recursión</li>
-</ul>
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>En el apunte anterior vimos que en Python las funciones son ciudadanos de primera clase. Esto significa que una función es un objeto, al igual que un número, una cadena de texto o incluso un diccionario anidado con una estructura bastante enredada. Gracias a esto, no solo podemos inspeccionar sus atributos o hacer que una función llame a otras, sino que también es posible que una función cree y retorne nuevas funciones.</p>
+<p>Además de los casos ya mencionados, también es posible que una función se llame a sí misma. Es decir, que en el cuerpo de la definición de esa función se incluya una llamada a la función que se está definiendo. A este tipo de funciones se las llama <strong>recursivas</strong>, y la técnica en sí recibe el nombre de <strong>recursión</strong>.</p>
+<p>Aunque pueda sonar extraño que una función se invoque a sí misma, en programación existen problemas para los que funciones recursivas resultan una solución natural y efectiva.</p>
+</section>
+<section id="cuenta-regresiva" class="level2">
+<h2 class="anchored" data-anchor-id="cuenta-regresiva">Cuenta regresiva</h2>
+<p>Supongamos que queremos crear una función que imprima una cuenta regresiva desde un número entero dado hasta el 0. Es decir, la función se debería comportar de la siguiente manera:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>regresiva(<span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>3</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>2</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>1</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>regresiva(<span class="dv">5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>5</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>4</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>3</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>2</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>1</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Una implementación <strong>no recursiva</strong> es la siguiente, basada en un bucle <code>while</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> regresiva(n):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> n <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(i)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Otra alternativa, que usa un bucle <code>for</code> y un <code>range</code> es:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> regresiva(n):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(i)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ambas implementaciones resultan en funciones que se comportan correctamente y producen el resultado deseado.</p>
+<p>Sin embargo, existe una <strong>alternativa recursiva</strong> para obtener la secuencia de números deseados.</p>
+<div id="2e84de22" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> regresiva(i):</span>
+<span id="annotated-cell-7-2"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="annotated-cell-7-4"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a>        regresiva(i <span class="op">-</span> <span class="dv">1</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-5" class="code-annotation-target"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="annotated-cell-7-6"><a href="#annotated-cell-7-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="3,4" data-code-annotation="1">El <strong>caso recursivo</strong>: Es la condición donde la función se llama a sí misma. En este caso, <code>regresiva</code> vuelve a llamarse a sí misma solo cuando el número impreso sea mayor que 0. La llamada se hace pasando como argumento el valor <code>i - 1</code>, lo que nos acerca progresivamente al <strong>caso base</strong>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="5,6" data-code-annotation="2">El <strong>caso base</strong>: Es la condición que <strong>detiene la recursión</strong>. Cuando se cumple, la función devuelve un valor sin volver a llamarse a sí misma, lo que evita que la ejecución continúe de manera infinita.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Ambos casos trabajan en conjunto. Por un lado, el caso recursivo es la parte de la función que se llama a sí misma, pero con una entrada modificada que se acerca progresivamente al caso base. Por el otro, el caso base es la condición que detiene las llamadas recursivas, representando la versión más simple del problema que puede ser resuelta directamente.</p>
+<div id="3fcaa8a3" class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>regresiva(<span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3
+2
+1
+0</code></pre>
+</div>
+</div>
+<div id="d2eb456c" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>regresiva(<span class="dv">5</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5
+4
+3
+2
+1
+0</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Versión con <code>return</code> implícito
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La función recursiva <code>regresiva</code> usa <code>return</code> para terminar su ejecución devolviendo un <code>None</code> implícito en el caso base. Otra forma de implementar la misma función es omitiendo el <code>return</code>:</p>
+<div class="sourceCode" id="annotated-cell-20"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-20-1"><a href="#annotated-cell-20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> regresiva(i):</span>
+<span id="annotated-cell-20-2"><a href="#annotated-cell-20-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="annotated-cell-20-3"><a href="#annotated-cell-20-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-20-4" class="code-annotation-target"><a href="#annotated-cell-20-4" aria-hidden="true" tabindex="-1"></a>        regresiva(i <span class="op">-</span> <span class="dv">1</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-20-5" class="code-annotation-target"><a href="#annotated-cell-20-5" aria-hidden="true" tabindex="-1"></a></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-20" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-20" data-code-lines="4" data-code-annotation="1">Esta línea marca el <strong>caso recursivo</strong> y es idéntica a la anterior.</span>
+</dd>
+<dt data-target-cell="annotated-cell-20" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-20" data-code-lines="5" data-code-annotation="2">Acá no se usa <code>return</code> para devolver <code>None</code>: directamente no se escribe nada. El efecto es el mismo y constituye el <strong>caso base</strong>. En Python, si una función no incluye ningún <code>return</code>, se comporta como si al final hubiera un <code>return</code> o <code>return None</code>, es decir, la función termina y devuelve <code>None</code>.</span>
+</dd>
+</dl>
+</div>
+</div>
+<section id="versión-comentada" class="level3">
+<h3 class="anchored" data-anchor-id="versión-comentada">Versión comentada</h3>
+<p>Para entender mejor el funcionamiento de la función recursiva <code>progresiva</code>, se pueden incorporar unos <code>print</code> en el cuerpo de la misma. En el ejemplo de abajo se muestra un <code>print</code> justo cuando la función es llamada, y otro cuando la función vuelve a invocarse a sí misma.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> regresiva(i):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"regresiva(</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"regresiva(</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">) --&gt; regresiva(</span><span class="sc">{</span>i <span class="op">-</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        regresiva(i <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>regresiva(<span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-11"><pre class="sourceCode latex code-annotation-code code-with-copy code-annotated"><code class="sourceCode latex"><a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-1" class="code-annotation-target"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a>regresiva(2)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a>2</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-11-3" class="code-annotation-target"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a>regresiva(2) --&gt; regresiva(1)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-11-4" class="code-annotation-target"><a href="#annotated-cell-11-4" aria-hidden="true" tabindex="-1"></a>regresiva(1)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-11-5" class="code-annotation-target"><a href="#annotated-cell-11-5" aria-hidden="true" tabindex="-1"></a>1</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-11-6" class="code-annotation-target"><a href="#annotated-cell-11-6" aria-hidden="true" tabindex="-1"></a>regresiva(1) --&gt; regresiva(0)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="7" onclick="event.preventDefault();">7</a><span id="annotated-cell-11-7" class="code-annotation-target"><a href="#annotated-cell-11-7" aria-hidden="true" tabindex="-1"></a>regresiva(0)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="8" onclick="event.preventDefault();">8</a><span id="annotated-cell-11-8" class="code-annotation-target"><a href="#annotated-cell-11-8" aria-hidden="true" tabindex="-1"></a>0</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="1" data-code-annotation="1">Se ejecuta <code>regresiva</code> con <code>i = 2</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="2" data-code-annotation="2"><code>regresiva(2)</code> imprime <code>2</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="3" data-code-annotation="3"><code>regresiva(2)</code> llama a <code>regresiva(1)</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="4" data-code-annotation="4">Se ejecuta <code>regresiva</code> con <code>i = 1</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="5" data-code-annotation="5"><code>regresiva(1)</code> imprime <code>1</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="6" data-code-annotation="6"><code>regresiva(1)</code> llama a <code>regresiva(0)</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="7" data-code-annotation="7">Se ejecuta <code>regresiva</code> con <code>i = 0</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="8">8</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="8" data-code-annotation="8"><code>regresiva(0)</code> imprime <code>0</code></span>
+</dd>
+</dl>
+</section>
+<section id="qué-no-falte-el-caso-base" class="level3">
+<h3 class="anchored" data-anchor-id="qué-no-falte-el-caso-base">¡Qué no falte el caso base!</h3>
+<p>Cuando escribimos una función recursiva es <strong>fundamental implementar el caso base</strong>, que determina la condición donde la función deja de llamarse a sí misma y comienza a devolver un valor.</p>
+<p>Debajo se muestra una implementación incorrecta de la función <code>regresiva</code> como función recursiva. La misma tiene el caso recursivo, donde la función se llama a sí misma, pero le falta el caso base, que es el que detiene esa cadena de llamadas. Como resultado, la función sigue contando números, incluso negativos, y Python termina frenando la ejecución con un <code>RecursionError</code>. Este error aperece cuando la profundidad de la pila de llamadas recursivas supera un límite predeterminado y, como regla general, indica que hay un problema en nuestra recursión.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> regresiva(i):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    regresiva(i <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>regresiva(<span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>1</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>0</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>-1</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>-2</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>-988</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>-989</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>Traceback (most recent call last<span class="kw">)</span>:</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  File <span class="st">"&lt;python-input-5&gt;"</span>, line 1, in <span class="kw">&lt;</span>module<span class="kw">&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    regresiva(1)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    ~~~~~~~~~^^^</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  File <span class="st">"&lt;python-input-2&gt;"</span>, line 3, in regresiva</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    regresiva(i - 1<span class="kw">)</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    ~~~~~~~~~^^^^^^^</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  File <span class="st">"&lt;python-input-2&gt;"</span>, line 3, in regresiva</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    regresiva(i - 1<span class="kw">)</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    ~~~~~~~~~^^^^^^^</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  File <span class="st">"&lt;python-input-2&gt;"</span>, line 3, in regresiva</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    regresiva(i - 1<span class="kw">)</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    ~~~~~~~~~^^^^^^^</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  [Previous line repeated 988 more times]</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>RecursionError: maximum recursion depth exceeded</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="factorial" class="level2">
+<h2 class="anchored" data-anchor-id="factorial">Factorial</h2>
+<p>Un ejemplo clásico para estudiar cómo funciona la recursión en programación es el cálculo del factorial. El factorial de un número positivo <span class="math inline">\(n\)</span> se define como:</p>
+<p><span class="math display">\[
+n! = n \times (n - 1) \times (n - 2) \times \cdots \times 2 \times 1
+\]</span></p>
+<p>Es decir, el factorial de un número es el producto de todos los enteros desde <span class="math inline">\(1\)</span> hasta <span class="math inline">\(n\)</span>. Por convención, además, se establece que <span class="math inline">\(0! = 1\)</span>.</p>
+<p>Una forma de calcular el factorial de un número sin recurrir a la recursión es la siguiente:</p>
+<div id="9938cb41" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial(n):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        resultado <span class="op">=</span> resultado <span class="op">*</span> i</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resultado</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>factorial(<span class="dv">6</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>720</code></pre>
+</div>
+</div>
+<p>Sin embargo, y dado que el factorial admite la siguiente expresión como función recursiva,</p>
+<p><span class="math display">\[
+n! = \begin{cases}
+1 &amp; \text{para } n = 0 \text{ o } n = 1 \\
+n \times (n - 1)! &amp; \text {para } n \ge 2
+\end{cases}
+\]</span></p>
+<p>se puede implementar en Python de la siguiente manera:</p>
+<div id="dcfa7b2e" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-15-1"><a href="#annotated-cell-15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial(n):</span>
+<span id="annotated-cell-15-2"><a href="#annotated-cell-15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-15-3" class="code-annotation-target"><a href="#annotated-cell-15-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="annotated-cell-15-4"><a href="#annotated-cell-15-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-15-5" class="code-annotation-target"><a href="#annotated-cell-15-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n <span class="op">*</span> factorial(n <span class="op">-</span> <span class="dv">1</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-15" data-code-lines="3" data-code-annotation="1">Caso base.</span>
+</dd>
+<dt data-target-cell="annotated-cell-15" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-15" data-code-lines="5" data-code-annotation="2">Caso recursivo. La función hace uso del resultado que ella misma produce.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Podemos ver algunos ejemplos:</p>
+<div id="0af487d8" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"factorial(1):"</span>, factorial(<span class="dv">1</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"factorial(0):"</span>, factorial(<span class="dv">0</span>))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"factorial(6):"</span>, factorial(<span class="dv">6</span>))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"factorial(10):"</span>, factorial(<span class="dv">10</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>factorial(1): 1
+factorial(0): 1
+factorial(6): 720
+factorial(10): 3628800</code></pre>
+</div>
+</div>
+<section id="versión-comentada-1" class="level3">
+<h3 class="anchored" data-anchor-id="versión-comentada-1">Versión comentada</h3>
+<p>La función <code>regresiva</code> nos sirvió como primera aproximación a la recursión. Sin embargo, en ella, no se hace uso del resultado que la misma función produce. En cambio, con <code>factorial</code> sí se utiliza el valor producido en el caso recursivo, lo que la vuelve más interesante para analizar cómo se van encadenando los distintos pasos.</p>
+<div id="506c59fc" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial(n):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"factorial(</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        salida <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"factorial(</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">) -&gt; factorial(</span><span class="sc">{</span>n <span class="op">-</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        salida <span class="op">=</span> n <span class="op">*</span> factorial(n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"&gt; factorial(</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">) devuelve </span><span class="sc">{</span>salida<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> salida</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>factorial(<span class="dv">4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>factorial(4)
+factorial(4) -&gt; factorial(3)
+factorial(3)
+factorial(3) -&gt; factorial(2)
+factorial(2)
+factorial(2) -&gt; factorial(1)
+factorial(1)
+&gt; factorial(1) devuelve 1
+&gt; factorial(2) devuelve 2
+&gt; factorial(3) devuelve 6
+&gt; factorial(4) devuelve 24</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>24</code></pre>
+</div>
+</div>
+<p>El proceso arranca con la llamada a <code>factorial(4)</code>. Para calcular su resultado, la función necesita antes el valor de <code>factorial(3)</code>. Esa, a su vez, depende de <code>factorial(2)</code>, que depende de <code>factorial(1)</code>. Finalmente, cuando llegamos a <code>factorial(1)</code>, entramos en el <strong>caso base</strong>, que devuelve un resultado sin hacer más llamadas.</p>
+<p>Por eso primero vemos cómo se acumula la pila de llamadas, que crece paso a paso hasta llegar al caso base. Recién ahí comienza el camino de regreso: cada llamada se va resolviendo con el valor devuelto por la anterior, hasta llegar de nuevo a <code>factorial(4)</code>, donde se completa el cálculo y obtenemos el resultado final.</p>
+</section>
+</section>
+<section id="letra-chica" class="level2">
+<h2 class="anchored" data-anchor-id="letra-chica">Letra chica</h2>
+<p>Cada vez que una función se invoca a sí misma, crea un nuevo <strong>contexto de ejecución</strong> (con sus propias variables locales y el punto al que debe regresar) y lo apila sobre el anterior en una estructura que se llama <strong>pila de llamadas</strong> (del inglés, <em>call stack</em>). Por lo tanto, cuando llamamos a <code>factorial(4)</code>, apilamos cuatro contextos de ejecución distintos, uno por cada llamada que va quedando pendiente, antes de empezar a devolver resultados.</p>
+<p>Este apilamiento <strong>no es gratis</strong>, consume memoria de nuestra computadora. Aunque para <code>factorial(4)</code> el consumo de memoria es insignificante, si intentáramos calcular un factorial muy grande, la pila podría crecer hasta agotar la cantidad de memoria disponible en nuestra computadora. Para evitar que las funciones recursivas causen una falla estrepitosa, Python establece un límite en la profundidad de la recursión. Al alcanzarlo, el intérprete se detiene con la excepción <code>RecursionError</code> que nos proteje de una ejecución recursiva infinita o excesivamente profunda.</p>
+<p>Dado su potencial alto consumo de memoria y la sobrecarga que genera gestionar la pila de llamadas, una implementación recursiva no suele ser la más eficiente. De hecho, su equivalente iterativo suele ser más eficiente y además evita los riesgos asociados al desbordamiento de la pila. Sin embargo, el principal valor de la recursión reside en la <strong>claridad conceptual</strong> para modelar problemas de naturaleza inherentemente recursiva.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
