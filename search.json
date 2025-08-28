@@ -420,6 +420,248 @@
     ]
   },
   {
+    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html",
+    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html",
+    "title": "3 - Funciones de orden superior",
+    "section": "",
+    "text": "Las funciones de orden superior son una herramienta muy importante en la programación funcional. A lo largo de esta unidad, trabajaremos con las siguientes variedades de funciones de orden superior:\n\nFunciones que aceptan funciones como argumentos.\nFunciones que devuelven una función como resultado.\nFunciones que aceptan funciones como argumentos y devuelven una función como resultado.\n\nEn la Sección Funciones de orden superior de El paradigma funcional nos inciamos en el trabajo con funciones que aceptan funciones como argumento y funciones que devuelven funciones como resultado.\nEn este capítulo, vamos a enfocarnos las funciones de orden superior más elementales: map, filter y reduce. Las primeras dos están disponibles por defecto en nuestra sesión de Python (ya que son funciones built-in), mientras que a reduce la tenemos que importar desde el módulo estándar functools.\nLas funciones map, filter y reduce son funciones de orden superior fundamentales en la programación funcional. Actúan como primitivas básicas para procesar y transformar secuencias, y muchas otras operaciones funcionales pueden construirse a partir de ellas o expresarse en términos de estas.",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "3 - Funciones de orden superior"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#introducción",
+    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#introducción",
+    "title": "3 - Funciones de orden superior",
+    "section": "",
+    "text": "Las funciones de orden superior son una herramienta muy importante en la programación funcional. A lo largo de esta unidad, trabajaremos con las siguientes variedades de funciones de orden superior:\n\nFunciones que aceptan funciones como argumentos.\nFunciones que devuelven una función como resultado.\nFunciones que aceptan funciones como argumentos y devuelven una función como resultado.\n\nEn la Sección Funciones de orden superior de El paradigma funcional nos inciamos en el trabajo con funciones que aceptan funciones como argumento y funciones que devuelven funciones como resultado.\nEn este capítulo, vamos a enfocarnos las funciones de orden superior más elementales: map, filter y reduce. Las primeras dos están disponibles por defecto en nuestra sesión de Python (ya que son funciones built-in), mientras que a reduce la tenemos que importar desde el módulo estándar functools.\nLas funciones map, filter y reduce son funciones de orden superior fundamentales en la programación funcional. Actúan como primitivas básicas para procesar y transformar secuencias, y muchas otras operaciones funcionales pueden construirse a partir de ellas o expresarse en términos de estas.",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "3 - Funciones de orden superior"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#map",
+    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#map",
+    "title": "3 - Funciones de orden superior",
+    "section": "Map",
+    "text": "Map\nSupongamos que tenemos una secuencia de palabras y queremos invertir el orden de los caracteres de cada una. Para ello, vamos a rebanadar cada cadena desde el principio al final usando un paso de -1. Por ejemplo:\n\n\"cosa\"[::-1]\n\n'asoc'\n\n\nSi quisiéramos obtener una lista con las palabras invertidas, podríamos crear una nueva lista, recorrer la original con un bucle for, invertir cada palabra y guardarla en la lista nueva.\n\npalabras = [\"hola\", \"mate\", \"somos\",\" libro\", \"conocer\", \"anilina\", \"programa\"]\npalabras_invertidas = []\n\nfor palabra in palabras:\n    palabras_invertidas.append(palabra[::-1])\n\nprint(\"Palabras originales:\", palabras, \"\\n\", sep=\"\\n\")\nprint(\"Palabras invertidas:\", palabras_invertidas, sep=\"\\n\")\n\nPalabras originales:\n['hola', 'mate', 'somos', ' libro', 'conocer', 'anilina', 'programa']\n\n\nPalabras invertidas:\n['aloh', 'etam', 'somos', 'orbil ', 'reconoc', 'anilina', 'amargorp']\n\n\nLa alternativa funcional consiste en utilizar map para aplicar una función a cada palabra de la secuencia. En este caso, aplicamos la función invertir, que invierte los caracteres de una palabra, a cada elemento de la lista palabras.\n\ndef invertir(x):\n    return x[::-1]\n\nlist(map(invertir, palabras))\n\n['aloh', 'etam', 'somos', 'orbil ', 'reconoc', 'anilina', 'amargorp']\n\n\nAsí, se obtiene una nueva lista con las palabras invertidas, sin necesidad de iterar manualmente con un bucle for.\nSi quisiéramos que el programa fuese aún más conciso, podríamos usar una función anónima en vez de una función regular:\n\nlist(map(lambda x: x[::-1], palabras))\n\n['aloh', 'etam', 'somos', 'orbil ', 'reconoc', 'anilina', 'amargorp']\n\n\n\n\n\n\n\n\nEl objeto map\n\n\n\nEn el ejemplo anterior usamos list para convertir el resultado de map en una lista. Este paso, que puede parecer innecesario, es fundamental si queremos obtener una lista como resultado final. De lo contrario, la llamada a map devuelve un objeto de tipo map.\nmap(lambda x: x[::-1], palabras)\n&lt;map object at 0x7fd2fc1ad360&gt;\nEste objeto, perezoso e iterable, puede recorrerse o convertirse en otras colecciones como listas, tuplas o conjuntos:\nlist(map(lambda x: x[::-1], palabras))\n['aloh', 'etam', 'somos', 'orbil ', 'reconoc', 'anilina', 'amargorp']\n\n\n\nEstructuras de datos complejas\nEn el ejemplo anterior se usó map sobre una secuencia simple de cadenas de texto. Sin embargo, eso no implica que su uso se limite a casos sencillos.\nSupongamos ahora que tenemos una lista anidada de números, es decir, una lista que contiene otras listas con valores numéricos:\n\nventas = [\n    [22.5, 9.3, 11.0],\n    [5.4, 22.5],\n    [3.0, 3.0, 12.9, 7.5],\n]\n\nSi queremos calcular el total de cada sublista, podemos combinar map con la función sum. Esto aplica sum a cada elemento de la lista ventas, generando como resultado una nueva lista con los totales de cada sublista.\n\nlist(map(sum, ventas))\n\n[42.8, 27.9, 26.4]\n\n\nDe manera similar, se puede obtener el mínimo, el máximo, la media u otra medida de interés aplicando la función correspondiente a cada sublista.\nUsando una combinación más compleja de maps y expresiones lambda, se puede determinar cuáles sublistas de ventas contienen al menos un valor mayor a 20.\n\nlist(\n    map(\n        lambda sublista: any(map(lambda x: x &gt; 20,  sublista)),\n        ventas\n    )\n)\n\n[True, True, False]\n\n\nComo puede observarse, un programa que utiliza map junto con expresiones lambda puede volverse difícil de leer y comprender rápidamente, especialmente a medida que la lógica se vuelve más compleja.\nPara finalizar este listado de ejemplos, observemos uno donde se crea un diccionario a partir del map, en vez de una lista.\nDebajo, tenemos una lista con diccionarios. Cada diccionario contiene el nombre y las notas de una persona. Nuestro objetivo es obtener un nuevo diccionario que tenga por claves al nombre de la persona, y por valor a la nota promedio.\n\nnotas = [\n    {\n        \"nombre\": \"Mariano\",\n        \"notas\": [6, 9, 9, 8]\n    },\n    {\n        \"nombre\": \"Daniela\",\n        \"notas\": [6, 7, 7, 8]\n    },\n    {\n        \"nombre\": \"Sofía\",\n        \"notas\": [8, 6, 9, 8]\n    },\n]\n\nSin utilizar un enfoque funcional, una solución posible es la siguiente:\n\ndef media(x):\n    return sum(x) / len(x)\n\npromedios = {}\n\nfor datum in notas:\n    promedios[datum[\"nombre\"]] = media(datum[\"notas\"])\n\npromedios\n\n{'Mariano': 8.0, 'Daniela': 7.0, 'Sofía': 7.75}\n\n\nEn cambio, utilizando map:\n\ndict(map(lambda datum: (datum[\"nombre\"], media(datum[\"notas\"])), notas))\n\n{'Mariano': 8.0, 'Daniela': 7.0, 'Sofía': 7.75}\n\n\nLa clave está en notar que la expresión lambda devuelve una tupla de dos elementos, donde el primero es el nombre y el segundo, la nota promedio. A partir de estos pares (str, float), se puede construir directamente un diccionario.\n\n\nUsando map con múltiples iterabes\nHasta ahora hemos utilizado map con funciones que se aplican sobre los elementos de un único iterable. Sin embargo, map también acepta múltiples iterables y los recorre en paralelo, lo que la convierte en una función variádica. Esto permite aplicar funciones que toman más de un argumento, una vez por cada grupo de elementos correspondientes.\nSupongamos que queremos redondear un listado de números utilizando diferentes niveles de precisión. Para redondear un único número podemos usar directamente round:\n\nround(29.12951138, 4)\n\n29.1295\n\n\nSi quisiéramos redonear múltiples números en una lista, usando el mismo nivel de precisión, podemos usar map y round:\n\nnumeros = [\n    30.60726375,\n    78.12297368,\n    61.94972186,\n    68.78842783,\n    55.60016942,\n    94.9760221,\n    90.41151716,\n    38.72727347,\n    21.30193307,\n    66.39407577\n]\nlist(map(lambda x: round(x, 3), numeros))\n\n[30.607, 78.123, 61.95, 68.788, 55.6, 94.976, 90.412, 38.727, 21.302, 66.394]\n\n\n¿Y si quisiéramos aplicar diferentes niveles de precisión a cada número? Para ello, también podemos usar map. Definimos una función que reciba dos argumentos y luego iteramos en paralelo sobre dos iterables: uno con los números y otro con las precisiones correspondientes.\n\nprecisiones = [2, 2, 3, 3, 4, 4, 5, 5, 2, 2]\nlist(map(lambda x, y: round(x, y), numeros, precisiones))\n\n[30.61, 78.12, 61.95, 68.788, 55.6002, 94.976, 90.41152, 38.72727, 21.3, 66.39]\n\n\n\n\n\n\n\n\n¿Qué pasa si un iterable es más corto que el otro? 🤔\n\n\n\nCuando se recorren múltiples iterables con map, la iteración se detiene tan pronto como se agota el iterable más corto. Por ejemplo, si tenemos 10 números pero solo 5 precisiones, map aplicará la función únicamente a los primeros 5 pares de elementos:\nprecisiones = [1, 2, 3, 4, 5]\nlist(map(lambda x, y: round(x, y), numeros, precisiones))\n[30.6, 78.12, 61.95, 68.7884, 55.60017]",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "3 - Funciones de orden superior"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#filter",
+    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#filter",
+    "title": "3 - Funciones de orden superior",
+    "section": "Filter",
+    "text": "Filter\nfilter se utiliza para seleccionar —o, más precisamente, filtrar— elementos de un iterable según el resultado de aplicar una función. A diferencia de map, la función usada por filter se aplica sobre los elementos de un solo iterable y debe devolver un valor booleano. El resultado es un nuevo iterable que contiene únicamente los elementos para los que la función retorna True.\nComo ejemplo del uso de filter, vamos a seleccionar las notas menores a 6 a partir de una lista de calificaciones.\n\nnotas = [6, 9, 6, 5, 7, 4, 5, 8, 3, 10, 9, 4, 7, 8]\nlist(filter(lambda x: x &lt; 6, notas))\n\n[5, 4, 5, 3, 4]\n\n\nDe este modo, resulta sencillo calcular el promedio de las notas de aquellos que no aprobaron:\n\nmedia(list(filter(lambda x: x &lt; 6, notas)))\n\n4.2\n\n\nRetomando el ejemplo del listado de palabras que se querían revertir, se podría usar filter para seleccionar solo aquellas palabras que sean palíndromos, es decir, capicúa.\n\npalabras = [\"hola\", \"mate\", \"somos\",\" libro\", \"conocer\", \"anilina\", \"programa\"]\ncapicuas = list(filter(lambda p: p[::-1] == p, palabras))\ncapicuas\n\n['somos', 'anilina']\n\n\nNaturalmente, filter también puede utilizarse para filtrar objetos más complejos. Por ejemplo, si tenemos una lista de diccionarios con información de estudiantes (nombre, ciudad de origen, edad y fecha de inscripción), podemos usar filter para seleccionar aquellos que cumplan una o más condiciones. En ese caso, el valor booleano que devuelve la función se construye combinando condiciones mediante operadores lógicos como and.\n\ndatos = [\n    {\"nombre\": \"Agustina\", \"ciudad\": \"Casilda\", \"edad\": 18, \"inscripcion\": 2025},\n    {\"nombre\": \"Emiliano\", \"ciudad\": \"Rosario\", \"edad\": 21, \"inscripcion\": 2024},\n    {\"nombre\": \"David\", \"ciudad\": \"Pergamino\", \"edad\": 19, \"inscripcion\": 2024},\n    {\"nombre\": \"Julieta\", \"ciudad\": \"Rosario\", \"edad\": 19, \"inscripcion\": 2025},\n    {\"nombre\": \"Victoria\", \"ciudad\": \"Chañar Ladeado\", \"edad\": 18, \"inscripcion\": 2025},\n    {\"nombre\": \"Fernando\", \"ciudad\": \"Rosario\", \"edad\": 20, \"inscripcion\": 2024},\n    {\"nombre\": \"Mateo\", \"ciudad\": \"Pérez\", \"edad\": 23, \"inscripcion\": 2025},\n    {\"nombre\": \"Lucía\", \"ciudad\": \"Rosario\", \"edad\": 22, \"inscripcion\": 2022},\n    {\"nombre\": \"Joaquín\", \"ciudad\": \"Casilda\", \"edad\": 19, \"inscripcion\": 2025},\n    {\"nombre\": \"Micaela\", \"ciudad\": \"Rosario\", \"edad\": 18, \"inscripcion\": 2024},\n]\n\nlist(filter(lambda x: x[\"ciudad\"] == \"Rosario\" and x[\"inscripcion\"] == 2025, datos))\n\n[{'nombre': 'Julieta', 'ciudad': 'Rosario', 'edad': 19, 'inscripcion': 2025}]",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "3 - Funciones de orden superior"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#reduce",
+    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#reduce",
+    "title": "3 - Funciones de orden superior",
+    "section": "Reduce",
+    "text": "Reduce\nLa función reduce permite reducir una secuencia a un único valor aplicando de forma sucesiva una de dos argumentos sobre sus elementos.\nPara utilizarla, es necesario importarla desde el módulo estándar functools:\n\nfrom functools import reduce\n\nreduce aplica la función acumulando resultados de a pares, desde el primer elemento hasta el último. Por ejemplo:\nreduce(lambda x, y: x + y, [1, 2, 3, 4, 5])\nequivale a:\n((((1 + 2) + 3) + 4) + 5)\nEn este caso, es simplemente una forma más rebuscada de escribir sum([1, 2, 3, 4, 5]) en Python.\nPara entender cómo funciona el proceso de acumulación en reduce, podemos definir una función que imprima los valores de sus argumentos en cada paso:\n\ndef sumar(x, y):\n    print(f\"x={x}, y={y}\")\n    return x + y\n\nreduce(sumar, [1, 2, 3, 4, 5])\n\nx=1, y=2\nx=3, y=3\nx=6, y=4\nx=10, y=5\n\n\n15\n\n\nEn la primera llamada, x e y son los dos primeros elementos de la secuencia. En la segunda, x es el resultado de la llamada anterior, y y es el siguiente elemento de la secuencia. Este proceso continúa hasta que se recorre toda la lista.\nEn resumen:\n\nx representa el valor acumulado hasta el momento.\ny es el nuevo elemento a combinar.\n\nAsí, reduce va aplicando la función paso a paso, acumulando resultados hasta obtener un único valor final.\nMuchas operaciones comunes, como sumas, productos, mínimos o máximos, pueden expresarse mediante reducciones. Por ejemplo, es posible calcular el factorial de un número utilizando una reduce:\n\ndef factorial(n):\n    return reduce(lambda x, y: x * y, range(1, n + 1))\n\nfactorial(5)\n\n120\n\n\nLa reducción mediante la multiplicación de dos números, aplicada a la secuencia del 1 al n, da como resultado el factorial de n.\nFinalmente, podemos ver que combinando una función que devuelve el mayor de dos números y una reducción, es posible obtener el máximo de una secuencia.\n\ndef mayor(x, y):\n    if x &gt; y:\n        return x\n    return y\n\nreduce(mayor, [23, 49, 6, 32, 101, 9])\n\n101\n\n\nVale la pena mencionar que reduce acepta un tercer argumento opcional, que especifica el valor inicial de la reducción. Este valor se utiliza como punto de partida antes de procesar los elementos del iterable.\n\ndef sumar(x, y):\n    print(f\"x={x}, y={y}\")\n    return x + y\n\nreduce(sumar, [1, 2, 3, 4, 5], 20)\n\nx=20, y=1\nx=21, y=2\nx=23, y=3\nx=26, y=4\nx=30, y=5\n\n\n35\n\n\n\n\n\n\n\n\nExpresiones condicionales 🔀😱\n\n\n\nLa reducción anterior puede expresarse de forma más concisa utilizando expresiones condicionales:\nreduce(lambda x, y: x if x &gt; y else y, [23, 49, 6, 32, 101, 9])\nEstas expresiones permiten simplificar asignaciones condicionales. Por ejemplo, el siguiente bloque:\nif x &gt; y:\n    valor = x\nelse:\n    valor = y\npuede escribirse de manera más compacta así:\nvalor = x if x &gt; y else y\nEn términos generales, la sintaxis es:\n&lt;valor_si_verdadero&gt; if &lt;condición&gt; else &lt;valor_si_falso&gt;",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "3 - Funciones de orden superior"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#resumen-de-map-filter-y-reduce",
+    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#resumen-de-map-filter-y-reduce",
+    "title": "3 - Funciones de orden superior",
+    "section": "Resumen de Map, Filter y Reduce",
+    "text": "Resumen de Map, Filter y Reduce\nEl siguiente bloque de código resume el funcionamiento de map, filter y reduce.\n\nnumeros = [1, 2, 3, 4, 5]\n\n# Map: Aplicar una función a cada elemento de un iterable\ncuadrados = list(map(lambda x: x**2, numeros))\nprint(\"Map [cuadrados]:\", cuadrados)\n\n# Filter: Devuelve el subconjunto de elementos para los que la función devuelve True\npares = list(filter(lambda x: x % 2 == 0, numeros))\nprint(\"Filer [pares]:\", cuadrados)\n\n# Reduce: Aplica una función de dos argumentos de manera acumulativa a los elementos de una secuencia\nproducto = reduce(lambda x, y: x * y, numeros)\nprint(\"Reduce [producto]:\", producto)\n\nMap [cuadrados]: [1, 4, 9, 16, 25]\nFiler [pares]: [1, 4, 9, 16, 25]\nReduce [producto]: 120\n\n\n\nMap y Filter como casos particulares de Reduce 😱\nPor otro lado, algo menos evidente es que tanto map como filter pueden verse como casos particulares de reduce.\nEsta aplicación de map:\n\nlist(map(lambda x: x * 2, range(10)))\n\n[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]\n\n\nPuede ser reproducida con el siguiente uso de reduce:\n\ndef duplicar(x):\n    return x * 2\n\nreduce(lambda seq, x: seq + [duplicar(x)], range(10), [])\n\n[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]\n\n\nY el siguiente uso de filter\n\nlist(filter(lambda x: x % 2 == 1, range(10)))\n\n[1, 3, 5, 7, 9]\n\n\n\ndef es_impar(x):\n    return x % 2 == 1\n\nreduce(lambda seq, x: seq + [x] if es_impar(x) else seq, range(10), [])\n\n[1, 3, 5, 7, 9]\n\n\nEstas expresiones con reduce() son complejas, pero ilustran claramente el poder de la función: cualquier operación que pueda definirse a partir de una combinación sucesiva de elementos puede, al menos en principio, expresarse como una reducción, aunque no siempre sea la forma más clara o recomendada de hacerlo.",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "3 - Funciones de orden superior"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#comprehensions",
+    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#comprehensions",
+    "title": "3 - Funciones de orden superior",
+    "section": "Comprehensions",
+    "text": "Comprehensions\nCuando usamos map y filter obtenemos objetos especiales: map devuelve un objeto de tipo map, y filter devuelve un objeto de tipo filter. Estos objetos son iterables y perezosos, lo que significa que no realizan ninguna operación hasta que se los recorre o convierte en una colección, como una lista. Por eso, si queremos ver directamente el resultado de una transformación o filtrado, necesitamos envolverlos con list():\nnumeros = [1, 2, 3]\nlist(map(lambda x: x * 2, numeros))          # → [2, 4, 6]\nlist(filter(lambda x: x % 2 == 0, numeros))  # → [2]\nAunque map y filter siguen siendo completamente válidos y útiles, hoy en día se consideran formas algo anticuadas o menos idiomáticas de construir listas transformadas o filtradas en Python.\nLa alternativa moderna y, en general preferida, son las comprensiones de listas (del inglés, list comprehensions), que permiten expresar las mismas ideas de forma más clara y legible:\n\nnumeros = list(range(11))\n[x * 2 for x in numeros] # Reemplaza a list(map())\n\n[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n\n\n\n[x for x in numeros if x % 2 == 0] # Reemplaza a list(filter())\n\n[0, 2, 4, 6, 8, 10]\n\n\n\nComprehension como reemplazo de Map\nSupongamos que tenemos una lista de números y queremos restarles su media.\nUna forma de hacerlo utilizando un bucle for sería:\n\nvector = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]\n\nmedia = media(vector)\nvector_centrado = []\nfor x in vector:\n    vector_centrado.append(x - media)\n\nvector_centrado\n\n[-4.5, -3.5, -2.5, -1.5, -0.5, 0.5, 1.5, 2.5, 3.5, 4.5]\n\n\nSi, en cambio, decidimos usar map, podemos hacer:\n\nlist(map(lambda x: x - media, vector))\n\n[-4.5, -3.5, -2.5, -1.5, -0.5, 0.5, 1.5, 2.5, 3.5, 4.5]\n\n\nFinalmente, se puede obtener el mismo resultado usando una list comprehension:\n\n[x - media for x in vector]\n\n[-4.5, -3.5, -2.5, -1.5, -0.5, 0.5, 1.5, 2.5, 3.5, 4.5]\n\n\nLa sintaxis general de una list comprehension que aplica una transformación sobre los elementos de un iterable es:\n[&lt;expresión&gt; for elemento in iterable]\nComo se observa en el ejemplo anterior, lo que aparece en la parte izquierda como &lt;expresión&gt; no tiene por qué ser una llamada a una función; puede ser cualquier expresión válida que produzca un resultado. Es decir, una operación matemática, un formateo de texto, la construcción de una estructura de datos, una llamada a una función, etc.\n\n\nComprehension como reemplazo de Filter\nAhora veamos con mayor detalle cómo funciona una list comprehension que reemplaza al uso de filter. Para eso, retomemos el ejemplo de las palabras capicúa.\n\npalabras = [\"hola\", \"mate\", \"somos\",\" libro\", \"conocer\", \"anilina\", \"programa\"]\n\nInicialmente, podemos construir un listado de palabras capicúa usando un bucle for.\n\ncapicuas = []\nfor palabra in palabras:\n    if palabra == palabra[::-1]:\n        capicuas.append(palabra)\ncapicuas\n\n['somos', 'anilina']\n\n\nLuego, podemos construir el listado de palabras capicúa usando la función de orden superior filter.\n\nlist(filter(lambda x: x == x[::-1], palabras))\n\n['somos', 'anilina']\n\n\nY finalmente, se puede obtener exactamente el mismo resultado mediante una list comprehension.\n\n[palabra for palabra in palabras if palabra == palabra[::-1]]\n\n['somos', 'anilina']\n\n\nLa sintaxis general de una list comprehension que filtra los elementos de un iterable es:\n[elemento for elemento in iterable if &lt;expresión_lógica&gt;]\nAl igual que en la list comprehension que aplica funciones a todos los ementos, &lt;expresión_lógica&gt; puede ser cualquier expresión de Python que devuelva un valor True o False, o que pueda interpretarse como tal.\n\n\n\n\n\n\nComprehensions con expresiones condicionales 😱\n\n\n\nLa estructura general:\n[elemento for elemento in iterable if &lt;expresión_lógica&gt;]\npuede modificarse cuando se desea evaluar una expresión en caso de que se cumpla una condición y otra distinta si no se cumple. Para ello, se usa una expresión condicional directamente en la parte izquierda de la comprensión:\n[&lt;expresión_si_verdadero&gt; if &lt;condición&gt; else &lt;expresión_si_falso&gt; for elemento in iterable]\nPor ejemplo:\nnumeros = [1, 2, 3, 4, 5]\n[f\"{x} es par\" if x % 2 == 0 else f\"{x} es impar\" for x in numeros]\n['1 es impar', '2 es par', '3 es impar', '4 es par', '5 es impar']\n\n\n\n\n\n\n\n\nDictionary comprehensions 😱😱\n\n\n\nLas comprensiones en Python no están limitadas a listas. Este patrón también puede utilizarse para construir otras estructuras de datos como diccionarios**, conjuntos e incluso generadores (estructura que veremos más adelante).\nPor ejemplo, una comprensión de diccionario permite crear un dict a partir de una secuencia de pares clave-valor:\ndef media(x):\n    return sum(x) / len(x)\n\ndatos = [\n    (\"Marcos\", (4, 8, 9, 9)),\n    (\"Joaquín\", (10, 8, 8, 7)),\n    (\"Luján\", (10, 9, 9, 10)),\n]\n\n{nombre: media(notas) for nombre, notas in datos}\n{'Marcos': 7.5, 'Joaquín': 8.25, 'Luján': 9.5}",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "3 - Funciones de orden superior"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/05_estrategias_de_evaluacion.html",
+    "href": "teoria/02_programacion_funcional/05_estrategias_de_evaluacion.html",
+    "title": "5 - Estrategias de evaluación",
+    "section": "",
+    "text": "Evaluación perezosa (lazy) e inmediata (eager).\nEvaluación estricta y no estricta.\nGeneradores.\n\nGenerator expression (el for el in seq), (f(el) for el in seq).\nComparación con list comprehension.",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "5 - Estrategias de evaluación"
+    ]
+  },
+  {
+    "objectID": "informacion/programa.html",
+    "href": "informacion/programa.html",
+    "title": "Programa",
+    "section": "",
+    "text": "Los profesionales en Estadística y Ciencia de Datos necesitan contar con habilidades avanzadas de programación, que les permitan abordar problemas complejos y desarrollar soluciones eficientes y robustas.\nLa asignatura Programación 2 introduce a los estudiantes a conceptos y prácticas avanzadas de la programación, incorporando herramientas y paradigmas que resultan fundamentales para el desarrollo profesional en Estadística y Ciencia de Datos.\nLa asignatura profundiza en enfoques como la programación funcional y la programación orientada a objetos, promoviendo el desarrollo de soluciones estructuradas, reutilizables, robustas y escalables. Además, se abordan conceptos fundamentales de estructuras de datos y algoritmos, relevantes para el diseño y análisis de programas eficientes, así como para la comprensión de la complejidad computacional. Se focaliza en el lenguaje Python, ampliamente utilizado en la industria y la academia por su versatilidad, su ecosistema de librerías y su capacidad para integrarse con diversas tecnologías.\nDictada en el segundo cuatrimestre del primer año, Programación 2 completa los contenidos del área de Fundamentos Computacionales en el Ciclo de Formación Técnica en Estadística y Ciencia de Datos, iniciada en el primer cuatrimestre con Programación 1. De este modo, consolida las competencias informáticas de los estudiantes y los prepara para afrontar asignaturas más avanzadas y desafíos profesionales que requieren un dominio sólido de la programación. Asimismo, fomenta buenas prácticas de desarrollo de código, el uso eficiente de los recursos computacionales y el pensamiento crítico en la resolución de problemas.",
+    "crumbs": [
+      "Información",
+      "Programa"
+    ]
+  },
+  {
+    "objectID": "informacion/programa.html#fundamentación",
+    "href": "informacion/programa.html#fundamentación",
+    "title": "Programa",
+    "section": "",
+    "text": "Los profesionales en Estadística y Ciencia de Datos necesitan contar con habilidades avanzadas de programación, que les permitan abordar problemas complejos y desarrollar soluciones eficientes y robustas.\nLa asignatura Programación 2 introduce a los estudiantes a conceptos y prácticas avanzadas de la programación, incorporando herramientas y paradigmas que resultan fundamentales para el desarrollo profesional en Estadística y Ciencia de Datos.\nLa asignatura profundiza en enfoques como la programación funcional y la programación orientada a objetos, promoviendo el desarrollo de soluciones estructuradas, reutilizables, robustas y escalables. Además, se abordan conceptos fundamentales de estructuras de datos y algoritmos, relevantes para el diseño y análisis de programas eficientes, así como para la comprensión de la complejidad computacional. Se focaliza en el lenguaje Python, ampliamente utilizado en la industria y la academia por su versatilidad, su ecosistema de librerías y su capacidad para integrarse con diversas tecnologías.\nDictada en el segundo cuatrimestre del primer año, Programación 2 completa los contenidos del área de Fundamentos Computacionales en el Ciclo de Formación Técnica en Estadística y Ciencia de Datos, iniciada en el primer cuatrimestre con Programación 1. De este modo, consolida las competencias informáticas de los estudiantes y los prepara para afrontar asignaturas más avanzadas y desafíos profesionales que requieren un dominio sólido de la programación. Asimismo, fomenta buenas prácticas de desarrollo de código, el uso eficiente de los recursos computacionales y el pensamiento crítico en la resolución de problemas.",
+    "crumbs": [
+      "Información",
+      "Programa"
+    ]
+  },
+  {
+    "objectID": "informacion/programa.html#objetivos",
+    "href": "informacion/programa.html#objetivos",
+    "title": "Programa",
+    "section": "Objetivos",
+    "text": "Objetivos\nQue los estudiantes logren:\n\nanalizar problemas computacionales y formular soluciones algorítmicas adecuadas;\nimplementar esas soluciones mediante el desarrollo de programas en Python, seleccionando estructuras de datos apropiadas y evaluando la eficiencia de los algoritmos involucrados;\nidentificar y aplicar los paradigmas funcional y orientado a objetos cuando resulte pertinente, desarrollando programas que integren estos enfoques; y\nutilizar e integrar módulos y librerías que permitan extender, organizar y mejorar las funcionalidades de sus programas.",
+    "crumbs": [
+      "Información",
+      "Programa"
+    ]
+  },
+  {
+    "objectID": "informacion/programa.html#contenidos",
+    "href": "informacion/programa.html#contenidos",
+    "title": "Programa",
+    "section": "Contenidos",
+    "text": "Contenidos\n\nUnidad 1: Introducción a Python\n\nLenguaje Python y su ecosistema. Uso de la interfaz Positron. Sintaxis de Python. Expresiones. Variables y asignaciones. Tipos de datos elementales. Operadores numéricos, de comparación y lógicos. Funciones. Ejecución condicional de código. Bucles definidos y no definidos. Listas, tuplas y diccionarios. Uso de código externo. Módulos y librerías. Librería estándar de Python. Instalación y gestión de librerías. Scripting. Lectura y escritura de archivos de texto plano. Modularización de programas.\n\nUnidad 2: Programación funcional\n\nPrincipios fundamentales. Funciones como ciudadanos de primera clase. Funciones puras. Funciones anónimas. Closures. Recursión. Funciones de orden superior: map, filter, reduce. Evaluación estricta y no estricta. Evaluación perezosa (lazy) e inmediata (eager). Generadores. Aplicación parcial de funciones. Decoradores.\n\nUnidad 3: Programación orientada a objetos\n\nPrincipios fundamentales. Objetos, clases e instancias. Atributos y métodos. Propiedades públicas y privadas. Métodos de clase y métodos de instancia. Encapsulamiento. Herencia simple y múltiple. Polimorfismo. Métodos especiales (dunder methods). Decoradores aplicados a métodos. Sobrecarga de operadores.\n\nUnidad 4: Estructuras de datos\n\nConcepto y clasificación. Estructuras lineales: listas, listas enlazadas, pilas y colas. Operaciones básicas: agregar, quitar y recorrer. Estructuras no lineales: árboles y grafos. Recorridos de árboles y grafos. Uso de colecciones de Python (list, deque, dict, set). Arreglos multidimensionales de NumPy.\n\nUnidad 5: Algoritmos de búsqueda y ordenamiento\n\nConcepto de algoritmo y complejidad. Notación Big O. Búsqueda lineal y binaria. Algoritmos de ordenamiento: bubble sort, insertion sort, selection sort, quick sort y merge sort. Comparación de eficiencia. Funciones de búsqueda y ordenamiento en Python (sorted, sort, heapq).",
+    "crumbs": [
+      "Información",
+      "Programa"
+    ]
+  },
+  {
+    "objectID": "informacion/aprobacion.html",
+    "href": "informacion/aprobacion.html",
+    "title": "Condiciones de aprobación",
+    "section": "",
+    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
+    "crumbs": [
+      "Información",
+      "Condiciones de aprobación"
+    ]
+  },
+  {
+    "objectID": "informacion/aprobacion.html#instancias-de-evaluación",
+    "href": "informacion/aprobacion.html#instancias-de-evaluación",
+    "title": "Condiciones de aprobación",
+    "section": "",
+    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
+    "crumbs": [
+      "Información",
+      "Condiciones de aprobación"
+    ]
+  },
+  {
+    "objectID": "informacion/aprobacion.html#condiciones-de-aprobación",
+    "href": "informacion/aprobacion.html#condiciones-de-aprobación",
+    "title": "Condiciones de aprobación",
+    "section": "Condiciones de aprobación",
+    "text": "Condiciones de aprobación\n\nPromoción\n\nQuienes aprueben el parcial individual (con nota \\(\\text{P}\\)), el trabajo práctico grupal (con nota \\(\\text{T}\\)) y el trabajo práctico individual con defensa oral (con nota \\(\\text{O}\\)), adquieren la condición de estudiante promovido y su nota final se calcula como \\(0.5 \\times \\text{P} + 0.2 \\times \\text{T} + 0.3 \\times \\text{O}\\).\n\nRegularidad\n\nQuienes aprueben el parcial individual (o su recuperatorio) y el trabajo práctico grupal, pero no accedan o no aprueben el trabajo práctico individual, adquieren la condición de estudiante regular.\n\nLibres\n\nQuienes no aprueben el parcial individual (ni su recuperatorio) o el trabajo práctico grupal, adquieren la condición de estudiante libre.",
+    "crumbs": [
+      "Información",
+      "Condiciones de aprobación"
+    ]
+  },
+  {
+    "objectID": "trabajos_practicos/descripcion.html",
+    "href": "trabajos_practicos/descripcion.html",
+    "title": "Descripción",
+    "section": "",
+    "text": "Acá explicamos las pautas para los TP.",
+    "crumbs": [
+      "Trabajos Prácticos",
+      "Descripción"
+    ]
+  },
+  {
+    "objectID": "trabajos_practicos/trabajo_grupal.html",
+    "href": "trabajos_practicos/trabajo_grupal.html",
+    "title": "Trabajo Práctico",
+    "section": "",
+    "text": "Trabajo Práctico",
+    "crumbs": [
+      "Trabajos Prácticos",
+      "Trabajo Práctico"
+    ]
+  },
+  {
+    "objectID": "trabajos_practicos/trabajo_individual.html",
+    "href": "trabajos_practicos/trabajo_individual.html",
+    "title": "Trabajo Práctico Final",
+    "section": "",
+    "text": "Trabajo Práctico Final",
+    "crumbs": [
+      "Trabajos Prácticos",
+      "Trabajo Práctico Final"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Programación II",
+    "section": "",
+    "text": "Programación II\n\n\n   Ciclo de Formación Técnica - Estadística y Ciencia de Datos\n   Facultad de Ciencias Económicas y Estadística (UNR)\n   2° Cuatrimestre 2025"
+  },
+  {
+    "objectID": "index.html#docentes",
+    "href": "index.html#docentes",
+    "title": "Programación II",
+    "section": "Docentes",
+    "text": "Docentes\n\n\nTomás Capretto\n\n   tomas.capretto@fcecon.unr.edu.ar \n\n\n\nLuciano Anselmino\n\n   luciano.anselmino@fcecon.unr.edu.ar \n\n\n\nJoaquín Bermejo\n\n   joaquin.bermejo@fcecon.unr.edu.ar \n\n\n\nDolores Sollberger\n\n   dolores.sollberger@fcecon.unr.edu.ar"
+  },
+  {
+    "objectID": "informacion/bibliografia.html",
+    "href": "informacion/bibliografia.html",
+    "title": "Bibliografía",
+    "section": "",
+    "text": "Principal\n\nCormen et al. (2022) Downey (2024) Kalb (2022) Kubica (2022) Lott y Phillips (2021) Lott (2022) Mertz (2015) Miller, Ranum, y Yasinovskyy (2023) Sedgewick y Wayne (2011) Sedgewick, Wayne, y Dondero (2015) Sweigart (2020) Tuckfield (2021)\n\n\n\nCormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, y Clifford Stein. 2022. Introduction to Algorithms. 4th ed. MIT.\n\n\nDowney, Allen B. 2024. Think Python. 3.ª ed. O’Reilly Media. https://allendowney.github.io/ThinkPython/.\n\n\nKalb, Irv. 2022. Object-Oriented Python. No Starch Press.\n\n\nKubica, Jacek. 2022. Data Structures the Fun Way. 1st ed. No Starch Press.\n\n\nLott, Steven F. 2022. Functional Python Programming. 3rd ed. Packt Publishing.\n\n\nLott, Steven F., y Dusty Phillips. 2021. Python Object-Oriented Programming. 4th ed. Packt Publishing.\n\n\nMertz, David. 2015. Functional Programming in Python. O’Reilly Media.\n\n\nMiller, Bradley, David Ranum, y Jan Yasinovskyy. 2023. Problem Solving with Algorithms and Data Structures Using Python. 3rd ed. Franklin, Beedle & Associates.\n\n\nSedgewick, Robert, y Kevin Wayne. 2011. Algorithms. 4th ed. Addison-Wesley Professional.\n\n\nSedgewick, Robert, Kevin Wayne, y Robert Dondero. 2015. Introduction to Programming in Python. Addison-Wesley Professional.\n\n\nSweigart, Al. 2020. Beyond the Basic Stuff with Python. No Starch Press. https://inventwithpython.com/beyond/.\n\n\nTuckfield, Bradford. 2021. Dive Into Algorithms. No Starch Press.\n\n\n\n\nComplementaria\n\nHetland (2014) Mailund (2023) Sweigart (2021) Vaughan (2019) Wickham (2019)\n\n\n\n\n\nHetland, Magnus Lie. 2014. Python Algorithms. 2.ª ed. Apress.\n\n\nMailund, Thomas. 2023. Functional Programming in R 4. 2.ª ed. Apress.\n\n\nSweigart, Al. 2021. The Big Book of Small Python Projects. No Starch Press. https://inventwithpython.com/bigbookpython/.\n\n\nVaughan, Lee. 2019. Impractical Python Projects. No Starch Press.\n\n\nWickham, Hadley. 2019. Advanced R. 2.ª ed. Chapman & Hall/CRC. https://adv-r.hadley.nz/.",
+    "crumbs": [
+      "Información",
+      "Bibliografía"
+    ]
+  },
+  {
+    "objectID": "informacion/calendario.html",
+    "href": "informacion/calendario.html",
+    "title": "Calendario",
+    "section": "",
+    "text": "Semana\nFecha\nTemas\nOtras actividades\n\n\n\n\n1\n4 de agosto\n• Lenguaje Python y su ecosistema.• Uso de Python en la terminal.• Uso de Positron.• Python en Positron.• Python: expresiones; variables y asignaciones; tipos de datos elementales; operadores numéricos, de comparación y lógicos.• Jupyter Notebooks.• Definición de funciones.• Ejecución condicional de código.\n\n\n\n2\n11 de agosto\n• Colecciones de datos en Python: list, tuple, dict y set.• Secuencias.• Las secuencias str y range.• Bucles definidos (for) y no definidos (while).• Sentencias break y continue.\n\n\n\n3\n17 de agosto\n• Uso de código externo (propio y de terceros).• Módulos y librerías.• Librería estándar de Python.• Instalación y gestión de librerías.• Scripting.• Modularización de programas.• Lectura y escritura de archivos de texto plano.\n\n\n\n4\n25 de agosto\n• Funciones como ciudadanos de primera clase.• Funciones puras.• Funciones anónimas.• Closures.• Recursión.\n\n\n\n5\n1 de septiembre\n• Funciones de orden superior: map, filter, reduce.• Evaluación estricta y no estricta.• Evaluación perezosa (lazy) e inmediata (eager).• Generadores.• Aplicación parcial de funciones.• Decoradores.\n\n\n\n6\n15 de septiembre\n• Objetos, clases e instancias.• Atributos y métodos.• Propiedades públicas y privadas.• Métodos de clase y métodos de instancia.\n\n\n\n7\n22 de septiembre\n• Encapsulamiento.• Herencia simple y múltiple.• Polimorfismo.• Abstracción.\n\n\n\n8\n29 de septiembre\n• Métodos especiales (dunder methods).• Decoradores aplicados a métodos.• Sobrecarga de operadores.\nParcial\n\n\n9\n6 de octubre\n• Concepto y clasificación.• Estructuras lineales y no lineales.• Listas y listas enlazadas.• Operaciones básicas: agregar, quitar y recorrer.\nPresentación TP Grupal\n\n\n10\n13 de octubre\n• Hashing.• Diccionarios y conjuntos como estructuras asociativas.• Árboles y grafos.\nRecuperatorio\n\n\n11\n20 de octubre\n• Arreglos multidimensionales de NumPy.\n\n\n\n12\n27 de octubre\n• Concepto de algoritmo y complejidad.• Algoritmos de búsqueda.• Búsqueda lineal y binaria.• Notación Big O.\n\n\n\n13\n3 de noviembre\n• Algoritmos de ordenamiento.• bubble sort, insert sort, select sort, quick sort y merge sort.• Comparación de algoritmos de ordenamiento.\nEntrega TP GrupalPresentación TP Individual\n\n\n14\n10 de noviembre\n• Funciones de búsqueda y ordenamiento en Python.\n\n\n\n15\n17 de noviembre\n\n\n\n\n16\n24 de noviembre\n\nEntrega y defensa TP Individual",
+    "crumbs": [
+      "Información",
+      "Calendario"
+    ]
+  },
+  {
     "objectID": "teoria/02_programacion_funcional/01_paradigma.html",
     "href": "teoria/02_programacion_funcional/01_paradigma.html",
     "title": "1 - El paradigma funcional",
@@ -504,233 +746,15 @@
     ]
   },
   {
-    "objectID": "teoria/02_programacion_funcional/05_transformaciones_funcionales.html",
-    "href": "teoria/02_programacion_funcional/05_transformaciones_funcionales.html",
-    "title": "5 - Transformaciones funcionales",
+    "objectID": "teoria/02_programacion_funcional/04_transformaciones_funcionales.html",
+    "href": "teoria/02_programacion_funcional/04_transformaciones_funcionales.html",
+    "title": "4 - Transformaciones funcionales",
     "section": "",
     "text": "Evaluación parcial de funciones\nDecoradores",
     "crumbs": [
       "Teoría",
       "U2 - Programación Funcional",
-      "5 - Transformaciones funcionales"
-    ]
-  },
-  {
-    "objectID": "informacion/calendario.html",
-    "href": "informacion/calendario.html",
-    "title": "Calendario",
-    "section": "",
-    "text": "Semana\nFecha\nTemas\nOtras actividades\n\n\n\n\n1\n4 de agosto\n• Lenguaje Python y su ecosistema.• Uso de Python en la terminal.• Uso de Positron.• Python en Positron.• Python: expresiones; variables y asignaciones; tipos de datos elementales; operadores numéricos, de comparación y lógicos.• Jupyter Notebooks.• Definición de funciones.• Ejecución condicional de código.\n\n\n\n2\n11 de agosto\n• Colecciones de datos en Python: list, tuple, dict y set.• Secuencias.• Las secuencias str y range.• Bucles definidos (for) y no definidos (while).• Sentencias break y continue.\n\n\n\n3\n17 de agosto\n• Uso de código externo (propio y de terceros).• Módulos y librerías.• Librería estándar de Python.• Instalación y gestión de librerías.• Scripting.• Modularización de programas.• Lectura y escritura de archivos de texto plano.\n\n\n\n4\n25 de agosto\n• Funciones como ciudadanos de primera clase.• Funciones puras.• Funciones anónimas.• Closures.• Recursión.\n\n\n\n5\n1 de septiembre\n• Funciones de orden superior: map, filter, reduce.• Evaluación estricta y no estricta.• Evaluación perezosa (lazy) e inmediata (eager).• Generadores.• Aplicación parcial de funciones.• Decoradores.\n\n\n\n6\n15 de septiembre\n• Objetos, clases e instancias.• Atributos y métodos.• Propiedades públicas y privadas.• Métodos de clase y métodos de instancia.\n\n\n\n7\n22 de septiembre\n• Encapsulamiento.• Herencia simple y múltiple.• Polimorfismo.• Abstracción.\n\n\n\n8\n29 de septiembre\n• Métodos especiales (dunder methods).• Decoradores aplicados a métodos.• Sobrecarga de operadores.\nParcial\n\n\n9\n6 de octubre\n• Concepto y clasificación.• Estructuras lineales y no lineales.• Listas y listas enlazadas.• Operaciones básicas: agregar, quitar y recorrer.\nPresentación TP Grupal\n\n\n10\n13 de octubre\n• Hashing.• Diccionarios y conjuntos como estructuras asociativas.• Árboles y grafos.\nRecuperatorio\n\n\n11\n20 de octubre\n• Arreglos multidimensionales de NumPy.\n\n\n\n12\n27 de octubre\n• Concepto de algoritmo y complejidad.• Algoritmos de búsqueda.• Búsqueda lineal y binaria.• Notación Big O.\n\n\n\n13\n3 de noviembre\n• Algoritmos de ordenamiento.• bubble sort, insert sort, select sort, quick sort y merge sort.• Comparación de algoritmos de ordenamiento.\nEntrega TP GrupalPresentación TP Individual\n\n\n14\n10 de noviembre\n• Funciones de búsqueda y ordenamiento en Python.\n\n\n\n15\n17 de noviembre\n\n\n\n\n16\n24 de noviembre\n\nEntrega y defensa TP Individual",
-    "crumbs": [
-      "Información",
-      "Calendario"
-    ]
-  },
-  {
-    "objectID": "informacion/bibliografia.html",
-    "href": "informacion/bibliografia.html",
-    "title": "Bibliografía",
-    "section": "",
-    "text": "Principal\n\nCormen et al. (2022) Downey (2024) Kalb (2022) Kubica (2022) Lott y Phillips (2021) Lott (2022) Mertz (2015) Miller, Ranum, y Yasinovskyy (2023) Sedgewick y Wayne (2011) Sedgewick, Wayne, y Dondero (2015) Sweigart (2020) Tuckfield (2021)\n\n\n\nCormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, y Clifford Stein. 2022. Introduction to Algorithms. 4th ed. MIT.\n\n\nDowney, Allen B. 2024. Think Python. 3.ª ed. O’Reilly Media. https://allendowney.github.io/ThinkPython/.\n\n\nKalb, Irv. 2022. Object-Oriented Python. No Starch Press.\n\n\nKubica, Jacek. 2022. Data Structures the Fun Way. 1st ed. No Starch Press.\n\n\nLott, Steven F. 2022. Functional Python Programming. 3rd ed. Packt Publishing.\n\n\nLott, Steven F., y Dusty Phillips. 2021. Python Object-Oriented Programming. 4th ed. Packt Publishing.\n\n\nMertz, David. 2015. Functional Programming in Python. O’Reilly Media.\n\n\nMiller, Bradley, David Ranum, y Jan Yasinovskyy. 2023. Problem Solving with Algorithms and Data Structures Using Python. 3rd ed. Franklin, Beedle & Associates.\n\n\nSedgewick, Robert, y Kevin Wayne. 2011. Algorithms. 4th ed. Addison-Wesley Professional.\n\n\nSedgewick, Robert, Kevin Wayne, y Robert Dondero. 2015. Introduction to Programming in Python. Addison-Wesley Professional.\n\n\nSweigart, Al. 2020. Beyond the Basic Stuff with Python. No Starch Press. https://inventwithpython.com/beyond/.\n\n\nTuckfield, Bradford. 2021. Dive Into Algorithms. No Starch Press.\n\n\n\n\nComplementaria\n\nHetland (2014) Mailund (2023) Sweigart (2021) Vaughan (2019) Wickham (2019)\n\n\n\n\n\nHetland, Magnus Lie. 2014. Python Algorithms. 2.ª ed. Apress.\n\n\nMailund, Thomas. 2023. Functional Programming in R 4. 2.ª ed. Apress.\n\n\nSweigart, Al. 2021. The Big Book of Small Python Projects. No Starch Press. https://inventwithpython.com/bigbookpython/.\n\n\nVaughan, Lee. 2019. Impractical Python Projects. No Starch Press.\n\n\nWickham, Hadley. 2019. Advanced R. 2.ª ed. Chapman & Hall/CRC. https://adv-r.hadley.nz/.",
-    "crumbs": [
-      "Información",
-      "Bibliografía"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Programación II",
-    "section": "",
-    "text": "Programación II\n\n\n   Ciclo de Formación Técnica - Estadística y Ciencia de Datos\n   Facultad de Ciencias Económicas y Estadística (UNR)\n   2° Cuatrimestre 2025"
-  },
-  {
-    "objectID": "index.html#docentes",
-    "href": "index.html#docentes",
-    "title": "Programación II",
-    "section": "Docentes",
-    "text": "Docentes\n\n\nTomás Capretto\n\n   tomas.capretto@fcecon.unr.edu.ar \n\n\n\nLuciano Anselmino\n\n   luciano.anselmino@fcecon.unr.edu.ar \n\n\n\nJoaquín Bermejo\n\n   joaquin.bermejo@fcecon.unr.edu.ar \n\n\n\nDolores Sollberger\n\n   dolores.sollberger@fcecon.unr.edu.ar"
-  },
-  {
-    "objectID": "trabajos_practicos/trabajo_individual.html",
-    "href": "trabajos_practicos/trabajo_individual.html",
-    "title": "Trabajo Práctico Final",
-    "section": "",
-    "text": "Trabajo Práctico Final",
-    "crumbs": [
-      "Trabajos Prácticos",
-      "Trabajo Práctico Final"
-    ]
-  },
-  {
-    "objectID": "trabajos_practicos/trabajo_grupal.html",
-    "href": "trabajos_practicos/trabajo_grupal.html",
-    "title": "Trabajo Práctico",
-    "section": "",
-    "text": "Trabajo Práctico",
-    "crumbs": [
-      "Trabajos Prácticos",
-      "Trabajo Práctico"
-    ]
-  },
-  {
-    "objectID": "trabajos_practicos/descripcion.html",
-    "href": "trabajos_practicos/descripcion.html",
-    "title": "Descripción",
-    "section": "",
-    "text": "Acá explicamos las pautas para los TP.",
-    "crumbs": [
-      "Trabajos Prácticos",
-      "Descripción"
-    ]
-  },
-  {
-    "objectID": "informacion/aprobacion.html",
-    "href": "informacion/aprobacion.html",
-    "title": "Condiciones de aprobación",
-    "section": "",
-    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
-    "crumbs": [
-      "Información",
-      "Condiciones de aprobación"
-    ]
-  },
-  {
-    "objectID": "informacion/aprobacion.html#instancias-de-evaluación",
-    "href": "informacion/aprobacion.html#instancias-de-evaluación",
-    "title": "Condiciones de aprobación",
-    "section": "",
-    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
-    "crumbs": [
-      "Información",
-      "Condiciones de aprobación"
-    ]
-  },
-  {
-    "objectID": "informacion/aprobacion.html#condiciones-de-aprobación",
-    "href": "informacion/aprobacion.html#condiciones-de-aprobación",
-    "title": "Condiciones de aprobación",
-    "section": "Condiciones de aprobación",
-    "text": "Condiciones de aprobación\n\nPromoción\n\nQuienes aprueben el parcial individual (con nota \\(\\text{P}\\)), el trabajo práctico grupal (con nota \\(\\text{T}\\)) y el trabajo práctico individual con defensa oral (con nota \\(\\text{O}\\)), adquieren la condición de estudiante promovido y su nota final se calcula como \\(0.5 \\times \\text{P} + 0.2 \\times \\text{T} + 0.3 \\times \\text{O}\\).\n\nRegularidad\n\nQuienes aprueben el parcial individual (o su recuperatorio) y el trabajo práctico grupal, pero no accedan o no aprueben el trabajo práctico individual, adquieren la condición de estudiante regular.\n\nLibres\n\nQuienes no aprueben el parcial individual (ni su recuperatorio) o el trabajo práctico grupal, adquieren la condición de estudiante libre.",
-    "crumbs": [
-      "Información",
-      "Condiciones de aprobación"
-    ]
-  },
-  {
-    "objectID": "informacion/programa.html",
-    "href": "informacion/programa.html",
-    "title": "Programa",
-    "section": "",
-    "text": "Los profesionales en Estadística y Ciencia de Datos necesitan contar con habilidades avanzadas de programación, que les permitan abordar problemas complejos y desarrollar soluciones eficientes y robustas.\nLa asignatura Programación 2 introduce a los estudiantes a conceptos y prácticas avanzadas de la programación, incorporando herramientas y paradigmas que resultan fundamentales para el desarrollo profesional en Estadística y Ciencia de Datos.\nLa asignatura profundiza en enfoques como la programación funcional y la programación orientada a objetos, promoviendo el desarrollo de soluciones estructuradas, reutilizables, robustas y escalables. Además, se abordan conceptos fundamentales de estructuras de datos y algoritmos, relevantes para el diseño y análisis de programas eficientes, así como para la comprensión de la complejidad computacional. Se focaliza en el lenguaje Python, ampliamente utilizado en la industria y la academia por su versatilidad, su ecosistema de librerías y su capacidad para integrarse con diversas tecnologías.\nDictada en el segundo cuatrimestre del primer año, Programación 2 completa los contenidos del área de Fundamentos Computacionales en el Ciclo de Formación Técnica en Estadística y Ciencia de Datos, iniciada en el primer cuatrimestre con Programación 1. De este modo, consolida las competencias informáticas de los estudiantes y los prepara para afrontar asignaturas más avanzadas y desafíos profesionales que requieren un dominio sólido de la programación. Asimismo, fomenta buenas prácticas de desarrollo de código, el uso eficiente de los recursos computacionales y el pensamiento crítico en la resolución de problemas.",
-    "crumbs": [
-      "Información",
-      "Programa"
-    ]
-  },
-  {
-    "objectID": "informacion/programa.html#fundamentación",
-    "href": "informacion/programa.html#fundamentación",
-    "title": "Programa",
-    "section": "",
-    "text": "Los profesionales en Estadística y Ciencia de Datos necesitan contar con habilidades avanzadas de programación, que les permitan abordar problemas complejos y desarrollar soluciones eficientes y robustas.\nLa asignatura Programación 2 introduce a los estudiantes a conceptos y prácticas avanzadas de la programación, incorporando herramientas y paradigmas que resultan fundamentales para el desarrollo profesional en Estadística y Ciencia de Datos.\nLa asignatura profundiza en enfoques como la programación funcional y la programación orientada a objetos, promoviendo el desarrollo de soluciones estructuradas, reutilizables, robustas y escalables. Además, se abordan conceptos fundamentales de estructuras de datos y algoritmos, relevantes para el diseño y análisis de programas eficientes, así como para la comprensión de la complejidad computacional. Se focaliza en el lenguaje Python, ampliamente utilizado en la industria y la academia por su versatilidad, su ecosistema de librerías y su capacidad para integrarse con diversas tecnologías.\nDictada en el segundo cuatrimestre del primer año, Programación 2 completa los contenidos del área de Fundamentos Computacionales en el Ciclo de Formación Técnica en Estadística y Ciencia de Datos, iniciada en el primer cuatrimestre con Programación 1. De este modo, consolida las competencias informáticas de los estudiantes y los prepara para afrontar asignaturas más avanzadas y desafíos profesionales que requieren un dominio sólido de la programación. Asimismo, fomenta buenas prácticas de desarrollo de código, el uso eficiente de los recursos computacionales y el pensamiento crítico en la resolución de problemas.",
-    "crumbs": [
-      "Información",
-      "Programa"
-    ]
-  },
-  {
-    "objectID": "informacion/programa.html#objetivos",
-    "href": "informacion/programa.html#objetivos",
-    "title": "Programa",
-    "section": "Objetivos",
-    "text": "Objetivos\nQue los estudiantes logren:\n\nanalizar problemas computacionales y formular soluciones algorítmicas adecuadas;\nimplementar esas soluciones mediante el desarrollo de programas en Python, seleccionando estructuras de datos apropiadas y evaluando la eficiencia de los algoritmos involucrados;\nidentificar y aplicar los paradigmas funcional y orientado a objetos cuando resulte pertinente, desarrollando programas que integren estos enfoques; y\nutilizar e integrar módulos y librerías que permitan extender, organizar y mejorar las funcionalidades de sus programas.",
-    "crumbs": [
-      "Información",
-      "Programa"
-    ]
-  },
-  {
-    "objectID": "informacion/programa.html#contenidos",
-    "href": "informacion/programa.html#contenidos",
-    "title": "Programa",
-    "section": "Contenidos",
-    "text": "Contenidos\n\nUnidad 1: Introducción a Python\n\nLenguaje Python y su ecosistema. Uso de la interfaz Positron. Sintaxis de Python. Expresiones. Variables y asignaciones. Tipos de datos elementales. Operadores numéricos, de comparación y lógicos. Funciones. Ejecución condicional de código. Bucles definidos y no definidos. Listas, tuplas y diccionarios. Uso de código externo. Módulos y librerías. Librería estándar de Python. Instalación y gestión de librerías. Scripting. Lectura y escritura de archivos de texto plano. Modularización de programas.\n\nUnidad 2: Programación funcional\n\nPrincipios fundamentales. Funciones como ciudadanos de primera clase. Funciones puras. Funciones anónimas. Closures. Recursión. Funciones de orden superior: map, filter, reduce. Evaluación estricta y no estricta. Evaluación perezosa (lazy) e inmediata (eager). Generadores. Aplicación parcial de funciones. Decoradores.\n\nUnidad 3: Programación orientada a objetos\n\nPrincipios fundamentales. Objetos, clases e instancias. Atributos y métodos. Propiedades públicas y privadas. Métodos de clase y métodos de instancia. Encapsulamiento. Herencia simple y múltiple. Polimorfismo. Métodos especiales (dunder methods). Decoradores aplicados a métodos. Sobrecarga de operadores.\n\nUnidad 4: Estructuras de datos\n\nConcepto y clasificación. Estructuras lineales: listas, listas enlazadas, pilas y colas. Operaciones básicas: agregar, quitar y recorrer. Estructuras no lineales: árboles y grafos. Recorridos de árboles y grafos. Uso de colecciones de Python (list, deque, dict, set). Arreglos multidimensionales de NumPy.\n\nUnidad 5: Algoritmos de búsqueda y ordenamiento\n\nConcepto de algoritmo y complejidad. Notación Big O. Búsqueda lineal y binaria. Algoritmos de ordenamiento: bubble sort, insertion sort, selection sort, quick sort y merge sort. Comparación de eficiencia. Funciones de búsqueda y ordenamiento en Python (sorted, sort, heapq).",
-    "crumbs": [
-      "Información",
-      "Programa"
-    ]
-  },
-  {
-    "objectID": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html",
-    "href": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html",
-    "title": "4 - Estrategias de evaluación",
-    "section": "",
-    "text": "Evaluación perezosa (lazy) e inmediata (eager).\nEvaluación estricta y no estricta.\nGeneradores.\n\nGenerator expression (el for el in seq), (f(el) for el in seq).\nComparación con list comprehension.",
-    "crumbs": [
-      "Teoría",
-      "U2 - Programación Funcional",
-      "4 - Estrategias de evaluación"
-    ]
-  },
-  {
-    "objectID": "teoria/02_programacion_funcional/06_otros_topicos.html",
-    "href": "teoria/02_programacion_funcional/06_otros_topicos.html",
-    "title": "6 - Otros tópicos",
-    "section": "",
-    "text": "Funciones con argumentos por defecto mutables\nFunciones con únicamente argumentos posicionales\nFunciones con únicamente argumentos nombrados\nDesestructuraciones de secuencias y de mapeos al llamar a una función\n\nf(*[1, 2, 3])\ng(**{\"a\": 1, \"b\": 2})\nh(*[1, 2, 3], **{\"a\": 1, \"b\": 2})",
-    "crumbs": [
-      "Teoría",
-      "U2 - Programación Funcional",
-      "6 - Otros tópicos"
-    ]
-  },
-  {
-    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#map",
-    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#map",
-    "title": "3 - Funciones de orden superior",
-    "section": "Map",
-    "text": "Map",
-    "crumbs": [
-      "Teoría",
-      "U2 - Programación Funcional",
-      "3 - Funciones de orden superior"
-    ]
-  },
-  {
-    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#filter",
-    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#filter",
-    "title": "3 - Funciones de orden superior",
-    "section": "Filter",
-    "text": "Filter",
-    "crumbs": [
-      "Teoría",
-      "U2 - Programación Funcional",
-      "3 - Funciones de orden superior"
-    ]
-  },
-  {
-    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#reduce",
-    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#reduce",
-    "title": "3 - Funciones de orden superior",
-    "section": "Reduce",
-    "text": "Reduce",
-    "crumbs": [
-      "Teoría",
-      "U2 - Programación Funcional",
-      "3 - Funciones de orden superior"
-    ]
-  },
-  {
-    "objectID": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#comprehensions",
-    "href": "teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#comprehensions",
-    "title": "3 - Funciones de orden superior",
-    "section": "Comprehensions",
-    "text": "Comprehensions\n\nListas\n\n\nDiccionarios",
-    "crumbs": [
-      "Teoría",
-      "U2 - Programación Funcional",
-      "3 - Funciones de orden superior"
+      "4 - Transformaciones funcionales"
     ]
   },
   {
