@@ -1,3 +1,240 @@
 ---
 title: "🛠️ Ejercicios"
 ---
+
+## Área de aprendizaje
+
+Se cuenta con una lista de tuplas de longitud 2, representando el ancho y alto de distintos rectángulos.
+
+```python
+rectangulos = [
+  (5, 8),
+  (2, 2),
+  (9, 2),
+  (3, 3),
+  (3, 7),
+  (6, 3)
+]
+```
+
+Cree una nueva lista que ordene dichos rectángulos en función de su área.
+
+## Socios ordenados
+
+Se cuenta con la siguiente lista de diccionarios, la cual contiene datos personales sobre miembros de un club de atletismo:
+
+```python
+datos_socios = [
+  {"nombre": "Bautista Carrara", "edad": 22, "altura_cm": 178, "record_100m": 13.4},
+  {"nombre": "Valentina Lucci",  "edad": 23, "altura_cm": 163, "record_100m": 14.2},
+  {"nombre": "Gerónimo Cuesta",  "edad": 26, "altura_cm": 170, "record_100m": 14.0},
+  {"nombre": "Lucio Borga",      "edad": 28, "altura_cm": 186, "record_100m": 13.8},
+  {"nombre": "Julia Spoglia",    "edad": 21, "altura_cm": 163, "record_100m": 11.9},
+  {"nombre": "Soledad Colombo",  "edad": 22, "altura_cm": 170, "record_100m": 13.5}
+]
+```
+
+Ordene la lista en base a los récords en la carrera de 100 metros, en forma ascendente.
+
+### Punto extra
+
+Implemente una función que tome como argumento una clave de diccionario y devuelva una lista ordenada por los valores de dicha clave. Si el argumento toma el valor `"nombre"`, ordene los elementos alfabéticamente en base a los apellidos.
+
+## Listado de rimas
+
+Se tiene la siguiente lista de palabras, la cual se quiere utilizar para formar rimas:
+
+```python
+palabras_a_rimar = [
+  "actividad", 
+  "bendición", 
+  "cartelera", 
+  "ciudad", 
+  "escalera", 
+  "estación", 
+  "felicidad", 
+  "función", 
+  "reposera"
+]
+```
+
+Ordene la lista en base al orden alfabético del reverso de cada palabra, de modo que las palabras que riman se encuentren juntas.
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+Si la lista fuese `["durazno", "kiwi"]`, el resultado sería `["kiwi", "durazno"]`, porque `"iwik"` precede a `"onzarud"` en orden alfabético.
+
+:::
+
+## El tiempo vuela
+
+Se quiere medir el tiempo que tarda la computadora en ejecutar distintos bloques de código. Para eso, implemente una función `crear_cronometro` que fabrique una función `cronometro`, la cual devuelve el tiempo transcurrido entre su creación y la llamada a la función. Luego, utilice dos cronómetros en paralelo para evaluar el siguiente código:
+
+```python
+cronometro1 = crear_cronometro()
+
+for i in range(10**4):
+  i ** 2 # Calcula el cuadrado de un número pero no lo devyelve
+
+cronometro2 = crear_cronometro()
+
+for j in range(10**6):
+  i // 2 # Calcula la división entera por 2 pero no la devuelve
+
+print(f"El segundo bucle tardó {cronometro2()} segundos en ejecutarse.")
+print(f"El bloque entero tardó {cronometro1()} segundos en ejecutarse.")
+```
+
+### Punto extra
+
+Modifique el funcionamiento del cronómetro para que en cada llamada devuelva el tiempo transcurrido entre la llamada actual y la inmediata anterior (excepto en la primera llamada, que devuelve el tiempo transcurrido desde su creación).
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+Para medir el paso del tiempo en Python podemos usar la función `time` del módulo homónimo.
+
+```python
+from time import time, sleep
+
+inicio = time()
+sleep(2) # Detiene la ejecución por 2 segundos
+print(time() - inicio) # ~ 2 (segundos)
+```
+
+:::
+
+## Sucesión de Fibonacci
+
+Considere la sucesión que comienza por los números 0 y 1. Los siguientes números se forman sumando los dos anteriores.
+
+$$
+\{\;0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \cdots\;\}
+$$
+
+Esta sucesión se conoce como **sucesión de Fibonacci**.
+
+Implemente una función recursiva que tome un número natural `n` como entrada y devuelva el `n`-ésimo número en la sucesión.
+
+## Subiendo de rango
+
+La función `range(start, stop, step)` de Python devuelve un objeto que genera una secuencia de números desde `start` (inclusive) hasta `stop` (exclusive) en incrementos de `step` unidades. El argumento `step`, sin embargo, sólo puede ser un número entero (excepto cero).
+
+Implemente una función llamada `frange` que acepte los mismos argumentos, pudiendo `step` ser de tipo `float`. La función debe retornar un **generador** de la secuencia correspondiente.
+
+## La cajita musical
+
+Tenemos una caja musical que recita los siguientes versos:
+
+```python
+versos = [
+  "Tengo que confesar que a veces no me gusta tu forma de ser",
+  "Luego te me desapareces y no entiendo muy bien por qué",
+
+  "No dices nada romántico cuando llega el atardecer",
+  "Te pones de un humor extraño con cada luna llena al mes",
+
+  "Pero a todo lo demás le gana lo bueno que me das",
+  "Sólo tenerte cerca, siento que vuelvo a empezar"
+]
+```
+
+Implemente una función para darle cuerda a la caja musical. En cada llamada debe devolver un verso distinto, hasta agotarlos todos.
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+Mediante el uso de `yield` se puede lograr que una función se detenga en un punto intermedio y retome desde ese punto en la siguiente llamada.
+
+```python
+def mostrar_fase():
+  print("Inicio")
+  yield
+  print("Medio")
+  yield
+  print("Desenlace")
+  yield
+```
+
+:::
+
+## El mejor precio
+
+Un supermercado ofrece múltiples promociones:
+
+- 15% de descuento los días lunes y miércoles.
+- 10% de descuento en compras con monto superior a $50.000.
+- 20% de descuento a clientes mayores de 65 años.
+
+Para determinar la promoción a aplicar, el supermercado utiliza un programa con la siguiente estructura:
+
+```python
+def promo_dia_semana(compra):
+  """Aplica un 15% de descuento si la compra se realiza un lunes o miércoles.""" 
+  return None # hay que implementar esta función
+
+def promo_monto_grande(compra):
+  """Aplica un 10% de descuento si la compra tiene un monto superior a $50.000.""" 
+  return None # hay que implementar esta función
+
+def promo_edad(compra):
+  """Aplica un 20% de descuento si el cliente tiene 65 años o más.""" 
+  return None # hay que implementar esta función
+  
+promos = [promo_dia_semana, promo_monto_grande, promo_edad]
+
+def mejor_promo(compra):
+  """Ordena los descuentos de mayor a menor y aplica el mejor disponible."""
+  descuentos = sorted([promo(compra) for promo in promos], key = lambda x: x["monto"])
+  return descuentos[0]
+  
+ejemplo_compra = {"dia": "miércoles", "edad_cliente": 42, "monto": 66420}
+mejor_promo(ejemplo_compra) # {"dia": "miércoles", "edad_cliente": 42, "monto": 56457.0}
+```
+
+El problema con esta implementación es que, cada vez que se añade o elimina una promoción, el cambio debe llevarse a cabo tanto en la función de la promoción como en la lista de promociones. Para evitar el trabajo duplicado, implemente los siguientes cambios:
+
+1. Defina primero la lista `promos`, la cual comienza estando vacía.
+2. Defina un decorador `promo` que añade una función a la lista `promos` antes de ejecutarla.
+3. Implemente las tres funciones de promoción y decórelas con el decorador del paso anterior.
+
+## Bromas pesadas 😱
+
+Nuestro amigo programador está armando una página web, con una función que saluda a los nuevos usuarios por su nombre cuando se registran. Nosotros queremos gastarle una broma a nuestro amigo, metiendo en su código un decorador que haga que su función corra normalmente excepto cada `n`-ésima corrida, fallando silenciosamente (no imprime nada). El valor `n` es un número entero de nuestra elección.
+
+```python
+@romper_cada(3)
+def saludar(nombre):
+  print(f"¡Hola, {nombre}!")
+  
+saludar("Carlos")     # "¡Hola, Carlos!"
+saludar("María Luz")  # "¡Hola, María Luz!"
+saludar("Mirna")      # Nada (la función devuelve None)
+saludar("Diego")      # "¡Hola, Diego!"
+```
+
+### Ayuda
+
+Para crear un decorador que reciba argumentos, podemos crear una fábrica de decoradores:
+
+```python
+def mi_decorador(n):
+  def decorar(funcion):
+    print(f"Ejecutando decorador con argumento {n}")
+    return funcion
+  return decorar
+  
+@mi_decorador(7)
+def imprimir(mensaje):
+  print(mensaje)
+  
+imprimir("Hola mundo")
+# > Ejecutando decorador con argumento 7
+# > Hola mundo
+```
+
+:::
