@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../teoria/02_programacion_funcional/04_transformaciones_funcionales.html" rel="next">
+<link href="../../teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html" rel="next">
 <link href="../../teoria/02_programacion_funcional/02_recursion.html" rel="prev">
 <link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -261,14 +261,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/02_programacion_funcional/04_transformaciones_funcionales.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4 - Transformaciones funcionales</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../teoria/02_programacion_funcional/05_estrategias_de_evaluacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5 - Estrategias de evaluación</span></a>
+  <a href="../../teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Estrategias de evaluación</span></a>
   </div>
 </li>
       </ul>
@@ -302,21 +296,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
-  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map"><em>Map</em></a>
+  <li><a href="#map-filter-y-reduce" id="toc-map-filter-y-reduce" class="nav-link" data-scroll-target="#map-filter-y-reduce"><em>Map</em>, <em>Filter</em> y <em>Reduce</em></a>
   <ul class="collapse">
-  <li><a href="#estructuras-de-datos-complejas" id="toc-estructuras-de-datos-complejas" class="nav-link" data-scroll-target="#estructuras-de-datos-complejas">Estructuras de datos complejas</a></li>
-  <li><a href="#usando-map-con-múltiples-iterabes" id="toc-usando-map-con-múltiples-iterabes" class="nav-link" data-scroll-target="#usando-map-con-múltiples-iterabes">Usando <code>map</code> con múltiples iterabes</a></li>
-  </ul></li>
+  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map"><em>Map</em></a></li>
   <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><em>Filter</em></a></li>
   <li><a href="#reduce" id="toc-reduce" class="nav-link" data-scroll-target="#reduce"><em>Reduce</em></a></li>
-  <li><a href="#resumen-de-map-filter-y-reduce" id="toc-resumen-de-map-filter-y-reduce" class="nav-link" data-scroll-target="#resumen-de-map-filter-y-reduce">Resumen de <em>Map</em>, <em>Filter</em> y <em>Reduce</em></a>
-  <ul class="collapse">
-  <li><a href="#map-y-filter-como-casos-particulares-de-reduce" id="toc-map-y-filter-como-casos-particulares-de-reduce" class="nav-link" data-scroll-target="#map-y-filter-como-casos-particulares-de-reduce">Map y Filter como casos particulares de Reduce 😱</a></li>
+  <li><a href="#resumen-de-map-filter-y-reduce" id="toc-resumen-de-map-filter-y-reduce" class="nav-link" data-scroll-target="#resumen-de-map-filter-y-reduce">Resumen de <em>Map</em>, <em>Filter</em> y <em>Reduce</em></a></li>
   </ul></li>
   <li><a href="#comprehensions" id="toc-comprehensions" class="nav-link" data-scroll-target="#comprehensions"><em>Comprehensions</em></a>
   <ul class="collapse">
   <li><a href="#comprehension-como-reemplazo-de-map" id="toc-comprehension-como-reemplazo-de-map" class="nav-link" data-scroll-target="#comprehension-como-reemplazo-de-map"><em>Comprehension</em> como reemplazo de <em>Map</em></a></li>
   <li><a href="#comprehension-como-reemplazo-de-filter" id="toc-comprehension-como-reemplazo-de-filter" class="nav-link" data-scroll-target="#comprehension-como-reemplazo-de-filter"><em>Comprehension</em> como reemplazo de <em>Filter</em></a></li>
+  </ul></li>
+  <li><a href="#evaluación-parcial-de-funciones" id="toc-evaluación-parcial-de-funciones" class="nav-link" data-scroll-target="#evaluación-parcial-de-funciones">Evaluación parcial de funciones</a></li>
+  <li><a href="#decoradores" id="toc-decoradores" class="nav-link" data-scroll-target="#decoradores">Decoradores</a>
+  <ul class="collapse">
+  <li><a href="#decoradores-que-reciben-argumentos" id="toc-decoradores-que-reciben-argumentos" class="nav-link" data-scroll-target="#decoradores-que-reciben-argumentos">Decoradores que reciben argumentos</a></li>
+  <li><a href="#decoradores-que-devuelven-valores" id="toc-decoradores-que-devuelven-valores" class="nav-link" data-scroll-target="#decoradores-que-devuelven-valores">Decoradores que devuelven valores</a></li>
+  <li><a href="#azúcar-sintáctico" id="toc-azúcar-sintáctico" class="nav-link" data-scroll-target="#azúcar-sintáctico">Azúcar sintáctico</a></li>
+  <li><a href="#ejemplo-medir-tiempo-de-ejecución" id="toc-ejemplo-medir-tiempo-de-ejecución" class="nav-link" data-scroll-target="#ejemplo-medir-tiempo-de-ejecución">Ejemplo: medir tiempo de ejecución</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -351,12 +349,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Funciones que devuelven una función como resultado.</li>
 <li>Funciones que aceptan funciones como argumentos y devuelven una función como resultado.</li>
 </ul>
-<p>En la Sección <a href="../../teoria/02_programacion_funcional/01_paradigma.html#sec-orden">Funciones de orden superior</a> de <a href="../../teoria/02_programacion_funcional/01_paradigma.html">El paradigma funcional</a> nos inciamos en el trabajo con funciones que aceptan funciones como argumento y funciones que devuelven funciones como resultado.</p>
-<p>En este capítulo, vamos a enfocarnos las funciones de orden superior más elementales: <code>map</code>, <code>filter</code> y <code>reduce</code>. Las primeras dos están disponibles por defecto en nuestra sesión de Python (ya que son funciones <em>built-in</em>), mientras que a <code>reduce</code> la tenemos que importar desde el módulo estándar <code>functools</code>.</p>
-<p>Las funciones <code>map</code>, <code>filter</code> y <code>reduce</code> son funciones de orden superior fundamentales en la programación funcional. Actúan como primitivas básicas para procesar y transformar secuencias, y muchas otras operaciones funcionales pueden construirse a partir de ellas o expresarse en términos de estas.</p>
+<p>En este capítulo comenzamos enfocándonos en las funciones de orden superior más elementales: <code>map</code>, <code>filter</code> y <code>reduce</code>; todas ellas reciben funciones como argumentos. Luego, aprenderemos sobre las <em>comprehensions</em>, que constituyen la alternativa moderna y Pythonica a las funciones mencionadas anteriormente. Finalmente, trabajaremos con funciones que devuelven funciones cuando exploremos evaluación parcial de funciones y el uso de decoradores.</p>
 </section>
-<section id="map" class="level2">
-<h2 class="anchored" data-anchor-id="map"><em>Map</em></h2>
+<section id="map-filter-y-reduce" class="level2">
+<h2 class="anchored" data-anchor-id="map-filter-y-reduce"><em>Map</em>, <em>Filter</em> y <em>Reduce</em></h2>
+<p>Las funciones <code>map</code>, <code>filter</code> y <code>reduce</code> son funciones de orden superior fundamentales en la programación funcional. Actúan como primitivas básicas para procesar y transformar secuencias, y muchas otras operaciones funcionales pueden construirse a partir de ellas o expresarse en términos de estas.</p>
+<p>Las primeras dos, <code>map</code> y <code>filter</code>, están disponibles por defecto en nuestra sesión de Python (ya que son funciones <em>built-in</em>), mientras que a <code>reduce</code> la tenemos que importar desde el módulo estándar <code>functools</code>.</p>
+<section id="map" class="level3">
+<h3 class="anchored" data-anchor-id="map"><em>Map</em></h3>
 <p>Supongamos que tenemos una secuencia de palabras y queremos invertir el orden de los caracteres de cada una. Para ello, vamos a rebanadar cada cadena desde el principio al final usando un paso de <code>-1</code>. Por ejemplo:</p>
 <div id="7ae7ba8d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">"cosa"</span>[::<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -407,7 +407,7 @@ Palabras invertidas:
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-El objeto <code>map</code>
+El objeto <code>map</code> 🔍
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -419,8 +419,8 @@ El objeto <code>map</code>
 <div class="sourceCode" id="cb12"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>['aloh', 'etam', 'somos', 'orbil ', 'reconoc', 'anilina', 'amargorp']</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<section id="estructuras-de-datos-complejas" class="level3">
-<h3 class="anchored" data-anchor-id="estructuras-de-datos-complejas">Estructuras de datos complejas</h3>
+<section id="map-con-datos-complejos" class="level4">
+<h4 class="anchored" data-anchor-id="map-con-datos-complejos"><code>map</code> con datos complejos</h4>
 <p>En el ejemplo anterior se usó <code>map</code> sobre una secuencia simple de cadenas de texto. Sin embargo, eso no implica que su uso se limite a casos sencillos.</p>
 <p>Supongamos ahora que tenemos una lista anidada de números, es decir, una lista que contiene otras listas con valores numéricos:</p>
 <div id="c241a909" class="cell" data-execution_count="5">
@@ -452,7 +452,7 @@ El objeto <code>map</code>
 </div>
 <p>Como puede observarse, un programa que utiliza <code>map</code> junto con expresiones <code>lambda</code> puede volverse difícil de leer y comprender rápidamente, especialmente a medida que la lógica se vuelve más compleja.</p>
 <p>Para finalizar este listado de ejemplos, observemos uno donde se crea un diccionario a partir del <code>map</code>, en vez de una lista.</p>
-<p>Debajo, tenemos una lista con diccionarios. Cada diccionario contiene el nombre y las notas de una persona. Nuestro objetivo es obtener un nuevo diccionario que tenga por claves al nombre de la persona, y por valor a la nota promedio.</p>
+<p>Se cuenta con una lista de diccionarios. Cada diccionario contiene el nombre y las calificaciones de una persona. Nuestro objetivo es obtener un nuevo diccionario que tenga por claves al nombre de la persona, y por valor a la nota promedio.</p>
 <div id="383a8c15" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>notas <span class="op">=</span> [</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    {</span>
@@ -493,8 +493,8 @@ El objeto <code>map</code>
 </div>
 <p>La clave está en notar que la expresión <code>lambda</code> <strong>devuelve una tupla de dos elementos</strong>, donde el primero es el nombre y el segundo, la nota promedio. A partir de estos pares <code>(str, float)</code>, se puede construir directamente un diccionario.</p>
 </section>
-<section id="usando-map-con-múltiples-iterabes" class="level3">
-<h3 class="anchored" data-anchor-id="usando-map-con-múltiples-iterabes">Usando <code>map</code> con múltiples iterabes</h3>
+<section id="map-con-múltiples-iterabes" class="level4">
+<h4 class="anchored" data-anchor-id="map-con-múltiples-iterabes"><code>map</code> con múltiples iterabes</h4>
 <p>Hasta ahora hemos utilizado <code>map</code> con funciones que se aplican sobre los elementos de un único iterable. Sin embargo, <code>map</code> también acepta múltiples iterables y los recorre en paralelo, lo que la convierte en una <strong>función variádica</strong>. Esto permite aplicar funciones que toman más de un argumento, una vez por cada grupo de elementos correspondientes.</p>
 <p>Supongamos que queremos redondear un listado de números utilizando diferentes niveles de precisión. Para redondear un único número podemos usar directamente <code>round</code>:</p>
 <div id="5edfe929" class="cell" data-execution_count="11">
@@ -548,8 +548,8 @@ El objeto <code>map</code>
 </div>
 </section>
 </section>
-<section id="filter" class="level2">
-<h2 class="anchored" data-anchor-id="filter"><em>Filter</em></h2>
+<section id="filter" class="level3">
+<h3 class="anchored" data-anchor-id="filter"><em>Filter</em></h3>
 <p><code>filter</code> se utiliza para seleccionar —o, más precisamente, filtrar— elementos de un iterable según el resultado de aplicar una función. A diferencia de <code>map</code>, la función usada por <code>filter</code> se aplica sobre los elementos de <strong>un solo iterable</strong> y <strong>debe devolver un valor booleano</strong>. El resultado es un nuevo iterable que contiene únicamente los elementos para los que la función retorna <code>True</code>.</p>
 <p>Como ejemplo del uso de <code>filter</code>, vamos a seleccionar las notas menores a 6 a partir de una lista de calificaciones.</p>
 <div id="2c649d94" class="cell" data-execution_count="14">
@@ -596,9 +596,9 @@ El objeto <code>map</code>
 </div>
 </div>
 </section>
-<section id="reduce" class="level2">
-<h2 class="anchored" data-anchor-id="reduce"><em>Reduce</em></h2>
-<p>La función <code>reduce</code> permite <strong>reducir</strong> una secuencia a un único valor aplicando de forma sucesiva una de dos argumentos sobre sus elementos.</p>
+<section id="reduce" class="level3">
+<h3 class="anchored" data-anchor-id="reduce"><em>Reduce</em></h3>
+<p>La función <code>reduce</code> permite <strong>reducir</strong> una secuencia a un único valor aplicando de forma sucesiva una función de dos argumentos sobre sus elementos.</p>
 <p>Para utilizarla, es necesario importarla desde el módulo estándar <code>functools</code>:</p>
 <div id="85abd668" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -625,7 +625,7 @@ x=10, y=5</code></pre>
 <pre><code>15</code></pre>
 </div>
 </div>
-<p>En la primera llamada, <code>x</code> e <code>y</code> son los dos primeros elementos de la secuencia. En la segunda, <code>x</code> es el resultado de la llamada anterior, y <code>y</code> es el siguiente elemento de la secuencia. Este proceso continúa hasta que se recorre toda la lista.</p>
+<p>En la primera llamada, <code>x</code> e <code>y</code> son los dos primeros elementos de la secuencia. En la segunda, <code>x</code> es el resultado de la llamada anterior, e <code>y</code> es el siguiente elemento de la secuencia. Este proceso continúa hasta que se recorre toda la lista.</p>
 <p>En resumen:</p>
 <ul>
 <li><code>x</code> representa el valor acumulado hasta el momento.</li>
@@ -697,8 +697,8 @@ Expresiones condicionales 🔀😱
 </div>
 </div>
 </section>
-<section id="resumen-de-map-filter-y-reduce" class="level2">
-<h2 class="anchored" data-anchor-id="resumen-de-map-filter-y-reduce">Resumen de <em>Map</em>, <em>Filter</em> y <em>Reduce</em></h2>
+<section id="resumen-de-map-filter-y-reduce" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-de-map-filter-y-reduce">Resumen de <em>Map</em>, <em>Filter</em> y <em>Reduce</em></h3>
 <p>El siguiente bloque de código resume el funcionamiento de <code>map</code>, <code>filter</code> y <code>reduce</code>.</p>
 <div id="7911b115" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>numeros <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
@@ -709,19 +709,19 @@ Expresiones condicionales 🔀😱
 <span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter: Devuelve el subconjunto de elementos para los que la función devuelve True</span></span>
 <span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>pares <span class="op">=</span> <span class="bu">list</span>(<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>, numeros))</span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Filer [pares]:"</span>, cuadrados)</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Filter [pares]:"</span>, pares)</span>
 <span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Reduce: Aplica una función de dos argumentos de manera acumulativa a los elementos de una secuencia</span></span>
 <span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>producto <span class="op">=</span> <span class="bu">reduce</span>(<span class="kw">lambda</span> x, y: x <span class="op">*</span> y, numeros)</span>
 <span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Reduce [producto]:"</span>, producto)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Map [cuadrados]: [1, 4, 9, 16, 25]
-Filer [pares]: [1, 4, 9, 16, 25]
+Filter [pares]: [2, 4]
 Reduce [producto]: 120</code></pre>
 </div>
 </div>
-<section id="map-y-filter-como-casos-particulares-de-reduce" class="level3">
-<h3 class="anchored" data-anchor-id="map-y-filter-como-casos-particulares-de-reduce">Map y Filter como casos particulares de Reduce 😱</h3>
+<section id="map-y-filter-como-casos-particulares-de-reduce" class="level4">
+<h4 class="anchored" data-anchor-id="map-y-filter-como-casos-particulares-de-reduce">Map y Filter como casos particulares de Reduce 😱</h4>
 <p>Por otro lado, algo menos evidente es que tanto <code>map</code> como <code>filter</code> pueden verse como casos particulares de <code>reduce</code>.</p>
 <p>Esta aplicación de <code>map</code>:</p>
 <div id="287d0b0c" class="cell" data-execution_count="24">
@@ -732,10 +732,10 @@ Reduce [producto]: 120</code></pre>
 </div>
 <p>Puede ser reproducida con el siguiente uso de <code>reduce</code>:</p>
 <div id="7724fa23" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> duplicar(x):</span>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dup(x):</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">2</span></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="bu">reduce</span>(<span class="kw">lambda</span> seq, x: seq <span class="op">+</span> [duplicar(x)], <span class="bu">range</span>(<span class="dv">10</span>), [])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="bu">reduce</span>(<span class="kw">lambda</span> seq, x: seq <span class="op">+</span> [dup(x)], <span class="bu">range</span>(<span class="dv">10</span>), [])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]</code></pre>
 </div>
@@ -757,6 +757,7 @@ Reduce [producto]: 120</code></pre>
 </div>
 </div>
 <p>Estas expresiones con <code>reduce()</code> son complejas, pero ilustran claramente el poder de la función: cualquier operación que pueda definirse a partir de una combinación sucesiva de elementos puede, al menos en principio, expresarse como una reducción, aunque no siempre sea la forma más clara o recomendada de hacerlo.</p>
+</section>
 </section>
 </section>
 <section id="comprehensions" class="level2">
@@ -879,7 +880,7 @@ Reduce [producto]: 120</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Las comprensiones en Python no están limitadas a listas. Este patrón también puede utilizarse para construir otras estructuras de datos como diccionarios**, conjuntos e incluso generadores (estructura que veremos más adelante).</p>
+<p>Las comprensiones en Python no están limitadas a listas. Este patrón también puede utilizarse para construir otras estructuras de datos como diccionarios, conjuntos e incluso generadores (estructura que veremos más adelante).</p>
 <p>Por ejemplo, una <strong>comprensión de diccionario</strong> permite crear un <code>dict</code> a partir de una secuencia de pares clave-valor:</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> media(x):</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(x) <span class="op">/</span> <span class="bu">len</span>(x)</span>
@@ -892,6 +893,379 @@ Reduce [producto]: 120</code></pre>
 <span id="cb90-9"><a href="#cb90-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb90-10"><a href="#cb90-10" aria-hidden="true" tabindex="-1"></a>{nombre: media(notas) <span class="cf">for</span> nombre, notas <span class="kw">in</span> datos}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb91"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>{'Marcos': 7.5, 'Joaquín': 8.25, 'Luján': 9.5}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="evaluación-parcial-de-funciones" class="level2">
+<h2 class="anchored" data-anchor-id="evaluación-parcial-de-funciones">Evaluación parcial de funciones</h2>
+<p>En el <a href="../../teoria/02_programacion_funcional/01_paradigma.html">El paradigma funcional</a> comenzamos a trabajar con <em>function factories</em>, es decir, con funciones que fabrican y devuelven funciones. El ejemplo que vimos consistía en una función <code>crear_multiplicador</code> que recibía un múltiplo y devolvía una función de un argumento que al llamarla realizaba la multiplcación. Así, era posible crear funciones para duplicar, triplicar, cuadruplicar, etc.</p>
+<div id="193c9319" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crear_multiplicador(x):</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> interna(y):</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y <span class="op">*</span> x</span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> interna</span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>duplicar <span class="op">=</span> crear_multiplicador(<span class="dv">2</span>)</span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a>triplicar <span class="op">=</span> crear_multiplicador(<span class="dv">3</span>)</span>
+<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(duplicar(<span class="dv">10</span>), triplicar(<span class="dv">22</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>20 66</code></pre>
+</div>
+</div>
+<p>Ahora bien, esta no es la única forma de crear funciones que multipliquen dos numeros dejando uno de sus argumentos fijo.</p>
+<p>Una alternativa consiste en crear una función general de multiplicación y usar <code>partial</code> del módulo <code>functools</code> para obtener una versión de la misma con alguno de sus argumentos fijados.</p>
+<div id="4c02b024" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> multiplicar(x, y):</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> y</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>multiplicar(<span class="dv">7</span>, <span class="dv">8</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>56</code></pre>
+</div>
+</div>
+<div id="e11d884d" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> partial</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>cuadruplicar <span class="op">=</span> partial(multiplicar, <span class="dv">8</span>)</span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>cuadruplicar(<span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>16</code></pre>
+</div>
+</div>
+<p>En esencia, <code>partial</code> toma una función y fija algunos de sus parámetros, devolviendo una nueva función con argumentos ya establecidos. Dicho de otro modo, <code>partial</code> produce una función parcialmente evaluada, de ahí su nombre.</p>
+<p>De un modo similar, se podrían crear funciones de potencia a partir de una función genérica.</p>
+<div id="89cc4c52" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> potencia(x, n):</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">**</span> n</span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>cuadrado <span class="op">=</span> partial(potencia, n<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>cubo <span class="op">=</span> partial(potencia, n<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-7"><a href="#cb98-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cuadrado(<span class="dv">5</span>), cubo(<span class="dv">9</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>25 729</code></pre>
+</div>
+</div>
+<p>Mediante un ejemplo podemos ver que <code>partial</code> también permite fijar más de un parámetro. Supongamos que tenemos una lista de números que queremos estandarizar; es decir, restarles la media y dividir cada valor por el desvío.</p>
+<div id="7dbaeaa3" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="annotated-cell-46"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-46-1"><a href="#annotated-cell-46-1" aria-hidden="true" tabindex="-1"></a>nums <span class="op">=</span> [</span>
+<span id="annotated-cell-46-2"><a href="#annotated-cell-46-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">4.74346239e-01</span>, <span class="op">-</span><span class="fl">2.90877176e-01</span>, <span class="op">-</span><span class="fl">1.44377789e+00</span>, <span class="op">-</span><span class="fl">4.48680759e+01</span>,</span>
+<span id="annotated-cell-46-3"><a href="#annotated-cell-46-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">1.21249801e+00</span>, <span class="op">-</span><span class="fl">3.32729317e-01</span>,  <span class="fl">2.21676912e-01</span>,  <span class="fl">1.05599711e+00</span>,</span>
+<span id="annotated-cell-46-4"><a href="#annotated-cell-46-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">3.62372053e+00</span>, <span class="op">-</span><span class="fl">2.96441579e-01</span>, <span class="op">-</span><span class="fl">4.28304222e+00</span>,  <span class="fl">1.55908820e+02</span>,</span>
+<span id="annotated-cell-46-5"><a href="#annotated-cell-46-5" aria-hidden="true" tabindex="-1"></a>    <span class="fl">9.00858234e-01</span>, <span class="op">-</span><span class="fl">1.09384173e+00</span>, <span class="op">-</span><span class="fl">1.51083571e+00</span>, <span class="op">-</span><span class="fl">5.38491167e-01</span>,</span>
+<span id="annotated-cell-46-6"><a href="#annotated-cell-46-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="fl">3.84153084e-02</span>,  <span class="fl">1.20393395e+00</span>,  <span class="fl">1.82651406e-01</span>,  <span class="fl">2.05179405e+00</span></span>
+<span id="annotated-cell-46-7"><a href="#annotated-cell-46-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="annotated-cell-46-8"><a href="#annotated-cell-46-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-46-9"><a href="#annotated-cell-46-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> media(x):</span>
+<span id="annotated-cell-46-10"><a href="#annotated-cell-46-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(x) <span class="op">/</span> <span class="bu">len</span>(x)</span>
+<span id="annotated-cell-46-11"><a href="#annotated-cell-46-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-46-12"><a href="#annotated-cell-46-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> varianza(x):</span>
+<span id="annotated-cell-46-13"><a href="#annotated-cell-46-13" aria-hidden="true" tabindex="-1"></a>    numerador <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-46-14"><a href="#annotated-cell-46-14" aria-hidden="true" tabindex="-1"></a>    x_media <span class="op">=</span> media(x)</span>
+<span id="annotated-cell-46-15"><a href="#annotated-cell-46-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x_i <span class="kw">in</span> x:</span>
+<span id="annotated-cell-46-16"><a href="#annotated-cell-46-16" aria-hidden="true" tabindex="-1"></a>        numerador <span class="op">+=</span> (x_i <span class="op">-</span> x_media) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="annotated-cell-46-17"><a href="#annotated-cell-46-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> numerador <span class="op">/</span> <span class="bu">len</span>(x)</span>
+<span id="annotated-cell-46-18"><a href="#annotated-cell-46-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-46-19"><a href="#annotated-cell-46-19" aria-hidden="true" tabindex="-1"></a>estandarizar <span class="op">=</span> partial(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-46" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-46-20" class="code-annotation-target"><a href="#annotated-cell-46-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x, media, desvio: (x <span class="op">-</span> media) <span class="op">/</span> desvio,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-46" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-46-21" class="code-annotation-target"><a href="#annotated-cell-46-21" aria-hidden="true" tabindex="-1"></a>    media<span class="op">=</span>media(nums),</span>
+<span id="annotated-cell-46-22"><a href="#annotated-cell-46-22" aria-hidden="true" tabindex="-1"></a>    desvio<span class="op">=</span>varianza(nums) <span class="op">**</span> <span class="fl">0.5</span></span>
+<span id="annotated-cell-46-23"><a href="#annotated-cell-46-23" aria-hidden="true" tabindex="-1"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-46" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-46" data-code-lines="20" data-code-annotation="1">Definimos una función <code>lambda</code> que implementa la estandarización. Esta función recibe el valor a estandarizar, la media y el desvío correspondientes.</span>
+</dd>
+<dt data-target-cell="annotated-cell-46" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-46" data-code-lines="21,22" data-code-annotation="2">Calculamos la media y el desvío de la lista, y luego los pasamos a <code>partial</code> como parámetros a fijar.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>De esta manera, obtenemos la función <code>estandarizar</code>, que al recibir un número le resta la media y lo divide por el desvío calculado a partir de <code>nums</code>.</p>
+<div id="dec38761" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>estandarizar(numeros[<span class="dv">0</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>-0.1425284124988861</code></pre>
+</div>
+</div>
+<p>Y, si queremos estandarizar toda la secuencia, podemos usar una <em>list comprehension</em>.</p>
+<div id="d0e97278" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>[estandarizar(num) <span class="cf">for</span> num <span class="kw">in</span> nums]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>[-0.12933243764138067,
+ -0.1506204085674334,
+ -0.18269328610772323,
+ -1.390726359064761,
+ -0.17625924440864513,
+ -0.15178470535100874,
+ -0.13636151853677025,
+ -0.1131513242720763,
+ -0.24333773925841856,
+ -0.1507752062996549,
+ -0.2616795995472022,
+ 4.1947440261328905,
+ -0.11746717741646615,
+ -0.1729583111265218,
+ -0.1845587869464874,
+ -0.1575088536123251,
+ -0.1435970990449382,
+ -0.10903582664474336,
+ -0.13744718034588063,
+ -0.08544896194045284]</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Argumentos posicionales y nombrados 🔢🏷️
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>partial</code> puede utilizarse para fijar tanto argumentos posicionales como nombrados. Cuando recibe argumentos posicionales, estos se transmiten a la función original en el mismo orden; mientras que, si se le pasan argumentos nombrados, se reenvían como tales.</p>
+<p>Por ejemplo, las siguientes llamadas a <code>partial</code> generan funciones equivalentes:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> prod(x, y):</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> y</span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>partial(prod, <span class="dv">5</span>)     <span class="co"># 5 * y</span></span>
+<span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a>partial(prod, x<span class="op">=</span><span class="dv">5</span>)   <span class="co"># 5 * y</span></span>
+<span id="cb104-6"><a href="#cb104-6" aria-hidden="true" tabindex="-1"></a>partial(prod, y<span class="op">=</span><span class="dv">5</span>)   <span class="co"># x * 5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="decoradores" class="level2">
+<h2 class="anchored" data-anchor-id="decoradores">Decoradores</h2>
+<p>En <a href="../../teoria/02_programacion_funcional/01_paradigma.html#sec-ciudadanos">Ciudadanos de primera clase</a> aprendimos que las funciones son un objeto como cualquier otro. Por eso, ya no nos sorprende que puedan pasarse como argumento a otra función o devolverse como resultado de otra función.</p>
+<p>Ahora vamos a explorar un tipo de funciones que son muy útiles en Python: los decoradores.</p>
+<p>Los decoradores son funciones que “envuelven” o “encapsulan” funciones y modifican su comportamiento.</p>
+<p>Empecemos con un ejemplo: la función <code>decorador</code> recibe una función <code>fun</code>, define una función <code>envoltura</code> que contiene una llamada a <code>fun</code> y la devuelve.</p>
+<div id="02eb176a" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> decorador(fun):</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> envoltura():</span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Antes de llamar a la función..."</span>)</span>
+<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a>        fun()</span>
+<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Listo, ya se llamó a la función."</span>)</span>
+<span id="cb105-7"><a href="#cb105-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-8"><a href="#cb105-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> envoltura</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para mostrar el funcionamiento del decorador, definamos una función muy sencilla, que simplemente imprime un saludo.</p>
+<div id="2ed62416" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> decir_hola():</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Hola hola!"</span>)</span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>decir_hola()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>¡Hola hola!</code></pre>
+</div>
+</div>
+<p>Ahora, invocamos a <code>decorador</code> pasandole la función <code>decir_hola</code> y obtenemos una nueva una función.</p>
+<p>Podemos ver que esta nueva función es la función <code>envoltura</code> definida dentro del decorador.</p>
+<div id="0b9b7eef" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>nueva <span class="op">=</span> decorador(decir_hola)</span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>nueva</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;function __main__.decorador.&lt;locals&gt;.envoltura()&gt;</code></pre>
+</div>
+</div>
+<p>Antes de ejecutar la función <code>nueva</code>, intentemos anticipar qué va a ocurrir cuando la llamemos.</p>
+<p>Al invocar <code>nueva</code>, se ejecutarán las siguientes tres líneas de código:</p>
+<div class="sourceCode" id="annotated-cell-52"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-52" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-52-1" class="code-annotation-target"><a href="#annotated-cell-52-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Antes de llamar a la función..."</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-52" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-52-2" class="code-annotation-target"><a href="#annotated-cell-52-2" aria-hidden="true" tabindex="-1"></a>fun()</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-52" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-52-3" class="code-annotation-target"><a href="#annotated-cell-52-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Listo, ya se llamó a la función."</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-52" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-52" data-code-lines="1" data-code-annotation="1">La primera línea contiene directamente un <code>print</code>, por lo que podemos anticipar que lo primero que vamos a ver es un mensaje que dice <code>"Antes de llamar a la función..."</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-52" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-52" data-code-lines="2" data-code-annotation="2">La segunda línea contiene una llamada a la función <code>fun</code>. Esta es la función que le pasamos a <code>decorador</code> al momento de crear <code>nueva</code>, es decir, es la función <code>decir_hola</code>.<br>
+Por lo tanto, habrá un segundo mensaje que dice <code>"¡Hola hola!"</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-52" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-52" data-code-lines="3" data-code-annotation="3">Finalmente, se ejecuta la tercera línea, y como vemos que es un <code>print</code>, sabemos que vamos a ver un mensaje que dice <code>"Listo, ya se llamó a la función."</code>.</span>
+</dd>
+</dl>
+<div id="977449ae" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>nueva()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Antes de llamar a la función...
+¡Hola hola!
+Listo, ya se llamó a la función.</code></pre>
+</div>
+</div>
+<p>En este ejemplo vemos que el decorador “envuelve” o “encapsula” a la función <code>decir_hola</code>. Gracias a esto, la función decoorada ya no se ejecuta como antes, sino que ahora también imprime mensajes antes y después de realizar la tarea en su definición original.</p>
+<section id="decoradores-que-reciben-argumentos" class="level3">
+<h3 class="anchored" data-anchor-id="decoradores-que-reciben-argumentos">Decoradores que reciben argumentos</h3>
+<p>Si intentamos pasarle argumentos a la función <code>nueva</code>, obtendremos un error. Este error no se debe a que la función decorada, <code>decir_hola</code>, no acepte parámetros, sino a que la función que devuelve el decorador, <code>envoltura</code>, no está preparada para recibirlos.</p>
+<p>Ahora bien, si queremos que nuestra función de envoltura pueda transmitir argumentos a la función decorada, necesitamos un mecanismo flexible. No podemos conocer de antemano qué parámetros recibirá la función a decorar, justamente porque no sabemos cuál será esa función.</p>
+<p>La solución es definir <code>envoltura</code> de manera que acepte una cantidad arbitraria de argumentos posicionales y nombrados. De esta forma, podemos propagar todos esos argumentos a la función decorada sin importar cuáles sean.</p>
+<div id="efecf391" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> decorador(fun):</span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> envoltura(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> args:</span>
+<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Argumentos posicionales:"</span>, args)</span>
+<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> kwargs:</span>
+<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Argumentos nombrados:"</span>, kwargs)</span>
+<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a>        fun(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span>
+<span id="cb112-9"><a href="#cb112-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-10"><a href="#cb112-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> envoltura</span>
+<span id="cb112-11"><a href="#cb112-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-12"><a href="#cb112-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> potencia(x, n):</span>
+<span id="cb112-13"><a href="#cb112-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">**</span> n</span>
+<span id="cb112-14"><a href="#cb112-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-15"><a href="#cb112-15" aria-hidden="true" tabindex="-1"></a>potencia <span class="op">=</span> decorador(potencia)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5604c820" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>potencia(<span class="dv">5</span>, <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Argumentos posicionales: (5, 3)</code></pre>
+</div>
+</div>
+<div id="5b144582" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>potencia(<span class="dv">5</span>, n<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Argumentos posicionales: (5,)
+Argumentos nombrados: {'n': 3}</code></pre>
+</div>
+</div>
+<div id="7bf327c3" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>potencia(x<span class="op">=</span><span class="dv">5</span>, n<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Argumentos nombrados: {'x': 5, 'n': 3}</code></pre>
+</div>
+</div>
+<p>El ejemplo muestra que el decorador imprime los argumentos de la función original, tanto posicionales como nombrados, siempre que se le haya pasado alguno.</p>
+</section>
+<section id="decoradores-que-devuelven-valores" class="level3">
+<h3 class="anchored" data-anchor-id="decoradores-que-devuelven-valores">Decoradores que devuelven valores</h3>
+<p>Si bien el decorador anterior funcionaba correctamente con funciones que reciben tanto argumentos posicionales como nombrados, no vemos que la función decorada devuelva la potencia calculada. Para que eso ocurra, la <code>envoltura</code> no solo tiene que llamar a <code>fun</code>, sino también retornar lo que esta retorne.</p>
+<div id="d0d788c9" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="annotated-cell-58"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-58-1"><a href="#annotated-cell-58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> decorador(fun):</span>
+<span id="annotated-cell-58-2"><a href="#annotated-cell-58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-58-3"><a href="#annotated-cell-58-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> envoltura(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="annotated-cell-58-4"><a href="#annotated-cell-58-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> args:</span>
+<span id="annotated-cell-58-5"><a href="#annotated-cell-58-5" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Argumentos posicionales:"</span>, args)</span>
+<span id="annotated-cell-58-6"><a href="#annotated-cell-58-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> kwargs:</span>
+<span id="annotated-cell-58-7"><a href="#annotated-cell-58-7" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Argumentos nombrados:"</span>, kwargs)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-58" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-58-8" class="code-annotation-target"><a href="#annotated-cell-58-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> fun(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span>
+<span id="annotated-cell-58-9"><a href="#annotated-cell-58-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-58-10"><a href="#annotated-cell-58-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> envoltura</span>
+<span id="annotated-cell-58-11"><a href="#annotated-cell-58-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-58-12"><a href="#annotated-cell-58-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> potencia(x, n):</span>
+<span id="annotated-cell-58-13"><a href="#annotated-cell-58-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">**</span> n</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-58" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-58" data-code-lines="8" data-code-annotation="1">Gracias a esta línea, la función <code>envoltura</code> ahora retorna que <code>fun</code> retorne.</span>
+</dd>
+</dl>
+</div>
+</div>
+<div id="11e3ba23" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>potencia <span class="op">=</span> decorador(potencia)</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>potencia(x<span class="op">=</span><span class="dv">5</span>, n<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Argumentos nombrados: {'x': 5, 'n': 3}</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>125</code></pre>
+</div>
+</div>
+</section>
+<section id="azúcar-sintáctico" class="level3">
+<h3 class="anchored" data-anchor-id="azúcar-sintáctico">Azúcar sintáctico</h3>
+<p>Dado que los decoradores cumplen un rol muy importante en la programación con Python, el lenguaje ofrece una sintaxis especial para aplicarlos directamente al momento de definir una función.</p>
+<p>Para ello, basta con escribir <code>@&lt;nombre_decorador&gt;</code> en la línea anterior a la definición de la función. Por ejemplo:</p>
+<div id="d30b2d42" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="at">@decorador</span></span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> producto(x, y):</span>
+<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> y</span>
+<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-5"><a href="#cb122-5" aria-hidden="true" tabindex="-1"></a>producto(<span class="dv">3</span>, <span class="dv">7</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Argumentos posicionales: (3, 7)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>21</code></pre>
+</div>
+</div>
+<div id="37f5be28" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>producto(x<span class="op">=</span><span class="dv">3</span>, y<span class="op">=</span><span class="dv">7</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Argumentos nombrados: {'x': 3, 'y': 7}</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>21</code></pre>
+</div>
+</div>
+<p>De esta manera, no es necesario incluir líneas adicionales del estilo:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> funcion(...):</span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ...</span>
+<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-5"><a href="#cb128-5" aria-hidden="true" tabindex="-1"></a>funcion <span class="op">=</span> decorador(funcion)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A este tipo de atajos sintácticos que brinda el lenguaje se los conoce como azúcar sintáctico (del inglés, <em>syntax sugar</em>).</p>
+</section>
+<section id="ejemplo-medir-tiempo-de-ejecución" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-medir-tiempo-de-ejecución">Ejemplo: medir tiempo de ejecución</h3>
+<p>Hasta ahora, los ejemplos que vimos fueron un tanto artificiales, pensados únicamente para mostrar qué son los decoradores y cómo se utilizan. A continuación, presentamos un ejemplo más cercano a un uso práctico:</p>
+<p>El decorador <code>timer</code> imprime el tiempo de ejecución que le toma a una función. Luego, lo aplicamos para comparar los tiempos entre la función <em>built-in</em> <code>max</code> y otra implementación que obtiene el máximo mediante una reducción.</p>
+<div id="23478413" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-3"><a href="#cb129-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> timer(fun):</span>
+<span id="cb129-4"><a href="#cb129-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> envoltura(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb129-5"><a href="#cb129-5" aria-hidden="true" tabindex="-1"></a>        inicio <span class="op">=</span> time.time()</span>
+<span id="cb129-6"><a href="#cb129-6" aria-hidden="true" tabindex="-1"></a>        resultado <span class="op">=</span> fun(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span>
+<span id="cb129-7"><a href="#cb129-7" aria-hidden="true" tabindex="-1"></a>        fin <span class="op">=</span> time.time()</span>
+<span id="cb129-8"><a href="#cb129-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>fun<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss"> demoró </span><span class="sc">{</span>fin <span class="op">-</span> inicio<span class="sc">:6f}</span><span class="ss"> segundos"</span>)</span>
+<span id="cb129-9"><a href="#cb129-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> resultado</span>
+<span id="cb129-10"><a href="#cb129-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> envoltura</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="21ed2fd0" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mayor(x, y):</span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;</span> y:</span>
+<span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span>
+<span id="cb130-4"><a href="#cb130-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
+<span id="cb130-5"><a href="#cb130-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-6"><a href="#cb130-6" aria-hidden="true" tabindex="-1"></a><span class="at">@timer</span></span>
+<span id="cb130-7"><a href="#cb130-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximo_reduce(x):</span>
+<span id="cb130-8"><a href="#cb130-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">reduce</span>(mayor, x)</span>
+<span id="cb130-9"><a href="#cb130-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-10"><a href="#cb130-10" aria-hidden="true" tabindex="-1"></a><span class="at">@timer</span></span>
+<span id="cb130-11"><a href="#cb130-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximo_builtin(x):</span>
+<span id="cb130-12"><a href="#cb130-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">max</span>(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cbeaa090" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1_000_000</span>))</span>
+<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a>maximo_reduce(lista)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>maximo_reduce demoró 0.040458 segundos</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>999999</code></pre>
+</div>
+</div>
+<div id="75ffacd4" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>maximo_builtin(lista)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>maximo_builtin demoró 0.006502 segundos</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>999999</code></pre>
 </div>
 </div>
 
@@ -1306,8 +1680,8 @@ Reduce [producto]: 120</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../teoria/02_programacion_funcional/04_transformaciones_funcionales.html" class="pagination-link" aria-label="4 - Transformaciones funcionales">
-        <span class="nav-page-text">4 - Transformaciones funcionales</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html" class="pagination-link" aria-label="4 - Estrategias de evaluación">
+        <span class="nav-page-text">4 - Estrategias de evaluación</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
