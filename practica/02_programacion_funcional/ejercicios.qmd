@@ -61,11 +61,9 @@ palabras_a_rimar = [
 Ordene la lista en base al orden alfabético del reverso de cada palabra, de modo que las palabras que riman se encuentren juntas.
 
 ::: {.callout-tip collapse="true"}
-
 ### Ayuda
 
 Si la lista fuese `["durazno", "kiwi"]`, el resultado sería `["kiwi", "durazno"]`, porque `"iwik"` precede a `"onzarud"` en orden alfabético.
-
 :::
 
 ## El tiempo vuela
@@ -81,7 +79,7 @@ for i in range(10**4):
 cronometro2 = crear_cronometro()
 
 for j in range(10**6):
-  i // 2 # Calcula la división entera por 2 pero no la devuelve
+  j // 2 # Calcula la división entera por 2 pero no la devuelve
 
 print(f"El segundo bucle tardó {cronometro2()} segundos en ejecutarse.")
 print(f"El bloque entero tardó {cronometro1()} segundos en ejecutarse.")
@@ -104,7 +102,6 @@ inicio = time()
 sleep(2) # Detiene la ejecución por 2 segundos
 print(time() - inicio) # ~ 2 (segundos)
 ```
-
 :::
 
 ## Sucesión de Fibonacci
@@ -145,7 +142,6 @@ versos = [
 Implemente una función para darle cuerda a la caja musical. En cada llamada debe devolver un verso distinto, hasta agotarlos todos.
 
 ::: {.callout-tip collapse="true"}
-
 ### Ayuda
 
 Mediante el uso de `yield` se puede lograr que una función se detenga en un punto intermedio y retome desde ese punto en la siguiente llamada.
@@ -159,7 +155,6 @@ def mostrar_fase():
   print("Desenlace")
   yield
 ```
-
 :::
 
 ## El mejor precio
@@ -236,5 +231,193 @@ imprimir("Hola mundo")
 # > Ejecutando decorador con argumento 7
 # > Hola mundo
 ```
+-----------------------------------------------------------------------------------------------
 
-:::
+## Trasfromando funciones
+
+Transforma estas funciones impuras en puras (manteniendo su lógica):
+
+Función 1
+```python
+contador = 0
+def incrementar():
+    global contador
+    contador += 1
+    return contador
+```
+
+Función 2
+```python
+def obtener_hora_actual():
+    import datetime
+    return datetime.datetime.now().hour
+```
+
+Función 3
+```python
+def add_time(time, hours, minutes, seconds):
+    increment_time(time, hours, minutes, seconds) 
+    return time
+```
+
+Función 4
+```python
+historial_de_nombres = []
+def registrar_nombre(nombre):
+    historial_de_nombres.append(nombre)
+    return f"'{nombre}' ha sido registrado en el historial."
+```
+
+Función 5:
+```python
+LIMITE_MAXIMO = 100 
+def verificar_limite(valor):
+    if valor > LIMITE_MAXIMO:
+        return "Excede el límite"
+    return "Dentro del límite"
+```
+
+## Fábrica de promociones
+
+Volve al **ejercicio II de la práctica de la U1** (“Promociones”). Utilizando el mismo sistema de descuentos crea una función `crear_promocion` que reciba como argumentos un `medio_de_pago` y un `porcentaje`:
+
+- sino se pasa ningún `porcentaje` se usan los valores por defecto detallados en el enunciado de la practica I (10% débito, 5% crédito).
+
+- Si se pasa `porcentaje`: aplicá ese porcentaje personalizado (ej: `crear_promocion("débito", 15)` para 15% de descuento).
+
+**Ejemplo de uso:**
+```python
+promo_debito_personalizada = crear_promocion("débito", 15)`  
+print(promo_debito_personalizada(1000))   # Output: 850 (1000 - 15%)
+```
+## Procesando datos paso a paso
+
+Este ejercicio tiene como objetivo implementar un sistema de preprocesamiento para un DataFrame de pandas (df) que permita encadenar funciones como pasos de un flujo de trabajo, aplicarlas secuencialmente y documentar cada paso utilizando el módulo inspect.
+
+**Primer paso:**
+Defina tres funciones para procesar datos (agregar una breve descripción de lo que hacen entre `"""` dentro de la definición de cada una):
+
+-	`eliminar_nulos`: recibe un df. Elimina filas que contengan valores nulos en cualquier columna y devuelve un nuevo df sin filas con `NaN`.
+
+-	`transformacion_logaritmica`: recibe el nombre de una columna numérica, devuelve una función que recibe  el df, transforma la columna indicada usando el logaritmo natural en base 10 y retorna el df modificado.
+
+-	`filtrar_valores`: recibe el nombre de la columna numérica que se filtrará y un valor de umbral (valor numérico de corte) y devuelve una función que recibe el df y conserva solo las filas donde el valor de columna sea mayor que el umbral.
+
+**Segundo paso:** Una vez definidas, crear una lista de funciones que detalle el orden en el que se realizaran las operaciones (pasos), con los nombres de las columnas que desea filtrar y el umbral de corte que desee usar, por ejemplo:
+
+```python
+# Creamos un df de ejemplo:
+df = pd.DataFrame({
+        "edad": [20, 30, None, 40, 25],
+        "ingresos": [2000, 3000, 2500, None, 4000]
+    })
+
+      # Definimos una lista de pasos de ejemplo:
+    pasos = [
+        eliminar_nulos,
+        normalizar_columna("ingresos"),
+        filtrar_valores("edad", 18)
+    ]
+```
+**Tercer paso**: implementa la función `ejecutar_pasos` que recibe el df a procesar y la lista de pasos y devuelve el df procesado. Además, esta función debe llamar a otra función externa `describir_pasos` que recibe los pasos e imprime el nombre del paso y la descripción de lo que hace.
+
+
+## Analistas de temperaturas
+
+Imagina que tenes una lista de temperaturas diarias en grados Celsius y necesitas realizar varias operaciones sobre ellas:
+
+```python
+temperaturas_celsius = [
+    25.5, 28.0, 19.3, 31.5, 22.8,
+    17.0, 30.2, 35.6, 14.2, 32.4,
+    22.7, 10.1, 29.5, 33.9, 22.1,
+    38.9, 18.4
+]
+```
+
+a) Converti la lista de temperaturas_celsius a lista_fahrenheit.
+
+  La fórmula de conversión es: 
+
+  `Fahrenheit = (Celsius * 9/5) + 32`
+
+  Guárda la nueva lista en una variable.
+
+b) De la lista anterior selecciona nada más las temperaturas que sean mayores a 80°F. Guarda el resultado en una nueva lista y asigna la lista a una nueva variable.
+
+c) Utiliza `reduce` para sumar todas las temperaturas filtradas en el paso anterior y calcular el promedio dividiendo la suma total entre la cantidad de elementos en la lista filtrada.
+
+
+## Tiempo o memoria
+
+Trabajás en el equipo de análisis de datos de un e-commerce y recibiste la lista de ventas del último mes. Tenés que extraer información clave de esos datos, pero probando dos maneras distintas de resolver cada tarea.
+
+**1. Preparación de los datos**
+
+Para empezar, usá esta función que genera datos de ejemplo de ventas de diferente tamaño:
+
+```python
+
+import random
+CATEGORIAS = ("electrónica", "hogar", "accesorios", "deportes")
+
+def generar_ventas(n=100_000, seed=123):
+
+    """
+    Devuelve una lista de n ventas simuladas.
+    Cada venta es un dict con: id, precio, categoria.
+    Podes ajustar el parámetro n para obtener un dataset más grande o más chico (p.ej., 100_000,        200_000, 500_000).
+    """
+    rnd = random.Random(seed)
+    ventas = []
+    for i in range(1, n + 1):
+        ventas.append({
+            "id": f"P{i:06d}",
+            "precio": round(rnd.uniform(5.0, 500.0), 2),
+            "categoria": CATEGORIAS[i % len(CATEGORIAS)],
+        })
+    return ventas
+```
+Generá un dataset con 100.000 ventas:
+
+```python
+`ventas = generar_ventas(n=100_000)`
+```
+
+**2. Implementación de operaciones**
+
+Ahora vamos a realizar dos operaciones sobre este conjunto de datos, cada una con dos versiones:
+
+a) Calcular Precios con IVA (21%)
+
+  Versión A: Usá una list comprehension para crear una nueva lista `llamada precios_con_iva_1` que    contenga todos los precios con el 21% de IVA ya calculado.
+
+  Versión B: Usá una expresión generadora para crear un objeto `precios_con_iva_2` que represente la   operación, pero sin calcular ni guardar los resultados todavía.
+
+b) Filtrar Ventas de "electrónica"
+
+  Versión A: Usá una list comprehension para crear una nueva lista llamada `electronica_1` que        contenga todas las ventas de la categoría "electrónica".
+
+  Versión B: Usá una expresión generadora para crear un objeto `electronica_2` que represente el      filtro, sin materializar la lista.
+
+**3. Análisis y comparación**
+
+c) Calculá el total de las ventas de electrónica usando `sum()` en ambas versiones (`electronica_1` y `electronica_2`).
+
+d) Para cada operación, antes y después de `sum()`, medí el tiempo de ejecución y el uso de memoria del objeto. Para el tiempo, podés usar `time.time()` del modulo `time`. Para la memoria, `sys.getsizeof()` del modulo sys. Registrá los resultados (si no ves diferencias claras, duplica n al generar el dataset)
+
+**4. Reutilización del objeto:**
+
+e) Intentá calcular el total de ventas de electrónica una segunda vez para ambos objetos (`electronica_1` y `electronica_2`).
+
+f) Observá qué sucede en cada caso. ¿Qué objeto se puede volver a usar y cuál no?
+
+**5) Preguntas para reflexión:**
+
+g) ¿Qué diferencias fundamentales encontraste entre las dos maneras de procesar los datos?             (considerá cuándo se realiza la operación, el uso de memoria y el tiempo de ejecución)
+
+h) ¿Qué pasó cuando intentaste recorrer o usar el mismo resultado dos veces?
+
+i) ¿Se comportaron de la misma manera la lista generada y el objeto generador? ¿Por qué creés           que sucede esto?
+
+j) ¿En qué situaciones elegirías un enfoque u otro? Da un ejemplo de un escenario donde la             ejecución A sea mejor y otro donde la B sea la opción más eficiente.
