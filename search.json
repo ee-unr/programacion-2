@@ -504,105 +504,75 @@
     ]
   },
   {
-    "objectID": "informacion/calendario.html",
-    "href": "informacion/calendario.html",
-    "title": "Calendario",
+    "objectID": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html",
+    "href": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html",
+    "title": "4 - Estrategias de evaluación 🧩",
     "section": "",
-    "text": "Semana\nFecha\nTemas\nOtras actividades\n\n\n\n\n1\n4 de agosto\n• Lenguaje Python y su ecosistema.• Uso de Python en la terminal.• Uso de Positron.• Python en Positron.• Python: expresiones; variables y asignaciones; tipos de datos elementales; operadores numéricos, de comparación y lógicos.• Jupyter Notebooks.• Definición de funciones.• Ejecución condicional de código.\n\n\n\n2\n11 de agosto\n• Colecciones de datos en Python: list, tuple, dict y set.• Secuencias.• Las secuencias str y range.• Bucles definidos (for) y no definidos (while).• Sentencias break y continue.\n\n\n\n3\n17 de agosto\n• Uso de código externo (propio y de terceros).• Módulos y librerías.• Librería estándar de Python.• Instalación y gestión de librerías.• Scripting.• Modularización de programas.• Lectura y escritura de archivos de texto plano.\n\n\n\n4\n25 de agosto\n• Funciones como ciudadanos de primera clase.• Funciones puras.• Funciones anónimas.• Closures.• Recursión.\n\n\n\n5\n1 de septiembre\n• Funciones de orden superior: map, filter, reduce.• Evaluación estricta y no estricta.• Evaluación perezosa (lazy) e inmediata (eager).• Generadores.• Aplicación parcial de funciones.• Decoradores.\n\n\n\n6\n15 de septiembre\n• Objetos, clases e instancias.• Atributos y métodos.• Propiedades públicas y privadas.• Métodos de clase y métodos de instancia.\n\n\n\n7\n22 de septiembre\n• Encapsulamiento.• Herencia simple y múltiple.• Polimorfismo.• Abstracción.\n\n\n\n8\n29 de septiembre\n• Métodos especiales (dunder methods).• Decoradores aplicados a métodos.• Sobrecarga de operadores.\nParcial\n\n\n9\n6 de octubre\n• Concepto y clasificación.• Estructuras lineales y no lineales.• Listas y listas enlazadas.• Operaciones básicas: agregar, quitar y recorrer.\nPresentación TP Grupal\n\n\n10\n13 de octubre\n• Hashing.• Diccionarios y conjuntos como estructuras asociativas.• Árboles y grafos.\nRecuperatorio\n\n\n11\n20 de octubre\n• Arreglos multidimensionales de NumPy.\n\n\n\n12\n27 de octubre\n• Concepto de algoritmo y complejidad.• Algoritmos de búsqueda.• Búsqueda lineal y binaria.• Notación Big O.\n\n\n\n13\n3 de noviembre\n• Algoritmos de ordenamiento.• bubble sort, insert sort, select sort, quick sort y merge sort.• Comparación de algoritmos de ordenamiento.\nEntrega TP GrupalPresentación TP Individual\n\n\n14\n10 de noviembre\n• Funciones de búsqueda y ordenamiento en Python.\n\n\n\n15\n17 de noviembre\n\n\n\n\n16\n24 de noviembre\n\nEntrega y defensa TP Individual",
+    "text": "En este breve capítulo vamos a explorar las diferentes estrategias de evaluación que utiliza Python. En programación, una estrategia de evaluación es el conjunto de reglas que define cómo y cuándo se calculan las expresiones.\nAnalizaremos la evaluación inmediata (eager) y la evaluación perezosa (lazy), así como la diferencia entre evaluación estricta y no estricta.",
     "crumbs": [
-      "Información",
-      "Calendario"
+      "Teoría",
+      "U2 - Programación Funcional",
+      "4 - Estrategias de evaluación 🧩"
     ]
   },
   {
-    "objectID": "informacion/bibliografia.html",
-    "href": "informacion/bibliografia.html",
-    "title": "Bibliografía",
+    "objectID": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html#introducción",
+    "href": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html#introducción",
+    "title": "4 - Estrategias de evaluación 🧩",
     "section": "",
-    "text": "Principal\n\nCormen et al. (2022) Downey (2024) Kalb (2022) Kubica (2022) Lott y Phillips (2021) Lott (2022) Mertz (2015) Miller, Ranum, y Yasinovskyy (2023) Sedgewick y Wayne (2011) Sedgewick, Wayne, y Dondero (2015) Sweigart (2020) Tuckfield (2021)\n\n\n\nCormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, y Clifford Stein. 2022. Introduction to Algorithms. 4th ed. MIT.\n\n\nDowney, Allen B. 2024. Think Python. 3.ª ed. O’Reilly Media. https://allendowney.github.io/ThinkPython/.\n\n\nKalb, Irv. 2022. Object-Oriented Python. No Starch Press.\n\n\nKubica, Jacek. 2022. Data Structures the Fun Way. 1st ed. No Starch Press.\n\n\nLott, Steven F. 2022. Functional Python Programming. 3rd ed. Packt Publishing.\n\n\nLott, Steven F., y Dusty Phillips. 2021. Python Object-Oriented Programming. 4th ed. Packt Publishing.\n\n\nMertz, David. 2015. Functional Programming in Python. O’Reilly Media.\n\n\nMiller, Bradley, David Ranum, y Jan Yasinovskyy. 2023. Problem Solving with Algorithms and Data Structures Using Python. 3rd ed. Franklin, Beedle & Associates.\n\n\nSedgewick, Robert, y Kevin Wayne. 2011. Algorithms. 4th ed. Addison-Wesley Professional.\n\n\nSedgewick, Robert, Kevin Wayne, y Robert Dondero. 2015. Introduction to Programming in Python. Addison-Wesley Professional.\n\n\nSweigart, Al. 2020. Beyond the Basic Stuff with Python. No Starch Press. https://inventwithpython.com/beyond/.\n\n\nTuckfield, Bradford. 2021. Dive Into Algorithms. No Starch Press.\n\n\n\n\nComplementaria\n\nHetland (2014) Mailund (2023) Sweigart (2021) Vaughan (2019) Wickham (2019)\n\n\n\n\n\nHetland, Magnus Lie. 2014. Python Algorithms. 2.ª ed. Apress.\n\n\nMailund, Thomas. 2023. Functional Programming in R 4. 2.ª ed. Apress.\n\n\nSweigart, Al. 2021. The Big Book of Small Python Projects. No Starch Press. https://inventwithpython.com/bigbookpython/.\n\n\nVaughan, Lee. 2019. Impractical Python Projects. No Starch Press.\n\n\nWickham, Hadley. 2019. Advanced R. 2.ª ed. Chapman & Hall/CRC. https://adv-r.hadley.nz/.",
+    "text": "En este breve capítulo vamos a explorar las diferentes estrategias de evaluación que utiliza Python. En programación, una estrategia de evaluación es el conjunto de reglas que define cómo y cuándo se calculan las expresiones.\nAnalizaremos la evaluación inmediata (eager) y la evaluación perezosa (lazy), así como la diferencia entre evaluación estricta y no estricta.",
     "crumbs": [
-      "Información",
-      "Bibliografía"
+      "Teoría",
+      "U2 - Programación Funcional",
+      "4 - Estrategias de evaluación 🧩"
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Programación II",
-    "section": "",
-    "text": "Programación II\n\n\n   Ciclo de Formación Técnica - Estadística y Ciencia de Datos\n   Facultad de Ciencias Económicas y Estadística (UNR)\n   2° Cuatrimestre 2025"
-  },
-  {
-    "objectID": "index.html#docentes",
-    "href": "index.html#docentes",
-    "title": "Programación II",
-    "section": "Docentes",
-    "text": "Docentes\n\n\nTomás Capretto\n\n   tomas.capretto@fcecon.unr.edu.ar \n\n\n\nLuciano Anselmino\n\n   luciano.anselmino@fcecon.unr.edu.ar \n\n\n\nJoaquín Bermejo\n\n   joaquin.bermejo@fcecon.unr.edu.ar \n\n\n\nDolores Sollberger\n\n   dolores.sollberger@fcecon.unr.edu.ar"
-  },
-  {
-    "objectID": "trabajos_practicos/trabajo_individual.html",
-    "href": "trabajos_practicos/trabajo_individual.html",
-    "title": "Trabajo Práctico Final",
-    "section": "",
-    "text": "Trabajo Práctico Final",
+    "objectID": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html#evaluación-estricta",
+    "href": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html#evaluación-estricta",
+    "title": "4 - Estrategias de evaluación 🧩",
+    "section": "Evaluación estricta",
+    "text": "Evaluación estricta\nSupongamos una función a la que le pasamos dos números a y b y nos devuelve una lista con todos los enteros entre a y b.\n\ndef intervalo(a, b):\n    return list(range(a, b + 1))\n\nintervalo(5, 12)\n\n[5, 6, 7, 8, 9, 10, 11, 12]\n\n\nPara cumplir su objetivo, esta función solo necesita los valores a y b. Pero, ¿qué pasaría si por error le agregamos otro parámetro y después la llamamos sin darle ningún valor para ese parámetro?\n\ndef intervalo(a, b, c):\n    return list(range(a, b + 1))\n\nintervalo(5, 12)\n    intervalo(5, 12)\n    ~~~~~~~~~^^^^^^^\nTypeError: intervalo() missing 1 required positional argument: 'c'\nPython devuelve un error indicando que la función intervalo no puede ejecutarse porque falta un valor para el parámetro c. Aunque sepamos que dicho parámetro no se utiliza dentro de la función, Python igualmente exige que se le pase un valor.\nEsta exigencia se debe a que las funciones de Python se evalúan bajo las reglas de la evaluación estricta. Bajo este enfoque, una función no puede producir un resultado si alguno de sus parámetros no está definido. Por eso, aun cuando el valor de c nunca se use en el cuerpo de la función, la ausencia de un argumento para él provoca un error.\nPara que la función se ejecute correctamente, basta con pasarle cualquier valor:\n\nintervalo(5, 12, None)\n\n[5, 6, 7, 8, 9, 10, 11, 12]\n\n\nEn Python, todas las llamadas a funciones siguen la estrategia de evaluación estricta, y esto no es algo que podamos modificar: forma parte del diseño del lenguaje. De todas formas, como veremos más adelante, existen ciertas construcciones del propio lenguaje que aplican una estrategia de evaluación no estricta.",
     "crumbs": [
-      "Trabajos Prácticos",
-      "Trabajo Práctico Final"
+      "Teoría",
+      "U2 - Programación Funcional",
+      "4 - Estrategias de evaluación 🧩"
     ]
   },
   {
-    "objectID": "trabajos_practicos/trabajo_grupal.html",
-    "href": "trabajos_practicos/trabajo_grupal.html",
-    "title": "Trabajo Práctico",
-    "section": "",
-    "text": "Trabajo Práctico",
+    "objectID": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html#evaluación-inmediata",
+    "href": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html#evaluación-inmediata",
+    "title": "4 - Estrategias de evaluación 🧩",
+    "section": "Evaluación inmediata",
+    "text": "Evaluación inmediata\nOtro aspecto interesante al trabajar con funciones es el momento en que se evalúan los argumentos que se pasan en las llamadas.\nTomemos de nuevo nuestra función original:\ndef intervalo(a, b):\n    return list(range(a, b + 1))\ny la siguiente llamada:\nintervalo(1 + 3, 5 + 12)\nLa pregunta es: ¿qué pasa primero? ¿Se ejecuta la función intervalo y recién ahí se resuelven las expresiones 1 + 3 y 5 + 12, o esas expresiones se calculan antes y luego se pasan sus resultados a la función?\nPara aclarar esta duda, en lugar de usar una suma directa podemos probar con una función que sume pero que, además, imprima los argumentos que recibe. Del mismo modo, podemos modificar la función intervalo para que muestre un mensaje cuando sea llamada y así ver con más claridad el orden en que ocurren las cosas.\n\ndef suma(x, y):\n    print(f\"suma(x={x}, y={y})\")\n    return x + y\n\n\ndef intervalo(a, b):\n    print(f\"intervalo(a={a}, b={b})\")\n    return list(range(a, b + 1))\n\nintervalo(suma(1, 3), suma(5, 12))\n\nsuma(x=1, y=3)\nsuma(x=5, y=12)\nintervalo(a=4, b=17)\n\n\n[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]\n\n\nPor el orden en que aparecen los mensajes impresos, vemos que Python primero ejecutó la llamada suma(1, 3), luego suma(5, 12) y recién después invocó a la función intervalo, ya recibiendo los valores resultantes de las llamadas a suma.\nEn otras palabras, antes de llamar a intervalo, Python evaluó las expresiones que se pasaron como argumentos.\nA esta estrategia de evaluación, donde los argumentos se resuelven antes de ejecutar la función, se la conoce como evaluación inmediata, o por su nombre en inglés, eager evaluation.",
     "crumbs": [
-      "Trabajos Prácticos",
-      "Trabajo Práctico"
+      "Teoría",
+      "U2 - Programación Funcional",
+      "4 - Estrategias de evaluación 🧩"
     ]
   },
   {
-    "objectID": "trabajos_practicos/descripcion.html",
-    "href": "trabajos_practicos/descripcion.html",
-    "title": "Descripción",
-    "section": "",
-    "text": "Acá explicamos las pautas para los TP.",
+    "objectID": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html#evaluación-no-estricta",
+    "href": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html#evaluación-no-estricta",
+    "title": "4 - Estrategias de evaluación 🧩",
+    "section": "Evaluación no estricta",
+    "text": "Evaluación no estricta\nEn contraste con la evaluación estricta, la evaluación no estricta es una estrategia en la que se puede determinar el resultado de una expresión sin necesidad de evaluar todos sus argumentos u operandos.\nEn Python, solo tres tipos de expresiones siguen esta estrategia: and, or y las expresiones condicionales.\nEn los siguientes ejemplos, vamos a utilizar una función que imprime el valor ingresado y lo devuelve:\n\ndef f(x):\n    print(f\"el valor es {x}\")\n    return x\n\n\nExpresión and\nUna expresión and devuelve True únicamente cuando todos sus argumentos son verdaderos. Por eso, en el siguiente ejemplo, se imprime el valor es True antes de obtener el resultado de la operación and, ya que fue necesario evaluar la función f.\n\nTrue and f(True)\n\nel valor es True\n\n\nTrue\n\n\nEn cambio, cuando el primero de sus argumentos es False, se puede anticipar que el resultado de la operación and será False, sin necesidad de evaluar el segundo argumento. Por este motivo, la función f no se ejecuta en ninguno de los siguientes casos, al punto de que podemos pasarle argumentos absurdos:\n\nFalse and f(True)\n\nFalse\n\n\n\nFalse and f(1 / 0)\n\nFalse\n\n\nEn Python, este mecanismo también se conoce como cortocircuito. Al detectar que el resultado de la operación ya está decidido con el primer argumento, el intérprete “corta camino” y no sigue evaluando el resto.\n\n\nExpresión or\nEl mecanismo de cortocircuito también funciona para el operador or:\n\n# El primer argumento es True, el resultado es True\nTrue or f(True)\n\nTrue\n\n\n\n# El primer arugmento es False, hay que evaluar el segundo para determinar el resultado\nFalse or f(True)\n\nel valor es True\n\n\nTrue\n\n\nLas mismas reglas de evaluación se mantienen en expresiones más complejas. En el siguiente ejemplo, es necesario ejecutar f(True) para poder resolver el primer or, pero no hace falta evaluar 1 + [2, 3], que provocaría un error, porque el valor True ya alcanza para determinar el resultado de toda la operación.\n\nFalse or f(True) or (1 + [2, 3])\n\nel valor es True\n\n\nTrue\n\n\n\n\nExpresiones condicionales\nFinalmente, esta estrategia de evaluación no estricta (o cortocircuito) también se aplica en las expresiones condicionales.\nEn el siguiente ejemplo, la expresión devuelve 10 porque la condición es verdadera, sin necesidad de ejecutar f(20).\n\n10 if True else f(20)\n\n10\n\n\nEn cambio, esta segunda expresión sí requiere que se ejecute la llamada en la parte else de la expresión.\n\n10 if False else f(20)\n\nel valor es 20\n\n\n20",
     "crumbs": [
-      "Trabajos Prácticos",
-      "Descripción"
+      "Teoría",
+      "U2 - Programación Funcional",
+      "4 - Estrategias de evaluación 🧩"
     ]
   },
   {
-    "objectID": "informacion/aprobacion.html",
-    "href": "informacion/aprobacion.html",
-    "title": "Condiciones de aprobación",
-    "section": "",
-    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
+    "objectID": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html#evaluación-perezosa",
+    "href": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html#evaluación-perezosa",
+    "title": "4 - Estrategias de evaluación 🧩",
+    "section": "Evaluación perezosa",
+    "text": "Evaluación perezosa\nPara terminar, veamos una última estrategia de evaluación: la evaluación perezosa (en inglés, lazy evaluation).\nPartimos de una función que recibe un valor, imprime un mensaje con él y lo devuelve:\ndef identidad(x):\n    print(\"Devuelvo\", x)\n    return x\nSi usamos map para aplicar la función identidad a los números 0, 1, 2 y 3:\nmap_obj = map(identidad, range(4))\nmap_obj\n&lt;map at 0x7fedb41f3cd0&gt;\nvemos que se crea un objeto map, pero no aparece ningún mensaje de la función identidad. Esto pasa porque map no ejecuta la función sobre los elementos hasta que realmente hace falta.\nPor ejemplo, si convertimos el objeto map en una lista, recién ahí se produce la evaluación:\nlista = list(map_obj)\nDevuelvo 0\nDevuelvo 1\nDevuelvo 2\nDevuelvo 3\nlista\n[0, 1, 2, 3]\nA esta estrategia, en la que se retrasa la evaluación de las expresiones hasta el último momento posible, se la llama evaluación perezosa o lazy evaluation.\nDe manera similar, filter también utiliza una estrategia de evaluación perezosa. Recién cuando queremos materializar los elementos se aplica la función de filtro.\n\ndef es_multiplo_5(x):\n    print(f\"x={x}\")\n    return x % 5  ==0\n\nfilter_obj = filter(es_multiplo_5, [12, 10, 8, 5, 125, 55, 11, 9])\n\n\nfor x in filter_obj:\n    print(f\"El numero {x} es múltiplo de 5\")\n\nx=12\nx=10\nEl numero 10 es múltiplo de 5\nx=8\nx=5\nEl numero 5 es múltiplo de 5\nx=125\nEl numero 125 es múltiplo de 5\nx=55\nEl numero 55 es múltiplo de 5\nx=11\nx=9\n\n\nComo se puede ver, la función es_multiplo_5 se ejecutó para cada valor de la lista numérica, pero filter únicamente devolvió aquellos que efectivamente son múltiplos de 5.\nEn el próximo y último capítulo vamos a explorar los generadores, un tipo especial de iterador que implementa una estrategia de evaluación perezosa y nos permite recorrer secuencias incluso potencialmente infinitas.",
     "crumbs": [
-      "Información",
-      "Condiciones de aprobación"
-    ]
-  },
-  {
-    "objectID": "informacion/aprobacion.html#instancias-de-evaluación",
-    "href": "informacion/aprobacion.html#instancias-de-evaluación",
-    "title": "Condiciones de aprobación",
-    "section": "",
-    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
-    "crumbs": [
-      "Información",
-      "Condiciones de aprobación"
-    ]
-  },
-  {
-    "objectID": "informacion/aprobacion.html#condiciones-de-aprobación",
-    "href": "informacion/aprobacion.html#condiciones-de-aprobación",
-    "title": "Condiciones de aprobación",
-    "section": "Condiciones de aprobación",
-    "text": "Condiciones de aprobación\n\nPromoción\n\nQuienes aprueben el parcial individual (con nota \\(\\text{P}\\)), el trabajo práctico grupal (con nota \\(\\text{T}\\)) y el trabajo práctico individual con defensa oral (con nota \\(\\text{O}\\)), adquieren la condición de estudiante promovido y su nota final se calcula como \\(0.5 \\times \\text{P} + 0.2 \\times \\text{T} + 0.3 \\times \\text{O}\\).\n\nRegularidad\n\nQuienes aprueben el parcial individual (o su recuperatorio) y el trabajo práctico grupal, pero no accedan o no aprueben el trabajo práctico individual, adquieren la condición de estudiante regular.\n\nLibres\n\nQuienes no aprueben el parcial individual (ni su recuperatorio) o el trabajo práctico grupal, adquieren la condición de estudiante libre.",
-    "crumbs": [
-      "Información",
-      "Condiciones de aprobación"
+      "Teoría",
+      "U2 - Programación Funcional",
+      "4 - Estrategias de evaluación 🧩"
     ]
   },
   {
@@ -650,15 +620,165 @@
     ]
   },
   {
-    "objectID": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html",
-    "href": "teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html",
-    "title": "4 - Estrategias de evaluación",
+    "objectID": "informacion/aprobacion.html",
+    "href": "informacion/aprobacion.html",
+    "title": "Condiciones de aprobación",
     "section": "",
-    "text": "Evaluación perezosa (lazy) e inmediata (eager).\nEvaluación estricta y no estricta.\nGeneradores.\n\nGenerator expression (el for el in seq), (f(el) for el in seq).\nComparación con list comprehension.",
+    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
+    "crumbs": [
+      "Información",
+      "Condiciones de aprobación"
+    ]
+  },
+  {
+    "objectID": "informacion/aprobacion.html#instancias-de-evaluación",
+    "href": "informacion/aprobacion.html#instancias-de-evaluación",
+    "title": "Condiciones de aprobación",
+    "section": "",
+    "text": "📝 Examen parcial: individual y escrito. Hay un recuperatorio, de similares características, que reemplaza la nota del parcial.\n🤝 Trabajo práctico grupal: se hace fuera de clase, en grupos de entre dos y tres integrantes.\n🧑‍💻 Trabajo práctico individual: opcional para promoción, con presentación y defensa oral.\nTodas las instancias se califican en una escala de 0 a 10 y se aprueban con 6.",
+    "crumbs": [
+      "Información",
+      "Condiciones de aprobación"
+    ]
+  },
+  {
+    "objectID": "informacion/aprobacion.html#condiciones-de-aprobación",
+    "href": "informacion/aprobacion.html#condiciones-de-aprobación",
+    "title": "Condiciones de aprobación",
+    "section": "Condiciones de aprobación",
+    "text": "Condiciones de aprobación\n\nPromoción\n\nQuienes aprueben el parcial individual (con nota \\(\\text{P}\\)), el trabajo práctico grupal (con nota \\(\\text{T}\\)) y el trabajo práctico individual con defensa oral (con nota \\(\\text{O}\\)), adquieren la condición de estudiante promovido y su nota final se calcula como \\(0.5 \\times \\text{P} + 0.2 \\times \\text{T} + 0.3 \\times \\text{O}\\).\n\nRegularidad\n\nQuienes aprueben el parcial individual (o su recuperatorio) y el trabajo práctico grupal, pero no accedan o no aprueben el trabajo práctico individual, adquieren la condición de estudiante regular.\n\nLibres\n\nQuienes no aprueben el parcial individual (ni su recuperatorio) o el trabajo práctico grupal, adquieren la condición de estudiante libre.",
+    "crumbs": [
+      "Información",
+      "Condiciones de aprobación"
+    ]
+  },
+  {
+    "objectID": "trabajos_practicos/descripcion.html",
+    "href": "trabajos_practicos/descripcion.html",
+    "title": "Descripción",
+    "section": "",
+    "text": "Acá explicamos las pautas para los TP.",
+    "crumbs": [
+      "Trabajos Prácticos",
+      "Descripción"
+    ]
+  },
+  {
+    "objectID": "trabajos_practicos/trabajo_grupal.html",
+    "href": "trabajos_practicos/trabajo_grupal.html",
+    "title": "Trabajo Práctico",
+    "section": "",
+    "text": "Trabajo Práctico",
+    "crumbs": [
+      "Trabajos Prácticos",
+      "Trabajo Práctico"
+    ]
+  },
+  {
+    "objectID": "trabajos_practicos/trabajo_individual.html",
+    "href": "trabajos_practicos/trabajo_individual.html",
+    "title": "Trabajo Práctico Final",
+    "section": "",
+    "text": "Trabajo Práctico Final",
+    "crumbs": [
+      "Trabajos Prácticos",
+      "Trabajo Práctico Final"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Programación II",
+    "section": "",
+    "text": "Programación II\n\n\n   Ciclo de Formación Técnica - Estadística y Ciencia de Datos\n   Facultad de Ciencias Económicas y Estadística (UNR)\n   2° Cuatrimestre 2025"
+  },
+  {
+    "objectID": "index.html#docentes",
+    "href": "index.html#docentes",
+    "title": "Programación II",
+    "section": "Docentes",
+    "text": "Docentes\n\n\nTomás Capretto\n\n   tomas.capretto@fcecon.unr.edu.ar \n\n\n\nLuciano Anselmino\n\n   luciano.anselmino@fcecon.unr.edu.ar \n\n\n\nJoaquín Bermejo\n\n   joaquin.bermejo@fcecon.unr.edu.ar \n\n\n\nDolores Sollberger\n\n   dolores.sollberger@fcecon.unr.edu.ar"
+  },
+  {
+    "objectID": "informacion/bibliografia.html",
+    "href": "informacion/bibliografia.html",
+    "title": "Bibliografía",
+    "section": "",
+    "text": "Principal\n\nCormen et al. (2022) Downey (2024) Kalb (2022) Kubica (2022) Lott y Phillips (2021) Lott (2022) Mertz (2015) Miller, Ranum, y Yasinovskyy (2023) Sedgewick y Wayne (2011) Sedgewick, Wayne, y Dondero (2015) Sweigart (2020) Tuckfield (2021)\n\n\n\nCormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, y Clifford Stein. 2022. Introduction to Algorithms. 4th ed. MIT.\n\n\nDowney, Allen B. 2024. Think Python. 3.ª ed. O’Reilly Media. https://allendowney.github.io/ThinkPython/.\n\n\nKalb, Irv. 2022. Object-Oriented Python. No Starch Press.\n\n\nKubica, Jacek. 2022. Data Structures the Fun Way. 1st ed. No Starch Press.\n\n\nLott, Steven F. 2022. Functional Python Programming. 3rd ed. Packt Publishing.\n\n\nLott, Steven F., y Dusty Phillips. 2021. Python Object-Oriented Programming. 4th ed. Packt Publishing.\n\n\nMertz, David. 2015. Functional Programming in Python. O’Reilly Media.\n\n\nMiller, Bradley, David Ranum, y Jan Yasinovskyy. 2023. Problem Solving with Algorithms and Data Structures Using Python. 3rd ed. Franklin, Beedle & Associates.\n\n\nSedgewick, Robert, y Kevin Wayne. 2011. Algorithms. 4th ed. Addison-Wesley Professional.\n\n\nSedgewick, Robert, Kevin Wayne, y Robert Dondero. 2015. Introduction to Programming in Python. Addison-Wesley Professional.\n\n\nSweigart, Al. 2020. Beyond the Basic Stuff with Python. No Starch Press. https://inventwithpython.com/beyond/.\n\n\nTuckfield, Bradford. 2021. Dive Into Algorithms. No Starch Press.\n\n\n\n\nComplementaria\n\nHetland (2014) Mailund (2023) Sweigart (2021) Vaughan (2019) Wickham (2019)\n\n\n\n\n\nHetland, Magnus Lie. 2014. Python Algorithms. 2.ª ed. Apress.\n\n\nMailund, Thomas. 2023. Functional Programming in R 4. 2.ª ed. Apress.\n\n\nSweigart, Al. 2021. The Big Book of Small Python Projects. No Starch Press. https://inventwithpython.com/bigbookpython/.\n\n\nVaughan, Lee. 2019. Impractical Python Projects. No Starch Press.\n\n\nWickham, Hadley. 2019. Advanced R. 2.ª ed. Chapman & Hall/CRC. https://adv-r.hadley.nz/.",
+    "crumbs": [
+      "Información",
+      "Bibliografía"
+    ]
+  },
+  {
+    "objectID": "informacion/calendario.html",
+    "href": "informacion/calendario.html",
+    "title": "Calendario",
+    "section": "",
+    "text": "Semana\nFecha\nTemas\nOtras actividades\n\n\n\n\n1\n4 de agosto\n• Lenguaje Python y su ecosistema.• Uso de Python en la terminal.• Uso de Positron.• Python en Positron.• Python: expresiones; variables y asignaciones; tipos de datos elementales; operadores numéricos, de comparación y lógicos.• Jupyter Notebooks.• Definición de funciones.• Ejecución condicional de código.\n\n\n\n2\n11 de agosto\n• Colecciones de datos en Python: list, tuple, dict y set.• Secuencias.• Las secuencias str y range.• Bucles definidos (for) y no definidos (while).• Sentencias break y continue.\n\n\n\n3\n17 de agosto\n• Uso de código externo (propio y de terceros).• Módulos y librerías.• Librería estándar de Python.• Instalación y gestión de librerías.• Scripting.• Modularización de programas.• Lectura y escritura de archivos de texto plano.\n\n\n\n4\n25 de agosto\n• Funciones como ciudadanos de primera clase.• Funciones puras.• Funciones anónimas.• Closures.• Recursión.\n\n\n\n5\n1 de septiembre\n• Funciones de orden superior: map, filter, reduce.• Evaluación estricta y no estricta.• Evaluación perezosa (lazy) e inmediata (eager).• Generadores.• Aplicación parcial de funciones.• Decoradores.\n\n\n\n6\n15 de septiembre\n• Objetos, clases e instancias.• Atributos y métodos.• Propiedades públicas y privadas.• Métodos de clase y métodos de instancia.\n\n\n\n7\n22 de septiembre\n• Encapsulamiento.• Herencia simple y múltiple.• Polimorfismo.• Abstracción.\n\n\n\n8\n29 de septiembre\n• Métodos especiales (dunder methods).• Decoradores aplicados a métodos.• Sobrecarga de operadores.\nParcial\n\n\n9\n6 de octubre\n• Concepto y clasificación.• Estructuras lineales y no lineales.• Listas y listas enlazadas.• Operaciones básicas: agregar, quitar y recorrer.\nPresentación TP Grupal\n\n\n10\n13 de octubre\n• Hashing.• Diccionarios y conjuntos como estructuras asociativas.• Árboles y grafos.\nRecuperatorio\n\n\n11\n20 de octubre\n• Arreglos multidimensionales de NumPy.\n\n\n\n12\n27 de octubre\n• Concepto de algoritmo y complejidad.• Algoritmos de búsqueda.• Búsqueda lineal y binaria.• Notación Big O.\n\n\n\n13\n3 de noviembre\n• Algoritmos de ordenamiento.• bubble sort, insert sort, select sort, quick sort y merge sort.• Comparación de algoritmos de ordenamiento.\nEntrega TP GrupalPresentación TP Individual\n\n\n14\n10 de noviembre\n• Funciones de búsqueda y ordenamiento en Python.\n\n\n\n15\n17 de noviembre\n\n\n\n\n16\n24 de noviembre\n\nEntrega y defensa TP Individual",
+    "crumbs": [
+      "Información",
+      "Calendario"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/05_generadores.html",
+    "href": "teoria/02_programacion_funcional/05_generadores.html",
+    "title": "5 - Generadores 🧩",
+    "section": "",
+    "text": "En este capítulo vamos a introducirnos en los generadores, tanto en las funciones como en las expresiones generadoras. A diferencia de las funciones regulares, que devuelven un resultado con return, los generadores no devuelven un único resultado, sino que van entregando valores de a uno a medida que se lo solicita. Cada vez que se entrega un valor, la ejecución queda en pausa y se conserva el estado de las variables, de modo que puede reanudarse más adelante. De este modo, los generadores resultan ideales para definir iteradores y trabajar con grandes volúmenes de datos sin necesidad de almacenarlos al mismo tiempo en memoria.",
     "crumbs": [
       "Teoría",
       "U2 - Programación Funcional",
-      "4 - Estrategias de evaluación"
+      "5 - Generadores 🧩"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/05_generadores.html#introducción",
+    "href": "teoria/02_programacion_funcional/05_generadores.html#introducción",
+    "title": "5 - Generadores 🧩",
+    "section": "",
+    "text": "En este capítulo vamos a introducirnos en los generadores, tanto en las funciones como en las expresiones generadoras. A diferencia de las funciones regulares, que devuelven un resultado con return, los generadores no devuelven un único resultado, sino que van entregando valores de a uno a medida que se lo solicita. Cada vez que se entrega un valor, la ejecución queda en pausa y se conserva el estado de las variables, de modo que puede reanudarse más adelante. De este modo, los generadores resultan ideales para definir iteradores y trabajar con grandes volúmenes de datos sin necesidad de almacenarlos al mismo tiempo en memoria.",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "5 - Generadores 🧩"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/05_generadores.html#funciones-generadoras",
+    "href": "teoria/02_programacion_funcional/05_generadores.html#funciones-generadoras",
+    "title": "5 - Generadores 🧩",
+    "section": "Funciones generadoras",
+    "text": "Funciones generadoras\nUna función generadora se define igual que una función común con def, pero en lugar de devolver un valor con return, lo hace con yield.\nCuando se ejecuta una función generadora, no se ejecuta el código en su cuerpo de manera inmediata ni se obtiene un resultado. En cambio, se obtiene un generador que luego puede entregar valores.\n\ndef gen():\n    yield \"¡Resultado!\"\n\ng = gen()\ng\n\n&lt;generator object gen at 0x7f90c8738ca0&gt;\n\n\nComo los generadores son iteradores (ver Iterables e iteradores), se puede usar next para obtener el siguiente valor de manera manual:\n\nnext(g)\n\n'¡Resultado!'\n\n\nEste primer ejemplo es demasiado simple para apreciar la verdadera utilidad de los generadores. Si solo necesitáramos devolver un único valor, bastaría con usar una función común.\nLa ventaja de los generadores está en que pueden entregar varios valores de a uno, a medida que se los solicita, mientras conservan el estado de las variables.\nVeamos ahora una segunda función generadora, esta vez con dos instrucciones yield en lugar de una. En la primera llamada a next, obtenemos \"Primer resultado\".\n\ndef gen():\n    yield \"Primer resultado\"\n    yield \"Segundo resultado\"\n\ng = gen()\nnext(g)\n\n'Primer resultado'\n\n\nY en la segunda llamada a next el generador entrega el segundo valor: \"Segundo resultado\".\n\nnext(g)\n\n'Segundo resultado'\n\n\nEn la primera llamada a next, la función se ejecuta hasta llegar a la primera instrucción yield. Allí el generador devuelve un valor y suspende su ejecución. Con la segunda llamada, la ejecución se reanuda desde ese punto y continúa hasta encontrar el siguiente yield, entregando otro valor.\nAhora bien, ¿qué ocurre si llamamos a next cuando el generador ya entregó todos los valores disponibles?\nnext(g)\n    next(g)\n    ~~~~^^^\nStopIteration\nUna vez que un generador se agota, cualquier llamada adicional a next elevará la excepción StopIteration, que señala que ya no quedan valores por producir.\nPara observar con más detalle cómo funciona la ejecución y suspensión en los generadores, vamos a implementar una función que mantiene el estado de una variable numérica e imprime un mensaje justo antes de cada yield.\n\ndef generador(x):\n    print(\"Recibí el valor\", x)\n\n    x = x + 18\n    print(\"Entrego el valor\", x)\n    yield x\n\n    x = x - 5\n    print(\"Esto una entrega siguiente, devuelvo el valor\", x)\n    yield x\n\n    print(\"Este mensaje está bien al final\")\n\ng = generador(7)\n\nComo se puede observar, la ejecución de la función generadora no imprimió ningún mensaje, ya que esto no ejecuta el cuerpo de la función. Recién al pedir el primer valor se ejecutan los dos print previos al primer yield. Además, el valor inicial 7 se incrementa en 18 y luego es devuelto.\n\nnext(g)\n\nRecibí el valor 7\nEntrego el valor 25\n\n\n25\n\n\nEn la segunda llamada a next(g) se imprime un mensaje y se entrega el valor 25 - 5 = 20. Esto muestra que el generador conserva el estado de las variables: en lugar de usar el valor original de x, utiliza el valor actualizado en la entrega anterior.\n\nnext(g)\n\nEsto una entrega siguiente, devuelvo el valor 20\n\n\n20\n\n\nSin embargo, el print al final, debajo del último yield, aún no se ejecutó. Para eso, usamos next(g) nuevamente.\nnext(g)\nEste mensaje está bien al final\n\n    next(g)\n    ~~~~^^^\nStopIteration\nComo no hay ningún otro valor por entregar, se imprime el mensaje y luego se obtiene la excepción StopIteration.\n\nEjemplo 1: Secuencia de números naturales\nLos generadores también permiten crear secuencias infinitas. Para ello basta con escribir un bucle infinito dentro de la función generadora. Esto no representa un problema, ya que el generador produce un valor a la vez, únicamente cuando se le solicita.\n\ndef numeros_naturales():\n    n = 0\n    while True:\n        yield n\n        n = n + 1\n\nsecuencia = numeros_naturales()\n\nLuego, pedimos los valores de a uno:\n\nprint(next(secuencia))\nprint(next(secuencia))\nprint(next(secuencia))\nprint(next(secuencia))\nprint(next(secuencia))\n\n0\n1\n2\n3\n4\n\n\nVale la pena notar que un generador no tiene longitud, ya que podría ser infinito, ni permite acceder a sus elementos por índice. Solo sabe cómo producir el próximo valor, sin conocer de antemano cuántos quedan por generar.\nlen(secuencia)\n    len(secuencia)\n    ~~~^^^^^^^^^^\nTypeError: object of type 'generator' has no len()\nsecuencia[0]\n    secuencia[0]\n    ~~~~~~~~~^^^\nTypeError: 'generator' object is not subscriptable\nComo los generadores son iteradores, podemos recorrerlos con un bucle for. En el caso de secuencias infinitas, es necesario usar un break para evitar que el bucle nunca termine.\n\ni = 0\nfor n in secuencia:\n    print(n)\n    i += 1\n    if i &gt;= 5:\n        break\n\n5\n6\n7\n8\n9\n\n\nSi nuestro único objetivo es recorrer los elementos del generador, podemos inicializarlo directamente en el bucle for.\n\nfor n in numeros_naturales():\n    print(n)\n    if n &gt;= 7:\n        break\n\n0\n1\n2\n3\n4\n5\n6\n7\n\n\n\n\nEjemplo 2: Secuencia de Fibonacci\nLas secuencias infinitas no se limitan a los números naturales. Como los generadores conservan el estado de las variables dentro de la función, también pueden usarse para producir otras secuencias, como la de Fibonacci.\n\\[\nF_n =\n\\begin{cases}\n0 & \\text{si } n = 0 \\\\\n1 & \\text{si } n = 1 \\\\\nF_{n-1} + F_{n - 2} & \\text{si } n \\ge 2 \\\\\n\\end{cases}\n\\]\n\ndef fibonacci():\n    a = 0\n    b = 1\n    while True:\n        yield a\n        a, b = b, a + b\n\nSi queremos los primeros 10 números de la secuencia, podemos utilizar un bucle for que ejecuta next(g) 10 veces seguidas.\n\ng = fibonacci()\nfor _ in range(10):\n    print(next(g))\n\n0\n1\n1\n2\n3\n5\n8\n13\n21\n34\n\n\nAl volver a pedir un nuevo valor a nuestro generador, este continúa avanzando en la secuencia de Fibonacci.\n\nnext(g)\n\n55\n\n\n\nnext(g)\n\n89\n\n\n\n\nEjemplo 3: Promedio acumulado\nEn este ejemplo se muestra un generador que procesa una secuencia numérica y va devolviendo el promedio acumulado a medida que avanza.\nComo los valores se producen bajo demanda, en memoria solo se conserva la secuencia original y el último promedio calculado.\n\ndef promedio_acumulado(numeros):\n    numerador = 0\n    for i, numero in enumerate(numeros):\n        numerador += numero\n        yield numerador / (i + 1)\n\nvalores = [2, 4, 9, 1, 7, 11] # Supongamos una lista muy grande de números\n\nfor m in promedio_acumulado(valores):\n    print(f\"Promedio acumulado: {m:.2f}\")\n\nPromedio acumulado: 2.00\nPromedio acumulado: 3.00\nPromedio acumulado: 5.00\nPromedio acumulado: 4.00\nPromedio acumulado: 4.60\nPromedio acumulado: 5.67",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "5 - Generadores 🧩"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/05_generadores.html#expresiones-generadoras",
+    "href": "teoria/02_programacion_funcional/05_generadores.html#expresiones-generadoras",
+    "title": "5 - Generadores 🧩",
+    "section": "Expresiones generadoras",
+    "text": "Expresiones generadoras\nLas expresiones generadoras, del inglés generator expressions, proveen una manera concisa para construir generadores. Se parecen a las list comprehensions, pero usan paréntesis en vez de corchetes.\nSupongamos una lista de números cualquiera y que usamos una list comprehension para obtener el triple de cada número.\n\nnumeros = [3, 14, 2, 7, 1, 28]\ntriples = [n * 3 for n in numeros]\n\nprint(numeros)\nprint(triples)\n\n[3, 14, 2, 7, 1, 28]\n[9, 42, 6, 21, 3, 84]\n\n\nLa expresión generadora equivalente es la siguiente:\n\ntriples = (n * 3 for n in numeros)\ntriples\n\n&lt;generator object &lt;genexpr&gt; at 0x7f90c87702b0&gt;\n\n\nComo todo generador, implementa la estrategia de evaluación perezosa. Esto quiere decir que el triple de cada número se calcula justo en el momento en que se solicita, no antes.\nAsí, podemos obtener los valores mediante un bucle:\n\nfor n in triples:\n    print(n)\n\n9\n42\n6\n21\n3\n84\n\n\nUn generador creado con una expresión generadora es equivalente a uno definido con una función generadora. En ambos casos, si se intenta obtener un valor de un generador ya agotado, se producirá un error.\nnext(triples)\n    next(triples)\n    ~~~~^^^^^^^^^\nStopIteration\nY al intentar obtener una lista a partir de un generador agotado, obtendremos una lista vacía.\n\nlist(triples)\n\n[]\n\n\nAdemás de ser perezosos, los generadores son de único uso. Sus valores se generan a medida que se solicitan y no se guardan en memoria, de modo que, una vez consumidos, no es posible volver a iterarlos.\nEsta aparente limitación es en realidad una ventaja. A diferencia de una lista, que construye y guarda todos sus elementos en memoria, un generador solo define una receta para producirlos cuando se necesiten. En el siguiente ejemplo se muestra cómo esto impacta en el consumo de memoria frente a una lista.\n\nimport sys\n\n# Enteros divisibles por 3 o 5 entre 1 y 10,000,000\nlista = [n for n in range(1, 10_000_001) if n % 3 == 0 or n % 5 == 0]\ngenexpr = (n for n in range(1, 10_000_001) if n % 3 == 0 or n % 5 == 0)\n\nprint(sys.getsizeof(lista))   # bytes\nprint(sys.getsizeof(genexpr)) # bytes\n\n39064728\n200\n\n\nY a partir de ambos objetos se puede computar, por ejemplo, la suma.\n\nsum(lista), sum(genexpr)\n\n(23333341666668, 23333341666668)\n\n\nEn resumen, mientras que una lista es una colección de valores, un generador es una receta para producir valores.",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "5 - Generadores 🧩"
+    ]
+  },
+  {
+    "objectID": "teoria/02_programacion_funcional/05_generadores.html#sec-iteradores",
+    "href": "teoria/02_programacion_funcional/05_generadores.html#sec-iteradores",
+    "title": "5 - Generadores 🧩",
+    "section": "Iterables e iteradores",
+    "text": "Iterables e iteradores\nA lo largo de este capítulo dijimos varias veces que los generadores son iteradores, aunque todavía no definimos con precisión qué significa eso.\nLo que sí sabemos es que un objeto es iterable cuando puede recorrerse con un bucle for. En Python, las listas, las cadenas y los diccionarios son ejemplos de objetos iterables, por lo que los siguientes bloques de código funcionan sin problemas:\nfor i in [10, 55, 2]:\n    print(i + 5)\n\nfor c in \"palabras\":\n    print(c.upper())\n\nfor k in {\"nombre\": \"Juan\", \"apellido\": \"Pérez\"}:\n    print(k)\nComo ya vimos que una lista se puede recorrer con un bucle, podríamos preguntarnos si también es posible usar la función next para obtener su siguiente elemento.\n\nnums = [-10, 0, 10]\n\nnext(nums)\n    next(nums)\n    ~~~~^^^^^^\nTypeError: 'list' object is not an iterator\nSin embargo, al hacerlo obtenemos un TypeError que indica que la lista no es un iterador. Lo mismo ocurre si intentamos usar next directamente con una cadena o un diccionario.\nnext(\"palabra\")\n    next(\"palabra\")\n    ~~~~^^^^^^^^^^^\nTypeError: 'str' object is not an iterator\nnext({\"nombre\": \"Juan\", \"apellido\": \"Pérez\"})\n    next({\"nombre\": \"Juan\", \"apellido\": \"Pérez\"})\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: 'dict' object is not an iterator\nEl error que aparece al usar next sobre una lista, una cadena o un diccionario muestra que no basta con que un objeto sea iterable para poder aplicarle next directamente.\nLo que sucede, es que, en realidad, nuestra definición inicial de iterable era incompleta: un objeto es iterable cuando puede generar un iterador a partir de él.\nLuego, es el iterador que conoce cómo producir los valores uno a uno y, por eso, es sobre el iterador (y no sobre el iterable) que Python puede aplicar next para avanzar en la secuencia.\nPara crear un iterador a partir de un iterable usamos iter.\n\niterador = iter(nums)\niterador\n\n&lt;list_iterator at 0x7f90c87337f0&gt;\n\n\nY ahora sí es posible avanzar a través de los elementos de la lista original:\n\nnext(iterador)\n\n-10\n\n\n\nnext(iterador)\n\n0\n\n\n\nnext(iterador)\n\n10\n\n\nnext(iterador)\n    next(iterador)\n    ~~~~^^^^^^^^^^\nStopIteration\nPor último, vale la pena señalar que los iteradores solo pueden construirse a partir de objetos iterables. Por ejemplo, un número entero no es iterable, por lo que no es posible obtener un iterador a partir de él.\niter(10)\n    iter(10)\n    ~~~~^^^^\nTypeError: 'int' object is not iterable\nEn resumen, en Python solo se puede iterar sobre iteradores. Un objeto es iterable cuando puede generar un iterador a partir de él, y es este último el que sabe cómo devolver los elementos uno a uno mediante la función next. Cuando ya no quedan más valores por producir, el iterador eleva la excepción StopIteration.\nLos generadores son un caso particular de iteradores: producen sus valores bajo demanda y mantienen el estado entre llamadas.\nFinalmente, al usar un bucle for con un iterable, todo este mecanismo ocurre de forma automática: Python crea el iterador por nosotros y se encarga de avanzar en la secuencia hasta agotarla.",
+    "crumbs": [
+      "Teoría",
+      "U2 - Programación Funcional",
+      "5 - Generadores 🧩"
     ]
   },
   {
