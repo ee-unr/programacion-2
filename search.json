@@ -1222,6 +1222,186 @@
     ]
   },
   {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html",
+    "href": "practica/02_programacion_funcional/ejercicios.html",
+    "title": "🛠️ Ejercicios",
+    "section": "",
+    "text": "Debajo se muestra un listado de funciones impuras. Analice por qué son impuras e implemente alternativas puras (manteniendo su lógica):\nFunción 1\ncontador = 0\ndef incrementar():\n1    global contador\n    contador += 1\n    return contador\n\n1\n\nLa palabra global es una keyword que indica que se pretende usar y modificar una variable definida fuera del ámbito de ejecución de la función.\n\n\nFunción 2\ndef obtener_hora_actual():\n    import datetime\n    return datetime.datetime.now().hour\nFunción 3\ndef add_time(time, hours, minutes, seconds):\n1    increment_time(time, hours, minutes, seconds)\n    return time\n\n1\n\nAsuma que esta función incrementa a time, que es un objeto datetime, en hours horas, minutes minutos y seconds segundos.\n\n\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nRepresente fechas y horas con el objeto objeto datetime del módulo estándar datetime. Además, considere el objeto timedelta del mismo módulo para luego calcular diferencias. Por ejemplo:\nimport datetime\n\nahora = datetime.datetime.now() # Devuelve un objeto con la fecha y la hora actual\nprint(ahora)\n\nuna_hora_mas_tarde = datetime.timedelta(hours=1, minutes=0, seconds=0)\nprint(ahora + una_hora_mas_tarde)\n2025-08-31 09:48:58.327461\n2025-08-31 10:48:58.327461\n\n\n\nFunción 4\nhistorial_de_nombres = []\ndef registrar_nombre(nombre):\n    historial_de_nombres.append(nombre)\n    return f\"'{nombre}' ha sido registrado en el historial.\"\nFunción 5\nLIMITE_MAXIMO = 100\ndef verificar_limite(valor):\n    if valor &gt; LIMITE_MAXIMO:\n        return \"Excede el límite\"\n    return \"Dentro del límite\"",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#trasfromando-funciones",
+    "href": "practica/02_programacion_funcional/ejercicios.html#trasfromando-funciones",
+    "title": "🛠️ Ejercicios",
+    "section": "",
+    "text": "Debajo se muestra un listado de funciones impuras. Analice por qué son impuras e implemente alternativas puras (manteniendo su lógica):\nFunción 1\ncontador = 0\ndef incrementar():\n1    global contador\n    contador += 1\n    return contador\n\n1\n\nLa palabra global es una keyword que indica que se pretende usar y modificar una variable definida fuera del ámbito de ejecución de la función.\n\n\nFunción 2\ndef obtener_hora_actual():\n    import datetime\n    return datetime.datetime.now().hour\nFunción 3\ndef add_time(time, hours, minutes, seconds):\n1    increment_time(time, hours, minutes, seconds)\n    return time\n\n1\n\nAsuma que esta función incrementa a time, que es un objeto datetime, en hours horas, minutes minutos y seconds segundos.\n\n\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nRepresente fechas y horas con el objeto objeto datetime del módulo estándar datetime. Además, considere el objeto timedelta del mismo módulo para luego calcular diferencias. Por ejemplo:\nimport datetime\n\nahora = datetime.datetime.now() # Devuelve un objeto con la fecha y la hora actual\nprint(ahora)\n\nuna_hora_mas_tarde = datetime.timedelta(hours=1, minutes=0, seconds=0)\nprint(ahora + una_hora_mas_tarde)\n2025-08-31 09:48:58.327461\n2025-08-31 10:48:58.327461\n\n\n\nFunción 4\nhistorial_de_nombres = []\ndef registrar_nombre(nombre):\n    historial_de_nombres.append(nombre)\n    return f\"'{nombre}' ha sido registrado en el historial.\"\nFunción 5\nLIMITE_MAXIMO = 100\ndef verificar_limite(valor):\n    if valor &gt; LIMITE_MAXIMO:\n        return \"Excede el límite\"\n    return \"Dentro del límite\"",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#área-de-aprendizaje",
+    "href": "practica/02_programacion_funcional/ejercicios.html#área-de-aprendizaje",
+    "title": "🛠️ Ejercicios",
+    "section": "2 Área de aprendizaje",
+    "text": "2 Área de aprendizaje\nSe cuenta con una lista de tuplas de longitud 2, representando el ancho y alto de distintos rectángulos.\nrectangulos = [\n    (5, 8),\n    (2, 2),\n    (9, 2),\n    (3, 3),\n    (3, 7),\n    (6, 3)\n]\nCree una nueva lista que ordene dichos rectángulos en función de su área.",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#socios-ordenados",
+    "href": "practica/02_programacion_funcional/ejercicios.html#socios-ordenados",
+    "title": "🛠️ Ejercicios",
+    "section": "3 Socios ordenados",
+    "text": "3 Socios ordenados\nSe cuenta con la siguiente lista de diccionarios, la cual contiene datos personales sobre miembros de un club de atletismo:\ndatos_socios = [\n    {\"nombre\": \"Bautista Carrara\", \"edad\": 22, \"altura_cm\": 178, \"record_100m\": 13.4},\n    {\"nombre\": \"Valentina Lucci\",  \"edad\": 23, \"altura_cm\": 163, \"record_100m\": 14.2},\n    {\"nombre\": \"Gerónimo Cuesta\",  \"edad\": 26, \"altura_cm\": 170, \"record_100m\": 14.0},\n    {\"nombre\": \"Lucio Borga\",      \"edad\": 28, \"altura_cm\": 186, \"record_100m\": 13.8},\n    {\"nombre\": \"Julia Spoglia\",    \"edad\": 21, \"altura_cm\": 163, \"record_100m\": 11.9},\n    {\"nombre\": \"Soledad Colombo\",  \"edad\": 22, \"altura_cm\": 170, \"record_100m\": 13.5}\n]\nOrdene la lista en base a los récords en la carrera de 100 metros, en forma ascendente.\n\nPunto extra\nImplemente una función que tome como argumento una clave de diccionario y devuelva una lista ordenada por los valores de dicha clave. Si el argumento toma el valor \"nombre\", ordene los elementos alfabéticamente en base a los apellidos.",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#fábrica-de-promociones",
+    "href": "practica/02_programacion_funcional/ejercicios.html#fábrica-de-promociones",
+    "title": "🛠️ Ejercicios",
+    "section": "4 Fábrica de promociones",
+    "text": "4 Fábrica de promociones\nConsidere el ejercicio Promociones de la Práctica 1. Utilizando el mismo sistema de descuentos cree la función crear_promocion que reciba como argumento el medio de pago y devuelva una función que al aplicarse sobre un número aplique el descuento (o recargo) que le corresponde a ese medio de pago. Por ejemplo:\npromo_debito = crear_promocion(\"débito\")\nprint(promo_debito(1000))\nprint(promo_debito(2700))\n900\n2430.0\nLuego, cree la función crear_promocion_personalizada que recibe el medio de pago y, de manera opcional, el porcentaje de descuento a aplicar. Como resultado devuelve una función que al aplicarse sobre un número impacta el descuento o recargo correspondiente. Además, considere que:\n\nSi no se pasa el porcentaje a aplicar, se deben usar los descuentos y recargos detallados en el enunciado del ejercicio en la Práctica 1.\nCaso contrario, la función devuelta debe aplicar ese porcentaje personalizado (e.g., crear_promocion_personalizada(\"débito\", 15) para 15% de descuento).\n\nEjemplo de uso:\npromo_debito = crear_promocion_personalizada(\"débito\", 15)\npromo_debito(1000)\n850",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#analistas-de-temperaturas",
+    "href": "practica/02_programacion_funcional/ejercicios.html#analistas-de-temperaturas",
+    "title": "🛠️ Ejercicios",
+    "section": "5 Analistas de temperaturas",
+    "text": "5 Analistas de temperaturas\nConsidere una lista de temperaturas en grados Celsius sobre la cual se deben aplicar distintas operaciones.\ntemperaturas_celsius = [\n    25.5, 28.0, 19.3, 31.5, 22.8, 17.0, 30.2, 35.6, 14.2,\n    32.4, 22.7, 10.1, 29.5, 33.9, 22.1, 38.9, 18.4, 16.3\n]\n\nConvierta las temperaturas a grados Fahrenheit utilizando map y almacene el resultado en una lista llamada temperaturas_f. Use la fórmula de conversión: \\[\nF = C \\times \\frac{9}{5} + 32\n\\]\nUtilice filter para seleccionar de la lista anterior las temperaturas que sean mayores a 80°F. Guarde el resultado en una nueva lista. ¿Se le ocurre una alternativa que no utilice la lista creada en el primer punto?\nUtilice reduce para sumar las temperaturas filtradas en el paso anterior y calcular el promedio dividiendo la suma total entre la cantidad de elementos en la lista filtrada.\n\n\nPunto extra 😱\nCalcule el promedio de temperaturas sin materializar ninguna secuencia hasta el último instante. Para ello, deberá utilizar enumrate, filter y reduce, sin convertir resultados a listas intermedias.",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#listado-de-rimas",
+    "href": "practica/02_programacion_funcional/ejercicios.html#listado-de-rimas",
+    "title": "🛠️ Ejercicios",
+    "section": "6 Listado de rimas",
+    "text": "6 Listado de rimas\nSe tiene la siguiente lista de palabras, la cual se quiere utilizar para formar rimas:\npalabras_a_rimar = [\n    \"actividad\",\n    \"bendición\",\n    \"cartelera\",\n    \"ciudad\",\n    \"escalera\",\n    \"estación\",\n    \"felicidad\",\n    \"función\",\n    \"reposera\"\n]\nOrdene la lista en base al orden alfabético del reverso de cada palabra, de modo que las palabras que riman se encuentren juntas.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nSi la lista fuese [\"durazno\", \"kiwi\"], el resultado sería [\"kiwi\", \"durazno\"], porque \"iwik\" precede a \"onzarud\" en orden alfabético.",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#el-tiempo-vuela",
+    "href": "practica/02_programacion_funcional/ejercicios.html#el-tiempo-vuela",
+    "title": "🛠️ Ejercicios",
+    "section": "7 El tiempo vuela",
+    "text": "7 El tiempo vuela\nSe quiere medir el tiempo que tarda la computadora en ejecutar distintos bloques de código. Para eso, implemente una función crear_cronometro que fabrique una función cronometro, la cual devuelve el tiempo transcurrido entre su creación y la llamada a la función. Luego, utilice dos cronómetros en paralelo para evaluar el siguiente código:\ncronometro1 = crear_cronometro()\n\nfor i in range(10**4):\n    i ** 2 # Calcula el cuadrado de un número pero no lo devuelve\n\nprint(f\"El bloque entero tardó {cronometro1()} segundos en ejecutarse.\")\n\ncronometro2 = crear_cronometro()\n\nfor j in range(10**6):\n    j // 2 # Calcula la división entera por 2 pero no la devuelve\n\nprint(f\"El segundo bucle tardó {cronometro2()} segundos en ejecutarse.\")\n\nPunto extra\nModifique el funcionamiento del cronómetro para que en cada llamada devuelva el tiempo transcurrido entre la llamada actual y la inmediata anterior (excepto en la primera llamada, que devuelve el tiempo transcurrido desde su creación).\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nPara medir el paso del tiempo en Python podemos usar la función time del módulo homónimo.\nfrom time import time, sleep\n\ninicio = time()\nsleep(2) # Detiene la ejecución por 2 segundos\nprint(time() - inicio) # ~ 2 (segundos)",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#sucesión-de-fibonacci",
+    "href": "practica/02_programacion_funcional/ejercicios.html#sucesión-de-fibonacci",
+    "title": "🛠️ Ejercicios",
+    "section": "8 Sucesión de Fibonacci",
+    "text": "8 Sucesión de Fibonacci\nConsidere la sucesión que comienza por los números 0 y 1. Los siguientes números se forman sumando los dos anteriores.\n\\[\n\\{\\;0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \\cdots\\;\\}\n\\]\nEsta sucesión se conoce como sucesión de Fibonacci.\nImplemente una función recursiva que tome un número natural n como entrada y devuelva el n-ésimo número en la sucesión.",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#subiendo-de-rango",
+    "href": "practica/02_programacion_funcional/ejercicios.html#subiendo-de-rango",
+    "title": "🛠️ Ejercicios",
+    "section": "9 Subiendo de rango",
+    "text": "9 Subiendo de rango\nLa función range(start, stop, step) de Python devuelve un objeto que genera una secuencia de números desde start (inclusive) hasta stop (exclusive) en incrementos de step unidades. El argumento step, sin embargo, sólo puede ser un número entero (excepto cero). Implemente una función llamada frange que acepte los mismos argumentos, pudiendo step ser de tipo float. La función debe retornar un generador de la secuencia correspondiente.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nUtilice el siguiente ejemplo a modo de control:\nfor i in frange(3, 4, 0.2):\n    print(f\"{i:.2f}\")\n3.00\n3.20\n3.40\n3.60\n3.80\nTenga en cuenta que la precisión finita de las computadoras puede afectar el comportamiento de su generador.",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#la-cajita-musical",
+    "href": "practica/02_programacion_funcional/ejercicios.html#la-cajita-musical",
+    "title": "🛠️ Ejercicios",
+    "section": "10 La cajita musical",
+    "text": "10 La cajita musical\nTenemos una caja musical que recita los siguientes versos:\nversos = [\n    \"Tengo que confesar que a veces no me gusta tu forma de ser\",\n    \"Luego te me desapareces y no entiendo muy bien por qué\",\n\n    \"No dices nada romántico cuando llega el atardecer\",\n    \"Te pones de un humor extraño con cada luna llena al mes\",\n\n    \"Pero a todo lo demás le gana lo bueno que me das\",\n    \"Sólo tenerte cerca, siento que vuelvo a empezar\"\n]\nImplemente una función para darle cuerda a la caja musical. En cada llamada debe devolver un verso distinto, hasta agotarlos todos.\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nMediante el uso de yield se puede lograr que una función se detenga en un punto intermedio y retome desde ese punto en la siguiente llamada.\ndef mostrar_fase():\n    print(\"Inicio\")\n    yield\n    print(\"Medio\")\n    yield\n    print(\"Desenlace\")\n    yield",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#el-mejor-precio",
+    "href": "practica/02_programacion_funcional/ejercicios.html#el-mejor-precio",
+    "title": "🛠️ Ejercicios",
+    "section": "11 El mejor precio",
+    "text": "11 El mejor precio\nUn supermercado ofrece múltiples promociones:\n\n15% de descuento los días lunes y miércoles.\n10% de descuento en compras con monto superior a $50.000.\n20% de descuento a clientes mayores de 65 años.\n\nPara determinar la promoción a aplicar, el supermercado utiliza un programa con la siguiente estructura:\ndef promo_dia_semana(compra):\n    \"\"\"Aplica un 15% de descuento si la compra se realiza un lunes o miércoles.\"\"\"\n    return None # hay que implementar esta función\n\ndef promo_monto_grande(compra):\n    \"\"\"Aplica un 10% de descuento si la compra tiene un monto superior a $50.000.\"\"\"\n    return None # hay que implementar esta función\n\ndef promo_edad(compra):\n    \"\"\"Aplica un 20% de descuento si el cliente tiene 65 años o más.\"\"\"\n    return None # hay que implementar esta función\n\npromos = [promo_dia_semana, promo_monto_grande, promo_edad]\n\ndef mejor_promo(compra):\n    \"\"\"Construye diccionario con el monto luego de aplicar la mejor promoción.\n\n    Esta función devuelve un diccionario con el monto original, el monto final, y el descuento\n    aplicado.\n    \"\"\"\n    # Obtener el multiplicador del mayor descuento\n    multiplicador = sorted([promo(compra) for promo in promos])[0]\n\n    return {\n        \"monto_original\": compra[\"monto\"],\n        \"monto_final\": compra[\"monto\"] * multiplicador,\n        \"descuento\": f\"{round((1 - multiplicador) * 100)}%\"\n    }\n\nejemplo_compra = {\"dia\": \"miércoles\", \"edad_cliente\": 42, \"monto\": 66420}\nmejor_promo(ejemplo_compra)\n# {'monto_original': 66420, 'monto_final': 56457.0, 'descuento': '15%'}\nEl problema con esta implementación es que, cada vez que se añade o elimina una promoción, el cambio debe llevarse a cabo tanto en la función de la promoción como en la lista de promociones. Para evitar el trabajo duplicado, implemente los siguientes cambios:\n\nDefina primero la lista promos, la cual comienza estando vacía.\nDefina un decorador promo que añade una función a la lista promos antes de ejecutarla.\nImplemente las tres funciones de promoción y decórelas con el decorador del paso anterior.",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#bromas-pesadas",
+    "href": "practica/02_programacion_funcional/ejercicios.html#bromas-pesadas",
+    "title": "🛠️ Ejercicios",
+    "section": "12 Bromas pesadas 😱",
+    "text": "12 Bromas pesadas 😱\nNuestro amigo programador está armando una página web, con una función que saluda a los nuevos usuarios por su nombre cuando se registran. Nosotros queremos gastarle una broma a nuestro amigo, metiendo en su código un decorador que haga que su función corra normalmente excepto cada n-ésima corrida, fallando silenciosamente (no imprime nada). El valor n es un número entero de nuestra elección.\n@romper_cada(3)\ndef saludar(nombre):\n  print(f\"¡Hola, {nombre}!\")\n\nsaludar(\"Carlos\")     # \"¡Hola, Carlos!\"\nsaludar(\"María Luz\")  # \"¡Hola, María Luz!\"\nsaludar(\"Mirna\")      # Nada (la función devuelve None)\nsaludar(\"Diego\")      # \"¡Hola, Diego!\"\n\n\n\n\n\n\nAyuda\n\n\n\n\n\nPara crear un decorador que reciba argumentos, podemos crear una fábrica de decoradores:\ndef mi_decorador(n):\n    def decorar(funcion):\n        print(f\"Ejecutando decorador con argumento {n}\")\n        return funcion\n    return decorar\n\n@mi_decorador(7)\ndef imprimir(mensaje):\n    print(mensaje)\n\nimprimir(\"Hola mundo\")\n# &gt; Ejecutando decorador con argumento 7\n# &gt; Hola mundo",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#pipelines-de-procesamiento",
+    "href": "practica/02_programacion_funcional/ejercicios.html#pipelines-de-procesamiento",
+    "title": "🛠️ Ejercicios",
+    "section": "13 Pipelines de procesamiento 😱",
+    "text": "13 Pipelines de procesamiento 😱\nEste ejercicio tiene como objetivo implementar un sistema de preprocesamiento para una lista de diccionarios, donde cada diccionario representa una fila con sus columnas como pares clave–valor. Un conjunto de datos de ejemplo es el siguiente:\ndatos = [\n    {\"edad\": 20, \"ingresos\": 2000},\n    {\"edad\": 30, \"ingresos\": 3000},\n    {\"edad\": None, \"ingresos\": 2500},\n    {\"edad\": 40, \"ingresos\": None},\n    {\"edad\": 25, \"ingresos\": 4000},\n]\nEl primer paso consiste en definir tres funciones:\n\neliminar_nulos: elimina las filas con al menos un valor None.\ncalcular_log: que calcula el logaritmo en base 10 para los valores de la variable indicada.\nfiltrar: recibe el listado, el nombre de una columna y una función booleana que se aplica para determinar que registros se conservan.\n\nQue deben funcionar como se muestra en los ejemplos:\neliminar_nulos(datos)\n[\n    {\"edad\": 20, \"ingresos\": 2000},\n    {\"edad\": 30, \"ingresos\": 3000},\n    {\"edad\": 25, \"ingresos\": 4000},\n]\ncalcular_log(datos, \"ingresos\")\n[\n    {\"edad\": 20, \"ingresos\": 3.301},\n    {\"edad\": 30, \"ingresos\": 3.477},\n    {\"edad\": None, \"ingresos\": 3.397},\n    {\"edad\": 40, \"ingresos\": None},\n    {\"edad\": 25, \"ingresos\": 3.602},\n]\nfiltrar(datos, \"edad\", lambda e: e &gt; 25)\n[\n    {\"edad\": 30, \"ingresos\": 3000},\n    {\"edad\": 40, \"ingresos\": None},\n]\nEn el segundo paso, se debe implementar una función crear_pipeline, que recibe una cantidad arbitraria de funciones de procesamiento, junto a sus argumentos, y debe devolver una función que, al pasarle un listado de datos, los aplica de manera secuencial y devuelve un conjunto de datos procesado. Por ejemplo:\npipeline = crear_pipeline(\n    {\"fun\": eliminar_nulos, \"kwargs\": {}},\n    {\"fun\": calcular_log, \"kwargs\": {\"var_name\": \"ingresos\"}},\n    {\"fun\": filtrar, \"kwargs\": {\"var_name\": edad, \"key\": lambda e: e &gt; 25}}\n)\npipeline(datos)\n[{\"edad\": 30, \"ingresos\": 3.477}]",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/ejercicios.html#espacio-o-tiempo",
+    "href": "practica/02_programacion_funcional/ejercicios.html#espacio-o-tiempo",
+    "title": "🛠️ Ejercicios",
+    "section": "14 ¿Espacio o tiempo? ⏳",
+    "text": "14 ¿Espacio o tiempo? ⏳\nSuponga que trabaja en el equipo de análisis de datos de un e-commerce y suponga que recibe un listado ventas del último mes. Deberá extraer información clave de esos datos utilizando dos maneras distintas de resolver cada tarea.\n1. Preparación de los datos\nPara empezar, use la siguiente función que genera datos de ejemplo de ventas de distinto tamaño:\nimport random\n\nCATEGORIAS = (\"electrónica\", \"hogar\", \"accesorios\", \"deportes\")\n\ndef generar_ventas(n=100_000, seed=None):\n    \"\"\"Generar datos de ventas.\n\n    Parameters\n    ----------\n    n : int\n        Cantidad de ventas a simular.\n    seed : int, optional\n        Semilla para el generador de números aleatorios. Por defecto, `None`.\n\n    Returns\n    -------\n    list[dict]\n        Listado de ventas.\n        Cada venta es un diccionario con claves `\"id\"`, `\"precio\"` y `\"categoria\"`.\n    \"\"\"\n    rng = random.Random(seed)\n    ventas = []\n    for i in range(1, n + 1):\n        ventas.append(\n            {\n                \"id\": f\"P{i+1:06d}\",\n                \"precio\": round(rng.uniform(5.0, 500.0), 2),\n                \"categoria\": CATEGORIAS[i % len(CATEGORIAS)],\n            }\n        )\n    return ventas\nGenere un conjunto de datos con 100,000 ventas:\nventas = generar_ventas(n=100_000, seed=1234)\n2. Implementación de operaciones\nRealice dos operaciones sobre este conjunto de datos, cada una en dos variantes.\n\nCalcular precios con IVA (21%):\n\nVersión A. Use una list comprehension para crear una nueva lista llamada precios_con_iva_1 que contenga todos los precios con el 21 % de IVA ya calculado.\nVersión B. Use una expresión generadora para crear un objeto precios_con_iva_2 que represente la operación, pero sin calcular ni almacenar los resultados todavía.\n\nFiltrar ventas de “electrónica”:\n\nVersión A. Use una list comprehension para crear una nueva lista llamada electronica_1 que contenga todas las ventas de la categoría “electrónica”.\nVersión B. Use una expresión generadora para crear un objeto electronica_2 que represente el filtro, sin materializar la lista.\n\n\n3. Análisis y comparación\n\nCalcule el total de las ventas de electrónica usando sum() en ambas variantes (electronica_1 y electronica_2).\nPara cada operación, antes y después de aplicar sum(), mida el tiempo de ejecución y el uso de memoria del objeto. Para el tiempo, podría usar time.time() del módulo time; para la memoria, sys.getsizeof() del módulo sys. Registre los resultados (si no observa diferencias claras, duplique n al generar el dataset).\n\n4. Reutilización del objeto\n\nIntente calcular el total de ventas de electrónica una segunda vez para ambos objetos (electronica_1 y electronica_2).\nObserve qué sucede en cada caso. ¿Qué objeto puede volver a usarse y cuál no?\n\n5. Preguntas para reflexión\n\n¿Qué diferencias fundamentales encontró entre las dos maneras de procesar los datos? Considere cuándo se realiza la operación, el uso de memoria y el tiempo de ejecución.\n¿Qué ocurrió cuando intentó recorrer o usar el mismo resultado dos veces?\n¿Se comportaron de la misma manera la lista generada y el objeto generador? ¿Por qué cree que sucede esto?\n¿En qué situaciones elegiría un enfoque u otro? Dé un ejemplo de un escenario donde la ejecución A sea mejor y otro donde la B resulte más eficiente.",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
     "objectID": "practica/01_programacion_en_python/ejercicios.html",
     "href": "practica/01_programacion_en_python/ejercicios.html",
     "title": "🛠️ Ejercicios",

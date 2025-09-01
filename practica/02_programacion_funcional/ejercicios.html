@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -70,6 +105,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../practica.css">
 </head>
@@ -289,8 +353,27 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#trasfromando-funciones" id="toc-trasfromando-funciones" class="nav-link active" data-scroll-target="#trasfromando-funciones"><span class="header-section-number">1</span> Trasfromando funciones</a></li>
+  <li><a href="#área-de-aprendizaje" id="toc-área-de-aprendizaje" class="nav-link" data-scroll-target="#área-de-aprendizaje"><span class="header-section-number">2</span> Área de aprendizaje</a></li>
+  <li><a href="#socios-ordenados" id="toc-socios-ordenados" class="nav-link" data-scroll-target="#socios-ordenados"><span class="header-section-number">3</span> Socios ordenados</a></li>
+  <li><a href="#fábrica-de-promociones" id="toc-fábrica-de-promociones" class="nav-link" data-scroll-target="#fábrica-de-promociones"><span class="header-section-number">4</span> Fábrica de promociones</a></li>
+  <li><a href="#analistas-de-temperaturas" id="toc-analistas-de-temperaturas" class="nav-link" data-scroll-target="#analistas-de-temperaturas"><span class="header-section-number">5</span> Analistas de temperaturas</a></li>
+  <li><a href="#listado-de-rimas" id="toc-listado-de-rimas" class="nav-link" data-scroll-target="#listado-de-rimas"><span class="header-section-number">6</span> Listado de rimas</a></li>
+  <li><a href="#el-tiempo-vuela" id="toc-el-tiempo-vuela" class="nav-link" data-scroll-target="#el-tiempo-vuela"><span class="header-section-number">7</span> El tiempo vuela</a></li>
+  <li><a href="#sucesión-de-fibonacci" id="toc-sucesión-de-fibonacci" class="nav-link" data-scroll-target="#sucesión-de-fibonacci"><span class="header-section-number">8</span> Sucesión de Fibonacci</a></li>
+  <li><a href="#subiendo-de-rango" id="toc-subiendo-de-rango" class="nav-link" data-scroll-target="#subiendo-de-rango"><span class="header-section-number">9</span> Subiendo de rango</a></li>
+  <li><a href="#la-cajita-musical" id="toc-la-cajita-musical" class="nav-link" data-scroll-target="#la-cajita-musical"><span class="header-section-number">10</span> La cajita musical</a></li>
+  <li><a href="#el-mejor-precio" id="toc-el-mejor-precio" class="nav-link" data-scroll-target="#el-mejor-precio"><span class="header-section-number">11</span> El mejor precio</a></li>
+  <li><a href="#bromas-pesadas" id="toc-bromas-pesadas" class="nav-link" data-scroll-target="#bromas-pesadas"><span class="header-section-number">12</span> Bromas pesadas 😱</a></li>
+  <li><a href="#pipelines-de-procesamiento" id="toc-pipelines-de-procesamiento" class="nav-link" data-scroll-target="#pipelines-de-procesamiento"><span class="header-section-number">13</span> <em>Pipelines</em> de procesamiento 😱</a></li>
+  <li><a href="#espacio-o-tiempo" id="toc-espacio-o-tiempo" class="nav-link" data-scroll-target="#espacio-o-tiempo"><span class="header-section-number">14</span> ¿Espacio o tiempo? ⏳</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -314,8 +397,504 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="trasfromando-funciones" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="trasfromando-funciones"><span class="header-section-number">1</span> Trasfromando funciones</h2>
+<p>Debajo se muestra un listado de funciones impuras. Analice por qué son impuras e implemente alternativas puras (manteniendo su lógica):</p>
+<p>Función 1</p>
+<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>contador <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> incrementar():</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> contador</span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a>    contador <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> contador</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="1">La palabra <code>global</code> es una <em>keyword</em> que indica que se pretende usar y <strong>modificar</strong> una variable definida fuera del ámbito de ejecución de la función.</span>
+</dd>
+</dl>
+<p>Función 2</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> obtener_hora_actual():</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> datetime</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> datetime.datetime.now().hour</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Función 3</p>
+<div class="sourceCode" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_time(time, hours, minutes, seconds):</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>    increment_time(time, hours, minutes, seconds)</span>
+<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> time</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="2" data-code-annotation="1">Asuma que esta función incrementa a <code>time</code>, que es un objeto <code>datetime</code>, en <code>hours</code> horas, <code>minutes</code> minutos y <code>seconds</code> segundos.</span>
+</dd>
+</dl>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Represente fechas y horas con el objeto objeto <code>datetime</code> del módulo estándar <code>datetime</code>. Además, considere el objeto <code>timedelta</code> del mismo módulo para luego calcular diferencias. Por ejemplo:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ahora <span class="op">=</span> datetime.datetime.now() <span class="co"># Devuelve un objeto con la fecha y la hora actual</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ahora)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>una_hora_mas_tarde <span class="op">=</span> datetime.timedelta(hours<span class="op">=</span><span class="dv">1</span>, minutes<span class="op">=</span><span class="dv">0</span>, seconds<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ahora <span class="op">+</span> una_hora_mas_tarde)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>2025-08-31 09:48:58.327461</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>2025-08-31 10:48:58.327461</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>Función 4</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>historial_de_nombres <span class="op">=</span> []</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> registrar_nombre(nombre):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    historial_de_nombres.append(nombre)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"'</span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss">' ha sido registrado en el historial."</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Función 5</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>LIMITE_MAXIMO <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> verificar_limite(valor):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> valor <span class="op">&gt;</span> LIMITE_MAXIMO:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Excede el límite"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Dentro del límite"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="área-de-aprendizaje" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="área-de-aprendizaje"><span class="header-section-number">2</span> Área de aprendizaje</h2>
+<p>Se cuenta con una lista de tuplas de longitud 2, representando el ancho y alto de distintos rectángulos.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rectangulos <span class="op">=</span> [</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">5</span>, <span class="dv">8</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span>, <span class="dv">2</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">9</span>, <span class="dv">2</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span>, <span class="dv">7</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">6</span>, <span class="dv">3</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cree una nueva lista que ordene dichos rectángulos en función de su área.</p>
+</section>
+<section id="socios-ordenados" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="socios-ordenados"><span class="header-section-number">3</span> Socios ordenados</h2>
+<p>Se cuenta con la siguiente lista de diccionarios, la cual contiene datos personales sobre miembros de un club de atletismo:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>datos_socios <span class="op">=</span> [</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"Bautista Carrara"</span>, <span class="st">"edad"</span>: <span class="dv">22</span>, <span class="st">"altura_cm"</span>: <span class="dv">178</span>, <span class="st">"record_100m"</span>: <span class="fl">13.4</span>},</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"Valentina Lucci"</span>,  <span class="st">"edad"</span>: <span class="dv">23</span>, <span class="st">"altura_cm"</span>: <span class="dv">163</span>, <span class="st">"record_100m"</span>: <span class="fl">14.2</span>},</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"Gerónimo Cuesta"</span>,  <span class="st">"edad"</span>: <span class="dv">26</span>, <span class="st">"altura_cm"</span>: <span class="dv">170</span>, <span class="st">"record_100m"</span>: <span class="fl">14.0</span>},</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"Lucio Borga"</span>,      <span class="st">"edad"</span>: <span class="dv">28</span>, <span class="st">"altura_cm"</span>: <span class="dv">186</span>, <span class="st">"record_100m"</span>: <span class="fl">13.8</span>},</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"Julia Spoglia"</span>,    <span class="st">"edad"</span>: <span class="dv">21</span>, <span class="st">"altura_cm"</span>: <span class="dv">163</span>, <span class="st">"record_100m"</span>: <span class="fl">11.9</span>},</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"Soledad Colombo"</span>,  <span class="st">"edad"</span>: <span class="dv">22</span>, <span class="st">"altura_cm"</span>: <span class="dv">170</span>, <span class="st">"record_100m"</span>: <span class="fl">13.5</span>}</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ordene la lista en base a los récords en la carrera de 100 metros, en forma ascendente.</p>
+<section id="punto-extra" class="level3">
+<h3 class="anchored" data-anchor-id="punto-extra">Punto extra</h3>
+<p>Implemente una función que tome como argumento una clave de diccionario y devuelva una lista ordenada por los valores de dicha clave. Si el argumento toma el valor <code>"nombre"</code>, ordene los elementos alfabéticamente en base a los apellidos.</p>
+</section>
+</section>
+<section id="fábrica-de-promociones" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="fábrica-de-promociones"><span class="header-section-number">4</span> Fábrica de promociones</h2>
+<p>Considere el ejercicio <a href="../../practica/01_programacion_en_python/ejercicios.html#promociones">Promociones</a> de la Práctica 1. Utilizando el mismo sistema de descuentos cree la función <code>crear_promocion</code> que reciba como argumento el medio de pago y devuelva una función que al aplicarse sobre un número aplique el descuento (o recargo) que le corresponde a ese medio de pago. Por ejemplo:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>promo_debito <span class="op">=</span> crear_promocion(<span class="st">"débito"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(promo_debito(<span class="dv">1000</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(promo_debito(<span class="dv">2700</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>900</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>2430.0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Luego, cree la función <code>crear_promocion_personalizada</code> que recibe el medio de pago y, de manera opcional, el porcentaje de descuento a aplicar. Como resultado devuelve una función que al aplicarse sobre un número impacta el descuento o recargo correspondiente. Además, considere que:</p>
+<ul>
+<li>Si no se pasa el porcentaje a aplicar, se deben usar los descuentos y recargos detallados en el enunciado del ejercicio en la Práctica 1.</li>
+<li>Caso contrario, la función devuelta debe aplicar ese porcentaje personalizado (e.g., <code>crear_promocion_personalizada("débito", 15)</code> para 15% de descuento).</li>
+</ul>
+<p>Ejemplo de uso:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>promo_debito <span class="op">=</span> crear_promocion_personalizada(<span class="st">"débito"</span>, <span class="dv">15</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>promo_debito(<span class="dv">1000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>850</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="analistas-de-temperaturas" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="analistas-de-temperaturas"><span class="header-section-number">5</span> Analistas de temperaturas</h2>
+<p>Considere una lista de temperaturas en grados Celsius sobre la cual se deben aplicar distintas operaciones.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>temperaturas_celsius <span class="op">=</span> [</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">25.5</span>, <span class="fl">28.0</span>, <span class="fl">19.3</span>, <span class="fl">31.5</span>, <span class="fl">22.8</span>, <span class="fl">17.0</span>, <span class="fl">30.2</span>, <span class="fl">35.6</span>, <span class="fl">14.2</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">32.4</span>, <span class="fl">22.7</span>, <span class="fl">10.1</span>, <span class="fl">29.5</span>, <span class="fl">33.9</span>, <span class="fl">22.1</span>, <span class="fl">38.9</span>, <span class="fl">18.4</span>, <span class="fl">16.3</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li><p>Convierta las temperaturas a grados Fahrenheit utilizando <code>map</code> y almacene el resultado en una lista llamada <code>temperaturas_f</code>. Use la fórmula de conversión: <span class="math display">\[
+F = C \times \frac{9}{5} + 32
+\]</span></p></li>
+<li><p>Utilice <code>filter</code> para seleccionar de la lista anterior las temperaturas que sean mayores a 80°F. Guarde el resultado en una nueva lista. ¿Se le ocurre una alternativa que no utilice la lista creada en el primer punto?</p></li>
+<li><p>Utilice <code>reduce</code> para sumar las temperaturas filtradas en el paso anterior y calcular el promedio dividiendo la suma total entre la cantidad de elementos en la lista filtrada.</p></li>
+</ol>
+<section id="punto-extra-1" class="level3">
+<h3 class="anchored" data-anchor-id="punto-extra-1">Punto extra 😱</h3>
+<p>Calcule el promedio de temperaturas <strong>sin materializar</strong> ninguna secuencia hasta el último instante. Para ello, deberá utilizar <code>enumrate</code>, <code>filter</code> y <code>reduce</code>, sin convertir resultados a listas intermedias.</p>
+<!--
+```python
+from functools import reduce
+def f(x, y):
+    numerador = x[1] + y[1]
+    n = y[0] + 1
+    return (n, numerador)
+reduce(lambda x, y: y / x, reduce(f, enumerate(filter(lambda c: (c * 9/5 + 32) > 80, temperaturas_celsius))))
+```
+-->
+</section>
+</section>
+<section id="listado-de-rimas" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="listado-de-rimas"><span class="header-section-number">6</span> Listado de rimas</h2>
+<p>Se tiene la siguiente lista de palabras, la cual se quiere utilizar para formar rimas:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>palabras_a_rimar <span class="op">=</span> [</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"actividad"</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bendición"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cartelera"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ciudad"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"escalera"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"estación"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"felicidad"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"función"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"reposera"</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ordene la lista en base al orden alfabético del reverso de cada palabra, de modo que las palabras que riman se encuentren juntas.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Si la lista fuese <code>["durazno", "kiwi"]</code>, el resultado sería <code>["kiwi", "durazno"]</code>, porque <code>"iwik"</code> precede a <code>"onzarud"</code> en orden alfabético.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="el-tiempo-vuela" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="el-tiempo-vuela"><span class="header-section-number">7</span> El tiempo vuela</h2>
+<p>Se quiere medir el tiempo que tarda la computadora en ejecutar distintos bloques de código. Para eso, implemente una función <code>crear_cronometro</code> que fabrique una función <code>cronometro</code>, la cual devuelve el tiempo transcurrido entre su creación y la llamada a la función. Luego, utilice dos cronómetros en paralelo para evaluar el siguiente código:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>cronometro1 <span class="op">=</span> crear_cronometro()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">4</span>):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    i <span class="op">**</span> <span class="dv">2</span> <span class="co"># Calcula el cuadrado de un número pero no lo devuelve</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El bloque entero tardó </span><span class="sc">{</span>cronometro1()<span class="sc">}</span><span class="ss"> segundos en ejecutarse."</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>cronometro2 <span class="op">=</span> crear_cronometro()</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">6</span>):</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    j <span class="op">//</span> <span class="dv">2</span> <span class="co"># Calcula la división entera por 2 pero no la devuelve</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El segundo bucle tardó </span><span class="sc">{</span>cronometro2()<span class="sc">}</span><span class="ss"> segundos en ejecutarse."</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="punto-extra-2" class="level3">
+<h3 class="anchored" data-anchor-id="punto-extra-2">Punto extra</h3>
+<p>Modifique el funcionamiento del cronómetro para que en cada llamada devuelva el tiempo transcurrido entre la llamada actual y la inmediata anterior (excepto en la primera llamada, que devuelve el tiempo transcurrido desde su creación).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Para medir el paso del tiempo en Python podemos usar la función <code>time</code> del módulo homónimo.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> time, sleep</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>inicio <span class="op">=</span> time()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>sleep(<span class="dv">2</span>) <span class="co"># Detiene la ejecución por 2 segundos</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time() <span class="op">-</span> inicio) <span class="co"># ~ 2 (segundos)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sucesión-de-fibonacci" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sucesión-de-fibonacci"><span class="header-section-number">8</span> Sucesión de Fibonacci</h2>
+<p>Considere la sucesión que comienza por los números 0 y 1. Los siguientes números se forman sumando los dos anteriores.</p>
+<p><span class="math display">\[
+\{\;0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \cdots\;\}
+\]</span></p>
+<p>Esta sucesión se conoce como <strong>sucesión de Fibonacci</strong>.</p>
+<p>Implemente una función recursiva que tome un número natural <code>n</code> como entrada y devuelva el <code>n</code>-ésimo número en la sucesión.</p>
+</section>
+<section id="subiendo-de-rango" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="subiendo-de-rango"><span class="header-section-number">9</span> Subiendo de rango</h2>
+<p>La función <code>range(start, stop, step)</code> de Python devuelve un objeto que genera una secuencia de números desde <code>start</code> (inclusive) hasta <code>stop</code> (exclusive) en incrementos de <code>step</code> unidades. El argumento <code>step</code>, sin embargo, sólo puede ser un número entero (excepto cero). Implemente una función llamada <code>frange</code> que acepte los mismos argumentos, pudiendo <code>step</code> ser de tipo <code>float</code>. La función debe retornar un <strong>generador</strong> de la secuencia correspondiente.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Utilice el siguiente ejemplo a modo de control:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> frange(<span class="dv">3</span>, <span class="dv">4</span>, <span class="fl">0.2</span>):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>3.00
+3.20
+3.40
+3.60
+3.80</code></pre>
+<p>Tenga en cuenta que la precisión finita de las computadoras puede afectar el comportamiento de su generador.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="la-cajita-musical" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="la-cajita-musical"><span class="header-section-number">10</span> La cajita musical</h2>
+<p>Tenemos una caja musical que recita los siguientes versos:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>versos <span class="op">=</span> [</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Tengo que confesar que a veces no me gusta tu forma de ser"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Luego te me desapareces y no entiendo muy bien por qué"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"No dices nada romántico cuando llega el atardecer"</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Te pones de un humor extraño con cada luna llena al mes"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Pero a todo lo demás le gana lo bueno que me das"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sólo tenerte cerca, siento que vuelvo a empezar"</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Implemente una función para darle cuerda a la caja musical. En cada llamada debe devolver un verso distinto, hasta agotarlos todos.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Mediante el uso de <code>yield</code> se puede lograr que una función se detenga en un punto intermedio y retome desde ese punto en la siguiente llamada.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mostrar_fase():</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Inicio"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Medio"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Desenlace"</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">yield</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="el-mejor-precio" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="el-mejor-precio"><span class="header-section-number">11</span> El mejor precio</h2>
+<p>Un supermercado ofrece múltiples promociones:</p>
+<ul>
+<li>15% de descuento los días lunes y miércoles.</li>
+<li>10% de descuento en compras con monto superior a $50.000.</li>
+<li>20% de descuento a clientes mayores de 65 años.</li>
+</ul>
+<p>Para determinar la promoción a aplicar, el supermercado utiliza un programa con la siguiente estructura:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> promo_dia_semana(compra):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Aplica un 15% de descuento si la compra se realiza un lunes o miércoles."""</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span> <span class="co"># hay que implementar esta función</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> promo_monto_grande(compra):</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Aplica un 10% de descuento si la compra tiene un monto superior a $50.000."""</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span> <span class="co"># hay que implementar esta función</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> promo_edad(compra):</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Aplica un 20% de descuento si el cliente tiene 65 años o más."""</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span> <span class="co"># hay que implementar esta función</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>promos <span class="op">=</span> [promo_dia_semana, promo_monto_grande, promo_edad]</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mejor_promo(compra):</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Construye diccionario con el monto luego de aplicar la mejor promoción.</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">    Esta función devuelve un diccionario con el monto original, el monto final, y el descuento</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">    aplicado.</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Obtener el multiplicador del mayor descuento</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    multiplicador <span class="op">=</span> <span class="bu">sorted</span>([promo(compra) <span class="cf">for</span> promo <span class="kw">in</span> promos])[<span class="dv">0</span>]</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"monto_original"</span>: compra[<span class="st">"monto"</span>],</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"monto_final"</span>: compra[<span class="st">"monto"</span>] <span class="op">*</span> multiplicador,</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"descuento"</span>: <span class="ss">f"</span><span class="sc">{</span><span class="bu">round</span>((<span class="dv">1</span> <span class="op">-</span> multiplicador) <span class="op">*</span> <span class="dv">100</span>)<span class="sc">}</span><span class="ss">%"</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>ejemplo_compra <span class="op">=</span> {<span class="st">"dia"</span>: <span class="st">"miércoles"</span>, <span class="st">"edad_cliente"</span>: <span class="dv">42</span>, <span class="st">"monto"</span>: <span class="dv">66420</span>}</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>mejor_promo(ejemplo_compra)</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="co"># {'monto_original': 66420, 'monto_final': 56457.0, 'descuento': '15%'}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El problema con esta implementación es que, cada vez que se añade o elimina una promoción, el cambio debe llevarse a cabo tanto en la función de la promoción como en la lista de promociones. Para evitar el trabajo duplicado, implemente los siguientes cambios:</p>
+<ol type="1">
+<li>Defina primero la lista <code>promos</code>, la cual comienza estando vacía.</li>
+<li>Defina un decorador <code>promo</code> que añade una función a la lista <code>promos</code> antes de ejecutarla.</li>
+<li>Implemente las tres funciones de promoción y decórelas con el decorador del paso anterior.</li>
+</ol>
+</section>
+<section id="bromas-pesadas" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="bromas-pesadas"><span class="header-section-number">12</span> Bromas pesadas 😱</h2>
+<p>Nuestro amigo programador está armando una página web, con una función que saluda a los nuevos usuarios por su nombre cuando se registran. Nosotros queremos gastarle una broma a nuestro amigo, metiendo en su código un decorador que haga que su función corra normalmente excepto cada <code>n</code>-ésima corrida, fallando silenciosamente (no imprime nada). El valor <code>n</code> es un número entero de nuestra elección.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="at">@romper_cada</span>(<span class="dv">3</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saludar(nombre):</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="ss">f"¡Hola, </span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss">!"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>saludar(<span class="st">"Carlos"</span>)     <span class="co"># "¡Hola, Carlos!"</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>saludar(<span class="st">"María Luz"</span>)  <span class="co"># "¡Hola, María Luz!"</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>saludar(<span class="st">"Mirna"</span>)      <span class="co"># Nada (la función devuelve None)</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>saludar(<span class="st">"Diego"</span>)      <span class="co"># "¡Hola, Diego!"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Para crear un decorador que reciba argumentos, podemos crear una fábrica de decoradores:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mi_decorador(n):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> decorar(funcion):</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Ejecutando decorador con argumento </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> funcion</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> decorar</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="at">@mi_decorador</span>(<span class="dv">7</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> imprimir(mensaje):</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(mensaje)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>imprimir(<span class="st">"Hola mundo"</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt; Ejecutando decorador con argumento 7</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt; Hola mundo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pipelines-de-procesamiento" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="pipelines-de-procesamiento"><span class="header-section-number">13</span> <em>Pipelines</em> de procesamiento 😱</h2>
+<p>Este ejercicio tiene como objetivo implementar un sistema de preprocesamiento para una lista de diccionarios, donde cada diccionario representa una fila con sus columnas como pares clave–valor. Un conjunto de datos de ejemplo es el siguiente:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> [</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">20</span>, <span class="st">"ingresos"</span>: <span class="dv">2000</span>},</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">30</span>, <span class="st">"ingresos"</span>: <span class="dv">3000</span>},</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="va">None</span>, <span class="st">"ingresos"</span>: <span class="dv">2500</span>},</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">40</span>, <span class="st">"ingresos"</span>: <span class="va">None</span>},</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">25</span>, <span class="st">"ingresos"</span>: <span class="dv">4000</span>},</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El primer paso consiste en definir tres funciones:</p>
+<ol type="1">
+<li><code>eliminar_nulos</code>: elimina las filas con al menos un valor <code>None</code>.</li>
+<li><code>calcular_log</code>: que calcula el logaritmo en base 10 para los valores de la variable indicada.</li>
+<li><code>filtrar</code>: recibe el listado, el nombre de una columna y una función booleana que se aplica para determinar que registros se conservan.</li>
+</ol>
+<p>Que deben funcionar como se muestra en los ejemplos:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>eliminar_nulos(datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">20</span>, <span class="st">"ingresos"</span>: <span class="dv">2000</span>},</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">30</span>, <span class="st">"ingresos"</span>: <span class="dv">3000</span>},</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">25</span>, <span class="st">"ingresos"</span>: <span class="dv">4000</span>},</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>calcular_log(datos, <span class="st">"ingresos"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">20</span>, <span class="st">"ingresos"</span>: <span class="fl">3.301</span>},</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">30</span>, <span class="st">"ingresos"</span>: <span class="fl">3.477</span>},</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="va">None</span>, <span class="st">"ingresos"</span>: <span class="fl">3.397</span>},</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">40</span>, <span class="st">"ingresos"</span>: <span class="va">None</span>},</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">25</span>, <span class="st">"ingresos"</span>: <span class="fl">3.602</span>},</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>filtrar(datos, <span class="st">"edad"</span>, <span class="kw">lambda</span> e: e <span class="op">&gt;</span> <span class="dv">25</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">30</span>, <span class="st">"ingresos"</span>: <span class="dv">3000</span>},</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"edad"</span>: <span class="dv">40</span>, <span class="st">"ingresos"</span>: <span class="va">None</span>},</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el segundo paso, se debe implementar una función <code>crear_pipeline</code>, que recibe una <strong>cantidad arbitraria</strong> de funciones de procesamiento, junto a sus argumentos, y debe devolver una función que, al pasarle un listado de datos, los aplica de manera secuencial y devuelve un conjunto de datos procesado. Por ejemplo:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> crear_pipeline(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"fun"</span>: eliminar_nulos, <span class="st">"kwargs"</span>: {}},</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"fun"</span>: calcular_log, <span class="st">"kwargs"</span>: {<span class="st">"var_name"</span>: <span class="st">"ingresos"</span>}},</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"fun"</span>: filtrar, <span class="st">"kwargs"</span>: {<span class="st">"var_name"</span>: edad, <span class="st">"key"</span>: <span class="kw">lambda</span> e: e <span class="op">&gt;</span> <span class="dv">25</span>}}</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>pipeline(datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>[{<span class="st">"edad"</span>: <span class="dv">30</span>, <span class="st">"ingresos"</span>: <span class="fl">3.477</span>}]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="espacio-o-tiempo" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="espacio-o-tiempo"><span class="header-section-number">14</span> ¿Espacio o tiempo? ⏳</h2>
+<p>Suponga que trabaja en el equipo de análisis de datos de un <em>e-commerce</em> y suponga que recibe un listado ventas del último mes. Deberá extraer información clave de esos datos utilizando dos maneras distintas de resolver cada tarea.</p>
+<p><strong>1. Preparación de los datos</strong></p>
+<p>Para empezar, use la siguiente función que genera datos de ejemplo de ventas de distinto tamaño:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>CATEGORIAS <span class="op">=</span> (<span class="st">"electrónica"</span>, <span class="st">"hogar"</span>, <span class="st">"accesorios"</span>, <span class="st">"deportes"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generar_ventas(n<span class="op">=</span><span class="dv">100_000</span>, seed<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Generar datos de ventas.</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="co">    n : int</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Cantidad de ventas a simular.</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co">    seed : int, optional</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Semilla para el generador de números aleatorios. Por defecto, `None`.</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="co">    list[dict]</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="co">        Listado de ventas.</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a><span class="co">        Cada venta es un diccionario con claves `"id"`, `"precio"` y `"categoria"`.</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> random.Random(seed)</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    ventas <span class="op">=</span> []</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>        ventas.append(</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>            {</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>                <span class="st">"id"</span>: <span class="ss">f"P</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">:06d}</span><span class="ss">"</span>,</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>                <span class="st">"precio"</span>: <span class="bu">round</span>(rng.uniform(<span class="fl">5.0</span>, <span class="fl">500.0</span>), <span class="dv">2</span>),</span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>                <span class="st">"categoria"</span>: CATEGORIAS[i <span class="op">%</span> <span class="bu">len</span>(CATEGORIAS)],</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ventas</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Genere un conjunto de datos con 100,000 ventas:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ventas <span class="op">=</span> generar_ventas(n<span class="op">=</span><span class="dv">100_000</span>, seed<span class="op">=</span><span class="dv">1234</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>2. Implementación de operaciones</strong></p>
+<p>Realice dos operaciones sobre este conjunto de datos, cada una en dos variantes.</p>
+<ol type="a">
+<li>Calcular precios con IVA (21%):
+<ul>
+<li><strong>Versión A.</strong> Use una <em>list comprehension</em> para crear una nueva lista llamada <code>precios_con_iva_1</code> que contenga todos los precios con el 21 % de IVA ya calculado.</li>
+<li><strong>Versión B.</strong> Use una expresión generadora para crear un objeto <code>precios_con_iva_2</code> que represente la operación, pero sin calcular ni almacenar los resultados todavía.</li>
+</ul></li>
+<li>Filtrar ventas de “electrónica”:
+<ul>
+<li><strong>Versión A.</strong> Use una <em>list comprehension</em> para crear una nueva lista llamada <code>electronica_1</code> que contenga todas las ventas de la categoría “electrónica”.</li>
+<li><strong>Versión B.</strong> Use una expresión generadora para crear un objeto <code>electronica_2</code> que represente el filtro, sin materializar la lista.</li>
+</ul></li>
+</ol>
+<p><strong>3. Análisis y comparación</strong></p>
+<ol start="3" type="a">
+<li>Calcule el total de las ventas de electrónica usando <code>sum()</code> en ambas variantes (<code>electronica_1</code> y <code>electronica_2</code>).</li>
+<li>Para cada operación, antes y después de aplicar <code>sum()</code>, mida el tiempo de ejecución y el uso de memoria del objeto. Para el tiempo, podría usar <code>time.time()</code> del módulo <code>time</code>; para la memoria, <code>sys.getsizeof()</code> del módulo <code>sys</code>. Registre los resultados (si no observa diferencias claras, duplique <code>n</code> al generar el <em>dataset</em>).</li>
+</ol>
+<p><strong>4. Reutilización del objeto</strong></p>
+<ol start="5" type="a">
+<li>Intente calcular el total de ventas de electrónica una segunda vez para ambos objetos (<code>electronica_1</code> y <code>electronica_2</code>).</li>
+<li>Observe qué sucede en cada caso. ¿Qué objeto puede volver a usarse y cuál no?</li>
+</ol>
+<p><strong>5. Preguntas para reflexión</strong></p>
+<ol start="7" type="a">
+<li>¿Qué diferencias fundamentales encontró entre las dos maneras de procesar los datos? Considere cuándo se realiza la operación, el uso de memoria y el tiempo de ejecución.</li>
+<li>¿Qué ocurrió cuando intentó recorrer o usar el mismo resultado dos veces?</li>
+<li>¿Se comportaron de la misma manera la lista generada y el objeto generador? ¿Por qué cree que sucede esto?</li>
+<li>¿En qué situaciones elegiría un enfoque u otro? Dé un ejemplo de un escenario donde la ejecución A sea mejor y otro donde la B resulte más eficiente.</li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
