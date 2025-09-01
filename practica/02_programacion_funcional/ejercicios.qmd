@@ -41,6 +41,7 @@ def add_time(time, hours, minutes, seconds):
 
 Represente fechas y horas con el objeto objeto `datetime` del módulo estándar `datetime`.
 Además, considere el objeto `timedelta` del mismo módulo para luego calcular diferencias.
+Por ejemplo:
 
 ```python
 import datetime
@@ -55,7 +56,6 @@ print(ahora + una_hora_mas_tarde)
 2025-08-31 09:48:58.327461
 2025-08-31 10:48:58.327461
 ```
-
 :::
 
 Función 4
@@ -77,7 +77,8 @@ def verificar_limite(valor):
 
 ## Área de aprendizaje
 
-Se cuenta con una lista de tuplas de longitud 2, representando el ancho y alto de distintos rectángulos.
+Se cuenta con una lista de tuplas de longitud 2, representando el ancho y alto de distintos
+rectángulos.
 
 ```python
 rectangulos = [
@@ -94,7 +95,8 @@ Cree una nueva lista que ordene dichos rectángulos en función de su área.
 
 ## Socios ordenados
 
-Se cuenta con la siguiente lista de diccionarios, la cual contiene datos personales sobre miembros de un club de atletismo:
+Se cuenta con la siguiente lista de diccionarios, la cual contiene datos personales sobre miembros
+de un club de atletismo:
 
 ```python
 datos_socios = [
@@ -111,14 +113,16 @@ Ordene la lista en base a los récords en la carrera de 100 metros, en forma asc
 
 ### Punto extra
 
-Implemente una función que tome como argumento una clave de diccionario y devuelva una lista ordenada por los valores de dicha clave.
-Si el argumento toma el valor `"nombre"`, ordene los elementos alfabéticamente en base a los apellidos.
+Implemente una función que tome como argumento una clave de diccionario y devuelva una lista
+ordenada por los valores de dicha clave. Si el argumento toma el valor `"nombre"`, ordene los
+elementos alfabéticamente en base a los apellidos.
 
 ## Fábrica de promociones
 
-Considere el ejercicio [Promociones](../01_programacion_en_python/ejercicios.qmd#promociones) de la Práctica 1.
-Utilizando el mismo sistema de descuentos cree la función `crear_promocion` que reciba como argumento el medio de pago y devuelva una función que al aplicarse
-sobre un número aplique el descuento (o recargo) que le corresponde a ese medio de pago. Por ejemplo:
+Considere el ejercicio [Promociones](../01_programacion_en_python/ejercicios.qmd#promociones) de la
+Práctica 1. Utilizando el mismo sistema de descuentos cree la función `crear_promocion` que reciba
+como argumento el medio de pago y devuelva una función que al aplicarse sobre un número aplique el
+descuento (o recargo) que le corresponde a ese medio de pago. Por ejemplo:
 
 ```python
 promo_debito = crear_promocion("débito")
@@ -135,8 +139,10 @@ opcional, el porcentaje de descuento a aplicar. Como resultado devuelve una func
 al aplicarse sobre un número impacta el descuento o recargo correspondiente.
 Además, considere que:
 
-* Si no se pasa el porcentaje a aplicar, se deben usar los descuentos y recargos detallados en el enunciado del ejercicio en la Práctica I.
-* Caso contrario, la función devuelta debe aplicar ese porcentaje personalizado (e.g., `crear_promocion_personalizada("débito", 15)` para 15% de descuento).
+* Si no se pasa el porcentaje a aplicar, se deben usar los descuentos y recargos detallados en el
+enunciado del ejercicio en la Práctica 1.
+* Caso contrario, la función devuelta debe aplicar ese porcentaje personalizado
+(e.g., `crear_promocion_personalizada("débito", 15)` para 15% de descuento).
 
 Ejemplo de uso:
 ```python
@@ -149,7 +155,7 @@ promo_debito(1000)
 
 ## Analistas de temperaturas
 
-Considere una lista de temperaturas en grados Celsius sobre la cual se deben aplicar distintas 
+Considere una lista de temperaturas en grados Celsius sobre la cual se deben aplicar distintas
 operaciones.
 
 ```python
@@ -173,7 +179,8 @@ promedio dividiendo la suma total entre la cantidad de elementos en la lista fil
 ### Punto extra 😱
 
 Calcule el promedio de temperaturas **sin materializar** ninguna secuencia hasta el último instante.
-Para ello, deberá utilizar `filter` y `reduce`, sin convertir resultados a listas intermedias.
+Para ello, deberá utilizar `enumrate`, `filter` y `reduce`, sin convertir resultados a listas
+intermedias.
 
 <!--
 ```python
@@ -204,12 +211,14 @@ palabras_a_rimar = [
 ]
 ```
 
-Ordene la lista en base al orden alfabético del reverso de cada palabra, de modo que las palabras que riman se encuentren juntas.
+Ordene la lista en base al orden alfabético del reverso de cada palabra, de modo que las palabras
+que riman se encuentren juntas.
 
 ::: {.callout-tip collapse="true"}
 ### Ayuda
 
-Si la lista fuese `["durazno", "kiwi"]`, el resultado sería `["kiwi", "durazno"]`, porque `"iwik"` precede a `"onzarud"` en orden alfabético.
+Si la lista fuese `["durazno", "kiwi"]`, el resultado sería `["kiwi", "durazno"]`, porque `"iwik"`
+precede a `"onzarud"` en orden alfabético.
 :::
 
 
@@ -239,7 +248,8 @@ print(f"El segundo bucle tardó {cronometro2()} segundos en ejecutarse.")
 ### Punto extra
 
 Modifique el funcionamiento del cronómetro para que en cada llamada devuelva el tiempo transcurrido
-entre la llamada actual y la inmediata anterior (excepto en la primera llamada, que devuelve el tiempo transcurrido desde su creación).
+entre la llamada actual y la inmediata anterior (excepto en la primera llamada, que devuelve el
+tiempo transcurrido desde su creación).
 
 ::: {.callout-tip collapse="true"}
 
@@ -258,7 +268,8 @@ print(time() - inicio) # ~ 2 (segundos)
 
 ## Sucesión de Fibonacci
 
-Considere la sucesión que comienza por los números 0 y 1. Los siguientes números se forman sumando los dos anteriores.
+Considere la sucesión que comienza por los números 0 y 1. Los siguientes números se forman sumando
+los dos anteriores.
 
 $$
 \{\;0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \cdots\;\}
@@ -266,20 +277,19 @@ $$
 
 Esta sucesión se conoce como **sucesión de Fibonacci**.
 
-Implemente una función recursiva que tome un número natural `n` como entrada y devuelva el `n`-ésimo número en la sucesión.
+Implemente una función recursiva que tome un número natural `n` como entrada y devuelva el `n`-ésimo
+número en la sucesión.
 
 ## Subiendo de rango
 
 La función `range(start, stop, step)` de Python devuelve un objeto que genera una secuencia de
 números desde `start` (inclusive) hasta `stop` (exclusive) en incrementos de `step` unidades.
 El argumento `step`, sin embargo, sólo puede ser un número entero (excepto cero).
-
-Implemente una función llamada `frange` que acepte los mismos argumentos, pudiendo `step` ser de tipo `float`.
-La función debe retornar un **generador** de la secuencia correspondiente.
-
-### Ayuda
+Implemente una función llamada `frange` que acepte los mismos argumentos, pudiendo `step` ser de
+tipo `float`. La función debe retornar un **generador** de la secuencia correspondiente.
 
 ::: {.callout-tip collapse="true"}
+### Ayuda
 
 Utilice el siguiente ejemplo a modo de control:
 
@@ -295,8 +305,8 @@ for i in frange(3, 4, 0.2):
 3.80
 ```
 
-Además, tenga en cuenta que la precisión finita de las computadoras puede afectar el comportamiento
-de su generador.
+Tenga en cuenta que la precisión finita de las computadoras puede afectar el comportamiento de su
+generador.
 
 :::
 
@@ -317,12 +327,14 @@ versos = [
 ]
 ```
 
-Implemente una función para darle cuerda a la caja musical. En cada llamada debe devolver un verso distinto, hasta agotarlos todos.
+Implemente una función para darle cuerda a la caja musical. En cada llamada debe devolver un verso
+distinto, hasta agotarlos todos.
 
 ::: {.callout-tip collapse="true"}
 ### Ayuda
 
-Mediante el uso de `yield` se puede lograr que una función se detenga en un punto intermedio y retome desde ese punto en la siguiente llamada.
+Mediante el uso de `yield` se puede lograr que una función se detenga en un punto intermedio y
+retome desde ese punto en la siguiente llamada.
 
 ```python
 def mostrar_fase():
@@ -343,7 +355,8 @@ Un supermercado ofrece múltiples promociones:
 - 10% de descuento en compras con monto superior a $50.000.
 - 20% de descuento a clientes mayores de 65 años.
 
-Para determinar la promoción a aplicar, el supermercado utiliza un programa con la siguiente estructura:
+Para determinar la promoción a aplicar, el supermercado utiliza un programa con la siguiente 
+estructura:
 
 ```python
 def promo_dia_semana(compra):
@@ -370,13 +383,14 @@ def mejor_promo(compra):
     multiplicador = sorted([promo(compra) for promo in promos])[0]
 
     return {
-    "monto_original": compra["monto"],
-    "monto_final": compra["monto"] * multiplicador,
-    "descuento": f"{round((1 - multiplicador) * 100)}%"
+        "monto_original": compra["monto"],
+        "monto_final": compra["monto"] * multiplicador,
+        "descuento": f"{round((1 - multiplicador) * 100)}%"
     }
 
 ejemplo_compra = {"dia": "miércoles", "edad_cliente": 42, "monto": 66420}
-mejor_promo(ejemplo_compra) # {"dia": "miércoles", "edad_cliente": 42, "monto": 56457.0}
+mejor_promo(ejemplo_compra)
+# {'monto_original': 66420, 'monto_final': 56457.0, 'descuento': '15%'}
 ```
 
 El problema con esta implementación es que, cada vez que se añade o elimina una promoción,
@@ -389,9 +403,10 @@ Para evitar el trabajo duplicado, implemente los siguientes cambios:
 
 ## Bromas pesadas 😱
 
-Nuestro amigo programador está armando una página web, con una función que saluda a los nuevos usuarios por su nombre cuando se registran.
-Nosotros queremos gastarle una broma a nuestro amigo, metiendo en su código un decorador que haga que su función corra normalmente excepto cada `n`-ésima corrida,
-fallando silenciosamente (no imprime nada). El valor `n` es un número entero de nuestra elección.
+Nuestro amigo programador está armando una página web, con una función que saluda a los nuevos
+usuarios por su nombre cuando se registran. Nosotros queremos gastarle una broma a nuestro amigo,
+metiendo en su código un decorador que haga que su función corra normalmente excepto cada `n`-ésima
+corrida, fallando silenciosamente (no imprime nada). El valor `n` es un número entero de nuestra elección.
 
 ```python
 @romper_cada(3)
@@ -404,6 +419,7 @@ saludar("Mirna")      # Nada (la función devuelve None)
 saludar("Diego")      # "¡Hola, Diego!"
 ```
 
+::: {.callout-tip collapse="true"}
 ### Ayuda
 
 Para crear un decorador que reciba argumentos, podemos crear una fábrica de decoradores:
@@ -423,8 +439,10 @@ imprimir("Hola mundo")
 # > Ejecutando decorador con argumento 7
 # > Hola mundo
 ```
+:::
 
-## Procesamiento de datos paso a paso 😱
+
+## _Pipelines_ de procesamiento 😱
 
 Este ejercicio tiene como objetivo implementar un sistema de preprocesamiento para una lista de
 diccionarios, donde cada diccionario representa una fila con sus columnas como pares clave–valor.
@@ -483,9 +501,10 @@ filtrar(datos, "edad", lambda e: e > 25)
 ]
 ```
 
-En el segundo paso, se debe implementar una función `crear_pipeline`, que recibe una **cantidad arbitraria** de funciones de procesamiento,
-junto a sus argumentos, y debe devolver una función que, al pasarle un listado de datos, los aplica de manera secuencial y devuelve un conjunto de datos
-procesado. Por ejemplo:
+En el segundo paso, se debe implementar una función `crear_pipeline`, que recibe una
+**cantidad arbitraria** de funciones de procesamiento, junto a sus argumentos,
+y debe devolver una función que, al pasarle un listado de datos, los aplica de manera secuencial y
+devuelve un conjunto de datos procesado. Por ejemplo:
 
 ```python
 pipeline = crear_pipeline(
@@ -499,76 +518,92 @@ pipeline(datos)
 [{"edad": 30, "ingresos": 3.477}]
 ```
 
-## Tiempo o memoria
+## ¿Espacio o tiempo? ⏳
 
-Trabajás en el equipo de análisis de datos de un e-commerce y recibiste la lista de ventas del último mes. Tenés que extraer información clave de esos datos, pero probando dos maneras distintas de resolver cada tarea.
+Suponga que trabaja en el equipo de análisis de datos de un _e-commerce_ y suponga que recibe un
+listado ventas del último mes. Deberá extraer información clave de esos datos utilizando dos maneras
+distintas de resolver cada tarea.
 
 **1. Preparación de los datos**
 
-Para empezar, usá esta función que genera datos de ejemplo de ventas de diferente tamaño:
+Para empezar, use la siguiente función que genera datos de ejemplo de ventas de distinto tamaño:
 
 ```python
-
 import random
+
 CATEGORIAS = ("electrónica", "hogar", "accesorios", "deportes")
 
-def generar_ventas(n=100_000, seed=123):
+def generar_ventas(n=100_000, seed=None):
+    """Generar datos de ventas.
 
+    Parameters
+    ----------
+    n : int
+        Cantidad de ventas a simular.
+    seed : int, optional
+        Semilla para el generador de números aleatorios. Por defecto, `None`.
+
+    Returns
+    -------
+    list[dict]
+        Listado de ventas.
+        Cada venta es un diccionario con claves `"id"`, `"precio"` y `"categoria"`.
     """
-    Devuelve una lista de n ventas simuladas.
-    Cada venta es un dict con: id, precio, categoria.
-    Podes ajustar el parámetro n para obtener un dataset más grande o más chico (p.ej., 100_000,        200_000, 500_000).
-    """
-    rnd = random.Random(seed)
+    rng = random.Random(seed)
     ventas = []
     for i in range(1, n + 1):
-        ventas.append({
-            "id": f"P{i:06d}",
-            "precio": round(rnd.uniform(5.0, 500.0), 2),
-            "categoria": CATEGORIAS[i % len(CATEGORIAS)],
-        })
+        ventas.append(
+            {
+                "id": f"P{i+1:06d}",
+                "precio": round(rng.uniform(5.0, 500.0), 2),
+                "categoria": CATEGORIAS[i % len(CATEGORIAS)],
+            }
+        )
     return ventas
 ```
-Generá un dataset con 100.000 ventas:
+
+Genere un conjunto de datos con 100,000 ventas:
 
 ```python
-`ventas = generar_ventas(n=100_000)`
+ventas = generar_ventas(n=100_000, seed=1234)
 ```
 
 **2. Implementación de operaciones**
 
-Ahora vamos a realizar dos operaciones sobre este conjunto de datos, cada una con dos versiones:
+Realice dos operaciones sobre este conjunto de datos, cada una en dos variantes.
 
-a) Calcular Precios con IVA (21%)
-
-  Versión A: Usá una list comprehension para crear una nueva lista `llamada precios_con_iva_1` que    contenga todos los precios con el 21% de IVA ya calculado.
-
-  Versión B: Usá una expresión generadora para crear un objeto `precios_con_iva_2` que represente la   operación, pero sin calcular ni guardar los resultados todavía.
-
-b) Filtrar Ventas de "electrónica"
-
-  Versión A: Usá una list comprehension para crear una nueva lista llamada `electronica_1` que        contenga todas las ventas de la categoría "electrónica".
-
-  Versión B: Usá una expresión generadora para crear un objeto `electronica_2` que represente el      filtro, sin materializar la lista.
+a. Calcular precios con IVA (21%):
+    * **Versión A.** Use una *list comprehension* para crear una nueva lista llamada
+    `precios_con_iva_1` que contenga todos los precios con el 21 % de IVA ya calculado.
+    * **Versión B.** Use una expresión generadora para crear un objeto `precios_con_iva_2`
+    que represente la operación, pero sin calcular ni almacenar los resultados todavía.
+b. Filtrar ventas de "electrónica":
+    * **Versión A.** Use una *list comprehension* para crear una nueva lista llamada `electronica_1`
+    que contenga todas las ventas de la categoría "electrónica".
+    * **Versión B.** Use una expresión generadora para crear un objeto `electronica_2` que
+    represente el filtro, sin materializar la lista.
 
 **3. Análisis y comparación**
 
-c) Calculá el total de las ventas de electrónica usando `sum()` en ambas versiones (`electronica_1` y `electronica_2`).
+c. Calcule el total de las ventas de electrónica usando `sum()` en ambas variantes
+(`electronica_1` y `electronica_2`).
+d. Para cada operación, antes y después de aplicar `sum()`, mida el tiempo de ejecución y el uso de
+memoria del objeto. Para el tiempo, podría usar `time.time()` del módulo `time`;
+para la memoria, `sys.getsizeof()` del módulo `sys`.
+Registre los resultados (si no observa diferencias claras, duplique `n` al generar el *dataset*).
 
-d) Para cada operación, antes y después de `sum()`, medí el tiempo de ejecución y el uso de memoria del objeto. Para el tiempo, podés usar `time.time()` del modulo `time`. Para la memoria, `sys.getsizeof()` del modulo sys. Registrá los resultados (si no ves diferencias claras, duplica n al generar el dataset)
+**4. Reutilización del objeto**
 
-**4. Reutilización del objeto:**
+e. Intente calcular el total de ventas de electrónica una segunda vez para ambos objetos
+(`electronica_1` y `electronica_2`).
+f. Observe qué sucede en cada caso. ¿Qué objeto puede volver a usarse y cuál no?
 
-e) Intentá calcular el total de ventas de electrónica una segunda vez para ambos objetos (`electronica_1` y `electronica_2`).
+**5. Preguntas para reflexión**
 
-f) Observá qué sucede en cada caso. ¿Qué objeto se puede volver a usar y cuál no?
-
-**5) Preguntas para reflexión:**
-
-g) ¿Qué diferencias fundamentales encontraste entre las dos maneras de procesar los datos?             (considerá cuándo se realiza la operación, el uso de memoria y el tiempo de ejecución)
-
-h) ¿Qué pasó cuando intentaste recorrer o usar el mismo resultado dos veces?
-
-i) ¿Se comportaron de la misma manera la lista generada y el objeto generador? ¿Por qué creés           que sucede esto?
-
-j) ¿En qué situaciones elegirías un enfoque u otro? Da un ejemplo de un escenario donde la             ejecución A sea mejor y otro donde la B sea la opción más eficiente.
+g. ¿Qué diferencias fundamentales encontró entre las dos maneras de procesar los datos?
+Considere cuándo se realiza la operación, el uso de memoria y el tiempo de ejecución.
+h. ¿Qué ocurrió cuando intentó recorrer o usar el mismo resultado dos veces?
+i. ¿Se comportaron de la misma manera la lista generada y el objeto generador?
+¿Por qué cree que sucede esto?
+j. ¿En qué situaciones elegiría un enfoque u otro? Dé un ejemplo de un escenario donde la
+ejecución A sea mejor y otro donde la B resulte más eficiente.
