@@ -1450,6 +1450,78 @@
     ]
   },
   {
+    "objectID": "practica/02_programacion_funcional/autoevaluacion.html",
+    "href": "practica/02_programacion_funcional/autoevaluacion.html",
+    "title": "🪞 Autoevaluación",
+    "section": "",
+    "text": "¿Por qué decimos que fun es una función con efectos secundarios?\ndef fun():\n    global x\n    x = 10\n    return x\n¿Cuál es el problema con la siguiente función? Explore el resultado de las llamadas que se incluyen luego de la definición.\ndef agregar_usuario(usuario, listado=[]):\n    listado.append(usuario)\n    return listado\n\nbase1 = agregar_usuario(\"Adrián\")\nbase2 = agregar_usuario(\"Daniela\")\nExplore el contenido y la identidad de base1 y base2. Si es necesario, utilice algún agente de IA para explorar en qué parte de la definición de la función se esconde una trampa.\n\n\n\n\n\n¿Por qué la siguiente definición devuelve un error?\nlambda x: return x + 1\n¿Qué hacen los siguientes bloques de código?\n(lambda x, y: x + y)(1, 5)\n(lambda f, x: f(x + 10))(lambda y: y * 5, 2)\n¿Qué devuelve la siguiente llamada? ¿Por qué?\n(lambda x: print(x))(1)\nAyuda: asigne el resultado a una variable y explore el valor de esa variable.\n\n\n\n\n\n¿Cuál es el valor de args en la siguiente llamada? ¿Por qué?\n def fun(x, *args):\n     return x + 10\n\n fun(128)\n¿Y el valor de kwargs debajo?\ndef fun(x, **kwargs):\n    return x + 11\n\nfun(128)\nLos siguientes intentos por definir una función arrojan un error. Investigue por qué y reflexione sobre el sentido de los errores.\ndef fun(**kwargs, x, y):\n    return x + y\ndef fun(**kwargs, *args):\n    return sum(args)\nCualquier llamada a la siguiente función que solo pase argumentos posicionales va a resultar en un error. ¿Por qué? ¿Cómo habría que llamarla para que no resulte en un error?\ndef fun(*args, x, y):\n    return sum(args), x + y\n\n\n\n\n\nEjecute el siguiente bloque de código e inspeccione el objeto que devuelven las sucesivas llamadas realizadas. Analice por qué ocurre este comportamiento y piense qué tipo de funcionalidades podrían aprovechar un mecanismo similar.\ndef fabrica():\n    cosas = []\n    def fun(elemento):\n        cosas.append(elemento)\n        return cosas\n    return fun\n\nf = fabrica()\nf(128)\nf(256)\nf(1024)\nAyuda: Compare el ID de los objetos devueltos en cada llamada. ¿Podría observar el mismo comportamiento si en vez de usar una lista para cosas se usara una tupla?",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/autoevaluacion.html#funciones",
+    "href": "practica/02_programacion_funcional/autoevaluacion.html#funciones",
+    "title": "🪞 Autoevaluación",
+    "section": "",
+    "text": "¿Por qué decimos que fun es una función con efectos secundarios?\ndef fun():\n    global x\n    x = 10\n    return x\n¿Cuál es el problema con la siguiente función? Explore el resultado de las llamadas que se incluyen luego de la definición.\ndef agregar_usuario(usuario, listado=[]):\n    listado.append(usuario)\n    return listado\n\nbase1 = agregar_usuario(\"Adrián\")\nbase2 = agregar_usuario(\"Daniela\")\nExplore el contenido y la identidad de base1 y base2. Si es necesario, utilice algún agente de IA para explorar en qué parte de la definición de la función se esconde una trampa.\n\n\n\n\n\n¿Por qué la siguiente definición devuelve un error?\nlambda x: return x + 1\n¿Qué hacen los siguientes bloques de código?\n(lambda x, y: x + y)(1, 5)\n(lambda f, x: f(x + 10))(lambda y: y * 5, 2)\n¿Qué devuelve la siguiente llamada? ¿Por qué?\n(lambda x: print(x))(1)\nAyuda: asigne el resultado a una variable y explore el valor de esa variable.\n\n\n\n\n\n¿Cuál es el valor de args en la siguiente llamada? ¿Por qué?\n def fun(x, *args):\n     return x + 10\n\n fun(128)\n¿Y el valor de kwargs debajo?\ndef fun(x, **kwargs):\n    return x + 11\n\nfun(128)\nLos siguientes intentos por definir una función arrojan un error. Investigue por qué y reflexione sobre el sentido de los errores.\ndef fun(**kwargs, x, y):\n    return x + y\ndef fun(**kwargs, *args):\n    return sum(args)\nCualquier llamada a la siguiente función que solo pase argumentos posicionales va a resultar en un error. ¿Por qué? ¿Cómo habría que llamarla para que no resulte en un error?\ndef fun(*args, x, y):\n    return sum(args), x + y\n\n\n\n\n\nEjecute el siguiente bloque de código e inspeccione el objeto que devuelven las sucesivas llamadas realizadas. Analice por qué ocurre este comportamiento y piense qué tipo de funcionalidades podrían aprovechar un mecanismo similar.\ndef fabrica():\n    cosas = []\n    def fun(elemento):\n        cosas.append(elemento)\n        return cosas\n    return fun\n\nf = fabrica()\nf(128)\nf(256)\nf(1024)\nAyuda: Compare el ID de los objetos devueltos en cada llamada. ¿Podría observar el mismo comportamiento si en vez de usar una lista para cosas se usara una tupla?",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/autoevaluacion.html#recursión",
+    "href": "practica/02_programacion_funcional/autoevaluacion.html#recursión",
+    "title": "🪞 Autoevaluación",
+    "section": "2 Recursión",
+    "text": "2 Recursión\n\n¿Cuál de las siguientes funciones es recursiva?\ndef f(x):\n    return x + 1\n\ndef g(x):\n    return f(x)\n\ndef h(x):\n    return h(x - 1)\n¿Qué son el caso base y el caso recursivo?\n¿Por qué toda recursión necesita un caso base?\n¿Qué pasa si una función recursiva nunca llega al caso base?\nReflexione sobre ventajas y desventajas de la recursión.",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/autoevaluacion.html#funciones-de-orden-superior",
+    "href": "practica/02_programacion_funcional/autoevaluacion.html#funciones-de-orden-superior",
+    "title": "🪞 Autoevaluación",
+    "section": "3 Funciones de orden superior",
+    "text": "3 Funciones de orden superior\n\nExplique por qué el primer print muestra 10 y el segundo falla:\nfrom functools import partial\n\ndef suma(x, y):\n    return x + y\n\nsuma2 = partial(suma, 10, 0)\nprint(suma2())\nprint(suma2(10))\n¿Cuál de las siguientes funciones es de orden superior?\ndef f(x):\n    return x + 1\n\ndef g(fn, x):\n    return fn(x)\n\ndef h():\n    return f\n¿Cuál de las siguientes funciones de Python es de orden superior?\n\nsum\nmax\nmin\nsorted\nprint\nfunctools.partial\n\n¿Qué hace la función fun? ¿Qué condicion debe cumplir f respecto de sus valores de entrada y salida?\ndef fun(f, x):\n    return f(f(x))\n¿Para qué sirve la función definida debajo?\ndef fun(f, g):\n    return lambda x: f(g(x))\n¿Qué tipo de función se necesita pasar a filter?\n¿Cuál es el resultado de la última línea de código? ¿Por qué?\nfilter_obj = filter(lambda x: x &gt; 2, range(5))\nlist(filter_obj) # Primera conversión a lista\nlist(filter_obj) # Segunda conversión a lista\nAyuda: Para comprender lo que sucede en este ejercicio es necesario estar familiarizados con los generadores.\n¿Cuál implementación es más eficiente desde el punto de vista del consumo de memoria? ¿Por qué?\nimpares = list(filter(lambda x: x % 2, range(1_000)))\nimpares_al_cubo = list(map(lambda x: x ** 3, impares))\nimpares_al_cubo = list(map(lambda x: x ** 3, filter(lambda x: x % 2, range(1_000))))\nAyuda: Nuevamente, es necesario estar familiarizados con los generadores para responder a esta pregunta.\n¿Cuál es el resultado de la reducción debajo? ¿Por qué?\nfrom functools import reduce\nreduce(lambda x, y: x + [y], range(3), [])\nAyuda: reduce ejecuta la función que se le pasa solamente 3 veces. Podría resultar de ayuda enumerar cada una de las llamadas manualmente.",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/autoevaluacion.html#comprehensions",
+    "href": "practica/02_programacion_funcional/autoevaluacion.html#comprehensions",
+    "title": "🪞 Autoevaluación",
+    "section": "4 Comprehensions",
+    "text": "4 Comprehensions\n\n¿Qué diferencia hay entre las siguientes dos líneas de código? Asuma que f es una función y xs es una secuencia.\nmap(f, xs)\n[f(x) for x in xs]\n¿Cuál es el resultado de esta expresión?\n[x for x in \"hola\" if x != \"o\"]\nEscriba una list comprehension para obtener una lista con la primera letra de cada palabra.\npalabras = [\"hola\", \"mundo\", \"python\"]\nEscriba una list comprehension que reemplace los None por un -1.\ndatos = [1, None, 3, None, 5]\nConvierta este bucle en una list comprehension.\nresultado = []\nfor x in range(5):\n    if x % 2 != 0:\n        resultado.append(x)\n¿Es posible que una list comprehension devuelva una lista vacía? ¿Cuándo?\nConstruya una única list comprehension que realice lo mismo que el siguiente bloque:\ndef f(x):\n    return 10 / x\n\ndef g(x):\n    return x != 0\n\nnumeros = [1, 0, -1, 0, 2, 0, -2, 0, 3, 0, -3]\nlist(map(f, filter(g, numeros)))",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/autoevaluacion.html#generadores",
+    "href": "practica/02_programacion_funcional/autoevaluacion.html#generadores",
+    "title": "🪞 Autoevaluación",
+    "section": "5 Generadores",
+    "text": "5 Generadores\n\n¿Qué diferencia a una función regular de una función generadora?\n¿En qué momento se ejecuta el cuerpo de una función generadora? ¿Siempre se ejecuta todo?\n¿Cómo se puede obtener una lista a partir de un generador? ¿Cuántas veces se puede realizar esa operación sobre el mismo generador?\n¿Qué ventaja tiene un generador frente a una lista?\n¿Qué significa que un generador sea perezoso?\n¿Qué pasa si se llama a next sobre un generador más veces que la cantidad de yield en él?\n¿Qué se obtiene en el siguiente bloque de código?\ndef f():\n    yield 1\n    yield 2\n\ngen = f()\nprint(list(gen))\n¿Qué pasa si se corre next(gen) a continuación?\n¿Qué se imprime en pantalla?\nprint((x * 2 for x in [1, 2, 3]))\n¿Por qué es posible implementar un bucle infinito dentro de un generador?\n¿Cuántas veces es posible llamar a next sobre el generador g?\ndef fun():\n    yield 1\n    return 2\n    yield 3\n\ng = fun()",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🪞 Autoevaluación"
+    ]
+  },
+  {
     "objectID": "practica/01_programacion_en_python/ejercicios.html",
     "href": "practica/01_programacion_en_python/ejercicios.html",
     "title": "🛠️ Ejercicios",
