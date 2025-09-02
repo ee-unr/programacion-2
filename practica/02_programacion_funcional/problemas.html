@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -289,8 +324,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#registro-de-llamadas" id="toc-registro-de-llamadas" class="nav-link active" data-scroll-target="#registro-de-llamadas"><span class="header-section-number">1</span> Registro de llamadas</a></li>
+  <li><a href="#fibonacci-el-memorioso" id="toc-fibonacci-el-memorioso" class="nav-link" data-scroll-target="#fibonacci-el-memorioso"><span class="header-section-number">2</span> Fibonacci el memorioso</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -314,8 +356,72 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="registro-de-llamadas" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="registro-de-llamadas"><span class="header-section-number">1</span> Registro de llamadas</h2>
+<p>En programación, el <em>logging</em> es el proceso de registrar eventos durante la ejecución de un programa. Estos registros, llamados <em>logs</em>, permiten mantener un historial de lo que ocurrió, incluyendo estados del sistema, acciones realizadas y posibles errores o advertencias.</p>
+<p>En este problema se propone implementar un decorador llamado <code>log</code> que registre, en un archivo, los valores de entrada y salida de cada llamada a las funciones decoradas. El decorador debe recibir como argumento la ruta del archivo donde se guardarán los mensajes.</p>
+<p>Por ejemplo, el siguiente código:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">@log</span>(<span class="st">"registro.log"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x, y):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">@log</span>(<span class="st">"registro.log"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(a, b):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>f(<span class="dv">3</span>, <span class="dv">9</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">1</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>f(<span class="dv">256</span>, <span class="dv">256</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>time.sleep(<span class="dv">3</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>g(<span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>f(<span class="dv">7</span>, <span class="dv">8</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Debería generar un archivo <code>registro.log</code> con un contenido similar al siguiente:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>registro.log</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-filename="registro.log"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>2025-09-02 18:04:07 - | f(x=3, y=9) -&gt; 12</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>2025-09-02 18:04:08 - | f(x=256, y=256) -&gt; 512</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>2025-09-02 18:04:11 - | g(a=3, b=2) -&gt; 7</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>2025-09-02 18:04:11 - | f(x=7, y=8) -&gt; 15</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="requisitos" class="level3">
+<h3 class="anchored" data-anchor-id="requisitos">Requisitos</h3>
+<ul>
+<li>Si el archivo no existe, debe crearse automáticamente.</li>
+<li>Si el archivo ya existe, los nuevos registros deben agregarse al final, sin sobrescribir los anteriores.</li>
+</ul>
+</section>
+<section id="ayuda" class="level3">
+<h3 class="anchored" data-anchor-id="ayuda">Ayuda</h3>
+<ul>
+<li>Para obtener el momento exacto de la llamada, puede usar <code>datetime.now()</code> del módulo <code>datetime</code>.</li>
+<li>Para formatear ese valor como texto, utilice el método <code>.strftime</code>.</li>
+</ul>
+<p>Por ejemplo:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>datetime.datetime.now().strftime(<span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st">&nbsp;%H:%M:%S"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>2025-09-02 18:30:39</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="fibonacci-el-memorioso" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="fibonacci-el-memorioso"><span class="header-section-number">2</span> Fibonacci el memorioso</h2>
+<p>La implementación recursiva más directa de la secuencia de Fibonacci es tan concisa como ineficiente.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fibonacci(n):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fibonacci(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fibonacci(n <span class="op">-</span> <span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Al invocar <code>fibonacci(7)</code>, se realizan llamadas a <code>fibonacci(6)</code> y <code>fibonacci(5)</code>. Luego, <code>fibonacci(6)</code> vuelve a llamar a <code>fibonacci(5)</code> y <code>fibonacci(4)</code>, y así sucesivamente. Muchas de estas llamadas se repiten: por ejemplo, <code>fibonacci(5)</code> se calcula más de una vez.</p>
+<p>Este comportamiento muestra que los subproblemas se superponen: los mismos valores se recalculan de manera redundante.</p>
+<p>El objetivo de este ejercicio es diseñar una función capaz de recordar resultados ya obtenidos, evitando recomputarlos cada vez que aparecen. Para lograrlo, podemos construir una función recursiva que memorice sus valores anteriores y, así, avance en la secuencia sin rehacer todos los cálculos previos.</p>
+<section id="ayuda-1" class="level3">
+<h3 class="anchored" data-anchor-id="ayuda-1">Ayuda</h3>
+<p>Considere una <em>function factory</em> que devuelva la función recursiva. Dentro del ámbito de la <em>function factory</em> puede existir una estructura de datos mutable que almacene los resultados ya calculados.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

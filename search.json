@@ -60,6 +60,42 @@
     ]
   },
   {
+    "objectID": "practica/02_programacion_funcional/problemas.html",
+    "href": "practica/02_programacion_funcional/problemas.html",
+    "title": "🧩 Problemas",
+    "section": "",
+    "text": "En programación, el logging es el proceso de registrar eventos durante la ejecución de un programa. Estos registros, llamados logs, permiten mantener un historial de lo que ocurrió, incluyendo estados del sistema, acciones realizadas y posibles errores o advertencias.\nEn este problema se propone implementar un decorador llamado log que registre, en un archivo, los valores de entrada y salida de cada llamada a las funciones decoradas. El decorador debe recibir como argumento la ruta del archivo donde se guardarán los mensajes.\nPor ejemplo, el siguiente código:\nimport time\n\n@log(\"registro.log\")\ndef f(x, y):\n    return x + y\n\n@log(\"registro.log\")\ndef g(a, b):\n    return a + b ** 2\n\nf(3, 9)\ntime.sleep(1)\nf(256, 256)\ntime.sleep(3)\ng(3, 2)\nf(7, 8)\nDebería generar un archivo registro.log con un contenido similar al siguiente:\n\n\nregistro.log\n\n2025-09-02 18:04:07 - | f(x=3, y=9) -&gt; 12\n2025-09-02 18:04:08 - | f(x=256, y=256) -&gt; 512\n2025-09-02 18:04:11 - | g(a=3, b=2) -&gt; 7\n2025-09-02 18:04:11 - | f(x=7, y=8) -&gt; 15\n\n\n\n\nSi el archivo no existe, debe crearse automáticamente.\nSi el archivo ya existe, los nuevos registros deben agregarse al final, sin sobrescribir los anteriores.\n\n\n\n\n\nPara obtener el momento exacto de la llamada, puede usar datetime.now() del módulo datetime.\nPara formatear ese valor como texto, utilice el método .strftime.\n\nPor ejemplo:\ndatetime.datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\")\n2025-09-02 18:30:39",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🧩 Problemas"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/problemas.html#registro-de-llamadas",
+    "href": "practica/02_programacion_funcional/problemas.html#registro-de-llamadas",
+    "title": "🧩 Problemas",
+    "section": "",
+    "text": "En programación, el logging es el proceso de registrar eventos durante la ejecución de un programa. Estos registros, llamados logs, permiten mantener un historial de lo que ocurrió, incluyendo estados del sistema, acciones realizadas y posibles errores o advertencias.\nEn este problema se propone implementar un decorador llamado log que registre, en un archivo, los valores de entrada y salida de cada llamada a las funciones decoradas. El decorador debe recibir como argumento la ruta del archivo donde se guardarán los mensajes.\nPor ejemplo, el siguiente código:\nimport time\n\n@log(\"registro.log\")\ndef f(x, y):\n    return x + y\n\n@log(\"registro.log\")\ndef g(a, b):\n    return a + b ** 2\n\nf(3, 9)\ntime.sleep(1)\nf(256, 256)\ntime.sleep(3)\ng(3, 2)\nf(7, 8)\nDebería generar un archivo registro.log con un contenido similar al siguiente:\n\n\nregistro.log\n\n2025-09-02 18:04:07 - | f(x=3, y=9) -&gt; 12\n2025-09-02 18:04:08 - | f(x=256, y=256) -&gt; 512\n2025-09-02 18:04:11 - | g(a=3, b=2) -&gt; 7\n2025-09-02 18:04:11 - | f(x=7, y=8) -&gt; 15\n\n\n\n\nSi el archivo no existe, debe crearse automáticamente.\nSi el archivo ya existe, los nuevos registros deben agregarse al final, sin sobrescribir los anteriores.\n\n\n\n\n\nPara obtener el momento exacto de la llamada, puede usar datetime.now() del módulo datetime.\nPara formatear ese valor como texto, utilice el método .strftime.\n\nPor ejemplo:\ndatetime.datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\")\n2025-09-02 18:30:39",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🧩 Problemas"
+    ]
+  },
+  {
+    "objectID": "practica/02_programacion_funcional/problemas.html#fibonacci-el-memorioso",
+    "href": "practica/02_programacion_funcional/problemas.html#fibonacci-el-memorioso",
+    "title": "🧩 Problemas",
+    "section": "2 Fibonacci el memorioso",
+    "text": "2 Fibonacci el memorioso\nLa implementación recursiva más directa de la secuencia de Fibonacci es tan concisa como ineficiente.\ndef fibonacci(n):\n    if n &lt;= 1:\n        return n\n    return fibonacci(n - 1) + fibonacci(n - 2)\nAl invocar fibonacci(7), se realizan llamadas a fibonacci(6) y fibonacci(5). Luego, fibonacci(6) vuelve a llamar a fibonacci(5) y fibonacci(4), y así sucesivamente. Muchas de estas llamadas se repiten: por ejemplo, fibonacci(5) se calcula más de una vez.\nEste comportamiento muestra que los subproblemas se superponen: los mismos valores se recalculan de manera redundante.\nEl objetivo de este ejercicio es diseñar una función capaz de recordar resultados ya obtenidos, evitando recomputarlos cada vez que aparecen. Para lograrlo, podemos construir una función recursiva que memorice sus valores anteriores y, así, avance en la secuencia sin rehacer todos los cálculos previos.\n\nAyuda\nConsidere una function factory que devuelva la función recursiva. Dentro del ámbito de la function factory puede existir una estructura de datos mutable que almacene los resultados ya calculados.",
+    "crumbs": [
+      "Práctica",
+      "U2 - Programación funcional",
+      "🧩 Problemas"
+    ]
+  },
+  {
     "objectID": "teoria/01_programacion_en_python/07_scripting.html",
     "href": "teoria/01_programacion_en_python/07_scripting.html",
     "title": "7 - Scripting",
