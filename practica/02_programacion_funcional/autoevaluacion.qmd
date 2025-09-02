@@ -1,3 +1,322 @@
 ---
 title: "🪞 Autoevaluación"
 ---
+
+## Funciones
+
+### Puras
+
+1.  ¿Por qué decimos que `fun` es una función con efectos secundarios?
+
+    ```python
+    def fun():
+        global x
+        x = 10
+        return x
+    ```
+
+1.  ¿Cuál es el problema con la siguiente función? Explore el resultado de las llamadas que se
+    incluyen luego de la definición.
+
+    ```python
+    def agregar_usuario(usuario, listado=[]):
+        listado.append(usuario)
+        return listado
+
+    base1 = agregar_usuario("Adrián")
+    base2 = agregar_usuario("Daniela")
+    ```
+
+    Explore el contenido y la identidad de `base1` y `base2`. Si es necesario, utilice algún
+    agente de IA para explorar en qué parte de la definición de la función se esconde una trampa.
+
+### Anónimas
+
+1.  ¿Por qué la siguiente definición devuelve un error?
+
+    ```python
+    lambda x: return x + 1
+    ```
+
+1.  ¿Qué hacen los siguientes bloques de código?
+
+    ```python
+    (lambda x, y: x + y)(1, 5)
+    ```
+
+    ```python
+    (lambda f, x: f(x + 10))(lambda y: y * 5, 2)
+    ```
+
+1.  ¿Qué devuelve la siguiente llamada? ¿Por qué?
+
+    ```python
+    (lambda x: print(x))(1)
+    ```
+
+    **Ayuda**: asigne el resultado a una variable y explore el valor de esa variable.
+
+### Variádicas
+
+1. ¿Cuál es el valor de `args` en la siguiente llamada? ¿Por qué?
+
+   ```python
+    def fun(x, *args):
+        return x + 10
+
+    fun(128)
+   ```
+
+    ¿Y el valor de `kwargs` debajo?
+
+    ```python
+    def fun(x, **kwargs):
+        return x + 11
+
+    fun(128)
+    ```
+
+1.  Los siguientes intentos por definir una función arrojan un error.
+    Investigue por qué y reflexione sobre el sentido de los errores.
+
+    ```python
+    def fun(**kwargs, x, y):
+        return x + y
+    ```
+
+    ```python
+    def fun(**kwargs, *args):
+        return sum(args)
+    ```
+
+1.  Cualquier llamada a la siguiente función que solo pase argumentos posicionales va a resultar
+    en un error. ¿Por qué? ¿Cómo habría que llamarla para que no resulte en un error?
+
+    ```python
+    def fun(*args, x, y):
+        return sum(args), x + y
+    ```
+
+### _Closures_
+
+1.  Ejecute el siguiente bloque de código e inspeccione el objeto que devuelven las sucesivas
+    llamadas realizadas. Analice por qué ocurre este comportamiento y piense qué tipo de
+    funcionalidades podrían aprovechar un mecanismo similar.
+
+    ```python
+    def fabrica():
+        cosas = []
+        def fun(elemento):
+            cosas.append(elemento)
+            return cosas
+        return fun
+
+    f = fabrica()
+    f(128)
+    f(256)
+    f(1024)
+    ```
+
+    **Ayuda**: Compare el ID de los objetos devueltos en cada llamada.
+    ¿Podría observar el mismo comportamiento si en vez de usar una lista para `cosas` se usara
+    una tupla?
+
+## Recursión
+
+1.  ¿Cuál de las siguientes funciones es recursiva?
+    ```python
+    def f(x):
+        return x + 1
+
+    def g(x):
+        return f(x)
+
+    def h(x):
+        return h(x - 1)
+    ```
+1.  ¿Qué son el caso base y el caso recursivo?
+1.  ¿Por qué toda recursión necesita un caso base?
+1.  ¿Qué pasa si una función recursiva nunca llega al caso base?
+1.  Reflexione sobre ventajas y desventajas de la recursión.
+
+## Funciones de orden superior
+
+1.  Explique por qué el primer `print` muestra `10` y el segundo falla:
+
+    ```python
+    from functools import partial
+
+    def suma(x, y):
+        return x + y
+
+    suma2 = partial(suma, 10, 0)
+    print(suma2())
+    print(suma2(10))
+    ```
+
+1.  ¿Cuál de las siguientes funciones es de orden superior?
+
+    ```python
+    def f(x):
+        return x + 1
+
+    def g(fn, x):
+        return fn(x)
+
+    def h():
+        return f
+    ```
+
+1.  ¿Cuál de las siguientes funciones de Python es de orden superior?
+    * `sum`
+    * `max`
+    * `min`
+    * `sorted`
+    * `print`
+    * `functools.partial`
+
+1.  ¿Qué hace la función `fun`?
+    ¿Qué condicion debe cumplir `f` respecto de sus valores de entrada y salida?
+
+    ```python
+    def fun(f, x):
+        return f(f(x))
+    ```
+
+1.  ¿Para qué sirve la función definida debajo?
+
+    ```python
+    def fun(f, g):
+        return lambda x: f(g(x))
+    ```
+
+1.  ¿Qué tipo de función se necesita pasar a `filter`?
+
+1.  ¿Cuál es el resultado de la última línea de código? ¿Por qué?
+
+    ```python
+    filter_obj = filter(lambda x: x > 2, range(5))
+    list(filter_obj) # Primera conversión a lista
+    list(filter_obj) # Segunda conversión a lista
+    ```
+
+    **Ayuda**: Para comprender lo que sucede en este ejercicio es necesario estar familiarizados
+    con los **generadores**.
+
+1.  ¿Cuál implementación es más eficiente desde el punto de vista del consumo de memoria?
+    ¿Por qué?
+
+    ```python
+    impares = list(filter(lambda x: x % 2, range(1_000)))
+    impares_al_cubo = list(map(lambda x: x ** 3, impares))
+    ```
+
+    ```python
+    impares_al_cubo = list(map(lambda x: x ** 3, filter(lambda x: x % 2, range(1_000))))
+    ```
+
+    **Ayuda**: Nuevamente, es necesario estar familiarizados con los **generadores** para
+    responder a esta pregunta.
+
+1.  ¿Cuál es el resultado de la reducción debajo? ¿Por qué?
+
+    ```python
+    from functools import reduce
+    reduce(lambda x, y: x + [y], range(3), [])
+    ```
+
+    **Ayuda**: `reduce` ejecuta la función que se le pasa solamente 3 veces.
+    Podría resultar de ayuda enumerar cada una de las llamadas manualmente.
+
+## Comprehensions
+
+1.  ¿Qué diferencia hay entre las siguientes dos líneas de código? Asuma que `f` es una función
+    y `xs` es una secuencia.
+
+    ```python
+    map(f, xs)
+    [f(x) for x in xs]
+    ```
+
+1.  ¿Cuál es el resultado de esta expresión?
+
+    ```python
+    [x for x in "hola" if x != "o"]
+    ```
+
+1.  Escriba una _list comprehension_ para obtener una lista con la primera letra de cada palabra.
+
+    ```python
+    palabras = ["hola", "mundo", "python"]
+    ```
+
+1.  Escriba una _list comprehension_ que reemplace los `None` por un `-1`.
+
+    ```python
+    datos = [1, None, 3, None, 5]
+    ```
+
+1.  Convierta este bucle en una _list comprehension_.
+
+    ```python
+    resultado = []
+    for x in range(5):
+        if x % 2 != 0:
+            resultado.append(x)
+    ```
+
+1.  ¿Es posible que una _list comprehension_ devuelva una lista vacía? ¿Cuándo?
+
+1.  Construya una única _list comprehension_ que realice lo mismo que el siguiente bloque:
+
+    ```python
+    def f(x):
+        return 10 / x
+
+    def g(x):
+        return x != 0
+
+    numeros = [1, 0, -1, 0, 2, 0, -2, 0, 3, 0, -3]
+    list(map(f, filter(g, numeros)))
+    ```
+
+## Generadores
+
+1.  ¿Qué diferencia a una función regular de una función generadora?
+1.  ¿En qué momento se ejecuta el cuerpo de una función generadora? ¿Siempre se ejecuta todo?
+1.  ¿Cómo se puede obtener una lista a partir de un generador? ¿Cuántas veces se puede realizar
+    esa operación sobre el mismo generador?
+1.  ¿Qué ventaja tiene un generador frente a una lista?
+1.  ¿Qué significa que un generador sea perezoso?
+1.  ¿Qué pasa si se llama a `next` sobre un generador más veces que la cantidad de `yield` en él?
+1.  ¿Qué se obtiene en el siguiente bloque de código?
+
+    ```python
+    def f():
+        yield 1
+        yield 2
+
+    gen = f()
+    print(list(gen))
+    ```
+
+    ¿Qué pasa si se corre `next(gen)` a continuación?
+
+1.  ¿Qué se imprime en pantalla?
+
+    ```python
+    print((x * 2 for x in [1, 2, 3]))
+    ```
+
+1.  ¿Por qué es posible implementar un bucle infinito dentro de un generador?
+
+1.  ¿Cuántas veces es posible llamar a `next` sobre el generador `g`?
+
+    ```python
+    def fun():
+        yield 1
+        return 2
+        yield 3
+
+    g = fun()
+    ```
