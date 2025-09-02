@@ -75,48 +75,6 @@ def verificar_limite(valor):
     return "Dentro del límite"
 ```
 
-## Área de aprendizaje
-
-Se cuenta con una lista de tuplas de longitud 2, representando el ancho y alto de distintos
-rectángulos.
-
-```python
-rectangulos = [
-    (5, 8),
-    (2, 2),
-    (9, 2),
-    (3, 3),
-    (3, 7),
-    (6, 3)
-]
-```
-
-Cree una nueva lista que ordene dichos rectángulos en función de su área.
-
-## Socios ordenados
-
-Se cuenta con la siguiente lista de diccionarios, la cual contiene datos personales sobre miembros
-de un club de atletismo:
-
-```python
-datos_socios = [
-    {"nombre": "Bautista Carrara", "edad": 22, "altura_cm": 178, "record_100m": 13.4},
-    {"nombre": "Valentina Lucci",  "edad": 23, "altura_cm": 163, "record_100m": 14.2},
-    {"nombre": "Gerónimo Cuesta",  "edad": 26, "altura_cm": 170, "record_100m": 14.0},
-    {"nombre": "Lucio Borga",      "edad": 28, "altura_cm": 186, "record_100m": 13.8},
-    {"nombre": "Julia Spoglia",    "edad": 21, "altura_cm": 163, "record_100m": 11.9},
-    {"nombre": "Soledad Colombo",  "edad": 22, "altura_cm": 170, "record_100m": 13.5}
-]
-```
-
-Ordene la lista en base a los récords en la carrera de 100 metros, en forma ascendente.
-
-### Punto extra
-
-Implemente una función que tome como argumento una clave de diccionario y devuelva una lista
-ordenada por los valores de dicha clave. Si el argumento toma el valor `"nombre"`, ordene los
-elementos alfabéticamente en base a los apellidos.
-
 ## Fábrica de promociones
 
 Considere el ejercicio [Promociones](../01_programacion_en_python/ejercicios.qmd#promociones) de la
@@ -153,45 +111,126 @@ promo_debito(1000)
 850
 ```
 
-## Analistas de temperaturas
+## Bendita media
 
-Considere una lista de temperaturas en grados Celsius sobre la cual se deben aplicar distintas
-operaciones.
+En Python no existe una función _built-in_ que calcule la media de una secuencia de números.
+El objetivo de este ejercicio es implementar una función `mean` que funcione tanto cuando se le pasa
+un iterable, como cuando se le pasa una cantidad arbitraria de números.
+
+El argumento es un iterable:
+```python
+mean([6.27, 8.11, 7.6, 5.2, 4.8])
+```
+
+Se pasan una cantidad arbitraria de valores numéricos:
+```python
+mean(7.3, 8.2, 11.0, 12.5)
+```
+
+## Sucesión de Fibonacci
+
+Considere la sucesión que comienza por los números 0 y 1. Los siguientes números se forman sumando
+los dos anteriores.
+
+$$
+\{\;0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \cdots\;\}
+$$
+
+Esta sucesión se conoce como **sucesión de Fibonacci**.
+
+Implemente una función recursiva que tome un número natural `n` como entrada y devuelva el `n`-ésimo
+número en la sucesión.
+
+## Palíndromos recursivos
+
+Un palíndromo es una palabra, frase, número o secuencia que se lee igual de izquierda a derecha
+que de derecha a izquierda. En Argentina, a un número de este tipo le decimos le decimos capicúa.
+
+Para comprobar en Python si una cadena es palíndroma, puede compararse con su versión invertida,
+que se construye mediante un slice con paso -1:
 
 ```python
-temperaturas_celsius = [
-    25.5, 28.0, 19.3, 31.5, 22.8, 17.0, 30.2, 35.6, 14.2,
-    32.4, 22.7, 10.1, 29.5, 33.9, 22.1, 38.9, 18.4, 16.3
+c = "anilina"
+c == c[::-1]
+```
+```python
+True
+```
+
+También podríaimos determinar si una cadena es un palíndromo de manera recursiva comparando el
+primer y el último carácter:
+
+* Si la cadena tiene longitud 0 o 1, se devuelve `True`.
+* Si el primer y el último carácter son iguales, se llama recursivamente a la función pasándole la
+cadena excluyendo al primer y último caracter ya comparados. Si son distintos, se devuelve `False`.
+
+En otras palabras, la función recursiva devolverá `True` cuando todas las comparaciones por pares
+resulten verdaderas y se alcance el caso base: queda un único carácter (longitud impar) o ninguno
+(longitud par).
+
+::: {.callout-tip collapse="true"}
+### Ayuda
+
+Para seleccionar todos los caracteres de una cadena, exceptuando al primero y el último,
+se puede usar
+```python
+"radar"[1:-1]
+```
+```python
+"ada"
+```
+:::
+
+### Punto extra
+
+Adapte la función para que no considere espacios ni distinga mayúsculas de minúsculas.
+De este modo, debería detectar que la siguiente frase es palíndroma.
+```python
+palindromo("Anita lava la tina") # True
+```
+
+## Área de aprendizaje
+
+Se cuenta con una lista de tuplas de longitud 2, representando el ancho y alto de distintos
+rectángulos.
+
+```python
+rectangulos = [
+    (5, 8),
+    (2, 2),
+    (9, 2),
+    (3, 3),
+    (3, 7),
+    (6, 3)
 ]
 ```
-1. Convierta las temperaturas a grados Fahrenheit utilizando `map` y almacene el resultado en una
-lista llamada `temperaturas_f`. Use la fórmula de conversión:
-    $$
-    F = C \times \frac{9}{5} + 32
-    $$
 
-1. Utilice `filter` para seleccionar de la lista anterior las temperaturas que sean mayores a 80°F.
-Guarde el resultado en una nueva lista. ¿Se le ocurre una alternativa que no utilice la lista
-creada en el primer punto?
-1. Utilice `reduce` para sumar las temperaturas filtradas en el paso anterior y calcular el
-promedio dividiendo la suma total entre la cantidad de elementos en la lista filtrada.
+Cree una nueva lista que ordene dichos rectángulos en función de su área utilizando la función
+`sorted`.
 
-### Punto extra 😱
+## Socios ordenados
 
-Calcule el promedio de temperaturas **sin materializar** ninguna secuencia hasta el último instante.
-Para ello, deberá utilizar `enumrate`, `filter` y `reduce`, sin convertir resultados a listas
-intermedias.
+Se cuenta con la siguiente lista de diccionarios, la cual contiene datos personales sobre miembros
+de un club de atletismo:
 
-<!--
 ```python
-from functools import reduce
-def f(x, y):
-    numerador = x[1] + y[1]
-    n = y[0] + 1
-    return (n, numerador)
-reduce(lambda x, y: y / x, reduce(f, enumerate(filter(lambda c: (c * 9/5 + 32) > 80, temperaturas_celsius))))
+datos_socios = [
+    {"nombre": "Bautista Carrara", "edad": 22, "altura_cm": 178, "record_100m": 13.4},
+    {"nombre": "Valentina Lucci",  "edad": 23, "altura_cm": 163, "record_100m": 14.2},
+    {"nombre": "Gerónimo Cuesta",  "edad": 26, "altura_cm": 170, "record_100m": 14.0},
+    {"nombre": "Lucio Borga",      "edad": 28, "altura_cm": 186, "record_100m": 13.8},
+    {"nombre": "Julia Spoglia",    "edad": 21, "altura_cm": 163, "record_100m": 11.9},
+    {"nombre": "Soledad Colombo",  "edad": 22, "altura_cm": 170, "record_100m": 13.5}
+]
 ```
--->
+
+Ordene la lista en base a los récords en la carrera de 100 metros, en forma ascendente.
+
+### Punto extra
+
+Implemente una función que tome como argumento una clave de diccionario y devuelva una lista
+ordenada por los valores de dicha clave. Si el argumento toma el valor `"nombre"`, ordene los
+elementos alfabéticamente en base a los apellidos.
 
 ## Listado de rimas
 
@@ -220,6 +259,35 @@ que riman se encuentren juntas.
 Si la lista fuese `["durazno", "kiwi"]`, el resultado sería `["kiwi", "durazno"]`, porque `"iwik"`
 precede a `"onzarud"` en orden alfabético.
 :::
+
+## Analistas de temperaturas
+
+Considere una lista de temperaturas en grados Celsius sobre la cual se deben aplicar distintas
+operaciones.
+
+```python
+temperaturas_celsius = [
+    25.5, 28.0, 19.3, 31.5, 22.8, 17.0, 30.2, 35.6, 14.2,
+    32.4, 22.7, 10.1, 29.5, 33.9, 22.1, 38.9, 18.4, 16.3
+]
+```
+
+### Enfoque funcional
+
+1. Convierta las temperaturas a grados Fahrenheit utilizando `map` y almacene el resultado en una
+lista llamada `temperaturas_f`. Use la fórmula de conversión:
+    $$
+    F = C \times \frac{9}{5} + 32
+    $$
+
+1. Utilice `filter` para seleccionar de la lista anterior las temperaturas que sean mayores a 80°F.
+Guarde el resultado en una nueva lista. ¿Se le ocurre una alternativa que no utilice la lista
+creada en el primer punto?
+
+### Enfoque idiomático
+
+1. Utilice una _list comprehension_ para obtener una lista de temperaturas en grados Fahrenheit
+solo cuando para temperaturas mayores a 22 °C.
 
 
 ## El tiempo vuela
@@ -266,19 +334,53 @@ print(time() - inicio) # ~ 2 (segundos)
 ```
 :::
 
-## Sucesión de Fibonacci
+## No perdamos el centro
 
-Considere la sucesión que comienza por los números 0 y 1. Los siguientes números se forman sumando
-los dos anteriores.
+Suponga el siguiente listado de números, que contiene algunos `None`:
 
-$$
-\{\;0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \cdots\;\}
-$$
+```python
+numeros = [
+    2.05, 1.09, None, 2.31, 2.28, 0.97, 2.59, 2.72, 0.76, None, 1.88, 2.04, 3.25, 1.88, None
+]
+```
 
-Esta sucesión se conoce como **sucesión de Fibonacci**.
+Calcule la media de los numeros, sin considerar los nulos.
+Luego, utilizando una _list comprehension_, obtenga una nueva lista de los valores centrados,
+conservando los `None` en las posiciones originales.
 
-Implemente una función recursiva que tome un número natural `n` como entrada y devuelva el `n`-ésimo
-número en la sucesión.
+## En Python es mejor
+
+Considere el siguiente programa, que selecciona valores atípicos de un listado:
+
+```python
+numeros = [
+    4.74346239e-01, -2.90877176e-01, -1.44377789e+00, -4.48680759e+01,
+    -1.21249801e+00, -3.32729317e-01,  2.21676912e-01,  1.05599711e+00,
+    -3.62372053e+00, -2.96441579e-01, -4.28304222e+00,  1.55908820e+02,
+    9.00858234e-01, -1.09384173e+00, -1.51083571e+00, -5.38491167e-01,
+    -3.84153084e-02,  1.20393395e+00,  1.82651406e-01,  2.05179405e+00
+]
+
+def media(x):
+    return sum(x) / len(x)
+
+def varianza(x):
+    numerador = 0
+    x_media = media(x)
+    for x_i in x:
+        numerador += (x_i - x_media) ** 2
+    return numerador / len(x)
+
+x_media = media(numeros)
+x_desvio = varianza(numeros) ** 0.5
+
+map_obj = map(lambda x: (x - x_media) / x_desvio, numeros)
+list(filter(lambda x: abs(x) > 3, map_obj))
+```
+
+Implemente un programa equivalente haciendo uso de una _list comprehension_, en vez de
+`map` y `filter`.
+
 
 ## Subiendo de rango
 
