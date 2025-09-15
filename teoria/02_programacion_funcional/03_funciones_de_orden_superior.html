@@ -1174,7 +1174,7 @@ Argumentos nombrados: {'n': 3}</code></pre>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-58" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-58" data-code-lines="8" data-code-annotation="1">Gracias a esta línea, la función <code>envoltura</code> ahora retorna que <code>fun</code> retorne.</span>
+<span data-code-cell="annotated-cell-58" data-code-lines="8" data-code-annotation="1">Gracias a esta línea, la función <code>envoltura</code> retorna lo que sea que <code>fun</code> retorne.</span>
 </dd>
 </dl>
 </div>
@@ -1240,7 +1240,7 @@ Argumentos nombrados: {'n': 3}</code></pre>
 <span id="cb129-9"><a href="#cb129-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> resultado</span>
 <span id="cb129-10"><a href="#cb129-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> envoltura</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="21ed2fd0" class="cell" data-execution_count="58">
+<div id="21ed2fd0" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb130"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mayor(x, y):</span>
 <span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;</span> y:</span>
 <span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span>
@@ -1254,21 +1254,21 @@ Argumentos nombrados: {'n': 3}</code></pre>
 <span id="cb130-11"><a href="#cb130-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximo_builtin(x):</span>
 <span id="cb130-12"><a href="#cb130-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">max</span>(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cbeaa090" class="cell" data-execution_count="59">
+<div id="cbeaa090" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb131"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1_000_000</span>))</span>
 <span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a>maximo_reduce(lista)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>maximo_reduce demoró 0.049727 segundos</code></pre>
+<pre><code>maximo_reduce demoró 0.044118 segundos</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <pre><code>999999</code></pre>
 </div>
 </div>
-<div id="75ffacd4" class="cell" data-execution_count="60">
+<div id="75ffacd4" class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb134"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>maximo_builtin(lista)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>maximo_builtin demoró 0.010542 segundos</code></pre>
+<pre><code>maximo_builtin demoró 0.017050 segundos</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <pre><code>999999</code></pre>
