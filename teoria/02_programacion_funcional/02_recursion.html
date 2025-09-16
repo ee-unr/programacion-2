@@ -369,7 +369,7 @@ window.Quarto = {
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
 <p>En el apunte anterior vimos que en Python las funciones son ciudadanos de primera clase. Esto significa que una función es un objeto, al igual que un número, una cadena de texto o incluso un diccionario anidado con una estructura bastante enredada. Gracias a esto, no solo podemos inspeccionar sus atributos o hacer que una función llame a otras, sino que también es posible que una función cree y retorne nuevas funciones.</p>
-<p>Además de los casos ya mencionados, también es posible que una función se llame a sí misma. Es decir, que en el cuerpo de la definición de esa función se incluya una llamada a la función que se está definiendo. A este tipo de funciones se las llama <strong>recursivas</strong>, y la técnica en sí recibe el nombre de <strong>recursión</strong>.</p>
+<p>Además de los casos ya mencionados, también es posible que una función se llame a sí misma. Es decir, que en el cuerpo de la definición de esa función se incluya una llamada a la función que se está definiendo (🤯). A este tipo de funciones se las llama <strong>recursivas</strong>, y la técnica en sí recibe el nombre de <strong>recursión</strong>.</p>
 <p>Aunque pueda sonar extraño que una función se invoque a sí misma, en programación existen problemas para los que funciones recursivas resultan una solución natural y efectiva.</p>
 </section>
 <section id="cuenta-regresiva" class="level2">
@@ -462,7 +462,7 @@ Versión con <code>return</code> implícito
 </dd>
 <dt data-target-cell="annotated-cell-20" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-20" data-code-lines="5" data-code-annotation="2">Acá no se usa <code>return</code> para devolver <code>None</code>: directamente no se escribe nada. El efecto es el mismo y constituye el <strong>caso base</strong>. En Python, si una función no incluye ningún <code>return</code>, se comporta como si al final hubiera un <code>return</code> o <code>return None</code>, es decir, la función termina y devuelve <code>None</code>.</span>
+<span data-code-cell="annotated-cell-20" data-code-lines="5" data-code-annotation="2">Acá no se usa <code>return</code> para devolver <code>None</code>, directamente no se escribe nada. El efecto es el mismo y constituye el <strong>caso base</strong>. En Python, si una función no incluye ningún <code>return</code>, se comporta como si al final hubiera un <code>return</code> o <code>return None</code>, es decir, la función termina y devuelve <code>None</code>.</span>
 </dd>
 </dl>
 </div>
@@ -648,7 +648,7 @@ factorial(1)
 </div>
 </div>
 <p>El proceso arranca con la llamada a <code>factorial(4)</code>. Para calcular su resultado, la función necesita antes el valor de <code>factorial(3)</code>. Esa, a su vez, depende de <code>factorial(2)</code>, que depende de <code>factorial(1)</code>. Finalmente, cuando llegamos a <code>factorial(1)</code>, entramos en el <strong>caso base</strong>, que devuelve un resultado sin hacer más llamadas.</p>
-<p>Por eso primero vemos cómo se acumula la pila de llamadas, que crece paso a paso hasta llegar al caso base. Recién ahí comienza el camino de regreso: cada llamada se va resolviendo con el valor devuelto por la anterior, hasta llegar de nuevo a <code>factorial(4)</code>, donde se completa el cálculo y obtenemos el resultado final.</p>
+<p>Por eso primero vemos cómo se acumula la <strong>pila de llamadas</strong>, que crece paso a paso hasta llegar al caso base. Recién ahí comienza el camino de regreso: cada llamada se va resolviendo, utilizando el valor devuelto por la llamada anterior, hasta llegar de nuevo a <code>factorial(4)</code>, donde se completa el cálculo y obtenemos el resultado final.</p>
 </section>
 </section>
 <section id="letra-chica" class="level2">

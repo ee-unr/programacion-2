@@ -363,7 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    ~~~~~~~~~^^^^^^^</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>TypeError: intervalo(<span class="kw">)</span> missing 1 required positional argument: 'c'</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Python devuelve un error indicando que la función <code>intervalo</code> no puede ejecutarse porque falta un valor para el parámetro <code>c</code>. Aunque sepamos que dicho parámetro no se utiliza dentro de la función, Python igualmente exige que se le pase un valor.</p>
-<p>Esta exigencia se debe a que las funciones de Python se evalúan bajo las reglas de la <strong>evaluación estricta</strong>. Bajo este enfoque, una función no puede producir un resultado si alguno de sus parámetros no está definido. Por eso, aun cuando el valor de <code>c</code> nunca se use en el cuerpo de la función, la ausencia de un argumento para él provoca un error.</p>
+<p>Esta exigencia se debe a que las funciones de Python se evalúan bajo las reglas de la <strong>evaluación estricta</strong>. Bajo este enfoque, una función no puede producir un resultado si alguno de sus parámetros no está definido. Por eso, aun cuando el valor de <code>c</code> nunca se use en el cuerpo de la función, la ausencia de un valor para él provoca un error.</p>
 <p>Para que la función se ejecute correctamente, basta con pasarle cualquier valor:</p>
 <div id="6b5063a4" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>intervalo(<span class="dv">5</span>, <span class="dv">12</span>, <span class="va">None</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -442,7 +442,7 @@ intervalo(a=4, b=17)</code></pre>
 <pre><code>False</code></pre>
 </div>
 </div>
-<p>En Python, este mecanismo también se conoce como cortocircuito. Al detectar que el resultado de la operación ya está decidido con el primer argumento, el intérprete “corta camino” y no sigue evaluando el resto.</p>
+<p>En Python, este mecanismo también se conoce como cortocircuito. Al detectar que el resultado de la operación ya está decidido con el primer argumento, el intérprete “corta camino” y decide no evaluar al resto.</p>
 </section>
 <section id="expresión-or" class="level3">
 <h3 class="anchored" data-anchor-id="expresión-or">Expresión <code>or</code></h3>

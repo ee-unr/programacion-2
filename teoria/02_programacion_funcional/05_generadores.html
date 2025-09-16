@@ -465,7 +465,7 @@ Entrego el valor 25</code></pre>
 <p>Como no hay ningún otro valor por entregar, se imprime el mensaje y luego se obtiene la excepción <code>StopIteration</code>.</p>
 <section id="ejemplo-1-secuencia-de-números-naturales" class="level3">
 <h3 class="anchored" data-anchor-id="ejemplo-1-secuencia-de-números-naturales">Ejemplo 1: Secuencia de números naturales</h3>
-<p>Los generadores también permiten crear secuencias infinitas. Para ello basta con escribir un bucle infinito dentro de la función generadora. Esto no representa un problema, ya que el generador produce un valor a la vez, únicamente cuando se le solicita.</p>
+<p>Los generadores también permiten crear secuencias infinitas. Para ello, basta con escribir un bucle infinito dentro de la función generadora. Esto no representa un problema, ya que el generador produce un valor a la vez, únicamente cuando se le solicita.</p>
 <div id="2b8aeb35" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> numeros_naturales():</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="dv">0</span></span>
@@ -753,7 +753,7 @@ Promedio acumulado: 5.67</code></pre>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>    ~~~~^^^^</span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>TypeError: 'int' object is not iterable</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>En resumen, en Python <strong>solo se puede iterar sobre iteradores</strong>. Un objeto es <strong>iterable</strong> cuando puede generar un iterador a partir de él, y es este último el que sabe cómo devolver los elementos uno a uno mediante la función <code>next</code>. Cuando ya no quedan más valores por producir, el iterador eleva la excepción <code>StopIteration</code>.</p>
-<p>Los <strong>generadores</strong> son un caso particular de iteradores: producen sus valores bajo demanda y mantienen el estado entre llamadas.</p>
+<p>Los <strong>generadores son un caso particular de iteradores</strong>: producen sus valores bajo demanda y mantienen el estado entre llamadas.</p>
 <p>Finalmente, al usar un bucle <code>for</code> con un iterable, todo este mecanismo ocurre de forma automática: Python crea el iterador por nosotros y se encarga de avanzar en la secuencia hasta agotarla.</p>
 
 
