@@ -45,7 +45,10 @@ website:
           contents:
             - auto: teoria/02_programacion_funcional/*.ipynb
             - sort-ui: false
-        - teoria/03_oop.qmd
+        - text: U3 - Programación Orientada a Objetos
+          contents:
+            - auto: teoria/03_oop/*.ipynb
+            - sort-ui: false
         - teoria/04_estructuras.qmd
         - teoria/05_algoritmos.qmd
     - title: Práctica

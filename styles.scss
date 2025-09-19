@@ -342,3 +342,21 @@ figure img {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+// Clases para celdas de código que representan errores u otras salidas
+.code-error > div:first-child {
+  background-color: rgba(255, 240, 243, 1);
+  border-radius: 4.25px;
+  border: 1px solid #e74c3c;
+  border-left-width: 5px;
+}
+
+.code-help > div:first-child {
+  background-color: rgba(242, 247, 255, 1);
+  border-radius: 4.25px;
+  border: 1px solid #3498db;
+  border-left-width: 5px;
+}
+
+
+
