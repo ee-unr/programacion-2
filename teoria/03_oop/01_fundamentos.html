@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1 - Fundamentos – Programación II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../teoria/03_oop/02_encapsulamiento.html" rel="next">
+<link href="../../teoria/02_programacion_funcional/05_generadores.html" rel="prev">
+<link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-059f0cd14ff6f7eb313170a57f5d0a14.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Programación II</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../informacion/programa.html"> 
+<span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../teoria/01_programacion_en_python/01_introduccion.html" aria-current="page"> 
+<span class="menu-text">Teoría</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../practica/01_programacion_en_python/ejercicios.html"> 
+<span class="menu-text">Práctica</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../trabajos_practicos/descripcion.html"> 
+<span class="menu-text">Trabajos Prácticos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../recursos/ejercicios/ejercicio_01.html"> 
+<span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ee-unr/programacion-2"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/03_oop/01_fundamentos.html">U3 - Programación Orientada a Objetos</a></li><li class="breadcrumb-item"><a href="../../teoria/03_oop/01_fundamentos.html">1 - Fundamentos</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U1 - Programación en Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Introducción</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Funciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Ejecución condicional</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/04_colecciones_de_datos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Colecciones de datos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/05_ejecucion_repetitiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Ejecución repetitiva</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/06_uso_de_codigo_externo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 - Uso de código externo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/07_scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 - <em>Scripting</em></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/08_io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 - Lectura y escritura de archivos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U2 - Programación Funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/02_recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Recursión</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/03_funciones_de_orden_superior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Funciones de orden superior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Estrategias de evaluación 🧩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/05_generadores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Generadores 🧩</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U3 - Programación Orientada a Objetos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/01_fundamentos.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1 - Fundamentos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/02_encapsulamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Encapsulamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/03_herencia_polimorfismo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Herencia y polimorfismo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/04_metodos_especiales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Métodos especiales</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">U4 - Estructuras de Datos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/05_algoritmos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">U5 - Algoritmos</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#objetos-familiares" id="toc-objetos-familiares" class="nav-link" data-scroll-target="#objetos-familiares">Objetos familiares</a></li>
+  <li><a href="#clases-y-objetos" id="toc-clases-y-objetos" class="nav-link" data-scroll-target="#clases-y-objetos">Clases y objetos</a>
+  <ul class="collapse">
+  <li><a href="#ejemplo-la-clase-dict" id="toc-ejemplo-la-clase-dict" class="nav-link" data-scroll-target="#ejemplo-la-clase-dict">Ejemplo: la clase <code>dict</code></a></li>
+  </ul></li>
+  <li><a href="#creando-nuestras-propias-clases" id="toc-creando-nuestras-propias-clases" class="nav-link" data-scroll-target="#creando-nuestras-propias-clases">Creando nuestras propias clases</a>
+  <ul class="collapse">
+  <li><a href="#parámetros-de-inicialización" id="toc-parámetros-de-inicialización" class="nav-link" data-scroll-target="#parámetros-de-inicialización">Parámetros de inicialización</a></li>
+  </ul></li>
+  <li><a href="#atributos" id="toc-atributos" class="nav-link" data-scroll-target="#atributos">Atributos</a>
+  <ul class="collapse">
+  <li><a href="#atributos-opcionales" id="toc-atributos-opcionales" class="nav-link" data-scroll-target="#atributos-opcionales">Atributos opcionales</a></li>
+  </ul></li>
+  <li><a href="#métodos" id="toc-métodos" class="nav-link" data-scroll-target="#métodos">Métodos</a>
+  <ul class="collapse">
+  <li><a href="#métodos-que-modifican-estado" id="toc-métodos-que-modifican-estado" class="nav-link" data-scroll-target="#métodos-que-modifican-estado">Métodos que modifican estado</a></li>
+  <li><a href="#métodos-que-reciben-argumentos" id="toc-métodos-que-reciben-argumentos" class="nav-link" data-scroll-target="#métodos-que-reciben-argumentos">Métodos que reciben argumentos</a></li>
+  <li><a href="#métodos-que-devuelven-resultados" id="toc-métodos-que-devuelven-resultados" class="nav-link" data-scroll-target="#métodos-que-devuelven-resultados">Métodos que devuelven resultados</a></li>
+  <li><a href="#métodos-que-devuelven-al-objeto" id="toc-métodos-que-devuelven-al-objeto" class="nav-link" data-scroll-target="#métodos-que-devuelven-al-objeto">Métodos que devuelven al objeto</a></li>
+  </ul></li>
+  <li><a href="#ejemplo-final-cuenta-bancaria" id="toc-ejemplo-final-cuenta-bancaria" class="nav-link" data-scroll-target="#ejemplo-final-cuenta-bancaria">Ejemplo final: Cuenta bancaria</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/03_oop/01_fundamentos.html">U3 - Programación Orientada a Objetos</a></li><li class="breadcrumb-item"><a href="../../teoria/03_oop/01_fundamentos.html">1 - Fundamentos</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">1 - Fundamentos</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>Para hablar de programación orientada a objetos (OOP, por sus siglas en inglés), podemos empezar preguntándonos qué es un objeto. Aunque no solemos pensar en ello de forma consciente, porque todos podemos distinguir un objeto de lo que no lo es, vale la pena definirlo como algo tangible, que se puede percibir, tocar y manipular. ¡Nos pasamos toda la vida interactuando con objetos!</p>
+<p>En el mundo real, los objetos tienen atributos o propiedades que los describen. Por ejemplo, un televisor tiene forma, tamaño, color, peso, entre otros. Además, los objetos también pueden realizar acciones. Siguiendo con el ejemplo del televisor, puede encenderse, apagarse, cambiar de canal, modificar la fuente de entrada para ver una serie en Netflix o simplemente reproducir música.</p>
+<p>En programación, la definición de objeto no difiere mucho de la anterior. Aunque los objetos no sean elementos físicos, representan entidades que poseen atributos y pueden ejecutar acciones.</p>
+<p>La programación orientada a objetos es un paradigma que organiza el código en torno a estos objetos, que combinan datos (atributos) y comportamientos o acciones (métodos) dentro de una misma entidad. Este enfoque permite no solo crear e interactuar con objetos, sino también definir nuestros propios tipos de objetos, adaptados a las necesidades del programa.</p>
+</section>
+<section id="objetos-familiares" class="level2">
+<h2 class="anchored" data-anchor-id="objetos-familiares">Objetos familiares</h2>
+<p>Así como interactuamos con objetos en la vida real desde nuestros primeros días, también lo hemos estado haciendo en Python desde el comienzo. Por ejemplo, cada vez que creamos una cadena de texto, en realidad estamos creando un objeto de la clase <code>str</code>.</p>
+<div id="77eb2fb0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"Hola, soy un objeto de tipo 'str'."</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="st">"¿Y yo? ¡Yo también soy un objeto de tipo 'str'!"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"x = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"y = </span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x = Hola, soy un objeto de tipo 'str'.
+y = ¿Y yo? ¡Yo también soy un objeto de tipo 'str'!</code></pre>
+</div>
+</div>
+<p>Tanto <code>x</code> como <code>y</code> son objetos del mismo tipo: cadenas de caracteres, que en Python corresponden al tipo <code>str</code>. Sin embargo, <code>x</code> e <code>y</code> no son el mismo objeto, sino dos objetos distintos. Esto puede comprobarse no solo por su contenido (uno de sus atributos), sino también comparando sus identificadores únicos (ID), que son diferentes.</p>
+<div id="26032109" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">id</span>(x))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">id</span>(y))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>140223504929120
+140223504962192</code></pre>
+</div>
+</div>
+<p>A su vez, los objetos de tipo <code>str</code> pueden realizar ciertas acciones. Por ejemplo, si queremos convertir todas las letras de una cadena a mayúsculas, podemos hacer lo siguiente:</p>
+<div id="ef108c41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x.upper()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>"HOLA, SOY UN OBJETO DE TIPO 'STR'."</code></pre>
+</div>
+</div>
+<p>Las cadenas de caracteres son uno de los muchos tipos de objetos con los que ya hemos interactuado. Todas las estructuras de datos que hemos utilizado —desde las más simples, como los enteros, flotantes y booleanos, hasta las más complejas, como listas, tuplas y diccionarios— no son más que distintos tipos de objetos.</p>
+<p>En Python, cada tipo de dato está implementado como una clase, y trabajar con estas clases no solo nos permite crear nuestros propios tipos de datos según nuestras necesidades, sino también interactuar con los objetos que generamos a partir de ellas.</p>
+</section>
+<section id="clases-y-objetos" class="level2">
+<h2 class="anchored" data-anchor-id="clases-y-objetos">Clases y objetos</h2>
+<p>En el contexto de la programación orientada a objetos, se utilizan <strong>clases</strong> para definir nuevas clases o tipos de objetos, especificando qué atributos deben tener y qué acciones pueden realizar. De forma informal, una clase puede pensarse como una plantilla que determina cómo se ve y se comporta un objeto.</p>
+<p>Por ejemplo, imaginemos un molde para hacer paletas heladas. Este molde permite producir paletas, pero no es una paleta en sí. De hecho, se parece más a una fábrica de paletas.</p>
+<p>El molde define aspectos estructurales como la forma y el tamaño de las paletas, pero no determina por completo cómo serán. Podemos llenarlo con diferentes líquidos, sabores, colores o aromas, y así obtener resultados variados a partir del mismo molde.</p>
+<p>En programación orientada a objetos, una clase cumple un rol similar: define la estructura y el comportamiento general de los objetos que se crearán a partir de ella. Los objetos, en cambio, son las instancias concretas generadas a partir de esa clase, cada una con sus propias características particulares, como cada paleta helada que sale del molde.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+¿Clases o tipos?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En Python, los tipos de datos están implementados como clases. Por eso mismo, en todos los casos debajo, se puede ver que el tipo está precedido por <code>class</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="st">"texto"</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>({<span class="st">"a"</span>: <span class="dv">1</span>, <span class="st">"b"</span>: <span class="dv">2</span>}))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;</span>class 'str'<span class="kw">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;</span>class 'list'<span class="kw">&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;</span>class 'dict'<span class="kw">&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Así, en Python, es lo mismo hablar de clases o tipos de datos.</p>
+</div>
+</div>
+<section id="ejemplo-la-clase-dict" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-la-clase-dict">Ejemplo: la clase <code>dict</code></h3>
+<p>Los diccionarios de Python son instancias de la clase <code>dict</code>. Es esta clase la que define, entre otras cosas, que los diccionarios tienen claves y valores.</p>
+<p>En el ejemplo debajo, tanto <code>d1</code> como <code>d2</code> son instancias u objetos de la clase <code>dict</code> (es decir, son objetos creados con el mismo molde). Sin embargo, <code>d1</code> y <code>d2</code> son objetos distintos, que además tienen diferentes valores para sus atributos (claves y valores).</p>
+<div id="3ea8ca4f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> {<span class="st">"a"</span>: <span class="dv">100</span>, <span class="st">"b"</span>: <span class="dv">250</span>}</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> {<span class="st">"m"</span>: <span class="dv">20</span>, <span class="st">"n"</span>: <span class="va">False</span>}</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(d1))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(d2))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'dict'&gt;
+&lt;class 'dict'&gt;</code></pre>
+</div>
+</div>
+<div id="314bbb68" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1 <span class="kw">is</span> d2)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1 <span class="op">==</span> d2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>False
+False</code></pre>
+</div>
+</div>
+<p>Si consultamos la ayuda de <code>dict</code> mediante <code>help(dict)</code>, podemos ver que Python dice que esto se refiere a una clase:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(<span class="bu">dict</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-help">
+<div class="sourceCode" id="cb14"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">Help</span> on class dict in module builtins:</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+¿Objetos o instancias?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En el contexto de programación orientada a objetos, los términos “objeto” e “instancia” suelen usarse de manera intercambiable: ambos hacen referencia a una entidad concreta creada a partir de una clase.</p>
+<p>En el siguiente ejemplo, decimos que <code>l</code> es una instancia de la clase <code>list</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> <span class="bu">list</span>(<span class="st">"abcde"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="creando-nuestras-propias-clases" class="level2">
+<h2 class="anchored" data-anchor-id="creando-nuestras-propias-clases">Creando nuestras propias clases</h2>
+<p>La definición de una clase, que crea un nuevo tipo de dato, define los atributos de un objeto (datos que representan estado) y las cosas que este objeto puede hacer (funciones que representan comportamiento).</p>
+<p>Para definir una nueva clase en Python se usa la sentencia <code>class</code> seguida del nombre de la clase. Veamos el siguiente ejemplo comentado línea a línea.</p>
+<div id="1cdb687d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="6">
+<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PaletaHelada:</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Creando nueva paleta helada"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="1" data-code-annotation="1">La sentencia <code>class</code> indica el inicio de la definición de una clase. A continuación se escribe el nombre de la clase y, al final, los dos puntos (<code>:</code>), que señalan el comienzo del bloque donde se definen sus atributos y funciones (llamados métodos).</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="2">Por lo general, lo primero que se define dentro de una clase es su método de inicialización, siempre llamado <code>__init__</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="3" data-code-annotation="3">Esta línea se ejecuta cada vez que se crea un nuevo objeto de la clase. En este caso, imprime un mensaje en pantalla como parte del proceso de inicialización.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Definir una clase no crea ningún objeto por sí misma; simplemente construye el molde o plantilla a partir del cual se podrán crear objetos más adelante.</p>
+<p>Para crear un objeto a partir de una clase, es necesario “llamar” a la clase, lo que genera una nueva instancia de esa clase.</p>
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>paleta1 <span class="op">=</span> PaletaHelada()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Creando nueva paleta helada</code></pre>
+</div>
+</div>
+<p>La variable <code>paleta1</code> representa un objeto de la clase <code>PaletaHelada</code>. En otras palabras, hemos creado, al menos en código, una paleta helada.</p>
+<p>Como las clases son reutilizables, podemos crear tantas paletas heladas como queramos, simplemente creando nuevas instancias de la clase.</p>
+<div id="0782555d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>paleta2 <span class="op">=</span> PaletaHelada()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Creando nueva paleta helada</code></pre>
+</div>
+</div>
+<p>Al imprimir estos objetos, obtenemos una representación generada automáticamente por Python. En ella podemos ver que ambos son instancias de la clase <code>PaletaHelada</code>, aunque también queda claro que ocupan ubicaciones distintas en memoria. Esto confirma que se trata de objetos distintos, aunque provengan de la misma clase.</p>
+<div id="e1a218f0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(paleta1)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(paleta2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;__main__.PaletaHelada object at 0x7f8854339220&gt;
+&lt;__main__.PaletaHelada object at 0x7f8854338530&gt;</code></pre>
+</div>
+</div>
+<section id="parámetros-de-inicialización" class="level3">
+<h3 class="anchored" data-anchor-id="parámetros-de-inicialización">Parámetros de inicialización</h3>
+<p>También es posible pasar argumentos al momento de inicializar un objeto. Previamente, tenemos que agregar los parámetros necesarios en el método de inicialización.</p>
+<div id="e8d85871" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="10">
+<div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PaletaHelada:</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, gusto):</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-11-3" class="code-annotation-target"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Creando nueva paleta helada de gusto </span><span class="sc">{</span>gusto<span class="sc">}</span><span class="ss">"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="2" data-code-annotation="1">El método <code>__init__</code> ahora recibe dos parámetros:</span>
+</dd>
+<dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-11" data-code-lines="3" data-code-annotation="2">El valor de <code>gusto</code> se utiliza para mostrar un mensaje de inicialización personalizado, indicando el sabor de la paleta.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Gracias a esto, ahora podemos crear paletas heladas con distintos sabores, como frutilla, naranja, entre otros.</p>
+<div id="2063aec6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>paleta1 <span class="op">=</span> PaletaHelada(<span class="st">"frutilla"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>paleta2 <span class="op">=</span> PaletaHelada(<span class="st">"naranja"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Creando nueva paleta helada de gusto frutilla
+Creando nueva paleta helada de gusto naranja</code></pre>
+</div>
+</div>
+<p>Sin embargo, podemos observar que ninguna de estas dos instancias recuerda algo relacionado al gusto con el que fue inicializado.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>paleta1.gusto</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-error">
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="pp">AttributeError</span>: <span class="st">'PaletaHelada'</span> <span class="bu">object</span> has no attribute <span class="st">'gusto'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>paleta2.gusto</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-error">
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="pp">AttributeError</span>: <span class="st">'PaletaHelada'</span> <span class="bu">object</span> has no attribute <span class="st">'gusto'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Si queremos que nuestros objetos puedan recordar datos, necesitamos comprender cómo se utilizan los <strong>atributos</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Instanciación de un nuevo objeto
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La instanciación es el proceso mediante el cual se crea un objeto a partir de una clase. La sintaxis general es la siguiente:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>objeto<span class="op">&gt;</span> <span class="op">=</span> <span class="op">&lt;</span>NombreClase<span class="op">&gt;</span>(<span class="op">&lt;</span>argumentos opcionales<span class="op">&gt;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Aunque al principio pueda parecer poco familiar, en realidad hemos estado instanciando objetos desde los primeros pasos que dimos en Python. Por ejemplo, al escribir <code>list("hola")</code>, estamos creando un objeto de la clase <code>list</code> a partir de la cadena <code>"hola"</code>. Del mismo modo, con <code>range(10)</code> craemos un objeto de la clase <code>range</code>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="atributos" class="level2">
+<h2 class="anchored" data-anchor-id="atributos">Atributos</h2>
+<p>Los atributos son variables asociadas a un objeto que representan su estado.</p>
+<p>En Python, los atributos no requieren ninguna sintaxis especial para ser declarados. Simplemente se crean dentro de un método (generalmente en <code>__init__</code>) usando la notación <code>self.&lt;atributo&gt;</code>.</p>
+<p>En nuestro ejemplo de la clase <code>PaletaHelada</code>, podemos hacer:</p>
+<div id="31e81676" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="12">
+<div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-15-1"><a href="#annotated-cell-15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PaletaHelada:</span>
+<span id="annotated-cell-15-2"><a href="#annotated-cell-15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, gusto):</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-15-3" class="code-annotation-target"><a href="#annotated-cell-15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gusto <span class="op">=</span> gusto</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-15" data-code-lines="3" data-code-annotation="1">El valor de <code>gusto</code> que se pasa al momento de crear la instancia se asigna al atributo <code>gusto</code> del objeto.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Aunque la representación automática del objeto no cambia, ahora el objeto tiene <strong>estado</strong>: puede “recordar” el gusto con el que fue inicializado.</p>
+<div id="64a652b8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>paleta1 <span class="op">=</span> PaletaHelada(<span class="st">"frutilla"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>paleta1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;__main__.PaletaHelada at 0x7f8854339c70&gt;</code></pre>
+</div>
+</div>
+<div id="818d44e2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>paleta1.gusto</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>'frutilla'</code></pre>
+</div>
+</div>
+<p>En este caso, la variable <code>gusto</code> es una <strong>variable de instancia</strong> o <strong>atributo de instancia</strong>. Estas variables existen solo dentro del objeto que las contiene, y no afectan a otras instancias de la misma clase. Así, distintos objetos de una misma clase pueden tener valores diferentes en sus atributos.</p>
+<div id="9819a2af" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>paleta2 <span class="op">=</span> PaletaHelada(<span class="st">"naranja"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(paleta2.gusto)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(paleta1.gusto)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>naranja
+frutilla</code></pre>
+</div>
+</div>
+<p>Los atributos también pueden definirse o modificarse fuera de los métodos de la clase.</p>
+<p>Por ejemplo, es posible cambiar el valor de un atributo simplemente asignándole un nuevo valor utilizando la instancia:</p>
+<div id="f4de98fd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>paleta1.gusto <span class="op">=</span> <span class="st">"crema americana"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a245d087" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>paleta1.gusto</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>'crema americana'</code></pre>
+</div>
+</div>
+<p>Y también se puede asignarle un valor a un nuevo atributo:</p>
+<div id="992ddca4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>paleta1.cobertura <span class="op">=</span> <span class="st">"chocolate"</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(paleta1.gusto, paleta1.cobertura, sep<span class="op">=</span><span class="st">", "</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>crema americana, chocolate</code></pre>
+</div>
+</div>
+<p>Este nuevo atributo existe únicamente en la instancia a la que fue asignado (<code>paleta1</code>). Es decir, <code>paleta2</code> no tiene un atributo llamado <code>cobertura</code>, ya que no fue definido durante su inicialización ni se le asignó más adelante.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>paleta2.cobertura</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-error">
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="pp">AttributeError</span>: <span class="st">'PaletaHelada'</span> <span class="bu">object</span> has no attribute <span class="st">'cobertura'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>En Python, los atributos de instancia son independientes entre objetos: si un atributo no se define explícitamente en una instancia, simplemente no existe en ella.</p>
+<section id="atributos-opcionales" class="level3">
+<h3 class="anchored" data-anchor-id="atributos-opcionales">Atributos opcionales</h3>
+<p>Aunque Python permite crear nuevos atributos fuera del proceso de inicialización de un objeto, eso no significa que sea una práctica recomendable en todos los casos.</p>
+<p>Asignar un atributo directamente a una instancia específica puede generar inconsistencias: terminamos con objetos de la misma clase que no comparten la misma estructura de atributos. Esto puede dificultar la lectura del código y producir errores si intentamos acceder a un atributo que no existe en todas las instancias.</p>
+<p>Una alternativa más clara y segura es definir atributos opcionales dentro del método <code>__init__</code>, asignándoles un valor por defecto como <code>None</code>. De esta forma, todas las instancias tendrán los mismos atributos, aunque algunos puedan no tener un valor definido inicialmente.</p>
+<div id="b9575340" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PaletaHelada:</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, gusto, cobertura<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gusto <span class="op">=</span> gusto</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cobertura <span class="op">=</span> cobertura</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>paleta1 <span class="op">=</span> PaletaHelada(<span class="st">"crema americana"</span>, <span class="st">"chocolate"</span>)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>paleta2 <span class="op">=</span> PaletaHelada(<span class="st">"frutilla"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="49adc000" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(paleta1.gusto, paleta1.cobertura, sep<span class="op">=</span><span class="st">", "</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(paleta2.gusto, paleta2.cobertura, sep<span class="op">=</span><span class="st">", "</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>crema americana, chocolate
+frutilla, None</code></pre>
+</div>
+</div>
+<p>Con este enfoque, ambos objetos tienen los mismos atributos (<code>gusto</code> y <code>cobertura</code>), lo que mantiene la consistencia entre instancias de la clase. En el caso de <code>paleta2</code>, como no se especificó ninguna cobertura al crear el objeto, el valor de <code>cobertura</code> es <code>None</code>, lo cual indica que esa paleta no tiene ninguna cobertura.</p>
+</section>
+</section>
+<section id="métodos" class="level2">
+<h2 class="anchored" data-anchor-id="métodos">Métodos</h2>
+<p>Ahora que comprendemos cómo los datos definen el <strong>estado</strong> de un objeto, el último concepto que nos falta abordar son las <strong>acciones</strong> que un objeto puede realizar.</p>
+<p>Para llevar a cabo acciones, los objetos utilizan <strong>métodos</strong>.</p>
+<p>Los métodos son <strong>funciones asociadas a una clase determinada</strong>, y permiten que los objetos de la clase realicen operaciones o modifiquen su propio estado.</p>
+<p>Por ejemplo, el método <code>upper</code> es un método propio de los objetos de tipo <code>str</code> (cadenas de caracteres) y podemos invocarlo de la siguiente manera:</p>
+<div id="b3e82dcf" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">"Rosario"</span>.upper()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>'ROSARIO'</code></pre>
+</div>
+</div>
+<p>Pero no podemos llamarlo sobre una lista:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>[<span class="st">"Rosario"</span>, <span class="st">"Santa Fe"</span>].upper()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-error">
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="pp">AttributeError</span>: <span class="st">'list'</span> <span class="bu">object</span> has no attribute <span class="st">'upper'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>En el caso de las clases creadas por nosotros, los métodos no son más que funciones definidas dentro de la clase.</p>
+<p>A diferencia de las funciones normales, todos los métodos deben tener al menos un parámetro especial, llamado <code>self</code> por convención, que representa a la instancia sobre la que se está llamando el método.</p>
+<p>Gracias a <code>self</code>, los métodos pueden acceder y modificar los atributos del objeto:</p>
+<div id="248d10f0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PaletaHelada:</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, gusto, cobertura<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gusto <span class="op">=</span> gusto</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cobertura <span class="op">=</span> cobertura</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mostrar_info(<span class="va">self</span>):</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"PaletaHelada"</span>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Gusto: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>gusto<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Cobertura: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>cobertura<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="57995923" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>paleta <span class="op">=</span> PaletaHelada(gusto<span class="op">=</span><span class="st">"Dulce de leche"</span>, cobertura<span class="op">=</span><span class="st">"Chocolate amargo"</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>paleta</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;__main__.PaletaHelada at 0x7f885433b440&gt;</code></pre>
+</div>
+</div>
+<p>Para ejecutar el método, se lo llama de la misma forma que a cualquier otro método.</p>
+<div id="27ee18ee" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>paleta.mostrar_info()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>PaletaHelada
+ - Gusto: Dulce de leche
+ - Cobertura: Chocolate amargo</code></pre>
+</div>
+</div>
+<div id="279eadef" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>paleta2 <span class="op">=</span> PaletaHelada(gusto<span class="op">=</span><span class="st">"Mentra granizada"</span>, cobertura<span class="op">=</span><span class="st">"Chocolate blanco"</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>paleta2.mostrar_info()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>PaletaHelada
+ - Gusto: Mentra granizada
+ - Cobertura: Chocolate blanco</code></pre>
+</div>
+</div>
+<section id="métodos-que-modifican-estado" class="level3">
+<h3 class="anchored" data-anchor-id="métodos-que-modifican-estado">Métodos que modifican estado</h3>
+<p>El método <code>mostrar_info</code> no altera el estado del objeto: simplemente muestra un resumen de su estado actual.</p>
+<p>Sin embargo, como los métodos acceden al objeto mediante <code>self</code>, también pueden <strong>modificar su estado</strong>.</p>
+<p>En el siguiente ejemplo, el método <code>quitar_cobertura</code> elimina cualquier cobertura que pueda tener nuestro helado.</p>
+<div id="cell-60" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PaletaHelada:</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, gusto, cobertura<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gusto <span class="op">=</span> gusto</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cobertura <span class="op">=</span> cobertura</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mostrar_info(<span class="va">self</span>):</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"PaletaHelada"</span>)</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Gusto: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>gusto<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Cobertura: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>cobertura<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> quitar_cobertura(<span class="va">self</span>):</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cobertura <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>paleta <span class="op">=</span> PaletaHelada(<span class="st">"Chocolate"</span>, <span class="st">"Chocolate"</span>)</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>paleta.mostrar_info()</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>)</span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>paleta.quitar_cobertura()</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>paleta.mostrar_info()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>PaletaHelada
+ - Gusto: Chocolate
+ - Cobertura: Chocolate
+
+PaletaHelada
+ - Gusto: Chocolate
+ - Cobertura: None</code></pre>
+</div>
+</div>
+</section>
+<section id="métodos-que-reciben-argumentos" class="level3">
+<h3 class="anchored" data-anchor-id="métodos-que-reciben-argumentos">Métodos que reciben argumentos</h3>
+<p>Los métodos <code>mostrar_info</code> y <code>quitar_cobertura</code> no reciben argumentos, a lo sumo usan los datos ya almacenados en el objeto.</p>
+<p>También es posible definir métodos que acepten argumentos, lo que permite realizar distintas operaciones y, por ejemplo, modificar el estado interno del objeto.</p>
+<p>A continuación, incorporamos a la clase un nuevo método que permite actualizar la cobertura de la paleta helada.</p>
+<div id="7d19d350" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PaletaHelada:</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, gusto, cobertura<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gusto <span class="op">=</span> gusto</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cobertura <span class="op">=</span> cobertura</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mostrar_info(<span class="va">self</span>):</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"PaletaHelada"</span>)</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Gusto: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>gusto<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Cobertura: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>cobertura<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> cambiar_cobertura(<span class="va">self</span>, cobertura):</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cobertura <span class="op">=</span> cobertura</span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>paleta <span class="op">=</span> PaletaHelada(<span class="st">"Chocolate"</span>, <span class="st">"Chocolate"</span>)</span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>paleta.mostrar_info()</span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>)</span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>paleta.cambiar_cobertura(<span class="st">"Chocolate blanco"</span>)</span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>paleta.mostrar_info()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>PaletaHelada
+ - Gusto: Chocolate
+ - Cobertura: Chocolate
+
+PaletaHelada
+ - Gusto: Chocolate
+ - Cobertura: Chocolate blanco</code></pre>
+</div>
+</div>
+</section>
+<section id="métodos-que-devuelven-resultados" class="level3">
+<h3 class="anchored" data-anchor-id="métodos-que-devuelven-resultados">Métodos que devuelven resultados</h3>
+<p>Como los métodos son funciones de Python, también pueden devolver un resultado.</p>
+<p>Por ejemplo, el método <code>tiene_cobertura</code> retorna <code>True</code> cuando la paleta helada tiene asignada alguna cobertura, sin importar cuál sea.</p>
+<div id="bd0bd8d5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PaletaHelada:</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, gusto, cobertura<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gusto <span class="op">=</span> gusto</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cobertura <span class="op">=</span> cobertura</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mostrar_info(<span class="va">self</span>):</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"PaletaHelada"</span>)</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Gusto: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>gusto<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Cobertura: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>cobertura<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> cambiar_cobertura(<span class="va">self</span>, cobertura):</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cobertura <span class="op">=</span> cobertura</span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tiene_cobertura(<span class="va">self</span>):</span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.cobertura <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span></span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>paleta <span class="op">=</span> PaletaHelada(<span class="st">"Dulce de leche"</span>, <span class="st">"Chocolate blanco"</span>)</span>
+<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a>paleta2 <span class="op">=</span> PaletaHelada(<span class="st">"Dulce de leche"</span>)</span>
+<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(paleta.tiene_cobertura())</span>
+<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(paleta2.tiene_cobertura())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+False</code></pre>
+</div>
+</div>
+</section>
+<section id="métodos-que-devuelven-al-objeto" class="level3">
+<h3 class="anchored" data-anchor-id="métodos-que-devuelven-al-objeto">Métodos que devuelven al objeto</h3>
+<p>Finalmente, como un método puede devolver cualquier tipo de objeto, también puede retornar la propia instancia sobre la que fue llamado (es decir, la que recibe en <code>self</code>).</p>
+<p>Este patrón se utiliza con frecuencia cuando se desea permitir el <strong>encadenamiento de métodos</strong>, ya que cada método devuelve el mismo objeto y permite seguir llamando otros métodos sobre él en una sola línea.</p>
+<div id="907d950f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="29">
+<div class="sourceCode cell-code" id="annotated-cell-34"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-34-1"><a href="#annotated-cell-34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PaletaHelada:</span>
+<span id="annotated-cell-34-2"><a href="#annotated-cell-34-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, gusto, cobertura<span class="op">=</span><span class="va">None</span>):</span>
+<span id="annotated-cell-34-3"><a href="#annotated-cell-34-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gusto <span class="op">=</span> gusto</span>
+<span id="annotated-cell-34-4"><a href="#annotated-cell-34-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cobertura <span class="op">=</span> cobertura</span>
+<span id="annotated-cell-34-5"><a href="#annotated-cell-34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-34-6"><a href="#annotated-cell-34-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> mostrar_info(<span class="va">self</span>):</span>
+<span id="annotated-cell-34-7"><a href="#annotated-cell-34-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"PaletaHelada"</span>)</span>
+<span id="annotated-cell-34-8"><a href="#annotated-cell-34-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Gusto: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>gusto<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="annotated-cell-34-9"><a href="#annotated-cell-34-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Cobertura: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>cobertura<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="annotated-cell-34-10"><a href="#annotated-cell-34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-34-11"><a href="#annotated-cell-34-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> cambiar_cobertura(<span class="va">self</span>, cobertura):</span>
+<span id="annotated-cell-34-12"><a href="#annotated-cell-34-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cobertura <span class="op">=</span> cobertura</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-34" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-34-13" class="code-annotation-target"><a href="#annotated-cell-34-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="annotated-cell-34-14"><a href="#annotated-cell-34-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-34-15"><a href="#annotated-cell-34-15" aria-hidden="true" tabindex="-1"></a>PaletaHelada(<span class="st">"Frutilla"</span>).cambiar_cobertura(<span class="st">"Chocolate"</span>).mostrar_info()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-34" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-34" data-code-lines="13" data-code-annotation="1">Luego de actualizar la cobertura, se devuelve a la instancia con la que se llamó al método.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>PaletaHelada
+ - Gusto: Frutilla
+ - Cobertura: Chocolate</code></pre>
+</div>
+</div>
+<p>Como el método <code>cambiar_cobertura</code> devuelve la propia instancia, es posible encadenar su llamada con otros métodos de la clase, como por ejemplo <code>.mostrar_info</code>.</p>
+</section>
+</section>
+<section id="ejemplo-final-cuenta-bancaria" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo-final-cuenta-bancaria">Ejemplo final: Cuenta bancaria</h2>
+<p>Para concluir este apunte, vamos a implementar una clase que represente de forma sencilla una cuenta bancaria.</p>
+<p>En este modelo simplificado, cada cuenta tendrá tres atributos:</p>
+<ul>
+<li><code>titular</code>: el nombre de la persona dueña de la cuenta</li>
+<li><code>saldo</code>: el dinero disponible en la cuenta</li>
+<li><code>moneda</code>: el tipo de moneda en el que está expresado el saldo (por ejemplo, <code>"ARS"</code> o <code>"USD"</code>)</li>
+</ul>
+<p>Además, la clase contará con métodos que permitan realizar operaciones básicas:</p>
+<ul>
+<li><code>depositar</code>: suma dinero al saldo actual</li>
+<li><code>retirar</code>: descuenta dinero del saldo, si hay fondos suficientes</li>
+<li><code>transferir</code>: mueve dinero de una cuenta a otra</li>
+<li><code>resumen</code>: muestra el estado actual de la cuenta de forma clara y legible</li>
+</ul>
+<div id="d048e021" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CuentaBancaria:</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, titular, saldo<span class="op">=</span><span class="dv">0</span>, moneda<span class="op">=</span><span class="st">"ARS"</span>):</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.titular <span class="op">=</span> titular</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saldo <span class="op">=</span> saldo</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.moneda <span class="op">=</span> moneda</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> depositar(<span class="va">self</span>, monto):</span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saldo <span class="op">=</span> <span class="va">self</span>.saldo <span class="op">+</span> monto</span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> retirar(<span class="va">self</span>, monto):</span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> monto <span class="op">&lt;=</span> <span class="va">self</span>.saldo:</span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.saldo <span class="op">=</span> <span class="va">self</span>.saldo <span class="op">-</span> monto</span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"El saldo es insuficiente (</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>saldo<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>moneda<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> transferir(<span class="va">self</span>, other, monto): <span class="co"># 'other' es tambien una 'CuentaBancaria'</span></span>
+<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.moneda <span class="op">!=</span> other.moneda:</span>
+<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Las cuentas usan monedas distintas (</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>moneda<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>other<span class="sc">.</span>moneda<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-23"><a href="#cb63-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.retirar(monto):</span>
+<span id="cb63-24"><a href="#cb63-24" aria-hidden="true" tabindex="-1"></a>            other.depositar(monto)</span>
+<span id="cb63-25"><a href="#cb63-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-26"><a href="#cb63-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb63-27"><a href="#cb63-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-28"><a href="#cb63-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> resumen(<span class="va">self</span>):</span>
+<span id="cb63-29"><a href="#cb63-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Cuenta bancaria"</span>)</span>
+<span id="cb63-30"><a href="#cb63-30" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Titular: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>titular<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb63-31"><a href="#cb63-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Saldo: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>saldo<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb63-32"><a href="#cb63-32" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Moneda: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>moneda<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5201ba5d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>cuenta_A <span class="op">=</span> CuentaBancaria(<span class="st">"Guido Van Rossum"</span>, saldo<span class="op">=</span><span class="dv">20000</span>, moneda<span class="op">=</span><span class="st">"ARS"</span>)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>cuenta_B <span class="op">=</span> CuentaBancaria(<span class="st">"Ross Ihaka"</span>, saldo<span class="op">=</span><span class="dv">8000</span>, moneda<span class="op">=</span><span class="st">"ARS"</span>)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>cuenta_A.resumen()</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>)</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>cuenta_B.resumen()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cuenta bancaria
+ - Titular: Guido Van Rossum
+ - Saldo: 20000
+ - Moneda: ARS
+
+Cuenta bancaria
+ - Titular: Ross Ihaka
+ - Saldo: 8000
+ - Moneda: ARS</code></pre>
+</div>
+</div>
+<div id="90193dff" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>cuenta_A.retirar(<span class="dv">2500</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="cell-72" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>cuenta_A.resumen()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cuenta bancaria
+ - Titular: Guido Van Rossum
+ - Saldo: 17500
+ - Moneda: ARS</code></pre>
+</div>
+</div>
+<p>En el caso de las transferencias, no solo se modifica el estado de la cuenta desde la que se realiza la operación (<code>cuenta_A</code>), sino también el estado de la cuenta que recibe el dinero (<code>cuenta_B</code>).</p>
+<div id="c5c90260" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>cuenta_A.transferir(cuenta_B, <span class="dv">10000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="b8c50b20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>cuenta_A.resumen()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cuenta bancaria
+ - Titular: Guido Van Rossum
+ - Saldo: 7500
+ - Moneda: ARS</code></pre>
+</div>
+</div>
+<div id="15c8d17d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>cuenta_B.resumen()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cuenta bancaria
+ - Titular: Ross Ihaka
+ - Saldo: 18000
+ - Moneda: ARS</code></pre>
+</div>
+</div>
+<div id="cell-77" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;python&quot;}}" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>cuenta_B.retirar(<span class="dv">20000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>El saldo es insuficiente (18000 ARS)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+¿Sabías que …? Sobre <code>__init__</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>__init__</code> no lleva una sentencia <code>return</code>. Su propósito no es devolver datos, sino inicializar el objeto.</li>
+<li><code>__init__</code> no crea la instancia (eso lo hace Python antes); su función es inicializar el estado del objeto recién creado.</li>
+<li><code>__init__</code> no es obligatorio: una clase puede funcionar perfectamente sin definirlo, aunque en ese caso no se podrán establecer valores iniciales personalizados al instanciar.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sobre <code>self</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nunca se debe pasar explícitamente un valor para <code>self</code>, Python lo hace automáticamente.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ee-unr\.github\.io\/programacion-2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../teoria/02_programacion_funcional/05_generadores.html" class="pagination-link" aria-label="5 - Generadores 🧩">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">5 - Generadores 🧩</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../teoria/03_oop/02_encapsulamiento.html" class="pagination-link" aria-label="2 - Encapsulamiento">
+        <span class="nav-page-text">2 - Encapsulamiento</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Esta página es hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-06b9a5b66568aa7c01ee5f6f13346fdd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-059f0cd14ff6f7eb313170a57f5d0a14.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -243,8 +243,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../teoria/02_programacion_funcional/01_paradigma.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1 - El paradigma funcional</span></a>
+  <a href="../../teoria/02_programacion_funcional/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -273,12 +273,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../teoria/03_oop.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
  <span class="menu-text">U3 - Programación Orientada a Objetos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/02_encapsulamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Encapsulamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/03_herencia_polimorfismo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Herencia y polimorfismo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/04_metodos_especiales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Métodos especiales</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../teoria/04_estructuras.html" class="sidebar-item-text sidebar-link">
@@ -1430,9 +1459,11 @@ Pasaporte</code></pre>
 </div>
 <p>Al contrario de lo que sucede con las listas, no es posible modificar ninguno de sus elementos existentes:</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>tipos_identificacion[<span class="dv">0</span>] <span class="op">=</span> <span class="st">"NUEVO_TIPO"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb135"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>    tipos_identificacion[0] = <span class="st">"NUEVO_TIPO"</span></span>
-<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a>    ~~~~~~~~~~~~~~~~~~~~^^^</span>
-<span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a>TypeError: 'tuple' object does not support item assignment</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-error">
+<div class="sourceCode" id="cb135"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>    tipos_identificacion[<span class="dv">0</span>] <span class="op">=</span> <span class="st">"NUEVO_TIPO"</span></span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">~~~~~~~~~~~~~~~~~~~~^^^</span></span>
+<span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="pp">TypeError</span>: <span class="st">'tuple'</span> <span class="bu">object</span> does <span class="kw">not</span> support item assignment</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Sin embargo, si necesitamos combinar una o más tuplas en otra tupla, sigue siendo posible utilizar el operador de suma (<code>+</code>) para concatenar tuplas y así crear una nueva, con sus elementos concatenados.</p>
 <div id="b49f4cd8" class="cell" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb136"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a>tupla_nueva <span class="op">=</span> tipos_identificacion <span class="op">+</span> (<span class="st">"NT1"</span>, <span class="st">"NT2"</span>)</span>
@@ -1613,9 +1644,11 @@ True</code></pre>
 <h3 class="anchored" data-anchor-id="acceder-a-los-elementos">Acceder a los elementos</h3>
 <p>A diferencia de las listas y las tuplas, que son objetos donde el orden importa y se puede acceder a sus elementos por posición, los diccionarios no utilizan posiciones: en ellos, el acceso a los elementos se realiza mediante sus claves. Por ejemplo, si queremos acceder a la edad de Juan utilizando el índice <code>0</code>, vamos a obtener un error:</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a>personas[<span class="dv">0</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb156"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a>    personas[0]</span>
-<span id="cb156-2"><a href="#cb156-2" aria-hidden="true" tabindex="-1"></a>    ~~~~~~~~^^^</span>
-<span id="cb156-3"><a href="#cb156-3" aria-hidden="true" tabindex="-1"></a>KeyError: 0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-error">
+<div class="sourceCode" id="cb156"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a>    personas[<span class="dv">0</span>]</span>
+<span id="cb156-2"><a href="#cb156-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">~~~~~~~~^^^</span></span>
+<span id="cb156-3"><a href="#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="pp">KeyError</span>: <span class="dv">0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>En cambio, si usamos la clave <code>"Juan"</code>, que es lo que corresponde:</p>
 <div id="93535b00" class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb157"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a>personas[<span class="st">"Juan"</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2071,9 +2104,11 @@ princenton</code></pre>
 </div>
 <p>Si intentamos crear un diccionario a partir de una lista (o tupla) “plana”, obtendremos un error, ya que no hay una forma clara de identificar las claves y los valores.</p>
 <div class="sourceCode" id="cb227"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb227-1"><a href="#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="bu">dict</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb228"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb228-1"><a href="#cb228-1" aria-hidden="true" tabindex="-1"></a>    dict([1, 2, 3]<span class="kw">)</span></span>
-<span id="cb228-2"><a href="#cb228-2" aria-hidden="true" tabindex="-1"></a>    ~~~~^^^^^^^^^^^</span>
-<span id="cb228-3"><a href="#cb228-3" aria-hidden="true" tabindex="-1"></a>TypeError: cannot convert dictionary update sequence element #0 to a sequence</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-error">
+<div class="sourceCode" id="cb228"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb228-1"><a href="#cb228-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">dict</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb228-2"><a href="#cb228-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">~~~~^^^^^^^^^^^</span></span>
+<span id="cb228-3"><a href="#cb228-3" aria-hidden="true" tabindex="-1"></a><span class="pp">TypeError</span>: cannot convert dictionary update sequence element <span class="co">#0 to a sequence</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>En cambio, si usamos una lista (o tupla) compuesta por listas (o tuplas) de longitud 2, la conversión es posible:</p>
 <div id="5709984f" class="cell" data-execution_count="111">
 <div class="sourceCode cell-code" id="cb229"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb229-1"><a href="#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="bu">dict</span>([[<span class="st">"x"</span>, <span class="dv">1</span>], [<span class="st">"y"</span>, <span class="dv">2</span>]])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
