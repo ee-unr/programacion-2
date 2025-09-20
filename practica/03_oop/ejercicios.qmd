@@ -302,6 +302,168 @@ print(fraccion1 + Fraccion(1, 8))
 
 Extender la funcionalidad de la clase incluyendo las operaciones de resta, multiplicación y división.
 
+## Tiempo al tiempo [WIP]
+
+Construya una clase para representar y trabajar con fechas llamada `Date`.
+
+1. El método `__init__` debe tomar 3 parámetros: `year`, `month`, y `day`. Cree un objeto fecha
+que represente el 6 de noviembre de 1995.
+2. Implemente el método `__str__` de forma tal que devuelva una cadena con el formato `YYYY-MM-DD`,
+donde `YYYY` representa el año, `MM` el mes y `DD` el día.
+3. Implemente un método de clase que permita crear una `Date` a partir de una cadena de texto
+en formato `YYYY-MM-DD`.
+4. Implemente los siguientes métodos de comparación para objetos `Date`.
+    i. `__eq__`: igualdad
+    i. `__ne__`: desigualdad
+    i. `__lt__`: menor que
+    i. `__gt__`: mayor que
+    i. `__le__`: menor o igual que
+    i. `__ge__`: mayor o igual que
+
+
+QUIERO LLEGAR A QUE IMPLEMENTEMOS ESTO
+
+```python
+DOM = {
+    1: 31,  # Enero
+    2: 28,  # Febrero (29 en año bisiesto)
+    3: 31,  # Marzo
+    4: 30,  # Abril
+    5: 31,  # Mayo
+    6: 30,  # Junio
+    7: 31,  # Julio
+    8: 31,  # Agosto
+    9: 30,  # Septiembre
+    10: 31, # Octubre
+    11: 30, # Noviembre
+    12: 31, # Diciembre
+}
+
+class Date:
+    def __init__(self, year, month, day):
+        self.year = year
+        self.month = month
+        self.day = day
+
+    @property
+    def year(self):
+        return self._year
+
+    @year.setter
+    def year(self, value):
+        assert isinstance(value, int)
+        assert value > 0
+        self._year = value
+
+    @property
+    def month(self):
+        return self._month
+
+    @month.setter
+    def month(self, value):
+        assert isinstance(value, int)
+        assert 1 <= value <= 12
+        self._month = value
+
+    @property
+    def day(self):
+        return self._day
+
+    @day.setter
+    def day(self, value):
+        assert isinstance(value, int)
+        assert 1 <= value <= Date._dias_del_mes(self.year, self.month)
+        self._day = value
+
+    @classmethod
+    def from_str(cls, value):
+        parts = value.split("-")
+        assert len(parts) == 3
+        year, month, day = map(int, parts)
+
+        assert year > 0
+        assert 1 <= month <= 12
+        assert 1 <= day <= Date._dias_del_mes(year, month)
+
+        return cls(year=year, month=month, day=day)
+
+    def __eq__(self, other):
+        if isinstance(other, type(self)):
+            return self.year == other.year and self.month == other.month and self.day == other.day
+        return False
+
+    def __neq__(self, other):
+        return not self == other
+
+    def __gt__(self, other):
+        if self.year > other.year:
+            return True
+        elif self.year == other.year:
+            if self.month > other.month:
+                return True
+            elif self.month == other.month:
+                return self.day > other.day
+        return False
+
+    def __ge__(self, other):
+        return (self > other) or (self == other)
+
+    def __lt__(self, other):
+        if self.year < other.year:
+            return True
+        elif self.year == other.year:
+            if self.month < other.month:
+                return True
+            elif self.month == other.month:
+                return self.day < other.day
+        return False
+
+    def __le__(self, other):
+        return (self < other) or (self == other)
+
+    def __str__(self):
+        year = str(self.year).rjust(4, "0")
+        month = str(self.month).rjust(2, "0")
+        day = str(self.day).rjust(2, "0")
+
+        return f"{year}-{month}-{day}"
+
+    def __repr__(self):
+        return f"Date(year={self.year}, month={self.month}, day={self.day})"
+
+    @staticmethod
+    def _es_bisiesto(year):
+        # Divisible por 4,
+        # excepto que sea divisible por 100,
+        # salvo que tambien sea divisibles por 400
+        return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+
+    @staticmethod
+    def _dias_del_mes(year, month):
+        if month == 2 and Date._es_bisiesto(year):
+            return 29
+        return DOM[month]
+
+
+d = Date(2025, 11, 12)
+d2 = Date(2025, 11, 12)
+d3 = Date(2025, 11, 13)
+
+d == d3
+d > d3
+d3 > d
+d < d3
+
+Date.from_str("2025-11-28")
+
+Date(2000, 2, 29)
+```
+
+
+Por otro lado, implemente otra clase llamada `TimeDelta` que representa diferencias temporales.
+El método `__init__` tine los parámetros opcionales `year`, `month` y `day`. Si estos no se especifican,
+son todos iguales a 0, lo que representa una diferencia temporal nula (es decir, no hay diferencia temporal).
+
 
 <!--
 
@@ -312,13 +474,13 @@ Completos
 * Propiedades publicas
 * Metodos de instancia
 * Herencia simple
+* Metodos de clase
+* Propiedades privadas
+* Sobrecarga de operadores
+* Métodos especiales (dunder methods)
 
 Parcialmente completos
 
-* Propiedades privadas
-* Metodos de clase
-* Sobrecarga de operadores
-* Métodos especiales (dunder methods)
 * Polimorfismo
 
 Sin cubrir
