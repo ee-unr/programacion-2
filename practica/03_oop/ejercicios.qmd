@@ -26,6 +26,104 @@ contador.reiniciar()
 print(contador.valor())    # Imprime 0
 ```
 
+## Magia para programadores
+
+Esta es tu primera clase de Pociones en Hogwarts y el profesor te dio como tarea descubrir de qué color se volverá una poción si se mezcla con otra.
+Todas las pociones tienen un color definido en formato [RGB](https://www.w3schools.com/html/html_colors_rgb.asp), desde `[0, 0, 0]` hasta `[255, 255, 255]`.
+
+Para complicar un poco más la tarea, el profesor realizará varias mezclas seguidas y luego te preguntará por el color final.
+Además del color, también deberás calcular qué volumen tendrá la poción después de la mezcla final.
+
+Gracias a tu experiencia en programación descubriste que al mezclar dos pociones, los colores se combinan como si se mezclaran dos colores en formato RGB.
+Por ejemplo, si mezclas una poción con color `[255, 255, 0]` y volumen `10` con otra de color `[0, 254, 0]` y volumen `5`, obtendrás una nueva poción con:
+
+- color `[170, 255, 0]`
+- volumen `15`
+
+Por lo tanto, decidís crear una clase `Pocion` que tenga:
+
+- dos propiedades:
+  - `color` (una lista o tupla con 3 enteros)
+  - `volumen` (un número)
+- un método `mezclar` que acepte otra `Pocion` y devuelva una nueva `Pocion` ya mezclada.
+
+Ejemplo:
+
+```python
+felix_felicis = Pocion([255, 255, 255],  7)
+pocion_multijugos = Pocion([51, 102, 51], 12)
+nueva_pocion = felix_felicis.mezclar(pocion_multijugos)
+
+nueva_pocion.color # Devuelve [127, 159, 127]
+nueva_pocion.volumen # Devuelve 19
+```
+
+::: {.callout-tip collapse="true"}
+### Ayuda
+
+Los colores de las pociones deben representarse como tríos de números enteros en formato RGB.
+Al realizar una mezcla de colores, se debe redondear hacia arriba utilizando `math.ceil`.
+
+:::
+
+
+## Mensaje secreto
+
+Un **cifrado por sustitución simple** reemplaza cada carácter de un alfabeto con un carácter de un
+alfabeto alternativo. Cada posición en el alfabeto original se mapea a la posición correspondiente
+en el alfabeto alternativo, y esto sirve tanto para codificar como para decodificar.
+
+El objetivo es crear una clase que, al inicializarse, reciba dos alfabetos (original y alternativo).
+La clase debe tener un método para encriptar mensajes y otro para revertir la encriptación.
+
+Ejemplo:
+
+```python
+alfabeto = "abcdefghijklmnopqrstuvwxyz"
+alfabeto_mezclado = "etaoinshrdlucmfwypvbgkjqxz"
+
+mi_cifrado = Cifrado(alfabeto, alfabeto_mezclado)
+
+mi_cifrado.codificar("abc")    # => "eta"
+mi_cifrado.codificar("xyz")    # => "qxz"
+mi_cifrado.codificar("aeiou")  # => "eirfg"
+
+mi_cifrado.decodificar("eta")    # => "abc"
+mi_cifrado.decodificar("qxz")    # => "xyz"
+mi_cifrado.decodificar("eirfg")  # => "aeiou"
+```
+
+### Punto extra
+
+Verifique en el método `__init__` que la longitud de los alfabetos sea la misma. Caso contrario,
+levante una excepción `ValueError` indicando cuál es el problema.
+
+## Real envido
+
+Construir una clase `ManoDeTruco` que, al inicializarse, reciba una lista o tupla de hasta tres números enteros,
+correspondientes a los valores de las cartas en una mano de truco.
+
+La clase debe incluir un método llamado `comparar_con` que recibe otra mano de truco y determine cuál de las dos suma más puntos para el envido.
+En caso de empate, se considera ganadora la mano que invocó el método.
+
+**Ejemplo de uso**
+
+```python
+mano1 = ManoDeTruco([7, 5, 6])
+mano2 = ManoDeTruco([4, 11, 2])
+
+ganadora = mano1.comparar_con(mano2)
+```
+
+::: {.callout-tip collapse="true"}
+### Consideraciones
+
+* Asuma que todas las cartas cargadas en la mano son del mismo palo.
+* Para calcular los puntos del envido, solo se consideran dos de las tres cartas, no la suma de las tres.
+
+:::
+
+
 ## La muestra infinita
 
 Defina una clase `Muestra` que represente un conjunto de datos numéricos.
@@ -60,8 +158,7 @@ Modifique la clase para que:
 * Provea una propiedad de solo lectura `valores`, que devuelva una copia inmutable de los datos
 (por ejemplo, una tupla).
 
-
-## Experimentos
+## ¡Orden en el laboratorio!
 
 En un laboratorio se necesita llevar un registro ordenado de los experimentos realizados.
 Cada experimento debe contar con un número identificador único, un nombre y, de manera opcional,
@@ -108,7 +205,7 @@ repr(e)
 # Experimento(id=3, nombre="Piloto B", responsable="Ana")
 ```
 
-## Sensores
+## Sensores descalibrados
 
 Este ejercicio requiere diseñar una pequeña jerarquía de clases para simular sensores utilizados en
 un laboratorio.
@@ -146,8 +243,7 @@ La función debe realizar `n` lecturas para cada sensor utilizando su método `l
 calcular el promedio de esas lecturas y devolver un diccionario que asocie el nombre de cada sensor
 con su promedio correspondiente.
 
-
-**Ejemplos de uso**
+**Ejemplo de uso**
 
 ```python
 st = SensorTemperatura("T1")
@@ -157,3 +253,24 @@ st.calibrar(0.5)
 promedios = promedio_lecturas([st, sh], n=3)
 # {'T1': ..., 'H1': ...}
 ```
+
+## Python para matemáticos
+
+Construya una clase `Fraccion` que acepte dos argumentos: numerador y denominador.
+Se desea que esta clase:
+
+a. Sea representable como cadena de texto.
+b. Implemente la suma entre fracciones.
+c. Devuelva siempre el resultado en la **mínima representación posible** (fracción irreducible).
+
+Ejemplo:
+
+```python
+fraccion1 = Fraccion(4, 5)
+print(fraccion1 + Fraccion(1, 8))
+#> "37/40"
+```
+
+### Punto extra
+
+Extender la funcionalidad de la clase incluyendo las operaciones de resta, multiplicación y división.
