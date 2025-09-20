@@ -1,3 +1,159 @@
 ---
 title: "🛠️ Ejercicios"
 ---
+
+## Contador
+
+Defina una clase `Contador` que represente un contador numérico.
+Por defecto, las instancias comienzan con el valor `0`, aunque debe permitirse inicializarlas con
+un valor distinto.
+
+Implemente los siguientes métodos:
+
+* `incrementar`: aumenta el valor del contador en una cantidad arbitraria (por defecto, 1).
+* `decrementar`: disminuye el valor del contador en una cantidad arbitraria (por defecto, 1).
+* `reiniciar`: restablece el contador a su valor inicial (¡que puede ser distinto de 0!).
+* `valor`: devuelve el valor actual del contador.
+
+**Ejemplo de uso**
+
+```python
+contador = Contador()
+contador.incrementar(5)    # El valor interno es 5
+contador.decrementar(2)    # El valor interno es 3
+print(contador.valor())    # Imprime 3
+contador.reiniciar()
+print(contador.valor())    # Imprime 0
+```
+
+## La muestra infinita
+
+Defina una clase `Muestra` que represente un conjunto de datos numéricos.
+La clase debe inicializarse a partir de un iterable de números e implementar los siguientes
+métodos:
+
+* `agregar(x)`: agrega un número a la muestra.
+* `n()`: devuelve la cantidad de elementos.
+* `suma()`: devuelve la suma de los valores.
+* `media()`: devuelve el promedio de los valores.
+* `varianza(muestral=False)`: calcula la varianza.
+  * Si `muestral=False`, se usa el denominador `n` (varianza poblacional).
+  * Si `muestral=True`, se usa el denominador `n-1` (varianza muestral).
+
+**Ejemplo de uso**
+
+```python
+muestra = Muestra([10, 12, 13, 15])
+muestra.agregar(20)
+muestra.n()                     # 5
+muestra.suma()                  # 70
+muestra.media()                 # 14.0
+muestra.varianza()              # varianza poblacional
+muestra.varianza(muestral=True) # varianza muestral
+```
+
+### Punto extra
+
+Modifique la clase para que:
+
+* Guarde los datos en un atributo "privado" llamado `_datos`.
+* Provea una propiedad de solo lectura `valores`, que devuelva una copia inmutable de los datos
+(por ejemplo, una tupla).
+
+
+## Experimentos
+
+En un laboratorio se necesita llevar un registro ordenado de los experimentos realizados.
+Cada experimento debe contar con un número identificador único, un nombre y, de manera opcional,
+el nombre de la persona responsable.
+
+El objetivo de este ejercicio es construir una clase que facilite dicha organización.
+
+Para ello, implemente una clase llamada `Experimento` que se inicializa con el nombre del
+experimento y, opcionalmente, con el nombre del responsable.
+La clase debe asignar automáticamente un número identificador único a cada instancia.
+Para lograrlo, utilice un **atributo de clase** llamado `total_creados`, que comience en 0.
+
+Cada instancia debe contar con:
+
+* Un identificador numérico único (asignado automáticamente de forma incremental por la clase).
+* Un nombre.
+* Un responsable, si se proporciona.
+
+
+**Ejemplo de uso**
+
+```python
+e1 = Experimento("Piloto A", responsable="Dolores")
+e2 = Experimento("Piloto Z")
+Experimento.total_creados  # Devuelve 2
+```
+
+### Puntos extra
+
+Modifique la clase para que también:
+
+* Se puedan crear objetos utilizando un **método de clase** llamado `desde_dict` que reciba
+un diccionario de la forma  `{"nombre": ..., "responsable": ...}` y devuelva una instancia de `Experimento`.
+* Implemente el método mágico `__repr__` que devuelva una cadena de texto con el siguiente formato:
+    ```python
+    Experimento(id=1, nombre="A/B", responsable="Sosa")
+    ```
+
+**Ejemplo de uso**
+
+```python
+e = Experimento.desde_dict({"nombre": "Piloto B", "responsable": "Ana"})
+repr(e)
+# Experimento(id=3, nombre="Piloto B", responsable="Ana")
+```
+
+## Sensores
+
+Este ejercicio requiere diseñar una pequeña jerarquía de clases para simular sensores utilizados en
+un laboratorio.
+
+En la práctica, los sensores no siempre son completamente precisos: pueden registrar valores
+ligeramente superiores o inferiores al valor real.
+Para corregir ese desvío, se aplica una **calibración**, que consiste en ajustar las lecturas
+mediante un valor adicional o corrector llamado _offset_.
+
+### Jerarquía de clases
+
+**Clase base**: `Sensor`
+
+La clase `Sensor` debe incluir:
+
+* Un atributo `nombre` para identificar al sensor.
+* Un método `leer` que levante una excepción `NotImplementedError`, indicando que debe ser implementado por las subclases.
+* Un método `calibrar(offset)` que permita almacenar un valor de ajuste (`offset`) que se aplicará a las lecturas.
+
+**Subclases**
+
+Se deben definir dos subclases: `SensorTemperatura` y `SensorHumedad`, ambas con su propia implementación del método `leer`:
+
+* `SensorTemperatura`: simula una medición utilizando `random.uniform(18, 28)`.
+* `SensorHumedad`: simula una medición utilizando `random.uniform(30, 70)`.
+
+En ambos casos, la medición debe ser ajustada por el _offset_ correspondiente (si fue calibrado).
+
+### Función auxiliar
+
+Además, implemente una función llamada `promedio_lecturas` que reciba dos argumentos:
+una secuencia de sensores y un número entero `n`, que indica cuántas lecturas realizar con cada sensor.
+
+La función debe realizar `n` lecturas para cada sensor utilizando su método `leer`,
+calcular el promedio de esas lecturas y devolver un diccionario que asocie el nombre de cada sensor
+con su promedio correspondiente.
+
+
+**Ejemplos de uso**
+
+```python
+st = SensorTemperatura("T1")
+sh = SensorHumedad("H1")
+st.calibrar(0.5)
+
+promedios = promedio_lecturas([st, sh], n=3)
+# {'T1': ..., 'H1': ...}
+```
