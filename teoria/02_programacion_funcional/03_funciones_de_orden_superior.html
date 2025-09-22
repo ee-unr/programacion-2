@@ -944,7 +944,7 @@ Reduce [producto]: 120</code></pre>
 </section>
 <section id="evaluación-parcial-de-funciones" class="level2">
 <h2 class="anchored" data-anchor-id="evaluación-parcial-de-funciones">Evaluación parcial de funciones</h2>
-<p>En el <a href="./01_paradigma.ipynb">El paradigma funcional</a> comenzamos a trabajar con <em>function factories</em>, es decir, con funciones que definen y devuelven funciones. El ejemplo que vimos consistía en la función <code>crear_multiplicador</code> que recibía un múltiplo y devolvía una función de un argumento que al llamarla realizaba la multiplcación. Así, era posible crear funciones para duplicar, triplicar, cuadruplicar, etc.</p>
+<p>En <a href="../../teoria/02_programacion_funcional/01_fundamentos.html">Fundamentos</a> comenzamos a trabajar con <em>function factories</em>, es decir, con funciones que definen y devuelven funciones. El ejemplo que vimos consistía en la función <code>crear_multiplicador</code> que recibía un múltiplo y devolvía una función de un argumento que al llamarla realizaba la multiplcación. Así, era posible crear funciones para duplicar, triplicar, cuadruplicar, etc.</p>
 <div id="193c9319" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crear_multiplicador(x):</span>
 <span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> interna(y):</span>
@@ -1087,7 +1087,7 @@ Argumentos posicionales y nombrados 🔢🏷️
 </section>
 <section id="decoradores" class="level2">
 <h2 class="anchored" data-anchor-id="decoradores">Decoradores</h2>
-<p>En <a href="./01_paradigma.ipynb#sec-ciudadanos">Ciudadanos de primera clase</a> aprendimos que las funciones son un objeto como cualquier otro. Por eso, ya no nos sorprende que puedan pasarse como argumento a otra función o devolverse como resultado de otra función.</p>
+<p>En <a href="../../teoria/02_programacion_funcional/01_fundamentos.html#sec-ciudadanos">Ciudadanos de primera clase</a> aprendimos que las funciones son un objeto como cualquier otro. Por eso, ya no nos sorprende que puedan pasarse como argumento a otra función o devolverse como resultado de otra función.</p>
 <p>Ahora vamos a explorar un tipo de funciones que son muy útiles en Python: los decoradores.</p>
 <p>Los decoradores son funciones que “envuelven” o “encapsulan” funciones y modifican su comportamiento.</p>
 <p>Empecemos con un ejemplo: la función <code>decorador</code> recibe una función <code>fun</code>, define una función <code>envoltura</code> que contiene una llamada a <code>fun</code> y la devuelve.</p>

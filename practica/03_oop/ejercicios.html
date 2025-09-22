@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -289,8 +324,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#contador" id="toc-contador" class="nav-link active" data-scroll-target="#contador"><span class="header-section-number">1</span> Contador</a></li>
+  <li><a href="#magia-para-programadores" id="toc-magia-para-programadores" class="nav-link" data-scroll-target="#magia-para-programadores"><span class="header-section-number">2</span> Magia para programadores</a></li>
+  <li><a href="#mensaje-secreto" id="toc-mensaje-secreto" class="nav-link" data-scroll-target="#mensaje-secreto"><span class="header-section-number">3</span> Mensaje secreto</a></li>
+  <li><a href="#real-envido" id="toc-real-envido" class="nav-link" data-scroll-target="#real-envido"><span class="header-section-number">4</span> Real envido</a></li>
+  <li><a href="#la-muestra-infinita" id="toc-la-muestra-infinita" class="nav-link" data-scroll-target="#la-muestra-infinita"><span class="header-section-number">5</span> La muestra infinita</a></li>
+  <li><a href="#orden-en-el-laboratorio" id="toc-orden-en-el-laboratorio" class="nav-link" data-scroll-target="#orden-en-el-laboratorio"><span class="header-section-number">6</span> ¡Orden en el laboratorio!</a></li>
+  <li><a href="#sensores-descalibrados" id="toc-sensores-descalibrados" class="nav-link" data-scroll-target="#sensores-descalibrados"><span class="header-section-number">7</span> Sensores descalibrados</a></li>
+  <li><a href="#python-para-matemáticos" id="toc-python-para-matemáticos" class="nav-link" data-scroll-target="#python-para-matemáticos"><span class="header-section-number">8</span> Python para matemáticos</a></li>
+  <li><a href="#tiempo-al-tiempo" id="toc-tiempo-al-tiempo" class="nav-link" data-scroll-target="#tiempo-al-tiempo"><span class="header-section-number">9</span> Tiempo al tiempo ⏳</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -314,8 +363,402 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="contador" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="contador"><span class="header-section-number">1</span> Contador</h2>
+<p>Defina una clase <code>Contador</code> que represente un contador numérico. Por defecto, las instancias comienzan con el valor <code>0</code>, aunque debe permitirse inicializarlas con un valor distinto.</p>
+<p>Implemente los siguientes métodos:</p>
+<ul>
+<li><code>incrementar</code>: aumenta el valor del contador en una cantidad arbitraria (por defecto, 1).</li>
+<li><code>decrementar</code>: disminuye el valor del contador en una cantidad arbitraria (por defecto, 1).</li>
+<li><code>reiniciar</code>: restablece el contador a su valor inicial (¡que puede ser distinto de 0!).</li>
+<li><code>valor</code>: devuelve el valor actual del contador.</li>
+</ul>
+<p><strong>Ejemplo de uso</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>contador <span class="op">=</span> Contador()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>contador.incrementar(<span class="dv">5</span>)    <span class="co"># El valor interno es 5</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>contador.decrementar(<span class="dv">2</span>)    <span class="co"># El valor interno es 3</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(contador.valor())    <span class="co"># Imprime 3</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>contador.reiniciar()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(contador.valor())    <span class="co"># Imprime 0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="magia-para-programadores" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="magia-para-programadores"><span class="header-section-number">2</span> Magia para programadores</h2>
+<p>Esta es tu primera clase de Pociones en Hogwarts y el profesor te dio como tarea descubrir de qué color se volverá una poción si se mezcla con otra. Todas las pociones tienen un color definido en formato <a href="https://www.w3schools.com/html/html_colors_rgb.asp">RGB</a>, desde <code>[0, 0, 0]</code> hasta <code>[255, 255, 255]</code>.</p>
+<p>Para complicar un poco más la tarea, el profesor realizará varias mezclas seguidas y luego te preguntará por el color final. Además del color, también deberás calcular qué volumen tendrá la poción después de la mezcla final.</p>
+<p>Gracias a tu experiencia en programación descubriste que al mezclar dos pociones, los colores se combinan como si se mezclaran dos colores en formato RGB. Por ejemplo, si mezclas una poción con color <code>[255, 255, 0]</code> y volumen <code>10</code> con otra de color <code>[0, 254, 0]</code> y volumen <code>5</code>, obtendrás una nueva poción con:</p>
+<ul>
+<li>color <code>[170, 255, 0]</code></li>
+<li>volumen <code>15</code></li>
+</ul>
+<p>Por lo tanto, decidís crear una clase <code>Pocion</code> que tenga:</p>
+<ul>
+<li>dos propiedades:
+<ul>
+<li><code>color</code> (una lista o tupla con 3 enteros)</li>
+<li><code>volumen</code> (un número)</li>
+</ul></li>
+<li>un método <code>mezclar</code> que acepte otra <code>Pocion</code> y devuelva una nueva <code>Pocion</code> ya mezclada.</li>
+</ul>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>felix_felicis <span class="op">=</span> Pocion([<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>],  <span class="dv">7</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pocion_multijugos <span class="op">=</span> Pocion([<span class="dv">51</span>, <span class="dv">102</span>, <span class="dv">51</span>], <span class="dv">12</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>nueva_pocion <span class="op">=</span> felix_felicis.mezclar(pocion_multijugos)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>nueva_pocion.color <span class="co"># Devuelve [127, 159, 127]</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>nueva_pocion.volumen <span class="co"># Devuelve 19</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Los colores de las pociones deben representarse como tríos de números enteros en formato RGB. Al realizar una mezcla de colores, se debe redondear hacia arriba utilizando <code>math.ceil</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="mensaje-secreto" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="mensaje-secreto"><span class="header-section-number">3</span> Mensaje secreto</h2>
+<p>Un <strong>cifrado por sustitución simple</strong> reemplaza cada carácter de un alfabeto con un carácter de un alfabeto alternativo. Cada posición en el alfabeto original se mapea a la posición correspondiente en el alfabeto alternativo, y esto sirve tanto para codificar como para decodificar.</p>
+<p>El objetivo es crear una clase que, al inicializarse, reciba dos alfabetos (original y alternativo). La clase debe tener un método para encriptar mensajes y otro para revertir la encriptación.</p>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>alfabeto <span class="op">=</span> <span class="st">"abcdefghijklmnopqrstuvwxyz"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>alfabeto_mezclado <span class="op">=</span> <span class="st">"etaoinshrdlucmfwypvbgkjqxz"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>mi_cifrado <span class="op">=</span> Cifrado(alfabeto, alfabeto_mezclado)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>mi_cifrado.codificar(<span class="st">"abc"</span>)    <span class="co"># =&gt; "eta"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>mi_cifrado.codificar(<span class="st">"xyz"</span>)    <span class="co"># =&gt; "qxz"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>mi_cifrado.codificar(<span class="st">"aeiou"</span>)  <span class="co"># =&gt; "eirfg"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>mi_cifrado.decodificar(<span class="st">"eta"</span>)    <span class="co"># =&gt; "abc"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>mi_cifrado.decodificar(<span class="st">"qxz"</span>)    <span class="co"># =&gt; "xyz"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>mi_cifrado.decodificar(<span class="st">"eirfg"</span>)  <span class="co"># =&gt; "aeiou"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="punto-extra" class="level3">
+<h3 class="anchored" data-anchor-id="punto-extra">Punto extra</h3>
+<p>Verifique en el método <code>__init__</code> que la longitud de los alfabetos sea la misma. Caso contrario, levante una excepción <code>ValueError</code> indicando cuál es el problema.</p>
+</section>
+</section>
+<section id="real-envido" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="real-envido"><span class="header-section-number">4</span> Real envido</h2>
+<p>Construir una clase <code>ManoDeTruco</code> que, al inicializarse, reciba una lista o tupla de hasta tres números enteros, correspondientes a los valores de las cartas en una mano de truco.</p>
+<p>La clase debe incluir un método llamado <code>comparar_con</code> que recibe otra mano de truco y determine cuál de las dos suma más puntos para el envido. En caso de empate, se considera ganadora la mano que invocó el método.</p>
+<p><strong>Ejemplo de uso</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mano1 <span class="op">=</span> ManoDeTruco([<span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mano2 <span class="op">=</span> ManoDeTruco([<span class="dv">4</span>, <span class="dv">11</span>, <span class="dv">2</span>])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ganadora <span class="op">=</span> mano1.comparar_con(mano2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Consideraciones
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Asuma que todas las cartas cargadas en la mano son del mismo palo.</li>
+<li>Para calcular los puntos del envido, solo se consideran dos de las tres cartas, no la suma de las tres.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="la-muestra-infinita" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="la-muestra-infinita"><span class="header-section-number">5</span> La muestra infinita</h2>
+<p>Defina una clase <code>Muestra</code> que represente un conjunto de datos numéricos. La clase debe inicializarse a partir de un iterable de números e implementar los siguientes métodos:</p>
+<ul>
+<li><code>agregar(x)</code>: agrega un número a la muestra.</li>
+<li><code>n()</code>: devuelve la cantidad de elementos.</li>
+<li><code>suma()</code>: devuelve la suma de los valores.</li>
+<li><code>media()</code>: devuelve el promedio de los valores.</li>
+<li><code>varianza(muestral=False)</code>: calcula la varianza.
+<ul>
+<li>Si <code>muestral=False</code>, se usa el denominador <code>n</code> (varianza poblacional).</li>
+<li>Si <code>muestral=True</code>, se usa el denominador <code>n-1</code> (varianza muestral).</li>
+</ul></li>
+</ul>
+<p><strong>Ejemplo de uso</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>muestra <span class="op">=</span> Muestra([<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">15</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>muestra.agregar(<span class="dv">20</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>muestra.n()                     <span class="co"># 5</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>muestra.suma()                  <span class="co"># 70</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>muestra.media()                 <span class="co"># 14.0</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>muestra.varianza()              <span class="co"># varianza poblacional</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>muestra.varianza(muestral<span class="op">=</span><span class="va">True</span>) <span class="co"># varianza muestral</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="punto-extra-1" class="level3">
+<h3 class="anchored" data-anchor-id="punto-extra-1">Punto extra</h3>
+<p>Modifique la clase para que:</p>
+<ul>
+<li>Guarde los datos en un atributo “privado” llamado <code>_datos</code>.</li>
+<li>Provea una propiedad de solo lectura <code>valores</code>, que devuelva una copia inmutable de los datos (por ejemplo, una tupla).</li>
+</ul>
+</section>
+</section>
+<section id="orden-en-el-laboratorio" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="orden-en-el-laboratorio"><span class="header-section-number">6</span> ¡Orden en el laboratorio!</h2>
+<p>En un laboratorio se necesita llevar un registro ordenado de los experimentos realizados. Cada experimento debe contar con un número identificador único, un nombre y, de manera opcional, el nombre de la persona responsable.</p>
+<p>El objetivo de este ejercicio es construir una clase que facilite dicha organización.</p>
+<p>Para ello, implemente una clase llamada <code>Experimento</code> que se inicializa con el nombre del experimento y, opcionalmente, con el nombre del responsable. La clase debe asignar automáticamente un número identificador único a cada instancia. Para lograrlo, utilice un <strong>atributo de clase</strong> llamado <code>total_creados</code>, que comience en 0.</p>
+<p>Cada instancia debe contar con:</p>
+<ul>
+<li>Un identificador numérico único (asignado automáticamente de forma incremental por la clase).</li>
+<li>Un nombre.</li>
+<li>Un responsable, si se proporciona.</li>
+</ul>
+<p><strong>Ejemplo de uso</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>e1 <span class="op">=</span> Experimento(<span class="st">"Piloto A"</span>, responsable<span class="op">=</span><span class="st">"Dolores"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>e2 <span class="op">=</span> Experimento(<span class="st">"Piloto Z"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Experimento.total_creados  <span class="co"># Devuelve 2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="puntos-extra" class="level3">
+<h3 class="anchored" data-anchor-id="puntos-extra">Puntos extra</h3>
+<p>Modifique la clase para que también:</p>
+<ul>
+<li>Se puedan crear objetos utilizando un <strong>método de clase</strong> llamado <code>desde_dict</code> que reciba un diccionario de la forma <code>{"nombre": ..., "responsable": ...}</code> y devuelva una instancia de <code>Experimento</code>.</li>
+<li>Implemente el método mágico <code>__repr__</code> que devuelva una cadena de texto con el siguiente formato: <code>python     Experimento(id=1, nombre="A/B", responsable="Sosa")</code></li>
+</ul>
+<p><strong>Ejemplo de uso</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> Experimento.desde_dict({<span class="st">"nombre"</span>: <span class="st">"Piloto B"</span>, <span class="st">"responsable"</span>: <span class="st">"Ana"</span>})</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">repr</span>(e)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimento(id=3, nombre="Piloto B", responsable="Ana")</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!--
+
+LO VOY A USAR EN EL MATERIAL DE TEORIA
+
+## La forma es lo de menos
+
+El objetivo de este ejercicio es construir una jerarquía de clases que represente diferentes figuras
+geométricas planas. Todas las figuras deben poder calcular su área y su perímetro.
+
+Se debe comenzar definiendo una clase base llamada `Forma`, que sirva como plantilla común.
+Esta clase debe incluir los métodos `area` y `perimetro`, que deben levantar una excepción
+`NotImplementedError`, ya que no se puede calcular el área ni el perímetro de una forma genérica sin
+más información.
+
+A partir de esta clase base, se deben implementar las siguientes subclases:
+
+* `Circulo`: se inicializa con el radio.
+* `Triangulo`: se inicializa con la longitud de sus tres lados.
+* `Rectangulo`: se inicializa con base y altura.
+* `Cuadrado`: una forma particular de rectángulo, que se inicializa con un solo lado.
+
+Cada subclase debe implementar sus propios métodos `area` y `perimetro` de forma adecuada.
+
+Por otro lado, implemente una función llamada `clasificar_formas` que reciba una secuencia de
+elementos y devuelva un diccionario. Las claves del diccionario deben ser los nombres de las clases
+("Circulo", "Rectangulo", etc.) y los valores, listas con las instancias correspondientes que
+estaban en la secuencia original. Finalmente, implemente también una función llamada `sumar_areas`
+que reciba una secuencia de formas y devuelva la suma total de sus áreas.
+
+Si alguno de los elementos no es una instancia de `Forma`, la función debe lanzar una excepción.
+-->
+</section>
+</section>
+<section id="sensores-descalibrados" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sensores-descalibrados"><span class="header-section-number">7</span> Sensores descalibrados</h2>
+<p>Este ejercicio requiere diseñar una pequeña jerarquía de clases para simular sensores utilizados en un laboratorio.</p>
+<p>En la práctica, los sensores no siempre son completamente precisos: pueden registrar valores ligeramente superiores o inferiores al valor real. Para corregir ese desvío, se aplica una <strong>calibración</strong>, que consiste en ajustar las lecturas mediante un valor adicional o corrector llamado <em>offset</em>.</p>
+<section id="jerarquía-de-clases" class="level3">
+<h3 class="anchored" data-anchor-id="jerarquía-de-clases">Jerarquía de clases</h3>
+<p><strong>Clase base</strong>: <code>Sensor</code></p>
+<p>La clase <code>Sensor</code> debe incluir:</p>
+<ul>
+<li>Un atributo <code>nombre</code> para identificar al sensor.</li>
+<li>Un método <code>leer</code> que levante una excepción <code>NotImplementedError</code>, indicando que debe ser implementado por las subclases.</li>
+<li>Un método <code>calibrar(offset)</code> que permita almacenar un valor de ajuste (<code>offset</code>) que se aplicará a las lecturas.</li>
+</ul>
+<p><strong>Subclases</strong></p>
+<p>Se deben definir dos subclases: <code>SensorTemperatura</code> y <code>SensorHumedad</code>, ambas con su propia implementación del método <code>leer</code>:</p>
+<ul>
+<li><code>SensorTemperatura</code>: simula una medición utilizando <code>random.uniform(18, 28)</code>.</li>
+<li><code>SensorHumedad</code>: simula una medición utilizando <code>random.uniform(30, 70)</code>.</li>
+</ul>
+<p>En ambos casos, la medición debe ser ajustada por el <em>offset</em> correspondiente (si fue calibrado).</p>
+</section>
+<section id="función-auxiliar" class="level3">
+<h3 class="anchored" data-anchor-id="función-auxiliar">Función auxiliar</h3>
+<p>Además, implemente una función llamada <code>promedio_lecturas</code> que reciba dos argumentos: una secuencia de sensores y un número entero <code>n</code>, que indica cuántas lecturas realizar con cada sensor.</p>
+<p>La función debe realizar <code>n</code> lecturas para cada sensor utilizando su método <code>leer</code>, calcular el promedio de esas lecturas y devolver un diccionario que asocie el nombre de cada sensor con su promedio correspondiente.</p>
+<p><strong>Ejemplo de uso</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>st <span class="op">=</span> SensorTemperatura(<span class="st">"T1"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sh <span class="op">=</span> SensorHumedad(<span class="st">"H1"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>st.calibrar(<span class="fl">0.5</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>promedios <span class="op">=</span> promedio_lecturas([st, sh], n<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># {'T1': ..., 'H1': ...}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="python-para-matemáticos" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="python-para-matemáticos"><span class="header-section-number">8</span> Python para matemáticos</h2>
+<p>Construya una clase <code>Fraccion</code> que acepte dos argumentos: numerador y denominador. Se desea que esta clase:</p>
+<ol type="a">
+<li>Sea representable como cadena de texto.</li>
+<li>Implemente la suma entre fracciones.</li>
+<li>Devuelva siempre el resultado en la <strong>mínima representación posible</strong> (fracción irreducible).</li>
+</ol>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fraccion1 <span class="op">=</span> Fraccion(<span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fraccion1 <span class="op">+</span> Fraccion(<span class="dv">1</span>, <span class="dv">8</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; "37/40"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="punto-extra-2" class="level3">
+<h3 class="anchored" data-anchor-id="punto-extra-2">Punto extra</h3>
+<p>Extender la funcionalidad de la clase incluyendo las operaciones de resta, multiplicación y división.</p>
+</section>
+</section>
+<section id="tiempo-al-tiempo" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="tiempo-al-tiempo"><span class="header-section-number">9</span> Tiempo al tiempo ⏳</h2>
+<p>El módulo estándar <code>datetime</code> de Python incluye, entre otras cosas, la clase <code>date</code> para trabajar con fechas. El objetivo de este ejercicio es implementar, desde cero, una nueva clase <code>Date</code> que permita representar fechas y operar con ellas.</p>
+<section id="primera-implementación" class="level3">
+<h3 class="anchored" data-anchor-id="primera-implementación">Primera implementación</h3>
+<ol type="1">
+<li>Construya la clase <code>Date</code>. El método <code>__init__</code> debe tomar 3 parámetros: <code>year</code>, <code>month</code> y <code>day</code>, y asignarlos como atributos de la instancia. Cree un objeto que represente el 6 de noviembre de 1995 y verifique que los atributos contengan los valores esperados.</li>
+<li>Implemente el método <code>__str__</code>, que debe devolver una cadena con el formato <code>YYYY-MM-DD</code>, donde <code>YYYY</code> representa el año, <code>MM</code> el mes y <code>DD</code> el día. <strong>Ayuda</strong>: Puede utilizar el método <code>.rjust</code> de las cadenas de texto para agregar ceros a la izquierda cuando sea necesario. Por ejemplo, para el 6 de noviembre de 1995, <code>str(fecha)</code> debe devolver <code>"1995-11-06"</code>.</li>
+<li>Implemente el método <code>__repr__</code>, que debe devolver una representación similar a la utilizada para crear la instancia. Para la fecha 6 de noviembre de 1995, debe devolver la cadena <code>"Date(year=1995, month=11, day=6)"</code>.</li>
+<li>Implemente un método de clase que permita crear una <code>Date</code> a partir de una cadena en formato <code>YYYY-MM-DD</code>. Por ejemplo, <code>Date.from_str("2025-03-08")</code> debe devolver un objeto <code>Date</code> que representa al 8 de marzo de 2025. <strong>Ayuda</strong>: Puede utilizar el método <code>.lstrip("0")</code> para eliminar ceros a la izquierda en una cadena.</li>
+<li>Implemente los métodos de comparación entre objetos <code>Date</code>.
+<ol type="i">
+<li><code>__eq__</code>: igualdad (<code>==</code>)</li>
+<li><code>__ne__</code>: desigualdad (<code>!=</code>)</li>
+<li><code>__lt__</code>: menor que (<code>&lt;</code>)</li>
+<li><code>__gt__</code>: mayor que (<code>&gt;</code>)</li>
+<li><code>__le__</code>: menor o igual que (<code>&lt;=</code>)</li>
+<li><code>__ge__</code>: mayor o igual que (<code>&gt;=</code>)</li>
+</ol>
+<strong>Ayuda</strong>: Dos fechas se consideran iguales si sus atributos <code>year</code>, <code>month</code>, y <code>day</code> coinciden. Para las comparaciones, considere primero el año, luego el mes y finalmente el día.</li>
+</ol>
+</section>
+<section id="a-prueba-de-balas" class="level3">
+<h3 class="anchored" data-anchor-id="a-prueba-de-balas">A prueba de balas</h3>
+<p>A esta altura, se cuenta con una implementación razonablemente completa y funcional para representar objetos de tipo fecha. Sin embargo, la clase <code>Date</code> no garantiza la validez ni la robustez de las instancias que se crean. Es posible construir objetos <code>Date</code> que representen fechas inválidas, como el 31 de abril o el 55.8 del mes 25.3, y operar con ellos sin que el programa emita ningún tipo de advertencia.</p>
+<ol start="6" type="1">
+<li>Modifique la implementación de los atributos <code>year</code>, <code>month</code> y <code>day</code> de modo que sean privados y que su asignación incluya una verificación de validez. Para ello, se propone lo siguiente:
+<ol type="i">
+<li>Utilice atributos privados llamados <code>_year</code>, <code>_month</code> y <code>_day</code>.</li>
+<li>Defina métodos <code>year</code>, <code>month</code> y <code>day</code>, decorados con <code>@property</code>, que expongan dichos atributos para su lectura. Estos métodos deben devolver el valor del atributo correspondiente.</li>
+<li>Para permitir la asignación controlada, implemente un <em>setter</em> para cada atributo Para ello, decore el mismo método con <code>@&lt;nombre&gt;.setter</code> (por ejemplo, <code>@year.setter</code>) y defina allí la lógica de verificación. Por el momento, verifique únicamente que el valor asignado sea un número entero y positivo. Eleve un <code>ValueError</code> en caso de que el valor por asignar no pase la verificación.</li>
+</ol></li>
+</ol>
+<p>Utilice los siguientes ejemplos de verificación</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> Date(<span class="dv">2022</span>, <span class="dv">7</span>, <span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">repr</span>(d) <span class="co"># Date(year=2022, month=7, day=1)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">str</span>(d)  <span class="co"># "2022-07-01"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>(d.year, d.month, d.day) <span class="co"># (2022, 7, 1)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Date(<span class="dv">2022</span>, <span class="dv">0</span>, <span class="dv">1</span>)       <span class="co"># Falla: el mes no es positivo</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Date(<span class="dv">2022</span>, <span class="dv">3</span>, <span class="fl">5.5</span>)     <span class="co"># Falla: el día no es un entero</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Date(<span class="st">"11"</span>, <span class="dv">3</span>, <span class="dv">1</span>)       <span class="co"># Falla: el año es una cadena de texto</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> Date(<span class="dv">2022</span>, <span class="dv">7</span>, <span class="dv">1</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>d.day <span class="op">=</span> <span class="dv">11</span>             <span class="co"># Funciona: pasa la verificación</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">str</span>(d)                 <span class="co"># "2022-07-11"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>d.month <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>           <span class="co"># Falla</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>d.year <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>            <span class="co"># Falla</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="7" type="1">
+<li>Mejore ahora las verificaciones de los valores asignados para que sean más robustas:
+<ul>
+<li>El año debe ser entero y mayor o igual a 0.</li>
+<li>El mes debe ser un número entero entre 1 y 12 inclusive.</li>
+<li>El día debe ser un número entero mayor o igual a 1 y menor o igual a la cantidad de días del mes correspondiente.</li>
+</ul></li>
+</ol>
+<p>La cantidad de días depende del mes. Para todos los meses excepto febrero, utilice el diccionario provisto en la ayuda debajo. Para el caso de febrero, implemente un método estático que reciba un año como argumento y devuelva un booleano indicando si ese año es bisiesto.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Diccionario de días por mes:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>DOM <span class="op">=</span> {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>: <span class="dv">31</span>,  <span class="co"># Enero</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>: <span class="dv">28</span>,  <span class="co"># Febrero (29 en año bisiesto)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>: <span class="dv">31</span>,  <span class="co"># Marzo</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">4</span>: <span class="dv">30</span>,  <span class="co"># Abril</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">5</span>: <span class="dv">31</span>,  <span class="co"># Mayo</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>: <span class="dv">30</span>,  <span class="co"># Junio</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">7</span>: <span class="dv">31</span>,  <span class="co"># Julio</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">8</span>: <span class="dv">31</span>,  <span class="co"># Agosto</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9</span>: <span class="dv">30</span>,  <span class="co"># Septiembre</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="dv">10</span>: <span class="dv">31</span>, <span class="co"># Octubre</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="dv">11</span>: <span class="dv">30</span>, <span class="co"># Noviembre</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="dv">12</span>: <span class="dv">31</span>, <span class="co"># Diciembre</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>DOM[<span class="dv">5</span>] <span class="co"># Devuelve 31, porque es mayo</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Por otro lado, un año es bisiesto si:</p>
+<ul>
+<li>Es divisible por 4,</li>
+<li>excepto que sea divisible por 100,</li>
+<li>salvo que tambien sea divisibles por 400</li>
+</ul>
+<p>En Python</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(year <span class="op">%</span> <span class="dv">4</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> year <span class="op">%</span> <span class="dv">100</span> <span class="op">!=</span> <span class="dv">0</span>) <span class="kw">or</span> (year <span class="op">%</span> <span class="dv">400</span> <span class="op">==</span> <span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>Finalmente, verifique que su clase <code>Date</code> funciona correctamente con los siguientes ejemplos:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definición de fechas</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> Date(<span class="dv">1990</span>, <span class="dv">5</span>, <span class="dv">20</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> Date(<span class="dv">1998</span>, <span class="dv">9</span>, <span class="dv">21</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> Date(<span class="dv">1998</span>, <span class="dv">9</span>, <span class="dv">20</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>d4 <span class="op">=</span> Date(<span class="dv">2022</span>, <span class="dv">12</span>, <span class="dv">18</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">&lt;</span> d2</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">&gt;</span> d2</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">!=</span> d3</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>d4 <span class="op">&gt;=</span> d3</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>Date(<span class="dv">2000</span>, <span class="dv">2</span>, <span class="dv">29</span>) <span class="co"># Funciona, es bisiesto</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>Date(<span class="dv">2001</span>, <span class="dv">2</span>, <span class="dv">29</span>) <span class="co"># Falla, no es bisiesto</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [d1, d2, d3, d4]</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(l) <span class="co"># Funciona, ¿por qué?</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!--
+
+Completos
+
+* Objetos, clases e instancias.
+* Atributos y métodos.
+* Propiedades publicas
+* Metodos de instancia
+* Herencia simple
+* Metodos de clase
+* Propiedades privadas
+* Sobrecarga de operadores
+* Métodos especiales (dunder methods)
+* Encapsulamiento
+
+Parcialmente completos
+
+* Polimorfismo
+
+Sin cubrir
+
+* Herencia multiple
+* Decoradores aplicados a métodos.
 
 
+-->
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
