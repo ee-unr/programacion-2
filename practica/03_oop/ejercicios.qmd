@@ -205,6 +205,10 @@ repr(e)
 # Experimento(id=3, nombre="Piloto B", responsable="Ana")
 ```
 
+<!--
+
+LO VOY A USAR EN EL MATERIAL DE TEORIA
+
 ## La forma es lo de menos
 
 El objetivo de este ejercicio es construir una jerarquía de clases que represente diferentes figuras
@@ -231,6 +235,7 @@ estaban en la secuencia original. Finalmente, implemente también una función l
 que reciba una secuencia de formas y devuelva la suma total de sus áreas.
 
 Si alguno de los elementos no es una instancia de `Forma`, la función debe lanzar una excepción.
+-->
 
 ## Sensores descalibrados
 
@@ -302,26 +307,102 @@ print(fraccion1 + Fraccion(1, 8))
 
 Extender la funcionalidad de la clase incluyendo las operaciones de resta, multiplicación y división.
 
-## Tiempo al tiempo [WIP]
+## Tiempo al tiempo ⏳
 
-Construya una clase para representar y trabajar con fechas llamada `Date`.
+El módulo estándar `datetime` de Python incluye, entre otras cosas, la clase `date` para trabajar con fechas.
+El objetivo de este ejercicio es implementar, desde cero, una nueva clase `Date` que permita
+representar fechas y operar con ellas.
 
-1. El método `__init__` debe tomar 3 parámetros: `year`, `month`, y `day`. Cree un objeto fecha
-que represente el 6 de noviembre de 1995.
-2. Implemente el método `__str__` de forma tal que devuelva una cadena con el formato `YYYY-MM-DD`,
+### Primera implementación
+
+1. Construya la clase `Date`. El método `__init__` debe tomar 3 parámetros: `year`, `month` y `day`,
+y asignarlos como atributos de la instancia. Cree un objeto que represente el 6 de noviembre de 1995
+y verifique que los atributos contengan los valores esperados.
+2. Implemente el método `__str__`, que debe devolver una cadena con el formato `YYYY-MM-DD`,
 donde `YYYY` representa el año, `MM` el mes y `DD` el día.
-3. Implemente un método de clase que permita crear una `Date` a partir de una cadena de texto
-en formato `YYYY-MM-DD`.
-4. Implemente los siguientes métodos de comparación para objetos `Date`.
-    i. `__eq__`: igualdad
-    i. `__ne__`: desigualdad
-    i. `__lt__`: menor que
-    i. `__gt__`: mayor que
-    i. `__le__`: menor o igual que
-    i. `__ge__`: mayor o igual que
+**Ayuda**: Puede utilizar el método `.rjust` de las cadenas de texto para agregar ceros a la
+izquierda cuando sea necesario. Por ejemplo, para el 6 de noviembre de 1995, `str(fecha)` debe
+devolver `"1995-11-06"`.
+3. Implemente el método `__repr__`, que debe devolver una representación similar a la utilizada para
+crear la instancia. Para la fecha 6 de noviembre de 1995, debe devolver la cadena
+`"Date(year=1995, month=11, day=6)"`.
+4. Implemente un método de clase que permita crear una `Date` a partir de una cadena en formato
+`YYYY-MM-DD`. Por ejemplo, `Date.from_str("2025-03-08")` debe devolver un objeto `Date`
+que representa al 8 de marzo de 2025.
+**Ayuda**: Puede utilizar el método `.lstrip("0")` para eliminar ceros a la izquierda en una cadena.
+5. Implemente los métodos de comparación entre objetos `Date`.
+    i. `__eq__`: igualdad (`==`)
+    i. `__ne__`: desigualdad (`!=`)
+    i. `__lt__`: menor que (`<`)
+    i. `__gt__`: mayor que (`>`)
+    i. `__le__`: menor o igual que (`<=`)
+    i. `__ge__`: mayor o igual que (`>=`)
+
+    **Ayuda**: Dos fechas se consideran iguales si sus atributos `year`, `month`, y `day` coinciden.
+    Para las comparaciones, considere primero el año, luego el mes y finalmente el día.
+
+### A prueba de balas
+
+A esta altura, se cuenta con una implementación razonablemente completa y funcional para representar
+objetos de tipo fecha. Sin embargo, la clase `Date` no garantiza la validez ni la robustez de las
+instancias que se crean.
+Es posible construir objetos `Date` que representen fechas inválidas, como el 31 de abril o el
+55.8 del mes 25.3, y operar con ellos sin que el programa emita ningún tipo de advertencia.
 
 
-QUIERO LLEGAR A QUE IMPLEMENTEMOS ESTO
+6. Modifique la implementación de los atributos `year`, `month` y `day` de modo que sean privados y
+que su asignación incluya una verificación de validez. Para ello, se propone lo siguiente:
+    i. Utilice atributos privados llamados `_year`, `_month` y `_day`.
+    ii. Defina métodos `year`, `month` y `day`, decorados con `@property`, que expongan dichos
+    atributos para su lectura. Estos métodos deben devolver el valor del atributo correspondiente.
+    iii. Para permitir la asignación controlada, implemente un _setter_ para cada atributo
+    Para ello, decore el mismo método con `@<nombre>.setter` (por ejemplo, `@year.setter`) y defina
+    allí la lógica de verificación.
+    Por el momento, verifique únicamente que el valor asignado sea un número entero y positivo.
+    Eleve un `ValueError` en caso de que el valor por asignar no pase la verificación.
+
+Utilice los siguientes ejemplos de verificación
+
+```python
+d = Date(2022, 7, 1)
+repr(d) # Date(year=2022, month=7, day=1)
+str(d)  # "2022-07-01"
+(d.year, d.month, d.day) # (2022, 7, 1)
+```
+
+```python
+Date(2022, 0, 1)       # Falla: el mes no es positivo
+Date(2022, 3, 5.5)     # Falla: el día no es un entero
+Date("11", 3, 1)       # Falla: el año es una cadena de texto
+```
+
+```python
+d = Date(2022, 7, 1)
+d.day = 11             # Funciona: pasa la verificación
+str(d)                 # "2022-07-11"
+
+d.month = -1           # Falla
+d.year = -1            # Falla
+```
+
+
+7. Mejore ahora las verificaciones de los valores asignados para que sean más robustas:
+    * El año debe ser entero y mayor o igual a 0.
+    * El mes debe ser un número entero entre 1 y 12 inclusive.
+    * El día debe ser un número entero mayor o igual a 1 y menor o igual a la cantidad de días del
+    mes correspondiente.
+
+
+La cantidad de días depende del mes.
+Para todos los meses excepto febrero, utilice el diccionario provisto en la ayuda debajo.
+Para el caso de febrero, implemente un método estático que reciba un año como argumento y devuelva
+un booleano indicando si ese año es bisiesto.
+
+
+::: {.callout-tip collapse="true"}
+##### Ayuda
+
+Diccionario de días por mes:
 
 ```python
 DOM = {
@@ -339,131 +420,45 @@ DOM = {
     12: 31, # Diciembre
 }
 
-class Date:
-    def __init__(self, year, month, day):
-        self.year = year
-        self.month = month
-        self.day = day
-
-    @property
-    def year(self):
-        return self._year
-
-    @year.setter
-    def year(self, value):
-        assert isinstance(value, int)
-        assert value > 0
-        self._year = value
-
-    @property
-    def month(self):
-        return self._month
-
-    @month.setter
-    def month(self, value):
-        assert isinstance(value, int)
-        assert 1 <= value <= 12
-        self._month = value
-
-    @property
-    def day(self):
-        return self._day
-
-    @day.setter
-    def day(self, value):
-        assert isinstance(value, int)
-        assert 1 <= value <= Date._dias_del_mes(self.year, self.month)
-        self._day = value
-
-    @classmethod
-    def from_str(cls, value):
-        parts = value.split("-")
-        assert len(parts) == 3
-        year, month, day = map(int, parts)
-
-        assert year > 0
-        assert 1 <= month <= 12
-        assert 1 <= day <= Date._dias_del_mes(year, month)
-
-        return cls(year=year, month=month, day=day)
-
-    def __eq__(self, other):
-        if isinstance(other, type(self)):
-            return self.year == other.year and self.month == other.month and self.day == other.day
-        return False
-
-    def __neq__(self, other):
-        return not self == other
-
-    def __gt__(self, other):
-        if self.year > other.year:
-            return True
-        elif self.year == other.year:
-            if self.month > other.month:
-                return True
-            elif self.month == other.month:
-                return self.day > other.day
-        return False
-
-    def __ge__(self, other):
-        return (self > other) or (self == other)
-
-    def __lt__(self, other):
-        if self.year < other.year:
-            return True
-        elif self.year == other.year:
-            if self.month < other.month:
-                return True
-            elif self.month == other.month:
-                return self.day < other.day
-        return False
-
-    def __le__(self, other):
-        return (self < other) or (self == other)
-
-    def __str__(self):
-        year = str(self.year).rjust(4, "0")
-        month = str(self.month).rjust(2, "0")
-        day = str(self.day).rjust(2, "0")
-
-        return f"{year}-{month}-{day}"
-
-    def __repr__(self):
-        return f"Date(year={self.year}, month={self.month}, day={self.day})"
-
-    @staticmethod
-    def _es_bisiesto(year):
-        # Divisible por 4,
-        # excepto que sea divisible por 100,
-        # salvo que tambien sea divisibles por 400
-        return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
-
-    @staticmethod
-    def _dias_del_mes(year, month):
-        if month == 2 and Date._es_bisiesto(year):
-            return 29
-        return DOM[month]
-
-
-d = Date(2025, 11, 12)
-d2 = Date(2025, 11, 12)
-d3 = Date(2025, 11, 13)
-
-d == d3
-d > d3
-d3 > d
-d < d3
-
-Date.from_str("2025-11-28")
-
-Date(2000, 2, 29)
+DOM[5] # Devuelve 31, porque es mayo
 ```
 
+Por otro lado, un año es bisiesto si:
 
-Por otro lado, implemente otra clase llamada `TimeDelta` que representa diferencias temporales.
-El método `__init__` tine los parámetros opcionales `year`, `month` y `day`. Si estos no se especifican,
-son todos iguales a 0, lo que representa una diferencia temporal nula (es decir, no hay diferencia temporal).
+* Es divisible por 4,
+* excepto que sea divisible por 100,
+* salvo que tambien sea divisibles por 400
 
+En Python
+
+```python
+(year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+```
+
+:::
+
+
+Finalmente, verifique que su clase `Date` funciona correctamente con los siguientes ejemplos:
+
+```python
+# Definición de fechas
+d1 = Date(1990, 5, 20)
+d2 = Date(1998, 9, 21)
+d3 = Date(1998, 9, 20)
+d4 = Date(2022, 12, 18)
+
+d1 < d2
+d1 > d2
+d1 != d3
+d4 >= d3
+
+Date(2000, 2, 29) # Funciona, es bisiesto
+Date(2001, 2, 29) # Falla, no es bisiesto
+
+
+l = [d1, d2, d3, d4]
+sorted(l) # Funciona, ¿por qué?
+```
 
 <!--
 
@@ -478,6 +473,7 @@ Completos
 * Propiedades privadas
 * Sobrecarga de operadores
 * Métodos especiales (dunder methods)
+* Encapsulamiento
 
 Parcialmente completos
 
@@ -485,7 +481,6 @@ Parcialmente completos
 
 Sin cubrir
 
-* Encapsulamiento
 * Herencia multiple
 * Decoradores aplicados a métodos.
 
