@@ -23,7 +23,7 @@ website:
       - text: Trabajos Prácticos
         file: trabajos_practicos/descripcion.qmd
       - text: Recursos
-        file: recursos/ejercicios/ejercicio_01.qmd
+        file: recursos/tutoriales/tutorial_01.qmd
       - icon: github
         href: "https://github.com/ee-unr/programacion-2"
 
@@ -93,10 +93,9 @@ website:
             - auto: recursos/ejemplos/*.qmd
             - sort-ui: false
         - text: Ejercicios
-          file: recursos/ejercicios/ejercicio_01.qmd
           contents:
-            - auto: recursos/ejercicios/*.qmd
-            - sort-ui: false
+          - text: U1 - Programación en Python
+            file: recursos/ejercicios/01_programacion_en_python/index.qmd
         - text: Tutoriales
           file: recursos/tutoriales/tutorial_01.qmd
           contents:
