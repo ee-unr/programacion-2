@@ -1510,6 +1510,210 @@
     ]
   },
   {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html",
+    "title": "U1 - Programación en Python",
+    "section": "",
+    "text": "# Área y perímetro de un círculo\ndef calcular_area(radio):\n    pi = 3.14159\n    area = pi * radio ** 2\n    return area\n\ndef calcular_perimetro(radio):\n    pi = 3.14159\n    perimetro = 2 * pi * radio\n    return perimetro\n\ndef calcular_area_y_perimetro(radio):\n    area = calcular_area(radio)\n    perimetro = calcular_perimetro(radio)\n    return area, perimetro\n\ncalcular_area(radio=2.5)\ncalcular_perimetro(radio=2.5)\n\narea, perimetro = calcular_area_y_perimetro(radio=2.5)\nresultados = calcular_area_y_perimetro(radio=2.5)\n\nprint(type(area))\nprint(type(perimetro))\nprint(type(resultados))\nprint(type(resultados[0]))\nprint(type(resultados[1]))",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#área-y-perímetro-de-un-círculo",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#área-y-perímetro-de-un-círculo",
+    "title": "U1 - Programación en Python",
+    "section": "",
+    "text": "# Área y perímetro de un círculo\ndef calcular_area(radio):\n    pi = 3.14159\n    area = pi * radio ** 2\n    return area\n\ndef calcular_perimetro(radio):\n    pi = 3.14159\n    perimetro = 2 * pi * radio\n    return perimetro\n\ndef calcular_area_y_perimetro(radio):\n    area = calcular_area(radio)\n    perimetro = calcular_perimetro(radio)\n    return area, perimetro\n\ncalcular_area(radio=2.5)\ncalcular_perimetro(radio=2.5)\n\narea, perimetro = calcular_area_y_perimetro(radio=2.5)\nresultados = calcular_area_y_perimetro(radio=2.5)\n\nprint(type(area))\nprint(type(perimetro))\nprint(type(resultados))\nprint(type(resultados[0]))\nprint(type(resultados[1]))",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#promociones",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#promociones",
+    "title": "U1 - Programación en Python",
+    "section": "2 Promociones",
+    "text": "2 Promociones\n# Promociones\ndef calcular_precio(monto, medio):\n    if medio == \"efectivo\":\n        monto_final = monto\n    elif medio == \"débito\":\n        monto_final = monto * (1 - 0.1)\n    elif medio == \"crédito\":\n        monto_final = monto * (1 + 0.05)\n    else:\n        print(f\"El medio {medio} es desconocido.\")\n        monto_final = monto\n\n    return monto_final\n\ncalcular_precio(80, \"efectivo\")\ncalcular_precio(80, \"débito\")\ncalcular_precio(80, \"crédito\")\n\n# Extra:\n# Usando valor por defecto 'efectivo'\ndef calcular_precio(monto, medio=\"efectivo\"):\n    if medio == \"efectivo\":\n        monto_final = monto\n    elif medio == \"débito\":\n        monto_final = monto * (1 - 0.1)\n    elif medio == \"crédito\":\n        monto_final = monto * (1 + 0.05)\n    else:\n        print(f\"El medio {medio} es desconocido.\")\n        monto_final = monto\n\n    return monto_final\n\n# Usando valor por defecto None\ndef calcular_precio(monto, medio=None):\n    if medio is None:\n        medio = \"efectivo\"\n\n    if medio == \"efectivo\":\n        monto_final = monto\n    elif medio == \"débito\":\n        monto_final = monto * (1 - 0.1)\n    elif medio == \"crédito\":\n        monto_final = monto * (1 + 0.05)\n    else:\n        print(f\"El medio {medio} es desconocido.\")\n        monto_final = monto\n\n    return monto_final",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#etapas-de-la-vida",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#etapas-de-la-vida",
+    "title": "U1 - Programación en Python",
+    "section": "3 Etapas de la vida",
+    "text": "3 Etapas de la vida\n# Etapas de la vida\ndef obtener_etapa(edad):\n    if edad &lt; 2:\n        etapa = \"bebé\"\n    elif edad &lt; 4:\n        etapa = \"infante\"\n    elif edad &lt; 13:\n        etapa = \"niño/a\"\n    elif edad &lt; 20:\n        etapa = \"adolescente\"\n    elif edad &lt; 65:\n        etapa = \"adulto/a\"\n    else:\n        etapa = \"persona mayor\"\n\n    mensaje = f\"La persona es un/a {etapa}\"\n    print(mensaje)\n\n    return None\n\nobtener_etapa(67)\n\n# Comentarios:\n# 1. Un posible problema con esta implementación es que asume que la edad es positiva.\n#    También admite edades irrealmente altas.",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#conteo-de-caracteres",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#conteo-de-caracteres",
+    "title": "U1 - Programación en Python",
+    "section": "4 Conteo de caracteres",
+    "text": "4 Conteo de caracteres\n# Conteo de caracteres\ndef contar_caracteres(texto):\n    caracteres = {}\n    for caracter  in texto:\n        # No considerar espacios\n        if caracter == \" \":\n            continue\n\n        # Pasar el caracter a minuscula\n        caracter_minuscula = caracter.lower()\n        if caracter_minuscula not in caracteres:\n            caracteres[caracter_minuscula] = 1\n        else:\n            caracteres[caracter_minuscula] += 1\n\n    return caracteres\n\ncontar_caracteres(\"Ahora es mejor que nunca\")\n\n# Comentarios:\n# 1. Implementacion usando 'in' vs 'not in'\n# 2. ¿Podrían meter el .lower en otro lado? Si, se podría pasar el texto a minúsculas antes de empezar a iterar.\n# 3. ¿En cuál implementación se realizaría menos trabajo?\n# 4. ¿Podriamos eliminar el `continue`?\n\n# Moraleja: no hay una única implementación correcta.",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#orden-de-mérito",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#orden-de-mérito",
+    "title": "U1 - Programación en Python",
+    "section": "5 Orden de mérito",
+    "text": "5 Orden de mérito\n# Orden de mérito\nnotas = [\n    (\"Escalada\", 9),\n    (\"Alonso\", 7),\n    (\"Pérez\", 8),\n    (\"Castro\", 8),\n    (\"Rossini\", 10),\n    (\"Martínez\", 9),\n    (\"Pérez\", 6),\n    (\"Riquelme\", 5),\n]\n\n# Parte 1\nnotas_dict = {}\nfor registro in notas:\n    # Opcion 1:\n     notas_dict[registro[0]] = registro[1]\n\n    # Opcion 2:\n    # apellido = registro[0]\n    # nota = registro[1]\n    # notas_dict[apellido] = nota\n\n    # apellido, nota = registro\n    # notas_dict[apellido] = nota\n\n# Pregunta: ¿Que pasa si hay dos personas con el mismo apellido?\n\n# Parte 2\nnotas_dict = {}\nfor registro in notas:\n    apellido = registro[0]\n    nota = registro[1]\n    if nota not in notas_dict:\n        notas_dict[nota] = [apellido]\n    else:\n        notas_dict[nota].append(apellido)\n        # Otras opciones:\n        # notas_dict[nota] = notas_dict[nota] + [apellido]\n        # notas_dict[nota] = notas_dict[nota].extend([apellido])",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#rendimento-académico",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#rendimento-académico",
+    "title": "U1 - Programación en Python",
+    "section": "6 Rendimento académico",
+    "text": "6 Rendimento académico\n# Rendimento académico\nnotas = {\n    \"Ana\": [8, 9, 10],\n    \"Luis\": [6, 7, 8, 3, 9],\n    \"Carla\": [10, 9, 10],\n    \"Marcos\": [5, 6],\n    \"Sofía\": [7, 7, 8],\n    \"Pedro\": [6, 4, 5, 6, 3, 8],\n    \"Lucía\": [9, 8, 10, 9]\n}\n\ndef resumir_notas(datos, modo):\n    resultado = {}\n\n    if modo == \"promedio\":\n        for nombre, notas in datos.items():\n            resultado[nombre] = sum(notas) / len(notas)\n    elif modo == \"proporcion\":\n        # NOTE: Esto tal vez sea un poco complicado\n        for nombre, notas in datos.items():\n            n_aprobado = 0\n            for nota in notas:\n                if nota &gt;= 6:\n                    n_aprobado += 1\n            resultado[nombre] = n_aprobado / len(notas)\n\n    else:\n        print(f\"El modo {modo} es desconocido\")\n        return None\n\n    return resultado\n\nresumir_notas(notas, \"promedio\")\nresumir_notas(notas, \"proporcion\")\n\n# ¿Cómo sería la implementación sin .items()?\n# ¿Podría escribir un único for loop? ¿Qué cambiaría? ¿Pros y contras?\n# ¿Hay algún conflicto entre la variable 'notas' del ambiente global y la del ambiente local de\n# la función?\n# El cálculo de la proporción se podría abstraer en una función.\n\n# Podría usarse un \"list comprehension\"\n# len([nota for nota in notas if nota &gt;= 6])\n\n# Podría usarse un generador:\n# sum(nota &gt;= 6 for nota in notas)",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#índice-de-precios",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#índice-de-precios",
+    "title": "U1 - Programación en Python",
+    "section": "7 Índice de precios",
+    "text": "7 Índice de precios\nipc_2024 = [20.6, 13.2, 11.0, 8.8, 4.2, 4.6, 4.0, 4.2, 3.5, 2.7, 2.4, 2.7]\n\n# Menor y mayor valor\nmin(ipc_2024)\nmax(ipc_2024)\n\n# IPC promedio mensual\nsum(ipc_2024) / len(ipc_2024)\n\n# Mes de mayor inflación\nipc_2024.index(max(ipc_2024)) # 0 + 1 -&gt; enero\n\n# Inflación mediana\nipc_ordenado = sorted(ipc_2024)\n\n# Opcion 1:\n(ipc_ordenado[5] + ipc_ordenado[6]) * 0.5\n\n# Opcion 2:\nsum(ipc_ordenado[5:7]) * 0.5\n\n# Opcion 3:\nn_inicio = (len(ipc_ordenado) // 2) - 1 # Resto 1 porque Python indexa desde 0\nn_fin = (len(ipc_ordenado) // 2 + 1) -1   # Resto 1 porque Python indexa desde 0\n\n# Sumo 1 porque el slicing no es inclusivo por derecha\nsum(ipc_ordenado[n_inicio:(n_fin + 1)]) * 0.5\n\n# Rango de IPC sin min y max\nipc_ordenado[-1] - ipc_ordenado[0]",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#resúmenes-estadísticos",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#resúmenes-estadísticos",
+    "title": "U1 - Programación en Python",
+    "section": "8 Resúmenes estadísticos",
+    "text": "8 Resúmenes estadísticos\ndef media(x):\n    return sum(x) / len(x)\n\n\ndef rango(x):\n    return max(x) - min(x)\n\n\n# Opcion 1.\ndef varianza(x):\n    x_media = media(x)\n    suma = 0\n    for x_i in x:\n        suma += (x_i - x_media) ** 2\n    return suma / len(x)\n\n\n# Opcion 2. Se podría usar un list-comprehension también.\ndef varianza2(x):\n    x_media = media(x)\n    distancias = []\n    for x_i in x:\n        distancias.append((x_i - x_media) ** 2)\n    return media(distancias)\n\ndef desvio_estandar(x):\n    return varianza(x) ** 0.5\n\n\ndef mediana(x):\n    x_ordenado = sorted(x)\n    n = len(x)\n    mitad = n // 2\n\n    if n % 2 == 1:\n        # Cantidad impar: se toma el elemento del medio\n        mediana = x_ordenado[mitad]\n    else:\n        # Cantidad par: se promedian los dos del medio\n        mediana = (x_ordenado[   - 1] + x_ordenado[mitad]) * 0.5\n\n    return mediana",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#validación-de-dni",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#validación-de-dni",
+    "title": "U1 - Programación en Python",
+    "section": "9 Validación de DNI",
+    "text": "9 Validación de DNI\ndef validar_dni(dni):\n    # Si no 'dni' tiene puntos, es DNI válido cuando:\n    # - todos los caracteres sean todos dígitos\n    # - la longitud esté entre 7 y 8\n    if dni.count(\".\") == 0:\n        return dni.isdigit() and 7 &lt;= len(dni) &lt;= 8\n\n    # Si 'dni' tiene puntos, debe tener exactamente 2 puntos.\n    partes = dni.split(\".\")\n    if len(partes) != 3:\n        return False\n\n    # Si alguna de las partes no contiene todos dígitos, no es un DNI válido.\n    # Opcion 1\n    for parte in partes:\n        if not parte.isdigit():\n            return False\n    # Opcion 2\n    # if not all(parte.isdigit() for parte in partes):\n    #     return False\n\n    longitudes_validas = (\n        len(partes[0]) in (1, 2) and\n        len(partes[1]) == 3 and\n        len(partes[2]) == 3\n    )\n\n    return longitudes_validas\n\n\nvalidar_dni(\"40.094.127\")\nvalidar_dni(\"19053512\")\nvalidar_dni(\"6.392.780\")\n\nvalidar_dni(\"40,094,127\")\nvalidar_dni(\"19-053-512\")\nvalidar_dni(\"123456\")\nvalidar_dni(\"40..094127\")\nvalidar_dni(\"40.09412.7\")",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#la-física-del-rebote",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#la-física-del-rebote",
+    "title": "U1 - Programación en Python",
+    "section": "10 La física del rebote",
+    "text": "10 La física del rebote\naltura_inicial = 100 # metros\nrebote = 3 / 5\n\n# Parte 1 (no es necesario el uso de una variable adicional)\naltura_actual = altura_inicial\nfor i in range(10):\n    altura_actual = altura_actual * rebote\n    print(\"Rebote\", i + 1, \"| Altura:\", round(altura_actual, 4))\n\n# Parte 2\ndef calcular_rebotes(altura_inicial, rebotes_n):\n    alturas = []\n    altura_actual = altura_inicial\n    for _ in range(rebotes_n): # '_' es una convencion cuando la variable de iteración no se usa\n        altura_actual = altura_actual * rebote\n        alturas.append(altura_actual)\n\n    return alturas\n\ncalcular_rebotes(100, 10)\n\n\n# Parte 3\ndef calcular_rebotes(altura_inicial, rebotes_n):\n    alturas = []\n    altura_actual = altura_inicial\n    for _ in range(rebotes_n): # '_' es una convencion cuando la variable de iteración no se usa\n        altura_actual = altura_actual * rebote\n        alturas.append(altura_actual)\n\n        if altura_actual &lt; 0.01:\n            break\n\n    return alturas\n\ncalcular_rebotes(100, 50)\nlen(calcular_rebotes(100, 50)) # Solo devuelve 19 rebotes\n\n# Se podria conversar si es necesario crear 'altura_actual'\n# Para el caso de las listas una opción, un poco más rebuscada, es:\n\ndef calcular_rebotes(altura_inicial, rebotes_n):\n    alturas = [altura_inicial * rebote]\n    for i in range(rebotes_n):\n        alturas.append(alturas[i] * rebote)\n\n        if alturas[-1] &lt; 0.01:\n            break\n\n    return alturas\n\ncalcular_rebotes(100, 50)\nlen(calcular_rebotes(100, 50)) # Solo devuelve 19 rebotes",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#un-montón-de-plata",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#un-montón-de-plata",
+    "title": "U1 - Programación en Python",
+    "section": "11 Un montón de plata",
+    "text": "11 Un montón de plata\nbillete_grosor = 0.11 * 0.001  # grosor de un billete en metros\naltura_monumento = 70          # altura en metros\n\ndias = 1\nbilletes_n = 1\nwhile billetes_n * billete_grosor &lt;= altura_monumento:\n    billetes_n = billetes_n * 2\n    dias = dias + 1\n\nprint(\"Se necesitan\", dias, \"dias.\")\nprint(\"La altura de la pila es\", billetes_n * billete_grosor, \"metros.\")\nprint(\"Se colocaron\", billetes_n, \"billetes.\")\n\n\n# Punto extra\ndef calcular_dias(altura_objetivo):\n    billete_grosor = 0.11 * 0.001\n    dias = 1\n    billetes_n = 1\n    while billetes_n * billete_grosor &lt;= altura_objetivo:\n        billetes_n = billetes_n * 2\n        dias = dias + 1\n    return dias\n\ncalcular_dias(0.1)",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#la-conjetura-de-collatz",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#la-conjetura-de-collatz",
+    "title": "U1 - Programación en Python",
+    "section": "12 La conjetura de Collatz",
+    "text": "12 La conjetura de Collatz\ndef collatz(n):\n    # Inicializar lista con solo el valor 'n'\n    secuencia = [n]\n    while n != 1:\n        # Numero par\n        if n % 2 == 0:\n            n = n // 2 # Notar uso de división entera\n        # Numero impar\n        else:\n            # ¿Puede el resultado ser flotante?\n            n = 3 * n + 1\n        secuencia.append(n)\n    return secuencia\n\n\ncollatz(5)\ncollatz(20)\ncollatz(16)\ncollatz(37)\n\n# Para discutir: ¿Podría implementarse con un 'while True'? ¿Cómo?",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#adivina-el-número",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#adivina-el-número",
+    "title": "U1 - Programación en Python",
+    "section": "13 Adivina el número",
+    "text": "13 Adivina el número\n# Correr de la terminal con 'python {nombre_de_programa}.py'\nimport random\n\nprint(\" ======================== Adivina el número! ======================== \")\n\nnumero_secreto = random.randint(0, 100)\n\nmensaje = \"Ingresa un numero entero: \"\nconteo = 0\ntope_intentos = 5\nwhile True:\n    numero = int(input(mensaje))\n    conteo += 1\n    if numero &lt; numero_secreto:\n        mensaje = f\"¡Ups! El numero secreto es mayor a {numero}. Prueba de nuevo: \"\n    elif numero &gt; numero_secreto:\n        mensaje = f\"¡Ups! El numero secreto es menor a {numero}. Prueba de nuevo: \"\n    else:\n        print(f\"Has ganado, felicitaciones! Te llevó tan solo {conteo} intentos.\")\n        break\n\n    if conteo == (tope_intentos - 1):\n        print(\"¡Cuidado! Te queda solo un intento.\")\n\n    if conteo &gt;= tope_intentos:\n        print(f\"Has perdido :(. El numero secreto era {numero_secreto}.\")\n        break",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#conteo-de-caracteres-pythonico",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#conteo-de-caracteres-pythonico",
+    "title": "U1 - Programación en Python",
+    "section": "14 Conteo de caracteres Pythonico",
+    "text": "14 Conteo de caracteres Pythonico\ndef contar_caracteres(texto):\n    texto = texto.lower() # Pasa a minuscula al principio\n    caracteres = {}\n    for caracter  in texto:\n        # Solo considerar letras del alfabeto\n        if not caracter.isalpha():\n            continue\n\n        # Si el caracter no esta en el diccionario, devuelve 0\n        # Si está, devuelve su conteo.\n        # En ambos casos, le suma 1.\n        caracteres[caracter] = caracteres.get(caracter, 0) + 1\n\n    return caracteres\n\ncontar_caracteres(\"Ahora es mejor que nunca\")\ncontar_caracteres(\"Ahora es mejor que nunca!!   +_\")\ncontar_caracteres(\"Ahora es mejor que nunca!!   +_\") == contar_caracteres(\"Ahora es mejor que nunca\")",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#validador-de-contraseñas",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#validador-de-contraseñas",
+    "title": "U1 - Programación en Python",
+    "section": "15 Validador de contraseñas 😱",
+    "text": "15 Validador de contraseñas 😱\nCARACTERES_ESPECIALES = \"@#$%^&*()\"\n\ndef contiene_letra(texto):\n    # True si al menos un caracter es una letra\n    for caracter in texto:\n        if caracter.isalpha():\n            return True\n    return False\n\n\ndef contiene_numero(texto):\n    # True si al menos un caracter es un numero (del sistema decimal)\n    for caracter in texto:\n        if caracter.isdecimal():\n            return True\n    return False\n\n\ndef contiene_especial(texto):\n    # True si al menos un caracter es un numero\n    for caracter in texto:\n        if caracter in CARACTERES_ESPECIALES:\n            return True\n    return False\n\ndef validar_pwd(pwd):\n    errores = []\n\n    if not (8 &lt;= len(pwd) &lt;= 24):\n        errores.append(\"Debe tener entre 8 y 24 caracteres.\")\n\n    if not contiene_letra(pwd):\n        errores.append(\"Debe contener al menos una letra.\")\n    if not contiene_numero(pwd):\n        errores.append(\"Debe contener al menos un número.\")\n    if not contiene_especial(pwd):\n        errores.append(\"Debe contener al menos un carácter especial '@#$%^&*()'.\")\n\n    caracteres_desconocidos = []\n    for caracter in pwd:\n        # Hablar sobre si es posible simplificar esto\n        if (not caracter.isdecimal()) and (not caracter.isalpha()) and (caracter not in CARACTERES_ESPECIALES):\n            caracteres_desconocidos.append(caracter)\n\n    # Equivale a len(caracteres_desconocidos) &gt; 0\n    if caracteres_desconocidos:\n        errores.append(\n            f\"La contraseña contiene los siguientes caracteres desconocidos {caracteres_desconocidos}\"\n        )\n\n    if errores == []:\n        return True\n\n    return errores\n\n\nwhile True:\n    password = input(\"Ingrese una contraseña (o ENTER para salir): \")\n    if password == \"\":\n        print(\"Operación cancelada.\")\n        break\n\n    resultado = validar_pwd(password)\n\n    # Acá NO se puede usar 'if es_valida'.\n    if resultado is True:\n        print(\"Contraseña válida.\")\n        break\n\n    print(\"La contraseña no es válida:\")\n    for error in resultado:\n        print(\"-\", error)",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
+    "objectID": "recursos/ejercicios/01_programacion_en_python/index.html#conteo-de-caracteres-ii",
+    "href": "recursos/ejercicios/01_programacion_en_python/index.html#conteo-de-caracteres-ii",
+    "title": "U1 - Programación en Python",
+    "section": "16 Conteo de caracteres II 😱",
+    "text": "16 Conteo de caracteres II 😱\ndef contar_caracteres(texto, orden=\"aparicion\"):\n    texto = texto.lower() # Pasa a minuscula al principio\n    caracteres = {}\n    for caracter  in texto:\n        # Solo considerar letras del alfabeto\n        if not caracter.isalpha():\n            continue\n\n        # Si el caracter no esta en el diccionario, devuelve 0\n        # Si está, devuelve su conteo.\n        # En ambos casos, le suma 1.\n        caracteres[caracter] = caracteres.get(caracter, 0) + 1\n\n    if orden == \"aparicion\":\n        salida = caracteres\n    elif orden == \"alfabetico\":\n        salida = {}\n        claves = sorted(caracteres.keys()) # No hace falta el .keys() en realidad\n        for clave in claves:\n            salida[clave] = caracteres[clave]\n    elif orden == \"frecuencia\":\n        salida = {}\n        claves = list(caracteres.keys()) # No hace falta el .keys() en realidad\n        claves_ordenadas = sorted(claves, key=lambda k: caracteres[k], reverse=True)\n        for clave in claves_ordenadas:\n            salida[clave] = caracteres[clave]\n\n    return salida\n\ncontar_caracteres(\"Ahora es mejor que nunca\", \"aparicion\")\ncontar_caracteres(\"Ahora es mejor que nunca\", \"alfabetico\")\ncontar_caracteres(\"Ahora es mejor que nunca\", \"frecuencia\")",
+    "crumbs": [
+      "Recursos",
+      "Ejercicios",
+      "U1 - Programación en Python"
+    ]
+  },
+  {
     "objectID": "practica/02_programacion_funcional/ejercicios.html",
     "href": "practica/02_programacion_funcional/ejercicios.html",
     "title": "🛠️ Ejercicios",
