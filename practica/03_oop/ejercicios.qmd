@@ -205,38 +205,6 @@ repr(e)
 # Experimento(id=3, nombre="Piloto B", responsable="Ana")
 ```
 
-<!--
-
-LO VOY A USAR EN EL MATERIAL DE TEORIA
-
-## La forma es lo de menos
-
-El objetivo de este ejercicio es construir una jerarquía de clases que represente diferentes figuras
-geométricas planas. Todas las figuras deben poder calcular su área y su perímetro.
-
-Se debe comenzar definiendo una clase base llamada `Forma`, que sirva como plantilla común.
-Esta clase debe incluir los métodos `area` y `perimetro`, que deben levantar una excepción
-`NotImplementedError`, ya que no se puede calcular el área ni el perímetro de una forma genérica sin
-más información.
-
-A partir de esta clase base, se deben implementar las siguientes subclases:
-
-* `Circulo`: se inicializa con el radio.
-* `Triangulo`: se inicializa con la longitud de sus tres lados.
-* `Rectangulo`: se inicializa con base y altura.
-* `Cuadrado`: una forma particular de rectángulo, que se inicializa con un solo lado.
-
-Cada subclase debe implementar sus propios métodos `area` y `perimetro` de forma adecuada.
-
-Por otro lado, implemente una función llamada `clasificar_formas` que reciba una secuencia de
-elementos y devuelva un diccionario. Las claves del diccionario deben ser los nombres de las clases
-("Circulo", "Rectangulo", etc.) y los valores, listas con las instancias correspondientes que
-estaban en la secuencia original. Finalmente, implemente también una función llamada `sumar_areas`
-que reciba una secuencia de formas y devuelva la suma total de sus áreas.
-
-Si alguno de los elementos no es una instancia de `Forma`, la función debe lanzar una excepción.
--->
-
 ## Sensores descalibrados
 
 Este ejercicio requiere diseñar una pequeña jerarquía de clases para simular sensores utilizados en
