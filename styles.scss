@@ -358,5 +358,8 @@ figure img {
   border-left-width: 5px;
 }
 
-
-
+// Centrar figuras producidas con un bloque de código
+.cell-output-display .figure {
+  display: flex;
+  justify-content: center;
+}
