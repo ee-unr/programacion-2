@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-059f0cd14ff6f7eb313170a57f5d0a14.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-67ee98edb06f5ebd2e250248289b9836.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -531,37 +531,6 @@ Consideraciones
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> Experimento.desde_dict({<span class="st">"nombre"</span>: <span class="st">"Piloto B"</span>, <span class="st">"responsable"</span>: <span class="st">"Ana"</span>})</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">repr</span>(e)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimento(id=3, nombre="Piloto B", responsable="Ana")</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!--
-
-LO VOY A USAR EN EL MATERIAL DE TEORIA
-
-## La forma es lo de menos
-
-El objetivo de este ejercicio es construir una jerarquía de clases que represente diferentes figuras
-geométricas planas. Todas las figuras deben poder calcular su área y su perímetro.
-
-Se debe comenzar definiendo una clase base llamada `Forma`, que sirva como plantilla común.
-Esta clase debe incluir los métodos `area` y `perimetro`, que deben levantar una excepción
-`NotImplementedError`, ya que no se puede calcular el área ni el perímetro de una forma genérica sin
-más información.
-
-A partir de esta clase base, se deben implementar las siguientes subclases:
-
-* `Circulo`: se inicializa con el radio.
-* `Triangulo`: se inicializa con la longitud de sus tres lados.
-* `Rectangulo`: se inicializa con base y altura.
-* `Cuadrado`: una forma particular de rectángulo, que se inicializa con un solo lado.
-
-Cada subclase debe implementar sus propios métodos `area` y `perimetro` de forma adecuada.
-
-Por otro lado, implemente una función llamada `clasificar_formas` que reciba una secuencia de
-elementos y devuelva un diccionario. Las claves del diccionario deben ser los nombres de las clases
-("Circulo", "Rectangulo", etc.) y los valores, listas con las instancias correspondientes que
-estaban en la secuencia original. Finalmente, implemente también una función llamada `sumar_areas`
-que reciba una secuencia de formas y devuelva la suma total de sus áreas.
-
-Si alguno de los elementos no es una instancia de `Forma`, la función debe lanzar una excepción.
--->
 </section>
 </section>
 <section id="sensores-descalibrados" class="level2" data-number="7">
