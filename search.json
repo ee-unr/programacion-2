@@ -893,83 +893,80 @@
     ]
   },
   {
-    "objectID": "trabajos_practicos/trabajo_individual.html",
-    "href": "trabajos_practicos/trabajo_individual.html",
-    "title": "Trabajo Práctico Final",
-    "section": "",
-    "text": "Trabajo Práctico Final",
-    "crumbs": [
-      "Trabajo Práctico Final"
-    ]
-  },
-  {
     "objectID": "trabajos_practicos/trabajo_grupal.html",
     "href": "trabajos_practicos/trabajo_grupal.html",
-    "title": "Trabajo Práctico Grupal",
+    "title": "Trabajo práctico grupal",
     "section": "",
     "text": "El objetivo de este trabajo práctico es implementar un decorador en Python que permita monitorear la ejecución de funciones y luego utilizarlo en un programa que realiza operaciones de ordenamiento\nMonitorear la ejecución del código es una tarea fundamental en el desarrollo de software: permite detectar cuellos de botella de rendimiento, identificar funciones costosas y generar registros útiles para el debugging o auditoría.\nIncorporar herramientas de monitoreo desde etapas tempranas del desarrollo favorece la escritura de código más eficiente, mantenible y confiable.",
     "crumbs": [
-      "Trabajo Práctico Grupal"
+      "Trabajos Prácticos",
+      "Trabajo práctico grupal"
     ]
   },
   {
     "objectID": "trabajos_practicos/trabajo_grupal.html#objetivo",
     "href": "trabajos_practicos/trabajo_grupal.html#objetivo",
-    "title": "Trabajo Práctico Grupal",
+    "title": "Trabajo práctico grupal",
     "section": "",
     "text": "El objetivo de este trabajo práctico es implementar un decorador en Python que permita monitorear la ejecución de funciones y luego utilizarlo en un programa que realiza operaciones de ordenamiento\nMonitorear la ejecución del código es una tarea fundamental en el desarrollo de software: permite detectar cuellos de botella de rendimiento, identificar funciones costosas y generar registros útiles para el debugging o auditoría.\nIncorporar herramientas de monitoreo desde etapas tempranas del desarrollo favorece la escritura de código más eficiente, mantenible y confiable.",
     "crumbs": [
-      "Trabajo Práctico Grupal"
+      "Trabajos Prácticos",
+      "Trabajo práctico grupal"
     ]
   },
   {
     "objectID": "trabajos_practicos/trabajo_grupal.html#decorador-monitor",
     "href": "trabajos_practicos/trabajo_grupal.html#decorador-monitor",
-    "title": "Trabajo Práctico Grupal",
+    "title": "Trabajo práctico grupal",
     "section": "2 Decorador monitor",
     "text": "2 Decorador monitor\nEl decorador a implementar se llamará monitor y deberá ser capaz de registrar información sobre cada ejecución de la función decorada. Su interfaz contará con los siguientes argumentos:\n\nconsola (bool): indica si los mensajes se muestran por consola. Por defecto es True.\narchivo (str o None): nombre del archivo donde se escribirán los mensajes de monitoreo.\n\nPor defecto: None. En ese caso, no se guarda ningún archivo.\n\nformato (str): cadena de formato que determina cómo se construye el mensaje de monitoreo.\n\n\n2.1 Componentes del formato\nLa cadena de formato puede incluir los siguientes componentes:\n\n{tiempo}: fecha y hora de la llamada en formato YYYY-MM-DD HH:mm:ss.mss, donde mss son tres dígitos para los milisegundos.\n{funcion}: nombre de la función y el nombre del archivo donde está definida, separados por ::.\n{modulo}: nombre del módulo desde el cual se ejecuta la función.\n{argumentos}: lista de argumentos con los que se llamó a la función.\n{duracion}: duración total de la ejecución en milisegundos.\n\nEl formato por defecto es:\nformato = \"({tiempo}) {funcion}[{argumentos}] demoró {duracion} milisegundos.\"\n\n\n2.2 Ejemplos de formato\nformato = \"({tiempo}) {funcion}[{argumentos}] demoró {duracion} milisegundos.\"\n# (2025-10-08 11:54:12.123) utilidades::fun[a=1, b=2, c=3] demoró 735 milisegundos.\n\nformato = \"({tiempo}) ({modulo}) {funcion}[{argumentos}] demoró {duracion} milisegundos.\"\n# (2025-10-08 11:54:12.123) (__main__) utilidades::fun[a=1, b=2, c=3] demoró 735 milisegundos.\n\n\n2.3 Ejemplos\n# Ejemplo 1: comportamiento por defecto\n@monitor\ndef fun(x, y):\n    return x + y\n\n# Ejemplo 2: uso de archivo de registros\n@monitor(archivo=\"registros.log\")\ndef fun(x, y, z):\n    return x ** y * z\n\n# Ejemplo 3: uso de formato alternativo\nformato = \"({tiempo}) ({modulo}) {funcion}[{argumentos}] demoró {duracion} milisegundos.\"\n@monitor(archivo=\"registros.log\", formato=formato)\ndef fun(a, b):\n    return list(range(a, b))",
     "crumbs": [
-      "Trabajo Práctico Grupal"
+      "Trabajos Prácticos",
+      "Trabajo práctico grupal"
     ]
   },
   {
     "objectID": "trabajos_practicos/trabajo_grupal.html#aplicación-monitoreo-de-algoritmos-de-ordenamiento",
     "href": "trabajos_practicos/trabajo_grupal.html#aplicación-monitoreo-de-algoritmos-de-ordenamiento",
-    "title": "Trabajo Práctico Grupal",
+    "title": "Trabajo práctico grupal",
     "section": "3 Aplicación: monitoreo de algoritmos de ordenamiento",
     "text": "3 Aplicación: monitoreo de algoritmos de ordenamiento\nPara comprobar el correcto funcionamiento del decorador, se deben decorar las funciones merge_sort y bubble_sort, ambas encargadas de ordenar listas de números de menor a mayor.\n\n3.1 Implementación de los algoritmos\ndef bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] &gt; arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr\n\ndef _merge_sort(arr):\n    if len(arr) &lt;= 1:\n        return arr\n\n    mitad = len(arr) // 2\n    izquierda = _merge_sort(arr[:mitad])\n    derecha = _merge_sort(arr[mitad:])\n\n    return merge(izquierda, derecha)\n\ndef merge(izquierda, derecha):\n    resultado = []\n    i = 0\n    j = 0\n\n    while i &lt; len(izquierda) and j &lt; len(derecha):\n        if izquierda[i] &lt; derecha[j]:\n            resultado.append(izquierda[i])\n            i += 1\n        else:\n            resultado.append(derecha[j])\n            j += 1\n\n    resultado.extend(izquierda[i:])\n    resultado.extend(derecha[j:])\n\n    return resultado\n\ndef merge_sort(arr):\n    return _merge_sort(arr)\n\n\n3.2 Generación de datos de prueba\nPara generar secuencias de números aleatorios se utilizará la función crear_numeros:\nimport random\n\ndef crear_numeros(n):\n    return [random.random() for _ in range(n)]",
     "crumbs": [
-      "Trabajo Práctico Grupal"
+      "Trabajos Prácticos",
+      "Trabajo práctico grupal"
     ]
   },
   {
     "objectID": "trabajos_practicos/trabajo_grupal.html#ejecución-del-programa",
     "href": "trabajos_practicos/trabajo_grupal.html#ejecución-del-programa",
-    "title": "Trabajo Práctico Grupal",
+    "title": "Trabajo práctico grupal",
     "section": "4 Ejecución del programa",
     "text": "4 Ejecución del programa\nFinalmente, se debe implementar un script llamado programa.py que se ejecute desde la terminal. Este programa generará secuencias aleatorias de diferentes tamaños, las ordenará utilizando ambos algoritmos y registrará el monitoreo correspondiente.\nEjemplo de ejecución:\npython programa.py -n 100 1000 5000 10000 -o monitoreo.log\n\nCon -n se especifica una lista de tamaños de secuencias a generar.\nCon -o se indica el nombre del archivo donde se deben guardar los mensajes de monitoreo.\n\nSi no se especifica, no se guardan los mensajes en ningún archivo.\n\n\n\nPerfecto, acá tenés la sección final sobre el entregable redactada de forma clara y precisa:",
     "crumbs": [
-      "Trabajo Práctico Grupal"
+      "Trabajos Prácticos",
+      "Trabajo práctico grupal"
     ]
   },
   {
     "objectID": "trabajos_practicos/trabajo_grupal.html#entregable",
     "href": "trabajos_practicos/trabajo_grupal.html#entregable",
-    "title": "Trabajo Práctico Grupal",
+    "title": "Trabajo práctico grupal",
     "section": "5 Entregable",
     "text": "5 Entregable\nLa entrega de este trabajo práctico debe consistir exclusivamente en un archivo .zip que contiene los siguientes archivos, con estos nombres y contenidos exactos:\n\nmonitor.py: contiene la implementación del decorador monitor y todas las funciones auxiliares necesarias para su funcionamiento.\nprograma.py: contiene las funciones de ordenamiento (merge_sort y bubble_sort) y la implementación de la interfaz de línea de comandos (CLI) que admite los argumentos -n y -o.\nsalida.log: archivo generado al ejecutar el programa con el siguiente comando:\npython programa.py -n 100 1000 5000 10000 -o salida.log\n\nNo se deben incluir archivos adicionales ni con nombres distintos a los especificados.\nEl nombre del archivo .zip debe seguir el siguiente formato:\nG{n}_{Apellido1}_{Apellido2}_{Apellido3}.zip\ndonde:\n\n{n} es el número de grupo asignado.\n{Apellido1}, {Apellido2}, {Apellido3} son los apellidos de los integrantes del grupo.\n\nPor ejemplo:\nG1_Demicco_Gonzalez_Messi.zip",
     "crumbs": [
-      "Trabajo Práctico Grupal"
+      "Trabajos Prácticos",
+      "Trabajo práctico grupal"
     ]
   },
   {
     "objectID": "trabajos_practicos/trabajo_grupal.html#evaluación",
     "href": "trabajos_practicos/trabajo_grupal.html#evaluación",
-    "title": "Trabajo Práctico Grupal",
+    "title": "Trabajo práctico grupal",
     "section": "6 Evaluación",
     "text": "6 Evaluación\nLa evaluación contempla no solo la correcta ejecución del programa, sino también la calidad del código desarrollado, considerando aspectos como la organización, claridad, robustez y el uso de estructuras de datos y algoritmos apropiados\nAdemás, el programa será ejecutado desde la línea de comandos con otros valores de entrada para verificar su correcto funcionamiento en diferentes situaciones.",
     "crumbs": [
-      "Trabajo Práctico Grupal"
+      "Trabajos Prácticos",
+      "Trabajo práctico grupal"
     ]
   },
   {
