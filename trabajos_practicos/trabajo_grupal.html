@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Trabajo Práctico – Programación II</title>
+<title>Trabajo Práctico Grupal – Programación II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +65,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../trabajos_practicos/trabajo_individual.html" rel="next">
-<link href="../trabajos_practicos/descripcion.html" rel="prev">
 <link href="../imgs/terminal-64.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -103,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Práctica</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../trabajos_practicos/descripcion.html" aria-current="page"> 
+    <a class="nav-link" href="../trabajos_practicos/descripcion.qmd"> 
 <span class="menu-text">Trabajos Prácticos</span></a>
   </li>  
   <li class="nav-item">
@@ -126,7 +160,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../trabajos_practicos/trabajo_grupal.html">Trabajo Práctico</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../trabajos_practicos/trabajo_grupal.html">Trabajo Práctico Grupal</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -140,14 +174,8 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/descripcion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Descripción</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../trabajos_practicos/trabajo_grupal.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Trabajo Práctico</span></a>
+ <span class="menu-text">Trabajo Práctico Grupal</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -167,7 +195,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Trabajo Práctico</h1>
+<h1 class="title">Trabajo Práctico Grupal</h1>
+<p class="subtitle lead">Decoradores para monitoreo de ejecución en Python</p>
 </div>
 
 
@@ -184,9 +213,158 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Trabajo Práctico</p>
+<section id="objetivo" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="objetivo"><span class="header-section-number">1</span> Objetivo</h2>
+<p>El objetivo de este trabajo práctico es implementar un decorador en Python que permita monitorear la ejecución de funciones y luego utilizarlo en un programa que realiza operaciones de ordenamiento</p>
+<p>Monitorear la ejecución del código es una tarea fundamental en el desarrollo de <em>software</em>: permite detectar cuellos de botella de rendimiento, identificar funciones costosas y generar registros útiles para el <em>debugging</em> o auditoría.</p>
+<p>Incorporar herramientas de monitoreo desde etapas tempranas del desarrollo favorece la escritura de código más eficiente, mantenible y confiable.</p>
+</section>
+<section id="decorador-monitor" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="decorador-monitor"><span class="header-section-number">2</span> Decorador <code>monitor</code></h2>
+<p>El decorador a implementar se llamará <code>monitor</code> y deberá ser capaz de registrar información sobre cada ejecución de la función decorada. Su interfaz contará con los siguientes argumentos:</p>
+<ol type="1">
+<li><code>consola</code> (<code>bool</code>): indica si los mensajes se muestran por consola. Por defecto es <code>True</code>.</li>
+<li><code>archivo</code> (<code>str</code> o <code>None</code>): nombre del archivo donde se escribirán los mensajes de monitoreo.
+<ul>
+<li>Por defecto: <code>None</code>. En ese caso, no se guarda ningún archivo.</li>
+</ul></li>
+<li><code>formato</code> (<code>str</code>): cadena de formato que determina cómo se construye el mensaje de monitoreo.</li>
+</ol>
+<section id="componentes-del-formato" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="componentes-del-formato"><span class="header-section-number">2.1</span> Componentes del formato</h3>
+<p>La cadena de formato puede incluir los siguientes componentes:</p>
+<ul>
+<li><code>{tiempo}</code>: fecha y hora de la llamada en formato <code>YYYY-MM-DD HH:mm:ss.mss</code>, donde <code>mss</code> son tres dígitos para los milisegundos.</li>
+<li><code>{funcion}</code>: nombre de la función y el nombre del archivo donde está definida, separados por <code>::</code>.</li>
+<li><code>{modulo}</code>: nombre del módulo desde el cual se ejecuta la función.</li>
+<li><code>{argumentos}</code>: lista de argumentos con los que se llamó a la función.</li>
+<li><code>{duracion}</code>: duración total de la ejecución en milisegundos.</li>
+</ul>
+<p>El formato por defecto es:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>formato <span class="op">=</span> <span class="st">"(</span><span class="sc">{tiempo}</span><span class="st">) </span><span class="sc">{funcion}</span><span class="st">[</span><span class="sc">{argumentos}</span><span class="st">] demoró </span><span class="sc">{duracion}</span><span class="st"> milisegundos."</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejemplos-de-formato" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="ejemplos-de-formato"><span class="header-section-number">2.2</span> Ejemplos de formato</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>formato <span class="op">=</span> <span class="st">"(</span><span class="sc">{tiempo}</span><span class="st">) </span><span class="sc">{funcion}</span><span class="st">[</span><span class="sc">{argumentos}</span><span class="st">] demoró </span><span class="sc">{duracion}</span><span class="st"> milisegundos."</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (2025-10-08 11:54:12.123) utilidades::fun[a=1, b=2, c=3] demoró 735 milisegundos.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>formato <span class="op">=</span> <span class="st">"(</span><span class="sc">{tiempo}</span><span class="st">) (</span><span class="sc">{modulo}</span><span class="st">) </span><span class="sc">{funcion}</span><span class="st">[</span><span class="sc">{argumentos}</span><span class="st">] demoró </span><span class="sc">{duracion}</span><span class="st"> milisegundos."</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (2025-10-08 11:54:12.123) (__main__) utilidades::fun[a=1, b=2, c=3] demoró 735 milisegundos.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejemplos" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="ejemplos"><span class="header-section-number">2.3</span> Ejemplos</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo 1: comportamiento por defecto</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">@monitor</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fun(x, y):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo 2: uso de archivo de registros</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">@monitor</span>(archivo<span class="op">=</span><span class="st">"registros.log"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fun(x, y, z):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">**</span> y <span class="op">*</span> z</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo 3: uso de formato alternativo</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>formato <span class="op">=</span> <span class="st">"(</span><span class="sc">{tiempo}</span><span class="st">) (</span><span class="sc">{modulo}</span><span class="st">) </span><span class="sc">{funcion}</span><span class="st">[</span><span class="sc">{argumentos}</span><span class="st">] demoró </span><span class="sc">{duracion}</span><span class="st"> milisegundos."</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">@monitor</span>(archivo<span class="op">=</span><span class="st">"registros.log"</span>, formato<span class="op">=</span>formato)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fun(a, b):</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">range</span>(a, b))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="aplicación-monitoreo-de-algoritmos-de-ordenamiento" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="aplicación-monitoreo-de-algoritmos-de-ordenamiento"><span class="header-section-number">3</span> Aplicación: monitoreo de algoritmos de ordenamiento</h2>
+<p>Para comprobar el correcto funcionamiento del decorador, se deben decorar las funciones <code>merge_sort</code> y <code>bubble_sort</code>, ambas encargadas de ordenar listas de números de menor a mayor.</p>
+<section id="implementación-de-los-algoritmos" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="implementación-de-los-algoritmos"><span class="header-section-number">3.1</span> Implementación de los algoritmos</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bubble_sort(arr):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(arr)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, n <span class="op">-</span> i <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> arr[j] <span class="op">&gt;</span> arr[j <span class="op">+</span> <span class="dv">1</span>]:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                arr[j], arr[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> arr[j <span class="op">+</span> <span class="dv">1</span>], arr[j]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _merge_sort(arr):</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(arr) <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> arr</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    mitad <span class="op">=</span> <span class="bu">len</span>(arr) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    izquierda <span class="op">=</span> _merge_sort(arr[:mitad])</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    derecha <span class="op">=</span> _merge_sort(arr[mitad:])</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> merge(izquierda, derecha)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> merge(izquierda, derecha):</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> []</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">len</span>(izquierda) <span class="kw">and</span> j <span class="op">&lt;</span> <span class="bu">len</span>(derecha):</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> izquierda[i] <span class="op">&lt;</span> derecha[j]:</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>            resultado.append(izquierda[i])</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>            resultado.append(derecha[j])</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>            j <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    resultado.extend(izquierda[i:])</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    resultado.extend(derecha[j:])</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resultado</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> merge_sort(arr):</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> _merge_sort(arr)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="generación-de-datos-de-prueba" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="generación-de-datos-de-prueba"><span class="header-section-number">3.2</span> Generación de datos de prueba</h3>
+<p>Para generar secuencias de números aleatorios se utilizará la función <code>crear_numeros</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crear_numeros(n):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [random.random() <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="ejecución-del-programa" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="ejecución-del-programa"><span class="header-section-number">4</span> Ejecución del programa</h2>
+<p>Finalmente, se debe implementar un <em>script</em> llamado <code>programa.py</code> que se ejecute desde la terminal. Este programa generará secuencias aleatorias de diferentes tamaños, las ordenará utilizando ambos algoritmos y registrará el monitoreo correspondiente.</p>
+<p>Ejemplo de ejecución:</p>
+<pre class="shell"><code>python programa.py -n 100 1000 5000 10000 -o monitoreo.log</code></pre>
+<ul>
+<li>Con <code>-n</code> se especifica una lista de tamaños de secuencias a generar.</li>
+<li>Con <code>-o</code> se indica el nombre del archivo donde se deben guardar los mensajes de monitoreo.
+<ul>
+<li>Si no se especifica, no se guardan los mensajes en ningún archivo.</li>
+</ul></li>
+</ul>
+<hr>
+<p>Perfecto, acá tenés la <strong>sección final sobre el entregable</strong> redactada de forma clara y precisa:</p>
+</section>
+<section id="entregable" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="entregable"><span class="header-section-number">5</span> Entregable</h2>
+<p>La entrega de este trabajo práctico debe consistir <strong>exclusivamente</strong> en un archivo <code>.zip</code> que contiene los siguientes archivos, con estos nombres y contenidos exactos:</p>
+<ol type="1">
+<li><p><code>monitor.py</code>: contiene la implementación del decorador <code>monitor</code> y todas las funciones auxiliares necesarias para su funcionamiento.</p></li>
+<li><p><code>programa.py</code>: contiene las funciones de ordenamiento (<code>merge_sort</code> y <code>bubble_sort</code>) y la implementación de la interfaz de línea de comandos (CLI) que admite los argumentos <code>-n</code> y <code>-o</code>.</p></li>
+<li><p><code>salida.log</code>: archivo generado al ejecutar el programa con el siguiente comando:</p>
+<pre class="shell"><code>python programa.py -n 100 1000 5000 10000 -o salida.log</code></pre></li>
+</ol>
+<p>No se deben incluir archivos adicionales ni con nombres distintos a los especificados.</p>
+<p>El nombre del archivo <code>.zip</code> debe seguir el siguiente formato:</p>
+<pre><code>G{n}_{Apellido1}_{Apellido2}_{Apellido3}.zip</code></pre>
+<p>donde:</p>
+<ul>
+<li><code>{n}</code> es el número de grupo asignado.</li>
+<li><code>{Apellido1}</code>, <code>{Apellido2}</code>, <code>{Apellido3}</code> son los apellidos de los integrantes del grupo.</li>
+</ul>
+<p>Por ejemplo:</p>
+<pre><code>G1_Demicco_Gonzalez_Messi.zip</code></pre>
+</section>
+<section id="evaluación" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="evaluación"><span class="header-section-number">6</span> Evaluación</h2>
+<p>La evaluación contempla no solo la correcta ejecución del programa, sino también la calidad del código desarrollado, considerando aspectos como la organización, claridad, robustez y el uso de estructuras de datos y algoritmos apropiados</p>
+<p>Además, el programa será ejecutado desde la línea de comandos con <strong>otros valores de entrada</strong> para verificar su correcto funcionamiento en diferentes situaciones.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -590,9 +768,6 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../trabajos_practicos/descripcion.html" class="pagination-link" aria-label="Descripción">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Descripción</span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../trabajos_practicos/trabajo_individual.html" class="pagination-link" aria-label="Trabajo Práctico Final">
