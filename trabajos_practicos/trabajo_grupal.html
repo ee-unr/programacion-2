@@ -223,6 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2" class="anchored" data-anchor-id="decorador-monitor"><span class="header-section-number">2</span> Decorador <code>monitor</code></h2>
 <p>El decorador a implementar se llamará <code>monitor</code> y deberá ser capaz de registrar información sobre cada ejecución de la función decorada. Su interfaz contará con los siguientes argumentos:</p>
 <ol type="1">
+<li><code>funcion</code>: la función decorada o <code>None</code>. Por defecto, será <code>None</code>. Su valor será distinto <code>None</code> solo cuando se use el decorador sin argumentos.</li>
 <li><code>consola</code> (<code>bool</code>): indica si los mensajes se muestran por consola. Por defecto es <code>True</code>.</li>
 <li><code>archivo</code> (<code>str</code> o <code>None</code>): nombre del archivo donde se escribirán los mensajes de monitoreo.
 <ul>
@@ -362,6 +363,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="6" class="anchored" data-anchor-id="evaluación"><span class="header-section-number">6</span> Evaluación</h2>
 <p>La evaluación contempla no solo la correcta ejecución del programa, sino también la calidad del código desarrollado, considerando aspectos como la organización, claridad, robustez y el uso de estructuras de datos y algoritmos apropiados</p>
 <p>Además, el programa será ejecutado desde la línea de comandos con <strong>otros valores de entrada</strong> para verificar su correcto funcionamiento en diferentes situaciones.</p>
+</section>
+<section id="ayuda" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="ayuda"><span class="header-section-number">7</span> Ayuda</h2>
+<ol type="1">
+<li><p>Tenga en cuenta el módulo estándar <code>inspect</code> para interactuar con los parámetros de la función decorada. En particular, considere:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inspect</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fun(x, y, z<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y <span class="op">+</span> z</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener 'firma' de la funcion</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>firma <span class="op">=</span> inspect.signature(fun)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Pasarle ("bindearle") valores '1' y '2' a la llamada a la funcion</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>argumentos <span class="op">=</span> firma.bind(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(argumentos)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregar los valores por defecto a la firma</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>argumentos.apply_defaults()</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(argumentos)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener los parametros y sus valores</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(argumentos.arguments.items())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Dado que el decorador tiene que poder usarse de las siguientes dos maneras:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="at">@monitor</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(...):</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="at">@monitor</span>(archivo<span class="op">=</span><span class="st">"registros.log"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(...):</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    ...</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>será necesario inspeccionar si el argumento <code>funcion</code> de <code>monitor</code> es una función o no. Para ello, puede usar:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">callable</span>(funcion):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># accion</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Considere el método <code>.format</code> de las cadenas de caracteres para usar el <code>formato</code> pasado al decorador.</p></li>
+<li><p>Enlaces útiles:</p>
+<ul>
+<li><a href="../teoria/01_programacion_en_python/06_uso_de_codigo_externo.html">Uso de código externo</a></li>
+<li><a href="../teoria/01_programacion_en_python/07_scripting.html"><em>Scripting</em></a></li>
+<li><a href="../teoria/01_programacion_en_python/08_io.html">Lectura y escritura de archivos</a></li>
+<li><a href="../teoria/02_programacion_funcional/03_funciones_de_orden_superior.html#decoradores">Decoradores</a></li>
+<li><a href="../practica/02_programacion_funcional/ejercicios.html#bromas-pesadas">Fábrica de decoradores</a></li>
+</ul></li>
+</ol>
 
 
 </section>
