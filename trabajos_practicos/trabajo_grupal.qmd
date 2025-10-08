@@ -1,5 +1,198 @@
 ---
-title: "Trabajo Práctico"
+title: "Trabajo Práctico Grupal"
+subtitle: "Decoradores para monitoreo de ejecución en Python"
+number-sections: true
+number-depth: 3
 ---
 
-Trabajo Práctico
+## Objetivo
+
+El objetivo de este trabajo práctico es implementar un decorador en Python que permita
+monitorear la ejecución de funciones y luego utilizarlo en un programa que realiza operaciones de
+ordenamiento
+
+Monitorear la ejecución del código es una tarea fundamental en el desarrollo de _software_:
+permite detectar cuellos de botella de rendimiento, identificar funciones costosas y generar
+registros útiles para el _debugging_ o auditoría.
+
+Incorporar herramientas de monitoreo desde etapas tempranas del desarrollo favorece la escritura de
+código más eficiente, mantenible y confiable.
+
+## Decorador `monitor`
+
+El decorador a implementar se llamará `monitor` y deberá ser capaz de registrar información sobre
+cada ejecución de la función decorada. Su interfaz contará con los siguientes argumentos:
+
+1. `consola` (`bool`): indica si los mensajes se muestran por consola. Por defecto es `True`.
+1. `archivo` (`str` o `None`): nombre del archivo donde se escribirán los mensajes de monitoreo.
+   * Por defecto: `None`. En ese caso, no se guarda ningún archivo.
+3. `formato` (`str`): cadena de formato que determina cómo se construye el mensaje de monitoreo.
+
+### Componentes del formato
+
+La cadena de formato puede incluir los siguientes componentes:
+
+* `{tiempo}`: fecha y hora de la llamada en formato `YYYY-MM-DD HH:mm:ss.mss`, donde `mss` son tres dígitos para los milisegundos.
+* `{funcion}`: nombre de la función y el nombre del archivo donde está definida, separados por `::`.
+* `{modulo}`: nombre del módulo desde el cual se ejecuta la función.
+* `{argumentos}`: lista de argumentos con los que se llamó a la función.
+* `{duracion}`: duración total de la ejecución en milisegundos.
+
+El formato por defecto es:
+
+```python
+formato = "({tiempo}) {funcion}[{argumentos}] demoró {duracion} milisegundos."
+```
+
+### Ejemplos de formato
+
+```python
+formato = "({tiempo}) {funcion}[{argumentos}] demoró {duracion} milisegundos."
+# (2025-10-08 11:54:12.123) utilidades::fun[a=1, b=2, c=3] demoró 735 milisegundos.
+
+formato = "({tiempo}) ({modulo}) {funcion}[{argumentos}] demoró {duracion} milisegundos."
+# (2025-10-08 11:54:12.123) (__main__) utilidades::fun[a=1, b=2, c=3] demoró 735 milisegundos.
+```
+
+### Ejemplos
+
+```python
+# Ejemplo 1: comportamiento por defecto
+@monitor
+def fun(x, y):
+    return x + y
+
+# Ejemplo 2: uso de archivo de registros
+@monitor(archivo="registros.log")
+def fun(x, y, z):
+    return x ** y * z
+
+# Ejemplo 3: uso de formato alternativo
+formato = "({tiempo}) ({modulo}) {funcion}[{argumentos}] demoró {duracion} milisegundos."
+@monitor(archivo="registros.log", formato=formato)
+def fun(a, b):
+    return list(range(a, b))
+```
+
+## Aplicación: monitoreo de algoritmos de ordenamiento
+
+Para comprobar el correcto funcionamiento del decorador,
+se deben decorar las funciones `merge_sort` y `bubble_sort`, ambas encargadas de ordenar listas de
+números de menor a mayor.
+
+### Implementación de los algoritmos
+
+```python
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    return arr
+
+def _merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    mitad = len(arr) // 2
+    izquierda = _merge_sort(arr[:mitad])
+    derecha = _merge_sort(arr[mitad:])
+
+    return merge(izquierda, derecha)
+
+def merge(izquierda, derecha):
+    resultado = []
+    i = 0
+    j = 0
+
+    while i < len(izquierda) and j < len(derecha):
+        if izquierda[i] < derecha[j]:
+            resultado.append(izquierda[i])
+            i += 1
+        else:
+            resultado.append(derecha[j])
+            j += 1
+
+    resultado.extend(izquierda[i:])
+    resultado.extend(derecha[j:])
+
+    return resultado
+
+def merge_sort(arr):
+    return _merge_sort(arr)
+```
+
+### Generación de datos de prueba
+
+Para generar secuencias de números aleatorios se utilizará la función `crear_numeros`:
+
+```python
+import random
+
+def crear_numeros(n):
+    return [random.random() for _ in range(n)]
+```
+
+## Ejecución del programa
+
+Finalmente, se debe implementar un _script_ llamado `programa.py` que se ejecute desde la terminal.
+Este programa generará secuencias aleatorias de diferentes tamaños, las ordenará utilizando ambos
+algoritmos y registrará el monitoreo correspondiente.
+
+Ejemplo de ejecución:
+
+```shell
+python programa.py -n 100 1000 5000 10000 -o monitoreo.log
+```
+
+* Con `-n` se especifica una lista de tamaños de secuencias a generar.
+* Con `-o` se indica el nombre del archivo donde se deben guardar los mensajes de monitoreo.
+    * Si no se especifica, no se guardan los mensajes en ningún archivo.
+
+---
+
+Perfecto, acá tenés la **sección final sobre el entregable** redactada de forma clara y precisa:
+
+## Entregable
+
+La entrega de este trabajo práctico debe consistir **exclusivamente** en un archivo `.zip` que
+contiene los siguientes archivos, con estos nombres y contenidos exactos:
+
+1. `monitor.py`: contiene la implementación del decorador `monitor` y todas las funciones auxiliares
+necesarias para su funcionamiento.
+2. `programa.py`: contiene las funciones de ordenamiento (`merge_sort` y `bubble_sort`) y la
+implementación de la interfaz de línea de comandos (CLI) que admite los argumentos `-n` y `-o`.
+3. `salida.log`: archivo generado al ejecutar el programa con el siguiente comando:
+
+    ```shell
+    python programa.py -n 100 1000 5000 10000 -o salida.log
+    ```
+
+No se deben incluir archivos adicionales ni con nombres distintos a los especificados.
+
+El nombre del archivo `.zip` debe seguir el siguiente formato:
+
+```
+G{n}_{Apellido1}_{Apellido2}_{Apellido3}.zip
+```
+
+donde:
+
+* `{n}` es el número de grupo asignado.
+* `{Apellido1}`, `{Apellido2}`, `{Apellido3}` son los apellidos de los integrantes del grupo.
+
+Por ejemplo:
+
+```
+G1_Demicco_Gonzalez_Messi.zip
+```
+
+## Evaluación
+
+La evaluación contempla no solo la correcta ejecución del programa, sino también la calidad del
+código desarrollado, considerando aspectos como la organización, claridad, robustez y el uso de
+estructuras de datos y algoritmos apropiados
+
+Además, el programa será ejecutado desde la línea de comandos con
+**otros valores de entrada** para verificar su correcto funcionamiento en diferentes situaciones.
