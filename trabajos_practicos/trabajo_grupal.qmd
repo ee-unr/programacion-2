@@ -23,10 +23,13 @@ código más eficiente, mantenible y confiable.
 El decorador a implementar se llamará `monitor` y deberá ser capaz de registrar información sobre
 cada ejecución de la función decorada. Su interfaz contará con los siguientes argumentos:
 
-1. `consola` (`bool`): indica si los mensajes se muestran por consola. Por defecto es `True`.
-2. `archivo` (`str` o `None`): nombre del archivo donde se escribirán los mensajes de monitoreo.
+1. `funcion`: la función decorada o `None`. Por defecto, será `None`.
+Su valor será distinto `None` solo cuando se use el decorador sin argumentos.
+2. `consola` (`bool`): indica si los mensajes se muestran por consola. Por defecto es `True`.
+3. `archivo` (`str` o `None`): nombre del archivo donde se escribirán los mensajes de monitoreo.
    * Por defecto: `None`. En ese caso, no se guarda ningún archivo.
-3. `formato` (`str`): cadena de formato que determina cómo se construye el mensaje de monitoreo.
+4. `formato` (`str`): cadena de formato que determina cómo se construye el mensaje de monitoreo.
+
 
 ### Componentes del formato
 
@@ -196,3 +199,59 @@ estructuras de datos y algoritmos apropiados
 
 Además, el programa será ejecutado desde la línea de comandos con
 **otros valores de entrada** para verificar su correcto funcionamiento en diferentes situaciones.
+
+
+## Ayuda
+
+1. Tenga en cuenta el módulo estándar `inspect` para interactuar con los parámetros de la función
+decorada. En particular, considere:
+
+    ```python
+    import inspect
+
+    def fun(x, y, z=1):
+        return x + y + z
+
+    # Obtener 'firma' de la funcion
+    firma = inspect.signature(fun)
+
+    # Pasarle ("bindearle") valores '1' y '2' a la llamada a la funcion
+    argumentos = firma.bind(1, 2)
+    print(argumentos)
+
+    # Agregar los valores por defecto a la firma
+    argumentos.apply_defaults()
+    print(argumentos)
+
+    # Obtener los parametros y sus valores
+    print(argumentos.arguments.items())
+    ```
+
+2. Dado que el decorador tiene que poder usarse de las siguientes dos maneras:
+
+    ```python
+    @monitor
+    def f(...):
+        ...
+
+    @monitor(archivo="registros.log")
+    def f(...):
+        ...
+    ```
+
+    será necesario inspeccionar si el argumento `funcion` de `monitor` es una función o no.
+    Para ello, puede usar:
+
+    ```python
+    if callable(funcion):
+        # accion
+    ```
+
+3. Considere el método `.format` de las cadenas de caracteres para usar el `formato` pasado al
+decorador.
+4. Enlaces útiles:
+    * [Uso de código externo](../teoria/01_programacion_en_python/06_uso_de_codigo_externo.ipynb)
+    * [_Scripting_](../teoria/01_programacion_en_python/07_scripting.ipynb)
+    * [Lectura y escritura de archivos](../teoria/01_programacion_en_python/08_io.ipynb)
+    * [Decoradores](../teoria/02_programacion_funcional/03_funciones_de_orden_superior.ipynb#decoradores)
+    * [Fábrica de decoradores](../practica/02_programacion_funcional/ejercicios.qmd#bromas-pesadas)
