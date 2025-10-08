@@ -33,8 +33,8 @@ cada ejecución de la función decorada. Su interfaz contará con los siguientes
 La cadena de formato puede incluir los siguientes componentes:
 
 * `{tiempo}`: fecha y hora de la llamada en formato `YYYY-MM-DD HH:mm:ss.mss`, donde `mss` son tres dígitos para los milisegundos.
-* `{funcion}`: nombre de la función y el nombre del archivo donde está definida, separados por `::`.
-* `{modulo}`: nombre del módulo desde el cual se ejecuta la función.
+* `{funcion}`: nombre de la función.
+* `{modulo}`: nombre del módulo donde se define la función.
 * `{argumentos}`: lista de argumentos con los que se llamó a la función.
 * `{duracion}`: duración total de la ejecución en milisegundos.
 
@@ -48,10 +48,10 @@ formato = "({tiempo}) {funcion}[{argumentos}] demoró {duracion} milisegundos."
 
 ```python
 formato = "({tiempo}) {funcion}[{argumentos}] demoró {duracion} milisegundos."
-# (2025-10-08 11:54:12.123) utilidades::fun[a=1, b=2, c=3] demoró 735 milisegundos.
+# (2025-10-08 11:54:12.123) fun[a=1, b=2, c=3] demoró 735 milisegundos.
 
-formato = "({tiempo}) ({modulo}) {funcion}[{argumentos}] demoró {duracion} milisegundos."
-# (2025-10-08 11:54:12.123) (__main__) utilidades::fun[a=1, b=2, c=3] demoró 735 milisegundos.
+formato = "({tiempo}) ({modulo}) {modulo}::{funcion}[{argumentos}] demoró {duracion} milisegundos."
+# (2025-10-08 11:54:12.123) __main__::fun[a=1, b=2, c=3] demoró 735 milisegundos.
 ```
 
 ### Ejemplos
@@ -68,7 +68,7 @@ def fun(x, y, z):
     return x ** y * z
 
 # Ejemplo 3: uso de formato alternativo
-formato = "({tiempo}) ({modulo}) {funcion}[{argumentos}] demoró {duracion} milisegundos."
+formato = "({tiempo}) {modulo}::{funcion}[{argumentos}] demoró {duracion} milisegundos."
 @monitor(archivo="registros.log", formato=formato)
 def fun(a, b):
     return list(range(a, b))
