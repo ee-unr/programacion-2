@@ -1,5 +1,5 @@
 ---
-title: "Trabajo Práctico Grupal"
+title: "Trabajo práctico grupal"
 subtitle: "Decoradores para monitoreo de ejecución en Python"
 number-sections: true
 number-depth: 3
@@ -24,7 +24,7 @@ El decorador a implementar se llamará `monitor` y deberá ser capaz de registra
 cada ejecución de la función decorada. Su interfaz contará con los siguientes argumentos:
 
 1. `consola` (`bool`): indica si los mensajes se muestran por consola. Por defecto es `True`.
-1. `archivo` (`str` o `None`): nombre del archivo donde se escribirán los mensajes de monitoreo.
+2. `archivo` (`str` o `None`): nombre del archivo donde se escribirán los mensajes de monitoreo.
    * Por defecto: `None`. En ese caso, no se guarda ningún archivo.
 3. `formato` (`str`): cadena de formato que determina cómo se construye el mensaje de monitoreo.
 
