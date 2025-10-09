@@ -27,7 +27,7 @@ cada ejecución de la función decorada. Su interfaz contará con los siguientes
 Su valor será distinto `None` solo cuando se use el decorador sin argumentos.
 2. `consola` (`bool`): indica si los mensajes se muestran por consola. Por defecto es `True`.
 3. `archivo` (`str` o `None`): nombre del archivo donde se escribirán los mensajes de monitoreo.
-   * Por defecto: `None`. En ese caso, no se guarda ningún archivo.
+Por defecto es `None`. En ese caso, no se guarda ningún archivo.
 4. `formato` (`str`): cadena de formato que determina cómo se construye el mensaje de monitoreo.
 
 
@@ -56,7 +56,7 @@ formato = "({tiempo}) {modulo}::{funcion} demoró {duracion} milisegundos."
 # (2025-10-08 11:54:12.123) __main__::fun demoró 735 milisegundos.
 ```
 
-### Ejemplos
+### Ejemplos de `@monitor`
 
 ```python
 # Ejemplo 1: comportamiento por defecto
@@ -78,9 +78,8 @@ def fun(a, b):
 
 ## Aplicación: monitoreo de algoritmos de ordenamiento
 
-Para comprobar el correcto funcionamiento del decorador,
-se deben decorar las funciones `merge_sort` y `bubble_sort`, ambas encargadas de ordenar listas de
-números de menor a mayor.
+Para comprobar el correcto funcionamiento del decorador, se deben decorar las funciones
+`merge_sort` y `bubble_sort`, ambas encargadas de ordenar listas de números de menor a mayor.
 
 ### Implementación de los algoritmos
 
@@ -145,13 +144,13 @@ algoritmos y registrará el monitoreo correspondiente.
 Ejemplo de ejecución:
 
 ```shell
-python programa.py -n 100 1000 5000 10000 -o monitoreo.log
+python programa.py -n 100 1000 5000 10000 -s monitoreo.log -v
 ```
 
 * Con `-n` se especifica una lista de tamaños de secuencias a generar.
-* Con `-o` se indica el nombre del archivo donde se deben guardar los mensajes de monitoreo.
+* Con `-s` se indica el nombre del archivo donde se deben guardar los mensajes de monitoreo.
     * Si no se especifica, no se guardan los mensajes en ningún archivo.
-* Con `--silencio`
+* Con `-v` se indica que se muestren los mensajes de monitoreo en la consola.
 
 
 ## Entregable
@@ -159,34 +158,25 @@ python programa.py -n 100 1000 5000 10000 -o monitoreo.log
 La entrega de este trabajo práctico debe consistir **exclusivamente** en un archivo `.zip` que
 contiene los siguientes archivos, con estos nombres y contenidos exactos:
 
-1. `monitor.py`: contiene la implementación del decorador `monitor` y todas las funciones auxiliares
+1. `monitor.py`: contiene la implementación del decorador `monitor` y las funciones auxiliares
 necesarias para su funcionamiento.
 2. `programa.py`: contiene las funciones de ordenamiento (`merge_sort` y `bubble_sort`) y la
-implementación de la interfaz de línea de comandos (CLI) que admite los argumentos `-n` y `-o`.
+implementación de la interfaz de línea de comandos (CLI) que admite los argumentos `-n`, `-s` y `-v`.
 3. `salida.log`: archivo generado al ejecutar el programa con el siguiente comando:
 
     ```shell
-    python programa.py -n 100 1000 5000 10000 -o salida.log
+    python programa.py -n 100 1000 5000 10000 -s salida.log -s
     ```
 
 No se deben incluir archivos adicionales ni con nombres distintos a los especificados.
 
-El nombre del archivo `.zip` debe seguir el siguiente formato:
-
-```
-G{n}_{Apellido1}_{Apellido2}_{Apellido3}.zip
-```
-
+El nombre del archivo `.zip` debe seguir el formato `G{n}_{Apellido1}_{Apellido2}_{Apellido3}.zip`,
 donde:
 
 * `{n}` es el número de grupo asignado.
 * `{Apellido1}`, `{Apellido2}`, `{Apellido3}` son los apellidos de los integrantes del grupo.
 
-Por ejemplo:
-
-```
-G1_Demicco_Gonzalez_Messi.zip
-```
+Por ejemplo, `G1_Demicco_Gonzalez_Messi.zip`.
 
 ## Evaluación
 
@@ -221,7 +211,9 @@ Además, el programa será ejecutado desde la línea de comandos con
     ```
 2. Considere el método `.format` de las cadenas de caracteres para usar el `formato` pasado al
 decorador.
-3. Algunos enlaces útiles:
+3. Puede ser útil tener presente que la decoración `@monitor` no es la única forma de obtener una 
+función a partir de otra función.
+4. Algunos enlaces útiles:
     * [Uso de código externo](../teoria/01_programacion_en_python/06_uso_de_codigo_externo.ipynb)
     * [_Scripting_](../teoria/01_programacion_en_python/07_scripting.ipynb)
     * [Lectura y escritura de archivos](../teoria/01_programacion_en_python/08_io.ipynb)
