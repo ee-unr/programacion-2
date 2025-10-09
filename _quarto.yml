@@ -95,6 +95,8 @@ website:
           contents:
           - text: U1 - Programación en Python
             file: recursos/ejercicios/01_programacion_en_python/index.qmd
+          - text: U2 - Programación funcional
+            file: recursos/ejercicios/02_programacion_funcional/index.qmd
         - text: Tutoriales
           file: recursos/tutoriales/tutorial_01.qmd
           contents:

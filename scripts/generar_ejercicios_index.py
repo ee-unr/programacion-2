@@ -22,7 +22,7 @@ def extract_number(name):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("ruta", help="El nombre de la persona") # Argumento posicional
+    parser.add_argument("ruta") # Argumento posicional
     args = parser.parse_args()
 
     directorio = pathlib.Path(args.ruta)
