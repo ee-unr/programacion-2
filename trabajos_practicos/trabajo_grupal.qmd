@@ -38,23 +38,22 @@ La cadena de formato puede incluir los siguientes componentes:
 * `{tiempo}`: fecha y hora de la llamada en formato `YYYY-MM-DD HH:mm:ss.mss`, donde `mss` son tres dígitos para los milisegundos.
 * `{funcion}`: nombre de la función.
 * `{modulo}`: nombre del módulo donde se define la función.
-* `{argumentos}`: lista de argumentos con los que se llamó a la función.
 * `{duracion}`: duración total de la ejecución en milisegundos.
 
 El formato por defecto es:
 
 ```python
-formato = "({tiempo}) {funcion}[{argumentos}] demoró {duracion} milisegundos."
+formato = "({tiempo}) {funcion} demoró {duracion} milisegundos."
 ```
 
 ### Ejemplos de formato
 
 ```python
-formato = "({tiempo}) {funcion}[{argumentos}] demoró {duracion} milisegundos."
-# (2025-10-08 11:54:12.123) fun[a=1, b=2, c=3] demoró 735 milisegundos.
+formato = "({tiempo}) {funcion} demoró {duracion} milisegundos."
+# (2025-10-08 11:54:12.123) fun demoró 735 milisegundos.
 
-formato = "({tiempo}) ({modulo}) {modulo}::{funcion}[{argumentos}] demoró {duracion} milisegundos."
-# (2025-10-08 11:54:12.123) __main__::fun[a=1, b=2, c=3] demoró 735 milisegundos.
+formato = "({tiempo}) {modulo}::{funcion} demoró {duracion} milisegundos."
+# (2025-10-08 11:54:12.123) __main__::fun demoró 735 milisegundos.
 ```
 
 ### Ejemplos
@@ -71,7 +70,7 @@ def fun(x, y, z):
     return x ** y * z
 
 # Ejemplo 3: uso de formato alternativo
-formato = "({tiempo}) {modulo}::{funcion}[{argumentos}] demoró {duracion} milisegundos."
+formato = "({tiempo}) {modulo}::{funcion} demoró {duracion} milisegundos."
 @monitor(archivo="registros.log", formato=formato)
 def fun(a, b):
     return list(range(a, b))
@@ -152,10 +151,8 @@ python programa.py -n 100 1000 5000 10000 -o monitoreo.log
 * Con `-n` se especifica una lista de tamaños de secuencias a generar.
 * Con `-o` se indica el nombre del archivo donde se deben guardar los mensajes de monitoreo.
     * Si no se especifica, no se guardan los mensajes en ningún archivo.
+* Con `--silencio`
 
----
-
-Perfecto, acá tenés la **sección final sobre el entregable** redactada de forma clara y precisa:
 
 ## Entregable
 
@@ -203,31 +200,7 @@ Además, el programa será ejecutado desde la línea de comandos con
 
 ## Ayuda
 
-1. Tenga en cuenta el módulo estándar `inspect` para interactuar con los parámetros de la función
-decorada. En particular, considere:
-
-    ```python
-    import inspect
-
-    def fun(x, y, z=1):
-        return x + y + z
-
-    # Obtener 'firma' de la funcion
-    firma = inspect.signature(fun)
-
-    # Pasarle ("bindearle") valores '1' y '2' a la llamada a la funcion
-    argumentos = firma.bind(1, 2)
-    print(argumentos)
-
-    # Agregar los valores por defecto a la firma
-    argumentos.apply_defaults()
-    print(argumentos)
-
-    # Obtener los parametros y sus valores
-    print(argumentos.arguments.items())
-    ```
-
-2. Dado que el decorador tiene que poder usarse de las siguientes dos maneras:
+1. Dado que el decorador tiene que poder usarse de las siguientes dos maneras:
 
     ```python
     @monitor
@@ -246,10 +219,9 @@ decorada. En particular, considere:
     if callable(funcion):
         # accion
     ```
-
-3. Considere el método `.format` de las cadenas de caracteres para usar el `formato` pasado al
+2. Considere el método `.format` de las cadenas de caracteres para usar el `formato` pasado al
 decorador.
-4. Enlaces útiles:
+3. Algunos enlaces útiles:
     * [Uso de código externo](../teoria/01_programacion_en_python/06_uso_de_codigo_externo.ipynb)
     * [_Scripting_](../teoria/01_programacion_en_python/07_scripting.ipynb)
     * [Lectura y escritura de archivos](../teoria/01_programacion_en_python/08_io.ipynb)
