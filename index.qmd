@@ -2,6 +2,7 @@
 page-layout: full
 sidebar: false
 course-logo: utils/imgs/logo.png
+include-in-header: meta.html
 ---
 
 ::: {.grid .title-block}
