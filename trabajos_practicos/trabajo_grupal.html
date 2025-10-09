@@ -238,19 +238,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>{tiempo}</code>: fecha y hora de la llamada en formato <code>YYYY-MM-DD HH:mm:ss.mss</code>, donde <code>mss</code> son tres dígitos para los milisegundos.</li>
 <li><code>{funcion}</code>: nombre de la función.</li>
 <li><code>{modulo}</code>: nombre del módulo donde se define la función.</li>
-<li><code>{argumentos}</code>: lista de argumentos con los que se llamó a la función.</li>
 <li><code>{duracion}</code>: duración total de la ejecución en milisegundos.</li>
 </ul>
 <p>El formato por defecto es:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>formato <span class="op">=</span> <span class="st">"(</span><span class="sc">{tiempo}</span><span class="st">) </span><span class="sc">{funcion}</span><span class="st">[</span><span class="sc">{argumentos}</span><span class="st">] demoró </span><span class="sc">{duracion}</span><span class="st"> milisegundos."</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>formato <span class="op">=</span> <span class="st">"(</span><span class="sc">{tiempo}</span><span class="st">) </span><span class="sc">{funcion}</span><span class="st"> demoró </span><span class="sc">{duracion}</span><span class="st"> milisegundos."</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ejemplos-de-formato" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="ejemplos-de-formato"><span class="header-section-number">2.2</span> Ejemplos de formato</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>formato <span class="op">=</span> <span class="st">"(</span><span class="sc">{tiempo}</span><span class="st">) </span><span class="sc">{funcion}</span><span class="st">[</span><span class="sc">{argumentos}</span><span class="st">] demoró </span><span class="sc">{duracion}</span><span class="st"> milisegundos."</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (2025-10-08 11:54:12.123) fun[a=1, b=2, c=3] demoró 735 milisegundos.</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>formato <span class="op">=</span> <span class="st">"(</span><span class="sc">{tiempo}</span><span class="st">) </span><span class="sc">{funcion}</span><span class="st"> demoró </span><span class="sc">{duracion}</span><span class="st"> milisegundos."</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (2025-10-08 11:54:12.123) fun demoró 735 milisegundos.</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>formato <span class="op">=</span> <span class="st">"(</span><span class="sc">{tiempo}</span><span class="st">) (</span><span class="sc">{modulo}</span><span class="st">) </span><span class="sc">{modulo}</span><span class="st">::</span><span class="sc">{funcion}</span><span class="st">[</span><span class="sc">{argumentos}</span><span class="st">] demoró </span><span class="sc">{duracion}</span><span class="st"> milisegundos."</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (2025-10-08 11:54:12.123) __main__::fun[a=1, b=2, c=3] demoró 735 milisegundos.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>formato <span class="op">=</span> <span class="st">"(</span><span class="sc">{tiempo}</span><span class="st">) </span><span class="sc">{modulo}</span><span class="st">::</span><span class="sc">{funcion}</span><span class="st"> demoró </span><span class="sc">{duracion}</span><span class="st"> milisegundos."</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (2025-10-08 11:54:12.123) __main__::fun demoró 735 milisegundos.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ejemplos" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="ejemplos"><span class="header-section-number">2.3</span> Ejemplos</h3>
@@ -265,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">**</span> y <span class="op">*</span> z</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo 3: uso de formato alternativo</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>formato <span class="op">=</span> <span class="st">"(</span><span class="sc">{tiempo}</span><span class="st">) </span><span class="sc">{modulo}</span><span class="st">::</span><span class="sc">{funcion}</span><span class="st">[</span><span class="sc">{argumentos}</span><span class="st">] demoró </span><span class="sc">{duracion}</span><span class="st"> milisegundos."</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>formato <span class="op">=</span> <span class="st">"(</span><span class="sc">{tiempo}</span><span class="st">) </span><span class="sc">{modulo}</span><span class="st">::</span><span class="sc">{funcion}</span><span class="st"> demoró </span><span class="sc">{duracion}</span><span class="st"> milisegundos."</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">@monitor</span>(archivo<span class="op">=</span><span class="st">"registros.log"</span>, formato<span class="op">=</span>formato)</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fun(a, b):</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">range</span>(a, b))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -335,9 +334,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Si no se especifica, no se guardan los mensajes en ningún archivo.</li>
 </ul></li>
+<li>Con <code>--silencio</code></li>
 </ul>
-<hr>
-<p>Perfecto, acá tenés la <strong>sección final sobre el entregable</strong> redactada de forma clara y precisa:</p>
 </section>
 <section id="entregable" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="entregable"><span class="header-section-number">5</span> Entregable</h2>
@@ -367,38 +365,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ayuda" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="ayuda"><span class="header-section-number">7</span> Ayuda</h2>
 <ol type="1">
-<li><p>Tenga en cuenta el módulo estándar <code>inspect</code> para interactuar con los parámetros de la función decorada. En particular, considere:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inspect</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fun(x, y, z<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y <span class="op">+</span> z</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener 'firma' de la funcion</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>firma <span class="op">=</span> inspect.signature(fun)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Pasarle ("bindearle") valores '1' y '2' a la llamada a la funcion</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>argumentos <span class="op">=</span> firma.bind(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(argumentos)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregar los valores por defecto a la firma</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>argumentos.apply_defaults()</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(argumentos)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener los parametros y sus valores</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(argumentos.arguments.items())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Dado que el decorador tiene que poder usarse de las siguientes dos maneras:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="at">@monitor</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(...):</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="at">@monitor</span>(archivo<span class="op">=</span><span class="st">"registros.log"</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(...):</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    ...</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="at">@monitor</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(...):</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="at">@monitor</span>(archivo<span class="op">=</span><span class="st">"registros.log"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(...):</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    ...</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>será necesario inspeccionar si el argumento <code>funcion</code> de <code>monitor</code> es una función o no. Para ello, puede usar:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">callable</span>(funcion):</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># accion</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">callable</span>(funcion):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># accion</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Considere el método <code>.format</code> de las cadenas de caracteres para usar el <code>formato</code> pasado al decorador.</p></li>
-<li><p>Enlaces útiles:</p>
+<li><p>Algunos enlaces útiles:</p>
 <ul>
 <li><a href="../teoria/01_programacion_en_python/06_uso_de_codigo_externo.html">Uso de código externo</a></li>
 <li><a href="../teoria/01_programacion_en_python/07_scripting.html"><em>Scripting</em></a></li>
