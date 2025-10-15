@@ -677,7 +677,7 @@ Perímetro: 12</code></pre>
 </section>
 <section id="formas-generales" class="level3">
 <h3 class="anchored" data-anchor-id="formas-generales">Formas generales</h3>
-<p>Un programa que trabaja con cuadrados y rectángulos probablemente tambíen incluya otros tipos de figuras geométricas, como los círculos. La clase <code>Circulo</code> define círculos en base a su radio y, al igual que <code>Cuadrado</code> y <code>Rectangulo</code>, permite acceder obter su área y perímetro como si fuera un atributo gracias al decorador <code>@property</code>.</p>
+<p>Un programa que trabaja con cuadrados y rectángulos probablemente tambíen incluya otros tipos de figuras geométricas, como los círculos. La clase <code>Circulo</code> define círculos en base a su radio y, al igual que <code>Cuadrado</code> y <code>Rectangulo</code>, permite obtener su área y perímetro como si fuera un atributo gracias al decorador <code>@property</code>.</p>
 <div id="1ad4c05d" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="annotated-cell-14"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-14-1"><a href="#annotated-cell-14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="annotated-cell-14-2"><a href="#annotated-cell-14-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -719,7 +719,7 @@ Perímetro: 12</code></pre>
 Perímetro: 18.84955592153876</code></pre>
 </div>
 </div>
-<p>En este caso, no es posible establecer una jerarquía que relacione directamente a la <code>Circulo</code> con <code>Cuadrado</code> y <code>Rectangulo</code>; no es ni un caso particular de las otras ni nos permitiría reutilizar ninguno de los métodos implementados.</p>
+<p>En este caso, no es posible establecer una jerarquía que relacione directamente a la clase <code>Circulo</code> con <code>Cuadrado</code> y <code>Rectangulo</code>; no es ni un caso particular de las otras ni nos permitiría reutilizar ninguno de los métodos implementados.</p>
 <p>Sin embargo, sí es posible considerar a todas estas clases como casos particulares de una clase base mayor: las figuras geométricas.</p>
 </section>
 <section id="interfaz-informal" class="level3">
