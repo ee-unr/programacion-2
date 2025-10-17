@@ -165,7 +165,7 @@ implementación de la interfaz de línea de comandos (CLI) que admite los argume
 3. `salida.log`: archivo generado al ejecutar el programa con el siguiente comando:
 
     ```shell
-    python programa.py -n 100 1000 5000 10000 -s salida.log -s
+    python programa.py -n 100 1000 5000 10000 -s salida.log -v
     ```
 
 No se deben incluir archivos adicionales ni con nombres distintos a los especificados.
