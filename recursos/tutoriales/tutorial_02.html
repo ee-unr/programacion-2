@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>🪞 Autoevaluación – Programación II</title>
+<title>Fábrica de decoradores – Programación II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,8 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../practica/04_estructuras/ejercicios.html" rel="next">
-<link href="../../practica/03_oop/problemas.html" rel="prev">
+<link href="../../recursos/tutoriales/tutorial_01.html" rel="prev">
 <link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -71,10 +105,9 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../practica.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -100,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Teoría</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../practica/01_programacion_en_python/ejercicios.html" aria-current="page"> 
+    <a class="nav-link" href="../../practica/01_programacion_en_python/ejercicios.html"> 
 <span class="menu-text">Práctica</span></a>
   </li>  
   <li class="nav-item">
@@ -108,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Trabajos Prácticos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../recursos/tutoriales/tutorial_01.html"> 
+    <a class="nav-link active" href="../../recursos/tutoriales/tutorial_01.html" aria-current="page"> 
 <span class="menu-text">Recursos</span></a>
   </li>  
   <li class="nav-item compact">
@@ -127,7 +160,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../practica/04_estructuras/autoevaluacion.html">U4 - Estructuras de datos</a></li><li class="breadcrumb-item"><a href="../../practica/04_estructuras/autoevaluacion.html">🪞 Autoevaluación</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/tutoriales/tutorial_01.html">Tutoriales</a></li><li class="breadcrumb-item"><a href="../../recursos/tutoriales/tutorial_02.html">Fábrica de decoradores</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -141,66 +174,48 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
+            <a href="../../recursos/ejemplos/01_funciones_y_bucles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ejemplos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/ejemplos/01_funciones_y_bucles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Funciones y bucles: Python vs R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Ejercicios</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/ejercicios/01_programacion_en_python/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">U1 - Programación en Python</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practica/01_programacion_en_python/autoevaluacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🪞 Autoevaluación</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../practica/01_programacion_en_python/ejercicios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🛠️ Ejercicios</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practica/01_programacion_en_python/problemas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🧩 Problemas</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+  <a href="../../recursos/ejercicios/02_programacion_funcional/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">U2 - Programación funcional</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practica/02_programacion_funcional/autoevaluacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🪞 Autoevaluación</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practica/02_programacion_funcional/ejercicios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🛠️ Ejercicios</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practica/02_programacion_funcional/problemas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🧩 Problemas</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
- <span class="menu-text">U3 - Programación orientada a objetos</span></a>
+            <a href="../../recursos/tutoriales/tutorial_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutoriales</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -208,78 +223,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../practica/03_oop/autoevaluacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🪞 Autoevaluación</span></a>
+  <a href="../../recursos/tutoriales/tutorial_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalación de Python y Positron en Windows</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../practica/03_oop/ejercicios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🛠️ Ejercicios</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practica/03_oop/problemas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🧩 Problemas</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
- <span class="menu-text">U4 - Estructuras de datos</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practica/04_estructuras/autoevaluacion.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">🪞 Autoevaluación</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practica/04_estructuras/ejercicios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🛠️ Ejercicios</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practica/04_estructuras/problemas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🧩 Problemas</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
- <span class="menu-text">U5 - Algoritmos</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practica/05_algoritmos/autoevaluacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🪞 Autoevaluación</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practica/05_algoritmos/ejercicios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🛠️ Ejercicios</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../practica/05_algoritmos/problemas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🧩 Problemas</span></a>
+  <a href="../../recursos/tutoriales/tutorial_02.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Fábrica de decoradores</span></a>
   </div>
 </li>
       </ul>
@@ -289,15 +240,13 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../practica/04_estructuras/autoevaluacion.html">U4 - Estructuras de datos</a></li><li class="breadcrumb-item"><a href="../../practica/04_estructuras/autoevaluacion.html">🪞 Autoevaluación</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/tutoriales/tutorial_01.html">Tutoriales</a></li><li class="breadcrumb-item"><a href="../../recursos/tutoriales/tutorial_02.html">Fábrica de decoradores</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">🪞 Autoevaluación</h1>
+<h1 class="title">Fábrica de decoradores</h1>
 </div>
 
 
@@ -314,6 +263,50 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>La función <code>fabrica_decoradores</code> se usa como decorador, pero es en realidad una fábrica de decoradores. Si el argumento <code>fun</code> es una función, tal como suecede cuando se usa <code>@fabrica_decoradores</code>, se devuelve <code>fun</code> ya decorada.</p>
+<p>En cambio, si <code>fun</code> no es una función, como cuando se usa <code>@fabrica_decoradores(mensaje='Procesando datos con')</code>, se devuelve el decorador.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fabrica_decoradores(fun<span class="op">=</span><span class="va">None</span>, mensaje<span class="op">=</span><span class="st">"Ejecutando función"</span>):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> decorador(fun):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> wrapper(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>mensaje<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>fun<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            inicio <span class="op">=</span> time.perf_counter()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            resultado <span class="op">=</span> fun(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            fin <span class="op">=</span> time.perf_counter()</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>fun<span class="sc">.</span><span class="va">__name__</span><span class="sc">}</span><span class="ss"> terminó en </span><span class="sc">{</span>fin <span class="op">-</span> inicio<span class="sc">:.3f}</span><span class="ss"> s"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> resultado</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> wrapper</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si fun es callable (i.e., algo que se puede llamar, una funcion), el decorador</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># se llamó sin argumentos. Por lo tanto, aplicamos el decorador manualmente.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">callable</span>(fun):</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> decorador(fun)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Caso contrario, se usó con paréntesis y solo se devuelve el decorador.</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Python luego lo aplica automáticamente.</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> decorador</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Ejemplos</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de uso SIN argumentos</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">@fabrica_decoradores</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tarea_simple():</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.2</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hecho."</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>tarea_simple()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Ejecutando función: tarea_simple</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Hecho.</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tarea_simple terminó en 0.210 s</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de uso CON argumentos</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">@fabrica_decoradores</span>(mensaje<span class="op">=</span><span class="st">"Procesando datos con"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tarea_compleja():</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">2.2</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Listo."</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>tarea_compleja()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Procesando datos con: tarea_compleja</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Listo.</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tarea_compleja terminó en 2.216 s</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 
@@ -719,14 +712,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../practica/03_oop/problemas.html" class="pagination-link" aria-label="🧩 Problemas">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">🧩 Problemas</span>
+      <a href="../../recursos/tutoriales/tutorial_01.html" class="pagination-link" aria-label="Tutoriales">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tutoriales</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../practica/04_estructuras/ejercicios.html" class="pagination-link" aria-label="🛠️ Ejercicios">
-        <span class="nav-page-text">🛠️ Ejercicios</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
