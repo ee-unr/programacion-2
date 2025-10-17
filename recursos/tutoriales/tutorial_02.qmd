@@ -1,0 +1,67 @@
+---
+title: "Fábrica de decoradores"
+---
+
+La función `fabrica_decoradores` se usa como decorador, pero es en realidad una fábrica de decoradores.
+Si el argumento `fun` es una función, tal como suecede cuando se usa `@fabrica_decoradores`, se
+devuelve `fun` ya decorada.
+
+En cambio, si `fun` no es una función, como cuando se usa `@fabrica_decoradores(mensaje='Procesando datos con')`,
+se devuelve el decorador.
+
+
+```python
+import time
+
+def fabrica_decoradores(fun=None, mensaje="Ejecutando función"):
+    def decorador(fun):
+        def wrapper(*args, **kwargs):
+            print(f"{mensaje}: {fun.__name__}")
+            inicio = time.perf_counter()
+            resultado = fun(*args, **kwargs)
+            fin = time.perf_counter()
+            print(f"{fun.__name__} terminó en {fin - inicio:.3f} s")
+            return resultado
+        return wrapper
+
+    # Si fun es callable (i.e., algo que se puede llamar, una funcion), el decorador
+    # se llamó sin argumentos. Por lo tanto, aplicamos el decorador manualmente.
+    if callable(fun):
+        return decorador(fun)
+
+    # Caso contrario, se usó con paréntesis y solo se devuelve el decorador.
+    # Python luego lo aplica automáticamente.
+    return decorador
+```
+
+**Ejemplos**
+
+```python
+# Ejemplo de uso SIN argumentos
+@fabrica_decoradores
+def tarea_simple():
+    time.sleep(0.2)
+    print("Hecho.")
+
+tarea_simple()
+```
+```cmd
+Ejecutando función: tarea_simple
+Hecho.
+tarea_simple terminó en 0.210 s
+```
+
+```python
+# Ejemplo de uso CON argumentos
+@fabrica_decoradores(mensaje="Procesando datos con")
+def tarea_compleja():
+    time.sleep(2.2)
+    print("Listo.")
+
+tarea_compleja()
+```
+```cmd
+Procesando datos con: tarea_compleja
+Listo.
+tarea_compleja terminó en 2.216 s
+```
