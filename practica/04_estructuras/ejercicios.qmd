@@ -1,3 +1,271 @@
 ---
 title: "🛠️ Ejercicios"
 ---
+
+## Alerta de Virus Zombie 🧟 
+
+📋 **Contexto**: Sos un cientifico/a de un laboratorio secreto que está procesando muestras de virus zombies. Debes implementar un sistema de gestión usando colas para manejar el flujo de trabajo.
+
+⚠️ **Alerta importante**: Si hay **más de 5 muestras del mismo tipo de virus** en la cola, se activa una **alerta biológica** (riesgo de propagación masiva).
+
+
+### 🎯 Nivel 1:
+
+**Datos iniciales**
+```python
+from collections import deque
+
+muestras = deque(["virus_tank", "virus_witch", "virus_charger"])
+```
+
+**Tareas:**
+
+Implementa las siguientes funciones:
+
+1. **`agregar_muestra(nombre)`**
+   - Agrega una muestra al final de la cola
+   - Muestra mensaje confirmando la operación
+   - Verifica si hay más de 5 muestras del mismo tipo
+   - Si se cumple la condición, imprime: **"¡Alerta biológica! Detectadas X muestras de [nombre_virus] ☣️"**
+
+2. **`procesar_muestra()`**
+   - Procesa (elimina) la primera muestra de la cola
+   - Retorna el nombre de la muestra procesada
+   - Si la cola está vacía, muestra un mensaje de error
+
+3. **`mostrar_pendientes()`**
+   - Muestra la lista de muestras pendientes
+   - Retorna la lista de muestras
+   - Indica cuántas muestras hay en espera
+
+4. **`contar_por_tipo()`**
+   - Retorna un diccionario con el conteo de cada tipo de virus
+   - Ejemplo: `{"virus_tank": 3, "virus_witch": 2}`
+
+**Ejemplo de uso esperado**
+```python
+print(mostrar_pendientes())  
+# Output: Muestras pendientes (3): ['virus_tank', 'virus_witch', 'virus_charger']
+
+agregar_muestra("virus_tank")
+agregar_muestra("virus_tank")
+agregar_muestra("virus_tank")
+agregar_muestra("virus_tank")
+agregar_muestra("virus_tank")
+# Output en la 5ta: ¡Alerta biológica! Detectadas 6 muestras de virus_tank ☣️
+
+print(contar_por_tipo())
+# Output: {'virus_tank': 6, 'virus_witch': 1, 'virus_charger': 1}
+
+procesar_muestra()  
+# Output: 🔬 Procesando 'virus_tank'
+# Retorna: 'virus_tank'
+```
+
+**Casos a probar**
+```python
+# Caso 1: Cola vacía
+muestras.clear()
+procesar_muestra()  # Debe mostrar error
+
+# Caso 2: Alerta biológica por acumulación
+for i in range(6):
+    agregar_muestra("virus_hunter")  # Debe activar alerta en la 6ta
+
+# Caso 3: Verificar que la alerta sea por tipo específico
+agregar_muestra("virus_tank")
+agregar_muestra("virus_witch")
+agregar_muestra("virus_tank")
+# No debe haber alerta (solo 2 de cada tipo)
+
+# Caso 4: Procesar reduce el conteo
+for i in range(7):
+    agregar_muestra("virus_smoker")  # Alerta: 7 smoker
+procesar_muestra()  # Procesa 1 virus_tank (de los iniciales)
+print(contar_por_tipo())  # Debería seguir mostrando 7 smoker
+```
+
+
+### 🚀 Nivel 2: Desafío
+
+**Nueva funcionalidad: Muestras prioritarias**
+
+Algunas muestras son urgentes y deben procesarse antes que las normales.
+
+**Datos iniciales**
+```python
+from collections import deque
+
+muestras_normales = deque(["virus_tank", "virus_witch"])
+muestras_urgentes = deque()
+```
+
+**Tareas adicionales**
+
+5. **`agregar_muestra(nombre, urgente=False)`**
+   - Si `urgente=True`, agrega a la cola de urgentes
+   - Si `urgente=False`, agrega a la cola normal
+   - **La alerta biológica debe contar en AMBAS colas** (misma cepa puede estar en las dos)
+
+6. **`procesar_muestra()`** (modificada)
+   - Primero procesa muestras urgentes
+   - Si no hay urgentes, procesa normales
+   - Si ambas colas están vacías, muestra error
+
+7. **`mostrar_todas()`**
+   - Muestra ambas colas por separado
+   - Indica cuántas muestras hay en cada una
+   - Muestra el conteo total por tipo de virus
+
+8. **`contar_por_tipo()`** (modificada)
+   - Debe contar en ambas colas
+   - Retorna el conteo global de cada tipo
+
+**Ejemplo de uso**
+```python
+# Agregar 4 tank normales y 3 tank urgentes
+for i in range(4):
+    agregar_muestra("virus_tank", urgente=False)
+    
+for i in range(3):
+    agregar_muestra("virus_tank", urgente=True)
+    # En la 3ra debe activarse la alerta (total: 4+3=7 tanks)
+
+mostrar_todas()
+# Output: 
+# 🚨 Urgentes (3): ['virus_tank', 'virus_tank', 'virus_tank']
+# 📋 Normales (6): ['virus_tank', 'virus_witch', 'virus_tank', ...]
+# 📊 Conteo por tipo: {'virus_tank': 7, 'virus_witch': 1}
+```
+---
+
+## El Club Secreto de los Hackers 🕶️
+
+📋 **Contexto**: Un grupo de hackers tiene un club secreto con reglas muy estrictas sobre quién puede entrar y salir. Los miembros se ordenan según su entrada: desde el fundador hasta el último ingresante. En caso de ser necesaria una reducción de miembros, los primeros en irse deben ser los que menos experiencia tienen (el último en entrar al club debe ser el primero en salir). Si un hacker que no es el último en entrar sale del grupo fuera de orden, se considera una violación de seguridad y se registra la acción en el sistema.
+
+**Datos iniciales**
+```python
+
+club = [
+    {"nombre": "Anonymous"},
+    {"nombre": "Mitnick"},  
+    {"nombre": "Soupnazi"},  
+    {"nombre": "D-Dante"}    
+]
+
+```
+
+Teniendo en cuenta el contexto implementa las siguientes funciones para regular la entrada y salida de los miembros del club:
+
+1. **`entrar(nombre)`**
+   - Agrega un hacker a la pila del club
+   - Cada entrada debe registrarse como un diccionario: `{"nombre": "Neo"}`
+   - Si hay más de 10 hacker, imprimir: **"⚠️ El Club esta lleno, capacidad máxima alcanzada"**
+
+2. **`salir()`**
+   - Saca al último hacker que entró 
+   - Retorna el nombre del hacker que salió
+   - Si la pila está vacía, imprimir: **"🌑 El club ha desaparecido en la oscuridad..."**
+
+3. **`ultimo_en_entrar()`**
+   - Muestra quién está en el top de la pila **sin sacarlo**
+   - Retorna el nombre del último que entró
+   - Si la posiion aun no fue cubierta, retorna None
+
+4. **`mostrar_club()`**
+   - Muestra todos los hackers en el club, del más reciente al más antiguo
+   - Indica cuántos hay en total
+   - Formato: `[Top] Neo -> Trinity -> Anonymous [Base]`
+
+5. **`esta_en_club(nombre)`**
+   - Verifica si un hacker específico está dentro
+   - Retorna True o False
+   - **IMPORTANTE**: No destruir la pila al buscar
+
+**Ejemplo de uso esperado**
+```python
+entrar("Morpheus")
+entrar("Trinity")
+entrar("Neo")
+
+mostrar_club()
+# Output:  Club (3 hackers): [Top] Neo -> Trinity -> Morpheus [Base]
+
+print(ultimo_en_entrar())
+# Output: Neo
+
+salir()
+# Output: 👋 Neo ha salido del club
+
+print(esta_en_club("Trinity"))
+# Output: True
+
+print(esta_en_club("Cypher"))
+# Output: False
+```
+
+**Casos a probar**
+```python
+# Caso 1: Club vacío
+club.clear()
+salir()  # Debe mostrar mensaje
+
+# Caso 2: Verificar LIFO
+entrar("A")
+entrar("B")
+entrar("C")
+salir()  # Debe salir C (último en entrar)
+salir()  # Debe salir B
+ultimo_en_entrar()  # Debe ser A
+
+# Caso 3: Club lleno
+for i in range(12):
+    entrar(f"Hacker{i}")  # En el 11vo debe avisar que está lleno
+
+# Caso 4: Buscar sin destruir
+entrar("Neo")
+entrar("Trinity")
+print(esta_en_club("Neo"))  # True
+mostrar_club()  # Neo debe seguir en la pila
+```
+
+### 🚀 Nivel 2: Desafío
+
+Nueva funcionalidad: Control de acceso con violaciones
+
+Impelmente las siguentes funciones:
+
+6. **`salir_especifico(nombre)`**
+  -  Si nombre es el TOP: sacarlo sin registrar violación, retornar True.
+  -  Si no es el TOP pero está en la pila:
+  -  Desapilar a un buffer hasta encontrar nombre.
+  -  Remover nombre.
+  -  Reapilar en orden original todo lo que sacaste.
+  -  Registrar violación en _log_violaciones con formato:
+     "{HH:MM} - Violación: {nombre} salió fuera de orden"
+     (usar datetime.now().strftime("%H:%M")).
+     Retornar True.
+  -  Si no se encuentra: retornar False.
+   
+
+7. **`historial_violaciones()`**
+   - Muestra todas las violaciones de seguridad registradas
+   - Formato: `["17:30 - Violación: Trinity salió fuera de orden"]`
+
+### Ejemplo de uso
+```python
+entrar("Morpheus")
+entrar("Trinity")
+entrar("Neo")
+entrar("Cypher")
+
+# Neo y Cypher están encima de Trinity
+salir_especifico("Trinity")
+# Output: 🚨 VIOLACIÓN DE SEGURIDAD: Trinity salió fuera de orden
+
+mostrar_club()
+# Output: [Top] Cypher -> Neo -> Morpheus [Base]
+# Trinity ya no está
+
+```
+
