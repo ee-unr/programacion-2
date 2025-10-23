@@ -36,47 +36,6 @@ Para cada escenario, calculá el costo en pasos y deducí su complejidad asintó
 | **e) Eliminación al Inicio** | Sacá la caja de la **posición 0** y corré el resto para cerrar el hueco. | | | |
 | **f) Eliminación al Final** | Sacá la última caja del estante (posición N−1). | | | |
 
-## La lista de Reproducción del DJ️🎵
-
-📋 **Contexto**
-
-Un DJ está gestionando su lista principal de canciones, almacenada en una secuencia ordenada de reproducción. Necesitas desarrollar las herramientas para manipular esta lista de forma eficiente y precisa antes del show.
-
-**Requerimientos de Manipulación**
-
-Tu sistema debe soportar las siguientes acciones, considerando que la lista es una secuencia lineal donde el orden es fundamental:
-
-- **Consulta por Ubicación**: El DJ debe poder pedir la canción que está en una posición exacta de la secuencia (ej. "Dime qué canción está en el tercer lugar").
-
-- **Adición Controlada**: Se debe poder insertar una nueva canción exactamente en una posición específica de la secuencia (ej. "Pon 'Nueva Canción' justo antes de la canción que actualmente está en la posición 5"). Esto implica que las canciones que estaban en esa posición y después deben moverse para hacer espacio.
-
-- **Remoción Dirigida**: El DJ debe poder quitar una canción conociendo su nombre de la lista. Una vez retirada, las canciones que estaban después deben moverse para cerrar el hueco y mantener la secuencia contigua.
-
-- **Identificación por Nombre**: Se requiere una función para localizar una canción por su nombre y devolver su ubicación actual en la secuencia.
-
-**Datos Iniciales**
-
-```python
-canciones = ["Thunderstruck", "Billie Jean", "Smells Like Teen Spirit"]
-```
-
-**Ejemplos de uso:**
-
-```python
-# Ejemplo de requerimiento: Inserción
-# Intentamos poner "One" en la posición 2 (el tercer espacio)
-insertar_cancion(2, "One")
-# La lista debe ajustarse automáticamente: ["Thunderstruck", "Billie Jean", "One", "Smells Like Teen Spirit"]
-
-# Ejemplo de requerimiento: Eliminación
-eliminar_cancion("Billie Jean")
-# La lista debe reajustarse: ["Thunderstruck", "One", "Smells Like Teen Spirit"]
-```
-
-💡 Punto Extra: Visualización del Índice
-
-- Mostra al DJ la lista completa, indicando claramente la posición inicial de cada pista en la secuencia.
-
 ## Cita con el dentista 🦷
 
 📋 **Contexto**
@@ -159,7 +118,232 @@ pero buscar un turno por hora es O(N)?
 ¿Qué estructura te parecería más conveniente si hubiera miles de turnos?
 Explicá brevemente por qué.
 
-## Torre de control Aereo ✈️ 
+
+## La lista de Reproducción del DJ️🎵
+
+📋 **Contexto**
+
+Un DJ está gestionando su lista principal de canciones, almacenada en una secuencia ordenada de reproducción. Necesitas desarrollar las herramientas para manipular esta lista de forma eficiente y precisa antes del show.
+
+**Requerimientos de Manipulación**
+
+Tu sistema debe soportar las siguientes acciones, considerando que la lista es una secuencia lineal donde el orden es fundamental:
+
+- **Consulta por Ubicación**: El DJ debe poder pedir la canción que está en una posición exacta de la secuencia (ej. "Dime qué canción está en el tercer lugar").
+
+- **Adición Controlada**: Se debe poder insertar una nueva canción exactamente en una posición específica de la secuencia (ej. "Pon 'Nueva Canción' justo antes de la canción que actualmente está en la posición 5"). Esto implica que las canciones que estaban en esa posición y después deben moverse para hacer espacio.
+
+- **Remoción Dirigida**: El DJ debe poder quitar una canción conociendo su nombre de la lista. Una vez retirada, las canciones que estaban después deben moverse para cerrar el hueco y mantener la secuencia contigua.
+
+- **Identificación por Nombre**: Se requiere una función para localizar una canción por su nombre y devolver su ubicación actual en la secuencia.
+
+**Datos Iniciales**
+
+```python
+canciones = ["Thunderstruck", "Billie Jean", "Smells Like Teen Spirit"]
+```
+
+**Ejemplos de uso:**
+
+```python
+# Ejemplo de requerimiento: Inserción
+# Intentamos poner "One" en la posición 2 (el tercer espacio)
+insertar_cancion(2, "One")
+# La lista debe ajustarse automáticamente: ["Thunderstruck", "Billie Jean", "One", "Smells Like Teen Spirit"]
+
+# Ejemplo de requerimiento: Eliminación
+eliminar_cancion("Billie Jean")
+# La lista debe reajustarse: ["Thunderstruck", "One", "Smells Like Teen Spirit"]
+```
+
+💡 Punto Extra: Visualización del Índice
+
+- Mostra al DJ la lista completa, indicando claramente la posición inicial de cada pista en la secuencia.
+
+## Scanner Pro 3000 🤖
+
+📋 Contexto:
+
+En un recital, cada entrada tiene un código. Al ingresar, el lector va guardando los códigos en una lista en el orden en que se escanean. La producción te pide detectar si hubo códigos repetidos (fraude o doble escaneo).
+
+Te entregan una lista escaneos con miles de códigos (strings).
+
+```python
+escaneos = [
+    "A1F3", "B9K2", "X7Z1", "A1F3", "L0P9", "M2Q5", "B9K2", ...
+]
+```
+➡️**Parte A**
+
+Escribí una función que encuentre si hay algún código repetido comparando cada elemento con todos los que le siguen (doble for).
+
+**Responde:**
+
+- ¿Cuántas comparaciones hace en el peor caso con N elementos?
+- ¿Qué pasa cuando N crece x10?
+
+➡️**Parte B**:
+
+Implementá una versión lineal usando un set para registrar códigos ya vistos.
+
+**Responde**: 
+
+- ¿Por qué ahora es O(N)?
+- ¿Qué operación te permite “saltar” comparaciones?
+
+
+➡️**Parte C:**
+
+Usa esta funcion que crea codigos aleatorios para generar listas de codigos de tamaños crecientes y medi el tiempo de ejecucion de cada funcion anteior:
+
+```python
+
+import random, string, time
+
+def generar_codigos(n, dup_ratio=0.0, seed=0):
+    rng = random.Random(seed)
+    base = set()
+    # crear códigos únicos
+    while len(base) < int(n * (1 - dup_ratio)):
+        base.add(''.join(rng.choices(string.ascii_uppercase + string.digits, k=6)))
+    lista = list(base)
+    # inyectar duplicados
+    while len(lista) < n:
+        lista.append(rng.choice(list(base)))
+    rng.shuffle(lista)
+    return lista
+
+```
+## El Club Secreto de los Hackers 🕶️
+
+📋 **Contexto**: Un grupo de hackers tiene un club secreto con reglas muy estrictas sobre quién puede entrar y salir. Los miembros se ordenan según su entrada: desde el fundador hasta el último ingresante. En caso de ser necesaria una reducción de miembros, los primeros en irse deben ser los que menos experiencia tienen (el último en entrar al club debe ser el primero en salir). Si un hacker que no es el último en entrar sale del grupo fuera de orden, se considera una violación de seguridad y se registra la acción en el sistema.
+
+**Datos iniciales**
+```python
+
+club = [
+    {"nombre": "Anonymous"},
+    {"nombre": "Mitnick"},  
+    {"nombre": "Soupnazi"},  
+    {"nombre": "D-Dante"}    
+]
+
+```
+
+Teniendo en cuenta el contexto implementa las siguientes funciones para regular la entrada y salida de los miembros del club:
+
+1. **`entrar(nombre)`**
+   - Agrega un hacker a la pila del club
+   - Cada entrada debe registrarse como un diccionario: `{"nombre": "Neo"}`
+   - Si hay más de 10 hacker, imprimir: **"⚠️ El Club esta lleno, capacidad máxima alcanzada"**
+
+2. **`salir()`**
+   - Saca al último hacker que entró 
+   - Retorna el nombre del hacker que salió
+   - Si la pila está vacía, imprimir: **"🌑 El club ha desaparecido en la oscuridad..."**
+
+3. **`ultimo_en_entrar()`**
+   - Muestra quién está en el top de la pila **sin sacarlo**
+   - Retorna el nombre del último que entró
+   - Si la posiion aun no fue cubierta, retorna None
+
+4. **`mostrar_club()`**
+   - Muestra todos los hackers en el club, del más reciente al más antiguo
+   - Indica cuántos hay en total
+   - Formato: `[Top] Neo -> Trinity -> Anonymous [Base]`
+
+5. **`esta_en_club(nombre)`**
+   - Verifica si un hacker específico está dentro
+   - Retorna True o False
+   - **IMPORTANTE**: No destruir la pila al buscar
+
+**Ejemplo de uso esperado**
+```python
+entrar("Morpheus")
+entrar("Trinity")
+entrar("Neo")
+
+mostrar_club()
+# Output:  Club (3 hackers): [Top] Neo -> Trinity -> Morpheus [Base]
+
+print(ultimo_en_entrar())
+# Output: Neo
+
+salir()
+# Output: 👋 Neo ha salido del club
+
+print(esta_en_club("Trinity"))
+# Output: True
+
+print(esta_en_club("Cypher"))
+# Output: False
+```
+
+**Casos a probar**
+```python
+# Caso 1: Club vacío
+club.clear()
+salir()  # Debe mostrar mensaje
+
+# Caso 2: Verificar LIFO
+entrar("A")
+entrar("B")
+entrar("C")
+salir()  # Debe salir C (último en entrar)
+salir()  # Debe salir B
+ultimo_en_entrar()  # Debe ser A
+
+# Caso 3: Club lleno
+for i in range(12):
+    entrar(f"Hacker{i}")  # En el 11vo debe avisar que está lleno
+
+# Caso 4: Buscar sin destruir
+entrar("Neo")
+entrar("Trinity")
+print(esta_en_club("Neo"))  # True
+mostrar_club()  # Neo debe seguir en la pila
+```
+
+### 🚀 Nivel 2: Desafío
+
+Nueva funcionalidad: Control de acceso con violaciones
+
+Impelmente las siguentes funciones:
+
+6. **`salir_especifico(nombre)`**
+  -  Si nombre es el TOP: sacarlo sin registrar violación, retornar True.
+  -  Si no es el TOP pero está en la pila:
+  -  Desapilar a un buffer hasta encontrar nombre.
+  -  Remover nombre.
+  -  Reapilar en orden original todo lo que sacaste.
+  -  Registrar violación en _log_violaciones con formato:
+     "{HH:MM} - Violación: {nombre} salió fuera de orden"
+     (usar datetime.now().strftime("%H:%M")).
+     Retornar True.
+  -  Si no se encuentra: retornar False.
+   
+
+7. **`historial_violaciones()`**
+   - Muestra todas las violaciones de seguridad registradas
+   - Formato: `["17:30 - Violación: Trinity salió fuera de orden"]`
+
+### Ejemplo de uso
+```python
+entrar("Morpheus")
+entrar("Trinity")
+entrar("Neo")
+entrar("Cypher")
+
+# Neo y Cypher están encima de Trinity
+salir_especifico("Trinity")
+# Output: 🚨 VIOLACIÓN DE SEGURIDAD: Trinity salió fuera de orden
+
+mostrar_club()
+# Output: [Top] Cypher -> Neo -> Morpheus [Base]
+# Trinity ya no está
+
+```
+## Torre de control aereo ✈️ 
 
 📋**Contexto**
 
@@ -329,137 +513,6 @@ mostrar_todas()
 # 🚨 Urgentes (3): ['virus_tank', 'virus_tank', 'virus_tank']
 # 📋 Normales (6): ['virus_tank', 'virus_witch', 'virus_tank', ...]
 # 📊 Conteo por tipo: {'virus_tank': 7, 'virus_witch': 1}
-```
----
-
-## El Club Secreto de los Hackers 🕶️
-
-📋 **Contexto**: Un grupo de hackers tiene un club secreto con reglas muy estrictas sobre quién puede entrar y salir. Los miembros se ordenan según su entrada: desde el fundador hasta el último ingresante. En caso de ser necesaria una reducción de miembros, los primeros en irse deben ser los que menos experiencia tienen (el último en entrar al club debe ser el primero en salir). Si un hacker que no es el último en entrar sale del grupo fuera de orden, se considera una violación de seguridad y se registra la acción en el sistema.
-
-**Datos iniciales**
-```python
-
-club = [
-    {"nombre": "Anonymous"},
-    {"nombre": "Mitnick"},  
-    {"nombre": "Soupnazi"},  
-    {"nombre": "D-Dante"}    
-]
-
-```
-
-Teniendo en cuenta el contexto implementa las siguientes funciones para regular la entrada y salida de los miembros del club:
-
-1. **`entrar(nombre)`**
-   - Agrega un hacker a la pila del club
-   - Cada entrada debe registrarse como un diccionario: `{"nombre": "Neo"}`
-   - Si hay más de 10 hacker, imprimir: **"⚠️ El Club esta lleno, capacidad máxima alcanzada"**
-
-2. **`salir()`**
-   - Saca al último hacker que entró 
-   - Retorna el nombre del hacker que salió
-   - Si la pila está vacía, imprimir: **"🌑 El club ha desaparecido en la oscuridad..."**
-
-3. **`ultimo_en_entrar()`**
-   - Muestra quién está en el top de la pila **sin sacarlo**
-   - Retorna el nombre del último que entró
-   - Si la posiion aun no fue cubierta, retorna None
-
-4. **`mostrar_club()`**
-   - Muestra todos los hackers en el club, del más reciente al más antiguo
-   - Indica cuántos hay en total
-   - Formato: `[Top] Neo -> Trinity -> Anonymous [Base]`
-
-5. **`esta_en_club(nombre)`**
-   - Verifica si un hacker específico está dentro
-   - Retorna True o False
-   - **IMPORTANTE**: No destruir la pila al buscar
-
-**Ejemplo de uso esperado**
-```python
-entrar("Morpheus")
-entrar("Trinity")
-entrar("Neo")
-
-mostrar_club()
-# Output:  Club (3 hackers): [Top] Neo -> Trinity -> Morpheus [Base]
-
-print(ultimo_en_entrar())
-# Output: Neo
-
-salir()
-# Output: 👋 Neo ha salido del club
-
-print(esta_en_club("Trinity"))
-# Output: True
-
-print(esta_en_club("Cypher"))
-# Output: False
-```
-
-**Casos a probar**
-```python
-# Caso 1: Club vacío
-club.clear()
-salir()  # Debe mostrar mensaje
-
-# Caso 2: Verificar LIFO
-entrar("A")
-entrar("B")
-entrar("C")
-salir()  # Debe salir C (último en entrar)
-salir()  # Debe salir B
-ultimo_en_entrar()  # Debe ser A
-
-# Caso 3: Club lleno
-for i in range(12):
-    entrar(f"Hacker{i}")  # En el 11vo debe avisar que está lleno
-
-# Caso 4: Buscar sin destruir
-entrar("Neo")
-entrar("Trinity")
-print(esta_en_club("Neo"))  # True
-mostrar_club()  # Neo debe seguir en la pila
-```
-
-### 🚀 Nivel 2: Desafío
-
-Nueva funcionalidad: Control de acceso con violaciones
-
-Impelmente las siguentes funciones:
-
-6. **`salir_especifico(nombre)`**
-  -  Si nombre es el TOP: sacarlo sin registrar violación, retornar True.
-  -  Si no es el TOP pero está en la pila:
-  -  Desapilar a un buffer hasta encontrar nombre.
-  -  Remover nombre.
-  -  Reapilar en orden original todo lo que sacaste.
-  -  Registrar violación en _log_violaciones con formato:
-     "{HH:MM} - Violación: {nombre} salió fuera de orden"
-     (usar datetime.now().strftime("%H:%M")).
-     Retornar True.
-  -  Si no se encuentra: retornar False.
-   
-
-7. **`historial_violaciones()`**
-   - Muestra todas las violaciones de seguridad registradas
-   - Formato: `["17:30 - Violación: Trinity salió fuera de orden"]`
-
-### Ejemplo de uso
-```python
-entrar("Morpheus")
-entrar("Trinity")
-entrar("Neo")
-entrar("Cypher")
-
-# Neo y Cypher están encima de Trinity
-salir_especifico("Trinity")
-# Output: 🚨 VIOLACIÓN DE SEGURIDAD: Trinity salió fuera de orden
-
-mostrar_club()
-# Output: [Top] Cypher -> Neo -> Morpheus [Base]
-# Trinity ya no está
-
 ```
 
 ##  Batalla Pokémon ⚔️
