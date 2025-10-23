@@ -268,4 +268,189 @@ mostrar_club()
 # Trinity ya no está
 
 ```
+---
 
+##  Batalla Pokémon ⚔️
+
+📋 **Contexto**: Un gimnasio Pokémon necesita un sistema para gestionar los batallas entre equipos. Para lograrlo te contratan y te dan la siguiente infromación:
+
+- Los entrenadores pokemon pueden capturar nuevos Pokémones y agregarlos a su equipo
+- Los entrenadores necesitan poder buscar un Pokémon específico por su nombre para usarlo en batalla
+- Los entrenadores tienen que poder retirar del equipo a los Pokémon debilitados o que ya no quieren usar
+- Los entrenadores deben poder revisar su equipo completo para decidir su estrategia
+
+Tu trabajo sera implementar la Clase`equipo`, para eso puedes usar la siguente clase ya implementada:
+
+```python
+class Pokemon:
+    """Representa un Pokémon individual"""
+    
+    def __init__(self, nombre, tipo, nivel, max_hp, ataque):
+        self.nombre = nombre
+        self.tipo = tipo
+        self.nivel = nivel
+        self.max_hp = max_hp
+        self.hp = max_hp  # Empieza con vida completa
+        self.ataque = ataque
+    
+    def recibir_daño(self, puntos):
+        """Reduce HP, no puede ser negativo"""
+        self.hp = max(0, self.hp - puntos)
+    
+    def curar(self, puntos):
+        """Aumenta HP, no puede superar el máximo"""
+        self.hp = min(self.max_hp, self.hp + puntos)
+    
+    def esta_debilitado(self):
+        """Retorna True si el Pokémon no puede combatir"""
+        return self.hp == 0
+    
+    def subir_nivel(self):
+        """Sube de nivel y aumenta stats"""
+        self.nivel += 1
+        self.max_hp += 5
+        self.hp = self.max_hp  # Se cura completamente
+    
+    def __str__(self):
+        return f"{self.nombre} ({self.tipo.capitalize()}) Nv.{self.nivel} [HP: {self.hp}/{self.max_hp}]"
+```
+
+**Ejemplo de uso:**
+```python
+pikachu = Pokemon("Pikachu", "eléctrico", nivel=25, max_hp=35, ataque=14)
+print(pikachu)  # Pikachu (Eléctrico) Nv.25 [HP: 35/35]
+
+pikachu.recibir_daño(10)
+print(pikachu)  # Pikachu (Eléctrico) Nv.25 [HP: 25/35]
+```
+
+**Requerimientos para implementar la Clase `Equipo`:**
+
+Los maestros/as Pokemon necesitan gestionar su equipo de forma dinámica. Las operaciones que más realizan son:
+
+1. **Agregar** un Pokémon recién capturado (siempre al final)
+2. **Buscar** un Pokémon específico por nombre
+3. **Eliminar** un Pokémon específico del equipo
+4. **Listar** todos los Pokémon para revisarlos
+5. **Eliminar todos los debilitados** después de una batalla
+6. **Contar** cuántos Pokémon tiene
+
+**Requisitos importantes:**
+
+- No se te permite usar listas normales de Python con acceso por índice** (`lista[0]`, `lista[2]`, etc.)
+- La calse debe ser eficiente para agregar y eliminar elementos
+- Podes crear clases auxiliares si lo necesitas (como Nodo).
+
+
+**Métodos necesarios:**
+
+- `__init__(nombre_entrenador)`
+Inicializa un equipo vacío para el entrenador.
+- `agregar_pokemon(pokemon)`
+Agrega un Pokémon al final del equipo.
+- `buscar(nombre)`
+Busca un Pokémon por nombre. Retorna el objeto Pokemon si lo encuentra, `None` si no existe.
+- `eliminar(nombre)`
+Elimina un Pokémon específico del equipo. Retorna `True` si lo eliminó, `False` si no existía. **Importante:**  este metodo debe manejar correctamente los casos de elimnar un elemento que sea el primero, uno del medio o el ultimo.
+- `eliminar_debilitados()`
+Elimina todos los Pokémon con HP = 0. Retorna una lista con los nombres de los eliminados.
+- `contar()`
+Retorna cuántos Pokémon hay en el equipo.
+- `esta_vacio()`
+Retorna `True` si no hay Pokémon en el equipo.
+-`listar()`
+Retorna una lista de strings con todos los Pokémon en orden.
+Formato: `["1. Pikachu (Eléctrico) Nv.25 [HP: 35/35]", "2. Charmander...", ...]`
+- `obtener_primero()`
+Retorna el primer Pokémon del equipo sin eliminarlo. `None` si está vacío.
+- `obtener_mas_fuerte()`
+Retorna el Pokémon con mayor ataque. `None` si está vacío.
+- `pokemon_por_tipo(tipo)`
+Retorna una lista con todos los Pokémon de un tipo específico.
+Ejemplo: `pokemon_por_tipo("fuego")` → lista con Charmander, Vulpix, etc.
+
+
+**Ejemplo de uso completo**
+
+```python
+# Crear Pokémon
+pikachu = Pokemon("Pikachu", "eléctrico", nivel=25, max_hp=35, ataque=14)
+charmander = Pokemon("Charmander", "fuego", nivel=20, max_hp=39, ataque=12)
+squirtle = Pokemon("Squirtle", "agua", nivel=22, max_hp=44, ataque=9)
+bulbasaur = Pokemon("Bulbasaur", "planta", nivel=21, max_hp=45, ataque=10)
+eevee = Pokemon("Eevee", "normal", nivel=18, max_hp=55, ataque=8)
+
+# Crear equipo
+equipo_ash = Equipo("Ash")
+
+# Agregar Pokémon
+equipo_ash.agregar_pokemon(pikachu)
+equipo_ash.agregar_pokemon(charmander)
+equipo_ash.agregar_pokemon(squirtle)
+equipo_ash.agregar_pokemon(bulbasaur)
+
+print(f"Pokémon en el equipo: {equipo_ash.contar()}")  # 4
+
+# Listar equipo
+print("\n=== EQUIPO DE ASH ===")
+for info in equipo_ash.listar():
+    print(info)
+
+# Buscar un Pokémon
+encontrado = equipo_ash.buscar("Squirtle")
+if encontrado:
+    print(f"\n Encontrado: {encontrado}")
+
+# Obtener el más fuerte
+fuerte = equipo_ash.obtener_mas_fuerte()
+print(f"\n  Más fuerte: {fuerte}")
+
+# Simular batalla
+print("\n=== SIMULANDO BATALLA ===")
+charmander.recibir_daño(39)  # Charmander se debilita
+squirtle.recibir_daño(20)    # Squirtle pierde HP pero sobrevive
+
+print(f"Charmander debilitado: {charmander.esta_debilitado()}")
+
+# Eliminar debilitados
+eliminados = equipo_ash.eliminar_debilitados()
+print(f"Pokémon eliminados: {eliminados}")  # ['Charmander']
+
+# Ver equipo actualizado
+print(f"\nPokémon restantes: {equipo_ash.contar()}")  # 3
+for info in equipo_ash.listar():
+    print(info)
+
+# Agregar nuevo Pokémon
+equipo_ash.agregar_pokemon(eevee)
+print(f"\n Eevee agregado. Total: {equipo_ash.contar()}")
+
+# Buscar por tipo
+fuego = equipo_ash.pokemon_por_tipo("fuego")
+print(f"\nPokémon de fuego: {[str(p) for p in fuego]}")
+
+# Eliminar un Pokémon específico
+equipo_ash.eliminar("Pikachu")
+print(f"\n Pikachu liberado. Restantes: {equipo_ash.contar()}")
+```
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+**Preguntas para reflexionar ANTES de programar**
+
+1. ¿Qué estructura me permite conectar elementos sin índices?
+
+2. ¿Necesito crear una clase auxiliar (como Nodo)?
+
+3. Al eliminar un elemento, ¿qué debo hacer con los enlaces?
+   - Pista: Debes "saltar" al elemento eliminado reconectando los que estaban antes y después
+
+4. ¿Cómo recorro todos los elementos sin índices?
+   - Pista: Empezas por el primero y seguis los enlaces hasta llegar al final
+
+5. ¿Qué pasa si elimino el primer elemento? ¿Es diferente a eliminar del medio?
+   - Pista: El primer elemento es especial, no tiene un elemento anterior
+   
+:::
