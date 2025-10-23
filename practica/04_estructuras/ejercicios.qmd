@@ -697,3 +697,155 @@ print(f"\n Pikachu liberado. Restantes: {equipo_ash.contar()}")
    - Pista: El primer elemento es especial, no tiene un elemento anterior
    
 :::
+
+## Uno más dos 1️⃣➕2️⃣
+
+Proponer e implementar dos algoritmos que calculen la suma de los primeros `N` números naturales.
+
+* Uno con complejidad $O(N)$ (lineal).
+* Uno con complejidad $O(1)$ (constante).
+
+## Uno más tres 1️⃣➕3️⃣
+
+Proponer e implementar dos algoritmos que calculen la suma de los primeros `N` números naturales **impares**.
+
+* Uno con complejidad $O(N)$ (lineal).
+* Uno con complejidad $O(1)$ (constante).
+
+## Más y más datos 📋📈
+
+a. Considere el siguiente código que calcula un acumulado de promedios para una lista de tamaño `N`.
+
+```python
+def promedios_acumulados(lista):
+  """
+  Ejemplo:  Entrada -> [1, 2, 3, 5]
+            Salida  -> [1, 1.5, 2, 2.75]
+  """
+  N = len(lista)
+  promedios = []
+  for i in range(1, N+1):
+    promedio = sum(lista[:i]) / i
+    promedios.append(promedio)
+  return promedios
+```
+
+Determine la complejidad de este algoritmo.
+
+b. Siendo $\overline{X}_n$ el promedio de los primeros $n$ números en la lista, vale la siguiente identidad recursiva:
+$$\overline{X}_{n+1} = \frac{n \cdot \overline{X}_n + x_{n+1}}{n+1}$$
+donde $x_{n+1}$ es el elemento $(n+1)$-ésimo de la lista.
+
+Utilice este resultado para implementar un algoritmo más eficiente.
+
+## El regreso de Fibonacci 🐇🐇
+
+En el `Ejercicio 4` de la `Unidad 2` se implementó una función recursiva para calcular el $n$-ésimo número en la sucesión de Fibonacci.
+
+Esta implementación, sin embargo, es muy ineficiente. De hecho, se puede demostrar que su complejidad es $O(2^n)$ (exponencial).
+
+Utilice [memoización](https://es.stackoverflow.com/questions/398370/qu%C3%A9-es-memoizaci%C3%B3n-y-c%C3%B3mo-se-usa) para mejorar la eficiencia del algoritmo recursivo. Este nuevo programa tendrá eficiencia lineal: $O(n)$.
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+Al inicio de la función se debe crear un diccionario vacío: `valores = {}`.
+
+Ante cada valor $f(n)$ de la sucesión que toque calcular, se deberá chequear si $n$ está entre las claves existentes del diccionario.
+
+* Si no lo está, se deberá calcular recursivamente y luego almacenar su resultado: `valores[n] = f(n)`.
+* Si lo está, se devolverá el valor `f(n)` sin efectuar más cálculos.
+
+:::
+
+## Vinieron los primos 👪
+
+Implementar un algoritmo para determinar si un número natural `N` es primo, con complejidad $O(\sqrt{N})$.
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+Nótese que, dado un número natural $N$, para verificar su primalidad es suficiente con verificar si es divisible por algún entero entre $1$ y $\sqrt{N}$. Si fuese un número compuesto, jamás podría expresarse como el producto de dos números mayores a $\sqrt{N}$.
+$$a>\sqrt{N},\; b>\sqrt{N} \implies a \cdot b > \sqrt{N} \cdot \sqrt{N} = N$$
+:::
+
+## El bueno, el malo y el eficiente 🤠
+
+Se tiene una lista con `N` números enteros. Se quiere saber si en la lista existe al menos un par de elementos tales que su suma sea impar.
+
+Proponga e implemente dos algoritmos para esta tarea:
+
+* Uno con complejidad $O(N^2)$ (cuadrática).
+* Uno con complejidad $O(N)$ (lineal).
+
+## Seamos sinceros 0️⃣🚫
+
+Utilizando el módulo `time`, compare el tiempo que tardan estos dos métodos para determinar si una lista incluye ceros:
+
+* Un bucle `for` que evalúa cada elemento.
+* `0 in mi_lista`
+
+¿Cuál es más rápido? ¿Qué complejidad parece tener cada uno?
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+Utilice la función `random.randint` de NumPy para generar un arreglo grande con números al azar.
+
+```python
+import numpy as np
+
+N = 3
+
+# Arreglo de números enteros aleatorios
+mi_lista = np.random.randint(0, 10**N, size=10**N)
+```
+
+Haga variar el valor de `N` entre 3 y 6 para ver cómo cambia el tiempo de cómputo en cada método.
+
+(En el `Ejercicio 10` de la `Unidad 2` se explica cómo usar el módulo `time`.)
+:::
+
+## Seamos originales 📚🚫
+
+Utilizando el módulo `time`, compare el tiempo que tardan estos dos métodos para remover duplicados de una lista:
+
+* Conviertiendo la lista a `dict` y luego de nuevo a `list`.
+* Conviertiendo la lista a `set` y luego de nuevo a `list`.
+
+¿Cuál es más rápido? ¿Qué complejidad parece tener cada uno?
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+El primer método implica crear un diccionario a partir de una lista.
+
+Esto debe hacerse de forma tal que cada elemento en la lista pase a ser una clave, y a cada ella se le asigna un valor arbitrario (por ejemplo, `None`). De este modo, Python se encargará de que no haya claves duplicadas.
+
+Por último, se deberá tomar el conjunto de claves y convertirlo a una lista. Esto devolverá una lista similar a la original, pero sin duplicados.
+:::
+
+## Altas dimensiones 🤯
+
+Implemente un algoritmo para multiplicar dos matrices de dimensión `N x N`.
+
+¿Qué complejidad tiene?
+
+## Mediana complejidad ⚖️
+
+Se tiene una lista desordenada con `2N+1` números distintos (es decir, la lista es de tamaño impar).
+
+Implemente un algoritmo *naive* para hallar la mediana. ¿Qué complejidad tiene?
+
+Luego, utilice un algoritmo de ordenamiento que permita resolver el problema de forma más eficiente.
+
+::: {.callout-tip collapse="true"}
+
+### Ayuda
+
+Para una lista de tamaño `2N+1`, la mediana es el valor tal que `N` elementos son menores (o iguales) a él.
+:::
