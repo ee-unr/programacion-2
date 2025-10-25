@@ -31,6 +31,12 @@
         <mxCell id="NbHFlpnaIf63vaq1OpX9-2" value="&lt;span style=&quot;color: rgb(77, 77, 77); font-family: &amp;quot;Cascadia Code&amp;quot;; font-size: 40px;&quot;&gt;?&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#DFEAF2;" parent="1" vertex="1">
           <mxGeometry x="880" y="240" width="80" height="80" as="geometry" />
         </mxCell>
+        <mxCell id="3r9q5e5eHKjMyLCnLwaz-1" value="" style="endArrow=none;html=1;rounded=0;strokeColor=none;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="180" y="320" as="sourcePoint" />
+            <mxPoint x="1020" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -87,6 +93,12 @@
             <mxPoint x="30.900000000000006" y="120" as="targetPoint" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="JMvH8aJ1SlqXLb5Gzck_-0" value="" style="endArrow=none;html=1;rounded=0;strokeColor=none;" edge="1" parent="GSjd4zVcTGeiq1gK2izT-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="20" y="399" as="sourcePoint" />
+            <mxPoint x="860" y="399" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -122,11 +134,17 @@
         <mxCell id="aQ1I5pSHEcbS3WNMG0Yj-0" value="&lt;font face=&quot;Cascadia Code&quot; color=&quot;#4d4d4d&quot;&gt;&lt;span style=&quot;font-size: 36px;&quot;&gt;?&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#E6E6E6;fontColor=#333333;strokeColor=#666666;fillStyle=auto;" parent="f2iP-Qd0L-BFOooE9m8T-1" vertex="1">
           <mxGeometry x="320" y="360" width="80" height="80" as="geometry" />
         </mxCell>
+        <mxCell id="g4F29dMeMzT1W2nC5Cqu-0" value="" style="endArrow=none;html=1;rounded=0;strokeColor=none;" edge="1" parent="f2iP-Qd0L-BFOooE9m8T-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="20" y="440" as="sourcePoint" />
+            <mxPoint x="860" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="paso_3" id="-EBPDD2G048I5q-zhq43">
-    <mxGraphModel dx="1370" dy="843" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1142" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="cCi473XIP719685R_bGp-0" />
         <mxCell id="cCi473XIP719685R_bGp-1" parent="cCi473XIP719685R_bGp-0" />
@@ -176,6 +194,12 @@
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="30.900000000000006" y="90" as="sourcePoint" />
             <mxPoint x="30.900000000000006" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1xvDuSDiGMvpdQFnZ-bR-0" value="" style="endArrow=none;html=1;rounded=0;strokeColor=none;" edge="1" parent="cCi473XIP719685R_bGp-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="20" y="440" as="sourcePoint" />
+            <mxPoint x="860" y="440" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
@@ -234,6 +258,12 @@
         <mxCell id="63khCok4reNbK28MRM-n-0" value="&lt;font face=&quot;Cascadia Code&quot; color=&quot;#4d4d4d&quot;&gt;&lt;span style=&quot;font-size: 36px;&quot;&gt;?&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#E6E6E6;fontColor=#333333;strokeColor=#666666;fillStyle=auto;" parent="bhzIs9VExPx_mqPHXUl9-1" vertex="1">
           <mxGeometry x="720" y="360" width="80" height="80" as="geometry" />
         </mxCell>
+        <mxCell id="bVYwRPLFL-ZXiXXAplhb-0" value="" style="endArrow=none;html=1;rounded=0;strokeColor=none;" edge="1" parent="bhzIs9VExPx_mqPHXUl9-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="20" y="440" as="sourcePoint" />
+            <mxPoint x="860" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -289,6 +319,12 @@
         </mxCell>
         <mxCell id="QHEqV6EkkodFR_4RAdv6-16" value="&lt;font face=&quot;Cascadia Code&quot; color=&quot;#4d4d4d&quot;&gt;&lt;span style=&quot;font-size: 36px;&quot;&gt;?&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#E6E6E6;fontColor=#333333;strokeColor=#666666;fillStyle=auto;" parent="QHEqV6EkkodFR_4RAdv6-1" vertex="1">
           <mxGeometry x="720" y="360" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7YPJtZT9rIeI4Ujn_59q-0" value="" style="endArrow=none;html=1;rounded=0;strokeColor=none;" edge="1" parent="QHEqV6EkkodFR_4RAdv6-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="20" y="440" as="sourcePoint" />
+            <mxPoint x="860" y="440" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
