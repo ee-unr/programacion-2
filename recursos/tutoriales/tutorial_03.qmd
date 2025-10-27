@@ -1,0 +1,256 @@
+---
+title: "Arreglos manuales"
+---
+
+En este mini-tutorial se muestra como implementar un arreglo como estructura de dato sin utilizar
+las listas de Python. De este modo, tendremos que implementar nuestros propios métodos para
+leer, insertar, buscar y eliminar valores. Además, también tendremos que crear y administrar el
+bloque de memoria donde se almacenan los valores de manera manual.
+Utilizaremos el modulo estándar `ctypes` para crear un bloque de memoria contigua que contiene
+objetos de Python.
+
+```python
+import ctypes
+
+class Array:
+    """Implementación básica de un array con ctypes."""
+    def __init__(self, *args):
+        n = len(args)
+        self._n = n
+        self._capacidad = n * 2
+        self._elementos = self._crear_bloque_memoria(self._capacidad) # <1>
+        # <1> Reservamos un bloque de memoria contigua para 'self._capacidad' elementos
+
+        # Guardar los valores pasados en el bloque de memoria `_elementos`
+        for i in range(n):
+            self._elementos[i] = args[i]
+
+
+    def _crear_bloque_memoria(self, capacidad):
+        """Crear un nuevo bloque de memoria contigua para `capacidad` objetos."""
+        return (capacidad * ctypes.py_object)()
+
+
+    def _cambiar_capacidad(self, nueva_capacidad):
+        """Copiar los datos a un nuevo bloque de memoria con otra capacidad (mayor)."""
+        if nueva_capacidad < self._capacidad:
+            raise ValueError(
+                "La nueva capacidad no puede ser menor que la anterior "
+                f"({nueva_capacidad} < {self._capacidad})."
+            )
+
+        # Crear nuevo bloque de memoria
+        nuevos_elementos = self._crear_bloque_memoria(nueva_capacidad)
+
+        # Copiar elementos del bloque de memoria actual al nuevo
+        for i in range(self._n):
+            nuevos_elementos[i] = self._elementos[i]
+
+        # Sobreescribir el bloque de memoria actual y actualizar la capacidad
+        self._elementos = nuevos_elementos
+        self._capacidad = nueva_capacidad
+
+    def __len__(self):
+        # Permite llamar len(objeto) para obtener su longitud
+        return self._n
+
+    # Escribir
+    def write(self, indice, valor):
+        """Escribir un valor en una posición arbitraria"""
+        if not 0 <= indice <= self._n:
+            raise IndexError("Índice fuera de rango")
+        self._elementos[indice] = valor
+
+    # Lectura
+    def get(self, indice):
+        """Obtener elemento en una posición determinada del arreglo."""
+        if not 0 <= indice <= self._n:
+            raise IndexError("Índice fuera de rango")
+        return self._elementos[indice]
+
+    # Inserción
+    def insert(self, indice, valor):
+        """Insertar elemento en una posición, desplazando los siguientes."""
+        if not 0 <= indice <= self._n:
+            raise IndexError("Índice fuera de rango")
+
+        # Si no hay espacio, se duplica la capacidad
+        if self._n == self._capacidad:
+            self._cambiar_capacidad(2 * self._capacidad)
+
+        # Desplazar elementos hacia la derecha
+        for i in range(self._n, indice, -1):
+            self._elementos[i] = self._elementos[i - 1]
+
+        # Insertar elemento en la posición deseada
+        self._elementos[indice] = valor
+
+        # Incrementar el conteo que mide la longitud del arreglo
+        self._n += 1
+
+    # Búsqueda
+    def index(self, valor):
+        """Busca y devuelve la posición donde se encuentra un valor en el array."""
+        # Inspeccionar elementos uno a uno, hasta que se encuentre un valor igual a `valor`.
+        for i in range(self._n):
+            if self._elementos[i] == valor:
+                return i
+        return None
+
+    # Eliminación
+    ## Por índice
+    def pop(self, indice=None):
+        """Elimina y devuelve el elemento en `indice` (por defecto, el último)."""
+        if self._n == 0:
+            raise IndexError("No se puede usar .pop en un arreglo vacío")
+
+        if indice is None:
+            indice = self._n - 1
+
+        if not 0 <= indice < self._n:
+            raise IndexError("Índice fuera de rango")
+
+        valor = self._elementos[indice]
+
+        # Desplazar hacia la izquierda los elementos posteriores al eliminado
+        for i in range(indice, self._n - 1):
+            self._elementos[i] = self._elementos[i + 1]
+
+        # Borrar referencia al último elemento y decrementar conteo
+        self._elementos[self._n - 1] = None
+        self._n -= 1
+
+        return valor
+
+    ## Por valor
+    def remove(self, valor):
+        """Elimina la primera ocurrencia de `valor` en el array."""
+        indice = self.index(valor)
+        if indice is not None:
+            # Desplazar hacia la izquierda los elementos posteriores al eliminado
+            for i in range(indice, self._n - 1):
+                self._elementos[i] = self._elementos[i + 1]
+
+            # Borrar referencia al último elemento y decrementar conteo
+            self._elementos[self._n - 1] = None
+            self._n -= 1
+            return None
+
+        raise ValueError(f"{valor} no está en el array")
+
+    def __repr__(self):
+        elementos = [str(self._elementos[i]) for i in range(self._n)]
+        return f"Array([{', '.join(elementos)}])"
+```
+
+Podemos crear un arreglo con 3 números
+
+```python
+array = Array(10, 20, 30)
+print(len(array))
+print(array)
+```
+```cmd
+3
+Array([10, 20, 30])
+```
+
+Usamos `.get` para obtener el valor en una posición:
+
+```python
+array.get(2)
+```
+```cmd
+30
+```
+
+Si queremos sobreescribir el valor en una posición, usamos `.write`:
+
+```python
+array.write(2, 150)
+array
+```
+```cmd
+Array([10, 20, 150])
+```
+
+Si usamos `.get` con un índice fuera del rango, obtenemos un error:
+
+```python
+array.get(5)
+```
+```cmd
+IndexError: Índice fuera de rango
+```
+
+Se pueden extraer elementos por posición con `.pop`, que por defecto elimina y devuelve el
+valor en la última posición:
+
+```python
+array.pop()
+```
+```cmd
+150
+```
+
+Y vemos que ahora se tiene un arreglo de longitud 2
+
+```python
+print(len(array))
+array
+```
+```cmd
+2
+Array([10, 20])
+```
+
+También es posible insertar elementos en una posición determinada, lo que expande el arreglo:
+
+```python
+array.insert(1, 128)
+array.insert(1, 128)
+array
+```
+```cmd
+Array([10, 128, 128, 20])
+```
+
+Y, finalmente, también es posible eliminar elementos por valor:
+
+```python
+array.remove(10)
+array
+```
+```cmd
+Array([128, 128, 20])
+```
+
+Si inspeccionamos los detalles internos, como la capacidad del bloque de memoria reservado,
+tenemos:
+
+```python
+array._capacidad
+```
+```cmd
+6
+```
+
+Al insertar valores de forma tal que superamos la capacidad, vemos que esta se duplica:
+
+```python
+array.insert(0, 1)
+array.insert(0, 10)
+array.insert(0, 100)
+array.insert(0, 1000)
+array
+```
+```cmd
+Array([1000, 100, 10, 1, 128, 128, 20])
+```
+
+```python
+array._capacidad
+```
+```cmd
+12
+```
