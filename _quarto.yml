@@ -67,21 +67,16 @@ website:
             - practica/02_programacion_funcional/autoevaluacion.qmd
             - practica/02_programacion_funcional/ejercicios.qmd
             - practica/02_programacion_funcional/problemas.qmd
-        - text: U3 - Programación orientada a objetos
+        - text: U3 - Programación Orientada a Objetos
           contents:
             - practica/03_oop/autoevaluacion.qmd
             - practica/03_oop/ejercicios.qmd
             - practica/03_oop/problemas.qmd
-        - text: U4 - Estructuras de datos
+        - text: U4 - Estructuras de Datos y Algoritmos
           contents:
-            - practica/04_estructuras/autoevaluacion.qmd
-            - practica/04_estructuras/ejercicios.qmd
-            - practica/04_estructuras/problemas.qmd
-        - text: U5 - Algoritmos
-          contents:
-            - practica/05_algoritmos/autoevaluacion.qmd
-            - practica/05_algoritmos/ejercicios.qmd
-            - practica/05_algoritmos/problemas.qmd
+            - practica/04_estructuras_y_algoritmos/autoevaluacion.qmd
+            - practica/04_estructuras_y_algoritmos/ejercicios.qmd
+            - practica/04_estructuras_y_algoritmos/problemas.qmd
     - title: Trabajos Prácticos
       contents:
         - trabajos_practicos/trabajo_grupal.qmd
