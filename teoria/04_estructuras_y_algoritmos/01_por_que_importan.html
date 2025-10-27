@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1 - ¿Por qué importan? – Programación II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../teoria/03_oop/05_excepciones.html" rel="prev">
+<link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-4aade81edb4d4197401d427d1d7808fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Programación II</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../informacion/programa.html"> 
+<span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../teoria/01_programacion_en_python/01_introduccion.html" aria-current="page"> 
+<span class="menu-text">Teoría</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../practica/01_programacion_en_python/ejercicios.html"> 
+<span class="menu-text">Práctica</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../trabajos_practicos/trabajo_grupal.html"> 
+<span class="menu-text">Trabajos Prácticos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../recursos/tutoriales/tutorial_01.html"> 
+<span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ee-unr/programacion-2"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html">U4 - Estructuras de Datos y Algoritmos</a></li><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html">1 - ¿Por qué importan?</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U1 - Programación en Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Introducción</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Funciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Ejecución condicional</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/04_colecciones_de_datos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Colecciones de datos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/05_ejecucion_repetitiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Ejecución repetitiva</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/06_uso_de_codigo_externo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 - Uso de código externo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/07_scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 - <em>Scripting</em></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/08_io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 - Lectura y escritura de archivos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U2 - Programación Funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/02_recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Recursión</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/03_funciones_de_orden_superior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Funciones de orden superior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Estrategias de evaluación 🧩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/05_generadores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Generadores 🧩</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U3 - Programación Orientada a Objetos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/02_encapsulamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Encapsulamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/03_herencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Herencia</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/04_polimorfismo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Polimorfismo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/05_excepciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Excepciones</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U4 - Estructuras de Datos y Algoritmos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1 - ¿Por qué importan?</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a>
+  <ul class="collapse">
+  <li><a href="#ejemplo-disparador" id="toc-ejemplo-disparador" class="nav-link" data-scroll-target="#ejemplo-disparador">Ejemplo disparador</a></li>
+  </ul></li>
+  <li><a href="#estructuras-de-datos" id="toc-estructuras-de-datos" class="nav-link" data-scroll-target="#estructuras-de-datos">Estructuras de datos</a>
+  <ul class="collapse">
+  <li><a href="#arreglos" id="toc-arreglos" class="nav-link" data-scroll-target="#arreglos">Arreglos</a></li>
+  <li><a href="#conjuntos" id="toc-conjuntos" class="nav-link" data-scroll-target="#conjuntos">Conjuntos</a></li>
+  </ul></li>
+  <li><a href="#algoritmos" id="toc-algoritmos" class="nav-link" data-scroll-target="#algoritmos">Algoritmos</a>
+  <ul class="collapse">
+  <li><a href="#arreglos-ordenados" id="toc-arreglos-ordenados" class="nav-link" data-scroll-target="#arreglos-ordenados">Arreglos ordenados</a></li>
+  <li><a href="#búsqueda-en-arreglos-ordenados" id="toc-búsqueda-en-arreglos-ordenados" class="nav-link" data-scroll-target="#búsqueda-en-arreglos-ordenados">Búsqueda en arreglos ordenados</a></li>
+  <li><a href="#búsqueda-binaria" id="toc-búsqueda-binaria" class="nav-link" data-scroll-target="#búsqueda-binaria">Búsqueda binaria</a></li>
+  <li><a href="#búsqueda-lineal-vs.-búsqueda-binaria" id="toc-búsqueda-lineal-vs.-búsqueda-binaria" class="nav-link" data-scroll-target="#búsqueda-lineal-vs.-búsqueda-binaria">Búsqueda lineal vs.&nbsp;búsqueda binaria</a></li>
+  </ul></li>
+  <li><a href="#big-o" id="toc-big-o" class="nav-link" data-scroll-target="#big-o"><em>Big</em> O</a>
+  <ul class="collapse">
+  <li><a href="#big-o-es-relativo" id="toc-big-o-es-relativo" class="nav-link" data-scroll-target="#big-o-es-relativo"><em>Big</em> O: es relativo</a></li>
+  <li><a href="#big-o-lo-que-realmente-importa" id="toc-big-o-lo-que-realmente-importa" class="nav-link" data-scroll-target="#big-o-lo-que-realmente-importa"><em>Big</em> O: lo que realmente importa</a></li>
+  <li><a href="#un-tercer-tipo" id="toc-un-tercer-tipo" class="nav-link" data-scroll-target="#un-tercer-tipo">Un tercer tipo</a></li>
+  <li><a href="#complejidad-cuadrática" id="toc-complejidad-cuadrática" class="nav-link" data-scroll-target="#complejidad-cuadrática">Complejidad cuadrática</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html">U4 - Estructuras de Datos y Algoritmos</a></li><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html">1 - ¿Por qué importan?</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">1 - ¿Por qué importan?</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>En esta última unidad nos ocuparemos de Estructuras de Datos y Algoritmos.</p>
+<p>Puede que estos términos suenen un tanto abstractos, pero como veremos a lo largo de estos apuntes, dominarlos nos ayudará a escribir código más eficiente, que corre más rápido y consume menos memoria.</p>
+<p>En pocas palabras, podemos decir que una estructura datos es una forma sistemática de organizar y acceder a datos, mientras que un algoritmo es un procedimiento paso a paso para realizar una tarea en tiempo finito.</p>
+<section id="ejemplo-disparador" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-disparador">Ejemplo disparador</h3>
+<p>A lo largo de este curso hemos ido adquiriendo experiencia en la programación con Python y probablemente hayamos empezado a desarrollar un instinto u olfato que nos permite juzgar la calidad de un programa. Al enfrentarnos con dos programas que realizan la misma tarea, podemos determinar si uno es mejor que otro.</p>
+<p>No hay un único aspecto que determina la calidad de un programa. Uno de ellos, por ejemplo, es la mantenibilidad. Una base de código legible, organizada y modular es más fácil de manetener que otra poco legible, desorganizada y monolítica.</p>
+<p>La eficiencia es otro aspecto que determina la calidad de un programa. Por ejemplo, podemos contar con dos funciones que resuelven el mismo problema, pero una de ellas es más rápida que la otra.</p>
+<p>Las dos funciones debajo resuelven exactamente el mismo problema: imprimir los números pares entre 2 y 100.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> imprimir_numeros_1():</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    numero <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> numero <span class="op">&lt;=</span> <span class="dv">100</span>:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> numero <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(numero)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            numero <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> imprimir_numeros_2():</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    numero <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> numero <span class="op">&lt;=</span> <span class="dv">100</span>:</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(numero)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        numero <span class="op">+=</span> <span class="dv">2</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sin embargo, cabe preguntarse: ¿cuál de las dos funciones se ejecuta más rápido?</p>
+<p>La respuesta correcta es la segunda. La primera función realiza 100 iteraciones, mientras que la segunda solo realiza 50. Por lo tanto, la primera función requiere <strong>el doble de pasos</strong> que la segunda para resolver el mismo problema.</p>
+</section>
+</section>
+<section id="estructuras-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="estructuras-de-datos">Estructuras de datos</h2>
+<p>La palabra <strong>datos</strong> es sencilla y amplia a la vez. Puede referirse tanto a valores elementales, como el número <code>1</code>, como a estructuras más complejas, por ejemplo, los datos contenidos en un diccionario anidado.</p>
+<p>Cuando realizamos una operación como <code>3 + 5</code>, los valores 3 y 5 son los datos con los que trabajamos. En particular, las estructuras de datos se refieren al <strong>cómo</strong> se organizan los datos.</p>
+<p>Observemos el siguiente bloque de código:</p>
+<div id="6ad335ef" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"¡Hola! "</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="st">"¿Cómo estás? "</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="st">"¿Todo bien?"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">+</span> y <span class="op">+</span> z)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>¡Hola! ¿Cómo estás? ¿Todo bien?</code></pre>
+</div>
+</div>
+<p>En este programa sencillo se cuenta con tres datos, todos ellos cadenas de texto, que al combinarse forman un mensaje coherente.</p>
+<p>Si tuvieramos que describir la organización de los datos en este bloque de código, diríamos que se tienen tres cadenas de texto independientes, cada una representada por una variable distina.</p>
+<p>Pero esta no es la única forma de organizar estos datos. Otra alternativa consiste en agrupar las cadenas de texto en un arreglo, del inglés <em>array</em>, que en Python se implementa mediante listas.</p>
+<div id="d8b9fee0" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arreglo <span class="op">=</span> [<span class="st">"¡Hola! "</span>, <span class="st">"¿Cómo estás? "</span>, <span class="st">"¿Todo bien?"</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arreglo[<span class="dv">0</span>] <span class="op">+</span> arreglo[<span class="dv">1</span>] <span class="op">+</span> arreglo[<span class="dv">2</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>¡Hola! ¿Cómo estás? ¿Todo bien?</code></pre>
+</div>
+</div>
+<p>El resultado de ambos bloques es el mismo: se obtiene un único mensaje como resultado de concatenar todas las cadenas de texto, formando un mensaje coherente.</p>
+<p>Ahora, si nos preguntamos cuál de los dos programas es mejor, no existe una única respuesta correcta, ya que dependerá del criterio en base al cuál es comparan los bloques de código.</p>
+<p>El objetivo este ejemplo es mostrar que no existe una única forma de organizar los datos de un programa. Más adelante veremos que la forma en que los organizamos no solo afecta cómo se ve un programa, sino también su velocidad de ejecución. Dependiendo de cómo decidamos representar los datos, un programa puede llegar a ser varias órdenes de magnitud más rápido o más lento que otro.</p>
+<p>Pero antes de correr, hay que aprender a caminar. Empecemos por una estructura de datos con la que estamos más que familiarizados: los arreglos.</p>
+<section id="arreglos" class="level3">
+<h3 class="anchored" data-anchor-id="arreglos">Arreglos</h3>
+<p>El arreglo es una de las estructuras de datos más básicas en la computación. En Python, la estructura <em>built-in</em> que representa al arreglo es la lista, con la que ya hemos trabajado extensamente. Gracias a ello, aprendimos que el arreglo es una estructura de datos muy versátil, que nos puede ayudar en una gran variedad de situaciones.</p>
+<p>Si tuvieramos que describir al arreglo en pocas palabras, diríamos que es una colección de datos en un orden determinado.</p>
+<p>Para lo que sigue, consideremos al siguiente arreglo que contiene diferentes tipos de frutos secos:</p>
+<div id="68a51fb4" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>array <span class="op">=</span> [<span class="st">"nueces"</span>, <span class="st">"almendras"</span>, <span class="st">"pistachos"</span>, <span class="st">"maníes"</span>, <span class="st">"castañas"</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Rápidamente, podríamos decir que trabajamos con arreglo que contiene 5 cadenas de texto, y que cada una representando un fruto seco distinto.</p>
+<p>Pero los arreglos, al igual que otras estructuras de datos, cargan con vocabulario técnico propio para describirlos:</p>
+<ul>
+<li>El tamaño (<em>size</em>) del arreglo indica cuántos elementos contiene. En nuestro ejemplo, <code>array</code> es un arreglo de tamaño 5.</li>
+<li>El índice (<em>index</em>) es el número que identifica la posición de cada elemento dentro de él.</li>
+</ul>
+<p>Como en Python el índice comienza en 0, decimos que <code>"nueces"</code> está en el índice 0, <code>"almendras"</code> en el índice 1 y que <code>"castañas"</code> está en el índice 4.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo-con_indice.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<section id="qué-tan-buena-es-una-estructura-de-datos" class="level4">
+<h4 class="anchored" data-anchor-id="qué-tan-buena-es-una-estructura-de-datos">¿Qué tan buena es una estructura de datos?</h4>
+<p>Una forma de determinar que tan buena es una estructura de datos es midiendo su desempeño para realizar diferentes operaciones. Para ello, se suelen considerar cuatro operaciones básicas que se utilizan para interactuar con la estructura:</p>
+<ul>
+<li>Lectura (<em>read</em>): acceder a un valor en una posición específica dentro de la estructura. En un arreglo, significa obtener el elemento que se encuentra en un índice determinado.</li>
+<li>Búsqueda (<em>search</em>): verificar si un valor existe dentro de la estructura y, de ser así, obtener en qué posición se encuentra.</li>
+<li>Inserción (<em>insert</em>): agregar un nuevo valor a la estructura. En un arreglo, sería añadir un elemento en una posición determinada.</li>
+<li>Eliminación (<em>delete</em>): quitar un valor existente de la estructura.</li>
+</ul>
+<p>En las próximas secciones analizaremos la eficiencia de cada una de estas operaciones cuando se aplican a un arreglo.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Viejos conocidos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ya sabemos como realizar operaciones de lectura, búsqueda, inserción y eliminación con listas de Python. De hecho, para cada una de ellas disponemos de un método específico:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>array[indice]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Búsqueda</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>array.index(valor)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Inserción</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>array.insert(valor, indice)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminación</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>array.pop(indice) <span class="co"># Por índice</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>array.remove(valor) <span class="co"># Por valor</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sin embargo, el propósito de esta unidad es comprender cómo funcionan internamente estas operaciones, para así entender las fortalezas y limitaciones de cada estructura de datos.</p>
+</div>
+</div>
+</section>
+<section id="cómo-se-mide-la-velocidad-de-una-operación" class="level4">
+<h4 class="anchored" data-anchor-id="cómo-se-mide-la-velocidad-de-una-operación">¿Cómo se mide la velocidad de una operación?</h4>
+<p>Cuando hablamos de qué tan “rápida” es una operación no nos referimos al tiempo en segundos, sino a la <strong>cantidad de pasos</strong> que requiere.</p>
+<p>Esto se debe a que el tiempo real depende del <em>hardware</em> donde se ejecuta la operación. Un mismo programa puede tardar más en una computadora antigua y menos en una moderna. En cambio, contar los pasos nos permite comparar operaciones independientemente del equipo donde se ejecuten.</p>
+<p>Por ejemplo, si una operación A necesita 5 pasos y otra B requiere 500, podemos afirmar que A es una operación más rápida que B.</p>
+<p>A este análisis se lo conoce como medida de la complejidad temporal (<em>time complexity</em>) de una operación.</p>
+<p>A continuación, veremos cuántos pasos requiere cada una de las cuatro operaciones básicas de un arreglo.</p>
+</section>
+<section id="lectura" class="level4">
+<h4 class="anchored" data-anchor-id="lectura">Lectura</h4>
+<p>La primera operación que analizaremos es la lectura, que consiste en acceder al valor almacenado en una posición específica del arreglo. En Python, esto se realiza simplemente con el índice:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>array[indice]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Por ejemplo:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>array <span class="op">=</span> [<span class="dv">30</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">25</span>, <span class="dv">85</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>array[<span class="dv">4</span>]  <span class="co"># Devuelve 85</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Gracias al diseño de la memoria RAM (<em>Random Access Memory</em>), que permite acceder directamente a cualquier posición sin recorrer otras, la computadora puede leer un elemento de un arreglo en un solo paso.</p>
+<p>Por ejemplo, en el arreglo <code>["nueces", "almendras", "pistachos", "maníes", "castañas"]</code>, si pedimos el valor en el índice <code>2</code>, el procesador accede de inmediato a la posición correspondiente y devuelve <code>"pistachos"</code>.</p>
+<section id="por-qué-esto-es-posible" class="level5">
+<h5 class="anchored" data-anchor-id="por-qué-esto-es-posible">¿Por qué esto es posible?</h5>
+<p>Podemos imaginar la memoria como una gran colección de celdas numeradas (algunas vacías, otras con datos).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/memoria_layout-basico.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Cada celda tiene una dirección única.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/memoria_layout-con_direcciones.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Y cuando declaramos un arreglo, la computadora reserva un bloque contiguo de celdas para almacenarlo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/memoria_layout-con_vector.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Así, si el arreglo ocupa cinco posiciones, el sistema asigna cinco direcciones consecutivas.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/memoria_layout-con_direcciones_resaltadas.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Luego, el procesador puede calcular la posición exacta del elemento <code>i</code> mediante una operación aritmética simple:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dirección_base + i * tamaño_del_elemento</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esto explica el nombre memoria de acceso aleatorio: cualquier celda puede leerse o modificarse en el mismo tiempo, sin importar su posición, a diferencia de medios secuenciales (como los discos duros), donde hay que desplazarse físicamente hasta el dato.</p>
+<p>En el siguiente diagrama se muestra nuestro arreglo de frutos secos junto con sus índices y direcciones de memoria:</p>
+<p>Cada índice indica la posición lógica del elemento dentro del arreglo, mientras que cada dirección representa la ubicación física de ese dato en la memoria RAM.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo-con_indice_y_direccion.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<p>Por ejemplo, si queremos leer el valor en el índice 3, la computadora toma la dirección inicial (índice 0) y le suma 3, ya que las direcciones de memoria son consecutivas.</p>
+<p>Aplicado a nuestro arreglo de frutos secos, que comienza en la dirección 1010:</p>
+<ol type="1">
+<li>El índice 0 está en la dirección 1010.</li>
+<li>El índice 3 está tres posiciones después.</li>
+<li>Por lo tanto, su dirección es 1013 (1010 + 3).</li>
+</ol>
+<p>Así, la computadora puede saltar directamente a la dirección 1013 y ver que allí se encuentra el valor <code>"maníes"</code>.</p>
+<p>Leer desde un arreglo es, por tanto, una operación muy eficiente, porque permite acceder a cualquier elemento en un solo paso.</p>
+<p>Ahora bien, ¿qué ocurre si en lugar de preguntar “qué valor hay en el índice 3” queremos saber “en qué índice se encuentra ‘pistachos’”?</p>
+<p>Esa es la operación de búsqueda, y será la próxima que analizaremos.</p>
+</section>
+</section>
+<section id="búsqueda" class="level4">
+<h4 class="anchored" data-anchor-id="búsqueda">Búsqueda</h4>
+<p>Buscar en un arreglo consiste en comprobar si un valor existe y, de ser así, obtener en qué índice se encuentra.</p>
+<p>A la búsqueda se la puede pensar como la operación inversa a la lectura. Mientras que leer implica dar un índice y obtener un valor, buscar implica dar un valor y obtener su índice.</p>
+<p>Aunque parezcan operaciones similares, su eficiencia difiere muchísimo.</p>
+<p>La lectura es rápida porque la computadora puede saltar directo a cualquier dirección de la memoria. En cambio, la búsqueda es más lenta, ya que la computadora no puede saltar a un valor específico, sino que debe revisar las celdas una por una hasta encontrarlo.</p>
+<p>Si retomamos nuestro arreglo de frutos secos, la computadora no “ve” los nombres de los elementos, solo una secuencia de celdas con direcciones. Al comenzar la búsqueda, para la computadora, el arreglo podría verse de la siguiente manera.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_busqueda-paso_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Por lo tanto, para buscar un valor dentro del arreglo, la computadora no tiene otra opción que inspeccionar cada celda de la memoria, una por una.</p>
+<p>En los diagramas siguientes se muestra el proceso que seguiría para buscar <code>"pistachos"</code> en nuestro arreglo.</p>
+<p>Primero, la computadora revisa el índice 0:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_busqueda-paso_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Como el valor en el índice 0 es “nueces” y no “pistachos”, la computadora avanza al siguiente índice, tal como se muestra a continuación.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_busqueda-paso_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Hasta que al fin encontramos los tan buscados <code>"pistachos"</code> y ahora sabemos que se encuentran en el índice 2.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_busqueda-paso_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>En este punto, la computadora ya no necesita seguir revisando el resto del arreglo, porque encontró el valor que buscaba.</p>
+<p>En este ejemplo, como la computadora tuvo que inspeccionar tres celdas hasta dar con el resultado, decimos que la operación tomó tres pasos en total.</p>
+<p>Esta forma de búsqueda, en la que la computadora revisa cada celda una por una, se llama <strong>búsqueda lineal</strong>.</p>
+<p>Si el valor buscado está en la última celda, o no se encuentra en absoluto, la computadora deberá recorrer todo el arreglo.</p>
+<p>Así, en un arreglo de 5 elementos, la búsqueda lineal puede requerir hasta 5 pasos; en uno de 500, hasta 500. En general, para un arreglo de N elementos, el número máximo de pasos es N.</p>
+<p>Esto demuestra que la búsqueda es menos eficiente que la lectura: leer siempre toma un paso, mientras que buscar puede requerir muchos.</p>
+<p>A continuación veremos la operación de inserción.</p>
+</section>
+<section id="inserción" class="level4">
+<h4 class="anchored" data-anchor-id="inserción">Inserción</h4>
+<p>La eficiencia de insertar un nuevo dato en un arreglo depende del lugar donde se realice la inserción.</p>
+<p>Si queremos agregar <code>"pasas"</code> al final de nuestra lista de frutos secos, la operación toma un solo paso. Esto es posible porque la computadora conoce tanto la dirección de memoria inicial del arreglo como su tamaño.</p>
+<p>Por ejemplo, si el arreglo comienza en la dirección 1010 y tiene 5 elementos, el último se encuentra en 1014. Insertar uno nuevo implica simplemente ocupar la siguiente dirección, 1015 (asumiendo que no está ocupada).</p>
+<p>Una vez calculada esa posición, la computadora puede realizar la inserción en un único paso.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_insercion-al_final.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<p>Hay un detalle importante: cuando la computadora reservó memoria para el arreglo, asignó solo cinco celdas. Si agregamos un sexto elemento, puede ser necesario extender el arreglo, lo cual muchos lenguajes hacen automáticamente.</p>
+<p>Insertar al final es simple, pero hacerlo al inicio o en el medio requiere desplazar los elementos para dejar espacio, lo que añade pasos adicionales.</p>
+<p>Por ejemplo, si queremos insertar <code>"pasas"</code> en el índice 2, el proceso sería así:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_insercion-al_medio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<p>Para hacerlo, debemos mover <code>"pistachos"</code>, <code>"maníes"</code> y <code>"castañas"</code> una posición a la derecha para hacer espacio a <code>"pasas"</code>.</p>
+<p>Esto requiere varios pasos: primero se mueve <code>"castañas"</code> una celda a la derecha, lo que libera un espacio a la derecha de <code>"maníes"</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_insercion-al_medio_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<p>Luego, se mueve <code>"maníes"</code> a la derecha, dejando un espacio a la derecha de <code>"pistachos"</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_insercion-al_medio_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<p>Por último, se mueve <code>"pistachos"</code> a la derecha y se genera el hueco donde se inserta el valor de <code>"pasas"</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_insercion-al_medio_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_insercion-al_medio_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<p>Al final, se cuenta on un arreglo de longitud 6, donde <code>"pasas"</code> ocupa el índice 2.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_insercion-al_medio_5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<p>En este ejemplo la inserción tomó cuatro pasos: tres para mover datos y uno para agregar el nuevo valor.</p>
+<p>El peor caso ocurre al insertar al inicio del arreglo, ya que hay que desplazar todos los elementos una posición a la derecha. En general, una inserción en el peor escenario requiere N + 1 pasos para un arreglo de N elementos.</p>
+<p>Ahora pasemos a la última operación: la eliminación.</p>
+</section>
+<section id="eliminación" class="level4">
+<h4 class="anchored" data-anchor-id="eliminación">Eliminación</h4>
+<p>Eliminar un elemento de un arreglo consiste en quitar el valor ubicado en un índice determinado.</p>
+<p>Volviendo a nuestro ejemplo original, eliminemos el valor del índice 1, que corresponde a <code>"almendras"</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_eliminacion-al_medio_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+<p>Aunque la eliminación en sí toma solo un paso, deja una celda vacía en el medio del arreglo. Como un arreglo no puede tener huecos, es necesario mover los elementos <code>"pistachos"</code>, <code>"maníes"</code> y <code>"castañas"</code> una posición a la izquierda, lo que agrega pasos adicionales al proceso.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_eliminacion-al_medio_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_eliminacion-al_medio_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_eliminacion-al_medio_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+<p>Finalmente, el arreglo se encoje y pasa de tener 5 elementos a tener 4.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_eliminacion-al_medio_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+<p>En este ejemplo la eliminación toma cuatro pasos: uno para borrar el valor y tres para mover los datos y cerrar el espacio vacío.</p>
+<p>Al igual que con la inserción, el peor caso ocurre al eliminar el primer elemento del arreglo, ya que el índice 0 queda vacío y es necesario desplazar todos los demás elementos una posición a la izquierda.</p>
+<p>En un arreglo de 5 elementos, eso implica 1 paso para eliminar y 4 para mover; en uno de 500, 1 para eliminar y 499 para desplazar. En general, para un arreglo con N elementos, la eliminación puede requerir hasta N pasos.</p>
+<p>Con esto concluimos el análisis de la complejidad temporal de nuestro primer tipo de estructura de datos.</p>
+<p>Ahora que comprendemos cómo evaluar la eficiencia de las operaciones sobre un arreglo, podemos comparar este comportamiento con el de otras estructuras.</p>
+<p>La siguiente que estudiaremos es el conjunto (<em>set</em>), que a primera vista puede parecer similar a un arreglo, pero veremos que sus operaciones se comportan de manera muy diferente en términos de eficiencia.</p>
+</section>
+</section>
+<section id="conjuntos" class="level3">
+<h3 class="anchored" data-anchor-id="conjuntos">Conjuntos</h3>
+<p>En esta breve sección trabajaremos con otra estructura de datos: el conjunto.</p>
+<p>El conjunto puede ser implementado de diferentes maneras. En Python, por ejemplo, el conjunto es una estructura donde el orden de los elementos no importa.</p>
+<p>Podemos también suponer un conjunto basado en arreglos. Es decir, la estructura consiste en un arreglo que no permite valores duplicados.</p>
+<p>En un conjunto basado en un arreglo, las operaciones de lectura, búsqueda y eliminación funcionan igual que en los arreglos. Leer un elemento toma un solo paso y buscar o eliminar puede requerir hasta N pasos. La diferencia aparece en la inserción.</p>
+<p>Dada la condición de que no se pueden repetir elementos en un conjunto, antes de agregar un valor, la computadora debe verificar que este no exista ya en el conjunto.</p>
+<p>Esta pequeña modificación implica que para cada inserción primero hay que hacer una búsqueda previa y, solo si el valor no está presente, efectuar la inserción.</p>
+<p>Por ejemplo, si un conjunto con nombres de alumnos contiene <code>["Ana", "Bruno", "Carla", "Diego", "Elena"]</code> y queremos agregar <code>"Francisco"</code>, la computadora primero comprobará que <code>"Francisco"</code> no esté ya inscripto antes de añadirlo.</p>
+<p>Se inspeccionan los elementos del conjunto uno a uno, hasta que se encuentra el elemento a insertar o se terminar de recorrer el arreglo. Las siguientes imagenes representan el proceso en nuestro ejemplo:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_conjunto_insercion-paso_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_conjunto_insercion-paso_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_conjunto_insercion-paso_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_conjunto_insercion-paso_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_conjunto_insercion-paso_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Ahora que hemos buscado en todo el conjunto, sabemos con certeza que no contiene a <code>"Francisco"</code>.</p>
+<p>En este punto, podemos realizar la inserción sin problema. Y con eso llegamos al paso final:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_conjunto_insercion-paso_5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Insertar un valor al final de un conjunto es el mejor caso posible, pero aun así requiere más pasos que en un arreglo.</p>
+<p>En un conjunto con N elementos, hay que buscar entre los N valores antes de insertar, lo que implica N + 1 pasos, mientras que en un arreglo basta con uno.</p>
+<p>En el peor caso, al insertar al inicio, el conjunto requiere 2N + 1 pasos (N para buscar, N para mover y uno para insertar), frente a los N + 1 de un arreglo.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Contando pasos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Analizar cuántos pasos requiere una operación es clave para entender el rendimiento de una estructura de datos. Elegir la estructura correcta puede marcar la diferencia entre un programa ágil y uno ineficiente.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="algoritmos" class="level2">
+<h2 class="anchored" data-anchor-id="algoritmos">Algoritmos</h2>
+<p>En la sección anterior vimos cómo la elección de una estructura de datos puede afectar el rendimiento del código. Incluso dos estructuras que parecen similares, como los arreglos y los conjuntos, pueden tener eficiencias muy distintas según la operación.</p>
+<p>En esta sección vamos a descubrir que, además de la estructura de datos, otro factor clave influye en la eficiencia: el algoritmo que usamos.</p>
+<p>Aunque la palabra pueda sonar compleja, un algoritmo no es más que un conjunto de pasos definidos para realizar una tarea. Por ejemplo, preparar un mate puede describirse con estos pasos:</p>
+<ol type="1">
+<li>Calentar el agua.</li>
+<li>Colocar la yerba en el mate.</li>
+<li>Insertar la bombilla.</li>
+<li>Servir el agua con cuidado.</li>
+</ol>
+<p>Si cambiamos el orden y, por ejemplo, echamos el agua antes de la yerba, el resultado es un mal mate o, aún peor, un enchastre total.</p>
+<p>En computación, un algoritmo es el conjunto de instrucciones que le damos a la computadora para cumplir una tarea. Cada vez que escribimos código, estamos creando algoritmos que la computadora sigue al pie de la letra para obtener un resultado.</p>
+<p>A veces, distintos algoritmos pueden resolver el mismo problema, pero con eficiencias distintas. Ya vimos un ejemplo al imprimir números pares, donde un algoritmo requería el doble de pasos que otro. En esta sección veremos otro caso similar, en el que una solución resulta mucho más rápida que la otra, y para analizarlo presentaremos una nueva estructura de datos.</p>
+<section id="arreglos-ordenados" class="level3">
+<h3 class="anchored" data-anchor-id="arreglos-ordenados">Arreglos ordenados</h3>
+<p>El arreglo ordenado es casi idéntico al arreglo clásico que vimos antes.</p>
+<p>La única diferencia es que en un arreglo ordenado los valores deben mantenerse siempre en orden. Cada vez que se agrega un nuevo valor, este se coloca en la posición correcta para conservar ese orden.</p>
+<p>Supongamos que tenemos el arreglo <code>[6, 21, 38, 95]</code> y queremos insertar el valor <code>30</code>. En un arreglo común podríamos agregarlo simplemente al final y tomaría un solo paso.</p>
+<p>Con un un arreglo ordenado no podemos insertar al final en nu solo paso, ya que podría resultar en un arreglo que no cumple el requisito de que los valores estén ordenados.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado-intento_insercion.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>En un arreglo ordenado debemos insertar el <code>30</code> en el lugar correspondiente para que los valores sigan en orden ascendente, como se muestra debajo:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado-insercion_correcta.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>En la práctica, llevar a cabo esta inserción es más compleja que su simple enunciación. La computadora no puede “poner” el 30 en el lugar correcto en un solo paso. Primero debe encontrar dónde insertarlo y luego desplazar los demás valores para crear el espacio necesario.</p>
+<p>Veamos el proceso paso a paso, partiendo del arreglo ordenado original:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado-arreglo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Primero verificamos el valor en el índice 0 para decidir si el número que queremos insertar, EL 30, debe ubicarse a su izquierda o a su derecha.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado-paso_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Como el 30 es mayor que 6, sabemos que deberá insertarse en alguna posición a su derecha. Cómo aún no sabemos en cuál posición exactamente, debemos revisar la siguiente celda.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado-paso_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Como el 30 también es mayor que el valor en la segunda posición, seguimos avanzando hacia la derecha.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado-paso_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>En este punto, encontramos el valor 38, que es mayor que el 30 y, por lo tanto, sabemos que debemos insertar el 30 a su izquierda.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado-paso_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Para hacerlo, necesitamos desplazar los datos y dejar espacio para insertar el 30.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado-paso_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Cuando insertamos en un arreglo ordenado, siempre debemos buscar primero la posición correcta antes de hacer la inserción. Esa búsqueda previa marca una diferencia importante respecto al arreglo clásico.</p>
+<p>En el ejemplo, con cuatro elementos, la inserción tomó 6 pasos. En términos generales, para un arreglo con N elementos, la inserción requiere N + 2 pasos.</p>
+<p>El número total de pasos varía poco según la posición del nuevo valor: si se inserta cerca del inicio, hay menos comparaciones y más desplazamientos. Si se inserta al final, hay más comparaciones y menos movimientos. El caso más rápido ocurre cuando el nuevo valor se agrega al final, ya que no hay que mover nada: se necesitan N pasos de comparación y uno de inserción, es decir, N + 1 pasos.</p>
+<p>Aunque insertar en un arreglo ordenado es menos eficiente que en uno clásico, esta estructura tiene una gran ventaja cuando se trata de buscar valores, como veremos a continuación.</p>
+</section>
+<section id="búsqueda-en-arreglos-ordenados" class="level3">
+<h3 class="anchored" data-anchor-id="búsqueda-en-arreglos-ordenados">Búsqueda en arreglos ordenados</h3>
+<p>En un arreglo clásico, buscar un valor implica revisar las celdas una por una, de izquierda a derecha, hasta encontrarlo o llegar al final. Este proceso se conoce como búsqueda lineal.</p>
+<p>Por ejemplo, si tenemos el arreglo <code>[67, 25, 13, 6, 132]</code> y buscamos el valor <code>21</code>, debemos recorrer todos los elementos, ya que podría estar en cualquier posición. Solo podríamos detenernos temprano si encontráramos el valor <code>21</code>.</p>
+<p>En cambio, en un arreglo ordenado podemos detener la búsqueda antes, incluso si el valor no está presente. Si el arreglo es <code>[6, 13, 25, 67, 132]</code> y buscamos <code>21</code>, podemos detenernos al llegar al <code>67</code>, porque sabemos que ningún valor mayor a <code>21</code> aparecerá más adelante.</p>
+<div id="350467cd" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> busqueda_lineal(array, valor):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> indice, elemento <span class="kw">in</span> <span class="bu">enumerate</span>(array):</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> elemento <span class="op">==</span> valor:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> indice</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> elemento <span class="op">&gt;</span> valor:</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Este método recibe dos argumentos: <code>array</code>, que es el arreglo ordenado en el que buscamos, y <code>valor</code>, que es el valor que queremos encontrar. Así es como usaríamos esta función para buscar el número <code>21</code> en nuestro arreglo de ejemplo:</p>
+<div id="12df7119" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(busqueda_lineal([<span class="dv">6</span>, <span class="dv">13</span>, <span class="dv">25</span>, <span class="dv">67</span>, <span class="dv">132</span>], <span class="dv">21</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>None</code></pre>
+</div>
+</div>
+<p>La función <code>busqueda_lineal</code> inspecciona cada elemento del arreglo en busca del valor indicado. La búsqueda se detiene en el momento en que el elemento actual es mayor que el valor buscado, ya que sabemos que este no puede encontrarse más adelante en el arreglo.</p>
+<p>En ciertos casos, la búsqueda lineal puede requerir menos pasos en un arreglo ordenado que en uno clásico. Sin embargo, si el valor buscado está al final o no se encuentra en el arreglo, igualmente habrá que revisar todas los valores.</p>
+<p>A simple vista, los arreglos clásicos y los ordenados no muestran grandes diferencias en eficiencia, al menos en los peores casos: en ambos, una búsqueda lineal puede requerir hasta N pasos.</p>
+<p>Pero existe un algoritmo mucho más eficiente que invalida nuestra temprana conclusión. Aunque la búsqueda lineal es una opción para recorrer un arreglo ordenado, no es la única. La gran ventaja de los arreglos ordenados es que permiten aplicar otro tipo de búsqueda: la búsqueda binaria, un algoritmo considerablemente más rápido que la búsqueda lineal.</p>
+</section>
+<section id="búsqueda-binaria" class="level3">
+<h3 class="anchored" data-anchor-id="búsqueda-binaria">Búsqueda binaria</h3>
+<p>Seguro alguna vez jugaste a esto: alguien piensa un número entre 1 y 100, y vos tenés que adivinarlo. Después de cada intento, te dicen si el número buscado es mayor o menor.</p>
+<p>La estrategia intuitiva no es empezar por el 1, sino por la mitad (por ejemplo, el 50). Así, sin importar la respuesta, se eliminan de una vez la mitad de las posibilidades.</p>
+<p>Si te dicen que el número es mayor, se puede probar con 75; si es menor, con 25. En cada paso, se vuelve a elegir el punto medio y se reduce el conjunto de números a la mitad.</p>
+<p>Ese es exactamente el principio detrás de la búsqueda binaria.</p>
+<p>Veamos ahora cómo se aplica la búsqueda binaria sobre un arreglo ordenado.</p>
+<p>Supongamos que tenemos un arreglo con nueve elementos y que estamos buscando el valor <code>15</code>.</p>
+<p>La computadora no sabe de antemano qué valor hay en cada posición, así que podemos representarlo de esta forma:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado_busqueda-paso_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Se inspecciona el valor en la posición central:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado_busqueda-paso_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Como el valor encontrado es 11, podemos concluir que el 15 está a su derecha.</p>
+<p>Así eliminamos la mitad del arreglo: todas las casillas a la izquierda del 11 (incluida la del 11).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado_busqueda-paso_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>A continuación es inspecciona el centro de la mitad que puede contener al valor buscado.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado_busqueda-paso_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Como el valor hallado es mayor a 15, inspeccionamos los valores a su izquierda.</p>
+<p>En este punto quedan dos valores posibles y elegimos arbitrariamente en el de la derecha:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado_busqueda-paso_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Nuevamente el valor hallado es mayor a 15, por lo que inspeccionamos la última celda posible. Si el valor <code>15</code> no se encuentra allí, entonces no está en el arreglo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/arreglo_ordenado_busqueda-paso_5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Esta vez, lo encontramos y podemos concluir que el 15 está en el arreglo y devolver su posición.</p>
+<p>Con el algoritmo de búsqueda binaria nos llevó cuatro pasos encontrar el valor de interés. Si hubieramos usado búsqueda lineal, nos hubiera llevado 6 pasos.</p>
+<p>En términos generales la búsqueda binaria será mas rápida que la busqueda lineal, aunque pueden existir ejemplos donde esto no suceda. La gran desventaja de la búsqueda binaria es que solo funciona en arreglos ordenados: en uno desordenado no sabríamos hacia qué lado seguir buscando.</p>
+<p>A continuación, una implementación del algoritmo de búsqueda binaria en Python:</p>
+<div id="099014cb" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> busqueda_binaria(array, valor):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    limite_inferior <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    limite_superior <span class="op">=</span> <span class="bu">len</span>(array) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> limite_inferior <span class="op">&lt;=</span> limite_superior:</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        punto_medio <span class="op">=</span> (limite_inferior <span class="op">+</span> limite_superior) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        valor_en_punto_medio <span class="op">=</span> array[punto_medio]</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> valor <span class="op">==</span> valor_en_punto_medio:</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> punto_medio</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> valor <span class="op">&lt;</span> valor_en_punto_medio:</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>            limite_superior <span class="op">=</span> punto_medio <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> valor <span class="op">&gt;</span> valor_en_punto_medio:</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>            limite_inferior <span class="op">=</span> punto_medio <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="071ba838" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(busqueda_binaria([<span class="dv">3</span>, <span class="dv">17</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">202</span>], <span class="dv">22</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>None</code></pre>
+</div>
+</div>
+</section>
+<section id="búsqueda-lineal-vs.-búsqueda-binaria" class="level3">
+<h3 class="anchored" data-anchor-id="búsqueda-lineal-vs.-búsqueda-binaria">Búsqueda lineal vs.&nbsp;búsqueda binaria</h3>
+<p>Con arreglos pequeños, la búsqueda binaria no tiene mucha ventaja frente a la lineal. Pero al aumentar el tamaño del arreglo, la diferencia se vuelve notable.</p>
+<p>En un arreglo de 100 elementos, la búsqueda lineal puede requerir hasta 100 pasos, mientras que la binaria necesita solo 7. Con la búsqueda lineal, si el valor buscado está al final, hay que revisar cada elemento. En cambio, la búsqueda binaria descarta la mitad de las opciones en cada intento: el primer paso ya elimina 50 valores.</p>
+<p>Si el arreglo tiene 3 elementos, la búsqueda binaria requiere 2 pasos; con 7 elementos, 3 pasos; con 15, 4 pasos. Cada vez que se duplica el tamaño del arreglo, solo se suma un paso más. En cambio, la búsqueda lineal duplica su número de pasos cada vez que se duplica el tamaño.</p>
+<p>Por eso, con 10000 elementos la búsqueda binaria necesita como máximo 13 pasos, y con un millón, solo 20. Esta eficiencia explica por qué la búsqueda binaria es tan poderosa en arreglos ordenados.</p>
+<p>La siguiente figura muestra como crece la cantidad máxima de pasos que requiere cada tipo de búsqueda conforme crece la cantidad de elementos.</p>
+<div id="b73cfdde" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_por_que_importan_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En el eje horizontal se representa la cantidad de elementos del arreglo: hacia la derecha, el tamaño de los datos aumenta. En el eje vertical, se muestra la cantidad de pasos que requiere el algoritmo: cuanto más arriba, más pasos.</p>
+<p>La línea de la búsqueda lineal crece de forma proporcional: cada nuevo elemento implica un paso adicional, por eso la gráfica forma una línea diagonal ascendente.</p>
+<p>En cambio, la búsqueda binaria apenas aumenta su número de pasos al crecer los datos. Para duplicar la cantidad de elementos, solo suma un paso más, lo que produce una curva que crece muy lentamente.</p>
+<p>Conviene recordar que los arreglos ordenados no son más rápidos en todo: insertar nuevos valores es más lento que en un arreglo común. El beneficio está en la búsqueda. Por eso, antes de elegir una estructura, hay que considerar el uso: ¿harás muchas inserciones o muchas búsquedas?</p>
+</section>
+</section>
+<section id="big-o" class="level2">
+<h2 class="anchored" data-anchor-id="big-o"><em>Big</em> O</h2>
+<p>Hasta ahora vimos que la eficiencia de un algoritmo depende, principalmente, de la cantidad de pasos que realiza.</p>
+<p>Pero no podemos decir simplemente que un algoritmo tiene “35 pasos” y otro “200 pasos”, porque ese número en realidad depende del tamaño del problema. Por ejemplo, una búsqueda lineal necesita tantos pasos como elementos haya en el arreglo: si hay 35 elementos, toma 35 pasos; si hay 200, toma 200.</p>
+<p>En lugar de hablar de un número fijo de pasos, decimos que la búsqueda lineal requiere N pasos para N elementos. Para expresar esto de forma más clara y general, la informática usa una herramienta tomada de las matemáticas: la notación <em>Big</em> O.</p>
+<p>La notación <em>Big</em> O permite describir y comparar la eficiencia de los algoritmos con un lenguaje conciso y consistente. Gracias a esta, describiremos algoritmos con <span class="math inline">\(O(1)\)</span>, <span class="math inline">\(O(N)\)</span>, <span class="math inline">\(O(\log N)\)</span>, etc. Veamos que significa.</p>
+<section id="big-o-es-relativo" class="level3">
+<h3 class="anchored" data-anchor-id="big-o-es-relativo"><em>Big</em> O: es relativo</h3>
+<p>La notación <em>Big</em> O permite comparar algoritmos de forma consistente al centrarse en la cantidad de pasos que requieren, dejando detalles específicos de lado.</p>
+<p>Volvamos al ejemplo de la búsqueda lineal. Si el arreglo tiene <span class="math inline">\(N\)</span> elementos, la búsqueda puede requerir hasta <span class="math inline">\(N\)</span> pasos y decimos que es un algoritmo de complejidad <span class="math inline">\(O(N)\)</span> o “de orden N”. A este tipo de comportamiento también se lo llama tiempo lineal, porque el número de pasos crece de forma proporcional al tamaño del arreglo.</p>
+<p>Ahora comparemos esto con la operación de lectura en un arreglo común. Como ya vimos, leer un elemento lleva siempre un solo paso, sin importar cuántos elementos haya. Si nos hacemos la misma pregunta, si hay N elementos, ¿cuántos pasos toma leer uno?, la respuesta es siempre la misma: uno. En notación <em>Big</em> O, esto se expresa como <span class="math inline">\(O(1)\)</span>, que se pronuncia “O de uno”.</p>
+<p><span class="math inline">\(O(1)\)</span> es un caso especial: aunque la pregunta se formula en función de <span class="math inline">\(N\)</span>, la respuesta no depende de <span class="math inline">\(N\)</span>. No importa si el arreglo tiene 10, 100 o un millón de elementos: leer el valor en una posición siempre lleva un paso. Por eso, los algoritmos <span class="math inline">\(O(1)\)</span> se consideran los más rápidos posibles: su tiempo de ejecución es constante, sin importar el tamaño de los datos.</p>
+</section>
+<section id="big-o-lo-que-realmente-importa" class="level3">
+<h3 class="anchored" data-anchor-id="big-o-lo-que-realmente-importa"><em>Big</em> O: lo que realmente importa</h3>
+<p>Ya vimos ejemplos de <span class="math inline">\(O(N)\)</span> y <span class="math inline">\(O(1)\)</span>. A esta altura, podemos notar que la notación Big <em>O</em> no se trata solo de contar pasos, sino de responder una pregunta clave:</p>
+<blockquote class="blockquote">
+<p>si hay N elementos, ¿cuántos pasos realiza el algoritmo?</p>
+</blockquote>
+<p>Imaginemos, por ejemplo, un algoritmo que siempre ejecuta tres pasos, sin importar el tamaño del conjunto de datos. Podríamos pensar que este algoritmo es <span class="math inline">\(O(3)\)</span>, pero en realidad se escribe como <span class="math inline">\(O(1)\)</span>.</p>
+<p>¿Por qué? Porque <em>Big</em> O no mide el número exacto de operaciones, sino cómo cambia el tiempo de ejecución cuando el tamaño del problema aumenta.</p>
+<p>Por eso no diferenciamos entre <span class="math inline">\(O(1)\)</span> y <span class="math inline">\(O(3)\)</span>, ambos representan algoritmos de tiempo constante, cuyo desempeño no depende de N. En cambio, un algoritmo <span class="math inline">\(O(N)\)</span> es distinto: su tiempo crece proporcionalmente al tamaño de los datos.</p>
+<p>En resumen, la notación <em>Big</em> O cuenta la historia de cómo aumenta el número de pasos que requiere un algoritmo a medida que la cantidad de datos crece.</p>
+<p>Debajo, se observa como crece la cantidad de pasos de un algoritmo <span class="math inline">\(O(n)\)</span> versus otro <span class="math inline">\(O(1)\)</span>.</p>
+<div id="e2e07070" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_por_que_importan_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La curva para <span class="math inline">\(O(N)\)</span> es una línea recta perfecta. Cada vez que se agrega un dato nuevo, el algoritmo necesita un paso más. Cuantos más datos haya, más pasos se requerirán.</p>
+<p>En cambio, la curva para <span class="math inline">\(O(1)\)</span> es una línea horizontal: sin importar la cantidad de datos, el número de pasos se mantiene constante.</p>
+<p>Para entender en profundidad el propósito de la notación <em>Big</em> O, vayamos un poco más allá. Imaginemos un algoritmo de tiempo constante que siempre toma 20 pasos, sin importar el tamaño de los datos.</p>
+<p>¿Podríamos decir que es más o menos eficiente que un algoritmo <span class="math inline">\(O(N)\)</span>?</p>
+<p>Podemos visualizar la relación entre cantidad de elementos y número de pasos debajo.</p>
+<div id="e6633fbf" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_por_que_importan_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Con menos de 20 elementos el algoritmo <span class="math inline">\(O(N)\)</span> realiza menos pasos que el algoritmo <span class="math inline">\(O(1)\)</span>, que siempre toma 20. En 20 elementos, ambas líneas se cruzan, los dos algoritmos tardan lo mismo. Pero a partir de ese punto, el <span class="math inline">\(O(N)\)</span> comienza a necesitar más pasos, y la diferencia sigue creciendo a medida que aumenta el tamaño de los datos.</p>
+<p>Siempre existe un punto a partir del cual <span class="math inline">\(O(N)\)</span> se vuelve menos eficiente, sin importar cuántos pasos fijos tenga el <span class="math inline">\(O(1)\)</span>. Incluso si un algoritmo <span class="math inline">\(O(1)\)</span> tomara un millón de pasos constantes, llegaría un tamaño de datos lo suficientemente grande donde el <span class="math inline">\(O(N)\)</span> sería más lento, y seguiría siéndolo hasta el infinito.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<em>Big</em> O es pesimista
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La búsqueda lineal no siempre tiene un costo O(N). En el mejor caso, cuando el elemento buscado está en la primera posición, se encuentra en tiempo O(1). En el peor caso, cuando está al final o no se encuentra en absoluto, requiere O(N) pasos.</p>
+<p>En general, la notación <em>Big</em> O se utiliza para describir el peor caso de un algoritmo, a menos que se indique lo contrario. Este enfoque pesimista resulta útil porque permite anticipar el rendimiento más ineficiente y tomar decisiones informadas sobre qué algoritmo usar.</p>
+</div>
+</div>
+</section>
+<section id="un-tercer-tipo" class="level3">
+<h3 class="anchored" data-anchor-id="un-tercer-tipo">Un tercer tipo</h3>
+<p>Previamente, vimos que la búsqueda binaria en un arreglo ordenado es, en general, mucho más rápida que la búsqueda lineal.</p>
+<p>Ahora veamos cómo se expresa eso en términos de notación <em>Big</em> O.</p>
+<p>Para empezar, no podemos decir que la búsqueda binaria sea <span class="math inline">\(O(1)\)</span>, porque el número de pasos aumenta cuando crecen los datos. Tampoco es <span class="math inline">\(O(N)\)</span>, ya que la velocidad en la que crece la cantidad de pasos es mucho menor. Por ejemplo, con 100 elementos solo requiere unos 7 pasos.</p>
+<p>La complejidad de la búsqueda binaria se ubica, entonces, entre <span class="math inline">\(O(1)\)</span> y <span class="math inline">\(O(N)\)</span>. En notación <em>Big</em> O se expresa como <span class="math inline">\(O(\log N)\)</span>, se lee “O de log N” y se la conoce como un algoritmo de tiempo logarítmico.</p>
+<p>En pocas palabras, <span class="math inline">\(O(log N)\)</span> describe un algoritmo cuyo número de pasos crece en una unidad cada vez que se duplica la cantidad de datos; exactamente lo que sucede con la búsqueda binaria.</p>
+<p>El siguiente gráfico muestra la evolución del numero de pasos para las tres complejidades algorítmicas mencionadas.</p>
+<div id="2f66ef41" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_por_que_importan_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Se puede observar que la curva <span class="math inline">\(O(\log N)\)</span> se eleva apenas, lo que la hace un poco menos eficiente que <span class="math inline">\(O(1)\)</span>, pero muchísimo más eficiente que <span class="math inline">\(O(N)\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Intuición detrás de <span class="math inline">\(O(\log N)\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cuando un algoritmo es <span class="math inline">\(O(\log N)\)</span>, significa que, para N elementos, realizará <span class="math inline">\(\log_2 N\)</span> pasos. Por ejemplo, si hay 8 elementos, tomará 3 pasos, porque <span class="math inline">\(\log_2 8 = 3\)</span>.</p>
+<p>Podemos imaginarlo así: si seguimos dividiendo un arreglo de N elementos a la mitad, necesitaremos <span class="math inline">\(\log_2 N\)</span> divisiones hasta quedarnos con un solo elemento. Eso es exactamente lo que ocurre en la búsqueda binaria.</p>
+</div>
+</div>
+<p>La siguiente tabla muestra la diferencia entre las eficiencias de <span class="math inline">\(O(N)\)</span> y <span class="math inline">\(O(\log N)\)</span>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Elementos (N)</th>
+<th style="text-align: center;"><span class="math inline">\(O(N)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(O(\log N)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">128</td>
+<td style="text-align: center;">128</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">256</td>
+<td style="text-align: center;">256</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">512</td>
+<td style="text-align: center;">512</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1024</td>
+<td style="text-align: center;">1024</td>
+<td style="text-align: center;">10</td>
+</tr>
+</tbody>
+</table>
+<p>Mientras que un algoritmo <span class="math inline">\(O(N)\)</span> puede realizar tantas operaciones como elementos hay en los datos, un algoritmo <span class="math inline">\(O(\log N)\)</span> agrega solo un paso adicional cada vez que se duplica la cantidad de datos.</p>
+</section>
+<section id="complejidad-cuadrática" class="level3">
+<h3 class="anchored" data-anchor-id="complejidad-cuadrática">Complejidad cuadrática</h3>
+<p>Para finalizar, exploraremos un ejemplo que nos presentará otro tipo de complejidad algorítmica.</p>
+<p>Supongamos que desarrollamos una aplicación en Python que analiza las calificaciones que los usuarios dan a distintos productos, en una escala de 0 a 10. Se quiere implementar función que verifica si un arreglo de calificaciones contiene números repetidos.</p>
+<p>Por ejemplo, el arreglo <code>[1, 5, 3, 9, 1, 4]</code> tiene dos valores iguales a 1, por lo que la función debería devolver <code>True</code>.</p>
+<p>Una primera idea podría ser usar bucles anidados, como se muestra a continuación:</p>
+<div id="08506658" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contiene_duplicados(array):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(array)):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(array)):</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (i <span class="op">!=</span> j) <span class="kw">and</span> (array[i] <span class="op">==</span> array[j]):</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="906fe764" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>contiene_duplicados([<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">6</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div id="26c0ef4a" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>contiene_duplicados([<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>En esta función recorremos cada posición del arreglo con la variable <code>i</code>. En cada posición <code>i</code>, ejecutamos un segundo bucle que recorre nuevamente todos los valores con la variable <code>j</code>, comparando si <code>array[i]</code> y <code>array[j]</code> son iguales. Si encontramos dos valores iguales, devolvemos <code>True</code>, mientras que si completamos todos los bucles sin hallar coincidencias, devolvemos <code>False</code>, ya que no hay duplicados.</p>
+<p>Este algoritmo para buscar duplicados funciona, pero ¿es eficiente? Podemos analizarlo con lo que ya sabemos sobre notación <em>Big</em> O.</p>
+<p><em>Big</em> O describe cuántos pasos realiza un algoritmo en función de la cantidad de datos, N. Entonces, para nuestro caso, debemos preguntarnos: si el arreglo tiene N valores, ¿cuántos pasos realiza la función en el peor escenario?</p>
+<p>El peor caso ocurre cuando no hay duplicados, ya que el código debe realizar todas las comparaciones posibles antes de terminar. Cada iteración externa del bucle se ejecuta N veces, y dentro de cada una se ejecuta otro bucle N veces más. Por lo tanto, el número total de comparaciones es <span class="math inline">\(N \times N = N^2\)</span>.</p>
+<p>Decimos entonces que el algoritmo tiene una complejidad <span class="math inline">\(O(N^2)\)</span>, también conocida como tiempo cuadrático.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Bucles anidados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Con frecuencia (aunque no siempre), cuando un algoritmo tiene un bucle dentro de otro, su complejidad es <span class="math inline">\(O(N^2)\)</span>. Así que, cada vez que veas bucles anidados, deberían sonar las alarmas de la complejidad cuadrática</p>
+</div>
+</div>
+<section id="solución-lineal" class="level4">
+<h4 class="anchored" data-anchor-id="solución-lineal">Solución lineal</h4>
+<p>El hecho de que nuestra función original tenga complejidad <span class="math inline">\(O(N^2)\)</span> debería hacernos reflexionar: este tipo de algoritmos se consideran relativamente lentos. Siempre que nos enfrentemos a uno, conviene preguntarnos si existe una alternativa más eficiente. Puede que no la haya, pero vale la pena analizarlo.</p>
+<p>A continuación se muestra otra versión de la función <code>contiene_duplicados</code> que no usa bucles anidados. La lógica detrás de esta función es un poco más ingeniosa, así que primero veremos cómo funciona y luego evaluaremos si resulta más eficiente que la primera implementación.</p>
+<div id="219b8166" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contiene_duplicados_lineal(array):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    valores_existentes <span class="op">=</span> [<span class="dv">0</span>] <span class="op">*</span> <span class="dv">11</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(array)):</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> valores_existentes[array[i]] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>            valores_existentes[array[i]] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="82ba59f6" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>contiene_duplicados_lineal([<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">6</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div id="08a5df5c" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>contiene_duplicados_lineal([<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>Esta función crea un arreglo llamado <code>valores_existentes</code>, que comienza con once ceros, uno para cada valor posible en el arreglo.</p>
+<p>Luego usamos un bucle para revisar cada número del arreglo original. A medida que encontramos cada número, colocamos un valor arbitrario (elegimos usar un <code>1</code>) en <code>valores_existentes</code>, en la posición correspondiente a ese número.</p>
+<p>Por ejemplo, si el arreglo de entrada es <code>[3, 5, 8]</code>:</p>
+<ul>
+<li>Al encontrar el 3, colocamos un <code>1</code> en el índice 3 de <code>valores_existentes</code>:
+<ul>
+<li><code>[0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]</code></li>
+</ul></li>
+<li>Luego, al encontrar el 5, colocamos un <code>1</code> en el índice 5:
+<ul>
+<li><code>[0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0]</code></li>
+</ul></li>
+<li>Finalmente, al llegar al 8, el arreglo queda así:
+<ul>
+<li><code>[0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0]</code></li>
+</ul></li>
+</ul>
+<p>En esencia, estamos usando los índices de <code>valores_existentes</code> para recordar qué números del arreglo ya hemos encontrado.</p>
+<p>Ahora viene el punto clave: antes de guardar un <code>1</code> en un índice, el código revisa si ese índice ya tiene un <code>1</code>. Si lo tiene, significa que ya encontramos ese número antes, es decir, que hay un duplicado. En ese caso, la función devuelve <code>True</code> y termina de inmediato. Si recorremos todo el arreglo sin encontrar duplicados, devolvemos <code>False</code>.</p>
+<p>Para determinar la eficiencia de este nuevo algoritmo en términos de <em>Big</em> O, volvemos a analizar cuántos pasos realiza en el peor caso.</p>
+<p>El paso importante es revisar cada número y comprobar si el valor en el índice correspondiente de <code>valores_existentes</code> es un <code>1</code>:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> valores_existentes[array[i]] <span class="op">==</span> <span class="dv">1</span>:</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Además de las comparaciones, el algoritmo también realiza asignaciones en <code>valores_existentes</code>, pero consideramos esos pasos triviales en este análisis.</p>
+<p>El peor caso ocurre cuando el arreglo no contiene duplicados, lo que obliga al código a completar todo el bucle. En consecuencia, para N elementos, el algoritmo realiza N comparaciones: un solo bucle que itera una vez por cada número.</p>
+<p>Por lo tanto, este algoritmo tiene una complejidad <span class="math inline">\(O(N)\)</span>, o tiempo lineal.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Letra chica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El algoritmo de complejidad lineal es posible solo porque sabemos que <code>array</code> toma valores en un conjunto finito predeterminado. Si los valores en <code>array</code> fuesen cualquiera, no podríamos ya utilizar este mismo algoritmo.</p>
+<p>Finalmente, otra desventaja de esta nueva implementación es que consume más memoria que la primera debido a <code>valores_existentes</code>.</p>
+</div>
+</div>
+</section>
+<section id="resumen-de-complejidades" class="level4">
+<h4 class="anchored" data-anchor-id="resumen-de-complejidades">Resumen de complejidades</h4>
+<p>En este apunte vimos ejemplos de complejidad constante, lineal, logarítmica o cuadrática. Pero estas no son las únicas disponibles. Otros ejemplos son la complejidad lineal-logarítmica (<span class="math inline">\(O(N \log N)\)</span>), cúbica (<span class="math inline">\(O(N ^3)\)</span>), exponencial (<span class="math inline">\(O(2 ^ N)\)</span>) o incluso factorial (<span class="math inline">\(O(N!)\)</span>).</p>
+<div id="6cd05134" class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_por_que_importan_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ee-unr\.github\.io\/programacion-2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../teoria/03_oop/05_excepciones.html" class="pagination-link" aria-label="5 - Excepciones">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">5 - Excepciones</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Esta página es hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
