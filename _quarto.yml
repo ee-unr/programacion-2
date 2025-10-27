@@ -49,8 +49,10 @@ website:
           contents:
             - auto: teoria/03_oop/*.ipynb
             - sort-ui: false
-        - teoria/04_estructuras.qmd
-        - teoria/05_algoritmos.qmd
+        - text: U4 - Estructuras de Datos y Algoritmos
+          contents:
+            - auto: teoria/04_estructuras_y_algoritmos/*.ipynb
+            - sort-ui: false
     - title: Práctica
       collapse-level: 2
       collapse: true
