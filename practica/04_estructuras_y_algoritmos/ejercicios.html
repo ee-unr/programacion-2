@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>🛠️ Ejercicios – Programación II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../practica/04_estructuras_y_algoritmos/problemas.html" rel="next">
+<link href="../../practica/04_estructuras_y_algoritmos/autoevaluacion.html" rel="prev">
+<link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-4aade81edb4d4197401d427d1d7808fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../practica.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Programación II</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../informacion/programa.html"> 
+<span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teoria/01_programacion_en_python/01_introduccion.html"> 
+<span class="menu-text">Teoría</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../practica/01_programacion_en_python/ejercicios.html" aria-current="page"> 
+<span class="menu-text">Práctica</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../trabajos_practicos/trabajo_grupal.html"> 
+<span class="menu-text">Trabajos Prácticos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../recursos/tutoriales/tutorial_01.html"> 
+<span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ee-unr/programacion-2"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../practica/04_estructuras_y_algoritmos/autoevaluacion.html">U4 - Estructuras de Datos y Algoritmos</a></li><li class="breadcrumb-item"><a href="../../practica/04_estructuras_y_algoritmos/ejercicios.html">🛠️ Ejercicios</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U1 - Programación en Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/01_programacion_en_python/autoevaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/01_programacion_en_python/ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/01_programacion_en_python/problemas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧩 Problemas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U2 - Programación funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/02_programacion_funcional/autoevaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/02_programacion_funcional/ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/02_programacion_funcional/problemas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧩 Problemas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U3 - Programación Orientada a Objetos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/03_oop/autoevaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/03_oop/ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/03_oop/problemas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧩 Problemas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U4 - Estructuras de Datos y Algoritmos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/04_estructuras_y_algoritmos/autoevaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/04_estructuras_y_algoritmos/ejercicios.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/04_estructuras_y_algoritmos/problemas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧩 Problemas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#el-estante-de-la-farmacia" id="toc-el-estante-de-la-farmacia" class="nav-link active" data-scroll-target="#el-estante-de-la-farmacia"><span class="header-section-number">1</span> El estante de la Farmacia</a></li>
+  <li><a href="#cita-con-el-dentista" id="toc-cita-con-el-dentista" class="nav-link" data-scroll-target="#cita-con-el-dentista"><span class="header-section-number">2</span> Cita con el dentista</a></li>
+  <li><a href="#la-lista-de-reproducción-del-dj" id="toc-la-lista-de-reproducción-del-dj" class="nav-link" data-scroll-target="#la-lista-de-reproducción-del-dj"><span class="header-section-number">3</span> La lista de reproducción del DJ️</a></li>
+  <li><a href="#scanner-pro-3000" id="toc-scanner-pro-3000" class="nav-link" data-scroll-target="#scanner-pro-3000"><span class="header-section-number">4</span> Scanner Pro 3000</a></li>
+  <li><a href="#el-club-secreto-de-los-hackers" id="toc-el-club-secreto-de-los-hackers" class="nav-link" data-scroll-target="#el-club-secreto-de-los-hackers"><span class="header-section-number">5</span> El club secreto de los <em>hackers</em></a></li>
+  <li><a href="#torre-de-control-aéreo" id="toc-torre-de-control-aéreo" class="nav-link" data-scroll-target="#torre-de-control-aéreo"><span class="header-section-number">6</span> Torre de control aéreo</a></li>
+  <li><a href="#alerta-de-virus-zombie" id="toc-alerta-de-virus-zombie" class="nav-link" data-scroll-target="#alerta-de-virus-zombie"><span class="header-section-number">7</span> Alerta de virus zombie</a></li>
+  <li><a href="#batalla-pokémon" id="toc-batalla-pokémon" class="nav-link" data-scroll-target="#batalla-pokémon"><span class="header-section-number">8</span> Batalla Pokémon</a></li>
+  <li><a href="#uno-más-dos" id="toc-uno-más-dos" class="nav-link" data-scroll-target="#uno-más-dos"><span class="header-section-number">9</span> Uno más dos</a></li>
+  <li><a href="#uno-más-tres" id="toc-uno-más-tres" class="nav-link" data-scroll-target="#uno-más-tres"><span class="header-section-number">10</span> Uno más tres</a></li>
+  <li><a href="#más-y-más-datos" id="toc-más-y-más-datos" class="nav-link" data-scroll-target="#más-y-más-datos"><span class="header-section-number">11</span> Más y más datos</a></li>
+  <li><a href="#el-regreso-de-fibonacci" id="toc-el-regreso-de-fibonacci" class="nav-link" data-scroll-target="#el-regreso-de-fibonacci"><span class="header-section-number">12</span> El regreso de Fibonacci</a></li>
+  <li><a href="#vinieron-los-primos" id="toc-vinieron-los-primos" class="nav-link" data-scroll-target="#vinieron-los-primos"><span class="header-section-number">13</span> Vinieron los primos</a></li>
+  <li><a href="#el-bueno-el-malo-y-el-eficiente" id="toc-el-bueno-el-malo-y-el-eficiente" class="nav-link" data-scroll-target="#el-bueno-el-malo-y-el-eficiente"><span class="header-section-number">14</span> El bueno, el malo y el eficiente</a></li>
+  <li><a href="#seamos-sinceros" id="toc-seamos-sinceros" class="nav-link" data-scroll-target="#seamos-sinceros"><span class="header-section-number">15</span> Seamos sinceros</a></li>
+  <li><a href="#seamos-originales" id="toc-seamos-originales" class="nav-link" data-scroll-target="#seamos-originales"><span class="header-section-number">16</span> Seamos originales</a></li>
+  <li><a href="#altas-dimensiones" id="toc-altas-dimensiones" class="nav-link" data-scroll-target="#altas-dimensiones"><span class="header-section-number">17</span> Altas dimensiones</a></li>
+  <li><a href="#mediana-complejidad" id="toc-mediana-complejidad" class="nav-link" data-scroll-target="#mediana-complejidad"><span class="header-section-number">18</span> Mediana complejidad</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../practica/04_estructuras_y_algoritmos/autoevaluacion.html">U4 - Estructuras de Datos y Algoritmos</a></li><li class="breadcrumb-item"><a href="../../practica/04_estructuras_y_algoritmos/ejercicios.html">🛠️ Ejercicios</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">🛠️ Ejercicios</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="el-estante-de-la-farmacia" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="el-estante-de-la-farmacia"><span class="header-section-number">1</span> El estante de la Farmacia</h2>
+<section id="contexto" class="level3">
+<h3 class="anchored" data-anchor-id="contexto">Contexto</h3>
+<p>Imaginá un estante de farmacia con <span class="math inline">\(N\)</span> posiciones perfectamente contiguas (sin huecos), numeradas desde 0 hasta <span class="math inline">\(N-1\)</span>. Cada posición guarda exactamente una caja de un medicamento.</p>
+<p>Para este ejercicio, asumiremos que N = 100.</p>
+</section>
+<section id="reglas-de-costo" class="level3">
+<h3 class="anchored" data-anchor-id="reglas-de-costo">Reglas de costo</h3>
+<p>Para medir el costo de cada operación, definimos un paso como la unidad de tiempo más pequeña:</p>
+<ol type="1">
+<li><strong>Observar (Leer):</strong> Mirar qué medicamento hay en una posición específica. <strong>(1 paso)</strong></li>
+<li><strong>Mover:</strong> Deslizar una caja una posición a la izquierda o derecha. <strong>(1 paso por cada caja movida)</strong></li>
+<li><strong>Colocar (Escribir):</strong> Poner una caja nueva en una posición vacía. <strong>(1 paso)</strong></li>
+</ol>
+</section>
+<section id="suposiciones-clave" class="level3">
+<h3 class="anchored" data-anchor-id="suposiciones-clave">Suposiciones clave</h3>
+<ul>
+<li><strong>Inserción:</strong> Para hacer un hueco en medio del estante, hay que mover todas las cajas desde esa posición en adelante hacia la derecha.</li>
+<li><strong>Eliminación:</strong> Para cerrar un hueco en medio del estante, hay que mover todas las cajas desde la posición eliminada en adelante hacia la izquierda.</li>
+<li>El estante debe permanecer siempre contiguo (sin huecos).</li>
+</ul>
+</section>
+<section id="tareas-de-análisis-y-cálculo" class="level3">
+<h3 class="anchored" data-anchor-id="tareas-de-análisis-y-cálculo">Tareas de análisis y cálculo</h3>
+<p>Para cada escenario, calcule el costo en pasos y deduzca su complejidad asintótica (<em>Big</em> O), basándote en la analogía física.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 47%">
+<col style="width: 8%">
+<col style="width: 16%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Operación</th>
+<th style="text-align: left;">Descripción del escenario</th>
+<th>Pasos (Con N=100)</th>
+<th>Expresión con N (Big O implícito)</th>
+<th>Justificación (¿Por qué?)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>a) Lectura por Posición</strong></td>
+<td style="text-align: left;">Decime qué medicamento hay en la posición <strong>37</strong>.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>b) Búsqueda (peor caso)</strong></td>
+<td style="text-align: left;">¿Está el medicamento X en el estante? (Asumí que <strong>NO está</strong> y debes revisar todo el estante).</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>c) Inserción al Inicio</strong></td>
+<td style="text-align: left;">Poné un nuevo medicamento en la <strong>posición 0</strong> y corré todo lo demás.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>d) Inserción al Final</strong></td>
+<td style="text-align: left;">Agregá un nuevo medicamento en la <strong>posición N</strong> (al final del estante).</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>e) Eliminación al Inicio</strong></td>
+<td style="text-align: left;">Sacá la caja de la <strong>posición 0</strong> y corré el resto para cerrar el hueco.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>f) Eliminación al Final</strong></td>
+<td style="text-align: left;">Sacá la última caja del estante (posición N−1).</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="cita-con-el-dentista" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="cita-con-el-dentista"><span class="header-section-number">2</span> Cita con el dentista</h2>
+<section id="contexto-1" class="level3">
+<h3 class="anchored" data-anchor-id="contexto-1">Contexto</h3>
+<p>Una clínica odontológica necesita un sistema sencillo para gestionar su agenda de turnos. Los turnos se agregan a la lista en orden de llegada, sin preocuparse inicialmente por el orden cronológico.</p>
+</section>
+<section id="datos-iniciales" class="level3">
+<h3 class="anchored" data-anchor-id="datos-iniciales">Datos iniciales</h3>
+<p>La agenda se mantiene en un arreglo (lista) de diccionarios.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>agenda <span class="op">=</span> [</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"paciente"</span>: <span class="st">"Juana Pérez"</span>, <span class="st">"hora"</span>: <span class="st">"08:30"</span>},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"paciente"</span>: <span class="st">"Mario Gómez"</span>, <span class="st">"hora"</span>: <span class="st">"09:00"</span>},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"paciente"</span>: <span class="st">"Sofía López"</span>, <span class="st">"hora"</span>: <span class="st">"09:30"</span>},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"paciente"</span>: <span class="st">"Ana Fernández"</span>, <span class="st">"hora"</span>: <span class="st">"10:15"</span>},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="funciones-a-implementar" class="level3">
+<h3 class="anchored" data-anchor-id="funciones-a-implementar">Funciones a implementar</h3>
+<p>Usando operaciones básicas sobre el arreglo (sin usar <code>.remove</code> ni <code>.pop</code> directamente):</p>
+<ul>
+<li><code>leer_pos(i)</code>: Devuelve el turno en la posición <code>i</code>. Si <code>i</code> no existe, devuelve <code>None</code>.</li>
+<li><code>insertar(turno)</code>: Agrega un nuevo diccionario <code>{"paciente": ..., "hora": "HH:MM"}</code> al final de la lista (simulando la llegada de un nuevo paciente). Devuelve <code>True</code>.</li>
+<li><code>eliminar(hora)</code>: Busca el primer turno con esa hora y lo elimina. Devuelve <code>True</code> si lo eliminó, <code>False</code> si el horario no estaba en la lista.</li>
+<li><code>buscar(hora)</code>: Recorre la lista desde el principio hasta el final. Devuelve la posición (índice) donde está ese horario, o <code>-1</code> si no existe.</li>
+<li><code>listar()</code>: Devuelve una lista de strings con el formato: <code>["0) 08:30 - Juana Pérez", "1) 09:00 - Mario Gómez", ...]</code></li>
+</ul>
+</section>
+<section id="ejemplo-de-uso" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-de-uso">Ejemplo de uso</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(leer_pos(<span class="dv">1</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># {'paciente': 'Mario Gómez', 'hora': '09:00'}</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>nuevo <span class="op">=</span> {<span class="st">"paciente"</span>: <span class="st">"Diego Romero"</span>, <span class="st">"hora"</span>: <span class="st">"09:45"</span>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>insertar(nuevo)  <span class="co"># Se agrega al final</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(buscar(<span class="st">"09:45"</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 4  (Si era el quinto elemento, ya que la lista creció)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(eliminar(<span class="st">"09:00"</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># True</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(listar())</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ['0) 08:30 - Juana Pérez',</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#  '1) 09:30 - Sofía López',</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#  '2) 10:15 - Ana Fernández',</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#  '3) 09:45 - Diego Romero']</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="casos-a-probar" class="level3">
+<h3 class="anchored" data-anchor-id="casos-a-probar">Casos a probar</h3>
+<ul>
+<li>Insertar <code>"08:15"</code> (debe ir al inicio).</li>
+<li>Insertar <code>"12:00"</code> (debe ir al final).</li>
+<li>Insertar repetido <code>"09:30"</code> (debe rechazarse).</li>
+<li>Buscar un horario inexistente (debe devolver <code>-1</code>).</li>
+<li>Eliminar uno inexistente (debe devolver <code>False</code>).</li>
+</ul>
+</section>
+<section id="mini-consigna-teórica" class="level3">
+<h3 class="anchored" data-anchor-id="mini-consigna-teórica">Mini-consigna teórica</h3>
+<p>Responda:</p>
+<ul>
+<li>¿Qué ocurre con los índices cuando eliminás o insertás un turno en el medio de la lista? (Pista: ¿qué pasa con los elementos que estaban después?)</li>
+<li>¿Por qué acceder a <code>agenda[i]</code> es una operación <span class="math inline">\(O(1)\)</span> pero buscar un turno por hora es <span class="math inline">\(O(N)\)</span>?</li>
+<li>¿Qué estructura te parecería más conveniente si hubiera miles de turnos? Explicá brevemente por qué.</li>
+</ul>
+</section>
+</section>
+<section id="la-lista-de-reproducción-del-dj" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="la-lista-de-reproducción-del-dj"><span class="header-section-number">3</span> La lista de reproducción del DJ️</h2>
+<section id="contexto-2" class="level3">
+<h3 class="anchored" data-anchor-id="contexto-2">Contexto</h3>
+<p>Un DJ está gestionando su lista principal de canciones, almacenada en una secuencia ordenada de reproducción. Se necesita desarrollar las herramientas para manipular esta lista de forma eficiente y precisa antes del show.</p>
+</section>
+<section id="requerimientos-de-manipulación" class="level3">
+<h3 class="anchored" data-anchor-id="requerimientos-de-manipulación">Requerimientos de manipulación</h3>
+<p>El sistema debe soportar las siguientes acciones, considerando que la lista es una secuencia lineal donde el orden es fundamental:</p>
+<ul>
+<li><strong>Consulta por ubicación</strong>: El DJ debe poder pedir la canción que está en una posición exacta de la secuencia (ej. “Dime qué canción está en el tercer lugar”).</li>
+<li><strong>Adición controlada</strong>: Se debe poder insertar una nueva canción exactamente en una posición específica de la secuencia (ej. “Pon ‘Nueva Canción’ justo antes de la canción que actualmente está en la posición 5”). Esto implica que las canciones que estaban en esa posición y después deben moverse para hacer espacio.</li>
+<li><strong>Remoción dirigida</strong>: El DJ debe poder quitar una canción conociendo su nombre de la lista. Una vez retirada, las canciones que estaban después deben moverse para cerrar el hueco y mantener la secuencia contigua.</li>
+<li><strong>Identificación por nombre</strong>: Se requiere una función para localizar una canción por su nombre y devolver su ubicación actual en la secuencia.</li>
+</ul>
+</section>
+<section id="datos-iniciales-1" class="level3">
+<h3 class="anchored" data-anchor-id="datos-iniciales-1">Datos iniciales</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>canciones <span class="op">=</span> [<span class="st">"Thunderstruck"</span>, <span class="st">"Billie Jean"</span>, <span class="st">"Smells Like Teen Spirit"</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejemplos-de-uso" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplos-de-uso">Ejemplos de uso</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de requerimiento: Inserción</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Intentamos poner "One" en la posición 2 (el tercer espacio)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>insertar_cancion(<span class="dv">2</span>, <span class="st">"One"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># La lista debe ajustarse automáticamente: ["Thunderstruck", "Billie Jean", "One", "Smells Like Teen Spirit"]</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de requerimiento: Eliminación</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>eliminar_cancion(<span class="st">"Billie Jean"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># La lista debe reajustarse: ["Thunderstruck", "One", "Smells Like Teen Spirit"]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="punto-extra-visualización-del-índice" class="level3">
+<h3 class="anchored" data-anchor-id="punto-extra-visualización-del-índice">Punto extra: Visualización del Índice</h3>
+<p>Muestre al DJ la lista completa, indicando claramente la posición inicial de cada pista en la secuencia.</p>
+</section>
+</section>
+<section id="scanner-pro-3000" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="scanner-pro-3000"><span class="header-section-number">4</span> Scanner Pro 3000</h2>
+<section id="contexto-3" class="level3">
+<h3 class="anchored" data-anchor-id="contexto-3">Contexto</h3>
+<p>En un recital, cada entrada tiene un código. Al ingresar, el lector va guardando los códigos en una lista en el orden en que se escanean. La producción te pide detectar si hubo códigos repetidos (fraude o doble escaneo).</p>
+<p>Te entregan una lista escaneos con miles de códigos (que son <em>strings</em> de Python).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>escaneos <span class="op">=</span> [</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A1F3"</span>, <span class="st">"B9K2"</span>, <span class="st">"X7Z1"</span>, <span class="st">"A1F3"</span>, <span class="st">"L0P9"</span>, <span class="st">"M2Q5"</span>, <span class="st">"B9K2"</span>, ...</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li><p>Escriba una función que encuentre si hay algún código repetido comparando cada elemento con todos los que le siguen (utilice un doble bucle <code>for</code>).</p>
+<ul>
+<li>¿Cuántas comparaciones hace en el peor caso con N elementos?</li>
+<li>¿Qué pasa cuando N crece x10?</li>
+</ul></li>
+<li><p>Implemente una versión lineal usando un <code>set</code> para registrar códigos ya vistos.</p>
+<ul>
+<li>¿Por qué ahora es <span class="math inline">\(O(N)\)</span>?</li>
+<li>¿Qué operación te permite “saltar” comparaciones?</li>
+</ul></li>
+<li><p>Use esta funcion que crea codigos aleatorios para generar listas de codigos de tamaños crecientes y mida el tiempo de ejecucion de cada funcion anterior: ```python import random, string, time</p>
+<p>def generar_codigos(n, dup_ratio=0.0, seed=0): rng = random.Random(seed) base = set() # crear códigos únicos while len(base) &lt; int(n * (1 - dup_ratio)): base.add(’’.join(rng.choices(string.ascii_uppercase + string.digits, k=6))) lista = list(base) # inyectar duplicados while len(lista) &lt; n: lista.append(rng.choice(list(base))) rng.shuffle(lista) return lista ```</p></li>
+</ol>
+</section>
+</section>
+<section id="el-club-secreto-de-los-hackers" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="el-club-secreto-de-los-hackers"><span class="header-section-number">5</span> El club secreto de los <em>hackers</em></h2>
+<section id="contexto-4" class="level3">
+<h3 class="anchored" data-anchor-id="contexto-4">Contexto</h3>
+<p>Un grupo de <em>hackers</em> tiene un club secreto con reglas muy estrictas sobre quién puede entrar y salir. Los miembros se ordenan según su entrada: desde el fundador hasta el último ingresante. En caso de ser necesaria una reducción de miembros, los primeros en irse deben ser los que menos experiencia tienen (el último en entrar al club debe ser el primero en salir).</p>
+<p>Si un hacker que no es el último en entrar sale del grupo fuera de orden, se considera una violación de seguridad y se registra la acción en el sistema.</p>
+</section>
+<section id="datos-iniciales-2" class="level3">
+<h3 class="anchored" data-anchor-id="datos-iniciales-2">Datos iniciales</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>club <span class="op">=</span> [</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"Anonymous"</span>},</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"Mitnick"</span>},</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"Soupnazi"</span>},</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"D-Dante"</span>}</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Teniendo en cuenta el contexto implementa las siguientes funciones para regular la entrada y salida de los miembros del club:</p>
+<ol type="1">
+<li><code>entrar(nombre)</code>
+<ul>
+<li>Agrega un hacker a la pila del club</li>
+<li>Cada entrada debe registrarse como un diccionario: <code>{"nombre": "Neo"}</code></li>
+<li>Si hay más de 10 hacker, imprimir: <strong>“El Club esta lleno, capacidad máxima alcanzada”</strong></li>
+</ul></li>
+<li><code>salir()</code>
+<ul>
+<li>Saca al último hacker que entró</li>
+<li>Retorna el nombre del hacker que salió</li>
+<li>Si la pila está vacía, imprimir: <strong>“El club ha desaparecido en la oscuridad…”</strong></li>
+</ul></li>
+<li><code>ultimo_en_entrar()</code>
+<ul>
+<li>Muestra quién está en la cima de la pila <strong>sin sacarlo</strong></li>
+<li>Retorna el nombre del último que entró</li>
+<li>Si la posiion aun no fue cubierta, retorna <code>None</code></li>
+</ul></li>
+<li><code>mostrar_club()</code>
+<ul>
+<li>Muestra todos los hackers en el club, del más reciente al más antiguo</li>
+<li>Indica cuántos hay en total</li>
+<li>Formato: <code>[Top] Neo -&gt; Trinity -&gt; Anonymous [Base]</code></li>
+</ul></li>
+<li><code>esta_en_club(nombre)</code>
+<ul>
+<li>Verifica si un hacker específico está dentro</li>
+<li>Retorna <code>True</code> o <code>False</code></li>
+<li><strong>IMPORTANTE</strong>: No destruir la pila al buscar</li>
+</ul></li>
+</ol>
+</section>
+<section id="ejemplo-de-uso-esperado" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-de-uso-esperado">Ejemplo de uso esperado</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>entrar(<span class="st">"Morpheus"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>entrar(<span class="st">"Trinity"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>entrar(<span class="st">"Neo"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>mostrar_club()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida:  Club (3 hackers): [Top] Neo -&gt; Trinity -&gt; Morpheus [Base]</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ultimo_en_entrar())</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida: Neo</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>salir()</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida: Neo ha salido del club</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(esta_en_club(<span class="st">"Trinity"</span>))</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida: True</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(esta_en_club(<span class="st">"Cypher"</span>))</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida: False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejemplo-de-uso-esperado-1" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-de-uso-esperado-1">Ejemplo de uso esperado</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Caso 1: Club vacío</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>club.clear()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>salir()  <span class="co"># Debe mostrar mensaje</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Caso 2: Verificar LIFO</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>entrar(<span class="st">"A"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>entrar(<span class="st">"B"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>entrar(<span class="st">"C"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>salir()  <span class="co"># Debe salir C (último en entrar)</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>salir()  <span class="co"># Debe salir B</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>ultimo_en_entrar()  <span class="co"># Debe ser A</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Caso 3: Club lleno</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">12</span>):</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    entrar(<span class="ss">f"Hacker</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># En el 11vo debe avisar que está lleno</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Caso 4: Buscar sin destruir</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>entrar(<span class="st">"Neo"</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>entrar(<span class="st">"Trinity"</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(esta_en_club(<span class="st">"Neo"</span>))  <span class="co"># True</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>mostrar_club()  <span class="co"># Neo debe seguir en la pila</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="nivel-2-desafío" class="level3">
+<h3 class="anchored" data-anchor-id="nivel-2-desafío">Nivel 2: Desafío 🚀</h3>
+<p>Nueva funcionalidad: Control de acceso con violaciones</p>
+<p>Impelmente las siguentes funciones:</p>
+<ol start="6" type="1">
+<li><code>salir_especifico(nombre)</code></li>
+</ol>
+<ul>
+<li>Si nombre es el TOP: sacarlo sin registrar violación, retornar <code>True</code>.</li>
+<li>Si no es el TOP pero está en la pila: - Desapilar a un buffer hasta encontrar nombre. - Remover nombre. - Reapilar en orden original todo lo que sacaste.</li>
+<li>Registrar violación en <code>_log_violaciones</code> con formato: <code>"{HH:MM} - Violación: {nombre} salió fuera de orden"</code> (usar <code>datetime.now().strftime("%H:%M")</code>). Retornar <code>True</code>.</li>
+<li>Si no se encuentra: retornar <code>False</code>.</li>
+</ul>
+<ol start="7" type="1">
+<li><code>historial_violaciones()</code>
+<ul>
+<li>Muestra todas las violaciones de seguridad registradas</li>
+<li>Formato: <code>["17:30 - Violación: Trinity salió fuera de orden"]</code></li>
+</ul></li>
+</ol>
+</section>
+<section id="ejemplo-de-uso-1" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-de-uso-1">Ejemplo de uso</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>entrar(<span class="st">"Morpheus"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>entrar(<span class="st">"Trinity"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>entrar(<span class="st">"Neo"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>entrar(<span class="st">"Cypher"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Neo y Cypher están encima de Trinity</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>salir_especifico(<span class="st">"Trinity"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida: VIOLACIÓN DE SEGURIDAD: Trinity salió fuera de orden</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>mostrar_club()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida: [Top] Cypher -&gt; Neo -&gt; Morpheus [Base]</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Trinity ya no está</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="torre-de-control-aéreo" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="torre-de-control-aéreo"><span class="header-section-number">6</span> Torre de control aéreo</h2>
+<section id="contexto-5" class="level3">
+<h3 class="anchored" data-anchor-id="contexto-5">Contexto</h3>
+<p>La Autoridad de Tráfico Aéreo necesita optimizar las operaciones de una torre de control. Tu tarea es modelar el sistema que gestiona los permisos de movimiento de los aviones.</p>
+<p>Existen dos tipos de solicitudes pendientes:</p>
+<ul>
+<li><strong>Aviones esperando despegue:</strong> Estos aviones forman una fila de espera. Se les debe dar permiso para despegar siguiendo un principio estricto: el avión que lleva más tiempo esperando en la fila es el primero en recibir permiso.</li>
+<li><strong>Aviones en aproximación de emergencia:</strong> Estos aviones requieren aterrizaje inmediato debido a una situación crítica. Estos permisos de aterrizaje se apilan, y la torre debe procesar la emergencia más reciente antes que cualquier otra, es decir: el último avión en reportar la emergencia es el primero en recibir la autorización de aterrizaje.</li>
+</ul>
+</section>
+<section id="prioridad-de-la-torre" class="level3">
+<h3 class="anchored" data-anchor-id="prioridad-de-la-torre">Prioridad de la torre</h3>
+<p>La torre de control siempre otorga permisos siguiendo una estricta jerarquía:</p>
+<ul>
+<li><strong>Prioridad absoluta:</strong> Si hay alguna emergencia pendiente, la torre siempre debe autorizar primero un aterrizaje de emergencia.</li>
+<li><strong>Prioridad secundaria:</strong> Solo cuando no haya ninguna emergencia pendiente, la torre podrá autorizar el despegue del avión que le corresponda.</li>
+</ul>
+</section>
+<section id="datos-iniciales-3" class="level3">
+<h3 class="anchored" data-anchor-id="datos-iniciales-3">Datos iniciales</h3>
+<p>Comienza con la siguiente situación en el aeropuerto:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista de aviones esperando para Despegar</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>solicitudes_despegue <span class="op">=</span> [<span class="st">"Vuelo 101"</span>, <span class="st">"Vuelo 205"</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista de aviones reportando Emergencia</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>solicitudes_emergencia <span class="op">=</span> [<span class="st">"Vuelo 999"</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="requisitos-funcionales" class="level3">
+<h3 class="anchored" data-anchor-id="requisitos-funcionales">Requisitos funcionales</h3>
+<p>Se debe crear un sistema con las siguientes acciones:</p>
+<ul>
+<li>Una función para registrar la llegada de un nuevo avión a la lista de despegue.</li>
+<li>Una función para registrar una nueva solicitud de aterrizaje de emergencia.</li>
+<li>Una función principal, <code>procesar_evento()</code>, que simule la acción de la torre de control al otorgar un permiso según las reglas de prioridad.</li>
+</ul>
+<p><strong>Punto extra:</strong> Si la torre intenta otorgar un permiso y ambas listas están vacías, debe notificarlo con el mensaje: <code>"Torre en silencio"</code>.</p>
+</section>
+</section>
+<section id="alerta-de-virus-zombie" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="alerta-de-virus-zombie"><span class="header-section-number">7</span> Alerta de virus zombie</h2>
+<section id="contexto-6" class="level3">
+<h3 class="anchored" data-anchor-id="contexto-6">Contexto</h3>
+<p>Sos un científico/a de un laboratorio secreto que está procesando muestras de virus zombies. Debes implementar un sistema de gestión usando colas para manejar el flujo de trabajo.</p>
+<p><strong>Alerta importante</strong>: Si hay más de 5 muestras del mismo tipo de virus en la cola, se activa una alerta biológica (riesgo de propagación masiva).</p>
+</section>
+<section id="datos-iniciales-4" class="level3">
+<h3 class="anchored" data-anchor-id="datos-iniciales-4">Datos iniciales</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> deque</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>muestras <span class="op">=</span> deque([<span class="st">"virus_tank"</span>, <span class="st">"virus_witch"</span>, <span class="st">"virus_charger"</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tareas" class="level3">
+<h3 class="anchored" data-anchor-id="tareas">Tareas</h3>
+<p>Implementa las siguientes funciones:</p>
+<ol type="1">
+<li><code>agregar_muestra(nombre)</code>
+<ul>
+<li>Agrega una muestra al final de la cola</li>
+<li>Muestra mensaje confirmando la operación</li>
+<li>Verifica si hay más de 5 muestras del mismo tipo</li>
+<li>Si se cumple la condición, imprime: <code>"¡Alerta biológica! Detectadas X muestras de [nombre_virus]"</code></li>
+</ul></li>
+<li><code>procesar_muestra()</code>
+<ul>
+<li>Procesa (elimina) la primera muestra de la cola</li>
+<li>Retorna el nombre de la muestra procesada</li>
+<li>Si la cola está vacía, muestra un mensaje de error</li>
+</ul></li>
+<li><code>mostrar_pendientes()</code>
+<ul>
+<li>Muestra la lista de muestras pendientes</li>
+<li>Retorna la lista de muestras</li>
+<li>Indica cuántas muestras hay en espera</li>
+</ul></li>
+<li><code>contar_por_tipo()</code>
+<ul>
+<li>Retorna un diccionario con el conteo de cada tipo de virus</li>
+<li>Ejemplo: <code>{"virus_tank": 3, "virus_witch": 2}</code></li>
+</ul></li>
+</ol>
+</section>
+<section id="ejemplo-de-uso-esperado-2" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-de-uso-esperado-2">Ejemplo de uso esperado</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mostrar_pendientes())</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida: Muestras pendientes (3): ['virus_tank', 'virus_witch', 'virus_charger']</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>agregar_muestra(<span class="st">"virus_tank"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>agregar_muestra(<span class="st">"virus_tank"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>agregar_muestra(<span class="st">"virus_tank"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>agregar_muestra(<span class="st">"virus_tank"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>agregar_muestra(<span class="st">"virus_tank"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida en la 5ta: ¡Alerta biológica! Detectadas X muestras de virus_tank ☣️</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(contar_por_tipo())</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida: {'virus_tank': 6, 'virus_witch': 1, 'virus_charger': 1}</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>procesar_muestra()</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida: Procesando 'virus_tank'</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Retorna: 'virus_tank'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="casos-a-probar-1" class="level3">
+<h3 class="anchored" data-anchor-id="casos-a-probar-1">Casos a probar</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Caso 1: Cola vacía</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>muestras.clear()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>procesar_muestra()  <span class="co"># Debe mostrar error</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Caso 2: Alerta biológica por acumulación</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>):</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    agregar_muestra(<span class="st">"virus_hunter"</span>)  <span class="co"># Debe activar alerta en la 6ta</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Caso 3: Verificar que la alerta sea por tipo específico</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>agregar_muestra(<span class="st">"virus_tank"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>agregar_muestra(<span class="st">"virus_witch"</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>agregar_muestra(<span class="st">"virus_tank"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># No debe haber alerta (solo 2 de cada tipo)</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Caso 4: Procesar reduce el conteo</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">7</span>):</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    agregar_muestra(<span class="st">"virus_smoker"</span>)  <span class="co"># Alerta: 7 smoker</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>procesar_muestra()  <span class="co"># Procesa 1 virus_tank (de los iniciales)</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(contar_por_tipo())  <span class="co"># Debería seguir mostrando 7 smoker</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="nivel-2-desafío-1" class="level3">
+<h3 class="anchored" data-anchor-id="nivel-2-desafío-1">Nivel 2: Desafío 🚀</h3>
+</section>
+<section id="nueva-funcionalidad-muestras-prioritarias" class="level3">
+<h3 class="anchored" data-anchor-id="nueva-funcionalidad-muestras-prioritarias">Nueva funcionalidad: Muestras prioritarias</h3>
+<p>Algunas muestras son urgentes y deben procesarse antes que las normales.</p>
+</section>
+<section id="datos-iniciales-5" class="level3">
+<h3 class="anchored" data-anchor-id="datos-iniciales-5">Datos iniciales</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> deque</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>muestras_normales <span class="op">=</span> deque([<span class="st">"virus_tank"</span>, <span class="st">"virus_witch"</span>])</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>muestras_urgentes <span class="op">=</span> deque()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tareas-adicionales" class="level3">
+<h3 class="anchored" data-anchor-id="tareas-adicionales">Tareas adicionales</h3>
+<ol start="5" type="1">
+<li><code>agregar_muestra(nombre, urgente=False)</code>
+<ul>
+<li>Si <code>urgente=True</code>, agrega a la cola de urgentes</li>
+<li>Si <code>urgente=False</code>, agrega a la cola normal</li>
+<li><strong>La alerta biológica debe contar en AMBAS colas</strong> (misma cepa puede estar en las dos)</li>
+</ul></li>
+<li><code>procesar_muestra()</code> (modificada)
+<ul>
+<li>Primero procesa muestras urgentes</li>
+<li>Si no hay urgentes, procesa normales</li>
+<li>Si ambas colas están vacías, muestra error</li>
+</ul></li>
+<li><code>mostrar_todas()</code>
+<ul>
+<li>Muestra ambas colas por separado</li>
+<li>Indica cuántas muestras hay en cada una</li>
+<li>Muestra el conteo total por tipo de virus</li>
+</ul></li>
+<li><code>contar_por_tipo()</code> (modificada)
+<ul>
+<li>Debe contar en ambas colas</li>
+<li>Retorna el conteo global de cada tipo</li>
+</ul></li>
+</ol>
+</section>
+<section id="ejemplo-de-uso-2" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-de-uso-2">Ejemplo de uso</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregar 4 tank normales y 3 tank urgentes</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    agregar_muestra(<span class="st">"virus_tank"</span>, urgente<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    agregar_muestra(<span class="st">"virus_tank"</span>, urgente<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># En la 3ra debe activarse la alerta (total: 4+3=7 tanks)</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>mostrar_todas()</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Salida:</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Urgentes (3): ['virus_tank', 'virus_tank', 'virus_tank']</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Normales (6): ['virus_tank', 'virus_witch', 'virus_tank', ...]</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Conteo por tipo: {'virus_tank': 7, 'virus_witch': 1}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="batalla-pokémon" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="batalla-pokémon"><span class="header-section-number">8</span> Batalla Pokémon</h2>
+<section id="contexto-7" class="level3">
+<h3 class="anchored" data-anchor-id="contexto-7">Contexto</h3>
+<p>Un gimnasio Pokémon necesita un sistema para gestionar los batallas entre equipos. Para lograrlo te contratan y te dan la siguiente infromación:</p>
+<ul>
+<li>Los entrenadores Pokémon pueden capturar nuevos Pokémones y agregarlos a su equipo</li>
+<li>Los entrenadores necesitan poder buscar un Pokémon específico por su nombre para usarlo en batalla</li>
+<li>Los entrenadores tienen que poder retirar del equipo a los Pokémon debilitados o que ya no quieren usar</li>
+<li>Los entrenadores deben poder revisar su equipo completo para decidir su estrategia</li>
+</ul>
+<p>Tu trabajo sera implementar la clase <code>Equipo</code>, para eso puedes usar la siguente clase ya implementada:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Pokemon:</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Representa un Pokémon individual"""</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nombre, tipo, nivel, max_hp, ataque):</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.nombre <span class="op">=</span> nombre</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tipo <span class="op">=</span> tipo</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.nivel <span class="op">=</span> nivel</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.max_hp <span class="op">=</span> max_hp</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hp <span class="op">=</span> max_hp  <span class="co"># Empieza con vida completa</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ataque <span class="op">=</span> ataque</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> recibir_daño(<span class="va">self</span>, puntos):</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Reduce HP, no puede ser negativo"""</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hp <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="va">self</span>.hp <span class="op">-</span> puntos)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> curar(<span class="va">self</span>, puntos):</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Aumenta HP, no puede superar el máximo"""</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hp <span class="op">=</span> <span class="bu">min</span>(<span class="va">self</span>.max_hp, <span class="va">self</span>.hp <span class="op">+</span> puntos)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> esta_debilitado(<span class="va">self</span>):</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Retorna True si el Pokémon no puede combatir"""</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.hp <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> subir_nivel(<span class="va">self</span>):</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Sube de nivel y aumenta stats"""</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.nivel <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.max_hp <span class="op">+=</span> <span class="dv">5</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hp <span class="op">=</span> <span class="va">self</span>.max_hp  <span class="co"># Se cura completamente</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>nombre<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>tipo<span class="sc">.</span>capitalize()<span class="sc">}</span><span class="ss">) Nv.</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>nivel<span class="sc">}</span><span class="ss"> [HP: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>hp<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>max_hp<span class="sc">}</span><span class="ss">]"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejemplo-de-uso-3" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-de-uso-3">Ejemplo de uso</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pikachu <span class="op">=</span> Pokemon(<span class="st">"Pikachu"</span>, <span class="st">"eléctrico"</span>, nivel<span class="op">=</span><span class="dv">25</span>, max_hp<span class="op">=</span><span class="dv">35</span>, ataque<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pikachu)  <span class="co"># Pikachu (Eléctrico) Nv.25 [HP: 35/35]</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>pikachu.recibir_daño(<span class="dv">10</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pikachu)  <span class="co"># Pikachu (Eléctrico) Nv.25 [HP: 25/35]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="requerimientos-para-implementar-la-clase-equipo" class="level3">
+<h3 class="anchored" data-anchor-id="requerimientos-para-implementar-la-clase-equipo">Requerimientos para implementar la clase <code>Equipo</code></h3>
+<p>Los maestros/as Pokémon necesitan gestionar su equipo de forma dinámica. Las operaciones que más realizan son:</p>
+<ol type="1">
+<li><strong>Agregar</strong> un Pokémon recién capturado (siempre al final)</li>
+<li><strong>Buscar</strong> un Pokémon específico por nombre</li>
+<li><strong>Eliminar</strong> un Pokémon específico del equipo</li>
+<li><strong>Listar</strong> todos los Pokémon para revisarlos</li>
+<li><strong>Eliminar todos los debilitados</strong> después de una batalla</li>
+<li><strong>Contar</strong> cuántos Pokémon tiene</li>
+</ol>
+<p><strong>Importante</strong></p>
+<ul>
+<li>No se te permite usar listas normales de Python con acceso por índice** (<code>lista[0]</code>, <code>lista[2]</code>, etc.)</li>
+<li>La clase debe ser eficiente para agregar y eliminar elementos</li>
+<li>Podes crear clases auxiliares si lo necesitas (como Nodo).</li>
+</ul>
+</section>
+<section id="métodos-necesarios" class="level3">
+<h3 class="anchored" data-anchor-id="métodos-necesarios">Métodos necesarios</h3>
+<ul>
+<li><code>__init__(nombre_entrenador)</code>. Inicializa un equipo vacío para el entrenador.</li>
+<li><code>agregar_pokemon(pokemon)</code>. Agrega un Pokémon al final del equipo.</li>
+<li><code>buscar(nombre)</code>. Busca un Pokémon por nombre. Retorna el objeto Pokemon si lo encuentra, <code>None</code> si no existe.</li>
+<li><code>eliminar(nombre)</code>. Elimina un Pokémon específico del equipo. Retorna <code>True</code> si lo eliminó, <code>False</code> si no existía. <strong>Importante:</strong> este metodo debe manejar correctamente los casos de elimnar un elemento que sea el primero, uno del medio o el ultimo.</li>
+<li><code>eliminar_debilitados()</code>. Elimina todos los Pokémon con HP igual a 0. Retorna una lista con los nombres de los eliminados.</li>
+<li><code>contar()</code>. Retorna cuántos Pokémon hay en el equipo.</li>
+<li><code>esta_vacio()</code>. Retorna <code>True</code> si no hay ningún Pokémon en el equipo.</li>
+<li><code>listar()</code>. Retorna una lista de cadenas de texto con todos los Pokémon en orden. Formato: <code>["1. Pikachu (Eléctrico) Nv.25 [HP: 35/35]", "2. Charmander...", ...]</code></li>
+<li><code>obtener_primero()</code>. Retorna el primer Pokémon del equipo sin eliminarlo. <code>None</code> si está vacío.</li>
+<li><code>obtener_mas_fuerte()</code>. Retorna el Pokémon con mayor ataque. <code>None</code> si está vacío.</li>
+<li><code>pokemon_por_tipo(tipo)</code>. Retorna una lista con todos los Pokémon de un tipo específico. Ejemplo: <code>pokemon_por_tipo("fuego")</code> → lista con Charmander, Vulpix, etc.</li>
+</ul>
+</section>
+<section id="ejemplo-de-uso-completo" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-de-uso-completo">Ejemplo de uso completo</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear Pokémon</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pikachu <span class="op">=</span> Pokemon(<span class="st">"Pikachu"</span>, <span class="st">"eléctrico"</span>, nivel<span class="op">=</span><span class="dv">25</span>, max_hp<span class="op">=</span><span class="dv">35</span>, ataque<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>charmander <span class="op">=</span> Pokemon(<span class="st">"Charmander"</span>, <span class="st">"fuego"</span>, nivel<span class="op">=</span><span class="dv">20</span>, max_hp<span class="op">=</span><span class="dv">39</span>, ataque<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>squirtle <span class="op">=</span> Pokemon(<span class="st">"Squirtle"</span>, <span class="st">"agua"</span>, nivel<span class="op">=</span><span class="dv">22</span>, max_hp<span class="op">=</span><span class="dv">44</span>, ataque<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>bulbasaur <span class="op">=</span> Pokemon(<span class="st">"Bulbasaur"</span>, <span class="st">"planta"</span>, nivel<span class="op">=</span><span class="dv">21</span>, max_hp<span class="op">=</span><span class="dv">45</span>, ataque<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>eevee <span class="op">=</span> Pokemon(<span class="st">"Eevee"</span>, <span class="st">"normal"</span>, nivel<span class="op">=</span><span class="dv">18</span>, max_hp<span class="op">=</span><span class="dv">55</span>, ataque<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear equipo</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>equipo_ash <span class="op">=</span> Equipo(<span class="st">"Ash"</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregar Pokémon</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>equipo_ash.agregar_pokemon(pikachu)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>equipo_ash.agregar_pokemon(charmander)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>equipo_ash.agregar_pokemon(squirtle)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>equipo_ash.agregar_pokemon(bulbasaur)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Pokémon en el equipo: </span><span class="sc">{</span>equipo_ash<span class="sc">.</span>contar()<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># 4</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Listar equipo</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== EQUIPO DE ASH ==="</span>)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> info <span class="kw">in</span> equipo_ash.listar():</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(info)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Buscar un Pokémon</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>encontrado <span class="op">=</span> equipo_ash.buscar(<span class="st">"Squirtle"</span>)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> encontrado:</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss"> Encontrado: </span><span class="sc">{</span>encontrado<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener el más fuerte</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>fuerte <span class="op">=</span> equipo_ash.obtener_mas_fuerte()</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">  Más fuerte: </span><span class="sc">{</span>fuerte<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Simular batalla</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== SIMULANDO BATALLA ==="</span>)</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>charmander.recibir_daño(<span class="dv">39</span>)  <span class="co"># Charmander se debilita</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>squirtle.recibir_daño(<span class="dv">20</span>)    <span class="co"># Squirtle pierde HP pero sobrevive</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Charmander debilitado: </span><span class="sc">{</span>charmander<span class="sc">.</span>esta_debilitado()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar debilitados</span></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>eliminados <span class="op">=</span> equipo_ash.eliminar_debilitados()</span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Pokémon eliminados: </span><span class="sc">{</span>eliminados<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># ['Charmander']</span></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver equipo actualizado</span></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Pokémon restantes: </span><span class="sc">{</span>equipo_ash<span class="sc">.</span>contar()<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># 3</span></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> info <span class="kw">in</span> equipo_ash.listar():</span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(info)</span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregar nuevo Pokémon</span></span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>equipo_ash.agregar_pokemon(eevee)</span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss"> Eevee agregado. Total: </span><span class="sc">{</span>equipo_ash<span class="sc">.</span>contar()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Buscar por tipo</span></span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>fuego <span class="op">=</span> equipo_ash.pokemon_por_tipo(<span class="st">"fuego"</span>)</span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Pokémon de fuego: </span><span class="sc">{</span>[<span class="bu">str</span>(p) <span class="cf">for</span> p <span class="kw">in</span> fuego]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar un Pokémon específico</span></span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>equipo_ash.eliminar(<span class="st">"Pikachu"</span>)</span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss"> Pikachu liberado. Restantes: </span><span class="sc">{</span>equipo_ash<span class="sc">.</span>contar()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Preguntas para reflexionar ANTES de programar</strong></p>
+<ol type="1">
+<li>¿Qué estructura me permite conectar elementos sin índices?</li>
+<li>¿Necesito crear una clase auxiliar (como Nodo)?</li>
+<li>Al eliminar un elemento, ¿qué debo hacer con los enlaces?
+<ul>
+<li>Pista: Debes “saltar” al elemento eliminado reconectando los que estaban antes y después</li>
+</ul></li>
+<li>¿Cómo recorro todos los elementos sin índices?
+<ul>
+<li>Pista: Empezas por el primero y seguis los enlaces hasta llegar al final</li>
+</ul></li>
+<li>¿Qué pasa si elimino el primer elemento? ¿Es diferente a eliminar del medio?
+<ul>
+<li>Pista: El primer elemento es especial, no tiene un elemento anterior</li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="uno-más-dos" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="uno-más-dos"><span class="header-section-number">9</span> Uno más dos</h2>
+<p>Proponer e implementar dos algoritmos que calculen la suma de los primeros <code>N</code> números naturales.</p>
+<ul>
+<li>Uno con complejidad <span class="math inline">\(O(N)\)</span> (lineal).</li>
+<li>Uno con complejidad <span class="math inline">\(O(1)\)</span> (constante).</li>
+</ul>
+</section>
+<section id="uno-más-tres" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="uno-más-tres"><span class="header-section-number">10</span> Uno más tres</h2>
+<p>Proponer e implementar dos algoritmos que calculen la suma de los primeros <code>N</code> números naturales <strong>impares</strong>.</p>
+<ul>
+<li>Uno con complejidad <span class="math inline">\(O(N)\)</span> (lineal).</li>
+<li>Uno con complejidad <span class="math inline">\(O(1)\)</span> (constante).</li>
+</ul>
+</section>
+<section id="más-y-más-datos" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="más-y-más-datos"><span class="header-section-number">11</span> Más y más datos</h2>
+<ol type="a">
+<li>Considere el siguiente código que calcula un acumulado de promedios para una lista de tamaño <code>N</code>.</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> promedios_acumulados(lista):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Ejemplo:  Entrada -&gt; [1, 2, 3, 5]</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">              Salida  -&gt; [1, 1.5, 2, 2.75]</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">len</span>(lista)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    promedios <span class="op">=</span> []</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, N<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        promedio <span class="op">=</span> <span class="bu">sum</span>(lista[:i]) <span class="op">/</span> i</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        promedios.append(promedio)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> promedios</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Determine la complejidad de este algoritmo.</p>
+<ol start="2" type="a">
+<li><p>Siendo <span class="math inline">\(\overline{X}_n\)</span> el promedio de los primeros <span class="math inline">\(n\)</span> números en la lista, vale la siguiente identidad recursiva: <span class="math display">\[
+\overline{X}_{n+1} = \frac{n \cdot \overline{X}_n + x_{n+1}}{n+1}
+\]</span></p>
+<p>donde <span class="math inline">\(x_{n+1}\)</span> es el elemento <span class="math inline">\((n+1)\)</span>-ésimo de la lista.</p></li>
+</ol>
+<p>Utilice este resultado para implementar un algoritmo más eficiente.</p>
+</section>
+<section id="el-regreso-de-fibonacci" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="el-regreso-de-fibonacci"><span class="header-section-number">12</span> El regreso de Fibonacci</h2>
+<p>En el <a href="../../practica/02_programacion_funcional/ejercicios.html#sucesión-de-fibonacci">Ejercicio 4 de la Unidad 2</a> se implementó una función recursiva para calcular el <span class="math inline">\(n\)</span>-ésimo número en la sucesión de Fibonacci.</p>
+<p>Esta implementación, sin embargo, es muy ineficiente. De hecho, se puede demostrar que su complejidad es <span class="math inline">\(O(2^n)\)</span> (exponencial).</p>
+<p>Utilice <a href="https://es.stackoverflow.com/questions/398370/qu%C3%A9-es-memoizaci%C3%B3n-y-c%C3%B3mo-se-usa">memoización</a> para mejorar la eficiencia del algoritmo recursivo. Este nuevo programa tendrá eficiencia lineal: <span class="math inline">\(O(n)\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Al inicio de la función se debe crear un diccionario vacío: <code>valores = {}</code>.</p>
+<p>Ante cada valor <span class="math inline">\(f(n)\)</span> de la sucesión que toque calcular, se deberá chequear si <span class="math inline">\(n\)</span> está entre las claves existentes del diccionario.</p>
+<ul>
+<li>Si no lo está, se deberá calcular recursivamente y luego almacenar su resultado: <code>valores[n] = f(n)</code>.</li>
+<li>Si lo está, se devolverá el valor <code>f(n)</code> sin efectuar más cálculos.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="vinieron-los-primos" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="vinieron-los-primos"><span class="header-section-number">13</span> Vinieron los primos</h2>
+<p>Implementar un algoritmo para determinar si un número natural <code>N</code> es primo, con complejidad <span class="math inline">\(O(\sqrt{N})\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Nótese que, dado un número natural <span class="math inline">\(N\)</span>, para verificar su primalidad es suficiente con verificar si es divisible por algún entero entre <span class="math inline">\(1\)</span> y <span class="math inline">\(\sqrt{N}\)</span>.</p>
+<p>Si fuese un número compuesto, jamás podría expresarse como el producto de dos números mayores a <span class="math inline">\(\sqrt{N}\)</span>.</p>
+<p><span class="math display">\[
+a &gt; \sqrt{N}, \quad b &gt; \sqrt{N} \implies a \cdot b &gt; \sqrt{N} \cdot \sqrt{N} = N
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="el-bueno-el-malo-y-el-eficiente" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="el-bueno-el-malo-y-el-eficiente"><span class="header-section-number">14</span> El bueno, el malo y el eficiente</h2>
+<p>Se tiene una lista con <code>N</code> números enteros. Se quiere saber si en la lista existe al menos un par de elementos tales que su suma sea impar.</p>
+<p>Proponga e implemente dos algoritmos para esta tarea:</p>
+<ul>
+<li>Uno con complejidad <span class="math inline">\(O(N^2)\)</span> (cuadrática).</li>
+<li>Uno con complejidad <span class="math inline">\(O(N)\)</span> (lineal).</li>
+</ul>
+</section>
+<section id="seamos-sinceros" class="level2" data-number="15">
+<h2 data-number="15" class="anchored" data-anchor-id="seamos-sinceros"><span class="header-section-number">15</span> Seamos sinceros</h2>
+<p>Utilizando el módulo <code>time</code>, compare el tiempo que tardan estos dos métodos para determinar si una lista incluye ceros:</p>
+<ul>
+<li>Un bucle <code>for</code> que evalúa cada elemento.</li>
+<li><code>0 in mi_lista</code></li>
+</ul>
+<p>¿Cuál es más rápido? ¿Qué complejidad parece tener cada uno?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Utilice la función <code>random.randint</code> de NumPy para generar un arreglo grande con números al azar.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Arreglo de números enteros aleatorios</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>mi_lista <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">10</span><span class="op">**</span>N, size<span class="op">=</span><span class="dv">10</span><span class="op">**</span>N)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Haga variar el valor de <code>N</code> entre 3 y 6 para ver cómo cambia el tiempo de cómputo en cada método.</p>
+<p>(En el <a href="../../practica/02_programacion_funcional/ejercicios.html#el-tiempo-vuela">Ejercicio 10 de la Unidad 2</a> se explica cómo usar el módulo <code>time</code>.)</p>
+</div>
+</div>
+</div>
+</section>
+<section id="seamos-originales" class="level2" data-number="16">
+<h2 data-number="16" class="anchored" data-anchor-id="seamos-originales"><span class="header-section-number">16</span> Seamos originales</h2>
+<p>Utilizando el módulo <code>time</code>, compare el tiempo que tardan estos dos métodos para remover duplicados de una lista:</p>
+<ul>
+<li>Conviertiendo la lista a <code>dict</code> y luego de nuevo a <code>list</code>.</li>
+<li>Conviertiendo la lista a <code>set</code> y luego de nuevo a <code>list</code>.</li>
+</ul>
+<p>¿Cuál es más rápido? ¿Qué complejidad parece tener cada uno?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>El primer método implica crear un diccionario a partir de una lista.</p>
+<p>Esto debe hacerse de forma tal que cada elemento en la lista pase a ser una clave, y a cada ella se le asigna un valor arbitrario (por ejemplo, <code>None</code>). De este modo, Python se encargará de que no haya claves duplicadas.</p>
+<p>Por último, se deberá tomar el conjunto de claves y convertirlo a una lista. Esto devolverá una lista similar a la original, pero sin duplicados.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="altas-dimensiones" class="level2" data-number="17">
+<h2 data-number="17" class="anchored" data-anchor-id="altas-dimensiones"><span class="header-section-number">17</span> Altas dimensiones</h2>
+<p>Implemente un algoritmo para multiplicar dos matrices de dimensión <code>N x N</code>.</p>
+<p>¿Qué complejidad tiene?</p>
+</section>
+<section id="mediana-complejidad" class="level2" data-number="18">
+<h2 data-number="18" class="anchored" data-anchor-id="mediana-complejidad"><span class="header-section-number">18</span> Mediana complejidad</h2>
+<p>Se tiene una lista desordenada con <code>2N+1</code> números distintos (es decir, la lista es de tamaño impar).</p>
+<p>Implemente un algoritmo <em>naive</em> para hallar la mediana. ¿Qué complejidad tiene?</p>
+<p>Luego, utilice un algoritmo de ordenamiento que permita resolver el problema de forma más eficiente.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Para una lista de tamaño <code>2N+1</code>, la mediana es el valor tal que <code>N</code> elementos son menores (o iguales) a él.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ee-unr\.github\.io\/programacion-2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../practica/04_estructuras_y_algoritmos/autoevaluacion.html" class="pagination-link" aria-label="🪞 Autoevaluación">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">🪞 Autoevaluación</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../practica/04_estructuras_y_algoritmos/problemas.html" class="pagination-link" aria-label="🧩 Problemas">
+        <span class="nav-page-text">🧩 Problemas</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Esta página es hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
