@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5" pages="8">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.2 Chrome/134.0.6998.205 Electron/35.3.0 Safari/537.36" version="27.0.2" pages="8">
   <diagram name="arreglo" id="qa0XRp8u9jiqYAByVobd">
     <mxGraphModel dx="1370" dy="843" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -58,7 +58,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="insercion_correcta" id="laxQIvN6K97VwtE6e5se">
-    <mxGraphModel dx="1370" dy="843" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="772" dy="548" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="tOYxvGSOlAkKyNLqM6g_-0" />
         <mxCell id="tOYxvGSOlAkKyNLqM6g_-1" parent="tOYxvGSOlAkKyNLqM6g_-0" />
@@ -74,13 +74,13 @@
         <mxCell id="tOYxvGSOlAkKyNLqM6g_-5" value="&lt;span style=&quot;color: rgb(77, 77, 77); font-family: &amp;quot;Cascadia Code&amp;quot;;&quot;&gt;&lt;font style=&quot;font-size: 36px;&quot;&gt;6&lt;/font&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#DFEAF2;" parent="tOYxvGSOlAkKyNLqM6g_-1" vertex="1">
           <mxGeometry x="200" y="320" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="fBSKmltZArLR9nBO3Wp8-0" value="&lt;font face=&quot;Cascadia Code&quot; color=&quot;#4d4d4d&quot;&gt;&lt;span style=&quot;font-size: 40px;&quot;&gt;75&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;dashed=1;dashPattern=8 8;" parent="tOYxvGSOlAkKyNLqM6g_-1" vertex="1">
+        <mxCell id="fBSKmltZArLR9nBO3Wp8-0" value="&lt;font face=&quot;Cascadia Code&quot; color=&quot;#4d4d4d&quot;&gt;&lt;span style=&quot;font-size: 40px;&quot;&gt;30&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;dashed=1;dashPattern=8 8;" parent="tOYxvGSOlAkKyNLqM6g_-1" vertex="1">
           <mxGeometry x="360" y="320" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="KuW30wzeDGKqWz-ygHan-0" value="&lt;font style=&quot;font-size: 22px;&quot;&gt;✅&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="tOYxvGSOlAkKyNLqM6g_-1" vertex="1">
           <mxGeometry x="370" y="410" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="ETU4eTcLUHwpj3Z_BU3N-0" value="" style="endArrow=none;html=1;rounded=0;strokeColor=none;" edge="1" parent="tOYxvGSOlAkKyNLqM6g_-1">
+        <mxCell id="ETU4eTcLUHwpj3Z_BU3N-0" value="" style="endArrow=none;html=1;rounded=0;strokeColor=none;" parent="tOYxvGSOlAkKyNLqM6g_-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="160" y="440" as="sourcePoint" />
             <mxPoint x="640" y="440" as="targetPoint" />
