@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../teoria/04_estructuras_y_algoritmos/02_estructuras_lineales.html" rel="next">
 <link href="../../teoria/03_oop/05_excepciones.html" rel="prev">
 <link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -357,6 +358,12 @@ window.Quarto = {
  <span class="menu-text">1 - ¿Por qué importan?</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_y_algoritmos/02_estructuras_lineales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Estructuras lineales</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -491,7 +498,7 @@ window.Quarto = {
 <p>Como en Python el índice comienza en 0, decimos que <code>"nueces"</code> está en el índice 0, <code>"almendras"</code> en el índice 1 y que <code>"castañas"</code> está en el índice 4.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo-con_indice.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+<p><img src="imgs/01/arreglo-con_indice.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
 </figure>
 </div>
 <section id="qué-tan-buena-es-una-estructura-de-datos" class="level4">
@@ -553,25 +560,25 @@ Viejos conocidos
 <p>Podemos imaginar la memoria como una gran colección de celdas numeradas (algunas vacías, otras con datos).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/memoria_layout-basico.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/memoria_layout-basico.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Cada celda tiene una dirección única.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/memoria_layout-con_direcciones.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/memoria_layout-con_direcciones.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Y cuando declaramos un arreglo, la computadora reserva un bloque contiguo de celdas para almacenarlo.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/memoria_layout-con_vector.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/memoria_layout-con_vector.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Así, si el arreglo ocupa cinco posiciones, el sistema asigna cinco direcciones consecutivas.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/memoria_layout-con_direcciones_resaltadas.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/memoria_layout-con_direcciones_resaltadas.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Luego, el procesador puede calcular la posición exacta del elemento <code>i</code> mediante una operación aritmética simple:</p>
@@ -581,7 +588,7 @@ Viejos conocidos
 <p>Cada índice indica la posición lógica del elemento dentro del arreglo, mientras que cada dirección representa la ubicación física de ese dato en la memoria RAM.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo-con_indice_y_direccion.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+<p><img src="imgs/01/arreglo-con_indice_y_direccion.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
 </figure>
 </div>
 <p>Por ejemplo, si queremos leer el valor en el índice 3, la computadora toma la dirección inicial (índice 0) y le suma 3, ya que las direcciones de memoria son consecutivas.</p>
@@ -606,7 +613,7 @@ Viejos conocidos
 <p>Si retomamos nuestro arreglo de frutos secos, la computadora no “ve” los nombres de los elementos, solo una secuencia de celdas con direcciones. Al comenzar la búsqueda, para la computadora, el arreglo podría verse de la siguiente manera.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_busqueda-paso_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_busqueda-paso_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Por lo tanto, para buscar un valor dentro del arreglo, la computadora no tiene otra opción que inspeccionar cada celda de la memoria, una por una.</p>
@@ -614,19 +621,19 @@ Viejos conocidos
 <p>Primero, la computadora revisa el índice 0:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_busqueda-paso_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_busqueda-paso_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Como el valor en el índice 0 es “nueces” y no “pistachos”, la computadora avanza al siguiente índice, tal como se muestra a continuación.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_busqueda-paso_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_busqueda-paso_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Hasta que al fin encontramos los tan buscados <code>"pistachos"</code> y ahora sabemos que se encuentran en el índice 2.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_busqueda-paso_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_busqueda-paso_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>En este punto, la computadora ya no necesita seguir revisando el resto del arreglo, porque encontró el valor que buscaba.</p>
@@ -645,7 +652,7 @@ Viejos conocidos
 <p>Una vez calculada esa posición, la computadora puede realizar la inserción en un único paso.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_insercion-al_final.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+<p><img src="imgs/01/arreglo_insercion-al_final.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
 </figure>
 </div>
 <p>Hay un detalle importante: cuando la computadora reservó memoria para el arreglo, asignó solo cinco celdas. Si agregamos un sexto elemento, puede ser necesario extender el arreglo, lo cual muchos lenguajes hacen automáticamente.</p>
@@ -653,37 +660,37 @@ Viejos conocidos
 <p>Por ejemplo, si queremos insertar <code>"pasas"</code> en el índice 2, el proceso sería así:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_insercion-al_medio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+<p><img src="imgs/01/arreglo_insercion-al_medio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
 </figure>
 </div>
 <p>Para hacerlo, debemos mover <code>"pistachos"</code>, <code>"maníes"</code> y <code>"castañas"</code> una posición a la derecha para hacer espacio a <code>"pasas"</code>.</p>
 <p>Esto requiere varios pasos: primero se mueve <code>"castañas"</code> una celda a la derecha, lo que libera un espacio a la derecha de <code>"maníes"</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_insercion-al_medio_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+<p><img src="imgs/01/arreglo_insercion-al_medio_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
 </figure>
 </div>
 <p>Luego, se mueve <code>"maníes"</code> a la derecha, dejando un espacio a la derecha de <code>"pistachos"</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_insercion-al_medio_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+<p><img src="imgs/01/arreglo_insercion-al_medio_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
 </figure>
 </div>
 <p>Por último, se mueve <code>"pistachos"</code> a la derecha y se genera el hueco donde se inserta el valor de <code>"pasas"</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_insercion-al_medio_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+<p><img src="imgs/01/arreglo_insercion-al_medio_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_insercion-al_medio_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+<p><img src="imgs/01/arreglo_insercion-al_medio_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
 </figure>
 </div>
 <p>Al final, se cuenta on un arreglo de longitud 6, donde <code>"pasas"</code> ocupa el índice 2.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_insercion-al_medio_5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+<p><img src="imgs/01/arreglo_insercion-al_medio_5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
 </figure>
 </div>
 <p>En este ejemplo la inserción tomó cuatro pasos: tres para mover datos y uno para agregar el nuevo valor.</p>
@@ -696,29 +703,29 @@ Viejos conocidos
 <p>Volviendo a nuestro ejemplo original, eliminemos el valor del índice 1, que corresponde a <code>"almendras"</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_eliminacion-al_medio_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+<p><img src="imgs/01/arreglo_eliminacion-al_medio_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 <p>Aunque la eliminación en sí toma solo un paso, deja una celda vacía en el medio del arreglo. Como un arreglo no puede tener huecos, es necesario mover los elementos <code>"pistachos"</code>, <code>"maníes"</code> y <code>"castañas"</code> una posición a la izquierda, lo que agrega pasos adicionales al proceso.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_eliminacion-al_medio_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+<p><img src="imgs/01/arreglo_eliminacion-al_medio_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_eliminacion-al_medio_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+<p><img src="imgs/01/arreglo_eliminacion-al_medio_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_eliminacion-al_medio_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+<p><img src="imgs/01/arreglo_eliminacion-al_medio_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 <p>Finalmente, el arreglo se encoje y pasa de tener 5 elementos a tener 4.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_eliminacion-al_medio_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+<p><img src="imgs/01/arreglo_eliminacion-al_medio_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
 </figure>
 </div>
 <p>En este ejemplo la eliminación toma cuatro pasos: uno para borrar el valor y tres para mover los datos y cerrar el espacio vacío.</p>
@@ -741,34 +748,34 @@ Viejos conocidos
 <p>Se inspeccionan los elementos del conjunto uno a uno, hasta que se encuentra el elemento a insertar o se terminar de recorrer el arreglo. Las siguientes imagenes representan el proceso en nuestro ejemplo:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_conjunto_insercion-paso_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_conjunto_insercion-paso_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_conjunto_insercion-paso_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_conjunto_insercion-paso_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_conjunto_insercion-paso_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_conjunto_insercion-paso_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_conjunto_insercion-paso_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_conjunto_insercion-paso_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_conjunto_insercion-paso_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_conjunto_insercion-paso_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Ahora que hemos buscado en todo el conjunto, sabemos con certeza que no contiene a <code>"Francisco"</code>.</p>
 <p>En este punto, podemos realizar la inserción sin problema. Y con eso llegamos al paso final:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_conjunto_insercion-paso_5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_conjunto_insercion-paso_5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Insertar un valor al final de un conjunto es el mejor caso posible, pero aun así requiere más pasos que en un arreglo.</p>
@@ -811,50 +818,50 @@ Contando pasos
 <p>Con un un arreglo ordenado no podemos insertar al final en nu solo paso, ya que podría resultar en un arreglo que no cumple el requisito de que los valores estén ordenados.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado-intento_insercion.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="imgs/01/arreglo_ordenado-intento_insercion.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>En un arreglo ordenado debemos insertar el <code>30</code> en el lugar correspondiente para que los valores sigan en orden ascendente, como se muestra debajo:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado-insercion_correcta.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="imgs/01/arreglo_ordenado-insercion_correcta.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>En la práctica, llevar a cabo esta inserción es más compleja que su simple enunciación. La computadora no puede “poner” el 30 en el lugar correcto en un solo paso. Primero debe encontrar dónde insertarlo y luego desplazar los demás valores para crear el espacio necesario.</p>
 <p>Veamos el proceso paso a paso, partiendo del arreglo ordenado original:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado-arreglo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="imgs/01/arreglo_ordenado-arreglo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>Primero verificamos el valor en el índice 0 para decidir si el número que queremos insertar, EL 30, debe ubicarse a su izquierda o a su derecha.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado-paso_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="imgs/01/arreglo_ordenado-paso_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>Como el 30 es mayor que 6, sabemos que deberá insertarse en alguna posición a su derecha. Cómo aún no sabemos en cuál posición exactamente, debemos revisar la siguiente celda.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado-paso_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="imgs/01/arreglo_ordenado-paso_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>Como el 30 también es mayor que el valor en la segunda posición, seguimos avanzando hacia la derecha.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado-paso_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="imgs/01/arreglo_ordenado-paso_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>En este punto, encontramos el valor 38, que es mayor que el 30 y, por lo tanto, sabemos que debemos insertar el 30 a su izquierda.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado-paso_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="imgs/01/arreglo_ordenado-paso_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>Para hacerlo, necesitamos desplazar los datos y dejar espacio para insertar el 30.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado-paso_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="imgs/01/arreglo_ordenado-paso_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
 </figure>
 </div>
 <p>Cuando insertamos en un arreglo ordenado, siempre debemos buscar primero la posición correcta antes de hacer la inserción. Esa búsqueda previa marca una diferencia importante respecto al arreglo clásico.</p>
@@ -899,39 +906,39 @@ Contando pasos
 <p>La computadora no sabe de antemano qué valor hay en cada posición, así que podemos representarlo de esta forma:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado_busqueda-paso_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_ordenado_busqueda-paso_0.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Se inspecciona el valor en la posición central:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado_busqueda-paso_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_ordenado_busqueda-paso_1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Como el valor encontrado es 11, podemos concluir que el 15 está a su derecha.</p>
 <p>Así eliminamos la mitad del arreglo: todas las casillas a la izquierda del 11 (incluida la del 11).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado_busqueda-paso_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_ordenado_busqueda-paso_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>A continuación es inspecciona el centro de la mitad que puede contener al valor buscado.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado_busqueda-paso_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_ordenado_busqueda-paso_3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Como el valor hallado es mayor a 15, inspeccionamos los valores a su izquierda.</p>
 <p>En este punto quedan dos valores posibles y elegimos arbitrariamente en el de la derecha:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado_busqueda-paso_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_ordenado_busqueda-paso_4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Nuevamente el valor hallado es mayor a 15, por lo que inspeccionamos la última celda posible. Si el valor <code>15</code> no se encuentra allí, entonces no está en el arreglo.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/arreglo_ordenado_busqueda-paso_5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+<p><img src="imgs/01/arreglo_ordenado_busqueda-paso_5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
 </figure>
 </div>
 <p>Esta vez, lo encontramos y podemos concluir que el 15 está en el arreglo y devolver su posición.</p>
@@ -1670,6 +1677,9 @@ Letra chica
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../teoria/04_estructuras_y_algoritmos/02_estructuras_lineales.html" class="pagination-link" aria-label="2 - Estructuras lineales">
+        <span class="nav-page-text">2 - Estructuras lineales</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

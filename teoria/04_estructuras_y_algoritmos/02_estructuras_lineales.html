@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2 - Estructuras lineales – Programación II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html" rel="prev">
+<link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-4aade81edb4d4197401d427d1d7808fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Programación II</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../informacion/programa.html"> 
+<span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../teoria/01_programacion_en_python/01_introduccion.html" aria-current="page"> 
+<span class="menu-text">Teoría</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../practica/01_programacion_en_python/ejercicios.html"> 
+<span class="menu-text">Práctica</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../trabajos_practicos/trabajo_grupal.html"> 
+<span class="menu-text">Trabajos Prácticos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../recursos/tutoriales/tutorial_01.html"> 
+<span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ee-unr/programacion-2"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html">U4 - Estructuras de Datos y Algoritmos</a></li><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_y_algoritmos/02_estructuras_lineales.html">2 - Estructuras lineales</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U1 - Programación en Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Introducción</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Funciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Ejecución condicional</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/04_colecciones_de_datos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Colecciones de datos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/05_ejecucion_repetitiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Ejecución repetitiva</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/06_uso_de_codigo_externo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 - Uso de código externo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/07_scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 - <em>Scripting</em></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/08_io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 - Lectura y escritura de archivos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U2 - Programación Funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/02_recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Recursión</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/03_funciones_de_orden_superior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Funciones de orden superior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Estrategias de evaluación 🧩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/05_generadores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Generadores 🧩</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U3 - Programación Orientada a Objetos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/02_encapsulamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Encapsulamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/03_herencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Herencia</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/04_polimorfismo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Polimorfismo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/05_excepciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Excepciones</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U4 - Estructuras de Datos y Algoritmos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - ¿Por qué importan?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_y_algoritmos/02_estructuras_lineales.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">2 - Estructuras lineales</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#pilas" id="toc-pilas" class="nav-link" data-scroll-target="#pilas">Pilas</a>
+  <ul class="collapse">
+  <li><a href="#lectura" id="toc-lectura" class="nav-link" data-scroll-target="#lectura">Lectura</a></li>
+  <li><a href="#inserción" id="toc-inserción" class="nav-link" data-scroll-target="#inserción">Inserción</a></li>
+  <li><a href="#eliminación" id="toc-eliminación" class="nav-link" data-scroll-target="#eliminación">Eliminación</a></li>
+  <li><a href="#implementación" id="toc-implementación" class="nav-link" data-scroll-target="#implementación">Implementación</a></li>
+  <li><a href="#aplicaciones" id="toc-aplicaciones" class="nav-link" data-scroll-target="#aplicaciones">Aplicaciones</a></li>
+  </ul></li>
+  <li><a href="#colas" id="toc-colas" class="nav-link" data-scroll-target="#colas">Colas</a>
+  <ul class="collapse">
+  <li><a href="#implementación-1" id="toc-implementación-1" class="nav-link" data-scroll-target="#implementación-1">Implementación</a></li>
+  <li><a href="#aplicaciones-1" id="toc-aplicaciones-1" class="nav-link" data-scroll-target="#aplicaciones-1">Aplicaciones</a></li>
+  <li><a href="#por-qué-usar-estructuras-de-datos-restringidas" id="toc-por-qué-usar-estructuras-de-datos-restringidas" class="nav-link" data-scroll-target="#por-qué-usar-estructuras-de-datos-restringidas">Por qué usar estructuras de datos restringidas</a></li>
+  </ul></li>
+  <li><a href="#listas-enlazadas" id="toc-listas-enlazadas" class="nav-link" data-scroll-target="#listas-enlazadas">Listas enlazadas</a>
+  <ul class="collapse">
+  <li><a href="#el-nodo" id="toc-el-nodo" class="nav-link" data-scroll-target="#el-nodo">El nodo</a></li>
+  <li><a href="#implementación-básica" id="toc-implementación-básica" class="nav-link" data-scroll-target="#implementación-básica">Implementación básica</a></li>
+  <li><a href="#lectura-1" id="toc-lectura-1" class="nav-link" data-scroll-target="#lectura-1">Lectura</a></li>
+  <li><a href="#búsqueda" id="toc-búsqueda" class="nav-link" data-scroll-target="#búsqueda">Búsqueda</a></li>
+  <li><a href="#inserción-1" id="toc-inserción-1" class="nav-link" data-scroll-target="#inserción-1">Inserción</a></li>
+  <li><a href="#eliminación-1" id="toc-eliminación-1" class="nav-link" data-scroll-target="#eliminación-1">Eliminación</a></li>
+  <li><a href="#enlazando-las-partes" id="toc-enlazando-las-partes" class="nav-link" data-scroll-target="#enlazando-las-partes">Enlazando las partes</a></li>
+  <li><a href="#análisis-de-la-eficiencia" id="toc-análisis-de-la-eficiencia" class="nav-link" data-scroll-target="#análisis-de-la-eficiencia">Análisis de la eficiencia</a></li>
+  </ul></li>
+  <li><a href="#listas-doblemente-enlazadas" id="toc-listas-doblemente-enlazadas" class="nav-link" data-scroll-target="#listas-doblemente-enlazadas">Listas doblemente enlazadas</a>
+  <ul class="collapse">
+  <li><a href="#aplicaciones-2" id="toc-aplicaciones-2" class="nav-link" data-scroll-target="#aplicaciones-2">Aplicaciones</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html">U4 - Estructuras de Datos y Algoritmos</a></li><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_y_algoritmos/02_estructuras_lineales.html">2 - Estructuras lineales</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">2 - Estructuras lineales</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>En el apunte anterior exploramos algunas estructuras de datos basadas en arreglos y analizamos su desempeño al realizar distintas operaciones.</p>
+<p>Sin embargo, el desempeño no es el único factor a considerar al elegir una estructura de datos. En muchos casos, se eligen ciertas estructuras porque permiten escribir un código más simple y fácil de leer.</p>
+<p>En este apunte nos enfocaremos en las siguientes estructuras:</p>
+<ul>
+<li>Pilas</li>
+<li>Colas</li>
+<li>Listas enlazadas</li>
+<li>Listas doblemente enlazadas</li>
+</ul>
+<p>Estas estructuras pertenecen a la categoría de <strong>estructuras lineales</strong>. Las estructuras de datos lineales son aquellas en las que los elementos están organizados uno detrás de otro, formando una secuencia. Cada elemento (excepto el primero y el último) tiene un predecesor y un sucesor.</p>
+<p>Además, aprenderemos a distinguir entre un <strong>tipo de dato abstracto</strong> y una <strong>estructura de datos concreta</strong>.</p>
+</section>
+<section id="pilas" class="level2">
+<h2 class="anchored" data-anchor-id="pilas">Pilas</h2>
+<p>Una pila es una colección de objetos con ciertas restricciones para su inserción y eliminación. Para entender su funcionamiento, podemos imaginar una pila de cajas como la siguiente:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pila_cajas.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="150"></p>
+</figure>
+</div>
+<p>La primera caja que se colocó en la pila es la roja, luego la amarilla, la verde y finalmente la naranja. Si quisiéramos leer el contenido de una caja o extraer una de ellas, no podríamos elegir una cualquiera: habría que empezar desde la parte superior, con la que fue agregada más recientemente. Del mismo modo, si quisiéramos insertar una nueva caja, también deberíamos hacerlo en la cima de la pila.</p>
+<p>En computación, se dice que la pila es una colección de objetos que se insertan y extraen siguiendo el principio <em>last-in</em>, <em>first-out</em> (LIFO), que significa que “el último en entrar es el primero en salir”.</p>
+<p>Podemos imaginar un brazo mecánico que permite leer, quitar o agregar cajas en la pila:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pila_cajas_brazo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>En la computadora, podríamos representar una pila de la siguiente manera:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pilas-0.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>donde cada caja representa un objeto en memoria. Como ninguna celda tiene propiedades especiales, utilizamos el mismo color para todas:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pilas-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<section id="lectura" class="level3">
+<h3 class="anchored" data-anchor-id="lectura">Lectura</h3>
+<p>Como ya adelantamos, solo es posible interactuar con el objeto en la cima de la pila. Por lo tanto, solo es posible leer el valor al inicio de la pila, independientemente de que se extraiga o no. Si quisieramos leer un valor posterior, primero deberíamos extraer los valores que están por encima de el.</p>
+</section>
+<section id="inserción" class="level3">
+<h3 class="anchored" data-anchor-id="inserción">Inserción</h3>
+<p>Para insertar un valor en la pila, también tenemos que respetar la restricción de que solo podemos modificarla desde la cima. Por lo tanto, si queremos agregar un elemento, tenemos que hacerlo encima de todos los otros elementos.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pilas-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pilas-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="eliminación" class="level3">
+<h3 class="anchored" data-anchor-id="eliminación">Eliminación</h3>
+<p>La eliminación de elementos de la pila también tiene que seguir su orden natural: solo podemos eliminar elementos en la cima.</p>
+<p>La siguiente figura representa la eliminación de <code>Objeto Y</code> de la pila.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pilas-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Y a continuación se representa la eliminación de múltiples elementos:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pilas-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="implementación" class="level3">
+<h3 class="anchored" data-anchor-id="implementación">Implementación</h3>
+<p>En la práctica, no existe una pila de celdas de memoria con la que trabajemos directamente. Formalmente, una pila es un tipo de dato abstracto que define un método para insertar objetos en la cima y otro para extraerlos desde la cima.</p>
+<p>Para utilizar una pila en un programa, necesitamos una implementación concreta de la misma, la cual se apoya en otras estructuras de datos.</p>
+<p>Una forma de implementar una pila es a partir de un arreglo al que se le imponen ciertas restricciones. Por ejemplo, podemos crear una clase <code>Pila</code> que, internamente, almacene los valores utilizando una lista de Python.</p>
+<p>Para entender la relación entre la pila y el arreglo subyacente, se puede imaginar que la pila se rota o se tumba horizontalmente. El elemento en la cima de la pila corresponderá al último elemento del arreglo, y la base de la pila al primer elemento del arreglo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pilas-horizontal-0.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Que solo interactuemos con la cima de pila implica que solo interactuamos con la cola del arreglo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pilas-horizontal-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Cuando insertamos un elemento, lo hacemos al final del arreglo, extendiendo su longitud:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pilas-horizontal-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Y cuando se elimina un elemento, también lo hacemos al final del arreglo, lo que reduce su longitud:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pilas-horizontal-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pilas-horizontal-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/pilas-horizontal-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Finalmente, tenemos nuestra implementación en Python:</p>
+<div id="8f85a43b" class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Pila:</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._datos <span class="op">=</span> []</span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-5" class="code-annotation-target"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> insertar(<span class="va">self</span>, element):</span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._datos.append(element)</span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-8" class="code-annotation-target"><a href="#annotated-cell-1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> extraer(<span class="va">self</span>):</span>
+<span id="annotated-cell-1-9"><a href="#annotated-cell-1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(<span class="va">self</span>._datos) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="annotated-cell-1-10"><a href="#annotated-cell-1-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>._datos.pop()</span>
+<span id="annotated-cell-1-11"><a href="#annotated-cell-1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="annotated-cell-1-12"><a href="#annotated-cell-1-12" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-1-13" class="code-annotation-target"><a href="#annotated-cell-1-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> leer(<span class="va">self</span>):</span>
+<span id="annotated-cell-1-14"><a href="#annotated-cell-1-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(<span class="va">self</span>._datos) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>._datos[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="annotated-cell-1-16"><a href="#annotated-cell-1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="annotated-cell-1-17"><a href="#annotated-cell-1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-1-18"><a href="#annotated-cell-1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="annotated-cell-1-19"><a href="#annotated-cell-1-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> vacia(<span class="va">self</span>):</span>
+<span id="annotated-cell-1-20"><a href="#annotated-cell-1-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>._datos) <span class="op">==</span> <span class="dv">0</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="1">Internamente, las pilas utilizan un arreglo “protegido” para almacenar los datos.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="5,6" data-code-annotation="2">Para insertar un elemento, solo se necesita el valor a agregar, no su posición, ya que siempre se incorpora en la cima de la pila (es decir, al final del arreglo interno).</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="8,9,10,11" data-code-annotation="3">Al extraer un elemento, tampoco se requiere indicar la posición, ya que siempre se remueve el último elemento ingresado, el que se encuentra en la cima de la pila.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="13,14,15,16" data-code-annotation="4">El método <code>leer</code> permite consultar el valor en la cima sin retirarlo.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="aplicaciones" class="level3">
+<h3 class="anchored" data-anchor-id="aplicaciones">Aplicaciones</h3>
+<section id="invertir-orden" class="level4">
+<h4 class="anchored" data-anchor-id="invertir-orden">Invertir orden</h4>
+<p>Gracias al protocolo LIFO, una pila puede servir para invertir el orden de los datos.</p>
+<p>Por ejemplo, si apilamos los valores 1, 2 y 3 en ese orden, al desapilarlos los obtendremos en orden inverso: 3, 2 y 1.</p>
+<p>Esta idea se puede usar en muchos casos. Por ejemplo, podríamos querer imprimir las líneas de un archivo en orden inverso para mostrar un conjunto de datos en orden descendente en lugar de ascendente.</p>
+<p>Para hacerlo, basta con leer cada línea, apilarla en la pila y luego imprimirlas en el orden en que se van desapilando.</p>
+<div id="39e0249b" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> invertir_archivo(origen, destino):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    pila <span class="op">=</span> Pila()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(origen) <span class="im">as</span> archivo_origen:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> linea <span class="kw">in</span> archivo_origen:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            pila.insertar(linea.rstrip(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(destino, <span class="st">"w"</span>) <span class="im">as</span> archivo_destino:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="kw">not</span> pila.vacia:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            archivo_destino.write(pila.extraer() <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Si tenemos el siguiente archivo con un extracto de la letra de Tu misterioso alguien de Miranda!:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>original.txt</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-filename="original.txt"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>¿Quién es tu nuevo amor?</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>¿Tu nueva ocupación?</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>¿Tu misterioso alguien?</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>y ejecutamos la función de esta manera:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>invertir_archivo(<span class="st">"original.txt"</span>, <span class="st">"invertido.txt"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Luego tenemos:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>original.txt</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="original.txt"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>¿Tu misterioso alguien?</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>¿Tu nueva ocupación?</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>¿Quién es tu nuevo amor?</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="verificar-de-paréntesis-y-corchetes" class="level4">
+<h4 class="anchored" data-anchor-id="verificar-de-paréntesis-y-corchetes">Verificar de paréntesis y corchetes</h4>
+<p>Otra aplicación de las pilas está relacionada con la verificación de paréntesis y corchetes en expresiones matemáticas. Estos símbolos se utilizan para agrupar partes de una expresión y, por lo general, para modificar el orden en que se evalúan los operadores.</p>
+<p>Para que una expresión sea válida, cada paréntesis (o corchete) que abre un grupo <code>(</code> debe tener su correspondiente cierre <code>)</code>. Sin embargo, un simple conteo de paréntesis no es suficiente: la siguiente expresión contiene la misma cantidad de paréntesis de apertura y de cierre, y aun así es incorrecta.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>1 +<span class="kw">)</span> <span class="kw">(</span>3 * 5(<span class="kw">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La función <code>verificar_agrupamientos</code> se vale de una pila para verificar que los paréntesis y corchetes se utilizan correctamente.</p>
+<div id="c6120151" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> verificar_agrupamientos(expr):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    apertura <span class="op">=</span> <span class="st">"(["</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    cierre <span class="op">=</span> <span class="st">")]"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    pila <span class="op">=</span> Pila()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> caracter <span class="kw">in</span> expr:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> caracter <span class="kw">in</span> apertura:</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>            pila.insertar(caracter)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> caracter <span class="kw">in</span> cierre:</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pila.vacia: <span class="co"># Nada con que emparejarlo</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> cierre.index(caracter) <span class="op">!=</span> apertura.index(pila.extraer()): <span class="co"># Mismatch</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pila.vacia</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La función recorre la secuencia original de izquierda a derecha utilizando una pila <code>pila</code> para facilitar la verificación de los símbolos de agrupación.</p>
+<p>Cada vez que se encuentra un símbolo de apertura, lo apilamos en <code>pila</code>. Y cuando se encuentra un símbolo de cierre, desapilamos un elemento de <code>pila</code> (si no está vacía) y verificamos que ambos símbolos formen un par válido.</p>
+<p>Si al llegar al final de la expresión la pila está vacía, significa que la expresión está correctamente balanceada. De lo contrario, debe haber quedado en la pila un símbolo de apertura sin su correspondiente cierre.</p>
+<div id="ed8c3e55" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>verificar_agrupamientos(<span class="st">"(3 + (4 * 5))"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="b984dac7" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>verificar_agrupamientos(<span class="st">"[3 + (4 * 5)]"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="27ac8a6c" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>verificar_agrupamientos(<span class="st">"(3 + (4 * 5)"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div id="519d901f" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>verificar_agrupamientos(<span class="st">"(3 + [(4 * 5)"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>False</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="colas" class="level2">
+<h2 class="anchored" data-anchor-id="colas">Colas</h2>
+<p>La cola es otra estructura de datos fundamental, un pariente cercano de la pila. Al igual que ella, la cola es una colección ordenada de objetos. Sin embargo, los objetos se insertan y se extraen siguiendo el principio <em>first in, first out</em> (FIFO), es decir, el primero en entrar es el primero en salir.</p>
+<p>Para familiarizarnos con esta estructura, podemos imaginar una fila de personas esperando para entrar a un banco, como se muestra en la imagen:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/cola_personas.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Los primeros en haber llegado son los primeros en entrar al banco, mientras que quienes llegan después se ubican al final de la cola y deben esperar a que ingresen quienes estan delante suyo para ingresar.</p>
+<p>Esta estructura tiene numerosas aplicaciones prácticas. En la vida real, restaurantes, tiendas, plataformas de ventas de entradas y otros procesan solicitudes siguiendo el principio FIFO. En los sistemas informáticos, como impresoras en red o servidores web, las peticiones también se atienden en orden de llegada. En todos estos casos, utilizar una cola es una forma natural y lógica de organizar las solicitudes.</p>
+<section id="implementación-1" class="level3">
+<h3 class="anchored" data-anchor-id="implementación-1">Implementación</h3>
+<p>Las colas son un tipo de dato abstracto, ya que definen cómo deben comportarse, pero no cómo se implementan. Para utilizarlas en un programa necesitamos una implementación concreta.</p>
+<p>Una forma de hacerlo es mediante un arreglo restringido, donde solo se puede extraer el elemento del frente (índice 0) y agregar nuevos elementos al final (índice n).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/colas-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Cuando se desea insertar un nuevo elemento en la estructura de datos, siempre se hace al final.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/colas-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Si luego se desea agregar otro elemento, simplemente se repite el proceso.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/colas-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Por el contrario, a la hora de extraer un elemento, solo se puede realizar desde el frente de la cola:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/colas-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/colas-6.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Una implementación en Python de la cola basada en arreglos es la siguiente:</p>
+<div id="5e4b8f15" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Cola:</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._datos <span class="op">=</span> []</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> insertar(<span class="va">self</span>, element): <span class="co"># enqueue</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._datos.append(element)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> extraer(<span class="va">self</span>): <span class="co"># dequeue</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(<span class="va">self</span>._datos) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>._datos.pop(<span class="dv">0</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> leer(<span class="va">self</span>):</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(<span class="va">self</span>._datos) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>._datos[<span class="dv">0</span>]</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> vacia(<span class="va">self</span>):</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>._datos) <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>):</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>._datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Del mismo modo que la clase <code>Pila</code>, la clase <code>Cola</code> utiliza un arreglo interno llamado <code>_datos</code> para almacenar los valores. También define métodos para insertar y extraer elementos, con la diferencia de que la extracción se realiza desde el frente y no desde la parte posterior, siguiendo el principio FIFO (<em>first in, first out</em>), es decir, el primero en entrar es el primero en salir.</p>
+</section>
+<section id="aplicaciones-1" class="level3">
+<h3 class="anchored" data-anchor-id="aplicaciones-1">Aplicaciones</h3>
+<section id="section" class="level4">
+<h4 class="anchored" data-anchor-id="section"></h4>
+</section>
+<section id="cola-de-impresión" class="level4">
+<h4 class="anchored" data-anchor-id="cola-de-impresión">Cola de impresión</h4>
+<div id="11776fbb" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>cola_impresion <span class="op">=</span> Cola()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>cola_impresion.insertar(<span class="st">"documento1.pdf"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>cola_impresion.insertar(<span class="st">"documento2.docx"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>cola_impresion.insertar(<span class="st">"documento3.xlsx"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="kw">not</span> cola_impresion.vacia:</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Imprimiendo </span><span class="sc">{</span>cola_impresion<span class="sc">.</span>extraer()<span class="sc">}</span><span class="ss">..."</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>cola_impresion.vacia</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Imprimiendo documento1.pdf...
+Imprimiendo documento2.docx...
+Imprimiendo documento3.xlsx...</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>True</code></pre>
+</div>
+</div>
+</section>
+<section id="atención-de-llamadas" class="level4">
+<h4 class="anchored" data-anchor-id="atención-de-llamadas">Atención de llamadas 🧩</h4>
+<p>El siguiente programa contiene un ejemplo más realista donde se usa una cola como estructura de datos para una gestionar llamadas en espera.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simular_centro_de_llamadas(tiempo_total<span class="op">=</span><span class="dv">15</span>):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    cola <span class="op">=</span> Cola()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    nombres <span class="op">=</span> [<span class="st">"Ana"</span>, <span class="st">"Bruno"</span>, <span class="st">"Carla"</span>, <span class="st">"Damián"</span>, <span class="st">"Eva"</span>]</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    tiempo_inicial <span class="op">=</span> time.time()</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> time.time() <span class="op">-</span> tiempo_inicial <span class="op">&lt;</span> tiempo_total:</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        accion <span class="op">=</span> random.random()</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        ahora <span class="op">=</span> datetime.now().strftime(<span class="st">"%H:%M:%S"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Simula la llegada de una llamada, con 50% de probabilidad</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> accion <span class="op">&lt;</span> <span class="fl">0.5</span>:</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>            llamada <span class="op">=</span> {<span class="st">"cliente"</span>: random.choice(nombres), <span class="st">"hora"</span>: ahora}</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>            cola.insertar(llamada)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"[</span><span class="sc">{</span>ahora<span class="sc">}</span><span class="ss">] Nueva llamada de </span><span class="sc">{</span>llamada[<span class="st">'cliente'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"    → Llamadas en espera: </span><span class="sc">{</span><span class="bu">len</span>(cola)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Simula la atención de una llamada, con 40% de probabilidad</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> accion <span class="op">&lt;</span> <span class="fl">0.9</span> <span class="kw">and</span> <span class="kw">not</span> cola.vacia:</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>            llamada <span class="op">=</span> cola.extraer()</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"[</span><span class="sc">{</span>ahora<span class="sc">}</span><span class="ss">]  Atendiendo a </span><span class="sc">{</span>llamada[<span class="st">'cliente'</span>]<span class="sc">}</span><span class="ss"> (recibida a las </span><span class="sc">{</span>llamada[<span class="st">'hora'</span>]<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"    → Quedan </span><span class="sc">{</span><span class="bu">len</span>(cola)<span class="sc">}</span><span class="ss"> llamadas en espera"</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Caso contrario, no se hace nada</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"[</span><span class="sc">{</span>ahora<span class="sc">}</span><span class="ss">] Sin actividad..."</span>)</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Controla la velocidad de la simulación</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>        time.sleep(random.uniform(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Fin de la simulación."</span>)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>    simular_centro_de_llamadas()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<center>
+<video controls="" width="700" preload="metadata" style="border-radius: 8px; max-width: 100%;">
+<source src="imgs/02/cola_llamadas.webm" type="video/webm">
+</video>
+</center>
+</section>
+</section>
+<section id="por-qué-usar-estructuras-de-datos-restringidas" class="level3">
+<h3 class="anchored" data-anchor-id="por-qué-usar-estructuras-de-datos-restringidas">Por qué usar estructuras de datos restringidas</h3>
+<p>Si para implementar una pila necesitamos restringir un arreglo, ¿por qué no usamos directamente un arreglo en vez de una pila?, ¿tiene alguna ventaja usar la pila?</p>
+<p>Las estructuras de datos restringidas, como la pila y la cola, son importantes por varias razones.</p>
+<p>En primer lugar, usar estructuras de datos restringidas ayuda a evitar errores. Por ejemplo, el algoritmo de verificación de paréntesis y corchetes solo funciona si los elementos se eliminan desde la cima. Si utilizaramos una lista de Python, podríamos cometer variados errores. En cambio, al usar una pila, que restringe las operaciones que podemos realizar, automáticamente se previenen usos incorrectos.</p>
+<p>En segundo lugar, estas estructuras restringidas proporcionan un modelo mental claro para resolver ciertos problemas. La pila introduce el principio <em>last in, first out</em> (LIFO), “el último en entrar es el primero en salir”, que puede aplicarse para resolver una amplia variedad de problemas, como el del verificador mencionado antes.</p>
+<p>Finalmente, la familiaridad con la naturaleza LIFO de las pilas hace que el código sea más legible y predecible para otros desarrolladores: cuando alguien ve una pila, sabe que el proceso sigue una lógica LIFO.</p>
+</section>
+</section>
+<section id="listas-enlazadas" class="level2">
+<h2 class="anchored" data-anchor-id="listas-enlazadas">Listas enlazadas</h2>
+<p>En esta sección vamos a introducir una estructura de datos llamada lista enlazada (<em>linked list)</em>, que constituye una alternativa a las secuencias basadas en arreglos, como la lista de Python. Tanto las listas enlazadas como los arreglos mantienen los elementos en un cierto orden, pero lo hacen siguiendo distintas estrategias.</p>
+<p>Por un lado, un arreglo almacena los datos en una región contigua de memoria, lo que permite acceder rápidamente a cualquier elemento mediante su índice y facilita operaciones matemáticas vectorizadas. Sin embargo, este diseño puede volver poco eficientes tareas como la inserción o la eliminación de elementos.</p>
+<p>Por el otro, una lista enlazada se apoya en una estructura llamada nodo, que le permite distribuir los distintos elementos de la secuencia en diferentes ubicaciones de la memoria y modificarlos o reorganizarlos con mayor flexibilidad.</p>
+<section id="el-nodo" class="level3">
+<h3 class="anchored" data-anchor-id="el-nodo">El nodo</h3>
+<p>En una lista enlazada, cada nodo representa un elemento de la lista. Aunque los nodos no se almacenen en posiciones contiguas de memoria, la computadora puede reconstruir el orden de la secuencia porque cada nodo no solo guarda un valor, sino que también una referencia al siguiente. Estos enlaces entre nodos son los que dan nombre a esta estructura de datos: lista enlazada.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/lista_enlazada-nodo.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Para representar estos nodos podemos crear una clase <code>Nodo</code>, que define objetos que contienen un atributo para el valor y otro para la referencia al siguiente nodo de la lista.</p>
+<div id="e6087f5c" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Nodo:</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, valor):</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.valor <span class="op">=</span> valor</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.siguiente <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__repr__</span>(<span class="va">self</span>):</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Nodo(</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>valor<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>Nodo(<span class="dv">75</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>Nodo(75)</code></pre>
+</div>
+</div>
+<p>Podemos instanciar múltiples nodos y enlazarlos entre sí, para luego recorrerlos de la forma en que lo haría una lista enlazada.</p>
+<div id="f5fdb641" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nodo1 <span class="op">=</span> Nodo(<span class="dv">1</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>nodo2 <span class="op">=</span> Nodo(<span class="dv">2</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>nodo3 <span class="op">=</span> Nodo(<span class="dv">3</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>nodo4 <span class="op">=</span> Nodo(<span class="dv">4</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Enlazar nodos</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>nodo1.siguiente <span class="op">=</span> nodo2</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>nodo2.siguiente <span class="op">=</span> nodo3</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>nodo3.siguiente <span class="op">=</span> nodo4  </span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Recorrer e imprimir la lista enlazada</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>actual <span class="op">=</span> nodo1</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> actual:</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(actual, end<span class="op">=</span><span class="st">" -&gt; "</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    actual <span class="op">=</span> actual.siguiente</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"None"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nodo(1) -&gt; Nodo(2) -&gt; Nodo(3) -&gt; Nodo(4) -&gt; None</code></pre>
+</div>
+</div>
+<p>Como se puede observar, aunque los nodos sean independientes y puedan almacenarse en cualquier lugar de la memoria, los enlaces entre ellos permiten construir una secuencia ordenada.</p>
+</section>
+<section id="implementación-básica" class="level3">
+<h3 class="anchored" data-anchor-id="implementación-básica">Implementación básica</h3>
+<p>Lo único que se necesita para implementar una lista enlazada a partir de un conjunto de nodos es la dirección de memoria donde comienza la lista enlazada, es decir, donde se ubica el primer nodo. Como cada nodo guarda un enlace al nodo siguiente, basta con seguir esos enlaces uno a uno para reconstruir toda la secuencia.</p>
+<div id="aada2d03" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ListaEnlazada:</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, primer_nodo<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.primer_nodo <span class="op">=</span> primer_nodo</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> ListaEnlazada(nodo1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>El diagrama de abajo representa la lista enlazada que acabamos de crear. Cada nodo contiene un valor y una referencia al siguiente nodo en la secuencia. Estas referencias son los enlaces que conectan los nodos y dan forma a la estructura.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/lista_enlazada-lista-enlazada.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>El segundo diagrama muestra cómo se vería esa misma lista en la memoria. Los valores resaltados en rojo representan los nodos, que, como puede observarse, se encuentran dispersos en distintas ubicaciones.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/lista_enlazada-memoria-layout.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="lectura-1" class="level3">
+<h3 class="anchored" data-anchor-id="lectura-1">Lectura</h3>
+<p>Dada una dirección de memoria, la lectura es una operación de tiempo constante, <span class="math inline">\(O(1)\)</span>. No importa en qué lugar de la memoria se encuentre esa dirección, la lectura siempre tarda lo mismo.</p>
+<p>Cuando trabajamos con un arreglo contiguo, vimos que podíamos determinar la dirección de cualquier elemento a partir de la dirección base y el índice solicitado. En cambio, en una lista enlazada, los nodos no están almacenados contiguamente en memoria, por lo que ya no podemos usar esa estrategia.</p>
+<p>Supongamos que queremos leer el valor en el índice 3 de una lista enlazada. Nuestro programa solo conoce la dirección del primer nodo de la secuencia. Para ubicar el nodo en el índice 3, debe recorrer la lista pasando por todos los nodos intermedios, saltando de uno a otro a través de sus enlaces, hasta llegar al nodo correspondiente y devolver su valor.</p>
+<p>Gráficamente, el proceso se ve de la siguiente manera:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/lista_enlazada-lectura.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Si tenemos una lista enlazada de <span class="math inline">\(N\)</span> elementos y queremos leer el elemento en la última posición, la operación nos llevará <span class="math inline">\(N\)</span> pasos. Por lo tanto, a diferencia de la lectura en un arreglo contiguo, que es de orden <span class="math inline">\(O(1)\)</span>, la lectura en una lista enlazada es de orden <span class="math inline">\(O(N)\)</span>.</p>
+<p>Pero no nos desmotivemos, no son todas pálidas con esta estructura de datos. Así como presenta esta limitación, pronto descubriremos también sus puntos fuertes.</p>
+<p>Mientras tanto, concluimos la sección con una implementación en Python del método de lectura.</p>
+<div class="sourceCode" id="annotated-cell-18"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-18-1"><a href="#annotated-cell-18-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> leer(<span class="va">self</span>, indice):</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-18-2" class="code-annotation-target"><a href="#annotated-cell-18-2" aria-hidden="true" tabindex="-1"></a>        nodo_actual <span class="op">=</span> <span class="va">self</span>.primer_nodo</span>
+<span id="annotated-cell-18-3"><a href="#annotated-cell-18-3" aria-hidden="true" tabindex="-1"></a>        indice_actual <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-18-4"><a href="#annotated-cell-18-4" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-18-5" class="code-annotation-target"><a href="#annotated-cell-18-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> indice_actual <span class="op">&lt;</span> indice:</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-18-6" class="code-annotation-target"><a href="#annotated-cell-18-6" aria-hidden="true" tabindex="-1"></a>            nodo_actual <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-18-7"><a href="#annotated-cell-18-7" aria-hidden="true" tabindex="-1"></a>            indice_actual <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="annotated-cell-18-8"><a href="#annotated-cell-18-8" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-18-9" class="code-annotation-target"><a href="#annotated-cell-18-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> nodo_actual <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="annotated-cell-18-10"><a href="#annotated-cell-18-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="va">None</span></span>
+<span id="annotated-cell-18-11"><a href="#annotated-cell-18-11" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-18" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-18-12" class="code-annotation-target"><a href="#annotated-cell-18-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> nodo_actual.valor</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-18" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-18" data-code-lines="2,3" data-code-annotation="1">Se comienza a recorrer la lista desde el primer nodo, que se encuentra en el índice 0.</span>
+</dd>
+<dt data-target-cell="annotated-cell-18" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-18" data-code-lines="5" data-code-annotation="2">Se recorre la lista enlazada hasta llegar al índice deseado.</span>
+</dd>
+<dt data-target-cell="annotated-cell-18" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-18" data-code-lines="6,7" data-code-annotation="3">En cada paso, se avanza nodo a nodo, accediendo al siguiente e incrementando el valor del índice.</span>
+</dd>
+<dt data-target-cell="annotated-cell-18" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-18" data-code-lines="9,10" data-code-annotation="4">Si en algún momento el nodo obtenido es <code>None</code>, significa que la lista no tiene tantos elementos como el índice solicitado. En ese caso se devuelve <code>None</code>, aunque también podría lanzarse un <code>IndexError</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-18" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-18" data-code-lines="12" data-code-annotation="5">En este punto se sabe que se ha llegado al nodo del índice solicitado, y se devuelve su valor.</span>
+</dd>
+</dl>
+</section>
+<section id="búsqueda" class="level3">
+<h3 class="anchored" data-anchor-id="búsqueda">Búsqueda</h3>
+<p>Ya sabemos que la búsqueda es una operación estrechamente relacionada con la lectura: en lugar de tomar un índice y devolver un valor, toma un valor y devuelve su índice (si es que el valor se encuentra en la secuencia).</p>
+<p>Si trabajamos con un arreglo contiguo, la búsqueda lineal es de orden <span class="math inline">\(O(N)\)</span>. En una lista enlazada, la búsqueda también es de orden <span class="math inline">\(O(N)\)</span>, ya que el proceso es similar al de la lectura.</p>
+<p>La búsqueda se comienza explorando el primer nodo, con un acumulador de índice inicializado en 0. En cada paso, se compara el valor del nodo con el valor buscado:</p>
+<ul>
+<li>Si son distintos, se avanza al siguiente nodo y se incrementa el acumulador.</li>
+<li>Si son iguales, se devuelve el valor del índice.</li>
+</ul>
+<p>Si no existe un siguiente nodo, es decir, si se llega al final de la lista, significa que el valor buscado no se encuentra en la secuencia.</p>
+<p>El proceso se puede representar de la siguiente manera:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/lista_enlazada-busqueda.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Una implementación para el método de búsqueda en nuestra clase es la siguiente:</p>
+<div class="sourceCode" id="annotated-cell-19"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-19-1"><a href="#annotated-cell-19-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> buscar(<span class="va">self</span>, valor):</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-19-2" class="code-annotation-target"><a href="#annotated-cell-19-2" aria-hidden="true" tabindex="-1"></a>        nodo_actual <span class="op">=</span> <span class="va">self</span>.primer_nodo</span>
+<span id="annotated-cell-19-3"><a href="#annotated-cell-19-3" aria-hidden="true" tabindex="-1"></a>        indice_actual <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-19-4"><a href="#annotated-cell-19-4" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-19-5" class="code-annotation-target"><a href="#annotated-cell-19-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-19-6" class="code-annotation-target"><a href="#annotated-cell-19-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> nodo_actual.valor <span class="op">==</span> valor:</span>
+<span id="annotated-cell-19-7"><a href="#annotated-cell-19-7" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> indice_actual</span>
+<span id="annotated-cell-19-8"><a href="#annotated-cell-19-8" aria-hidden="true" tabindex="-1"></a>            nodo_actual <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-19-9"><a href="#annotated-cell-19-9" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-19-10" class="code-annotation-target"><a href="#annotated-cell-19-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> nodo_actual <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="annotated-cell-19-11"><a href="#annotated-cell-19-11" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="annotated-cell-19-12"><a href="#annotated-cell-19-12" aria-hidden="true" tabindex="-1"></a>            indice_actual <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="annotated-cell-19-13"><a href="#annotated-cell-19-13" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-19-14" class="code-annotation-target"><a href="#annotated-cell-19-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="2,3" data-code-annotation="1">Se inicia el recorrido desde el primer nodo de la lista, comenzando con el índice 0.</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="5" data-code-annotation="2">Se itera hasta que el bloque ejecute un <code>return</code> o un <code>break</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="6,7,8" data-code-annotation="3">En cada iteración, se compara el valor almacenado en el nodo actual con el valor buscado. Si el valor coincide, se devuelve el índice correspondiente y la búsqueda termina. Si no coincide, se avanza al siguiente nodo.</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="10,11,12" data-code-annotation="4">Si el siguiente nodo es <code>None</code>, significa que se llegó al final de la lista sin encontrar el valor, se termina el bucle. Caso contrario, se incrementa el índice en 1 y se ejecuta el bucle desde el iniciio.</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-19" data-code-lines="14" data-code-annotation="5">En este punto se sabe que el valor no se encuentra en la lista y se devuelve <code>None</code>. Podría lanzarse un <code>ValueError</code>.</span>
+</dd>
+</dl>
+</section>
+<section id="inserción-1" class="level3">
+<h3 class="anchored" data-anchor-id="inserción-1">Inserción</h3>
+<p>Hasta ahora, el desempeño de las listas enlazadas es igual o peor que el de un arreglo contiguo. Son menos eficientes para leer e igual de eficientes para buscar.</p>
+<p>Sin embargo, cuando consideramos la inserción, nuestra percepción sobre esta estructura comienza a cambiar. En un arreglo contiguo, el peor escenario ocurre al insertar al principio, ya que es necesario desplazar todos los elementos una celda a la derecha. En cambio, en una lista enlazada, insertar un elemento al inicio requiere un solo paso, por lo que es una operación de orden <span class="math inline">\(O(1)\)</span>.</p>
+<p>Para insertar un elemento al inicio de una lista enlazada, solo es necesario crear un nuevo nodo y enlazarlo con el nodo que era el primero antes de la inserción. Además, debemos actualizar la referencia al primer nodo dentro del objeto de tipo <code>ListaEnlazada</code> para que apunte al nuevo nodo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/lista_enlazada-insercion-inicio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Si se desea insertar un elemento en una posición interna de la lista, en teoría la operación de inserción en sí misma lleva solo un paso, ya que no es necesario mover elementos, solo se requiere actualizar los enlaces entre nodos.</p>
+<p>El siguiente diagrama muestra la inserción del valor 2.5 entre el 2 y el 3 en nuestra lista enlazada. Se crea un nuevo nodo que apunta a la ubicación del tercer elemento y se modifica el enlace del segundo elemento para que apunte al nuevo nodo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/lista_enlazada-insercion-medio-0.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Sin embargo, antes de poder realizar este cambio de enlaces, es necesario encontrar los nodos involucrados, lo que requiere recorrer la lista desde el inicio. Si queremos insertar el valor 2.5 en el índice 2, es necesario realizar la búsqueda que describe el diagrama debajo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/lista_enlazada-insercion-medio-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Una vez identificados los nodos involucrados, se actualizan sus enlaces. La inserción no requiere mover valores en memoria, pero sí es necesario recorrer la lista desde el principio para los nodos que deben ser actualizados.</p>
+<p>Luego de la inserción, los elementos de la lista quedan distribuidos en memoria como se muestra en el siguiente diagrama:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/lista_enlazada-memoria-layout-post-insercion-medio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Finalmente, el peor de los escenarios se da cuando se desea insertar un elemento al final de la lista. Para ello hay que atravesar <span class="math inline">\(N\)</span> elementos hasta encontrar el último. Una vez allí, se actualiza su enlace para que apunte a la dirección del nodo creado para el nuevo valor.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/lista_enlazada-insercion-final.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>El método de inserción para nuestra clase <code>ListaEnlazada</code> es el siguiente:</p>
+<div class="sourceCode" id="annotated-cell-20"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-20-1"><a href="#annotated-cell-20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> insertar(<span class="va">self</span>, indice, valor):</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-20-2" class="code-annotation-target"><a href="#annotated-cell-20-2" aria-hidden="true" tabindex="-1"></a>    nodo_nuevo <span class="op">=</span> Nodo(valor)</span>
+<span id="annotated-cell-20-3"><a href="#annotated-cell-20-3" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-20-4" class="code-annotation-target"><a href="#annotated-cell-20-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> indice <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="annotated-cell-20-5"><a href="#annotated-cell-20-5" aria-hidden="true" tabindex="-1"></a>        nodo_nuevo.siguiente <span class="op">=</span> <span class="va">self</span>.primer_nodo</span>
+<span id="annotated-cell-20-6"><a href="#annotated-cell-20-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.primer_nodo <span class="op">=</span> nodo_nuevo</span>
+<span id="annotated-cell-20-7"><a href="#annotated-cell-20-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="annotated-cell-20-8"><a href="#annotated-cell-20-8" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-20-9" class="code-annotation-target"><a href="#annotated-cell-20-9" aria-hidden="true" tabindex="-1"></a>    nodo_actual <span class="op">=</span> <span class="va">self</span>.primer_nodo</span>
+<span id="annotated-cell-20-10"><a href="#annotated-cell-20-10" aria-hidden="true" tabindex="-1"></a>    indice_actual <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-20-11"><a href="#annotated-cell-20-11" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-20-12" class="code-annotation-target"><a href="#annotated-cell-20-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> indice_actual <span class="op">&lt;</span> (indice <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="annotated-cell-20-13"><a href="#annotated-cell-20-13" aria-hidden="true" tabindex="-1"></a>        nodo_actual <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-20-14"><a href="#annotated-cell-20-14" aria-hidden="true" tabindex="-1"></a>        indice_actual <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="annotated-cell-20-15"><a href="#annotated-cell-20-15" aria-hidden="true" tabindex="-1"></a>        nodo_nuevo.siguiente <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-20-16"><a href="#annotated-cell-20-16" aria-hidden="true" tabindex="-1"></a>        nodo_actual.siguiente <span class="op">=</span> nodo_nuevo</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-20" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-20" data-code-lines="2" data-code-annotation="1">Se crea un nuevo nodo con el valor recibido.</span>
+</dd>
+<dt data-target-cell="annotated-cell-20" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-20" data-code-lines="4,5,6,7" data-code-annotation="2">Si el índice es 0, significa que el nuevo nodo debe insertarse al inicio de la lista. En ese caso, se enlaza el nuevo nodo al antiguo primer nodo y el nuevo nodo se convierte en el primer nodo de la lista</span>
+</dd>
+<dt data-target-cell="annotated-cell-20" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-20" data-code-lines="9,10" data-code-annotation="3">Si no se trata del primer nodo, se inicia un recorrido desde el comienzo de la lista, con el índice actual igual a 0.</span>
+</dd>
+<dt data-target-cell="annotated-cell-20" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-20" data-code-lines="12,13,14,15,16" data-code-annotation="4">Se avanza nodo a nodo hasta llegar al nodo anterior a la posición donde se desea insertar. Una vez allí, se ajustan las referencias: el nuevo nodo apunta al siguiente del nodo actual, y el nodo actual pasa a apuntar al nuevo nodo.</span>
+</dd>
+</dl>
+</section>
+<section id="eliminación-1" class="level3">
+<h3 class="anchored" data-anchor-id="eliminación-1">Eliminación</h3>
+<p>En una lista enlazada, la eliminación tiene mucho en común con la inserción. Primero, eliminar un elemento no requiere mover valores en memoria, sino simplemente actualizar los enlaces entre nodos. Segundo, la eliminación al inicio de la lista es muy eficiente; basta con hacer que <code>primer_nodo</code> apunte al segundo nodo. Por último, cuando la eliminación no ocurre al principio, es necesario recorrer la lista hasta encontrar los nodos cuyos enlaces deben modificarse.</p>
+<p>El siguiente diagrama muestra la eliminación de un nodo intermedio en la secuencia. Para realizarla se cambia el enlace del nodo anterior para que apunte al nodo siguiente. Opcionalmente, puede eliminarse también el enlace del nodo que fue removido.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/lista_enlazada-eliminacion-medio.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>En Python, tenemos:</p>
+<div class="sourceCode" id="annotated-cell-21"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-21-1"><a href="#annotated-cell-21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eliminar(<span class="va">self</span>, indice):</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-21-2" class="code-annotation-target"><a href="#annotated-cell-21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> indice <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="annotated-cell-21-3"><a href="#annotated-cell-21-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.primer_nodo <span class="op">=</span> <span class="va">self</span>.primer_nodo.siguiente</span>
+<span id="annotated-cell-21-4"><a href="#annotated-cell-21-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="annotated-cell-21-5"><a href="#annotated-cell-21-5" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-21-6" class="code-annotation-target"><a href="#annotated-cell-21-6" aria-hidden="true" tabindex="-1"></a>    nodo_actual <span class="op">=</span> <span class="va">self</span>.primer_nodo</span>
+<span id="annotated-cell-21-7"><a href="#annotated-cell-21-7" aria-hidden="true" tabindex="-1"></a>    indice_actual <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-21-8"><a href="#annotated-cell-21-8" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-21-9" class="code-annotation-target"><a href="#annotated-cell-21-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> indice_actual <span class="op">&lt;</span> (indice <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="annotated-cell-21-10"><a href="#annotated-cell-21-10" aria-hidden="true" tabindex="-1"></a>        nodo_actual <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-21-11"><a href="#annotated-cell-21-11" aria-hidden="true" tabindex="-1"></a>        indice_actual <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="annotated-cell-21-12"><a href="#annotated-cell-21-12" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-21" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-21-13" class="code-annotation-target"><a href="#annotated-cell-21-13" aria-hidden="true" tabindex="-1"></a>    nodo_siguiente_al_eliminado <span class="op">=</span> nodo_actual.siguiente.siguiente</span>
+<span id="annotated-cell-21-14"><a href="#annotated-cell-21-14" aria-hidden="true" tabindex="-1"></a>    nodo_actual.siguiente <span class="op">=</span> nodo_siguiente_al_eliminado</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-21" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-21" data-code-lines="2,3,4" data-code-annotation="1">Si el índice es 0, significa que se debe eliminar el primer nodo de la lista. En ese caso, solo es necesario actualizar la referencia <code>primer_nodo</code> para que apunte al segundo nodo, descartando así el primero.</span>
+</dd>
+<dt data-target-cell="annotated-cell-21" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-21" data-code-lines="6,7" data-code-annotation="2">Si no se trata del primer nodo, se inicia el recorrido desde el comienzo de la lista, con el índice actual igual a 0.</span>
+</dd>
+<dt data-target-cell="annotated-cell-21" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-21" data-code-lines="9,10,11" data-code-annotation="3">Se avanza nodo a nodo hasta llegar al nodo anterior al que se desea eliminar.</span>
+</dd>
+<dt data-target-cell="annotated-cell-21" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-21" data-code-lines="13,14" data-code-annotation="4">Una vez allí, se actualizan las referencias para que el nodo actual apunte al nodo siguiente del que será eliminado, de modo que el nodo en la posición indicada quede desconectado de la lista.</span>
+</dd>
+</dl>
+</section>
+<section id="enlazando-las-partes" class="level3">
+<h3 class="anchored" data-anchor-id="enlazando-las-partes">Enlazando las partes</h3>
+<p>Si juntamos todos los métodos definidos, podemos reimplementar nuestra lista enlazada junto a todas las funcionalidades necesarias.</p>
+<div id="09a40d59" class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-22"><pre class="sourceCode python code-annotation-code code-with-copy"><code class="sourceCode python"><span id="annotated-cell-22-1"><a href="#annotated-cell-22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ListaEnlazada:</span>
+<span id="annotated-cell-22-2"><a href="#annotated-cell-22-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, primer_nodo<span class="op">=</span><span class="va">None</span>):</span>
+<span id="annotated-cell-22-3"><a href="#annotated-cell-22-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.primer_nodo <span class="op">=</span> primer_nodo</span>
+<span id="annotated-cell-22-4"><a href="#annotated-cell-22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-5"><a href="#annotated-cell-22-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> leer(<span class="va">self</span>, indice):</span>
+<span id="annotated-cell-22-6"><a href="#annotated-cell-22-6" aria-hidden="true" tabindex="-1"></a>        nodo_actual <span class="op">=</span> <span class="va">self</span>.primer_nodo</span>
+<span id="annotated-cell-22-7"><a href="#annotated-cell-22-7" aria-hidden="true" tabindex="-1"></a>        indice_actual <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-22-8"><a href="#annotated-cell-22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-9"><a href="#annotated-cell-22-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> indice_actual <span class="op">&lt;</span> indice:</span>
+<span id="annotated-cell-22-10"><a href="#annotated-cell-22-10" aria-hidden="true" tabindex="-1"></a>            nodo_actual <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-22-11"><a href="#annotated-cell-22-11" aria-hidden="true" tabindex="-1"></a>            indice_actual <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="annotated-cell-22-12"><a href="#annotated-cell-22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-13"><a href="#annotated-cell-22-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> nodo_actual <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="annotated-cell-22-14"><a href="#annotated-cell-22-14" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="va">None</span></span>
+<span id="annotated-cell-22-15"><a href="#annotated-cell-22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-16"><a href="#annotated-cell-22-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> nodo_actual.valor</span>
+<span id="annotated-cell-22-17"><a href="#annotated-cell-22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-18"><a href="#annotated-cell-22-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> buscar(<span class="va">self</span>, valor):</span>
+<span id="annotated-cell-22-19"><a href="#annotated-cell-22-19" aria-hidden="true" tabindex="-1"></a>        nodo_actual <span class="op">=</span> <span class="va">self</span>.primer_nodo</span>
+<span id="annotated-cell-22-20"><a href="#annotated-cell-22-20" aria-hidden="true" tabindex="-1"></a>        indice_actual <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-22-21"><a href="#annotated-cell-22-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-22"><a href="#annotated-cell-22-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-22-23"><a href="#annotated-cell-22-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> nodo_actual.valor <span class="op">==</span> valor:</span>
+<span id="annotated-cell-22-24"><a href="#annotated-cell-22-24" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> indice_actual</span>
+<span id="annotated-cell-22-25"><a href="#annotated-cell-22-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-26"><a href="#annotated-cell-22-26" aria-hidden="true" tabindex="-1"></a>            nodo_actual <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-22-27"><a href="#annotated-cell-22-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> nodo_actual <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="annotated-cell-22-28"><a href="#annotated-cell-22-28" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="annotated-cell-22-29"><a href="#annotated-cell-22-29" aria-hidden="true" tabindex="-1"></a>            indice_actual <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="annotated-cell-22-30"><a href="#annotated-cell-22-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-31"><a href="#annotated-cell-22-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="annotated-cell-22-32"><a href="#annotated-cell-22-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-33"><a href="#annotated-cell-22-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> insertar(<span class="va">self</span>, indice, valor):</span>
+<span id="annotated-cell-22-34"><a href="#annotated-cell-22-34" aria-hidden="true" tabindex="-1"></a>        nodo_nuevo <span class="op">=</span> Nodo(valor)</span>
+<span id="annotated-cell-22-35"><a href="#annotated-cell-22-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-36"><a href="#annotated-cell-22-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> indice <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="annotated-cell-22-37"><a href="#annotated-cell-22-37" aria-hidden="true" tabindex="-1"></a>            nodo_nuevo.siguiente <span class="op">=</span> <span class="va">self</span>.primer_nodo</span>
+<span id="annotated-cell-22-38"><a href="#annotated-cell-22-38" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.primer_nodo <span class="op">=</span> nodo_nuevo</span>
+<span id="annotated-cell-22-39"><a href="#annotated-cell-22-39" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="annotated-cell-22-40"><a href="#annotated-cell-22-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-41"><a href="#annotated-cell-22-41" aria-hidden="true" tabindex="-1"></a>        nodo_actual <span class="op">=</span> <span class="va">self</span>.primer_nodo</span>
+<span id="annotated-cell-22-42"><a href="#annotated-cell-22-42" aria-hidden="true" tabindex="-1"></a>        indice_actual <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-22-43"><a href="#annotated-cell-22-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-44"><a href="#annotated-cell-22-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> indice_actual <span class="op">&lt;</span> (indice <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="annotated-cell-22-45"><a href="#annotated-cell-22-45" aria-hidden="true" tabindex="-1"></a>            nodo_actual <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-22-46"><a href="#annotated-cell-22-46" aria-hidden="true" tabindex="-1"></a>            indice_actual <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="annotated-cell-22-47"><a href="#annotated-cell-22-47" aria-hidden="true" tabindex="-1"></a>            nodo_nuevo.siguiente <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-22-48"><a href="#annotated-cell-22-48" aria-hidden="true" tabindex="-1"></a>            nodo_actual.siguiente <span class="op">=</span> nodo_nuevo</span>
+<span id="annotated-cell-22-49"><a href="#annotated-cell-22-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-50"><a href="#annotated-cell-22-50" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> eliminar(<span class="va">self</span>, indice):</span>
+<span id="annotated-cell-22-51"><a href="#annotated-cell-22-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> indice <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="annotated-cell-22-52"><a href="#annotated-cell-22-52" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.primer_nodo <span class="op">=</span> <span class="va">self</span>.primer_nodo.next_node</span>
+<span id="annotated-cell-22-53"><a href="#annotated-cell-22-53" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="annotated-cell-22-54"><a href="#annotated-cell-22-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-55"><a href="#annotated-cell-22-55" aria-hidden="true" tabindex="-1"></a>        nodo_actual <span class="op">=</span> <span class="va">self</span>.primer_nodo</span>
+<span id="annotated-cell-22-56"><a href="#annotated-cell-22-56" aria-hidden="true" tabindex="-1"></a>        indice_actual <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-22-57"><a href="#annotated-cell-22-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-58"><a href="#annotated-cell-22-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> indice_actual <span class="op">&lt;</span> (indice <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="annotated-cell-22-59"><a href="#annotated-cell-22-59" aria-hidden="true" tabindex="-1"></a>            nodo_actual <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-22-60"><a href="#annotated-cell-22-60" aria-hidden="true" tabindex="-1"></a>            indice_actual <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="annotated-cell-22-61"><a href="#annotated-cell-22-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-22-62"><a href="#annotated-cell-22-62" aria-hidden="true" tabindex="-1"></a>        nodo_siguiente_al_eliminado <span class="op">=</span> nodo_actual.siguiente.siguiente</span>
+<span id="annotated-cell-22-63"><a href="#annotated-cell-22-63" aria-hidden="true" tabindex="-1"></a>        nodo_actual.siguiente <span class="op">=</span> nodo_siguiente_al_eliminado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="análisis-de-la-eficiencia" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-de-la-eficiencia">Análisis de la eficiencia</h3>
+<p>La siguiente tabla resume la eficiencia de los arreglos y las listas enlazadas para realizar las operaciones analizadas:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 36%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operación</th>
+<th>Arreglo</th>
+<th>Lista enlazada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lectura</td>
+<td><span class="math inline">\(O(1)\)</span></td>
+<td><span class="math inline">\(O(N)\)</span></td>
+</tr>
+<tr class="even">
+<td>Búsqueda</td>
+<td><span class="math inline">\(O(N)\)</span></td>
+<td><span class="math inline">\(O(N)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Inserción</td>
+<td><span class="math inline">\(O(N)\)</span> (<span class="math inline">\(O(1)\)</span> al final)</td>
+<td><span class="math inline">\(O(N)\)</span> (<span class="math inline">\(O(1)\)</span> al inicio)</td>
+</tr>
+<tr class="even">
+<td>Eliminación</td>
+<td><span class="math inline">\(O(N)\)</span> (<span class="math inline">\(O(1)\)</span> al final)</td>
+<td><span class="math inline">\(O(N)\)</span> (<span class="math inline">\(O(1)\)</span> al inicio)</td>
+</tr>
+</tbody>
+</table>
+<p>A simple vista, las listas enlazadas no parecen ofrecer grandes ventajas en cuanto a complejidad temporal. Tienen un rendimiento similar al de los arreglos en búsqueda, inserción y eliminación, y son más lentas para la lectura. Entonces, ¿por qué las usariamos?</p>
+<p>La clave está en que los pasos de inserción y eliminación en sí mismos son operaciones de orden <span class="math inline">\(O(1)\)</span>. Es cierto que esto solo ocurre cuando ya conocemos el nodo correcto, por ejemplo, al insertar o eliminar al comienzo, pero hay situaciones en las que ese nodo ya está accesible por otro motivo dentro del programa.</p>
+<p>Por ejemplo, si tenemos que eliminar elementos erróneos de una secuencia, tendremos que recorrerla completa tanto si usamos un arreglo como una lista enlazada. La diferencia está en el costo de cada eliminación. En una lista enlazada, basta con actualizar los enlaces, sin mover valores en memoria. En cambio, en un arreglo, cada vez que se elimina un elemento es necesario desplazar todos los elementos posteriores, lo que hace el proceso más costoso.</p>
+</section>
+</section>
+<section id="listas-doblemente-enlazadas" class="level2">
+<h2 class="anchored" data-anchor-id="listas-doblemente-enlazadas">Listas doblemente enlazadas</h2>
+<p>Existen varios tipos de listas enlazadas. La que vimos hasta ahora es la lista enlazada simple, o clásica, donde cada nodo tiene una referencia al nodo siguiente.</p>
+<p>Otra variante es la lista doblemente enlazada, en la que cada nodo mantiene dos referencias: una al nodo anterior y otra al siguiente. En este caso, el primer nodo tiene la referencia anterior vacía, y el último nodo tiene la referencia siguiente vacía. A su vez, la clase mantiene referencias al primer y al último nodo de la lista.</p>
+<div id="044110fa" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Nodo:</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, valor):</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.valor <span class="op">=</span> valor</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.anterior <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.siguiente <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ListaDoblementeEnlazada:</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, primer_nodo<span class="op">=</span><span class="va">None</span>, ultimo_nodo<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.primer_nodo <span class="op">=</span> primer_nodo</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ultimo_nodo <span class="op">=</span> ultimo_nodo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como una lista doblemente enlazada siempre conoce la posición de su primer y último nodo, puede acceder a cualquiera de ellos en un solo paso. Además, así como en una lista enlazada simple podemos leer, insertar o eliminar al inicio en tiempo constante, en una lista doblemente enlazada podemos hacerlo también al final, con la misma eficiencia.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imgs/02/lista_doblemente_enlazada.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<section id="aplicaciones-2" class="level3">
+<h3 class="anchored" data-anchor-id="aplicaciones-2">Aplicaciones</h3>
+<section id="pilas-como-una-lista-enlazada" class="level4">
+<h4 class="anchored" data-anchor-id="pilas-como-una-lista-enlazada">Pilas como una lista enlazada</h4>
+<p>Las pilas también pueden implementarse de forma muy eficiente utilizando una lista enlazada. En este caso, basta con mantener una referencia al primer nodo de la lista, que representará la parte superior de la pila. Tanto la inserción de un nuevo elemento, como la eliminación del elemento superior, pueden realizarse en tiempo constante, <span class="math inline">\(O(1)\)</span>.</p>
+<p>En principio, esta implementación no ofrece ventajas significativas respecto de la versión basada en un arreglo, que también permite inserción y eliminación al final en tiempo constante. Sin embargo, cuando el arreglo alcanza su capacidad máxima, es necesario reservar un nuevo bloque contiguo de memoria y copiar todos los elementos, lo que implica un costo adicional. En cambio, la versión basada en una lista enlazada no requiere realocación, por lo que resulta más eficiente en escenarios donde el tamaño de la pila puede crecer considerablemente.</p>
+</section>
+<section id="colas-con-una-lista-doblemente-enlazada" class="level4">
+<h4 class="anchored" data-anchor-id="colas-con-una-lista-doblemente-enlazada">Colas con una lista doblemente enlazada</h4>
+<p>Si mantenemos referencias tanto al primer como al último nodo, una lista doblemente enlazada permite acceder de forma inmediata a ambos extremos de la secuencia. Además, insertar o eliminar elementos en cualquiera de ellos es una operación de orden <span class="math inline">\(O(1)\)</span>, lo que la hace una estructura muy adecuada para implementar una cola.</p>
+<p>En comparación, cuando usamos un arreglo para almacenar los elementos, agregar un nuevo valor al final tiene un costo <span class="math inline">\(O(1)\)</span>, pero extraer desde el principio requiere mover los <span class="math inline">\(N - 1\)</span> elementos restantes, lo que implica un costo <span class="math inline">\(O(N)\)</span>.</p>
+<p>Por otro lado, si modificamos nuestra implementación de la lista simplemente enlazada para que mantenga una referencia al último nodo, también podríamos implementar una cola con inserción y extracción en tiempo constante (<span class="math inline">\(O(1)\)</span>).</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ee-unr\.github\.io\/programacion-2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html" class="pagination-link" aria-label="1 - ¿Por qué importan?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1 - ¿Por qué importan?</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Esta página es hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
