@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -259,8 +294,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#arreglos-manuales-completos" id="toc-arreglos-manuales-completos" class="nav-link active" data-scroll-target="#arreglos-manuales-completos"><span class="header-section-number">1</span> Arreglos manuales completos</a></li>
+  <li><a href="#lista-enlazada" id="toc-lista-enlazada" class="nav-link" data-scroll-target="#lista-enlazada"><span class="header-section-number">2</span> Lista enlazada</a></li>
+  <li><a href="#pila-como-lista-enlazada" id="toc-pila-como-lista-enlazada" class="nav-link" data-scroll-target="#pila-como-lista-enlazada"><span class="header-section-number">3</span> Pila como lista enlazada</a></li>
+  <li><a href="#cola-como-lista-doblemente-enlazada" id="toc-cola-como-lista-doblemente-enlazada" class="nav-link" data-scroll-target="#cola-como-lista-doblemente-enlazada"><span class="header-section-number">4</span> Cola como lista doblemente enlazada</a></li>
+  <li><a href="#eliminar-nodo-de-lista-enlazada" id="toc-eliminar-nodo-de-lista-enlazada" class="nav-link" data-scroll-target="#eliminar-nodo-de-lista-enlazada"><span class="header-section-number">5</span> Eliminar nodo de lista enlazada</a></li>
+  <li><a href="#arreglos-indexados" id="toc-arreglos-indexados" class="nav-link" data-scroll-target="#arreglos-indexados"><span class="header-section-number">6</span> Arreglos indexados</a></li>
+  <li><a href="#pilas-y-colas-ruidosas" id="toc-pilas-y-colas-ruidosas" class="nav-link" data-scroll-target="#pilas-y-colas-ruidosas"><span class="header-section-number">7</span> Pilas y colas ruidosas</a></li>
+  <li><a href="#pilas-y-colas-limitadas" id="toc-pilas-y-colas-limitadas" class="nav-link" data-scroll-target="#pilas-y-colas-limitadas"><span class="header-section-number">8</span> Pilas y colas limitadas</a></li>
+  <li><a href="#inversión-recursiva" id="toc-inversión-recursiva" class="nav-link" data-scroll-target="#inversión-recursiva"><span class="header-section-number">9</span> Inversión recursiva</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -284,8 +333,72 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="arreglos-manuales-completos" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="arreglos-manuales-completos"><span class="header-section-number">1</span> Arreglos manuales completos</h2>
+<p>El recurso <a href="../../recursos/tutoriales/tutorial_03.html">Arreglos manuales</a> muestra como implementar un arreglo en Python sin utilizar ninguna estructura de datos de alto nivel como las listas o las tuplas.</p>
+<p>Si bien la clase <code>Array</code> provee métodos elementales para interactuar con los arreglos, carece de otros métodos convenientes que encontramos en estructuras como las listas.</p>
+<p>Implemente los siguientes métodos en la clase <code>Array</code>.</p>
+<ul>
+<li><code>append(self, valor)</code>: agrega el elemento <code>valor</code> al final del arreglo. Análogo al método <code>append</code> de las listas.</li>
+<li><code>extend(self, arreglo)</code>: agrega todos los elementos del arreglo <code>arreglo</code> al final del arreglo. Análogo al método <code>extend</code> de las listas.</li>
+<li><code>reverse(self)</code>: invierte el orden de los elementos en el arreglo, modificandolo <em>in-place</em>.</li>
+<li><code>count(self, valor)</code>: devuelve la cantidad de veces que aparece <code>valor</code> en el arreglo.</li>
+<li><code>clear(self)</code>: elimina todos los elementos del arreglo, dejandolo vacío <em>in-place</em>.</li>
+<li><code>__repr__(self)</code>: modifíquelo para que muestre solo los tres elementos iniciales y finales cuando la cantidad de elementos sea mayor a 10. En el medio, debe mostrar <code>...</code>. Por ejemplo <code>Array(10, 22, -10, ..., 5, 5, 5)</code>.</li>
+<li><code>__iter__(self)</code>: permite iterar sobre el arreglo. Debe contener un bucle <em>for</em> que entrega (con <em>yield</em>) los valores del arreglo de a uno.</li>
+</ul>
+<p>Finalmente, modifique la clase <code>Array</code> para que encoja el tamaño del bloque de memoria cuando la cantidad de elementos sea menor al 20% de la capacidad.</p>
+</section>
+<section id="lista-enlazada" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="lista-enlazada"><span class="header-section-number">2</span> Lista enlazada</h2>
+<p>Modifique la <code>ListaEnlazada</code> del apunte <a href="../../teoria/04_estructuras_y_algoritmos/02_estructuras_lineales.html"></a> para que:</p>
+<ul>
+<li>Implemente el método especial <code>__len__</code>.</li>
+<li>Mantenga un conteo interno de la cantidad de elementos en la lista de forma tal que no sea necesario recorrerla para obtener su longitud.</li>
+<li>Implemente un método <code>eliminar_siguiente</code> que reciba como argumento un nodo de una lista enlazada y elimine el nodo que se encuentra inmediatamente después del nodo dado.</li>
+<li>Implemente un método <code>elimiar_valor</code> que reciba como argumento un valor y elimine de la lista enlazada todos los nodos que contengan ese valor.</li>
+</ul>
+<p>Luego, implemente el método <code>reverse(self)</code> que invierte los elementos de la lista enlazada.</p>
+</section>
+<section id="pila-como-lista-enlazada" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="pila-como-lista-enlazada"><span class="header-section-number">3</span> Pila como lista enlazada</h2>
+<p>Implemente una clase <code>Pila</code> que utilice una lista enlazada para almacenar los elementos de la pila.</p>
+</section>
+<section id="cola-como-lista-doblemente-enlazada" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="cola-como-lista-doblemente-enlazada"><span class="header-section-number">4</span> Cola como lista doblemente enlazada</h2>
+<p>Implemente una clase <code>Cola</code> que utilice una lista doblemente enlazada para almacenar los elementos de la pila.</p>
+<p>Implemente un método <code>concatenar(self, C2)</code> que agregue todos los elementos de la cola <code>C2</code> al final de la cola <code>C1</code> (es decir, la cola sobre la que se realiza la llamada). La operación debe ejecutarse en tiempo constante (O(1)) y debe dejar a <code>C2</code> convertida en una cola vacía.</p>
+</section>
+<section id="eliminar-nodo-de-lista-enlazada" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="eliminar-nodo-de-lista-enlazada"><span class="header-section-number">5</span> Eliminar nodo de lista enlazada</h2>
+<p>Suponga que tiene acceso a un nodo ubicado en algún punto intermedio de una lista enlazada clásica, pero no tiene acceso a la lista completa. Es decir, se tiene una variable que apunta a una instancia de <code>Nodo</code>, pero no al objeto <code>ListaEnlazada</code>.</p>
+<p>En esta situación es posible acceder a todos los valores desde este nodo hasta el final de la lista, pero no hay forma de acceder a los nodos que lo preceden.</p>
+<p>Escriba un programa que elimine el nodo de la lista original. La lista original restante debe permanecer completa, con solo este nodo eliminado.</p>
+</section>
+<section id="arreglos-indexados" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="arreglos-indexados"><span class="header-section-number">6</span> Arreglos indexados</h2>
+<p>Agregue el método <code>__getitem__(self, indice)</code> a la clase <code>Array</code> para que sea posible acceder a sus valores de la siguiente manera:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>arreglo <span class="op">=</span> Array(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">150</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>arreglo[<span class="dv">0</span>] <span class="co"># 10</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>arreglo[<span class="dv">1</span>] <span class="co"># 20</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>arreglo[<span class="dv">2</span>] <span class="co"># 150</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>arreglo[<span class="dv">3</span>] <span class="co"># IndexError</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Asegúrese de que el método <code>__getitem__</code> soporta índices negativos.</p>
+</section>
+<section id="pilas-y-colas-ruidosas" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="pilas-y-colas-ruidosas"><span class="header-section-number">7</span> Pilas y colas ruidosas</h2>
+<p>La implementación actual de <code>Pila</code> y <code>Cola</code> devuelve <code>None</code> cuando se intenta extraer un elemento de una pila (o cola) vacía. Modifique estas clases para que eleven un error llamado <code>EmptyStructure</code>.</p>
+</section>
+<section id="pilas-y-colas-limitadas" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="pilas-y-colas-limitadas"><span class="header-section-number">8</span> Pilas y colas limitadas</h2>
+<p>Modifique la implementación de <code>Pila</code> y <code>Cola</code> para que tengan una capacidad limitada, establecida mediante el parámetro <code>capacidad_maxima</code> el método inicializador, cuyo valor por defecto es <code>None</code>. Cuando se intente agregar un elemento en una pila o cola que está a máxia capaciad, se debe arrojar un error <code>FullCapacity</code>.</p>
+</section>
+<section id="inversión-recursiva" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="inversión-recursiva"><span class="header-section-number">9</span> Inversión recursiva</h2>
+<p>Describa un algoritmo recursivo eficiente para invertir una lista simplemente enlazada.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -260,8 +295,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#complejidad-computacional" id="toc-complejidad-computacional" class="nav-link active" data-scroll-target="#complejidad-computacional"><span class="header-section-number">1</span> Complejidad computacional</a></li>
+  <li><a href="#estructuras-de-datos-lineales" id="toc-estructuras-de-datos-lineales" class="nav-link" data-scroll-target="#estructuras-de-datos-lineales"><span class="header-section-number">2</span> Estructuras de datos lineales</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -285,8 +327,206 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="complejidad-computacional" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="complejidad-computacional"><span class="header-section-number">1</span> Complejidad computacional</h2>
+<ol type="1">
+<li><p>Para un arreglo que contiene 100 elementos, indica la cantidad de pasos que llevarían las siguientes operaciones:</p>
+<ol type="a">
+<li>Lectura</li>
+<li>Búsqueda de un valor que no está contenido en el arreglo</li>
+<li>Inserción al inicio del arreglo</li>
+<li>Inserción al final del arreglo</li>
+<li>Eliminación al inicio del arreglo</li>
+<li>Eliminación al final del arreglo</li>
+</ol></li>
+<li><p>Para un conjunto basado en un arreglo que contiene 100 elementos, indica la cantidad de pasos que llevarían las siguientes operaciones:</p>
+<ol type="a">
+<li>Lectura</li>
+<li>Búsqueda de un valor que no está contenido en el conjunto</li>
+<li>Inserción de un nuevo valor al inicio del conjunto</li>
+<li>Inserción de un nuevo valor al final del conjunto</li>
+<li>Eliminación al inicio del conjunto</li>
+<li>Eliminación al final del conjunto</li>
+</ol></li>
+<li><p>En general, la operación de búsqueda en un arreglo busca la primera instancia de un valor dado. Pero a veces queremos buscar todas las instancias de un valor determinado. Por ejemplo, supongamos que queremos contar cuántas veces aparece el valor <code>"manzana"</code> dentro de un arreglo. ¿Cuántos pasos tomaría encontrar todas las apariciones de <code>"manzana"</code>? Da tu respuesta en función de N.</p></li>
+<li><p>Use la notación <em>Big O</em> para describir la complejidad temporal de las siguientes funciones:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> es_bisiesto(valor):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> valor <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> valor <span class="op">%</span> <span class="dv">400</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> valor <span class="op">%</span> <span class="dv">4</span> <span class="op">==</span> <span class="dv">0</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> suma(arreglo):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> numero <span class="kw">in</span> arreglo:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        total <span class="op">+=</span> numero</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> total</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>La siguiente función recibe un arreglo de cadenas y devuelve un nuevo arreglo que solo contiene las cadenas que comienzan con la letra <code>"a"</code>. Use la notación <em>Big O</em> para describir la complejidad temporal de la función:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> seleccionar_cadenas_a(arreglo):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    arreglo_nuevo <span class="op">=</span> []</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cadena <span class="kw">in</span> arreglo:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> cadena[<span class="dv">0</span>] <span class="op">==</span> <span class="st">"a"</span>:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            arreglo_nuevo.append(cadena)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arreglo_nuevo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>La siguiente función calcula la mediana de un arreglo ordenado. Describa su complejidad temporal en términos de la notación <em>Big O</em>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mediana(arreglo):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> arreglo:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    medio <span class="op">=</span> <span class="bu">len</span>(arreglo) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si el arreglo tiene una cantidad par de números:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(arreglo) <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (arreglo[medio <span class="op">-</span> <span class="dv">1</span>] <span class="op">+</span> arreglo[medio]) <span class="op">/</span> <span class="fl">2.0</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:  <span class="co"># Si el arreglo tiene una cantidad impar de números:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> arreglo[medio]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Reemplace los signos de interrogación en la siguiente tabla para describir cuántos pasos ocurren para una cantidad dada de elementos de datos, según distintos tipos de <em>Big O</em>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>N elementos</th>
+<th>O(N)</th>
+<th>O(log N)</th>
+<th>O(N²)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>100</td>
+<td>100</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr class="even">
+<td>2000</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>La siguiente función encuentra el producto más grande posible entre cualquier par de números dentro de un arreglo dado. Usá la notación <em>Big O</em> para describir la complejidad temporal de la siguiente función:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greatest_product(arreglo):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(producto_mas_grande) <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    producto_mas_grande <span class="op">=</span> arreglo[<span class="dv">0</span>] <span class="op">*</span> arreglo[<span class="dv">1</span>]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, valor_i <span class="kw">in</span> <span class="bu">enumerate</span>(arreglo):</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j, valor_j <span class="kw">in</span> <span class="bu">enumerate</span>(arreglo):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (i <span class="op">!=</span> j <span class="kw">and</span> valor_i <span class="op">*</span> valor_j <span class="op">&gt;</span> producto_mas_grande):</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                producto_mas_grande <span class="op">=</span> valor_i <span class="op">*</span> valor_j</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> producto_mas_grande</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>La siguiente función verifica si un arreglo de números contiene un par de números cuya suma sea igual a 10:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> suma_de_pares(arreglo):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, valor_i <span class="kw">in</span> <span class="bu">enumerate</span>(arreglo):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j, valor_j <span class="kw">in</span> <span class="bu">enumerate</span>(arreglo):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (i <span class="op">!=</span> j) <span class="kw">and</span> (valor_i <span class="op">+</span> valor_j <span class="op">==</span> <span class="dv">10</span>):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="a">
+<li>¿Cuál es el mejor caso, el caso promedio y el peor caso?</li>
+<li>Exprese el peor caso en términos de notación <em>Big O</em>.</li>
+</ol></li>
+<li><p>La siguiente función encuentra el número más grande dentro de un arreglo, pero tiene una eficiencia de O(N²). Reescribí la función para que sea una versión más rápida, con eficiencia O(N):</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximo(arreglo):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> arreglo:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> arreglo:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Supongamos por ahora que i es el mayor</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        es_i_el_mas_grande <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> arreglo:</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Si encontramos otro valor mayor que i, i no es el mayor</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> j <span class="op">&gt;</span> i:</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                es_i_el_mas_grande <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si, al revisar todos los otros números, i sigue siendo el mayor,</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># entonces i es el número más grande:</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> es_i_el_mas_grande:</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> i</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="estructuras-de-datos-lineales" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="estructuras-de-datos-lineales"><span class="header-section-number">2</span> Estructuras de datos lineales</h2>
+<ol type="1">
+<li><p>Si estuvieras desarrollando un programa para un centro de llamadas que pone a los clientes en espera y luego los asigna al “próximo representante disponible”, ¿usarías una pila o una cola?</p></li>
+<li><p>Si se apilan números en una pila en el siguiente orden: 1, 2, 3, 4, 5, 6, y luego se desapilan dos elementos, ¿qué número quedaría visible en la parte superior de la pila?</p></li>
+<li><p>Si se insertan números en una cola en el siguiente orden: 1, 2, 3, 4, 5, 6, y luego se extraen dos elementos, ¿qué número sería el siguiente en salir de la cola?</p></li>
+<li><p>Escriba una función que use una pila para invertir una cadena de texto. (Por ejemplo, “abcde” debería convertirse en “edcba”)</p></li>
+<li><p>¿Qué valores se devuelven durante la siguiente serie de operaciones sobre una pila, si se ejecutan sobre una pila inicialmente vacía?</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">5</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">3</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">2</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">8</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">9</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">1</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">7</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">6</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">4</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>extraer()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Qué valores se devuelven durante la siguiente secuencia de operaciones sobre una cola, si se ejecutan sobre una cola inicialmente vacía?</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">5</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">3</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">2</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">8</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">9</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">1</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">7</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">6</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>insertar(<span class="dv">4</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>extraer()</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>extraer()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Suponga que se realiza una secuencia de operaciones de pila (<code>insertar</code> y <code>extraer</code>). Las operaciones de inserción colocan los enteros del 0 al 9, en orden, dentro de la pila; las operaciones extracción imprimen los valores que se extraen. ¿Cuál o cuáles de las siguientes secuencias no podrían ocurrir?</p>
+<ol type="a">
+<li><code>4 3 2 1 0 9 8 7 6 5</code></li>
+<li><code>4 6 8 7 5 3 2 9 0 1</code></li>
+<li><code>2 5 6 7 4 8 9 3 1 0</code></li>
+<li><code>4 3 2 1 0 5 6 7 8 9</code></li>
+<li><code>1 2 3 4 5 6 9 8 7 0</code></li>
+<li><code>0 4 6 5 3 8 1 7 2 9</code></li>
+<li><code>1 4 7 9 8 6 5 3 0 2</code></li>
+<li><code>2 1 4 3 6 5 8 7 9 0</code></li>
+</ol></li>
+<li><p>Suponga que se realiza una secuencia de operaciones de cola (<code>insertar</code> y <code>extraer</code>). Las operaciones de inserción colocan los enteros del 0 al 9, en orden, dentro de la cola; las operaciones extracción imprimen los valores que se extraen. ¿Cuál o cuáles de las siguientes secuencias no podrían ocurrir?</p>
+<ol type="a">
+<li><code>0 1 2 3 4 5 6 7 8 9</code></li>
+<li><code>4 6 8 7 5 3 2 9 0 1</code></li>
+<li><code>2 5 6 7 4 8 9 3 1 0</code></li>
+<li><code>4 3 2 1 0 5 6 7 8 9</code></li>
+</ol></li>
+<li><p>Escriba un algoritmo para encontrar el penúltimo nodo en una lista simplemente enlazada, en la cual el último nodo está indicado por una referencia <code>siguiente</code> igual a <code>None</code>.</p></li>
+<li><p>Escriba un buen algoritmo para concatenar dos listas enlazadas simples <code>L</code> y <code>M</code>, dadas únicamente las referencias al primer nodo de cada lista, en una sola lista <code>L</code> que contenga todos los nodos de <code>L</code> seguidos por todos los nodos de <code>M</code>.</p></li>
+<li><p>Escriba un algoritmo recursivo que cuente la cantidad de nodos en una lista simplemente enlazada.</p></li>
+<li><p>Escriba un algoritmo para dos nodos <code>x</code> e <code>y</code> (no solo sus contenidos) en una lista simplemente enlazada <code>L</code>, teniendo únicamente las referencias a <code>x</code> e <code>y</code>. Repita el ejercicio para el caso en que <code>L</code> sea una lista doblemente enlazada. ¿Cuál de los dos algoritmos requiere más tiempo?</p></li>
+<li><p>Suponga que <code>x</code> es un nodo de una lista enlazada y no es el último nodo de la lista. ¿Cuál es el efecto del siguiente fragmento de código?</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x.siguiente <span class="op">=</span> x.siguiente.siguiente</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Suponga que <code>x</code> es un nodo de una lista enlazada e <code>y</code> es un nodo cualquiera. ¿Cuál es el efecto del siguiente fragmento de código?</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>y.siguiente <span class="op">=</span> x.siguiente</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>x.siguiente <span class="op">=</span> y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Por qué el siguiente fragmento de código no hace la misma tarea que el fragmento del punto anterior?</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x.siguiente <span class="op">=</span> y</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>y.siguiente <span class="op">=</span> x.siguiente</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
