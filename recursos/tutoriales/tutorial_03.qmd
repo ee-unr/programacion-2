@@ -140,7 +140,7 @@ class Array:
 
     def __repr__(self):
         elementos = [str(self._elementos[i]) for i in range(self._n)]
-        return f"Array([{', '.join(elementos)}])"
+        return f"Array({', '.join(elementos)})"
 ```
 
 Podemos crear un arreglo con 3 números
@@ -152,7 +152,7 @@ print(array)
 ```
 ```cmd
 3
-Array([10, 20, 30])
+Array(10, 20, 30)
 ```
 
 Usamos `.get` para obtener el valor en una posición:
@@ -171,7 +171,7 @@ array.write(2, 150)
 array
 ```
 ```cmd
-Array([10, 20, 150])
+Array(10, 20, 150)
 ```
 
 Si usamos `.get` con un índice fuera del rango, obtenemos un error:
@@ -201,7 +201,7 @@ array
 ```
 ```cmd
 2
-Array([10, 20])
+Array(10, 20)
 ```
 
 También es posible insertar elementos en una posición determinada, lo que expande el arreglo:
@@ -212,7 +212,7 @@ array.insert(1, 128)
 array
 ```
 ```cmd
-Array([10, 128, 128, 20])
+Array(10, 128, 128, 20)
 ```
 
 Y, finalmente, también es posible eliminar elementos por valor:
@@ -222,7 +222,7 @@ array.remove(10)
 array
 ```
 ```cmd
-Array([128, 128, 20])
+Array(128, 128, 20)
 ```
 
 Si inspeccionamos los detalles internos, como la capacidad del bloque de memoria reservado,
@@ -245,7 +245,7 @@ array.insert(0, 1000)
 array
 ```
 ```cmd
-Array([1000, 100, 10, 1, 128, 128, 20])
+Array(1000, 100, 10, 1, 128, 128, 20)
 ```
 
 ```python
