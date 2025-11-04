@@ -2,4 +2,289 @@
 title: "Trabajo práctico final"
 ---
 
-![](../imgs/trabajo_en_progreso.png){fig-align="center" width="400px"}
+## Clase `Serie`
+
+* Reprsenta columnas de una tabla
+* Existen por si solas, no se necesita una tabla para trabajar con series.
+* Soportan 4 tipos de datos
+    * Numéricos enteros (`int`)
+    * Numéricos flotantes (`float`)
+    * Texto (`str`)
+    * Lógicos (`bool`)
+* Las series pueden tener valores nulos, representados por `None`
+
+### Inicialización
+
+...
+
+### Atributos
+
+| Método          | Descripción                                          |
+|:----------------|:-----------------------------------------------------|
+| `dtype`         | Tipo de dato (`"int"`, `"float"`, `"str"`, `"bool"`) |
+| `name`          | El nombre de la serie                                |
+| `len`           | La longitud de la serie                              |
+
+: {.striped .hover tbl-colwidths="[30, 70]"}
+
+### Métodos para manipular de datos
+
+::: {.callout-note}
+
+#### Sobre los tipos de datos
+
+Todas las operaciones que modifican una serie solo deben soportar valores del mismo tipo
+que el de la serie. Por ejemplo, debe ser posible usar `append(125.5)` en una serie de tipo
+flotante, pero no en una serie de tipo texto.
+:::
+
+#### `append(self, x)`
+
+Agrega el elemento `x` al final de la serie.
+
+#### `extend(self, c)`
+
+Extiende la serie con los elementos de la serie `c`.
+
+#### `clone(self)`
+
+Devuelve una nueva instancia de `Serie`, idéntica a la serie original.
+
+#### `fill_null(self, x)`
+
+Reemplaza los valores nulos por `x`.
+
+#### `filter(self, f)`
+
+Devuelve una nueva serie con los elementos de la serie que al ser pasados a `f` devuelven un
+valor verdadero. Por ejemplo, `serie.filter(lambda x: x > 5)` devuelve una nueva serie con
+los valores que son mayores a 5.
+
+#### `head(self, n=5)`
+
+Devuelve una nueva serie con los primeros `n` valores.
+
+#### `tail(self, n=5)`
+
+Devuelve una nueva serie con los últimos `n` valores.
+
+#### `is_null(self)`
+
+Devuelve una serie de valores booleanos.
+Cada elemento de esta serie será `True` si el elemento original es nulo.
+
+#### `is_not_null(self)`
+
+Devuelve una serie de valores booleanos.
+Cada elemento de esta serie será `True` si el elemento original es no nulo.
+
+#### `null_count(self)`
+
+Devuelve la cantidad de valores nulos de una serie.
+
+#### `rename(self, name)`
+
+Cambia el nombre de la serie por `name`.
+
+#### `sort(self, descending=False, nulls_last=False, in_place=False)`
+
+Ordena la serie.
+
+* `descending`: determina si los valores se ordenan de menor a mayor (por defecto) o de mayor a menor.
+* `nulls_last`: determina si los valores nulos se colocan al principio (por defecto) o al final.
+* `in_place`: determina si se modifica la serie _in-place_ o si se devuelve una nueva serie.
+
+#### `to_frame(self, name=None)`
+
+Convierte la serie en un `DataFrame`. El parámetro `name` permite darle un nombre
+a la serie convertida o renombrarla.
+
+#### `to_list(self)`
+
+Convierte a la serie en una lista.
+
+#### `value_counts(sort=False, name="conteo")`
+
+Cuenta la cantidad de ocurrencias de los diferentes valores.
+
+* `sort`: determina si se ordena el resultado según el conteo.
+* `name`: el nombre de la serie con el conteo, por defecto `"conteo"`.
+
+### Métodos para calcular agregaciones
+
+Los siguientes métodos obtienen un valor a partir de todos los valores de la serie.
+En todos los casos se ignoran los valores nulos.
+
+| Método          | Descripción                  |
+|:----------------|:-----------------------------|
+| `min(self)`     | El valor más pequeño         |
+| `max(self)`     | El valor más grande          |
+| `sum(self)`     | La suma de los elementos     |
+| `mean(self)`    | El promedio de los elementos |
+| `product(self)` | El producto de los elementos |
+| `std(self)`     | El desvío estándar           |
+| `var(self)`     | La varianza                  |
+
+: {.striped .hover tbl-colwidths="[30, 70]"}
+
+### Métodos especiales
+
+#### Aritméticos
+
+Estos operadores solo se pueden utilizar con series de tipo numérico.
+Si `other` es un número, se recicla para todos los elementos de la serie. Por ejemplo:
+
+```python
+col = Serie([5, 6, 7])
+col * 3.0
+# Serie: ''
+# len: 3
+# dtype: float
+# [
+#     15.0
+#     18.0
+#     21.0
+# ]
+```
+
+Si `other` es otra `Serie`, deben tener la misma longitud y la operación se hace elemento
+a elemento. Por ejemplo:
+```python
+col1 = Serie([10, 20, 30])
+col2 = Serie([5, 25, 28])
+col1 > col2
+# Serie: ''
+# len: 3
+# dtype: bool
+# [
+#     True
+#     False
+#     True
+# ]
+```
+
+| Método                       | Descripción                                              |
+|------------------------------|----------------------------------------------------------|
+| `__eq__(self, other)`        | Igual a                                                  |
+| `__gt__(self, other)`        | Mayor que                                                |
+| `__ge__(self, other)`        | Mayor o igual que                                        |
+| `__lt__(self, other)`        | Menor que                                                |
+| `__le__(self, other)`        | Menor o igual que                                        |
+| `__add__(self, other)`       | Suma                                                     |
+| `__sub__(self, other)`       | Resta                                                    |
+| `__mul__(self, other)`       | Multiplicación                                           |
+| `__truediv__(self, other)`   | División flotante                                        |
+| `__pow__(self, other)`       | Potencia                                                 |
+
+: {.striped .hover tbl-colwidths="[30, 70]"}
+
+#### Acceso e iteración
+
+| Método                       | Descripción                                               |
+|------------------------------|-----------------------------------------------------------|
+| `__repr__(self)`             | Representación textual                                    |
+| `__len__(self)`              | Longitud de la serie                                      |
+| `__contains__(self, item)`   | Determina si `item` se encuentra en la serie              |
+| `__getitem__(self, index)`   | Obtiene el elemento en la posición `index`                |
+| `__iter__(self)`             | Permite iterar sobre los elementos de la serie            |
+
+: {.striped .hover tbl-colwidths="[30, 70]"}
+
+###### Ejemplos
+
+
+
+
+### Ejemplos
+
+
+```python
+# Ejemplo 1
+serie = Serie([1, 2, 3, 4])
+serie
+```
+```python
+# Serie: ''
+# len: 4
+# dtype: int
+# [
+#     1
+#     2
+#     3
+#     4
+# ]
+```
+
+```python
+serie = Serie([1.0, 2.0, 3.0], name="x")
+serie
+# Serie: 'x'
+# len: 3
+# dtype: float
+# [
+#     1.0
+#     2.0
+#     3.0
+# ]
+```
+
+```python
+serie = Serie([1, 2, 3], name="cantidad", dtype="float")
+serie
+# Serie: 'cantidad'
+# len: 3
+# dtype: float
+# [
+#     1.0
+#     2.0
+#     3.0
+# ]
+```
+
+## Clase `DataFrame`
+
+### Inicialización
+
+### Atributos
+
+| Método          | Descripción                                            |
+|:----------------|:-------------------------------------------------------|
+| `columns`       | Lista con los nombres de las columnas, en orden        |
+| `dtypes`        | Lista con los tipos de datos de las columnas, en orden |
+| `shape`         | Dimension de la tabla `(filas, columnas)`              |
+| `schema`        | Diccionario que mapea las columnas a sus tipos         |
+| `height`        | Cantidad de filas                                      |
+| `width`         | Cantidad de columnas                                   |
+
+
+
+### Métodos
+
+* `.head(self, n=5)`
+* `.tail(self, n=5)`
+* `.filter(self, *predicates)`
+* `.select(self, *columns)`
+* `.concatenate(self, other)`
+* `.drop_nulls(self)`
+* `.sort(self, name, descending=False, nulls_last=False)`
+
+
+
+#### Otros
+
+| Método                       | Descripción                                               |
+|------------------------------|-----------------------------------------------------------|
+| `__len__(self)`              | Longitud de registros en la tabla                         |
+| `__repr__(self)`             | Representación textual                                    |
+| `__contains__(self, item)`   | Determina si `item` se encuentra en la columna            |
+| `__getitem__(self, index)`   | Obtiene el elemento en la posición `index`                |
+| `__iter__(self)`             | Permite iterar sobre las filas de la tabla                |
+
+```python
+
+datos = {
+    "col1": [1, 2, 3]
+    "col2": []
+}
+DataFrame()
+```
