@@ -938,11 +938,10 @@ df.columns
 df.schema
 ```
 
-Seleccionar columnas y filas:
+Seleccionar columnas:
 
 ```python
-df.get_column("edad") # Devuelve una Series
-df[5] # Devuelve un diccionario
+df["edad"] # Devuelve una Series
 ```
 
 Aplicar filtros sobre una o múltiples columnas:
@@ -968,7 +967,7 @@ df.sort("puntaje", descending=True)
 Combinar varios métodos: filtrar, seleccionar una columna y calcular una agregación:
 
 ```python
-df.filter(("activo", lambda a: a)).get_column("puntaje").mean()
+df.filter(("activo", lambda a: a))["puntaje"].mean()
 ```
 
 Estandarizar el puntaje de las personas:
