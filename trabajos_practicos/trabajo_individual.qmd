@@ -1,5 +1,10 @@
 ---
 title: "Trabajo práctico final"
+subtitle: "Del barro al oro: estructuras para datos tabulares bien desde abajo"
+number-sections: true
+number-depth: 3
+toc: true
+toc-depth: 2
 ---
 
 ## Introducción
@@ -646,11 +651,10 @@ Los `DataFrame` cuentan con un conjunto de métodos que permiten manipular y tra
 | :----------------------------- | :------------------------------------------------------------------------------ |
 | `head(self, n=5)`              | Devuelve un nuevo `DataFrame` con las primeras `n` filas.                       |
 | `tail(self, n=5)`              | Devuelve un nuevo `DataFrame` con las últimas `n` filas.                        |
-| `get_column(self, name)`       | Devuelve la `Series` asociada a la columna `name`.                               |
 | `select(self, *columns)`       | Devuelve un nuevo `DataFrame` con solo las columnas indicadas.                  |
 | `filter(self, *predicates)`    | Devuelve un `DataFrame` con las filas que cumplen todas las condiciones.        |
 | `drop_nulls(self)`             | Elimina todas las filas que contengan valores nulos.                            |
-| `sort(self, name, descending)` | Ordena las filas según la columna `name`. Por defecto, `descending` es `False`. |
+| `sort(self, name, descending)` | Devuelve un nuevo `DataFrame` con las filas ordenadas según la columna `name`. Por defecto, `descending` es `False`. |
 
 : {.striped .hover tbl-colwidths="[30, 70]"}
 
@@ -681,21 +685,6 @@ df.tail(1)
 # ├────┼────┼────┤
 # │ 6  │ 60 │ f  │
 # └────┴────┴────┘
-```
-
-```python
-df.get_column("z")
-# Series: 'z'
-# len: 6
-# dtype: str
-# [
-#     a
-#     b
-#     c
-#     d
-#     e
-#     f
-# ]
 ```
 
 ```python
@@ -761,11 +750,12 @@ df.sort("x")
 
 Estos métodos permiten interactuar con el `DataFrame` de manera natural y en sintonía con el comportamiento esperado de una colección de datos tabulares.
 
-| Método                     | Descripción                                                                 |
-| -------------------------- | --------------------------------------------------------------------------- |
-| `__len__(self)`            | Devuelve la cantidad de filas del `DataFrame`.                              |
-| `__getitem__(self, index)` | Devuelve un diccionario con los valores correspondientes a la fila `index`. |
-| `__repr__(self)`           | Representación textual del `DataFrame`.                                     |
+| Método                           | Descripción                                                                 |
+| -------------------------------- | --------------------------------------------------------------------------- |
+| `__len__(self)`                  | Devuelve la cantidad de filas del `DataFrame`.                              |
+| `__repr__(self)`                 | Representación textual del `DataFrame`.                                     |
+| `__getitem__(self, name)`        | Devuelve la `Series` asociada a la columna `name`.                          |
+| `__setitem__(self, name, value)` | Agrega o sobreescribe la columna `name` con la `Series` `value`.            |
 
 : {.striped .hover tbl-colwidths="[30, 70]"}
 
@@ -783,14 +773,8 @@ len(df)
 # 3
 ```
 
-Por su parte, `__getitem__` permite acceder a una fila por su índice, devolviendo un diccionario donde las claves son los nombres de las columnas y los valores, los elementos correspondientes a esa fila:
-
-```python
-df[1]
-# {"nombre": "Juan", "edad": 32}
-```
-
-El método `__repr__` define la representación textual del `DataFrame`, es decir, cómo se muestra al imprimirlo en la terminal o al evaluarlo en una celda interactiva.
+El método `__repr__` define la representación textual del `DataFrame`, es decir, 
+cómo se muestra al imprimirlo en la terminal o al evaluarlo en una celda interactiva.
 
 ```python
 df
@@ -804,7 +788,8 @@ df
 # └────────┴──────┘
 ```
 
-Cuando el `DataFrame` contiene más de diez filas, se muestran las primeras cinco y las últimas cinco, separadas por puntos suspensivos (`...`).
+Cuando el `DataFrame` contiene más de diez filas, se muestran las primeras cinco y las últimas cinco, 
+separadas por puntos suspensivos (`...`).
 Esto permite obtener una vista general del contenido sin saturar la salida.
 
 ```python
@@ -826,7 +811,37 @@ Esto permite obtener una vista general del contenido sin saturar la salida.
 # └────────┴──────┘
 ```
 
-## Conjunto de datos de prueba
+Por su parte, `__getitem__` permite acceder al objeto `Series` de una columna por su nombre:
+
+```python
+df["nombre"]
+# Series: 'nombre'
+# len: 3
+# dtype: str
+# [
+#     Ana
+#     Juan
+#     María
+# ]
+```
+
+En conjunto con `__setitem__`, permiten crear o modificar columnas en la tabla:
+
+```python
+df["edad_meses"] = df["edad"] * 12
+df
+# shape: (3, 3)
+# ┌────────┬──────┐────────────┐
+# │ nombre │ edad │ edad_meses │
+# ├────────┼──────┤────────────┤
+# │ Ana    │ 25   │ 300        │
+# │ Juan   │ 32   │ 384        │
+# │ María  │ 29   │ 248        │
+# └────────┴──────┘────────────┘
+```
+
+
+## Pruebas
 
 ### Pruebas para `Series`
 
@@ -956,6 +971,12 @@ Combinar varios métodos: filtrar, seleccionar una columna y calcular una agrega
 df.filter(("activo", lambda a: a)).get_column("puntaje").mean()
 ```
 
+Estandarizar el puntaje de las personas:
+
+```python
+df["puntaje_z"] = (df["puntaje"] - df["puntaje"].mean()) / df["puntaje"].std()
+```
+
 ## Entregable
 
 La entrega de este trabajo práctico debe consistir **exclusivamente** en un archivo comprimido (`.zip`) que contenga los siguientes archivos, con los nombres y contenidos indicados:
@@ -967,7 +988,8 @@ La entrega de este trabajo práctico debe consistir **exclusivamente** en un arc
 
 No se deben agregar otros archivos ni utilizar nombres diferentes a los especificados.
 
-El nombre del archivo comprimido debe seguir el formato: `{Apellido}_{Nombre}.zip`. Por ejemplo: `Capretto_Tomas.zip`.
+El nombre del archivo comprimido debe seguir el formato: `{Apellido}_{Nombre}.zip`. 
+Por ejemplo: `Alvarez_Julian.zip`.
 
 ## Evaluación
 
@@ -992,3 +1014,17 @@ Los archivos `test_series.py` y `test_dataframe.py` deberían incluir **todos** 
 Dado que la complejidad y extensión del trabajo puede dificultar este objetivo, se considerarán válidas las entregas que incluyan al menos el 80 % de las pruebas y que todas se ejecuten correctamente.
 
 :::
+
+## Ayuda
+
+* La `Series` necesita una estructura de datos subyacente donde almacenar valores, se recomienda usar una lista.
+* El `DataFrame` también necesita una estructura de datos subyacente, se recomienda un diccionario, donde las claves sean los nombres de las columnas y los valores las `Series`.
+* El método `__repr__` de las `Series` y `DataFrame` requiere que nos amiguemos con los métodos de las cadenas de caracteres. 
+Tengan presentes: `.ljust()`, `.rjust()` y `.center()`.
+* Los métodos `__getitem__`, `__setitem__` e `__iter__` no han sido explorados a lo largo del curso. 
+Pueden consultar el recurso [Contenedores](../recursos/tutoriales/tutorial_04.qmd).
+* Los métodos `where` y `argsort` de `Series` pueden parecer confusos e inútiles, pero serán de gran ayuda a la hora de implementar `filter` y `sort` en `DataFrame`.
+* Este trabajo práctico describe la interface pública de las clases a implementar, no los detalles internos. 
+Se recomienda que reutilicen, en la medida de lo posible, métodos y propiedades para reducir el trabajo y evitar errores.
+Por ejemplo, el método `drop_nulls` de `DataFrame` puede ser visto como un caso particular de `filter`.
+
