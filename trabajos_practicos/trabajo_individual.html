@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -72,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -154,13 +189,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a></li>
+  <li><a href="#clase-series" id="toc-clase-series" class="nav-link" data-scroll-target="#clase-series"><span class="header-section-number">2</span> Clase <code>Series</code></a></li>
+  <li><a href="#clase-dataframe" id="toc-clase-dataframe" class="nav-link" data-scroll-target="#clase-dataframe"><span class="header-section-number">3</span> Clase <code>DataFrame</code></a></li>
+  <li><a href="#pruebas" id="toc-pruebas" class="nav-link" data-scroll-target="#pruebas"><span class="header-section-number">4</span> Pruebas</a></li>
+  <li><a href="#entregable" id="toc-entregable" class="nav-link" data-scroll-target="#entregable"><span class="header-section-number">5</span> Entregable</a></li>
+  <li><a href="#evaluación" id="toc-evaluación" class="nav-link" data-scroll-target="#evaluación"><span class="header-section-number">6</span> Evaluación</a></li>
+  <li><a href="#ayuda" id="toc-ayuda" class="nav-link" data-scroll-target="#ayuda"><span class="header-section-number">7</span> Ayuda</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Trabajo práctico final</h1>
+<p class="subtitle lead">Del barro al oro: estructuras para datos tabulares bien desde abajo</p>
 </div>
 
 
@@ -177,13 +227,1006 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../imgs/trabajo_en_progreso.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
-</figure>
+<section id="introducción" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">1</span> Introducción</h2>
+<p>En el lenguaje R, los <em>data frames</em> son una de las estructuras de datos más utilizadas. Permiten almacenar y manipular información tabular de forma sencilla, donde cada columna representa una variable y cada fila una observación.</p>
+<p>En Python no existe una estructura <em>built-in</em> equivalente al <em>data frame</em>. En la práctica, se utilizan librerías como <a href="https://pandas.pydata.org/">pandas</a> o <a href="https://docs.pola.rs/api/python/stable/reference/index.html">polars</a>, que implementan estructuras de datos diseñadas específicamente para este propósito. Ambas librerías se apoyan en dos estructuras fundamentales: <code>Series</code>, que representa una columna, y <code>DataFrame</code>, que representa una tabla completa compuesta por varias series.</p>
+<p>El objetivo de este trabajo es implementar de forma básica las clases <code>Series</code> y <code>DataFrame</code>, con el fin de profundizar en la programación orientada a objetos y en el uso de Python como lenguaje de desarrollo. Además, busca comprender el funcionamiento interno de las estructuras de datos tabulares y los principios de diseño que las hacen posibles.</p>
+</section>
+<section id="clase-series" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="clase-series"><span class="header-section-number">2</span> Clase <code>Series</code></h2>
+<p>Una <code>Series</code> representa una estructura unidimensional de datos, similar a un vector o una columna. En nuestro caso, soportan cuatro tipos de datos: numéricos enteros (<code>int</code>), numéricos flotantes (<code>float</code>), texto (<code>str</code>) y booleanos (<code>bool</code>). Las series pueden también incluir valores nulos, representados por <code>None</code>.</p>
+<section id="inicialización" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="inicialización"><span class="header-section-number">2.1</span> Inicialización</h3>
+<p>Para inicializar una <code>Series</code> se necesita una secuencia de valores del mismo tipo. Opcionalmente, se pasan valores para los argumentos <code>name</code> y <code>dtype</code>. El primero le asigna un nombre a la serie y el segundo un tipo de dato. El nombre de la serie es una cadena de texto y el tipo puede ser <code>"int"</code>, <code>"float"</code>, <code>"str"</code> o <code>"bool"</code>.</p>
+<section id="ejemplos" class="level4">
+<h4 class="anchored" data-anchor-id="ejemplos">Ejemplos</h4>
+<p>Se muestran algunos bloques de código donde se inicializan objetos de la clase <code>Series</code>.</p>
+<p>Ejemplo mínimo, donde se pasa una secuencia de enteros.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo 1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>serie <span class="op">=</span> Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>serie</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 4</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: int</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     1</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     2</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     3</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     4</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Serie nombrada:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>serie <span class="op">=</span> Series([<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>], name<span class="op">=</span><span class="st">"x"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>serie</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: 'x'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 3</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: float</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     1.0</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     2.0</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     3.0</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Serie con nombre y tipo explícito:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>serie <span class="op">=</span> Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], name<span class="op">=</span><span class="st">"cantidad"</span>, dtype<span class="op">=</span><span class="st">"float"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>serie</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: 'cantidad'</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 3</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: float</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     1.0</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     2.0</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     3.0</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notar que al utilizar <code>dtype="float"</code> los valores enteros son convertidos a flotantes.</p>
+</section>
+</section>
+<section id="atributos" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="atributos"><span class="header-section-number">2.2</span> Atributos</h3>
+<p>Los objetos de la clase <code>Series</code> tienen los siguientes atributos públicos:</p>
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Método</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>dtype</code></td>
+<td style="text-align: left;">Tipo de dato (<code>"int"</code>, <code>"float"</code>, <code>"str"</code>, <code>"bool"</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;">El nombre de la serie</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>len</code></td>
+<td style="text-align: left;">La longitud de la serie</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="métodos-para-manipular-de-datos" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="métodos-para-manipular-de-datos"><span class="header-section-number">2.3</span> Métodos para manipular de datos</h3>
+<p>La clase <code>Series</code> disponibiliza los siguientes métodos para la manipulación de datos:</p>
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>clone(self)</code></td>
+<td>Devuelve una nueva serie, idéntica a la original.</td>
+</tr>
+<tr class="even">
+<td><code>head(self, n=5)</code></td>
+<td>Devuelve una nueva serie con los primeros <code>n</code> valores.</td>
+</tr>
+<tr class="odd">
+<td><code>tail(self, n=5)</code></td>
+<td>Devuelve una nueva serie con los últimos <code>n</code> valores.</td>
+</tr>
+<tr class="even">
+<td><code>append(self, x)</code></td>
+<td>Agrega el elemento <code>x</code> al final de la serie.</td>
+</tr>
+<tr class="odd">
+<td><code>extend(self, s)</code></td>
+<td>Extiende la serie con los elementos de la serie <code>s</code>.</td>
+</tr>
+<tr class="even">
+<td><code>filter(self, f)</code></td>
+<td>Devuelve una nueva serie con los elementos de la serie que al ser pasados a <code>f</code> devuelven un valor verdadero. Por ejemplo, <code>serie.filter(lambda x: x &gt; 5)</code> devuelve una serie con los valores que son mayores a 5.</td>
+</tr>
+<tr class="odd">
+<td><code>where(self, f)</code></td>
+<td>Devuelve una nueva lista con los índices de los elementos que al ser pasados a <code>f</code> devuelven <code>True</code></td>
+</tr>
+<tr class="even">
+<td><code>is_null(self)</code></td>
+<td>Devuelve una serie de valores booleanos.<br> Cada elemento será <code>True</code> si el elemento original es nulo.</td>
+</tr>
+<tr class="odd">
+<td><code>is_not_null(self)</code></td>
+<td>Devuelve una serie de valores booleanos.<br> Cada elemento será <code>True</code> si el original es no nulo.</td>
+</tr>
+<tr class="even">
+<td><code>fill_null(self, x)</code></td>
+<td>Reemplaza los valores nulos por <code>x</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>rename(self, name)</code></td>
+<td>Cambia el nombre de la serie por <code>name</code>.</td>
+</tr>
+<tr class="even">
+<td><code>sort(self, ...)</code></td>
+<td>Ordena la serie. El parámetro <code>descending</code> determina si se ordena de forma ascendente (por defecto) o descendente. y el parámetro <code>in_place</code> determina si se modifica la serie <em>in-place</em> o si se devuelve una nueva (por defecto).</td>
+</tr>
+<tr class="odd">
+<td><code>argsort(self, ...)</code></td>
+<td>Devuelve una lista con los índices que ordenan a la serie. El parámetro <code>descending</code> determina si se ordena de forma ascendente (por defecto) o descendente.</td>
+</tr>
+</tbody>
+</table>
+<section id="ejemplos-1" class="level4">
+<h4 class="anchored" data-anchor-id="ejemplos-1">Ejemplos</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>serie <span class="op">=</span> Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>serie.head()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 5</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: int</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     1</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     2</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     3</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     4</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     5</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>serie <span class="op">=</span> Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>serie.tail(<span class="dv">3</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 3</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: int</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     8</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     9</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     10</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>serie <span class="op">=</span> Series(<span class="bu">list</span>(<span class="st">"ABCD"</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>serie.clone()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 4</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: str</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     A</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     B</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     C</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     D</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> Series([<span class="va">True</span>, <span class="va">True</span>, <span class="va">False</span>])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>s1.append(<span class="va">False</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>s1</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 4</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: bool</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     True</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     True</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     False</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     False</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> Series([<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>s1.extend(s2)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>s1</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 6</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: int</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     1</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     2</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     3</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#     4</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#     5</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     6</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">1</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">2</span>, <span class="dv">100</span>, <span class="dv">3</span>])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>s.<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&lt;</span> <span class="dv">20</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 3</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: int</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     1</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     2</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     3</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">1</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">2</span>, <span class="dv">100</span>, <span class="dv">3</span>])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> s.where(<span class="kw">lambda</span> x: x <span class="op">&lt;</span> <span class="dv">20</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>indices</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># [0, 3, 5]</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>[s[i] <span class="cf">for</span> indices <span class="kw">in</span> indices]</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># [1, 2, 3]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">1</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">2</span>, <span class="dv">100</span>, <span class="dv">3</span>])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>s.is_null()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 6</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: bool</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     False</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     False</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     False</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     False</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     False</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#     False</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">5</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="dv">10</span>])</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>s.is_not_null()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 4</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: bool</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     True</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     False</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     False</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     True</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">5</span>, <span class="va">None</span>, <span class="va">None</span>, <span class="dv">10</span>])</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>s.fill_null(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 4</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: int</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     5</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     -1</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     -1</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     10</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series(<span class="bu">list</span>(<span class="st">"xyz"</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>s.rename(<span class="st">"letras"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>s</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: 'letras'</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 3</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: str</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     x</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     y</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     z</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">128</span>, <span class="fl">256.0</span>, <span class="fl">42.5</span>, <span class="dv">35</span>])</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>s.sort()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 4</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: float</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     35.0</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     42.5</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     128.0</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     256.0</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">128</span>, <span class="fl">256.0</span>, <span class="fl">42.5</span>, <span class="dv">35</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>s.sort(descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 4</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: float</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     256.0</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     128.0</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     42.5</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     35.0</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">128</span>, <span class="fl">256.0</span>, <span class="fl">42.5</span>, <span class="dv">35</span>])</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> s.argsort()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>indices</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [3, 2, 0, 1]</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>[s[i] <span class="cf">for</span> i <span class="kw">in</span> indices] <span class="co"># Se utilizan los indices</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># [35.0, 42.5, 128.0, 256.0]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Sobre los tipos de datos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Todas las operaciones que modifican una serie solo deben soportar valores del mismo tipo que el de la serie. Por ejemplo, debe ser posible usar <code>append(125.5)</code> en una serie de tipo flotante, pero no en una serie de tipo texto.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="métodos-para-calcular-agregaciones" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="métodos-para-calcular-agregaciones"><span class="header-section-number">2.4</span> Métodos para calcular agregaciones</h3>
+<p>Los siguientes métodos obtienen un valor a partir de todos los valores de la serie. En todos los casos se ignoran los valores nulos. Solo se pueden aplicar a series numéricas.</p>
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Método</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>min(self)</code></td>
+<td style="text-align: left;">El valor más pequeño.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>max(self)</code></td>
+<td style="text-align: left;">El valor más grande.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>sum(self)</code></td>
+<td style="text-align: left;">La suma de los elementos.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>mean(self)</code></td>
+<td style="text-align: left;">El promedio de los elementos.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>product(self)</code></td>
+<td style="text-align: left;">El producto de los elementos.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>std(self)</code></td>
+<td style="text-align: left;">El desvío estándar.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>var(self)</code></td>
+<td style="text-align: left;">La varianza.</td>
+</tr>
+</tbody>
+</table>
+<section id="ejemplos-2" class="level4">
+<h4 class="anchored" data-anchor-id="ejemplos-2">Ejemplos</h4>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> Series([<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> Series([<span class="va">True</span>, <span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>])</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>s1.<span class="bu">min</span>()     <span class="co"># 1</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>s1.<span class="bu">max</span>()     <span class="co"># 9</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>s1.<span class="bu">sum</span>()     <span class="co"># 55</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>s1.mean()    <span class="co"># 5.5</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>s1.product() <span class="co"># 3628800</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>s1.std()     <span class="co"># 2.87228</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>s1.var()     <span class="co"># 8.25</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="métodos-especiales" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="métodos-especiales"><span class="header-section-number">2.5</span> Métodos especiales</h3>
+<section id="aritméticos" class="level4">
+<h4 class="anchored" data-anchor-id="aritméticos">Aritméticos</h4>
+<p>Estos operadores solo se pueden utilizar con series de tipo numérico. Si <code>other</code> es un número, se recicla para todos los elementos de la serie. Por ejemplo:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>])</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">*</span> <span class="fl">3.0</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 3</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: float</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     15.0</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     18.0</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     21.0</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si <code>other</code> es otra <code>Series</code>, deben tener la misma longitud y la operación se hace elemento a elemento. Por ejemplo:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> Series([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>])</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> Series([<span class="dv">5</span>, <span class="dv">25</span>, <span class="dv">28</span>])</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">&gt;</span> s2</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 3</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: bool</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     True</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     False</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     True</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Los métodos a implementar se resumen en la siguiente tabla:</p>
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>__eq__(self, other)</code></td>
+<td>Igual a</td>
+</tr>
+<tr class="even">
+<td><code>__gt__(self, other)</code></td>
+<td>Mayor que</td>
+</tr>
+<tr class="odd">
+<td><code>__ge__(self, other)</code></td>
+<td>Mayor o igual que</td>
+</tr>
+<tr class="even">
+<td><code>__lt__(self, other)</code></td>
+<td>Menor que</td>
+</tr>
+<tr class="odd">
+<td><code>__le__(self, other)</code></td>
+<td>Menor o igual que</td>
+</tr>
+<tr class="even">
+<td><code>__add__(self, other)</code></td>
+<td>Suma</td>
+</tr>
+<tr class="odd">
+<td><code>__sub__(self, other)</code></td>
+<td>Resta</td>
+</tr>
+<tr class="even">
+<td><code>__mul__(self, other)</code></td>
+<td>Multiplicación</td>
+</tr>
+<tr class="odd">
+<td><code>__truediv__(self, other)</code></td>
+<td>División flotante</td>
+</tr>
+<tr class="even">
+<td><code>__pow__(self, other)</code></td>
+<td>Potencia</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="acceso-e-iteración" class="level4">
+<h4 class="anchored" data-anchor-id="acceso-e-iteración">Acceso e iteración</h4>
+<p>Estos métodos permiten interactuar con la serie de forma natural.</p>
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>__repr__(self)</code></td>
+<td>Representación textual</td>
+</tr>
+<tr class="even">
+<td><code>__len__(self)</code></td>
+<td>Longitud de la serie</td>
+</tr>
+<tr class="odd">
+<td><code>__contains__(self, item)</code></td>
+<td>Determina si <code>item</code> se encuentra en la serie</td>
+</tr>
+<tr class="even">
+<td><code>__getitem__(self, index)</code></td>
+<td>Obtiene el elemento en la posición <code>index</code></td>
+</tr>
+<tr class="odd">
+<td><code>__iter__(self)</code></td>
+<td>Permite iterar sobre los elementos de la serie</td>
+</tr>
+</tbody>
+</table>
+<section id="ejemplos-3" class="level5">
+<h5 class="anchored" data-anchor-id="ejemplos-3">Ejemplos</h5>
+<p>El método de representación es el que determina que la serie se vea de la siguiente manera al mostrarla en la terminal:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 3</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: float</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     15.0</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     18.0</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     21.0</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La cantidad máxima de elementos que se muestra es 10. Una serie con los números del 1 al 10 se ve de la siguiente manera:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 10</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: float</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     1</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     2</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     3</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     4</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     5</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     6</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     7</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#     8</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">#     9</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     10</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Y si la serie tiene más elementos, se muestran los primeros cinco, luego tres puntos suspensivos, y finalmente los últimos cinco. Por ejemplo, una serie con los números del 1 al 100.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: ''</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 100</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: float</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     1</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     2</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     3</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     4</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#     5</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#     ...</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     96</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#     97</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#     98</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     99</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">#     100</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El método especial <code>__len__</code> permite obtener la cantidad de elementos de la serie con <code>len()</code>:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(s)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 100</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Por su parte, <code>__contains__(self, item)</code> se ejecuta cuando utilizamos el operador <code>in</code>, de esta manera:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span> <span class="kw">in</span> s</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># True</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="dv">200</span> <span class="kw">in</span> s</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># False</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El método <code>__getitem__(self, index)</code> nos permite indexar la serie, tratandola como una secuencia (¡qué es lo que es!):</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="op">-</span><span class="dv">30</span>, <span class="dv">30</span>])</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>s[<span class="dv">0</span>] <span class="co"># -10</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>s[<span class="dv">1</span>] <span class="co"># 10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finalmente, el método <code>__iter__(self)</code> nos permite iterar a través de la secuencia.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="op">-</span><span class="dv">30</span>, <span class="dv">30</span>])</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s_i <span class="kw">in</span> s:</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> s_i <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(s_i)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 10</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 20</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 30</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+</section>
+<section id="clase-dataframe" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="clase-dataframe"><span class="header-section-number">3</span> Clase <code>DataFrame</code></h2>
+<p>Un <code>DataFrame</code> representa una estructura bidimensional de datos, organizada en filas y columnas, donde cada columna está asociada a una instancia de <code>Series</code>. Se trata de una tabla en la que cada columna tiene un nombre único y un tipo de dato consistente a lo largo de toda la columna.</p>
+<p>En este trabajo, la clase <code>DataFrame</code> se construye a partir de un conjunto de objetos <code>Series</code>, todas con la misma longitud, o a partir de un diccionario que mapea nombres de columnas a secuencias de valores compatibles.</p>
+<section id="inicialización-1" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="inicialización-1"><span class="header-section-number">3.1</span> Inicialización</h3>
+<p>Para crear un <code>DataFrame</code>, se puede pasar:</p>
+<ol type="1">
+<li>Un diccionario donde las claves son los nombres de las columnas y los valores son listas o instancias de <code>Series</code>.</li>
+<li>Una lista de <code>Series</code>, donde cada una tiene asignado un nombre (<code>name</code>) distinto.</li>
+</ol>
+<p>El inicializador debe validar que todas las columnas tengan la misma cantidad de filas. Si alguna columna contiene valores nulos, estos se preservan.</p>
+<section id="ejemplos-4" class="level4">
+<h4 class="anchored" data-anchor-id="ejemplos-4">Ejemplos</h4>
+<p>A partir de listas:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> DataFrame({</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"x"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>],</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"y"</span>: [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>]</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>df</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># shape: (4, 2)</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ┌───┬────┐</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co"># │ x │ y  │</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ├───┼────┤</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 1 │ 10 │</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 2 │ 20 │</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 3 │ 30 │</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 4 │ 40 │</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co"># └───┴────┘</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A partir de <code>Series</code>:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], name<span class="op">=</span><span class="st">"x"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> Series([<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>], name<span class="op">=</span><span class="st">"condicion"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> DataFrame([s1, s2])</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>df</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># shape: (3, 2)</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ┌───┬───────────┐</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># │ x │ condicion │</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ├───┼───────────┤</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 1 │ True      │</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 2 │ False     │</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 3 │ True      │</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co"># └───┴───────────┘</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="atributos-1" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="atributos-1"><span class="header-section-number">3.2</span> Atributos</h3>
+<p>Los objetos <code>DataFrame</code> exponen los siguientes atributos públicos:</p>
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Atributo</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>columns</code></td>
+<td style="text-align: left;">Lista con los nombres de las columnas, en orden</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>dtypes</code></td>
+<td style="text-align: left;">Lista con los tipos de datos de las columnas, en orden</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>shape</code></td>
+<td style="text-align: left;">Dimensión de la tabla <code>(filas, columnas)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>schema</code></td>
+<td style="text-align: left;">Diccionario que mapea las columnas a sus tipos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>height</code></td>
+<td style="text-align: left;">Cantidad de filas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>width</code></td>
+<td style="text-align: left;">Cantidad de columnas</td>
+</tr>
+</tbody>
+</table>
+<section id="ejemplos-5" class="level4">
+<h4 class="anchored" data-anchor-id="ejemplos-5">Ejemplos</h4>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> DataFrame({</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nombre"</span>: [<span class="st">"Ana"</span>, <span class="st">"Juan"</span>, <span class="st">"María"</span>, <span class="st">"Luna"</span>],</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"edad"</span>: [<span class="dv">25</span>, <span class="dv">32</span>, <span class="dv">29</span>, <span class="dv">18</span>],</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"activo"</span>: [<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>, <span class="va">True</span>]</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>df.columns   <span class="co"># ["nombre", "edad", "activo"]</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>df.dtypes    <span class="co"># ["str", "int", "bool"]</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>df.shape     <span class="co"># (4, 3)</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>df.schema    <span class="co"># {"nombre": "str", "edad": "int", "activo": "bool"}</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>df.height    <span class="co"># 4</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>df.width     <span class="co"># 3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="métodos" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="métodos"><span class="header-section-number">3.3</span> Métodos</h3>
+<p>Los <code>DataFrame</code> cuentan con un conjunto de métodos que permiten manipular y transformar los datos de manera sencilla.</p>
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Método</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>head(self, n=5)</code></td>
+<td style="text-align: left;">Devuelve un nuevo <code>DataFrame</code> con las primeras <code>n</code> filas.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>tail(self, n=5)</code></td>
+<td style="text-align: left;">Devuelve un nuevo <code>DataFrame</code> con las últimas <code>n</code> filas.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>select(self, *columns)</code></td>
+<td style="text-align: left;">Devuelve un nuevo <code>DataFrame</code> con solo las columnas indicadas.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>filter(self, *predicates)</code></td>
+<td style="text-align: left;">Devuelve un <code>DataFrame</code> con las filas que cumplen todas las condiciones.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>drop_nulls(self)</code></td>
+<td style="text-align: left;">Elimina todas las filas que contengan valores nulos.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sort(self, name, descending)</code></td>
+<td style="text-align: left;">Devuelve un nuevo <code>DataFrame</code> con las filas ordenadas según la columna <code>name</code>. Por defecto, <code>descending</code> es <code>False</code>.</td>
+</tr>
+</tbody>
+</table>
+<section id="ejemplos-6" class="level4">
+<h4 class="anchored" data-anchor-id="ejemplos-6">Ejemplos</h4>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> DataFrame({</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"x"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>],</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"y"</span>: [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>],</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"z"</span>: [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>]</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">3</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co"># shape: (3, 3)</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ┌────┬────┬────┐</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co"># │ x  │ y  │ z  │</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ├────┼────┼────┤</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 1  │ 10 │ a  │</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 2  │ 20 │ b  │</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 3  │ 30 │ c  │</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co"># └────┴────┴────┘</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>```python</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>df.tail(<span class="dv">1</span>)</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="co"># shape: (1, 3)</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ┌────┬────┬────┐</span></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="co"># │ x  │ y  │ z  │</span></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="co"># ├────┼────┼────┤</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 6  │ 60 │ f  │</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="co"># └────┴────┴────┘</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df.select(<span class="st">"x"</span>, <span class="st">"z"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># shape: (6, 2)</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ┌────┬────┐</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># │ x  │ z  │</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ├────┼────┤</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 1  │ a  │</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 2  │ b  │</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 3  │ c  │</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 4  │ d  │</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 5  │ e  │</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 6  │ f  │</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co"># └────┴────┘</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para filtrar, se pasan tuplas de longitud dos. El primer valor es el nombre de la columna, y el segundo es una función que se aplica a cada elemento de esa columna y devuelve un valor booleano. Por ejemplo, se seleccionan las filas donde <code>"x"</code> es impar e <code>"y"</code> es mayor a 30.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">filter</span>((<span class="st">"x"</span>, <span class="kw">lambda</span> x: x <span class="op">%</span> <span class="dv">2</span> <span class="op">!=</span> <span class="dv">0</span>), (<span class="st">"y"</span>, <span class="kw">lambda</span> x: x <span class="op">&gt;</span> <span class="dv">30</span>))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># shape: (1, 2)</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ┌────┬────┬────┐</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># │ x  │ y  │ z  │</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ├────┼────┼────┤</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 5  │ 50 │ e  │</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># └────┴────┴────┘</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> DataFrame({</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"a"</span>: [<span class="dv">1</span>, <span class="va">None</span>, <span class="dv">3</span>],</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"b"</span>: [<span class="st">"x"</span>, <span class="st">"y"</span>, <span class="va">None</span>]</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>df.drop_nulls()</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># shape: (1, 2)</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ┌────┬────┐</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co"># │ a  │ b  │</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ├────┼────┤</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 1  │ x  │</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># └────┴────┘</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> DataFrame({</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"x"</span>: [<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>],</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"y"</span>: [<span class="dv">5</span>, <span class="dv">15</span>, <span class="dv">20</span>]</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>df.sort(<span class="st">"x"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co"># shape: (3, 2)</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ┌────┬────┐</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># │ x  │ y  │</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ├────┼────┤</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 1  │ 15 │</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 2  │ 20 │</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co"># │ 3  │ 5  │</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co"># └────┴────┘</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="métodos-especiales-1" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="métodos-especiales-1"><span class="header-section-number">3.4</span> Métodos especiales</h3>
+<p>Estos métodos permiten interactuar con el <code>DataFrame</code> de manera natural y en sintonía con el comportamiento esperado de una colección de datos tabulares.</p>
+<table class="table-striped table-hover caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>__len__(self)</code></td>
+<td>Devuelve la cantidad de filas del <code>DataFrame</code>.</td>
+</tr>
+<tr class="even">
+<td><code>__repr__(self)</code></td>
+<td>Representación textual del <code>DataFrame</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>__getitem__(self, name)</code></td>
+<td>Devuelve la <code>Series</code> asociada a la columna <code>name</code>.</td>
+</tr>
+<tr class="even">
+<td><code>__setitem__(self, name, value)</code></td>
+<td>Agrega o sobreescribe la columna <code>name</code> con la <code>Series</code> <code>value</code>.</td>
+</tr>
+</tbody>
+</table>
+<section id="ejemplos-7" class="level4">
+<h4 class="anchored" data-anchor-id="ejemplos-7">Ejemplos</h4>
+<p>El método especial <code>__len__</code> permite obtener la cantidad de filas del <code>DataFrame</code> mediante la función <em>built-in</em> <code>len()</code>:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> DataFrame({</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nombre"</span>: [<span class="st">"Ana"</span>, <span class="st">"Juan"</span>, <span class="st">"María"</span>],</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"edad"</span>: [<span class="dv">25</span>, <span class="dv">32</span>, <span class="dv">29</span>]</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El método <code>__repr__</code> define la representación textual del <code>DataFrame</code>, es decir, cómo se muestra al imprimirlo en la terminal o al evaluarlo en una celda interactiva.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># shape: (3, 2)</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ┌────────┬──────┐</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># │ nombre │ edad │</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ├────────┼──────┤</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co"># │ Ana    │ 25   │</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co"># │ Juan   │ 32   │</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co"># │ María  │ 29   │</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co"># └────────┴──────┘</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cuando el <code>DataFrame</code> contiene más de diez filas, se muestran las primeras cinco y las últimas cinco, separadas por puntos suspensivos (<code>...</code>). Esto permite obtener una vista general del contenido sin saturar la salida.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shape: (20, 2)</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ┌────────┬──────┐</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># │ nombre │ edad │</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ├────────┼──────┤</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># │ Ana    │ 25   │</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># │ Juan   │ 32   │</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># │ María  │ 29   │</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="co"># │ David  │ 24   │</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="co"># │ Pipo   │ 12   │</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co"># │ ...    │ ...  │</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="co"># │ Laura  │ 45   │</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co"># │ Marcos │ 17   │</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co"># │ Lucas  │ 41   │</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="co"># │ Nora   │ 37   │</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="co"># │ Zoe    │ 23   │</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="co"># └────────┴──────┘</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Por su parte, <code>__getitem__</code> permite acceder al objeto <code>Series</code> de una columna por su nombre:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"nombre"</span>]</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Series: 'nombre'</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># len: 3</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype: str</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># [</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     Ana</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     Juan</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     María</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En conjunto con <code>__setitem__</code>, permiten crear o modificar columnas en la tabla:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"edad_meses"</span>] <span class="op">=</span> df[<span class="st">"edad"</span>] <span class="op">*</span> <span class="dv">12</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>df</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># shape: (3, 3)</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ┌────────┬──────┐────────────┐</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># │ nombre │ edad │ edad_meses │</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ├────────┼──────┤────────────┤</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co"># │ Ana    │ 25   │ 300        │</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co"># │ Juan   │ 32   │ 384        │</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="co"># │ María  │ 29   │ 248        │</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="co"># └────────┴──────┘────────────┘</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="pruebas" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="pruebas"><span class="header-section-number">4</span> Pruebas</h2>
+<section id="pruebas-para-series" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="pruebas-para-series"><span class="header-section-number">4.1</span> Pruebas para <code>Series</code></h3>
+<p>Crear una serie y verificar operaciones básicas de acceso y longitud:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>], name<span class="op">=</span><span class="st">"valores"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>s.head(<span class="dv">3</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>s.tail(<span class="dv">2</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(s)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Agregar y extender una serie, manteniendo el tipo de datos:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> Series([<span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>s1.append(<span class="dv">6</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>s1.extend(s2)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>s1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Filtrar valores según una condición y obtener sus índices:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">90</span>, <span class="dv">100</span>])</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>s.<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&lt;</span> <span class="dv">60</span>) <span class="co"># Una Series</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>s.where(<span class="kw">lambda</span> x: x <span class="op">%</span> <span class="dv">25</span> <span class="op">==</span> <span class="dv">0</span>) <span class="co"># Una lista de enteros</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Detectar y reemplazar valores nulos:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">5</span>, <span class="va">None</span>, <span class="dv">15</span>, <span class="va">None</span>])</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>s.is_null() <span class="co"># Una Series de booleanos</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>s.is_not_null() <span class="co"># Otra Series de booleanos</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>s.fill_null(<span class="dv">0</span>) <span class="co"># Una series de enteros</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ordenar y obtener índices de ordenamiento:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">42</span>, <span class="dv">7</span>, <span class="dv">100</span>, <span class="dv">3</span>])</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>s.sort() <span class="co"># Una serie de enteros</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>s.argsort() <span class="co"># Una lista de indices enteros</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Combinar filtrado y agregaciones:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>])</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>s.<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&gt;</span> <span class="dv">10</span>).mean() <span class="co"># Promedio de los valores mayores a 10</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>s.<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">&gt;</span> <span class="dv">10</span>).<span class="bu">sum</span>() <span class="co"># Suma de los valores mayores a 10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Iterar a través de la serie:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> Series(<span class="bu">list</span>(<span class="st">"xyz"</span>)):</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Determinar si la serie contiene un valor:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> Series([<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="va">None</span>, <span class="st">"z"</span>])</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co">"a"</span> <span class="kw">in</span> s</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pruebas-para-dataframe" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="pruebas-para-dataframe"><span class="header-section-number">4.2</span> Pruebas para <code>DataFrame</code></h3>
+<p>Este conjunto de datos de ejemplo permite probar los distintos métodos implementados en las clases <code>Series</code> y <code>DataFrame</code>.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> DataFrame({</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"id"</span>: <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">31</span>)),</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"nombre"</span>: [<span class="ss">f"persona_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">31</span>)],</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"edad"</span>: [<span class="dv">20</span> <span class="op">+</span> (i <span class="op">%</span> <span class="dv">15</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>)],</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"activo"</span>: [i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>)],</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"puntaje"</span>: [</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">round</span>(<span class="dv">50</span> <span class="op">+</span> (i <span class="op">*</span> <span class="fl">1.5</span>) <span class="op">%</span> <span class="dv">25</span>, <span class="dv">1</span>) <span class="cf">if</span> i <span class="kw">not</span> <span class="kw">in</span> (<span class="dv">4</span>, <span class="dv">11</span>, <span class="dv">19</span>, <span class="dv">25</span>) <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>)</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Verificar atributos:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>df.height</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>df.width</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>df.shape</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>df.columns</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>df.schema</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Seleccionar columnas y filas:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>df.get_column(<span class="st">"edad"</span>) <span class="co"># Devuelve una Series</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">5</span>] <span class="co"># Devuelve un diccionario</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Aplicar filtros sobre una o múltiples columnas:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">filter</span>((<span class="st">"edad"</span>, <span class="kw">lambda</span> e: e <span class="op">&gt;</span> <span class="dv">30</span>))</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">filter</span>((<span class="st">"activo"</span>, <span class="kw">lambda</span> a: a), (<span class="st">"puntaje"</span>, <span class="kw">lambda</span> p: p <span class="op">&gt;</span> <span class="dv">60</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Seleccionar subconjunto de columnas:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>df.select(<span class="st">"nombre"</span>, <span class="st">"puntaje"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ordenar filas según una columna:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>df.sort(<span class="st">"edad"</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>df.sort(<span class="st">"puntaje"</span>, descending<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Combinar varios métodos: filtrar, seleccionar una columna y calcular una agregación:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">filter</span>((<span class="st">"activo"</span>, <span class="kw">lambda</span> a: a)).get_column(<span class="st">"puntaje"</span>).mean()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Estandarizar el puntaje de las personas:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"puntaje_z"</span>] <span class="op">=</span> (df[<span class="st">"puntaje"</span>] <span class="op">-</span> df[<span class="st">"puntaje"</span>].mean()) <span class="op">/</span> df[<span class="st">"puntaje"</span>].std()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="entregable" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="entregable"><span class="header-section-number">5</span> Entregable</h2>
+<p>La entrega de este trabajo práctico debe consistir <strong>exclusivamente</strong> en un archivo comprimido (<code>.zip</code>) que contenga los siguientes archivos, con los nombres y contenidos indicados:</p>
+<ol type="1">
+<li><code>series.py</code>: implementación de la clase <code>Series</code>. Puede incluir un bloque de código de prueba, siempre que no se ejecute automáticamente al importar la clase desde otro módulo.</li>
+<li><code>dataframe.py</code>: implementación de la clase <code>DataFrame</code>. También puede contener pruebas, que no deben ejecutarse al importar el módulo.</li>
+<li><code>test_series.py</code>: incluye los ejemplos y pruebas correspondientes a la clase <code>Series</code> presentados en este trabajo práctico.</li>
+<li><code>test_dataframe.py</code>: incluye los ejemplos y pruebas correspondientes a la clase <code>DataFrame</code>. Si se prueban <code>Series</code> obtenidas desde un <code>DataFrame</code>, también deben incluirse en este archivo.</li>
+</ol>
+<p>No se deben agregar otros archivos ni utilizar nombres diferentes a los especificados.</p>
+<p>El nombre del archivo comprimido debe seguir el formato: <code>{Apellido}_{Nombre}.zip</code>. Por ejemplo: <code>Alvarez_Julian.zip</code>.</p>
+</section>
+<section id="evaluación" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="evaluación"><span class="header-section-number">6</span> Evaluación</h2>
+<p>La evaluación consta de dos partes:</p>
+<ol type="1">
+<li><p>Ejecución y revisión del código: Se verificará que los archivos <code>test_series.py</code> y <code>test_dataframe.py</code> se ejecuten correctamente. Se valorará la presencia de comentarios que faciliten la comprensión de las pruebas, así como la correcta implementación de las clases <code>Series</code> y <code>DataFrame</code> en <code>series.py</code> y <code>dataframe.py</code>. También se considerarán la organización del código, su claridad, robustez y la reutilización de los métodos desarrollados. Esta instancia se califica de 0 a 10 y se aprueba con una nota mínima de 6. Quienes la aprueben pasarán a la etapa de presentación individual. Quienes la desaprueben podrán acceder al examen final en condición regular.</p></li>
+<li><p>Presentación individual: Cada estudiante deberá realizar una breve exposición (hasta 10 minutos) en la que describa cómo implementó las estructuras de datos y muestre la ejecución correcta de las pruebas. Luego, el docente realizará preguntas sobre el código desarrollado, que el estudiante deberá responder (hasta 10 minutos).</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los archivos <code>test_series.py</code> y <code>test_dataframe.py</code> deberían incluir <strong>todos</strong> los ejemplos y pruebas mencionados en este trabajo. Dado que la complejidad y extensión del trabajo puede dificultar este objetivo, se considerarán válidas las entregas que incluyan al menos el 80 % de las pruebas y que todas se ejecuten correctamente.</p>
+</div>
+</div>
+</section>
+<section id="ayuda" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="ayuda"><span class="header-section-number">7</span> Ayuda</h2>
+<ul>
+<li>La <code>Series</code> necesita una estructura de datos subyacente donde almacenar valores, se recomienda usar una lista.</li>
+<li>El <code>DataFrame</code> también necesita una estructura de datos subyacente, se recomienda un diccionario, donde las claves sean los nombres de las columnas y los valores las <code>Series</code>.</li>
+<li>El método <code>__repr__</code> de las <code>Series</code> y <code>DataFrame</code> requiere que nos amiguemos con los métodos de las cadenas de caracteres. Tengan presentes: <code>.ljust()</code>, <code>.rjust()</code> y <code>.center()</code>.</li>
+<li>Los métodos <code>__getitem__</code>, <code>__setitem__</code> e <code>__iter__</code> no han sido explorados a lo largo del curso. Pueden consultar el recurso <a href="../recursos/tutoriales/tutorial_04.html">Contenedores</a>.</li>
+<li>Los métodos <code>where</code> y <code>argsort</code> de <code>Series</code> pueden parecer confusos e inútiles, pero serán de gran ayuda a la hora de implementar <code>filter</code> y <code>sort</code> en <code>DataFrame</code>.</li>
+<li>Este trabajo práctico describe la interface pública de las clases a implementar, no los detalles internos. Se recomienda que reutilicen, en la medida de lo posible, métodos y propiedades para reducir el trabajo y evitar errores. Por ejemplo, el método <code>drop_nulls</code> de <code>DataFrame</code> puede ser visto como un caso particular de <code>filter</code>.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
