@@ -1,0 +1,83 @@
+---
+title: "Contenedores"
+---
+
+El objetivo de este mini-tutorial es implementar un contenedor de datos en Python para mostrar
+como funcionan los métodos `__getitem__`, `__setitem__` e `__iter__`.
+
+Dado un objeto `obj`, estos métodos especiales se llaman al ejecutarse las siguientes operaciones:
+
+```python
+obj[2]             # obj.__getitem__(2)
+obj[1] = 'cosa'    # obj.__setitem__(1, 'cosa')
+iter(obj)          # obj.__iter__(), devuelve un iterador
+```
+
+Este último se llama de manera implícita cuando se recorre el contenedor con un bucle, po ejemplo:
+
+```python
+for x in obj:
+    print(x)
+```
+
+Supongamos que queremos implementar un contenedor que automáticamente convierte a todos sus elementos en cadenas de texto.
+Una implementación posible es la siguiente:
+
+```python
+class ContenedorTexto:
+    def __init__(self, *valores):
+        self._datos = [str(x) for x in valores]
+
+    def __getitem__(self, indice):
+        return self._datos[indice]
+
+    def __setitem__(self, indice, valor):
+        self._datos[indice] = str(valor)
+
+    def __iter__(self):
+        return iter(self._datos)
+```
+
+Luego, podemos utilizarla. Primero, creamos un objeto y accedemos al elemento 0:
+
+```python
+contenedor = ContenedorTexto(22.1, 195, 13)
+contenedor[0] # (por debajo, esto ejecuta `__getitem__(0)`)
+# '22.1'
+```
+
+Vemos que efectivamente es de tipo `str`, aunque hayamos pasado un `float`.
+
+```python
+type(contenedor[0])
+# str
+```
+
+Como el contenedor soparta el método `__setitem__`, podemos escribir valores en el contenedor:
+
+```python
+contenedor[1] = 212 # (ejecuta `__setitem__(1, 212)`)
+contenedor[1], type(contenedor[1])
+# ('212', str)
+```
+
+Finalmente, podemos iterar a través de los elementos de nuestro contenedor:
+
+```python
+for x in contenedor: # (necesita `__iter__()` para darle el iterador al 'for')
+    print(type(x), x)
+# <class 'str'> 22.1
+# <class 'str'> 212
+# <class 'str'> 13
+```
+
+Otra opción para el método `__iter__` es implementar un generador manualmente:
+
+```python
+    def __iter__(self):
+        for x in self._datos:
+            yield x
+```
+
+En este caso no es necesario porque la lista, que es el tipo de datos de `self._datos`, 
+soporta la función `iter` para devolver un iterable.
