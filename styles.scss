@@ -381,7 +381,7 @@ div.carousel {
 // }
 
 .carousel img {
-  width: 70%;
+  max-width: 75%;
   margin-bottom: 110px;
 }
 
@@ -391,4 +391,9 @@ div.carousel {
 
 .carousel-caption {
   padding-top: 1em;
+}
+
+// Eliminar transiciones
+.carousel-item {
+  transition: none !important;
 }

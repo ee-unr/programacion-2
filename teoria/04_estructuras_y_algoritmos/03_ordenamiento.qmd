@@ -1,0 +1,866 @@
+---
+title: "3 - Algoritmos de ordenamiento"
+toc: true
+filters:
+  - carousel
+---
+
+## Introducción
+
+Ordenar significa reorganizar un conjunto de elementos según algún criterio, por ejemplo, 
+de menor a mayor, alfabéticamente o por fecha.
+
+Ordenar es una de las tareas más importantes y estudiadas en informática.
+Almacenar un conjunto de datos de manera ordenada permite realizar búsquedas y 
+otras operaciones de forma más eficiente.
+Muchos algoritmos avanzados dependen del ordenamiento como parte de su funcionamiento interno.
+
+Python incluye funciones y métodos para ordenar que ya están muy optimizados y, salvo raras excepciones, siempre deberíamos utilizar estas implementaciones.
+Pero sigue siendo fundamental comprender cómo funcionan los algoritmos detrás de esas operaciones.
+
+Por ejemplo, en el trabajo práctico grupal se usaron dos funciones de ordenamiento,
+con tiempos de ejecución notablemente distintos.
+¿Qué podría explicar semejante diferencia en el desempeño de los algoritmos utilizados?
+¿Cuál es la complejidad temporal de cada uno de ellos? ¿Siempre es mejor uno que el otro?
+
+Como veremos en este apunte, existe una gran variedad de algoritmos de ordenamiento,
+que realizan diferentes operaciones y se basan en distintas estrategias con un mismo objetivo:
+obtener una secuencia de valores ordenados.
+
+
+
+
+
+## _Bubble sort_
+
+Supongamos que tenemos un arreglo de valores numéricos sin ningún orden particular.
+
+<center>
+![](imgs/03/bubble_sort-0.png)
+</center>
+
+A simple vista, podemos determinar que el arreglo ordenado sería `[2, 4, 5, 7]`.
+
+Sin embargo, para que una computadora llegue al mismo resultado, necesitamos un algoritmo:
+una secuencia de pasos que garantice que, al ejecutarse, la lista quede ordenada.
+
+En una lista ordenada, cada elemento está seguido por uno mayor o igual.
+De manera formal, si tenemos una secuencia $\boldsymbol{S} = [s_1, s_2, \dots, s_n]$, 
+diremos que está ordenada si se cumple que $s_i \le s_{i + 1}$ para todo $i \in {1, 2, \dots, n}$.
+
+Por ejemplo, la siguiente lista está ordenada:
+
+```python
+[10, 14, 99, 99, 1000]
+```
+
+mientras que esta no:
+
+```python
+[50, 60, 10, 214]
+```
+
+En el primer caso, cada elemento tiene a su derecha un valor mayor o igual;
+en el segundo, el valor `60` tiene a su derecha un número menor (`10`), lo que rompe el orden.
+
+Una forma sencilla de obtener un algoritmo de ordenamiento consiste en comparar cada valor con el siguiente.
+Si el siguiente es menor, se intercambian; si no, se mantienen en su lugar.
+El procedimiento continúa con el elemento siguiente, repitiéndose hasta llegar al final de la lista.
+
+Veamos cómo funciona este procedimiento con la lista original `[7, 2, 4, 5]`:
+
+
+:::: {style="margin: auto;"}
+:::: {.carousel id="carousel-01"}
+
+:::: {.item image="imgs/03/bubble_sort-0.png" caption="Inicialmente, la lista se encuentra desordenada."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort-1.png" caption="Se comparan los valores en las posiciones 0 y 1."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort-2.png" caption="Como el primero (7) es mayor que el segundo (2), se intercambian."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort-3.png" caption="Se comparan los valores en las posiciones 1 y 2."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort-4.png" caption="Como el primero (7) es mayor que el segundo (4), se intercambian."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort-5.png" caption="Se comparan los valores en las posiciones 2 y 3."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort-6.png" caption="Como el primero (7) es mayor que el segundo (5), se intercambian."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort-7.png" caption="Finalmente, la lista se encuentra ordenada."}
+:::
+
+:::
+:::
+
+
+El proceso que acabamos de observar es la base del algoritmo _bubble sort_.
+Más adelante volveremos sobre el origen del nombre.
+
+Lo importante, ahora, es notar que obtuvimos la lista ordenada en tan pocos pasos de pura suerte.
+Para ver por qué, apliquemos el mismo conjunto de pasos sobre una lista con la misma
+cantidad de elementos, en un orden apenas diferente.
+
+:::: {.carousel id="carousel-02"}
+
+:::: {.item image="imgs/03/bubble_sort_2-0.png" caption="La lista contiene los mismos valores, en otro orden."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-1.png" caption="Se comparan los valores en las posiciones 0 y 1.<br>No hay intercambio: el primero (4) es menor que el segundo (7)."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-2.png" caption="Se comparan los valores en las posiciones 1 y 2."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-3.png" caption="Como el primero (7) es mayor que el segundo (2), se intercambian."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-4.png" caption="Se comparan los valores en las posiciones 2 y 3."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-5.png" caption="Como el primero (7) es mayor que el segundo (5), se intercambian."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-6.png" caption="Al final, sin embargo, la lista no se encuentra ordenada."}
+:::
+
+:::
+
+La primera vez que usamos el algoritmo obtuvimos una lista ordenada.
+En la segunda, la lista quedó más ordenada que al inicio, pero todavía no completamente.
+
+Como mencionamos antes, el primer caso fue simplemente una coincidencia.
+El algoritmo _bubble sort_ funciona realizando sucesivas pasadas sobre la lista, 
+comparando pares de valores consecutivos de principio a fin.
+
+En cada comparación, si un valor es mayor que el siguiente, se intercambian sus posiciones.
+Este proceso se repite hasta completar una pasada en la que no se realiza ningún intercambio;
+solo entonces puede concluirse que la lista está completamente ordenada.
+
+Continuando el ejemplo, tenemos:
+
+:::: {.carousel id="carousel-02-b"}
+:::: {.item image="imgs/03/bubble_sort_2-7.png" caption="Se vuelven a comparar los valores en las posiciones 0 y 1."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-8.png" caption="Como el primero (4) es mayor que el segundo (2), se intercambian."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-9.png" caption="Se comparan los valores en las posiciones 1 y 2.<br>No hay intercambio: el primero (4) es menor que el segundo (5)."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-10.png" caption="Se comparan los valores en las posiciones 2 y 3.<br>Tampoco se intercambia: el primero (5) es menor que el segundo (7)."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-11.png" caption="Comienza otra pasada, comparando los primeros dos valores,<br> que no se intercambian."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-12.png" caption="Se continúa comparando los de las posiciones 1 y 2,<br> que tampoco se intercambian."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-13.png" caption="Se comparan los últimos dos valores, quedan en su lugar,<br> y se finaliza una pasada sin intercambios."}
+:::
+
+:::: {.item image="imgs/03/bubble_sort_2-14.png" caption="Finalmente, la lista se encuentra ordenada."}
+:::
+
+:::
+
+### Algoritmo
+
+MEJORAR
+
+1. Mientras la lista no está ordenada se itera sobre sus posiciones
+    i. En cada pasada, se recorren los elementos de manera secuencial y se comparan pares adyacentes.
+    i. Si un elemento es mayor que su sucesor, se intercambian sus posiciones. 
+    Al finalizar una pasada, el mayor elemento se encuentra en la posición final del recorrido.
+
+El procedimiento se repite sobre toda la lista hasta completar una pasada en la que no ocurran intercambios, lo que indica que la secuencia está ordenada.
+
+
+En Python:
+
+```python
+def bubble_sort(arr):
+    n = len(lista)
+    intercambiado = True
+
+    while intercambiado:
+        intercambiado = False
+        for i in range(n - 1):
+            if arr[i] > arr[i + 1]:
+                # Se intercambian los valores
+                arr[i], arr[i + 1] = arr[i + 1], arr[i]
+                intercambiado = True
+```
+
+Esta versión repite pasadas completas hasta que no se produce ningún intercambio, 
+lo que indica que la lista está ordenada.
+
+
+TAREA: Implementar una versión reduciendo la cantidad de elementos a comparar.
+
+::: {.callout-note}
+
+#### Por qué _bubble sort_
+
+En cada pasada, el algoritmo ubica el mayor valor fuera de orden en su posición correcta, al final de la lista.
+Este proceso hace que los valores más grandes “suban” gradualmente hacia la parte superior,
+como burbujas que ascienden en el agua, lo que da origen al nombre bubble sort.
+
+:::
+
+::: {.callout-note}
+
+#### Implementaciones alternativas
+
+En cada pasada, el mayor valor fuera de orden se coloca en su posición definitiva.
+Esto implica que en la primera pasada el valor máximo llega a la última posición,
+en la segunda el segundo mayor queda en la penúltima, y así sucesivamente.
+Por lo tanto, en cada nueva pasada puede omitirse la última comparación,
+ya que los elementos finales ya están ordenados.
+
+:::
+
+
+::: {.callout-note}
+
+#### Versión interactiva
+
+Hacer [clic aquí](https://opendsa-server.cs.vt.edu/embed/bubblesortAV)
+
+:::
+
+### Análisis de la eficiencia
+
+- Peor caso: la lista está ordenada al revés.
+- Mejor caso: la lista está ordenada, se hace una sola pasada.
+
+## _Selection sort_
+
+Descripción
+
+- No hay una única forma de ir "creciendo" una lista ordenada. Una de las contras del algoritmo anterior es que cada vez que tomamos un valor, no sabemos donde lo vamos a colocar.
+- Una alternativa este algoritmo, donde se va "populando" una lista ordenada de menor a mayor, a partir de encontrar el valor mínimo de una sublista.
+    - Puede hacerse en la misma lista (también podría hacerse una copia).
+    - ¿Tiene sentido con listas enlazadas?
+- Resumir pasos.
+- Mostrar implementación en Python.
+
+Eficiencia
+
+* ¿Peor caso? ¿Mejor caso?
+
+Comparaciones y reflexiones
+
+
+:::: {.carousel id="carousel-03"}
+
+:::: {.item image="imgs/03/selection_sort-0.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-1.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-2.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-3.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-4.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-5.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-6.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-7.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-8.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-9.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-10.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-11.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-12.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-13.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-14.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-15.png"}
+:::
+
+:::: {.item image="imgs/03/selection_sort-16.png"}
+:::
+
+:::
+
+
+En el mejor de los casos, el arreglo está inicialmente en orden, el algoritmo solo hace una pasada y entonces la complejidad es O(n).
+ En el peor caso, con el arreglo ordenado con el criterio contrario, se obtiene una complejidad temporal cuadrática del orden de O(n^2/2).
+
+ - ¡Optimiza para el mejor escenario!
+
+
+[Versión interactiva](https://opendsa-server.cs.vt.edu/embed/selectionsortAV)
+
+
+## _Insertion sort_
+
+Descripción
+
+- Presentar el mismo arreglo que en la sección anterior.
+- En vez de ir ordenando de a pares, por qué no mantener un arreglo ordenado, que va creciendo, donde vamos insertando elementos
+en orden.
+- Mostrar el paso a paso, y el resultado.
+- Una vez ordenado, resumir los pasos.
+- Luego, mostrar la implementación en Python.
+
+Eficiencia
+
+- ¿Peor caso? ¿Mejor caso?
+
+
+:::: {.carousel id="carousel-04"}
+
+:::: {.item image="imgs/03/insertion_sort-0.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-1.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-2.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-3.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-4.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-5.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-6.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-7.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-8.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-9.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-10.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-11.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-12.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-13.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-14.png"}
+:::
+
+:::: {.item image="imgs/03/insertion_sort-15.png"}
+:::
+
+
+:::
+
+
+[Versión interactiva](https://opendsa-server.cs.vt.edu/embed/insertionsortAV)
+
+
+## Divide y vencerás
+
+Los tres algoritmos que vimos hasta ahora nos ayudaron a comprender las bases de los algoritmos de ordenamiento, y sobre todo, a reforzar que no hay una única forma de ordenar. Diferentes algoritmos proveen diferentes "prestaciones".
+
+La complejidad temporal de todos los algoritmos es bastante pobre.
+Una complejidad cuadrática implica que luego de un punto, que la secuencia contenga un elemento más
+puede resultar en que el algoritmo tarde muchísimos pasos más.
+
+Ningún lenguaje de programación lo suficientemente maduro los elije como algoritmo de ordenamiento por defecto.
+
+En la práctica, suelen utilizar algoritmos de mayor complejidad, que resultan en una consirable mejora del desempeño computacional.
+
+Dos de los algoritmos más populares son el _quick sort_ y el _merge sort_.
+
+Ambos se apoyan en el paradigma de diseño algorítmico llamado divide y vencerás (DYV), del inglés _divide-and-conquer_.
+Este método se basa en la solución recursiva de un problema, dividiéndolo en dos o más subproblemas de igual tipo o similar.
+
+Se apoyan en el principio de que ordenar secuencias más pequeñas es sustancialmente más rápido que ordenar secuencias más grandes,
+y que ordenar una secuencia parcialmente ordenada es más rápido que una secuencia totalmente desordenada.
+
+De manera general, se puede dividir el método divide y vencerás en tres pasos, que en el contexto
+del ordenamiento de una secuencia se pueden describir así:
+
+1. Dividir: Si el tamaño de la secuencia $S$ es lo suficientemente pequeño (por ejemplo, contiene uno o dos elementos),
+se resuelve el problema usando un método directo y se devuelve la solución obtenida.
+Caso contrario, se divide la secuencia en dos (o más) sub-secuencias disjuntas.
+2. Conquistar: Usando recursión, se ordena cada una de las sub-secuencias y se las devuelve.
+3. Combinar: Se toman las sub-secuencias ordenadas y se las combina en una única secuencia ordenada,
+que resuelve el problema original de ordenar la secuencia $S$.
+
+
+## _Merge sort_
+
+Explicación similar a quick sort...
+
+
+1. Si la secuencia $S$ tiene 0 o 1 elementos, se devuelve porque ya está ordenada.
+En otro caso, se reparten los elementos de $S$ en dos secuencias.
+La primer mitad va a la secuencia $S_1$ y la segunda a la secuencia $S_2$
+2. Ordenar las secuencias $S_1$ y $S_2$ recursivamente.
+3. Unir las secuencias ordenadas $S_1$ y $S_2$ de manera tal que el resultado esté ordenado.
+
+
+Podemos crear un árbol llamado _merge-sort tree_.
+
+
+:::: {.carousel id="carousel-05"}
+
+:::: {.item image="imgs/03/merge_sort_tree-0.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree-1.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree-2.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree-3.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree-4.png"}
+:::
+
+:::
+
+:::: {.carousel id="carousel-05-b"}
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-0.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-1.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-2.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-3.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-4.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-5.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-6.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-7.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-8.png" }
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-9.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-10.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-11.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-12.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-13.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-14.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_tree_recursivo-15.png"}
+:::
+
+:::
+
+¿Cómo unir dos secuencias ordenadas en otra secuencia ordenada?
+
+Mergesort ordena arreglos basándose en otro algoritmo más básico conocido como fusión de arreglos (*merging arrays*), o simplemente fusión (*merging*). En este contexto, fusionar arreglos significa tomar dos arreglos que ya están ordenados, copiar todos sus valores en un tercer arreglo y obtener como resultado un tercer arreglo completamente ordenado.
+
+Supongamos que tenemos los arreglos `[3, 4, 7, 8]` y `[1, 2, 5, 6]`. Nótese que cada arreglo ya está ordenado. No se puede enfatizar lo suficiente: la fusión de arreglos solo funciona si los arreglos ya están ordenados.
+El objetivo de la fusión es tomar todos los valores de ambos arreglos y copiarlos en un tercer arreglo, que contendrá todos los valores en orden ascendente.
+El resultado de fusionar estos dos arreglos será: `[1, 2, 3, 4, 5, 6, 7, 8]`.
+
+
+El algoritmo de fusión sigue estos pasos:
+
+1. Se inicializa un puntero `left`, que apunta al primer índice del $S_1$ , y otro puntero `right` que apunta al primer índice de $S_2$.
+2. Se crea un tercer arreglo vacío. Este será el arreglo con los datos fusionados, tendrá todos los valores de $S_1$ y $S_2$, en orden ascendente.
+3. Se ejecuta un bucle hasta que el puntero izquierdo o el puntero derecho lleguen al final de su respectivas secuencias. Dentro del bucle, realiza lo siguiente:
+   a. Comparar el valor apuntado por el puntero izquierdo con el valor apuntado por el puntero derecho y determina cuál es **menor**.
+   b. Tomar el valor menor y añadirlo al arreglo `merged`.
+   c. Incrementar el puntero que estaba apuntando al valor menor para que señale el siguiente índice de su arreglo.
+   (Si en algún momento los dos valores que se comparan son iguales, se puede añadir arbitrariamente el valor del arreglo `left` y avanzar su puntero).
+4. Una vez que el bucle termina, uno de los dos arreglos ($S_1$ o $S_2$) quedará "incompleto", es decir,
+aún tendrá valores que no se copiaron al arreglo `merged`. Esto da inicio al último paso del algoritmo.
+5. Se toman todos los valores restantes del arreglo "incompleto" y es añaden, en orden, al arreglo `merged`.
+
+
+La versión del algoritmo merge sort que acabamos de ver se conoce como "top down", y usa recursión.
+
+Esta no es la única versión del algoritmo merge sort.
+
+Existe una versión llamada "bottom-up", que no utiliza recursión.
+En la práctica es un poco mas eficiente que la versión que vimos nosotros porque no tiene que mantener un stack
+de llamadas junto a la memoria que se necesita en cada una de ellas.
+
+
+:::: {.carousel id="carousel-06"}
+
+
+:::: {.item image="imgs/03/merge_sort_fusion-0.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-1.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-2.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-3.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-4.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-5.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-6.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-7.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-8.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-9.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-10.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-11.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-12.png"}
+:::
+
+:::: {.item image="imgs/03/merge_sort_fusion-13.png"}
+:::
+
+:::
+
+
+
+[Versión interactiva](https://opendsa-server.cs.vt.edu/embed/mergesortAV)
+
+
+## _Quick sort_
+
+Este algoritmo se basa en el paradigma de dividir y conquistar.
+
+Se divide la secuencia en sub-secuencias, se ordenan las subsecuencias de manera recursiva,
+y luego se combinan las subsecuencias por simple concatenación.
+
+El algoritmo consiste en los siguientes 3 pasos:
+
+1. Dividir: Se selecciona un elemento $x$ de la secuencia, que se lo llama pivote.
+En la práctica, se suele tomar el elemento de la última posición o de una posición aleatoria.
+Luego, se extraen todos los elementos de la secuencia  y se los coloca en tres secuencias distintas:
+    * $L$: que almacena los valores de $S$ menores a $x$.
+    * $E$: que almacena los valores de $S$ iguales a $x$.
+    * $G$: que almacena los valores de $S$ mayores a $x$.
+2. Conquistar: Ordenar las secuencias $L$ y $G$ de manera recursiva, aplicando el mismo algoritmo.
+3. Combinar: Colocar los elementos devuelta en $S$ en orden, primero insertando los elementos de $L$, luego los de $E$ y finalmente los de $G$.
+
+
+- Mostrar diagrama, de esta implementación, que no es in place.
+- Luego, hablar de la implementación in place.
+    - Modifica la secuencia de entrada intercambiando elementos de lugar.
+        - En esto se parece, por ejemplo, al bubble sort (solo que ese lo hace de manera muy tosca).
+    - No se crean sub-secuencias.
+
+La división no se raliza usando secuencias auxiliares.
+
+En cambio, es usan dos variables "puntero", `left` y `right`.
+
+Estos punteros comienzan en los extremos de la subsecuencia a la izquierda del pivote y avanzan hacia el centro.
+`left` va de izquierda a derecha, y `right` va de derecha a izquierda.
+
+El puntero `left` avanza hacia la derecha hasta que se encuentra un valor más grande o igual que el pivote.
+El puntero `right` avanza hacia la izquierda hasta que se encuentra un valor más chico o igual que el pivote.
+Cuando el puntero `right` se detiene. Si los punteros no se chocaron ni cruzaron, se intercambian sus valores y
+se repite desde el inicio. Si se chocaron o cruzaron, se intercambia el pivote con el valor del puntero `left`.
+En ese punto, se completa una "partición". Todos los valores a la izquierda del puntero son menores a el,
+y todos los valores mayores se encuentran a su derecha.
+
+Luego, se vuelve a aplicar este algoritmo en la secuencia a la izquierda y a la derecha del pivote.
+
+- Quicksort es un algoritmo que es particularmente eficiente en casos promedio.
+En el peor de los casos, cuando la secuencia está ordenada de forma inversa, su desempeño es similar
+al de insertion sort y selection sort.
+
+
+Eficiencia
+
+* ¿Diagrama?
+* Mejor y peor caso
+
+- Este algoritmo tiene muy buen desempeño cuando la secuencia es grande, pero paga mucho _overhead_ cuando la secuencia es chica.
+- Ordenar una secuencia de unos pocos valores nos lleva bastante "bookkeeping". Un algoritmo más sencillo sería más rápido.
+- Comunmente, cuando usamos una función de ordenamiento, se usa un enfoque híbrido.
+    - Cuando el tamaño de la secuencia es lo suficientemente pequeño, se usa un algoritmo directo, como insertion sort.
+    - Cuando el tamaño es lo suficientement grande, se usa un algoritmo que aplica divide y vencerás.
+
+
+```python
+def naive_quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    pivot = arr[-1]
+
+    menores = []
+    iguales = []
+    mayores = []
+
+    for x in arr:
+        if x < pivot:
+            menores.append(x)
+        elif x == pivot:
+            iguales.append(x)
+        else:
+            mayores.append(x)
+
+    return naive_quicksort(menores) + iguales + naive_quicksort(mayores)
+
+```
+
+
+:::: {.carousel id="carousel-07"}
+
+:::: {.item image="imgs/03/quick_sort-0.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort-1.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort-2.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort-3.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort-4.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort-5.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort-6.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort-7.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort-8.png"}
+:::
+
+:::
+
+
+:::: {.carousel id="carousel-07-b"}
+
+:::: {.item image="imgs/03/quick_sort_recursivo-0.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-1.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-2.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-3.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-4.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-5.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-6.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-7.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-8.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-9.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-10.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-11.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-12.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_recursivo-13.png"}
+:::
+:::
+
+
+:::: {.carousel id="carousel-08"}
+
+:::: {.item image="imgs/03/quick_sort_in_place-0.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-1.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-2.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-3.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-4.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-5.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-6.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-7.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-8.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-9.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-10.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-11.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-12.png"}
+:::
+
+
+:::
+
+
+Otra parte
+
+
+:::: {.carousel id="carousel-09"}
+
+:::: {.item image="imgs/03/quick_sort_in_place-13.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-14.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-15.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-16.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-17.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-18.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-19.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-20.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-21.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-22.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-23.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-24.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-25.png"}
+:::
+
+:::: {.item image="imgs/03/quick_sort_in_place-26.png"}
+:::
+
+:::
+
+[Versión interactiva](https://opendsa-server.cs.vt.edu/embed/quicksortAV)
+
+
+## Resumen
+
+Tabla comparativa y luego algunas reflexiones.
+
+* https://visualgo.net/en/sorting
+* https://www.hackerearth.com/practice/algorithms/sorting/selection-sort/visualize/ 
+* https://opendsa-server.cs.vt.edu/embed/mergesortAV

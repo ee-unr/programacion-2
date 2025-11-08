@@ -50,49 +50,6 @@ function carousel(items, duration, id)
   )
 end
 
--- Process fenced divs or code blocks with class "carousel"
--- function Div(el)
---   if el.classes:includes("carousel") then
---     local duration = tonumber(el.attributes["duration"]) or 3000
---     local id = el.identifier or "carousel"
-
---     local items = {}
---     for _, blk in ipairs(el.content) do
---       if blk.t == "Div" and blk.classes:includes("item") then
---         -- Using .items
---         table.insert(items, {
---           caption = pandoc.utils.stringify(blk.attributes.caption or ""),
---           image   = blk.attributes.image or "",
---         })
-      
---       elseif blk.t == "Figure" and blk.content and blk.content[1] and blk.content[1].content then
---         -- Figure with caption ![caption](path)
---         local img = blk.content[1].content[1]
---         if img and img.t == "Image" then
---           local caption = pandoc.utils.stringify(blk.caption or "")
---           local src = img.src or ""
---           table.insert(items, { caption = caption, image = src })
---         end
-
---       elseif blk.t == "Para" and #blk.content == 1 and blk.content[1].t == "Image" then
---         -- Figure without caption ![](path)
---         local img = blk.content[1]
---         local caption = pandoc.utils.stringify(img.caption or "")
---         local src = img.src or ""
-
---         table.insert(items, {
---           caption = caption,
---           image   = src,
---         })
-      
---       end
-
---     end
-
---     return pandoc.RawBlock("html", carousel(items, duration, id))
---   end
--- end
-
 function Div(el)
   if el.classes:includes("carousel") then
     local duration = tonumber(el.attributes["duration"]) or 3000
