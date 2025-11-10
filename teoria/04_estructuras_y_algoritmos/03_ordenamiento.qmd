@@ -1132,38 +1132,46 @@ Ahora, el algoritmo _quick sort_ particiona recursivamente las secciones restant
 
 
 ```python
-def _quick_sort(arr, inicio=0, fin=None):
+def _quick_sort(arr, inicio, fin):
     """Ordena la lista 'arr' _in place_ usando el algoritmo quicksort."""
-    if fin is None:
-        fin = len(arr) - 1
+    if fin - inicio <= 0:
+        return
 
-    if inicio < fin:
-        # Realizar la partición y obtener la posición final del pivote
-        pivote_idx = particionar(arr, inicio, fin)
+    # Realizar la partición y obtener la posición final del pivote
+    pivote_idx = particionar(arr, inicio, fin)
 
-        # Ordenar recursivamente las dos mitades
-        _quick_sort(arr, inicio, pivote_idx - 1)
-        _quick_sort(arr, pivote_idx + 1, fin)
+    # Ordenar recursivamente las dos mitades
+    _quick_sort(arr, inicio, pivote_idx - 1)
+    _quick_sort(arr, pivote_idx + 1, fin)
 
+def particionar(arr, izq_idx, der_idx):
+    pivote_idx = der_idx
+    pivote = arr[pivote_idx]
+    der_idx -= 1
 
-def particionar(arr, inicio, fin):
-    pivote = arr[fin]          # Tomamos el último elemento como pivote
-    i = inicio - 1             # i marca el límite de los menores al pivote
+    while True:
+        while arr[izq_idx] < pivote:
+            izq_idx += 1
 
-    for j in range(inicio, fin):
-        if arr[j] <= pivote:   # Si el valor actual es menor o igual al pivote
-            i += 1
-            arr[i], arr[j] = arr[j], arr[i]  # Intercambio
+        while arr[der_idx] > pivote:
+            der_idx -= 1
 
-    # Colocar el pivote en su posición final
-    arr[i + 1], arr[fin] = arr[fin], arr[i + 1]
-    return i + 1
+        if izq_idx >= der_idx:
+            break
+        else:
+            arr[izq_idx], arr[der_idx] = arr[der_idx], arr[izq_idx]
+            izq_idx += 1
 
+    # Finalizar particion
+    arr[izq_idx], arr[pivote_idx] = arr[pivote_idx], arr[izq_idx]
+
+    return izq_idx
 
 def quick_sort(arr):
     arr_copia = arr[:]
-    _quick_sort(arr_copia) # Ordena _in place_
+    _quick_sort(arr_copia, inicio=0, fin=len(arr) - 1) # Ordena _in place_
     return arr_copia
+
 ```
 
 ```python
@@ -1179,24 +1187,60 @@ quick_sort([8, 3, 1, 7, 0, 10, 2])
 
 :::
 
+### Análisis de eficiencia
 
-- Quicksort es un algoritmo que es particularmente eficiente en casos promedio.
-En el peor de los casos, cuando la secuencia está ordenada de forma inversa, su desempeño es similar
-al de insertion sort y selection sort.
+El costo de _quick sort_ proviene principalmente del proceso de partición,
+en el que cada elemento de la lista se compara con el pivote.
 
-- Este algoritmo tiene muy buen desempeño cuando la secuencia es grande, pero paga mucho _overhead_ cuando la secuencia es chica.
-- Ordenar una secuencia de unos pocos valores nos lleva bastante "bookkeeping". Un algoritmo más sencillo sería más rápido.
-- Comunmente, cuando usamos una función de ordenamiento, se usa un enfoque híbrido.
-    - Cuando el tamaño de la secuencia es lo suficientemente pequeño, se usa un algoritmo directo, como insertion sort.
-    - Cuando el tamaño es lo suficientement grande, se usa un algoritmo que aplica divide y vencerás.
+Se realizan unas $N$ comparaciones por partición y un número menor de intercambios,
+ya que cada intercambio reubica dos elementos a la vez.
 
+Por lo tanto, una partición completa cuesta tiene una complejidad de orden $O(N)$.
 
+En el mejor escenario, los pivotes dividen la lista en mitades iguales.
+Primero se hacen particiones de tamaño $N$, luego de $N/2$, luego de $N/4$, y así sucesivamente,
+hasta llegar a sublistas de un solo elemento.
+Eso genera $\log N$ niveles de partición, y como cada nivel cuesta $O(N)$ el tiempo total resulta $O(N \log N)$.
+
+En el peor caso, los pivotes dividen la lista de manera muy desbalanceada,
+por ejemplo cuando siempre se elige como pivote el elemento más pequeño o el más grande.
+En ese caso, después de ordenar un pivote, queda una sublista con $N-1$ elementos, luego otra con $N-2$, y así hasta llegar a 1.
+El número total de operaciones forma la suma $N + (N-1) + (N-2) + \dots + 1$, que equivale a $O(N^2)$.
+
+Respecto al espacio, la versión _in place_ no crea nuevas listas; todo se hace dentro de la secuencia original.
+Sin embargo, cada llamada recursiva debe mantenerse en la pila de ejecución mientras espera que terminen las llamadas siguientes.
+Como la profundidad de la recursión depende de la altura del árbol de particiones (a lo sumo $\log N$ en promedio),
+el uso de memoria adicional es $O(\log N)$.
 
 ## Resumen
 
-Tabla comparativa y luego algunas reflexiones.
+Los primeros algoritmos de ordenamiento, como _bubble sort_, _selection sort_ e _insertion sort_,
+son sencillos de entender e implementar, pero presentan una complejidad temporal cuadrática, $O(N^2)$.
+Esto significa que el número de pasos necesarios crece de manera proporcional al cuadrado de la cantidad de elementos a ordenar.
+En consecuencia, cuando el tamaño de la lista aumenta, el tiempo de ejecución se vuelve rápidamente impráctico.
+Aun así, estos algoritmos son útiles para introducir los fundamentos del análisis de eficiencia y
+para comprender las diferencias entre comparaciones, intercambios y desplazamientos.
 
-* [visualgo.net/en/sorting](https://visualgo.net/en/sorting)
-* [hackerearth.com/practice/algorithms/sorting/selection-sort/visualize](https://visualgo.net/en/sorting)
+Para superar esas limitaciones, surgieron algoritmos más sofisticados basados en el paradigma de
+_dividir y conquistar_, como _merge sort_ y _quick sort_.
+Ambos logran reducir la complejidad temporal promedio a $O(N \log N)$ al dividir el problema en partes más pequeñas,
+ordenarlas por separado y luego combinarlas. Esta mejora implica que el número de operaciones crece
+mucho más lentamente con el tamaño del conjunto de datos, lo que los hace adecuados para ordenar listas grandes.
+
+Sin embargo, la mayor eficiencia en tiempo suele implicar un costo en memoria.
+_Merge sort_, por ejemplo, necesita espacio adicional para almacenar las sublistas temporales generadas durante el proceso de fusión,
+lo que le otorga una complejidad espacial de $O(N)$.
+_Quick sort_, en cambio, puede implementarse _in place_, sin crear nuevas listas,
+pero requiere cierta cantidad de memoria para mantener las llamadas recursivas en la pila de ejecución.
+Así, elegir un algoritmo no depende solo de su velocidad, sino también de los recursos disponibles y del tipo de datos a procesar.
+
+En síntesis, los algoritmos más simples son didácticos y apropiados para listas pequeñas o casi ordenadas,
+mientras que los más complejos ofrecen un desempeño muy superior en escenarios reales.
+Comprender sus ventajas y limitaciones permite tomar decisiones más informadas al momento de seleccionar
+el método de ordenamiento adecuado para cada situación.
+
+
+<!-- * [visualgo.net/en/sorting](https://visualgo.net/en/sorting) -->
+<!-- * [hackerearth.com/practice/algorithms/sorting/selection-sort/visualize](https://visualgo.net/en/sorting) -->
 
 
