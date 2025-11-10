@@ -1,0 +1,2582 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3 - Algoritmos de ordenamiento – Programación II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../teoria/04_estructuras_y_algoritmos/02_estructuras_lineales.html" rel="prev">
+<link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-6b91d3459308d67acd3b39ffd436d7b2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Programación II</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../informacion/programa.html"> 
+<span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../teoria/01_programacion_en_python/01_introduccion.html" aria-current="page"> 
+<span class="menu-text">Teoría</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../practica/01_programacion_en_python/ejercicios.html"> 
+<span class="menu-text">Práctica</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../trabajos_practicos/trabajo_grupal.html"> 
+<span class="menu-text">Trabajos Prácticos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../recursos/tutoriales/tutorial_01.html"> 
+<span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ee-unr/programacion-2"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html">U4 - Estructuras de Datos y Algoritmos</a></li><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_y_algoritmos/03_ordenamiento.html">3 - Algoritmos de ordenamiento</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U1 - Programación en Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Introducción</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Funciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Ejecución condicional</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/04_colecciones_de_datos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Colecciones de datos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/05_ejecucion_repetitiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Ejecución repetitiva</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/06_uso_de_codigo_externo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 - Uso de código externo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/07_scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 - <em>Scripting</em></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/08_io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 - Lectura y escritura de archivos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U2 - Programación Funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/02_recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Recursión</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/03_funciones_de_orden_superior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Funciones de orden superior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/04_estrategias_de_evaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Estrategias de evaluación 🧩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_programacion_funcional/05_generadores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Generadores 🧩</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U3 - Programación Orientada a Objetos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/02_encapsulamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Encapsulamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/03_herencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Herencia</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/04_polimorfismo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Polimorfismo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_oop/05_excepciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Excepciones</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U4 - Estructuras de Datos y Algoritmos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - ¿Por qué importan?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_y_algoritmos/02_estructuras_lineales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Estructuras lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_y_algoritmos/03_ordenamiento.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">3 - Algoritmos de ordenamiento</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#bubble-sort" id="toc-bubble-sort" class="nav-link" data-scroll-target="#bubble-sort"><em>Bubble sort</em></a>
+  <ul class="collapse">
+  <li><a href="#implementación" id="toc-implementación" class="nav-link" data-scroll-target="#implementación">Implementación</a></li>
+  <li><a href="#análisis-de-la-eficiencia" id="toc-análisis-de-la-eficiencia" class="nav-link" data-scroll-target="#análisis-de-la-eficiencia">Análisis de la eficiencia</a></li>
+  </ul></li>
+  <li><a href="#selection-sort" id="toc-selection-sort" class="nav-link" data-scroll-target="#selection-sort"><em>Selection sort</em></a>
+  <ul class="collapse">
+  <li><a href="#implementación-1" id="toc-implementación-1" class="nav-link" data-scroll-target="#implementación-1">Implementación</a></li>
+  <li><a href="#análisis-de-eficiencia" id="toc-análisis-de-eficiencia" class="nav-link" data-scroll-target="#análisis-de-eficiencia">Análisis de eficiencia</a></li>
+  </ul></li>
+  <li><a href="#insertion-sort" id="toc-insertion-sort" class="nav-link" data-scroll-target="#insertion-sort"><em>Insertion sort</em></a>
+  <ul class="collapse">
+  <li><a href="#implementación-2" id="toc-implementación-2" class="nav-link" data-scroll-target="#implementación-2">Implementación</a></li>
+  <li><a href="#análisis-de-eficiencia-1" id="toc-análisis-de-eficiencia-1" class="nav-link" data-scroll-target="#análisis-de-eficiencia-1">Análisis de eficiencia</a></li>
+  </ul></li>
+  <li><a href="#divide-y-vencerás" id="toc-divide-y-vencerás" class="nav-link" data-scroll-target="#divide-y-vencerás">Divide y vencerás</a></li>
+  <li><a href="#merge-sort" id="toc-merge-sort" class="nav-link" data-scroll-target="#merge-sort"><em>Merge sort</em></a>
+  <ul class="collapse">
+  <li><a href="#implementación-3" id="toc-implementación-3" class="nav-link" data-scroll-target="#implementación-3">Implementación</a></li>
+  <li><a href="#análisis-de-eficiencia-2" id="toc-análisis-de-eficiencia-2" class="nav-link" data-scroll-target="#análisis-de-eficiencia-2">Análisis de eficiencia</a></li>
+  </ul></li>
+  <li><a href="#quick-sort" id="toc-quick-sort" class="nav-link" data-scroll-target="#quick-sort"><em>Quick sort</em></a>
+  <ul class="collapse">
+  <li><a href="#versión-básica" id="toc-versión-básica" class="nav-link" data-scroll-target="#versión-básica">Versión básica</a></li>
+  <li><a href="#versión-in-place" id="toc-versión-in-place" class="nav-link" data-scroll-target="#versión-in-place">Versión <em>in place</em></a></li>
+  <li><a href="#implementación-4" id="toc-implementación-4" class="nav-link" data-scroll-target="#implementación-4">Implementación</a></li>
+  <li><a href="#análisis-de-eficiencia-3" id="toc-análisis-de-eficiencia-3" class="nav-link" data-scroll-target="#análisis-de-eficiencia-3">Análisis de eficiencia</a></li>
+  </ul></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen">Resumen</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_y_algoritmos/01_por_que_importan.html">U4 - Estructuras de Datos y Algoritmos</a></li><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_y_algoritmos/03_ordenamiento.html">3 - Algoritmos de ordenamiento</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">3 - Algoritmos de ordenamiento</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>Ordenar significa reorganizar un conjunto de elementos según algún criterio, por ejemplo, de menor a mayor, alfabéticamente o por fecha.</p>
+<p>Ordenar es una de las tareas más importantes y estudiadas en informática. Almacenar un conjunto de datos de manera ordenada permite realizar búsquedas y otras operaciones de forma más eficiente. Muchos algoritmos avanzados dependen del ordenamiento como parte de su funcionamiento interno.</p>
+<p>Python incluye funciones y métodos para ordenar que ya están muy optimizados y, salvo raras excepciones, siempre deberíamos utilizar estas implementaciones. Pero sigue siendo fundamental comprender cómo funcionan los algoritmos detrás de esas operaciones.</p>
+<p>Por ejemplo, en el trabajo práctico grupal se usaron dos funciones de ordenamiento, con tiempos de ejecución notablemente distintos. ¿Qué podría explicar semejante diferencia en el desempeño de los algoritmos utilizados? ¿Cuál es la complejidad temporal de cada uno de ellos? ¿Siempre es mejor uno que el otro?</p>
+<p>Como veremos en este apunte, existe una gran variedad de algoritmos de ordenamiento, que realizan diferentes operaciones y se basan en distintas estrategias con un mismo objetivo: obtener una secuencia de valores ordenados.</p>
+</section>
+<section id="bubble-sort" class="level2">
+<h2 class="anchored" data-anchor-id="bubble-sort"><em>Bubble sort</em></h2>
+<p>Supongamos que tenemos un arreglo de valores numéricos sin ningún orden particular.</p>
+<center>
+<img src="imgs/03/bubble_sort-0.png" class="img-fluid">
+</center>
+<p>A simple vista, podemos determinar que el arreglo ordenado sería <code>[2, 4, 5, 7]</code>.</p>
+<p>Sin embargo, para que una computadora llegue al mismo resultado, necesitamos un algoritmo: una secuencia de pasos que garantice que, al ejecutarse, la lista quede ordenada.</p>
+<p>En una lista ordenada, cada elemento está seguido por uno mayor o igual. De manera formal, si tenemos una secuencia <span class="math inline">\(\boldsymbol{S} = [s_1, s_2, \dots, s_n]\)</span>, diremos que está ordenada si se cumple que <span class="math inline">\(s_i \le s_{i + 1}\)</span> para todo <span class="math inline">\(i \in {1, 2, \dots, n}\)</span>.</p>
+<p>Por ejemplo, la siguiente lista está ordenada:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">99</span>, <span class="dv">99</span>, <span class="dv">1000</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>mientras que esta no:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">10</span>, <span class="dv">214</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el primer caso, cada elemento tiene a su derecha un valor mayor o igual; en el segundo, el valor <code>60</code> tiene a su derecha un número menor (<code>10</code>), lo que rompe el orden.</p>
+<p>Una forma sencilla de obtener un algoritmo de ordenamiento consiste en comparar cada valor con el siguiente. Si el siguiente es menor, se intercambian; si no, se mantienen en su lugar. El procedimiento continúa con el elemento siguiente, repitiéndose hasta llegar al final de la lista.</p>
+<p>Veamos cómo funciona este procedimiento con la lista original <code>[7, 2, 4, 5]</code>:</p>
+<div style="margin: auto;">
+<div id="carousel-01" class="carousel carousel-dark slide" data-bs-ride="false">
+        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-01" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel-01" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel-01" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel-01" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+<button type="button" data-bs-target="#carousel-01" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+<button type="button" data-bs-target="#carousel-01" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+<button type="button" data-bs-target="#carousel-01" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+<button type="button" data-bs-target="#carousel-01" data-bs-slide-to="7" class="" aria-label="Slide 8"></button></div>
+        <div class="carousel-inner"><div class="carousel-item  active" data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort-0.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Inicialmente, la lista se encuentra desordenada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort-1.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se comparan los valores en las posiciones 0 y 1.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort-2.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como el primero (7) es mayor que el segundo (2), se intercambian.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort-3.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se comparan los valores en las posiciones 1 y 2.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort-4.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como el primero (7) es mayor que el segundo (4), se intercambian.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort-5.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se comparan los valores en las posiciones 2 y 3.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort-6.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como el primero (7) es mayor que el segundo (5), se intercambian.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort-7.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Finalmente, la lista se encuentra ordenada.</p>
+         </div>
+        </div></div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-01" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-01" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+      </div>
+</div>
+<p>El proceso que acabamos de observar es la base del algoritmo <em>bubble sort</em>. Más adelante volveremos sobre el origen del nombre.</p>
+<p>Lo importante, ahora, es notar que obtuvimos la lista ordenada en tan pocos pasos de pura suerte. Para ver por qué, apliquemos el mismo conjunto de pasos sobre una lista con la misma cantidad de elementos, en un orden apenas diferente.</p>
+<div id="carousel-02" class="carousel carousel-dark slide" data-bs-ride="false">
+        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-02" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel-02" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel-02" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel-02" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+<button type="button" data-bs-target="#carousel-02" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+<button type="button" data-bs-target="#carousel-02" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+<button type="button" data-bs-target="#carousel-02" data-bs-slide-to="6" class="" aria-label="Slide 7"></button></div>
+        <div class="carousel-inner"><div class="carousel-item  active" data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-0.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">La lista contiene los mismos valores, en otro orden.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-1.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se comparan los valores en las posiciones 0 y 1.<br>No hay intercambio: el primero (4) es menor que el segundo (7).</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-2.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se comparan los valores en las posiciones 1 y 2.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-3.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como el primero (7) es mayor que el segundo (2), se intercambian.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-4.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se comparan los valores en las posiciones 2 y 3.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-5.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como el primero (7) es mayor que el segundo (5), se intercambian.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-6.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Al final, sin embargo, la lista no se encuentra ordenada.</p>
+         </div>
+        </div></div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-02" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-02" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+      </div>
+<p>La primera vez que usamos el algoritmo obtuvimos una lista ordenada. En la segunda, la lista quedó más ordenada que al inicio, pero todavía no completamente.</p>
+<p>Como mencionamos antes, el primer caso fue simplemente una coincidencia. El algoritmo <em>bubble sort</em> funciona realizando sucesivas pasadas sobre la lista, comparando pares de valores consecutivos de principio a fin.</p>
+<p>En cada comparación, si un valor es mayor que el siguiente, se intercambian sus posiciones. Este proceso se repite hasta completar una pasada en la que no se realiza ningún intercambio; solo entonces puede concluirse que la lista está completamente ordenada.</p>
+<p>Continuando el ejemplo, tenemos:</p>
+<div id="carousel-02-b" class="carousel carousel-dark slide" data-bs-ride="false">
+        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-02-b" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel-02-b" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel-02-b" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel-02-b" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+<button type="button" data-bs-target="#carousel-02-b" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+<button type="button" data-bs-target="#carousel-02-b" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+<button type="button" data-bs-target="#carousel-02-b" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+<button type="button" data-bs-target="#carousel-02-b" data-bs-slide-to="7" class="" aria-label="Slide 8"></button></div>
+        <div class="carousel-inner"><div class="carousel-item  active" data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-7.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se vuelven a comparar los valores en las posiciones 0 y 1.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-8.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como el primero (4) es mayor que el segundo (2), se intercambian.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-9.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se comparan los valores en las posiciones 1 y 2.<br>No hay intercambio: el primero (4) es menor que el segundo (5).</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-10.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se comparan los valores en las posiciones 2 y 3.<br>Tampoco se intercambia: el primero (5) es menor que el segundo (7).</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-11.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Comienza otra pasada, comparando los primeros dos valores,<br> que no se intercambian.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-12.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se continúa comparando los de las posiciones 1 y 2,<br> que tampoco se intercambian.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-13.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se comparan los últimos dos valores, quedan en su lugar,<br> y se finaliza una pasada sin intercambios.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/bubble_sort_2-14.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Finalmente, la lista se encuentra ordenada.</p>
+         </div>
+        </div></div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-02-b" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-02-b" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+      </div>
+<section id="implementación" class="level3">
+<h3 class="anchored" data-anchor-id="implementación">Implementación</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bubble_sort(arr):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    arr <span class="op">=</span> arr[:] <span class="co"># Hacer copia</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(arr)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    intercambiado <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> intercambiado:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        intercambiado <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> arr[i] <span class="op">&gt;</span> arr[i <span class="op">+</span> <span class="dv">1</span>]:</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Se intercambian los valores</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                arr[i], arr[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> arr[i <span class="op">+</span> <span class="dv">1</span>], arr[i]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                intercambiado <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bubble_sort([<span class="dv">12</span>,&nbsp;<span class="dv">9</span>,&nbsp;<span class="dv">3</span>,&nbsp;<span class="dv">6</span>,&nbsp;<span class="dv">11</span>,&nbsp;<span class="dv">5</span>])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">12</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esta versión repite pasadas completas hasta que no se produce ningún intercambio, lo que indica que la lista está ordenada.</p>
+<!-- **TAREA**: Implementar una versión reduciendo la cantidad de elementos a comparar. -->
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Por qué <em>bubble sort</em>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En cada pasada, el algoritmo ubica el mayor valor fuera de orden en su posición correcta, al final de la lista. Este proceso hace que los valores más grandes “suban” gradualmente hacia la parte superior, como burbujas que ascienden en el agua, lo que da origen al nombre bubble sort.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Implementación eficiente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En cada pasada, el mayor valor fuera de orden se coloca en su posición definitiva. Esto implica que en la primera pasada el valor máximo llega a la última posición, en la segunda el segundo mayor queda en la penúltima, y así sucesivamente.</p>
+<p>Por lo tanto, en cada nueva pasada puede omitirse la última comparación, ya que los elementos finales ya están ordenados.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Versión interactiva
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/bubblesortAV">clic aquí</a></p>
+</div>
+</div>
+</section>
+<section id="análisis-de-la-eficiencia" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-de-la-eficiencia">Análisis de la eficiencia</h3>
+<p>El algoritmo <em>bubble sort</em> tiene dos tipos principales de pasos:</p>
+<ul>
+<li>Comparaciones: se comparan números de a pares para determinar cuál es mayor.</li>
+<li>Intercambios: se intercambian números para ordenarlos.</li>
+</ul>
+<p>Supongamos que tenemos una lista de 5 números y usamos una implementación eficiente, que omite las comparaciones innecesarias al final del arreglo.</p>
+<p>En la primera pasada se realizan 4 comparaciones, en la segunda 3, en la tercera 2 y en la última 1. En total, se efectúan 4 + 3 + 2 + 1 = 10 comparaciones.</p>
+<p>De manera general, si el arreglo tiene <span class="math inline">\(N\)</span> elementos, pueden realizarse hasta <span class="math inline">\((N - 1) + (N - 2) + \cdots + 1\)</span> comparaciones.</p>
+<p>Por otro lado, en el peor de los casos (cuando la lista está ordenada en forma descendente), será necesario realizar tantos intercambios como comparaciones, ya que en cada comparación habrá un valor mayor a su derecha.</p>
+<p>El total de comparaciones e intercambios posibles es entonces <span class="math inline">\(2 \times [(N - 1) + (N - 2) + \cdots + 1]\)</span>.</p>
+<p>La siguiente tabla resume la cantidad máxima de pasos para algunos valores de <span class="math inline">\(N\)</span>:</p>
+<table class="table-striped table-hover caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(N\)</span></th>
+<th style="text-align: right;">Cantidad máxima de pasos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td style="text-align: right;">90</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td style="text-align: right;">380</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td style="text-align: right;">870</td>
+</tr>
+<tr class="odd">
+<td>50</td>
+<td style="text-align: right;">2450</td>
+</tr>
+<tr class="even">
+<td>100</td>
+<td style="text-align: right;">9900</td>
+</tr>
+</tbody>
+</table>
+<p>Se puede notar que la cantidad de pasos crece a un ritmo sustancialmente mayor que el de un crecimiento lineal. Si agregamos una columna con el cuadrado de <span class="math inline">\(N\)</span>, podemos ver que la complejidad temporal de este algoritmo es cuadrática.</p>
+<table class="table-striped table-hover caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(N\)</span></th>
+<th style="text-align: right;">Cantidad máxima de pasos</th>
+<th style="text-align: right;"><span class="math inline">\(N^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td style="text-align: right;">380</td>
+<td style="text-align: right;">400</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td style="text-align: right;">870</td>
+<td style="text-align: right;">900</td>
+</tr>
+<tr class="odd">
+<td>50</td>
+<td style="text-align: right;">2450</td>
+<td style="text-align: right;">2500</td>
+</tr>
+<tr class="even">
+<td>100</td>
+<td style="text-align: right;">9900</td>
+<td style="text-align: right;">10000</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="selection-sort" class="level2">
+<h2 class="anchored" data-anchor-id="selection-sort"><em>Selection sort</em></h2>
+<p>Otro algoritmo sencillo para ordenar una secuencia es <em>selection sort</em>. Al igual que <em>bubble sort</em>, realiza múltiples pasadas a través de la lista.</p>
+<p>Su particularidad es que en cada pasada <strong>selecciona el menor valor</strong> de la parte desordenada y lo coloca en la posición que le corresponde.</p>
+<p>Luego, continúa con el resto de la lista, repitiendo el proceso hasta que todos los elementos quedan ordenados.</p>
+<div id="carousel-03" class="carousel carousel-dark slide" data-bs-ride="false">
+        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-03" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="7" class="" aria-label="Slide 8"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="8" class="" aria-label="Slide 9"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="9" class="" aria-label="Slide 10"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="10" class="" aria-label="Slide 11"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="11" class="" aria-label="Slide 12"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="12" class="" aria-label="Slide 13"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="13" class="" aria-label="Slide 14"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="14" class="" aria-label="Slide 15"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="15" class="" aria-label="Slide 16"></button>
+<button type="button" data-bs-target="#carousel-03" data-bs-slide-to="16" class="" aria-label="Slide 17"></button></div>
+        <div class="carousel-inner"><div class="carousel-item  active" data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-0.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se cuenta con una lista desordenada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-1.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se inspecciona el primer valor,<br> que es por ahora el mínimo.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-2.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se avanza a la segunda posición. Como 8 es mayor que 5, este último continúa siendo el mínimo.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-3.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se avanza a la tercera posición, donde se encuentra un nuevo mínimo (4).</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-4.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se avanza a la última posición, donde se encuentra un nuevo mínimo (3).</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-5.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se intercambia el mínimo con el valor de la primera posición.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-6.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Ahora se procede a buscar el mínimo de la parte desordenada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-7.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se inspecciona el primer valor,<br> que es por ahora el mínimo.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-8.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se avanza a la segunda posición, donde se encuentra un nuevo mínimo (4).</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-9.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se avanza a la última posición. Como 5 es mayor que 4, este último continúa siendo el mínimo.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-10.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se intercambia el mínimo con el valor de la segunda posición.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-11.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Ahora se procede a buscar el mínimo de la parte desordenada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-12.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se inspecciona el primer valor,<br> que es por ahora el mínimo.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-13.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se avanza a la última posición, donde se encuentra un nuevo mínimo (5).</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-14.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se intercambia el mínimo con el valor de la tercera posición.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-15.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como la parte desordenada de la lista contiene un solo elemento, debe ser mayor que todo el resto.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/selection_sort-16.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Finalmente, se obtiene una lista ordenada.</p>
+         </div>
+        </div></div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-03" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-03" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+      </div>
+<section id="implementación-1" class="level3">
+<h3 class="anchored" data-anchor-id="implementación-1">Implementación</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> selection_sort(arr):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    arr <span class="op">=</span> arr[:] <span class="co"># Crear copia de 'arr'</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(arr) <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        indice_menor_numero <span class="op">=</span> i</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(arr)):</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> arr[j] <span class="op">&lt;</span> arr[indice_menor_numero]:</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                indice_menor_numero <span class="op">=</span> j</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> indice_menor_numero <span class="op">!=</span> i:</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            arr[i], arr[indice_menor_numero] <span class="op">=</span> arr[indice_menor_numero], arr[i]</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>selection_sort([<span class="dv">95</span>,&nbsp;<span class="dv">50</span>,&nbsp;<span class="dv">20</span>,&nbsp;<span class="dv">13</span>,&nbsp;<span class="dv">17</span>,&nbsp;<span class="dv">100</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [13, 17, 20, 50, 95, 100]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Versión interactiva
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/selectionsortAV">clic aquí</a></p>
+</div>
+</div>
+</section>
+<section id="análisis-de-eficiencia" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-de-eficiencia">Análisis de eficiencia</h3>
+<p>Al igual que <em>bubble sort</em>, el algoritmo <em>selection sort</em> también utiliza dos tipos de operaciones: comparaciones e intercambios. En cada pasada, se compara cada valor de la parte desordenada con el mínimo actual, y al finalizar se coloca dicho mínimo en su posición correcta (intercambiándolo con el valor que estaba allí).</p>
+<p>La cantidad de comparaciones que realiza es idéntica a la del algoritmo <em>bubble sort</em>. Para un arreglo de longitud <span class="math inline">\(N\)</span>, se efectúan <span class="math inline">\((N - 1) + (N - 2) + \cdots + 1\)</span> comparaciones.</p>
+<p>Por otro lado, y a diferencia del algoritmo <em>bubble sort</em>, se realiza <strong>a lo sumo</strong> un intercambio por pasada. Se puede ver que, entonces, la cantidad de intercambios es menor que con el <em>bubble sort</em>, donde en el peor de los casos teníamos que hacer un intercambio por cada comparación.</p>
+<p>Por otro lado, a diferencia de <em>bubble sort</em>, se realiza <strong>a lo sumo un intercambio por pasada</strong>. Por lo tanto, la cantidad total de intercambios es mucho menor, ya que en el peor de los casos <em>bubble sort</em> realiza un intercambio por cada comparación.</p>
+<p>La siguiente tabla muestra una comparación lado a lado entre ambos algoritmos:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 39%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>N</th>
+<th style="text-align: right;">Pasos máximos en <em>bubble sort</em></th>
+<th style="text-align: right;">Pasos máximos en <em>selection sort</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">14 (10 comparaciones + 4 intercambios)</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">54 (45 comparaciones + 9 intercambios)</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td style="text-align: right;">380</td>
+<td style="text-align: right;">209 (190 comparaciones + 19 intercambios)</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td style="text-align: right;">870</td>
+<td style="text-align: right;">464 (435 comparaciones + 29 intercambios)</td>
+</tr>
+<tr class="odd">
+<td>50</td>
+<td style="text-align: right;">2450</td>
+<td style="text-align: right;">1274 (1225 comparaciones + 49 intercambios)</td>
+</tr>
+<tr class="even">
+<td>100</td>
+<td style="text-align: right;">9900</td>
+<td style="text-align: right;">5049 (4950 comparaciones + 99 intercambios)</td>
+</tr>
+</tbody>
+</table>
+<p>De esta comparación se observa que <em>selection sort</em> requiere aproximadamente la mitad de los pasos que <em>bubble sort</em>, lo que indica que, en promedio, resulta alrededor de dos veces más rápido.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+¿Complejidad <span class="math inline">\(O(\frac{N^2}{2})\)</span>?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A pesar de que el algoritmo <em>selection sort</em> realiza aproximadamente la mitad de pasos que <em>bubble sort</em>, ambos se consideran algoritmos de complejidad cuadrática.</p>
+<p>Al analizar la eficiencia mediante la notación <em>Big O</em>, solo importa cómo crece el número de pasos con el tamaño del problema, no la constante que los multiplica.</p>
+<p>Si un algoritmo realiza <span class="math inline">\(N^2\)</span> pasos y otro realiza <span class="math inline">\(N^2 / 2\)</span>, ambos crecen de manera proporcional a <span class="math inline">\(N^2\)</span> cuando <span class="math inline">\(N\)</span> aumenta.</p>
+<p>Por lo tanto, tanto <em>bubble sort</em> como <em>selection sort</em> se describen como algoritmos de orden <span class="math inline">\(O(N^2)\)</span>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="insertion-sort" class="level2">
+<h2 class="anchored" data-anchor-id="insertion-sort"><em>Insertion sort</em></h2>
+<p>En esta sección estudiaremos otro algoritmo, llamado <em>insertion sort</em>. Es un método de ordenamiento simple que inserta los elementos de la lista en una sublista ordenada que ocupa las primeras posiciones.</p>
+<p>Inicialmente, esta sublista ordenada contiene un solo elemento, el primero de la lista. A medida que se procesan los siguientes elementos, se van insertando en la posición correcta dentro de la sublista, manteniendo el orden. De esta forma, la parte ordenada va creciendo progresivamente hasta abarcar todos los elementos, momento en el cual la lista queda completamente ordenada.</p>
+<div id="carousel-04" class="carousel carousel-dark slide" data-bs-ride="false">
+        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-04" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="7" class="" aria-label="Slide 8"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="8" class="" aria-label="Slide 9"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="9" class="" aria-label="Slide 10"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="10" class="" aria-label="Slide 11"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="11" class="" aria-label="Slide 12"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="12" class="" aria-label="Slide 13"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="13" class="" aria-label="Slide 14"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="14" class="" aria-label="Slide 15"></button>
+<button type="button" data-bs-target="#carousel-04" data-bs-slide-to="15" class="" aria-label="Slide 16"></button></div>
+        <div class="carousel-inner"><div class="carousel-item  active" data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-0.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Todo comienza con una lista desordenada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-1.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se extrae el elemento en la segunda posición.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-2.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se lo compara con los valores a su izquierda.<br>Si estos son mayores, se los traslada a la derecha dejando un hueco para el valor extraído.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-3.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como 9 es mayor a 4, se lo traslada a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-4.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Dado que no hay más números a comparar, se inserta el 4 en el hueco generado y se finaliza la primera iteración.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-5.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Con la lista en este estado, se repite el proceso.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-6.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Ahora se extrae el valor de la tercera posición.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-7.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se lo compara con el primer valor a su izquierda, que es mayor y por lo tanto se traslada a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-8.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se lo compara con el segundo valor a su izquierda, que también es mayor y se los traslada a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-9.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">No habiendo valores por comparar, se inserta el valor extraído en el hueco generado.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-10.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Ahora se extrae el último valor en la secuencia.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-11.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Su primer valor a la izquierda es mayor, por lo tanto se traslada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-12.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Su segundo valor a la izquierda también es mayor y se traslada a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-13.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">El último valor a comparar es menor, por lo tanto no se traslada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-14.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se coloca el valor extraído en el hueco generado.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/insertion_sort-15.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Finalmente, se tiene la secuencia ordenada.</p>
+         </div>
+        </div></div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-04" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-04" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+      </div>
+<section id="implementación-2" class="level3">
+<h3 class="anchored" data-anchor-id="implementación-2">Implementación</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> insertion_sort(arr):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    arr <span class="op">=</span> arr[:] <span class="co"># Crear copia</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> indice <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(arr)):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        valor_actual <span class="op">=</span> arr[indice]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        puntero <span class="op">=</span> indice</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> puntero <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> arr[puntero <span class="op">-</span> <span class="dv">1</span>] <span class="op">&gt;</span> valor_actual:</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            arr[puntero] <span class="op">=</span> arr[puntero <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            puntero <span class="op">=</span> puntero <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        arr[puntero] <span class="op">=</span> valor_actual</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>insertion_sort([<span class="dv">9</span>,&nbsp;<span class="dv">7</span>,&nbsp;<span class="dv">5</span>,&nbsp;<span class="dv">999</span>, <span class="dv">1</span>,&nbsp;<span class="dv">10</span>,&nbsp;<span class="dv">25</span>])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [1, 5, 7, 9, 10, 25, 999]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Versión interactiva
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/insertionsortAV">clic aquí</a></p>
+</div>
+</div>
+</section>
+<section id="análisis-de-eficiencia-1" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-de-eficiencia-1">Análisis de eficiencia</h3>
+<p>El algoritmo <em>insertion sort</em> realiza cuatro tipos de operaciones: extracciones, comparaciones, desplazamientos e inserciones.</p>
+<p>Las comparaciones ocurren cada vez que se compara el <code>valor_actual</code> con los elementos que tiene a su izquierda. En el peor de los casos, cuando la lista está ordenada en sentido descendente, todos los valores a la izquierda son mayores que <code>valor_actual</code>, lo que obliga con compararlo con todos ellos antes de volver a insertarlo.</p>
+<p>En la primera pasada se realiza 1 comparación, en la segunda 2, y así sucesivamente, hasta la última pasada donde se realizan <span class="math inline">\(N - 1\)</span> comparaciones. Por lo tanto, el número máximo de comparaciones es:</p>
+<p><span class="math display">\[
+1 + 2 + 3 + \dots + (N - 1) = \frac{N^2}{2} - \frac{N}{2}
+\]</span></p>
+<p>Los desplazamientos ocurren cada vez que un valor se mueve a la derecha para dejar lugar al <code>valor_actual</code>. En el peor de los casos, el número de desplazamientos es igual al número de comparaciones. Sumando ambos tipos de operaciones, el número total de pasos es <span class="math inline">\(N^2 - N\)</span></p>
+<p>Por su parte, las extracciones e inserciones se realizan una vez por pasada, es decir, <span class="math inline">\(N - 1\)</span> veces cada una. Estas operaciones tienen un peso menor frente al crecimiento cuadrático de las comparaciones y desplazamientos.</p>
+<p>El número total de pasos es entonces:</p>
+<p><span class="math display">\[
+N^2 - N + 2N - 2 = N^2 + N - 2
+\]</span></p>
+<p>En términos de notación <em>Big O</em>, que no solo descarta términos constantes, sino que también se concentra en el término de mayor orden, concluimos que el algoritmo es de orden <span class="math inline">\(O(N^2)\)</span>.</p>
+<section id="analizando-el-caso-promedio" class="level4">
+<h4 class="anchored" data-anchor-id="analizando-el-caso-promedio">Analizando el “caso promedio”</h4>
+<p>Hasta ahora, el análisis se centró siiempre en el peor escenario, pero el desempeño de <em>insertion sort</em> depende en gran medida del orden inicial de los datos.</p>
+<p>En el peor de los casos, cuando el arreglo está ordenado de manera decreciente, <em>insertion sort</em> tiene una complejidad de <span class="math inline">\(O(N^2)\)</span>. En esta situación, su desempeño resulta inferior al de <em>selection sort</em>, que requiere menos operaciones (alrededor de <span class="math inline">\(O(N^2/2)\)</span>).</p>
+<p>Si los datos ya están ordenados, <em>insertion sort</em> solo realiza una comparación por pasada y ningún desplazamiento, sumando en total <span class="math inline">\(N - 1\)</span> comparaciones. <em>Selection sort</em>, por su parte, efectuaría igualmente unas <span class="math inline">\(\frac{N^2}{2} - \frac{N}{2}\)</span> comparaciones.</p>
+<p>Cuando los datos no siguen ningún orden en particular, <em>insertion sort</em> tiene pasadas en las que compara y traslada todos, algunos o ninguno de los valores. Si en el peor caso se comparan y trasladan todos los elementos, y en el mejor no se traslada ninguno, podemos estimar que, en un caso promedio, se comparará y trasladará aproximadamente la mitad de los elementos. Por eso se representa con una complejidad de <span class="math inline">\(O(N^2/2)\)</span>.</p>
+<p>En resumen, mientras <em>selection sort</em> mantiene una complejidad constante de <span class="math inline">\(O(N^2/2)\)</span> sin importar el orden inicial de los datos, _insertion sort? varía entre <span class="math inline">\(O(N)\)</span> en el mejor de los casos, <span class="math inline">\(O(N^2/2)\)</span> en el promedio y <span class="math inline">\(O(N^2)\)</span> en el peor.</p>
+<p>La elección de cuál usar depende, en definitiva, de las características de los datos a ordenar. Por su eficiencia en listas casi ordenadas, <em>insertion sort</em> suele utilizarse dentro de algoritmos más complejos como parte de etapas finales de ordenamiento.</p>
+</section>
+</section>
+</section>
+<section id="divide-y-vencerás" class="level2">
+<h2 class="anchored" data-anchor-id="divide-y-vencerás">Divide y vencerás</h2>
+<p>Los tres algoritmos que estudiamos hasta ahora nos sirvieron para comprender los fundamentos de los algoritmos de ordenamiento, practicar el análisis de la complejidad temporal y reforzar la idea de que no existe una única forma de ordenar.</p>
+<p>Sin embargo, la complejidad temporal de todos ellos está lejos de ser ideal. Cuando un algoritmo tiene complejidad cuadrática, incluso un pequeño incremento en el tamaño <span class="math inline">\(N\)</span> de la secuencia puede hacer que el número de pasos necesarios crezca de manera considerable.</p>
+<p>Por estos motivos, y dado que existen alternativas más eficientes, ningún lenguaje de programación maduro utiliza alguno de estos algoritmos como método de ordenamiento por defecto.</p>
+<p>En la práctica, se prefieren algoritmos más elaborados que logran una mejora sustancial en el desempeño computacional. Dos ejemplos clásicos de estos son <em>merge sort</em> y <em>quick sort</em>.</p>
+<p>Ambos se basan en un mismo paradigma de diseño algorítmico conocido como divide y vencerás (del inglés, <em>divide and conquer</em>). Este enfoque consiste en resolver un problema grande de forma recursiva, dividiéndolo en subproblemas más pequeños del mismo tipo.</p>
+<p>La idea clave es que ordenar secuencias pequeñas resulta mucho más rápido que ordenar una grande, y que ordenar una secuencia parcialmente ordenada es más eficiente que hacerlo sobre una totalmente desordenada.</p>
+<p>De manera general, el método divide y vencerás se desarrolla en tres etapas, que en el contexto del ordenamiento pueden describirse así:</p>
+<ol type="1">
+<li><strong>Dividir</strong>: Si la secuencia <span class="math inline">\(S\)</span> es lo suficientemente pequeña (por ejemplo, contiene uno o dos elementos), se la ordena directamente y se devuelve un resultado. En caso contrario, se divide <span class="math inline">\(S\)</span> en dos o más subsecuencias disjuntas.</li>
+<li><strong>Conquistar</strong>: se aplica el mismo procedimiento recursivamente sobre cada subsecuencia hasta que todas estén ordenadas</li>
+<li><strong>Combinar</strong>: se toman las subsecuencias ordenadas y se las une para formar una única secuencia ordenada, que constituye la solución final al problema original.</li>
+</ol>
+<p>A continuación veremos cómo estos pasos se materializan en un caso particular: <em>merge sort</em>.</p>
+</section>
+<section id="merge-sort" class="level2">
+<h2 class="anchored" data-anchor-id="merge-sort"><em>Merge sort</em></h2>
+<p><em>Merge sort</em> es un algoritmo recursivo que divide continuamente una lista por la mitad. Si la lista está vacía o contiene un solo elemento, se considera ordenada por definición (caso base). En cambio, si tiene más de un elemento, se divide y se aplica recursivamente <em>merge sort</em> a cada mitad (caso recursivo).</p>
+<p>Una vez que ambas mitades están ordenadas, se realiza la operación fundamental del algoritmo, llamada fusión (del inglés, <em>merge</em>). La fusión consiste en combinar dos listas ordenadas más pequeñas en una única lista nueva y ordenada.</p>
+<p>El procedimiento general del algoritmo puede resumirse así:</p>
+<ol type="1">
+<li>Dividir: si la secuencia <span class="math inline">\(S\)</span> tiene 0 o 1 elementos, se devuelve directamente porque ya está ordenada. En otro caso, se divide en dos subsecuencias: la primera mitad en <span class="math inline">\(S_1\)</span> y la segunda en <span class="math inline">\(S_2\)</span>.</li>
+<li>Ordenar: aplicar recursivamente <em>merge sort</em> sobre <span class="math inline">\(S_1\)</span> y <span class="math inline">\(S_2\)</span>.</li>
+<li>Fusionar: combinar las secuencias ordenadas <span class="math inline">\(S_1\)</span> y <span class="math inline">\(S_2\)</span> para obtener una nueva secuencia ordenada que contiene todos los elementos de <span class="math inline">\(S\)</span>.</li>
+</ol>
+<p>Visualmente:</p>
+<div id="carousel-05" class="carousel carousel-dark slide" data-bs-ride="false">
+        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-05" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel-05" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel-05" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel-05" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+<button type="button" data-bs-target="#carousel-05" data-bs-slide-to="4" class="" aria-label="Slide 5"></button></div>
+        <div class="carousel-inner"><div class="carousel-item  active" data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree-0.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se tiene una lista desordenada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree-1.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como su longitud es mayor a 1,<br>se la parte en dos mitades.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree-2.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">A su vez, estas listas también se parten a la mitad. Ahora que todas son de longitud 1, comienza la fusión.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree-3.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Hacia la izquierda, se fusionan 7 y 3 en [3, 7];<br>hacia la derecha, 4 y 1 en [1, 4].</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree-4.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Finalmente, se fusionan ambas sublistas en la lista ordenada.</p>
+         </div>
+        </div></div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-05" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-05" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+      </div>
+<p>Esta representación esquemática ayuda a visualizar la aplicación del principio divide y vencerás en un algoritmo de ordenamiento como <em>merge sort</em>.</p>
+<p>Sin embargo, esta representación no refleja fielmente el funcionamiento del algoritmo, considerando su naturaleza recursiva.</p>
+<p>El siguiente conjunto de imágenes nos ayudarán a entender como fuciona <em>merge sort</em> de manera recursiva.</p>
+<div id="carousel-05-b" class="carousel carousel-dark slide" data-bs-ride="false">
+        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="7" class="" aria-label="Slide 8"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="8" class="" aria-label="Slide 9"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="9" class="" aria-label="Slide 10"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="10" class="" aria-label="Slide 11"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="11" class="" aria-label="Slide 12"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="12" class="" aria-label="Slide 13"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="13" class="" aria-label="Slide 14"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="14" class="" aria-label="Slide 15"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="15" class="" aria-label="Slide 16"></button>
+<button type="button" data-bs-target="#carousel-05-b" data-bs-slide-to="16" class="" aria-label="Slide 17"></button></div>
+        <div class="carousel-inner"><div class="carousel-item  active" data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-0.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Todo empieza con una lista desordenada.<br>Como su longitud es mayor a 1, se parte a la mitad.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-1.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se aplica el algoritmo recursivamente, comenzando por la primera sublista, que se parte a la mitad.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-2.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se repite el mismo proceso, y se parte la lista de la izquierda.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-3.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Ahora, que se opera sobre listas de longitud 1,<br>se comienza a devolverlas y fusionarlas en listas ordenadas.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-4.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Las listas [69] y [45] se fusionan en [45, 69].</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-5.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se finaliza la ejecución del algoritmo sobre [87, 50], que se parte en dos.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-6.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Las listas de longitud 1 se devuelven y fusionan en [50, 87].</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-7.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Ahora se fusionan las listas ordenadas de longitud 2 en una lista ordenada de longitud 4.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-8.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Antes de devolver la lista ordenada de la izquierda, se debe ordenar la lista de la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-9.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como es de longitud mayor 1, se parte en dos.<br>Y se aplica el procedimiento recursivamente.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-10.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se parte la lista de la izquierda.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-11.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como se obtienen listas de longitud 1, ordenadas, se fusionan en una lista de longitud 2.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-12.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Ahora se parte la lista de la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-13.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se obtienen listas de longitud 1, ordenadas, que se fusionan en una lista de longitud 2.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-14.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se fusionan las listas ordenadas de longitud 2 en otra de longitud 4, también ordenada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-15.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se realiza la última fusión ordenada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_tree_recursivo-16.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Y se obtiene, finalmente, la lista ordenada.</p>
+         </div>
+        </div></div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-05-b" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-05-b" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+      </div>
+<p>El algoritmo <em>merge sort</em> se basa principalmente en particiones y fusiones. Las particiones son sencillas de entender e implementar.</p>
+<p>Por otro lado, no es trivial obtener una secuencia ordenada a partir de la fusión de dos secuencias también ordenadas. La operación excede a una simple concatenación.</p>
+<p>Para resolver este problema, <em>merge sort</em> usa un algoritmo conocido como fusión de arreglos (<em>merging arrays</em>). En este contexto, fusionar arreglos significa tomar dos arreglos que ya están ordenados, copiar todos sus valores en un tercer arreglo y obtener como resultado un tercer arreglo completamente ordenado.</p>
+<div style="max-width: 70%; margin: auto;">
+<p><img src="imgs/03/merge_sort_fusion-0.png" class="img-fluid"></p>
+</div>
+<p>Para fusionar dos arreglos ordenados <span class="math inline">\(S_1\)</span> y <span class="math inline">\(S_2\)</span>, el algoritmo de fusión sigue estos pasos:</p>
+<ol type="1">
+<li>Se inicializa un puntero <code>izq</code>, que apunta al primer índice de <span class="math inline">\(S_1\)</span> , y otro puntero <code>der</code> que apunta al primer índice de <span class="math inline">\(S_2\)</span>.</li>
+<li>Se crea un tercer arreglo vacío. Este será el arreglo con los datos fusionados, tendrá todos los valores de <span class="math inline">\(S_1\)</span> y <span class="math inline">\(S_2\)</span>, en orden ascendente</li>
+<li>Se ejecuta un bucle hasta que el puntero izquierdo o el puntero derecho lleguen al final de su respectivas secuencias. Dentro del bucle, realiza lo siguiente:
+<ol type="a">
+<li>Comparar el valor apuntado por el puntero izquierdo con el valor apuntado por el puntero derecho y determina cuál es <strong>menor</strong>.</li>
+<li>Tomar el valor menor y añadirlo al arreglo <code>fusionado</code>.</li>
+<li>Incrementar el puntero que estaba apuntando al valor menor para que señale el siguiente índice de su arreglo. Si en algún momento los dos valores que se comparan son iguales, se puede añadir arbitrariamente el valor del arreglo <code>left</code> y avanzar su puntero.</li>
+</ol></li>
+<li>Una vez que el bucle termina, uno de los dos arreglos (<span class="math inline">\(S_1\)</span> o <span class="math inline">\(S_2\)</span>) quedará “incompleto”, es decir, aún tendrá valores que no se copiaron al arreglo <code>fusionado</code>. Esto da inicio al último paso del algoritmo.</li>
+<li>Se toman todos los valores restantes del arreglo “incompleto” y es añaden, en orden, al arreglo <code>fusionado</code>.</li>
+</ol>
+<p>Veamos el ejemplo desarrollado paso a paso:</p>
+<div id="carousel-06" class="carousel carousel-dark slide" data-bs-ride="false">
+        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-06" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel-06" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel-06" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel-06" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+<button type="button" data-bs-target="#carousel-06" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+<button type="button" data-bs-target="#carousel-06" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+<button type="button" data-bs-target="#carousel-06" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+<button type="button" data-bs-target="#carousel-06" data-bs-slide-to="7" class="" aria-label="Slide 8"></button>
+<button type="button" data-bs-target="#carousel-06" data-bs-slide-to="8" class="" aria-label="Slide 9"></button>
+<button type="button" data-bs-target="#carousel-06" data-bs-slide-to="9" class="" aria-label="Slide 10"></button>
+<button type="button" data-bs-target="#carousel-06" data-bs-slide-to="10" class="" aria-label="Slide 11"></button>
+<button type="button" data-bs-target="#carousel-06" data-bs-slide-to="11" class="" aria-label="Slide 12"></button></div>
+        <div class="carousel-inner"><div class="carousel-item  active" data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_fusion-1.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se inicializa un puntero que apunta al principio de cada arreglo y se crea un tercer arreglo vacío.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_fusion-2.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">El valor del puntero derecho es el menor, por lo que se agrega a la lista definitiva.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_fusion-3.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se mueve el puntero derecho un casillero a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_fusion-4.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">El valor del puntero derecho es el menor, por lo que se agrega a la lista definitiva.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_fusion-5.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se mueve el puntero derecho un casillero a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_fusion-6.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Ahora, el valor del puntero izquierdo es menor y se agrega su valor a la lista definitiva.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_fusion-7.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se mueve el puntero izquierdo un casillero a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_fusion-8.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">El valor del puntero izquierdo es el menor, se agrega su valor a la lista definitiva y se mueve un casillero a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_fusion-9.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">El valor del puntero derecho es menor, se agrega a la lista y el puntero se mueve a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_fusion-10.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">El valor del puntero derecho es menor, se agrega a la lista y se mueve el puntero a la derecha, finalizando su recorrido.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_fusion-11.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se agregan los valores remanentes de la lista izquierda</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/merge_sort_fusion-12.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se obtiene una lista ordenada.</p>
+         </div>
+        </div></div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-06" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-06" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+      </div>
+<section id="implementación-3" class="level3">
+<h3 class="anchored" data-anchor-id="implementación-3">Implementación</h3>
+<p>Una implementación en Python es la siguiente:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> merge(izquierda, derecha):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    n_i <span class="op">=</span> <span class="bu">len</span>(izquierda)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    n_j <span class="op">=</span> <span class="bu">len</span>(derecha)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> (n_i <span class="op">+</span> n_j)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> izquierda[i] <span class="op">&lt;</span> derecha[j]:</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>            valor <span class="op">=</span> izquierda[i]</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>            valor <span class="op">=</span> derecha[j]</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>            j <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        resultado[k] <span class="op">=</span> valor</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        k <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">==</span> n_i:</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>            resultado[k:] <span class="op">=</span> derecha[j:]</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> j <span class="op">==</span> n_j:</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>            resultado[k:] <span class="op">=</span> izquierda[i:]</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resultado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Y luego, tenemos la función <code>merge_sort</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> merge_sort(arr):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(arr) <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> arr</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    mitad <span class="op">=</span> <span class="bu">len</span>(arr) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    izquierda <span class="op">=</span> merge_sort(arr[:mitad])</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    derecha <span class="op">=</span> merge_sort(arr[mitad:])</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> merge(izquierda, derecha)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>merge([<span class="dv">2</span>,&nbsp;<span class="dv">2</span>,&nbsp;<span class="dv">3</span>,&nbsp;<span class="dv">11</span>,&nbsp;<span class="dv">50</span>],&nbsp;[<span class="dv">3</span>,&nbsp;<span class="dv">10</span>,&nbsp;<span class="dv">15</span>,&nbsp;<span class="dv">20</span>])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [2, 2, 3, 3, 10, 11, 15, 20, 50]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>merge_sort([<span class="dv">50</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">20</span>, <span class="dv">99</span>, <span class="dv">155</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">9</span>])</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [3, 5, 8, 9, 10, 11, 20, 50, 99, 155]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Versión interactiva
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/mergesortAV">clic aquí</a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<em>Top-down</em>, <em>bottom-up</em>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La versión de <em>merge sort</em> que acabamos de ver se conoce como <strong><em>top-down</em></strong>, y utiliza recursión.</p>
+<p>Sin embargo,*no es la única forma de implementar este algoritmo. Existe también una versión llamada <strong><em>bottom-up</em></strong>, que no emplea recursión.</p>
+<p>En la práctica, suele ser algo más eficiente, ya que evita mantener un <em>stack</em> de llamadas y la memoria asociada a cada una de ellas.</p>
+</div>
+</div>
+</section>
+<section id="análisis-de-eficiencia-2" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-de-eficiencia-2">Análisis de eficiencia</h3>
+<p>El análisis de la complejidad de <em>merge sort</em> se basa en entender los dos procesos principales que componen el algoritmo:</p>
+<ol type="1">
+<li>La división recursiva de la lista en mitades.</li>
+<li>La fusión (<em>merge</em>) de las sublistas ordenadas en una nueva lista.</li>
+</ol>
+<section id="el-proceso-de-fusión" class="level4">
+<h4 class="anchored" data-anchor-id="el-proceso-de-fusión">El proceso de fusión</h4>
+<p>El corazón del algoritmo está en la operación de fusión, donde dos listas ordenadas se combinan en una sola lista también ordenada. Si consideramos que entre ambas listas hay un total de <span class="math inline">\(N\)</span> elementos, entonces el proceso completo de fusión requiere, en el peor de los casos, alrededor de <span class="math inline">\(2N\)</span> pasos:</p>
+<ul>
+<li><span class="math inline">\(N\)</span> operaciones para copiar los elementos en la lista final,</li>
+<li>y hasta <span class="math inline">\(N - 1\)</span> comparaciones para decidir el orden en que se insertan.</li>
+</ul>
+<p>Al sumar ambos tipos de operaciones, tenemos un total de <span class="math inline">\(2N - 1\)</span> pasos, que en notación <em>Big O</em> se escribe como <span class="math inline">\(O(N)\)</span>. En otras palabras, fusionar dos listas ordenadas es una operación de complejidad lineal.</p>
+</section>
+<section id="el-número-de-divisiones" class="level4">
+<h4 class="anchored" data-anchor-id="el-número-de-divisiones">El número de divisiones</h4>
+<p>Ahora bien, <em>merge sort</em> no realiza una única fusión. El algoritmo divide recursivamente la lista original en mitades, aplicando el mismo proceso a cada parte. Cada división parte la lista en dos, y la cantidad máxima de veces que puede hacerse esto es proporcional al logaritmo del tamaño de la lista. Es decir, si la lista tiene <span class="math inline">\(N\)</span> elementos, podemos dividirla como mucho <span class="math inline">\(\log_2 N\)</span> veces, hasta que llegamos a sublistas de tamaño 1 (que ya están ordenadas por definición).</p>
+</section>
+<section id="combinando-ambos-procesos" class="level4">
+<h4 class="anchored" data-anchor-id="combinando-ambos-procesos">Combinando ambos procesos</h4>
+<p>En cada “nivel” de la recursión se realizan fusiones que, en conjunto, procesan todos los elementos de la lista. Por lo tanto, cada nivel tiene un costo de complejidad <span class="math inline">\(O(n)\)</span>, y como hay <span class="math inline">\(\log n\)</span> niveles, el costo total del algoritmo es:</p>
+<p><span class="math display">\[
+O(N) \times O(\log N) = O(N \log N)
+\]</span></p>
+<p>Esta complejidad temporal indica que <em>merge sort</em> es más eficiente, en cantidad de pasos, que todos los algoritmos que estudiamos previamente.</p>
+</section>
+<section id="complejidad-espacial" class="level4">
+<h4 class="anchored" data-anchor-id="complejidad-espacial">Complejidad espacial</h4>
+<p>La eficiencia en tiempo tiene un costo adicional, el uso de memoria. Durante la fusión, el algoritmo necesita espacio extra para almacenar las sublistas temporales que se van creando y combinando. Esto implica una complejidad espacial de <span class="math inline">\(O(n)\)</span>, ya que se debe reservar memoria proporcional al tamaño total de la lista.</p>
+</section>
+</section>
+</section>
+<section id="quick-sort" class="level2">
+<h2 class="anchored" data-anchor-id="quick-sort"><em>Quick sort</em></h2>
+<p>El algoritmo <em>quick sort</em> también se basa en el paradigma de dividir y conquistar. La idea es dividir la secuencia en partes más pequeñas, ordenarlas de forma recursiva y luego combinarlas mediante una simple concatenación.</p>
+<section id="versión-básica" class="level3">
+<h3 class="anchored" data-anchor-id="versión-básica">Versión básica</h3>
+<p>El algoritmo puede describirse en tres pasos:</p>
+<ol type="1">
+<li><strong>Dividir</strong>: se elige un elemento de la secuencia, llamado pivote. En la práctica, suele seleccionarse el último elemento o uno al azar (se se mueve al final). Luego, se recorre la secuencia y se distribuyen sus elementos en tres nuevas subsecuencias:
+<ul>
+<li><span class="math inline">\(L\)</span>: que contiene los valores menores que el pivote.</li>
+<li><span class="math inline">\(E\)</span>: que contiene los valores iguales al pivote.</li>
+<li><span class="math inline">\(G\)</span>: que contiene los valores mayores que el pivote.</li>
+</ul></li>
+<li><strong>Conquistar</strong>: se ordenan recursivamente las subsecuencias <span class="math inline">\(L\)</span> y <span class="math inline">\(G\)</span>, aplicando el mismo procedimineto</li>
+<li><strong>Combinar</strong>: se unen las subsecuencias en una sola secuencia ordenada, concatenando los elementos de <span class="math inline">\(L\)</span>, <span class="math inline">\(E\)</span> y <span class="math inline">\(G\)</span> en ese orden.</li>
+</ol>
+<div id="carousel-07-b" class="carousel carousel-dark slide" data-bs-ride="false">
+        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="7" class="" aria-label="Slide 8"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="8" class="" aria-label="Slide 9"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="9" class="" aria-label="Slide 10"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="10" class="" aria-label="Slide 11"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="11" class="" aria-label="Slide 12"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="12" class="" aria-label="Slide 13"></button>
+<button type="button" data-bs-target="#carousel-07-b" data-bs-slide-to="13" class="" aria-label="Slide 14"></button></div>
+        <div class="carousel-inner"><div class="carousel-item  active" data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-0.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-1.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-2.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-3.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-4.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-5.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-6.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-7.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-8.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-9.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-10.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-11.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-12.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_recursivo-13.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light"></p>
+         </div>
+        </div></div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-07-b" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-07-b" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+      </div>
+<p>En Python:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quicksort_basico(arr):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(arr) <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> arr</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    pivote <span class="op">=</span> arr[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    menores <span class="op">=</span> []</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    iguales <span class="op">=</span> []</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    mayores <span class="op">=</span> []</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> arr:</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x <span class="op">&lt;</span> pivote:</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>            menores.append(x)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> x <span class="op">==</span> pivote:</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>            iguales.append(x)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>            mayores.append(x)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> quicksort_basico(menores) <span class="op">+</span> iguales <span class="op">+</span> quicksort_basico(mayores)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>quicksort_basico([<span class="dv">33</span>,&nbsp;<span class="dv">1</span>,&nbsp;<span class="dv">2</span>,&nbsp;<span class="dv">5</span>,&nbsp;<span class="dv">4</span>,&nbsp;<span class="dv">3</span>,&nbsp;<span class="dv">20</span>,&nbsp;<span class="dv">10</span>])</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [1, 2, 3, 4, 5, 10, 20, 33]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esta versión es conceptualmente sencilla, pero utiliza memoria adicional para almacenar las tres subsecuencias creadas en cada paso recursivo.</p>
+</section>
+<section id="versión-in-place" class="level3">
+<h3 class="anchored" data-anchor-id="versión-in-place">Versión <em>in place</em></h3>
+<p>Existe otra implementación, más eficiente en el uso de memoria, conocida como versión <em>in place</em>. En lugar de crear nuevas subsecuencias, modifica la secuencia original intercambiando elementos de lugar. En ese sentido, se asemeja a algoritmos como <em>bubble sort</em>, <em>selection sort</em> o <em>insertion sort</em>.</p>
+<p>La partición se realiza utilizando dos punteros, <code>izq</code> y <code>der</code>, que comienzan en los extremos de la parte de la secuencia que se está procesando, luego de haber seleccionado el pivote.</p>
+<ul>
+<li>El puntero <code>izq</code> avanza hacia la derecha hasta encontrar un valor mayor o igual al pivote.</li>
+<li>El puntero <code>der</code> avanza hacia la izquierda hasta encontrar un valor menor o igual al pivote.</li>
+</ul>
+<p>Cuando ambos punteros se detienen:</p>
+<ul>
+<li>Si no se han cruzado, se intercambian los valores y el proceso se repite.</li>
+<li>Si se cruzan, se intercambia el pivote con el elemento apuntado por <code>izq</code>.</li>
+</ul>
+<p>En ese momento se completa una partición: los valores menores al pivote quedan a su izquierda y los mayores, a su derecha. Luego, el algoritmo se aplica recursivamente sobre cada una de las dos partes resultantes.</p>
+<div id="carousel-08" class="carousel carousel-dark slide" data-bs-ride="false">
+        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-08" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="7" class="" aria-label="Slide 8"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="8" class="" aria-label="Slide 9"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="9" class="" aria-label="Slide 10"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="10" class="" aria-label="Slide 11"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="11" class="" aria-label="Slide 12"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="12" class="" aria-label="Slide 13"></button>
+<button type="button" data-bs-target="#carousel-08" data-bs-slide-to="13" class="" aria-label="Slide 14"></button></div>
+        <div class="carousel-inner"><div class="carousel-item  active" data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-0.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Todo comienza con una lista desordenada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-1.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se selecciona el último valor como pivote y se inicializan los punteros a la izquierda y a la derecha</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-2.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se compara el valor del puntero izquierdo con el pivote. Es menor, se mueve a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-3.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se compara el valor del puntero izquierdo con el pivote. No es menor, se detiene.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-4.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se compara el valor del puntero derecho con el pivote. Es mayor, se mueve a la izquierda.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-5.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se compara el valor del puntero derecho con el pivote. No es mayor, se detiene.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-6.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como ambos punteros se detuvieron, y no se cruzaron, se intercambian sus valores.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-7.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Continúa el proceso de comparación de punteros con el pivote.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-8.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se compara el puntero izquierdo con el pivote. Es menor, se mueve a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-9.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se compara el puntero izquierdo con el pivote. Es menor, se mueve a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-10.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se compara el puntero derecho con el pivote. Es mayor, se mueve a la izquierda.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-10.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se compara el puntero derecho con el pivote. No es mayor, se detiene.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-12.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como los punteros se cruzaron, se intercambia el valor del puntero izquierdo con el pivote, que ocupa su lugar definitivo en la lista ordenada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-13.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">El candado sobre el '3' indica que esa es su posición definitiva.</p>
+         </div>
+        </div></div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-08" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-08" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+      </div>
+<p>El proceso que acabamos de describir es una partición. El valor del pivote ahora se encuentra en su lugar definitivo en la lista ordenada. Ahora, el algoritmo <em>quick sort</em> particiona recursivamente las secciones restantes.</p>
+<div id="carousel-09" class="carousel carousel-dark slide" data-bs-ride="false">
+        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-09" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="7" class="" aria-label="Slide 8"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="8" class="" aria-label="Slide 9"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="9" class="" aria-label="Slide 10"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="10" class="" aria-label="Slide 11"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="11" class="" aria-label="Slide 12"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="12" class="" aria-label="Slide 13"></button>
+<button type="button" data-bs-target="#carousel-09" data-bs-slide-to="13" class="" aria-label="Slide 14"></button></div>
+        <div class="carousel-inner"><div class="carousel-item  active" data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-14.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se comienza por la sublista a la izquierda del anterior pivote. El puntero izquiero es menor al pivote y se mueve a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-15.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se compara el puntero izquierdo con el pivote. Es menor, se mueve a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-16.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Podría trasladarse el puntero dereecho a la izquierda, pero como se cruzaron, no hace falta.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-17.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se intercambia el valor del puntero izquierdo con el pivote. Como son el mismo, se queda en su lugar. Finaliza otra partición.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-18.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se particiona la sublista [0, 1]. El valor del puntero izquiero es menor al pivote, por lo que se mueve a la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-19.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como el puntero izquierdo cruzó al puntero derecho, no hace falta comparar el valor del puntero derecho con el pivote.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-20.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se intercambia el valor del puntero izquierdo con el pivote.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-21.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Se finalizó otra partición. Se continua por la sublista izquierda.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-22.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Una sublista de longitud 1 ya está ordenada por definición. Se continúa por la sublista derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-23.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">El valor del puntero izquierdo es menor al pivote, no se realizan movimientos.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-24.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como los punteros se cruzaron, se intercambia el valor del puntero izquierdo con el pivote.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-25.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Ahora solo resta ordenar la última sublista de la derecha.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-26.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Como es de longitud 1, ya se considera ordenada.</p>
+         </div>
+        </div>
+<div class="carousel-item " data-bs-interval="3000">
+            <img src="imgs/03/quick_sort_in_place-27.png" class="d-block mx-auto">
+         <div class="carousel-caption d-none d-md-block">
+            <p class="fw-light">Finalmente, se obtiene una lista ordenada mediante el algoritmo quick sort.</p>
+         </div>
+        </div></div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-09" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-09" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+      </div>
+</section>
+<section id="implementación-4" class="level3">
+<h3 class="anchored" data-anchor-id="implementación-4">Implementación</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _quick_sort(arr, inicio, fin):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Ordena la lista 'arr' _in place_ usando el algoritmo quicksort."""</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> fin <span class="op">-</span> inicio <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Realizar la partición y obtener la posición final del pivote</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    pivote_idx <span class="op">=</span> particionar(arr, inicio, fin)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ordenar recursivamente las dos mitades</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    _quick_sort(arr, inicio, pivote_idx <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    _quick_sort(arr, pivote_idx <span class="op">+</span> <span class="dv">1</span>, fin)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> particionar(arr, izq_idx, der_idx):</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    pivote_idx <span class="op">=</span> der_idx</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    pivote <span class="op">=</span> arr[pivote_idx]</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    der_idx <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> arr[izq_idx] <span class="op">&lt;</span> pivote:</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>            izq_idx <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> arr[der_idx] <span class="op">&gt;</span> pivote:</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>            der_idx <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> izq_idx <span class="op">&gt;=</span> der_idx:</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>            arr[izq_idx], arr[der_idx] <span class="op">=</span> arr[der_idx], arr[izq_idx]</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>            izq_idx <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Finalizar particion</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    arr[izq_idx], arr[pivote_idx] <span class="op">=</span> arr[pivote_idx], arr[izq_idx]</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> izq_idx</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quick_sort(arr):</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>    arr_copia <span class="op">=</span> arr[:]</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    _quick_sort(arr_copia, inicio<span class="op">=</span><span class="dv">0</span>, fin<span class="op">=</span><span class="bu">len</span>(arr) <span class="op">-</span> <span class="dv">1</span>) <span class="co"># Ordena _in place_</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr_copia</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>quick_sort([<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [0, 1, 2, 3, 7, 8, 10]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Versión interactiva
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://opendsa-server.cs.vt.edu/embed/quicksortAV">Versión interactiva</a></p>
+</div>
+</div>
+</section>
+<section id="análisis-de-eficiencia-3" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-de-eficiencia-3">Análisis de eficiencia</h3>
+<p>El costo de <em>quick sort</em> proviene principalmente del proceso de partición, en el que cada elemento de la lista se compara con el pivote.</p>
+<p>Se realizan unas <span class="math inline">\(N\)</span> comparaciones por partición y un número menor de intercambios, ya que cada intercambio reubica dos elementos a la vez.</p>
+<p>Por lo tanto, una partición completa cuesta tiene una complejidad de orden <span class="math inline">\(O(N)\)</span>.</p>
+<p>En el mejor escenario, los pivotes dividen la lista en mitades iguales. Primero se hacen particiones de tamaño <span class="math inline">\(N\)</span>, luego de <span class="math inline">\(N/2\)</span>, luego de <span class="math inline">\(N/4\)</span>, y así sucesivamente, hasta llegar a sublistas de un solo elemento. Eso genera <span class="math inline">\(\log N\)</span> niveles de partición, y como cada nivel cuesta <span class="math inline">\(O(N)\)</span> el tiempo total resulta <span class="math inline">\(O(N \log N)\)</span>.</p>
+<p>En el peor caso, los pivotes dividen la lista de manera muy desbalanceada, por ejemplo cuando siempre se elige como pivote el elemento más pequeño o el más grande. En ese caso, después de ordenar un pivote, queda una sublista con <span class="math inline">\(N-1\)</span> elementos, luego otra con <span class="math inline">\(N-2\)</span>, y así hasta llegar a 1. El número total de operaciones forma la suma <span class="math inline">\(N + (N-1) + (N-2) + \dots + 1\)</span>, que equivale a <span class="math inline">\(O(N^2)\)</span>.</p>
+<p>Respecto al espacio, la versión <em>in place</em> no crea nuevas listas; todo se hace dentro de la secuencia original. Sin embargo, cada llamada recursiva debe mantenerse en la pila de ejecución mientras espera que terminen las llamadas siguientes. Como la profundidad de la recursión depende de la altura del árbol de particiones (a lo sumo <span class="math inline">\(\log N\)</span> en promedio), el uso de memoria adicional es <span class="math inline">\(O(\log N)\)</span>.</p>
+</section>
+</section>
+<section id="resumen" class="level2">
+<h2 class="anchored" data-anchor-id="resumen">Resumen</h2>
+<p>Los primeros algoritmos de ordenamiento, como <em>bubble sort</em>, <em>selection sort</em> e <em>insertion sort</em>, son sencillos de entender e implementar, pero presentan una complejidad temporal cuadrática, <span class="math inline">\(O(N^2)\)</span>. Esto significa que el número de pasos necesarios crece de manera proporcional al cuadrado de la cantidad de elementos a ordenar. En consecuencia, cuando el tamaño de la lista aumenta, el tiempo de ejecución se vuelve rápidamente impráctico. Aun así, estos algoritmos son útiles para introducir los fundamentos del análisis de eficiencia y para comprender las diferencias entre comparaciones, intercambios y desplazamientos.</p>
+<p>Para superar esas limitaciones, surgieron algoritmos más sofisticados basados en el paradigma de <em>dividir y conquistar</em>, como <em>merge sort</em> y <em>quick sort</em>. Ambos logran reducir la complejidad temporal promedio a <span class="math inline">\(O(N \log N)\)</span> al dividir el problema en partes más pequeñas, ordenarlas por separado y luego combinarlas. Esta mejora implica que el número de operaciones crece mucho más lentamente con el tamaño del conjunto de datos, lo que los hace adecuados para ordenar listas grandes.</p>
+<p>Sin embargo, la mayor eficiencia en tiempo suele implicar un costo en memoria. <em>Merge sort</em>, por ejemplo, necesita espacio adicional para almacenar las sublistas temporales generadas durante el proceso de fusión, lo que le otorga una complejidad espacial de <span class="math inline">\(O(N)\)</span>. <em>Quick sort</em>, en cambio, puede implementarse <em>in place</em>, sin crear nuevas listas, pero requiere cierta cantidad de memoria para mantener las llamadas recursivas en la pila de ejecución. Así, elegir un algoritmo no depende solo de su velocidad, sino también de los recursos disponibles y del tipo de datos a procesar.</p>
+<p>En síntesis, los algoritmos más simples son didácticos y apropiados para listas pequeñas o casi ordenadas, mientras que los más complejos ofrecen un desempeño muy superior en escenarios reales. Comprender sus ventajas y limitaciones permite tomar decisiones más informadas al momento de seleccionar el método de ordenamiento adecuado para cada situación.</p>
+<!-- * [visualgo.net/en/sorting](https://visualgo.net/en/sorting) -->
+<!-- * [hackerearth.com/practice/algorithms/sorting/selection-sort/visualize](https://visualgo.net/en/sorting) -->
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ee-unr\.github\.io\/programacion-2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../teoria/04_estructuras_y_algoritmos/02_estructuras_lineales.html" class="pagination-link" aria-label="2 - Estructuras lineales">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2 - Estructuras lineales</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Esta página es hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
