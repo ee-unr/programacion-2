@@ -431,19 +431,16 @@ Hacer [clic aquí](https://opendsa-server.cs.vt.edu/embed/selectionsortAV)
 
 :::
 
-
 ## _Insertion sort_
 
-Al analizar el desempeño de los algoritmos presentados, nos enfocamos en el peor caso:
-cuando una lista está ordenada en sentido contrario al deseado.
-En esa situación vimos que _selection sort_ resulta más eficiente que _bubble sort_.
-
-Sin embargo, vale la pena considerar otros escenarios al evaluar un algoritmo ya que, en la práctica,
-no suele ocurrir que las listas estén completamente ordenadas al inverso del orden que buscamos.
-
 En esta sección estudiaremos otro algoritmo, llamado _insertion sort_.
-Se trata de un método de ordenamiento simple que **inserta iterativamente** cada elemento de una
-secuencia desordenada en su posición correcta dentro de la parte ya ordenada.
+Es un método de ordenamiento simple que inserta los elementos de la lista en una sublista
+ordenada que ocupa las primeras posiciones.
+
+Inicialmente, esta sublista ordenada contiene un solo elemento, el primero de la lista.
+A medida que se procesan los siguientes elementos, se van insertando en la posición correcta dentro de la sublista,
+manteniendo el orden. De esta forma, la parte ordenada va creciendo progresivamente
+hasta abarcar todos los elementos, momento en el cual la lista queda completamente ordenada.
 
 :::: {.carousel id="carousel-04"}
 
@@ -497,24 +494,21 @@ secuencia desordenada en su posición correcta dentro de la parte ya ordenada.
 
 :::
 
-Se puede observar que, en cada iteración, los valores a la izquierda del que se extrae se encuentran ordenados.
-
 ### Implementación
 
 ```python
 def insertion_sort(arr):
-    arr = arr[:]
-    for i in range(1, len(arr)):
-        valor_temporal = arr[i]
-        puntero = i - 1
+    arr = arr[:] # Crear copia
 
-        while puntero >= 0:
-            if arr[puntero] > valor_temporal:
-                arr[puntero + 1] = arr[puntero]
-                puntero = puntero - 1
-            else:
-                break
-            arr[puntero + 1] = valor_temporal
+    for indice in range(1, len(arr)):
+        valor_actual = arr[indice]
+        puntero = indice
+
+        while puntero > 0 and arr[puntero - 1] > valor_actual:
+            arr[puntero] = arr[puntero - 1]
+            puntero = puntero - 1
+
+        arr[puntero] = valor_actual
 
     return arr
 ```
@@ -526,8 +520,47 @@ insertion_sort([9, 7, 5, 999, 1, 10, 25])
 
 ### Análisis de eficiencia
 
-To Do...
+El algoritmo _insertion sort_ realiza cuatro tipos de operaciones: extracciones, comparaciones, traslados e inserciones.
 
+Las comparaciones ocurren cada vez que se compara el `valor_actual` con los elementos que tiene a su izquierda.
+En el peor de los casos, cuando la lista está ordenada en sentido descendente, todos los valores a la izquierda son mayores que `valor_actual`.
+Esto obliga a compararlo con todos ellos antes de insertarlo.
+En la primera pasada se hace 1 comparación, en la segunda 2, y así sucesivamente, hasta $N - 1$.
+Por lo tanto, el número máximo de comparaciones es:
+
+$$1 + 2 + 3 + \dots + (N - 1) = \frac{N^2}{2} - \frac{N}{2}$$
+
+Las traslaciones (o desplazamientos) ocurren cada vez que un valor se mueve a la derecha para dejar lugar al `valor_actual`.
+En el peor de los casos —cuando el arreglo está completamente invertido— el número de traslaciones es prácticamente igual al de comparaciones,
+dando lugar a unas $N^2 / 2$ traslaciones.
+Sumando ambos tipos de operaciones, el número total de pasos es del orden de $N^2$.
+
+Por su parte, las extracciones e inserciones se realizan una vez por pasada, es decir, $N - 1$ veces cada una.
+Estas operaciones tienen un peso menor frente al crecimiento cuadrático de las comparaciones y traslaciones.
+
+En conjunto, el número total de pasos puede expresarse aproximadamente como:
+
+$$N^2 + 2N - 2$$
+
+y, al descartar las constantes y términos de menor orden, concluimos que el algoritmo es de orden O(N^2).
+
+
+Hasta ahora, el análisis se centró en el peor caso.
+Sin embargo, el desempeño de _insertion sort_ depende mucho del orden inicial de los datos.
+
+* Peor caso: cuando la lista está completamente en orden inverso, se realizan el máximo número de comparaciones y traslados.
+En este escenario, *insertion sort* es incluso un poco más lento que *selection sort*, ya que realiza más movimientos.
+* Caso promedio: cuando los datos están en un orden aleatorio, en promedio se comparan y trasladan la mitad de los elementos.
+La cantidad de pasos a realizar sigue siendo una aproximadamente una función cuardática de $N$, alrededor de $O(N^2 / 2)$.
+* Mejor caso: cuando la lista ya está ordenada, cada pasada requiere solo una comparación y ningún traslado.
+En este caso, el número de pasos crece de manera lineal, es decir, $O(N)$.
+
+Podemos decir, entonces, que _insertion sort_ tiene una complejidad cuadrática en el peor y promedio de los casos,
+pero su desempeño real puede variar significativamente según el grado de orden inicial de los datos.
+
+En cambio, _selection sort_ realiza siempre aproximadamente la misma cantidad de pasos ($O(N^2 / 2)$),
+por lo que no mejora frente a listas parcialmente ordenadas.
+Qué algoritmo conviene usar depende, en última instancia, de las características de los datos a ordenar.
 
 ::: {.callout-note}
 
