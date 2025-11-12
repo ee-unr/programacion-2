@@ -452,7 +452,7 @@ window.Quarto = {
 </center>
 <p>A simple vista, podemos determinar que el arreglo ordenado sería <code>[2, 4, 5, 7]</code>.</p>
 <p>Sin embargo, para que una computadora llegue al mismo resultado, necesitamos un algoritmo: una secuencia de pasos que garantice que, al ejecutarse, la lista quede ordenada.</p>
-<p>En una lista ordenada, cada elemento está seguido por uno mayor o igual. De manera formal, si tenemos una secuencia <span class="math inline">\(\boldsymbol{S} = [s_1, s_2, \dots, s_n]\)</span>, diremos que está ordenada si se cumple que <span class="math inline">\(s_i \le s_{i + 1}\)</span> para todo <span class="math inline">\(i \in {1, 2, \dots, n}\)</span>.</p>
+<p>En una lista ordenada, cada elemento está seguido por uno mayor o igual. Más formalmente, si tenemos una secuencia <span class="math inline">\(\boldsymbol{S} = [s_1, s_2, \dots, s_n]\)</span>, diremos que está ordenada si se cumple que <span class="math inline">\(s_i \le s_{i + 1}\)</span> para todo <span class="math inline">\(i \in \{1, 2, \dots, n - 1\}\)</span>.</p>
 <p>Por ejemplo, la siguiente lista está ordenada:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">99</span>, <span class="dv">99</span>, <span class="dv">1000</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>mientras que esta no:</p>
@@ -532,7 +532,7 @@ window.Quarto = {
       </div>
 </div>
 <p>El proceso que acabamos de observar es la base del algoritmo <em>bubble sort</em>. Más adelante volveremos sobre el origen del nombre.</p>
-<p>Lo importante, ahora, es notar que obtuvimos la lista ordenada en tan pocos pasos de pura suerte. Para ver por qué, apliquemos el mismo conjunto de pasos sobre una lista con la misma cantidad de elementos, en un orden apenas diferente.</p>
+<p>Ahora, debemos notar que obtuvimos una lista ordenada en tan pocos pasos de pura suerte. Para ver por qué, apliquemos el mismo conjunto de pasos sobre una lista con la misma cantidad de elementos, en un orden apenas diferente.</p>
 <div id="carousel-02" class="carousel carousel-dark slide" data-bs-ride="false">
         <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-02" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 <button type="button" data-bs-target="#carousel-02" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
@@ -595,9 +595,9 @@ window.Quarto = {
         </button>
 
       </div>
-<p>La primera vez que usamos el algoritmo obtuvimos una lista ordenada. En la segunda, la lista quedó más ordenada que al inicio, pero todavía no completamente.</p>
-<p>Como mencionamos antes, el primer caso fue simplemente una coincidencia. El algoritmo <em>bubble sort</em> funciona realizando sucesivas pasadas sobre la lista, comparando pares de valores consecutivos de principio a fin.</p>
-<p>En cada comparación, si un valor es mayor que el siguiente, se intercambian sus posiciones. Este proceso se repite hasta completar una pasada en la que no se realiza ningún intercambio; solo entonces puede concluirse que la lista está completamente ordenada.</p>
+<p>La primera vez que usamos el algoritmo, obtuvimos una lista ordenada. En la segunda, la lista quedó más ordenada que al inicio, pero aún no completamente.</p>
+<p>Como mencionamos anteriormente, que en el primer caso se obtenga una lista ordenada al realizar una sola pasada fue simplemente una coincidencia.</p>
+<p>El algoritmo <em>bubble sort</em> funciona realizando pasadas sucesivas sobre la lista, comparando pares de valores consecutivos, de principio a fin. En cada comparación, si un valor es mayor que el siguiente, se intercambian sus posiciones. Este proceso se repite hasta completar una pasada en la que no se realiza ningún intercambio; solo entonces puede concluirse que la lista está completamente ordenada.</p>
 <p>Continuando el ejemplo, tenemos:</p>
 <div id="carousel-02-b" class="carousel carousel-dark slide" data-bs-ride="false">
         <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-02-b" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -670,24 +670,45 @@ window.Quarto = {
       </div>
 <section id="implementación" class="level3">
 <h3 class="anchored" data-anchor-id="implementación">Implementación</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bubble_sort(arr):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    arr <span class="op">=</span> arr[:] <span class="co"># Hacer copia</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(arr)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    intercambiado <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> intercambiado:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        intercambiado <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>):</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> arr[i] <span class="op">&gt;</span> arr[i <span class="op">+</span> <span class="dv">1</span>]:</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Se intercambian los valores</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                arr[i], arr[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> arr[i <span class="op">+</span> <span class="dv">1</span>], arr[i]</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                intercambiado <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bubble_sort([<span class="dv">12</span>,&nbsp;<span class="dv">9</span>,&nbsp;<span class="dv">3</span>,&nbsp;<span class="dv">6</span>,&nbsp;<span class="dv">11</span>,&nbsp;<span class="dv">5</span>])</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">12</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bubble_sort(arr):</span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>    arr <span class="op">=</span> arr[:] <span class="co"># Hacer copia</span></span>
+<span id="annotated-cell-3-3"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(arr)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-4" class="code-annotation-target"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a>    intercambiado <span class="op">=</span> <span class="va">True</span></span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-6" class="code-annotation-target"><a href="#annotated-cell-3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> intercambiado:</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-3-7" class="code-annotation-target"><a href="#annotated-cell-3-7" aria-hidden="true" tabindex="-1"></a>        intercambiado <span class="op">=</span> <span class="va">False</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-3-8" class="code-annotation-target"><a href="#annotated-cell-3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>):</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-3-9" class="code-annotation-target"><a href="#annotated-cell-3-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> arr[i] <span class="op">&gt;</span> arr[i <span class="op">+</span> <span class="dv">1</span>]:</span>
+<span id="annotated-cell-3-10"><a href="#annotated-cell-3-10" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Se intercambian los valores</span></span>
+<span id="annotated-cell-3-11"><a href="#annotated-cell-3-11" aria-hidden="true" tabindex="-1"></a>                arr[i], arr[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> arr[i <span class="op">+</span> <span class="dv">1</span>], arr[i]</span>
+<span id="annotated-cell-3-12"><a href="#annotated-cell-3-12" aria-hidden="true" tabindex="-1"></a>                intercambiado <span class="op">=</span> <span class="va">True</span></span>
+<span id="annotated-cell-3-13"><a href="#annotated-cell-3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-3-14"><a href="#annotated-cell-3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="4" data-code-annotation="1">Se usa una variable booleana <code>intercambiado</code> para indicar si en la pasada anterior se hizo un intercambio de elementos, y por lo tanto se debe realizar una pasada más. Inicialmente, este valor es <code>True</code> para que se ejecute el bucle <code>while</code> al menos una vez.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="2">Mientras se haya intercambiado en la pasada anterior.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="7" data-code-annotation="3">El primer paso de cada pasada es igualar <code>intercambiado</code> a <code>False</code>. Solo cuando se haga un intercambio se lo convierte a <code>True</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="8" data-code-annotation="4">Se itera a través de todos los valores en la secuencia, excepto el último, ya que se comapran de a pares.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="9,10,11,12" data-code-annotation="5">Si el valor de la posición <code>i</code> es mayor que el de la posición <code>i + 1</code>, se intercambian y se iguala <code>intercambiado</code> a <code>True</code>.</span>
+</dd>
+</dl>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bubble_sort([<span class="dv">12</span>,&nbsp;<span class="dv">9</span>,&nbsp;<span class="dv">3</span>,&nbsp;<span class="dv">6</span>,&nbsp;<span class="dv">11</span>,&nbsp;<span class="dv">5</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">12</span>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Esta versión repite pasadas completas hasta que no se produce ningún intercambio, lo que indica que la lista está ordenada.</p>
-<!-- **TAREA**: Implementar una versión reduciendo la cantidad de elementos a comparar. -->
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -698,7 +719,7 @@ Por qué <em>bubble sort</em>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>En cada pasada, el algoritmo ubica el mayor valor fuera de orden en su posición correcta, al final de la lista. Este proceso hace que los valores más grandes “suban” gradualmente hacia la parte superior, como burbujas que ascienden en el agua, lo que da origen al nombre bubble sort.</p>
+<p>En cada pasada, el algoritmo ubica el mayor valor fuera de orden en su posición correcta, al final de la lista. Este proceso hace que los valores más grandes “suban” gradualmente hacia la parte superior, como burbujas que ascienden en el agua, lo que da origen al nombre <em>bubble sort</em>.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -725,7 +746,7 @@ Versión interactiva
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/bubblesortAV">clic aquí</a></p>
+<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/bubblesortAV">clic aquí</a>.</p>
 </div>
 </div>
 </section>
@@ -738,86 +759,52 @@ Versión interactiva
 </ul>
 <p>Supongamos que tenemos una lista de 5 números y usamos una implementación eficiente, que omite las comparaciones innecesarias al final del arreglo.</p>
 <p>En la primera pasada se realizan 4 comparaciones, en la segunda 3, en la tercera 2 y en la última 1. En total, se efectúan 4 + 3 + 2 + 1 = 10 comparaciones.</p>
-<p>De manera general, si el arreglo tiene <span class="math inline">\(N\)</span> elementos, pueden realizarse hasta <span class="math inline">\((N - 1) + (N - 2) + \cdots + 1\)</span> comparaciones.</p>
-<p>Por otro lado, en el peor de los casos (cuando la lista está ordenada en forma descendente), será necesario realizar tantos intercambios como comparaciones, ya que en cada comparación habrá un valor mayor a su derecha.</p>
-<p>El total de comparaciones e intercambios posibles es entonces <span class="math inline">\(2 \times [(N - 1) + (N - 2) + \cdots + 1]\)</span>.</p>
-<p>La siguiente tabla resume la cantidad máxima de pasos para algunos valores de <span class="math inline">\(N\)</span>:</p>
+<p>De manera general, si el arreglo tiene <span class="math inline">\(N\)</span> elementos, el número máximo de comparaciones es:</p>
+<p><span class="math display">\[
+(N - 1) + (N - 2) + \cdots + 2 + 1 = \frac{N(N - 1)}{2} = \frac{N^2}{2} - \frac{N}{2}
+\]</span></p>
+<p>Además, en el peor de los casos (cuando la lista está ordenada en forma descendente), será necesario realizar tantos intercambios como comparaciones, ya que en cada comparación habrá un valor mayor a su derecha. El total de comparaciones e intercambios posibles es entonces:</p>
+<p><span class="math display">\[
+2 \left[\frac{N^2}{2} - \frac{N}{2}\right] = N^2 - N
+\]</span></p>
+<p>Así, se concluye que la complejidad temporal de <em>bubble sort</em> <span class="math inline">\(O(N^2)\)</span>. Aunque la cantidad de pasos no solo dependa <span class="math inline">\(N^2\)</span>, sino también de <span class="math inline">\(N\)</span>, la notación <em>Big O</em> se centra en el orden del término dominante y, en este caso, se dice que <em>buble sort</em> es de complejidad cuadrática.</p>
+<p>La siguiente tabla muestra lo rápido que crece la cantidad máxima de pasos conforme se incrementa la cantidad de elementos a ordenar:</p>
+<div style="max-width: 70%; margin: auto;">
 <table class="table-striped table-hover caption-top table">
 <thead>
 <tr class="header">
-<th><span class="math inline">\(N\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(N\)</span></th>
 <th style="text-align: right;">Cantidad máxima de pasos</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>5</td>
+<td style="text-align: right;">5</td>
 <td style="text-align: right;">20</td>
 </tr>
 <tr class="even">
-<td>10</td>
+<td style="text-align: right;">10</td>
 <td style="text-align: right;">90</td>
 </tr>
 <tr class="odd">
-<td>20</td>
+<td style="text-align: right;">20</td>
 <td style="text-align: right;">380</td>
 </tr>
 <tr class="even">
-<td>30</td>
+<td style="text-align: right;">30</td>
 <td style="text-align: right;">870</td>
 </tr>
 <tr class="odd">
-<td>50</td>
+<td style="text-align: right;">50</td>
 <td style="text-align: right;">2450</td>
 </tr>
 <tr class="even">
-<td>100</td>
-<td style="text-align: right;">9900</td>
-</tr>
-</tbody>
-</table>
-<p>Se puede notar que la cantidad de pasos crece a un ritmo sustancialmente mayor que el de un crecimiento lineal. Si agregamos una columna con el cuadrado de <span class="math inline">\(N\)</span>, podemos ver que la complejidad temporal de este algoritmo es cuadrática.</p>
-<table class="table-striped table-hover caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(N\)</span></th>
-<th style="text-align: right;">Cantidad máxima de pasos</th>
-<th style="text-align: right;"><span class="math inline">\(N^2\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>5</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">25</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td style="text-align: right;">90</td>
 <td style="text-align: right;">100</td>
-</tr>
-<tr class="odd">
-<td>20</td>
-<td style="text-align: right;">380</td>
-<td style="text-align: right;">400</td>
-</tr>
-<tr class="even">
-<td>30</td>
-<td style="text-align: right;">870</td>
-<td style="text-align: right;">900</td>
-</tr>
-<tr class="odd">
-<td>50</td>
-<td style="text-align: right;">2450</td>
-<td style="text-align: right;">2500</td>
-</tr>
-<tr class="even">
-<td>100</td>
 <td style="text-align: right;">9900</td>
-<td style="text-align: right;">10000</td>
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 </section>
 <section id="selection-sort" class="level2">
@@ -959,22 +946,40 @@ Versión interactiva
       </div>
 <section id="implementación-1" class="level3">
 <h3 class="anchored" data-anchor-id="implementación-1">Implementación</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> selection_sort(arr):</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    arr <span class="op">=</span> arr[:] <span class="co"># Crear copia de 'arr'</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(arr) <span class="op">-</span> <span class="dv">1</span>):</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        indice_menor_numero <span class="op">=</span> i</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(arr)):</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> arr[j] <span class="op">&lt;</span> arr[indice_menor_numero]:</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                indice_menor_numero <span class="op">=</span> j</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> indice_menor_numero <span class="op">!=</span> i:</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            arr[i], arr[indice_menor_numero] <span class="op">=</span> arr[indice_menor_numero], arr[i]</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>selection_sort([<span class="dv">95</span>,&nbsp;<span class="dv">50</span>,&nbsp;<span class="dv">20</span>,&nbsp;<span class="dv">13</span>,&nbsp;<span class="dv">17</span>,&nbsp;<span class="dv">100</span>])</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [13, 17, 20, 50, 95, 100]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-5"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> selection_sort(arr):</span>
+<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>    arr <span class="op">=</span> arr[:]</span>
+<span id="annotated-cell-5-3"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-4" class="code-annotation-target"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(arr) <span class="op">-</span> <span class="dv">1</span>):</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a>        indice_menor_numero <span class="op">=</span> i</span>
+<span id="annotated-cell-5-6"><a href="#annotated-cell-5-6" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-7" class="code-annotation-target"><a href="#annotated-cell-5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, <span class="bu">len</span>(arr)):</span>
+<span id="annotated-cell-5-8"><a href="#annotated-cell-5-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> arr[j] <span class="op">&lt;</span> arr[indice_menor_numero]:</span>
+<span id="annotated-cell-5-9"><a href="#annotated-cell-5-9" aria-hidden="true" tabindex="-1"></a>                indice_menor_numero <span class="op">=</span> j</span>
+<span id="annotated-cell-5-10"><a href="#annotated-cell-5-10" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-11" class="code-annotation-target"><a href="#annotated-cell-5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> indice_menor_numero <span class="op">!=</span> i:</span>
+<span id="annotated-cell-5-12"><a href="#annotated-cell-5-12" aria-hidden="true" tabindex="-1"></a>            arr[i], arr[indice_menor_numero] <span class="op">=</span> arr[indice_menor_numero], arr[i]</span>
+<span id="annotated-cell-5-13"><a href="#annotated-cell-5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-5-14"><a href="#annotated-cell-5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="4" data-code-annotation="1">El puntero <code>i</code> itera desde el primer hasta el penúltimo elemento. Este es el que realiza las pasadas.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="5" data-code-annotation="2">En cada pasada, se toma al primer valor como el mínimo, por eso <code>indice_menor_numero</code> se iguala a <code>i</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="7,8,9" data-code-annotation="3">Otro puntero, <code>j</code>, recorre la lista a partir de <code>i</code>, hasta el final. Si el valor en la posición <code>j</code> es mejor que en el mínimo actual, se toma a <code>j</code> como el índice con el mínimo.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="11,12" data-code-annotation="4">Si el mínimo no está al principio de la sublista que se recorre, se intercambian las posiciones de los elementos para que el mínimo esté al principio.</span>
+</dd>
+</dl>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>selection_sort([<span class="dv">95</span>,&nbsp;<span class="dv">50</span>,&nbsp;<span class="dv">20</span>,&nbsp;<span class="dv">13</span>,&nbsp;<span class="dv">17</span>,&nbsp;<span class="dv">100</span>])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [13, 17, 20, 50, 95, 100]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -985,18 +990,21 @@ Versión interactiva
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/selectionsortAV">clic aquí</a></p>
+<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/selectionsortAV">clic aquí</a>.</p>
 </div>
 </div>
 </section>
 <section id="análisis-de-eficiencia" class="level3">
 <h3 class="anchored" data-anchor-id="análisis-de-eficiencia">Análisis de eficiencia</h3>
 <p>Al igual que <em>bubble sort</em>, el algoritmo <em>selection sort</em> también utiliza dos tipos de operaciones: comparaciones e intercambios. En cada pasada, se compara cada valor de la parte desordenada con el mínimo actual, y al finalizar se coloca dicho mínimo en su posición correcta (intercambiándolo con el valor que estaba allí).</p>
-<p>La cantidad de comparaciones que realiza es idéntica a la del algoritmo <em>bubble sort</em>. Para un arreglo de longitud <span class="math inline">\(N\)</span>, se efectúan <span class="math inline">\((N - 1) + (N - 2) + \cdots + 1\)</span> comparaciones.</p>
-<p>Por otro lado, y a diferencia del algoritmo <em>bubble sort</em>, se realiza <strong>a lo sumo</strong> un intercambio por pasada. Se puede ver que, entonces, la cantidad de intercambios es menor que con el <em>bubble sort</em>, donde en el peor de los casos teníamos que hacer un intercambio por cada comparación.</p>
-<p>Por otro lado, a diferencia de <em>bubble sort</em>, se realiza <strong>a lo sumo un intercambio por pasada</strong>. Por lo tanto, la cantidad total de intercambios es mucho menor, ya que en el peor de los casos <em>bubble sort</em> realiza un intercambio por cada comparación.</p>
-<p>La siguiente tabla muestra una comparación lado a lado entre ambos algoritmos:</p>
-<table class="caption-top table">
+<p>La cantidad de comparaciones que realiza es idéntica a la del algoritmo <em>bubble sort</em>. Para un arreglo de longitud <span class="math inline">\(N\)</span>, se efectúan <span class="math inline">\(\frac{N^2}{2} - \frac{N}{2}\)</span> comparaciones.</p>
+<p>Por otro lado, y a diferencia del algoritmo <em>bubble sort</em>, se realiza <strong>a lo sumo</strong> un intercambio por pasada, por lo que en total pueden realizar hasta <span class="math inline">\(N - 1\)</span> intercambios y la cantidad máxima de pasos del algoritmo <em>insertion sort</em> es:</p>
+<p><span class="math display">\[
+\frac{N^2}{2} - \frac{N}{2} + (N - 1),
+\]</span></p>
+<p>lo que indica que la complejidad temporal de <em>selection sort</em> también es cuadrática.</p>
+<p>La siguiente tabla muestra una comparación lado a lado entre los dos algoritmos estudiados:</p>
+<table class="table-striped table-hover caption-top table">
 <colgroup>
 <col style="width: 3%">
 <col style="width: 39%">
@@ -1004,39 +1012,39 @@ Versión interactiva
 </colgroup>
 <thead>
 <tr class="header">
-<th>N</th>
+<th style="text-align: right;">N</th>
 <th style="text-align: right;">Pasos máximos en <em>bubble sort</em></th>
 <th style="text-align: right;">Pasos máximos en <em>selection sort</em></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>5</td>
+<td style="text-align: right;">5</td>
 <td style="text-align: right;">20</td>
 <td style="text-align: right;">14 (10 comparaciones + 4 intercambios)</td>
 </tr>
 <tr class="even">
-<td>10</td>
+<td style="text-align: right;">10</td>
 <td style="text-align: right;">90</td>
 <td style="text-align: right;">54 (45 comparaciones + 9 intercambios)</td>
 </tr>
 <tr class="odd">
-<td>20</td>
+<td style="text-align: right;">20</td>
 <td style="text-align: right;">380</td>
 <td style="text-align: right;">209 (190 comparaciones + 19 intercambios)</td>
 </tr>
 <tr class="even">
-<td>30</td>
+<td style="text-align: right;">30</td>
 <td style="text-align: right;">870</td>
 <td style="text-align: right;">464 (435 comparaciones + 29 intercambios)</td>
 </tr>
 <tr class="odd">
-<td>50</td>
+<td style="text-align: right;">50</td>
 <td style="text-align: right;">2450</td>
 <td style="text-align: right;">1274 (1225 comparaciones + 49 intercambios)</td>
 </tr>
 <tr class="even">
-<td>100</td>
+<td style="text-align: right;">100</td>
 <td style="text-align: right;">9900</td>
 <td style="text-align: right;">5049 (4950 comparaciones + 99 intercambios)</td>
 </tr>
@@ -1049,7 +1057,7 @@ Versión interactiva
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-¿Complejidad <span class="math inline">\(O(\frac{N^2}{2})\)</span>?
+¿Complejidad <span class="math inline">\(O(N^2 / 2)\)</span>?
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1192,22 +1200,40 @@ Versión interactiva
       </div>
 <section id="implementación-2" class="level3">
 <h3 class="anchored" data-anchor-id="implementación-2">Implementación</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> insertion_sort(arr):</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    arr <span class="op">=</span> arr[:] <span class="co"># Crear copia</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> indice <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(arr)):</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        valor_actual <span class="op">=</span> arr[indice]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        puntero <span class="op">=</span> indice</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> puntero <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> arr[puntero <span class="op">-</span> <span class="dv">1</span>] <span class="op">&gt;</span> valor_actual:</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            arr[puntero] <span class="op">=</span> arr[puntero <span class="op">-</span> <span class="dv">1</span>]</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            puntero <span class="op">=</span> puntero <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        arr[puntero] <span class="op">=</span> valor_actual</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>insertion_sort([<span class="dv">9</span>,&nbsp;<span class="dv">7</span>,&nbsp;<span class="dv">5</span>,&nbsp;<span class="dv">999</span>, <span class="dv">1</span>,&nbsp;<span class="dv">10</span>,&nbsp;<span class="dv">25</span>])</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [1, 5, 7, 9, 10, 25, 999]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-7"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> insertion_sort(arr):</span>
+<span id="annotated-cell-7-2"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>    arr <span class="op">=</span> arr[:]</span>
+<span id="annotated-cell-7-3"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-4" class="code-annotation-target"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(arr)):</span>
+<span id="annotated-cell-7-5"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a>        valor_i <span class="op">=</span> arr[i]</span>
+<span id="annotated-cell-7-6"><a href="#annotated-cell-7-6" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-7" class="code-annotation-target"><a href="#annotated-cell-7-7" aria-hidden="true" tabindex="-1"></a>        puntero <span class="op">=</span> i <span class="op">-</span> <span class="dv">1</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-8" class="code-annotation-target"><a href="#annotated-cell-7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> puntero <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> arr[puntero] <span class="op">&gt;</span> valor_i:</span>
+<span id="annotated-cell-7-9"><a href="#annotated-cell-7-9" aria-hidden="true" tabindex="-1"></a>            arr[puntero <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> arr[puntero]</span>
+<span id="annotated-cell-7-10"><a href="#annotated-cell-7-10" aria-hidden="true" tabindex="-1"></a>            puntero <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="annotated-cell-7-11"><a href="#annotated-cell-7-11" aria-hidden="true" tabindex="-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-7-12" class="code-annotation-target"><a href="#annotated-cell-7-12" aria-hidden="true" tabindex="-1"></a>        arr[puntero <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> valor_i</span>
+<span id="annotated-cell-7-13"><a href="#annotated-cell-7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-7-14"><a href="#annotated-cell-7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="4,5" data-code-annotation="1">La variable <code>i</code> es la posición original del elemento a insertar en la lista ordenada. Se empieza del segundo elemento. Su valor lo representa <code>valor_i</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="7" data-code-annotation="2">Un <code>puntero</code> recorre de derecha a izquierda los elementos a la izquierda de la posición <code>i</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="8,9,10" data-code-annotation="3">Si el puntero no llegó al final y el valor en su posición es mayor al valor a insertar en la sublista ordenada (<code>valor_i</code>), se mueve el valor en la posición del puntero a la derecha y se decrementa el puntero en 1 unidad.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="12" data-code-annotation="4">Una vez que termina el proceso de traslación de valores, se inserta el <code>valor_i</code> en la posición que le corresponde, que es a la derecha del <code>puntero</code>.</span>
+</dd>
+</dl>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>insertion_sort([<span class="dv">9</span>,&nbsp;<span class="dv">7</span>,&nbsp;<span class="dv">5</span>,&nbsp;<span class="dv">999</span>, <span class="dv">1</span>,&nbsp;<span class="dv">10</span>,&nbsp;<span class="dv">25</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [1, 5, 7, 9, 10, 25, 999]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1218,7 +1244,7 @@ Versión interactiva
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/insertionsortAV">clic aquí</a></p>
+<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/insertionsortAV">clic aquí</a>.</p>
 </div>
 </div>
 </section>
@@ -1230,7 +1256,7 @@ Versión interactiva
 <p><span class="math display">\[
 1 + 2 + 3 + \dots + (N - 1) = \frac{N^2}{2} - \frac{N}{2}
 \]</span></p>
-<p>Los desplazamientos ocurren cada vez que un valor se mueve a la derecha para dejar lugar al <code>valor_actual</code>. En el peor de los casos, el número de desplazamientos es igual al número de comparaciones. Sumando ambos tipos de operaciones, el número total de pasos es <span class="math inline">\(N^2 - N\)</span></p>
+<p>Los desplazamientos ocurren cada vez que un valor se mueve a la derecha para dejar lugar al <code>valor_actual</code>. En el peor de los casos, el número de desplazamientos es igual al número de comparaciones. Sumando ambos tipos de operaciones, el número total de pasos es <span class="math inline">\(N^2 - N\)</span>.</p>
 <p>Por su parte, las extracciones e inserciones se realizan una vez por pasada, es decir, <span class="math inline">\(N - 1\)</span> veces cada una. Estas operaciones tienen un peso menor frente al crecimiento cuadrático de las comparaciones y desplazamientos.</p>
 <p>El número total de pasos es entonces:</p>
 <p><span class="math display">\[
@@ -1578,49 +1604,49 @@ N^2 - N + 2N - 2 = N^2 + N - 2
 <section id="implementación-3" class="level3">
 <h3 class="anchored" data-anchor-id="implementación-3">Implementación</h3>
 <p>Una implementación en Python es la siguiente:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> merge(izquierda, derecha):</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    n_i <span class="op">=</span> <span class="bu">len</span>(izquierda)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    n_j <span class="op">=</span> <span class="bu">len</span>(derecha)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> (n_i <span class="op">+</span> n_j)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> izquierda[i] <span class="op">&lt;</span> derecha[j]:</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>            valor <span class="op">=</span> izquierda[i]</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>            valor <span class="op">=</span> derecha[j]</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>            j <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        resultado[k] <span class="op">=</span> valor</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        k <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">==</span> n_i:</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>            resultado[k:] <span class="op">=</span> derecha[j:]</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> j <span class="op">==</span> n_j:</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>            resultado[k:] <span class="op">=</span> izquierda[i:]</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resultado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> merge(izquierda, derecha):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    n_i <span class="op">=</span> <span class="bu">len</span>(izquierda)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    n_j <span class="op">=</span> <span class="bu">len</span>(derecha)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> [<span class="va">None</span>] <span class="op">*</span> (n_i <span class="op">+</span> n_j)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> izquierda[i] <span class="op">&lt;</span> derecha[j]:</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            valor <span class="op">=</span> izquierda[i]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>            valor <span class="op">=</span> derecha[j]</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>            j <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        resultado[k] <span class="op">=</span> valor</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        k <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">==</span> n_i:</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>            resultado[k:] <span class="op">=</span> derecha[j:]</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> j <span class="op">==</span> n_j:</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>            resultado[k:] <span class="op">=</span> izquierda[i:]</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resultado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Y luego, tenemos la función <code>merge_sort</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> merge_sort(arr):</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(arr) <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> arr</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    mitad <span class="op">=</span> <span class="bu">len</span>(arr) <span class="op">//</span> <span class="dv">2</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    izquierda <span class="op">=</span> merge_sort(arr[:mitad])</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    derecha <span class="op">=</span> merge_sort(arr[mitad:])</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> merge(izquierda, derecha)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>merge([<span class="dv">2</span>,&nbsp;<span class="dv">2</span>,&nbsp;<span class="dv">3</span>,&nbsp;<span class="dv">11</span>,&nbsp;<span class="dv">50</span>],&nbsp;[<span class="dv">3</span>,&nbsp;<span class="dv">10</span>,&nbsp;<span class="dv">15</span>,&nbsp;<span class="dv">20</span>])</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [2, 2, 3, 3, 10, 11, 15, 20, 50]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>merge_sort([<span class="dv">50</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">20</span>, <span class="dv">99</span>, <span class="dv">155</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">9</span>])</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [3, 5, 8, 9, 10, 11, 20, 50, 99, 155]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> merge_sort(arr):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(arr) <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> arr</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    mitad <span class="op">=</span> <span class="bu">len</span>(arr) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    izquierda <span class="op">=</span> merge_sort(arr[:mitad])</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    derecha <span class="op">=</span> merge_sort(arr[mitad:])</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> merge(izquierda, derecha)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>merge([<span class="dv">2</span>,&nbsp;<span class="dv">2</span>,&nbsp;<span class="dv">3</span>,&nbsp;<span class="dv">11</span>,&nbsp;<span class="dv">50</span>],&nbsp;[<span class="dv">3</span>,&nbsp;<span class="dv">10</span>,&nbsp;<span class="dv">15</span>,&nbsp;<span class="dv">20</span>])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [2, 2, 3, 3, 10, 11, 15, 20, 50]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>merge_sort([<span class="dv">50</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">20</span>, <span class="dv">99</span>, <span class="dv">155</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">9</span>])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [3, 5, 8, 9, 10, 11, 20, 50, 99, 155]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1631,7 +1657,7 @@ Versión interactiva
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/mergesortAV">clic aquí</a></p>
+<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/mergesortAV">clic aquí</a>.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1812,27 +1838,27 @@ O(N) \times O(\log N) = O(N \log N)
 
       </div>
 <p>En Python:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quicksort_basico(arr):</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(arr) <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> arr</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    pivote <span class="op">=</span> arr[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    menores <span class="op">=</span> []</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    iguales <span class="op">=</span> []</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    mayores <span class="op">=</span> []</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> arr:</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x <span class="op">&lt;</span> pivote:</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>            menores.append(x)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> x <span class="op">==</span> pivote:</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>            iguales.append(x)</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>            mayores.append(x)</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> quicksort_basico(menores) <span class="op">+</span> iguales <span class="op">+</span> quicksort_basico(mayores)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>quicksort_basico([<span class="dv">33</span>,&nbsp;<span class="dv">1</span>,&nbsp;<span class="dv">2</span>,&nbsp;<span class="dv">5</span>,&nbsp;<span class="dv">4</span>,&nbsp;<span class="dv">3</span>,&nbsp;<span class="dv">20</span>,&nbsp;<span class="dv">10</span>])</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [1, 2, 3, 4, 5, 10, 20, 33]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quicksort_basico(arr):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(arr) <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> arr</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    pivote <span class="op">=</span> arr[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    menores <span class="op">=</span> []</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    iguales <span class="op">=</span> []</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    mayores <span class="op">=</span> []</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> arr:</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x <span class="op">&lt;</span> pivote:</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>            menores.append(x)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> x <span class="op">==</span> pivote:</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>            iguales.append(x)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>            mayores.append(x)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> quicksort_basico(menores) <span class="op">+</span> iguales <span class="op">+</span> quicksort_basico(mayores)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>quicksort_basico([<span class="dv">33</span>,&nbsp;<span class="dv">1</span>,&nbsp;<span class="dv">2</span>,&nbsp;<span class="dv">5</span>,&nbsp;<span class="dv">4</span>,&nbsp;<span class="dv">3</span>,&nbsp;<span class="dv">20</span>,&nbsp;<span class="dv">10</span>])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [1, 2, 3, 4, 5, 10, 20, 33]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Esta versión es conceptualmente sencilla, pero utiliza memoria adicional para almacenar las tres subsecuencias creadas en cada paso recursivo.</p>
 </section>
 <section id="versión-in-place" class="level3">
@@ -2075,47 +2101,47 @@ O(N) \times O(\log N) = O(N \log N)
 </section>
 <section id="implementación-4" class="level3">
 <h3 class="anchored" data-anchor-id="implementación-4">Implementación</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _quick_sort(arr, inicio, fin):</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Ordena la lista 'arr' _in place_ usando el algoritmo quicksort."""</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> fin <span class="op">-</span> inicio <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Realizar la partición y obtener la posición final del pivote</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    pivote_idx <span class="op">=</span> particionar(arr, inicio, fin)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ordenar recursivamente las dos mitades</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    _quick_sort(arr, inicio, pivote_idx <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    _quick_sort(arr, pivote_idx <span class="op">+</span> <span class="dv">1</span>, fin)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> particionar(arr, izq_idx, der_idx):</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    pivote_idx <span class="op">=</span> der_idx</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    pivote <span class="op">=</span> arr[pivote_idx]</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    der_idx <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> arr[izq_idx] <span class="op">&lt;</span> pivote:</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>            izq_idx <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> arr[der_idx] <span class="op">&gt;</span> pivote:</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>            der_idx <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> izq_idx <span class="op">&gt;=</span> der_idx:</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>            arr[izq_idx], arr[der_idx] <span class="op">=</span> arr[der_idx], arr[izq_idx]</span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>            izq_idx <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Finalizar particion</span></span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    arr[izq_idx], arr[pivote_idx] <span class="op">=</span> arr[pivote_idx], arr[izq_idx]</span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> izq_idx</span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quick_sort(arr):</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>    arr_copia <span class="op">=</span> arr[:]</span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    _quick_sort(arr_copia, inicio<span class="op">=</span><span class="dv">0</span>, fin<span class="op">=</span><span class="bu">len</span>(arr) <span class="op">-</span> <span class="dv">1</span>) <span class="co"># Ordena _in place_</span></span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr_copia</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>quick_sort([<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>])</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [0, 1, 2, 3, 7, 8, 10]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _quick_sort(arr, inicio, fin):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Ordena la lista 'arr' _in place_ usando el algoritmo quicksort."""</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> fin <span class="op">-</span> inicio <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Realizar la partición y obtener la posición final del pivote</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    pivote_idx <span class="op">=</span> particionar(arr, inicio, fin)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ordenar recursivamente las dos mitades</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    _quick_sort(arr, inicio, pivote_idx <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    _quick_sort(arr, pivote_idx <span class="op">+</span> <span class="dv">1</span>, fin)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> particionar(arr, izq_idx, der_idx):</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    pivote_idx <span class="op">=</span> der_idx</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    pivote <span class="op">=</span> arr[pivote_idx]</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    der_idx <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> arr[izq_idx] <span class="op">&lt;</span> pivote:</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>            izq_idx <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> arr[der_idx] <span class="op">&gt;</span> pivote:</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>            der_idx <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> izq_idx <span class="op">&gt;=</span> der_idx:</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>            arr[izq_idx], arr[der_idx] <span class="op">=</span> arr[der_idx], arr[izq_idx]</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>            izq_idx <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Finalizar particion</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    arr[izq_idx], arr[pivote_idx] <span class="op">=</span> arr[pivote_idx], arr[izq_idx]</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> izq_idx</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quick_sort(arr):</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    arr_copia <span class="op">=</span> arr[:]</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    _quick_sort(arr_copia, inicio<span class="op">=</span><span class="dv">0</span>, fin<span class="op">=</span><span class="bu">len</span>(arr) <span class="op">-</span> <span class="dv">1</span>) <span class="co"># Ordena _in place_</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr_copia</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>quick_sort([<span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>])</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [0, 1, 2, 3, 7, 8, 10]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2126,7 +2152,7 @@ Versión interactiva
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="https://opendsa-server.cs.vt.edu/embed/quicksortAV">Versión interactiva</a></p>
+<p>Hacer <a href="https://opendsa-server.cs.vt.edu/embed/quicksortAV">clic aquí</a>.</p>
 </div>
 </div>
 </section>
