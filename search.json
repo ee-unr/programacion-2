@@ -1965,6 +1965,42 @@
     ]
   },
   {
+    "objectID": "practica/04_estructuras_y_algoritmos/ejercicios.html#bubble-sort-eficiente",
+    "href": "practica/04_estructuras_y_algoritmos/ejercicios.html#bubble-sort-eficiente",
+    "title": "🛠️ Ejercicios",
+    "section": "19 Bubble sort eficiente",
+    "text": "19 Bubble sort eficiente\nLa implementación de bubble sort en el apunte de teoría realiza más comparaciones de las necesarias. Recorre la lista de punta a punta en todas las pasadas, cuando podrían obviarse los elementos ya ubicados al final.\nImplemente una versión de bubble sort que recorra solo la parte desordenada de la lista, sin considerar los valores ya ordenados.",
+    "crumbs": [
+      "Práctica",
+      "U4 - Estructuras de Datos y Algoritmos",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/04_estructuras_y_algoritmos/ejercicios.html#piedra-sort",
+    "href": "practica/04_estructuras_y_algoritmos/ejercicios.html#piedra-sort",
+    "title": "🛠️ Ejercicios",
+    "section": "20 Piedra sort",
+    "text": "20 Piedra sort\nEl algoritmo bubble sort recibe su nombre por la analogía con las burbujas que suben a la superficie, que en nuestro caso son los elementos de mayor valor que se ubican al final de la secuencia.\nImplemente una versión “inversa” a bubble sort que, en vez de “subir” los elementos con mayor valor a la superficie, “hunda” los de menor valor hacia el fondo como una piedra.",
+    "crumbs": [
+      "Práctica",
+      "U4 - Estructuras de Datos y Algoritmos",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
+    "objectID": "practica/04_estructuras_y_algoritmos/ejercicios.html#selection-sort-basado-en-máximos",
+    "href": "practica/04_estructuras_y_algoritmos/ejercicios.html#selection-sort-basado-en-máximos",
+    "title": "🛠️ Ejercicios",
+    "section": "21 Selection sort basado en máximos",
+    "text": "21 Selection sort basado en máximos\nLa versión de selection sort que se discute en el apunte de teoría se basa en buscar el mínimo en la parte desordenada de la lista y trasladarlo a su ubicación final.\nImplemente una versión que esté basada en la búsqueda y traslado del máximo.",
+    "crumbs": [
+      "Práctica",
+      "U4 - Estructuras de Datos y Algoritmos",
+      "🛠️ Ejercicios"
+    ]
+  },
+  {
     "objectID": "practica/04_estructuras_y_algoritmos/problemas.html",
     "href": "practica/04_estructuras_y_algoritmos/problemas.html",
     "title": "🧩 Problemas",
