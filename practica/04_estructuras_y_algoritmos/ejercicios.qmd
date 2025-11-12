@@ -841,3 +841,28 @@ Luego, utilice un algoritmo de ordenamiento que permita resolver el problema de 
 
 Para una lista de tamaño `2N+1`, la mediana es el valor tal que `N` elementos son menores (o iguales) a él.
 :::
+
+
+## _Bubble sort_ eficiente
+
+La implementación de _bubble sort_ en el apunte de teoría realiza más comparaciones de las necesarias.
+Recorre la lista de punta a punta en todas las pasadas, cuando podrían obviarse
+los elementos ya ubicados al final.
+
+Implemente una versión de _bubble sort_ que recorra solo la parte desordenada de la lista,
+sin considerar los valores ya ordenados.
+
+## Piedra _sort_ 
+
+El algoritmo _bubble sort_ recibe su nombre por la analogía con las burbujas que suben a la superficie,
+que en nuestro caso son los elementos de mayor valor que se ubican al final de la secuencia.
+
+Implemente una versión "inversa" a _bubble sort_ que, en vez de "subir" los elementos
+con mayor valor a la superficie, "hunda" los de menor valor hacia el fondo como una piedra.
+
+## _Selection sort_ basado en máximos
+
+La versión de _selection sort_ que se discute en el apunte de teoría se basa en buscar el
+mínimo en la parte desordenada de la lista y trasladarlo a su ubicación final.
+
+Implemente una versión que esté basada en la búsqueda y traslado del máximo.
