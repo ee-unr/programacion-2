@@ -11,8 +11,8 @@ Ordenar significa reorganizar un conjunto de elementos según algún criterio, p
 de menor a mayor, alfabéticamente o por fecha.
 
 Ordenar es una de las tareas más importantes y estudiadas en informática.
-Almacenar un conjunto de datos de manera ordenada permite realizar búsquedas y
-otras operaciones de forma más eficiente.
+Almacenar un conjunto de datos de manera ordenada permite realizar búsquedas y otras
+operaciones de forma más eficiente.
 Muchos algoritmos avanzados dependen del ordenamiento como parte de su funcionamiento interno.
 
 Python incluye funciones y métodos para ordenar que ya están muy optimizados y, salvo raras excepciones, siempre deberíamos utilizar estas implementaciones.
@@ -24,9 +24,8 @@ con tiempos de ejecución notablemente distintos.
 ¿Cuál es la complejidad temporal de cada uno de ellos? ¿Siempre es mejor uno que el otro?
 
 Como veremos en este apunte, existe una gran variedad de algoritmos de ordenamiento,
-que realizan diferentes operaciones y se basan en distintas estrategias con un mismo objetivo:
-obtener una secuencia de valores ordenados.
-
+que realizan diferentes operaciones y se basan en distintas estrategias con un mismo 
+objetivo: obtener una secuencia de valores ordenados.
 
 ## _Bubble sort_
 
@@ -42,8 +41,9 @@ Sin embargo, para que una computadora llegue al mismo resultado, necesitamos un 
 una secuencia de pasos que garantice que, al ejecutarse, la lista quede ordenada.
 
 En una lista ordenada, cada elemento está seguido por uno mayor o igual.
-De manera formal, si tenemos una secuencia $\boldsymbol{S} = [s_1, s_2, \dots, s_n]$, 
-diremos que está ordenada si se cumple que $s_i \le s_{i + 1}$ para todo $i \in {1, 2, \dots, n}$.
+Más formalmente, si tenemos una secuencia $\boldsymbol{S} = [s_1, s_2, \dots, s_n]$, 
+diremos que está ordenada si se cumple que $s_i \le s_{i + 1}$ para todo 
+$i \in \{1, 2, \dots, n - 1\}$.
 
 Por ejemplo, la siguiente lista está ordenada:
 
@@ -58,10 +58,10 @@ mientras que esta no:
 ```
 
 En el primer caso, cada elemento tiene a su derecha un valor mayor o igual;
-en el segundo, el valor `60` tiene a su derecha un número menor (`10`), lo que rompe el orden.
+en el segundo, el valor `60` tiene a su derecha un número menor (`10`), lo que rompe el 
+orden.
 
-Una forma sencilla de obtener un algoritmo de ordenamiento consiste en comparar cada valor con el siguiente.
-Si el siguiente es menor, se intercambian; si no, se mantienen en su lugar.
+Una forma sencilla de obtener un algoritmo de ordenamiento consiste en comparar cada valor con el siguiente. Si el siguiente es menor, se intercambian; si no, se mantienen en su lugar.
 El procedimiento continúa con el elemento siguiente, repitiéndose hasta llegar al final de la lista.
 
 Veamos cómo funciona este procedimiento con la lista original `[7, 2, 4, 5]`:
@@ -97,11 +97,10 @@ Veamos cómo funciona este procedimiento con la lista original `[7, 2, 4, 5]`:
 :::
 :::
 
-
 El proceso que acabamos de observar es la base del algoritmo _bubble sort_.
 Más adelante volveremos sobre el origen del nombre.
 
-Lo importante, ahora, es notar que obtuvimos la lista ordenada en tan pocos pasos de pura suerte.
+Ahora, debemos notar que obtuvimos una lista ordenada en tan pocos pasos de pura suerte.
 Para ver por qué, apliquemos el mismo conjunto de pasos sobre una lista con la misma
 cantidad de elementos, en un orden apenas diferente.
 
@@ -130,13 +129,14 @@ cantidad de elementos, en un orden apenas diferente.
 
 :::
 
-La primera vez que usamos el algoritmo obtuvimos una lista ordenada.
-En la segunda, la lista quedó más ordenada que al inicio, pero todavía no completamente.
+La primera vez que usamos el algoritmo, obtuvimos una lista ordenada.
+En la segunda, la lista quedó más ordenada que al inicio, pero aún no completamente.
 
-Como mencionamos antes, el primer caso fue simplemente una coincidencia.
-El algoritmo _bubble sort_ funciona realizando sucesivas pasadas sobre la lista,
-comparando pares de valores consecutivos de principio a fin.
+Como mencionamos anteriormente, que en el primer caso se obtenga una lista ordenada al
+realizar una sola pasada fue simplemente una coincidencia.
 
+El algoritmo _bubble sort_ funciona realizando pasadas sucesivas sobre la lista,
+comparando pares de valores consecutivos, de principio a fin.
 En cada comparación, si un valor es mayor que el siguiente, se intercambian sus posiciones.
 Este proceso se repite hasta completar una pasada en la que no se realiza ningún intercambio;
 solo entonces puede concluirse que la lista está completamente ordenada.
@@ -176,18 +176,29 @@ Continuando el ejemplo, tenemos:
 def bubble_sort(arr):
     arr = arr[:] # Hacer copia
     n = len(arr)
-    intercambiado = True
+    intercambiado = True  # <1>
 
-    while intercambiado:
-        intercambiado = False
-        for i in range(n - 1):
-            if arr[i] > arr[i + 1]:
-                # Se intercambian los valores
-                arr[i], arr[i + 1] = arr[i + 1], arr[i]
-                intercambiado = True
+    while intercambiado:  # <2>
+        intercambiado = False  # <3>
+        for i in range(n - 1): # <4>
+            if arr[i] > arr[i + 1]: # <5>
+                # Se intercambian los valores # <5>
+                arr[i], arr[i + 1] = arr[i + 1], arr[i] # <5>
+                intercambiado = True # <5>
 
     return arr
 ```
+
+1. Se usa una variable booleana `intercambiado` para indicar si en la pasada anterior se hizo
+un intercambio de elementos, y por lo tanto se debe realizar una pasada más. Inicialmente,
+este valor es `True` para que se ejecute el bucle `while` al menos una vez.
+2. Mientras se haya intercambiado en la pasada anterior.
+3. El primer paso de cada pasada es igualar `intercambiado` a `False`. 
+Solo cuando se haga un intercambio se lo convierte a `True`.
+4. Se itera a través de todos los valores en la secuencia, excepto el último, ya que se 
+comapran de a pares.
+5. Si el valor de la posición `i` es mayor que el de la posición `i + 1`, se intercambian
+y se iguala `intercambiado` a `True`.
 
 ```python
 bubble_sort([12, 9, 3, 6, 11, 5])
@@ -197,19 +208,18 @@ bubble_sort([12, 9, 3, 6, 11, 5])
 Esta versión repite pasadas completas hasta que no se produce ningún intercambio,
 lo que indica que la lista está ordenada.
 
-<!-- **TAREA**: Implementar una versión reduciendo la cantidad de elementos a comparar. -->
-
 ::: {.callout-note}
 
 #### Por qué _bubble sort_
 
-En cada pasada, el algoritmo ubica el mayor valor fuera de orden en su posición correcta, al final de la lista.
-Este proceso hace que los valores más grandes “suban” gradualmente hacia la parte superior,
-como burbujas que ascienden en el agua, lo que da origen al nombre bubble sort.
+En cada pasada, el algoritmo ubica el mayor valor fuera de orden en su posición correcta,
+al final de la lista.
+Este proceso hace que los valores más grandes "suban" gradualmente hacia la parte superior,
+como burbujas que ascienden en el agua, lo que da origen al nombre _bubble sort_.
 
 :::
 
-::: {.callout-note}
+:::: {.callout-note}
 
 #### Implementación eficiente
 
@@ -222,15 +232,13 @@ ya que los elementos finales ya están ordenados.
 
 :::
 
-
-::: {.callout-note}
+:::: {.callout-note}
 
 #### Versión interactiva
 
-Hacer [clic aquí](https://opendsa-server.cs.vt.edu/embed/bubblesortAV)
+Hacer [clic aquí](https://opendsa-server.cs.vt.edu/embed/bubblesortAV).
 
 :::
-
 
 ### Análisis de la eficiencia
 
@@ -245,20 +253,33 @@ que omite las comparaciones innecesarias al final del arreglo.
 En la primera pasada se realizan 4 comparaciones, en la segunda 3, en la tercera 2 y en la última 1.
 En total, se efectúan 4 + 3 + 2 + 1 = 10 comparaciones.
 
-De manera general, si el arreglo tiene $N$ elementos, pueden realizarse hasta
-$(N - 1) + (N - 2) + \cdots + 1$ comparaciones.
+De manera general, si el arreglo tiene $N$ elementos, el número máximo de comparaciones es:
 
-Por otro lado, en el peor de los casos (cuando la lista está ordenada en forma descendente),
+$$
+(N - 1) + (N - 2) + \cdots + 2 + 1 = \frac{N(N - 1)}{2} = \frac{N^2}{2} - \frac{N}{2}
+$$
+
+Además, en el peor de los casos (cuando la lista está ordenada en forma descendente),
 será necesario realizar tantos intercambios como comparaciones,
-ya que en cada comparación habrá un valor mayor a su derecha.
+ya que en cada comparación habrá un valor mayor a su derecha. 
+El total de comparaciones e intercambios posibles es entonces:
 
-El total de comparaciones e intercambios posibles es entonces
-$2 \times [(N - 1) + (N - 2) + \cdots + 1]$.
+$$
+2 \left[\frac{N^2}{2} - \frac{N}{2}\right] = N^2 - N
+$$
 
-La siguiente tabla resume la cantidad máxima de pasos para algunos valores de $N$:
+Así, se concluye que la complejidad temporal de _bubble sort_ $O(N^2)$.
+Aunque la cantidad de pasos no solo dependa $N^2$, sino también de $N$, 
+la notación _Big O_ se centra en el orden del término dominante y, en este caso, se dice
+que _buble sort_ es de complejidad cuadrática.
+
+La siguiente tabla muestra lo rápido que crece la cantidad máxima de pasos conforme se
+incrementa la cantidad de elementos a ordenar:
+
+::::{style="max-width: 70%; margin: auto;"}
 
 | $N$   | Cantidad máxima de pasos |
-| ----- | -----------------------: |
+| ----: | -----------------------: |
 | 5     | 20                       |
 | 10    | 90                       |
 | 20    | 380                      |
@@ -268,20 +289,7 @@ La siguiente tabla resume la cantidad máxima de pasos para algunos valores de $
 
 : {.striped .hover}
 
-Se puede notar que la cantidad de pasos crece a un ritmo sustancialmente mayor que el de un crecimiento lineal.
-Si agregamos una columna con el cuadrado de $N$, podemos ver que la complejidad temporal de este 
-algoritmo es cuadrática.
-
-| $N$   | Cantidad máxima de pasos | $N^2$ |
-| ----- | -----------------------: | ----: |
-| 5     | 20                       | 25    |
-| 10    | 90                       | 100   |
-| 20    | 380                      | 400   |
-| 30    | 870                      | 900   |
-| 50    | 2450                     | 2500  |
-| 100   | 9900                     | 10000 |
-
-: {.striped .hover}
+:::
 
 
 ## _Selection sort_
@@ -353,20 +361,29 @@ Luego, continúa con el resto de la lista, repitiendo el proceso hasta que todos
 
 ```python
 def selection_sort(arr):
-    arr = arr[:] # Crear copia de 'arr'
+    arr = arr[:]
 
-    for i in range(len(arr) - 1):
-        indice_menor_numero = i
+    for i in range(len(arr) - 1): # <1>
+        indice_menor_numero = i   # <2>
 
-        for j in range(i + 1, len(arr)):
-            if arr[j] < arr[indice_menor_numero]:
-                indice_menor_numero = j
+        for j in range(i + 1, len(arr)):           # <3>
+            if arr[j] < arr[indice_menor_numero]:  # <3>
+                indice_menor_numero = j            # <3>
 
-        if indice_menor_numero != i:
-            arr[i], arr[indice_menor_numero] = arr[indice_menor_numero], arr[i]
+        if indice_menor_numero != i: # <4>
+            arr[i], arr[indice_menor_numero] = arr[indice_menor_numero], arr[i] # <4>
 
     return arr
 ```
+
+1. El puntero `i` itera desde el primer hasta el penúltimo elemento. Este es el que
+realiza las pasadas.
+2. En cada pasada, se toma al primer valor como el mínimo, por eso `indice_menor_numero` se iguala a `i`.
+3. Otro puntero, `j`, recorre la lista a partir de `i`, hasta el final. 
+Si el valor en la posición `j` es mejor que en el mínimo actual, 
+se toma a `j` como el índice con el mínimo.
+4. Si el mínimo no está al principio de la sublista que se recorre, se intercambian
+las posiciones de los elementos para que el mínimo esté al principio.
 
 ```python
 selection_sort([95, 50, 20, 13, 17, 100])
@@ -377,31 +394,34 @@ selection_sort([95, 50, 20, 13, 17, 100])
 
 #### Versión interactiva
 
-Hacer [clic aquí](https://opendsa-server.cs.vt.edu/embed/selectionsortAV)
+Hacer [clic aquí](https://opendsa-server.cs.vt.edu/embed/selectionsortAV).
 
 :::
 
 ### Análisis de eficiencia
 
-Al igual que _bubble sort_, el algoritmo _selection sort_ también utiliza dos tipos de operaciones:
-comparaciones e intercambios. En cada pasada, se compara cada valor de la parte desordenada con el mínimo actual,
-y al finalizar se coloca dicho mínimo en su posición correcta (intercambiándolo con el valor que estaba allí).
+Al igual que _bubble sort_, el algoritmo _selection sort_ también utiliza dos tipos de 
+operaciones: comparaciones e intercambios. En cada pasada, se compara cada valor de la 
+parte desordenada con el mínimo actual, y al finalizar se coloca dicho mínimo en su 
+posición correcta (intercambiándolo con el valor que estaba allí).
 
 La cantidad de comparaciones que realiza es idéntica a la del algoritmo _bubble sort_.
-Para un arreglo de longitud $N$, se efectúan $(N - 1) + (N - 2) + \cdots + 1$ comparaciones.
+Para un arreglo de longitud $N$, se efectúan $\frac{N^2}{2} - \frac{N}{2}$ comparaciones.
 
-Por otro lado, y a diferencia del algoritmo _bubble sort_, se realiza **a lo sumo** un intercambio
-por pasada. Se puede ver que, entonces, la cantidad de intercambios es menor que con el _bubble sort_,
-donde en el peor de los casos teníamos que hacer un intercambio por cada comparación.
+Por otro lado, y a diferencia del algoritmo _bubble sort_, se realiza **a lo sumo** un 
+intercambio por pasada, por lo que en total pueden realizar hasta $N - 1$ intercambios y 
+la cantidad máxima de pasos del algoritmo _insertion sort_ es:
 
-Por otro lado, a diferencia de _bubble sort_, se realiza **a lo sumo un intercambio por pasada**.
-Por lo tanto, la cantidad total de intercambios es mucho menor, ya que en el peor de los casos _bubble sort_
-realiza un intercambio por cada comparación.
+$$
+\frac{N^2}{2} - \frac{N}{2} + (N - 1),
+$$
 
-La siguiente tabla muestra una comparación lado a lado entre ambos algoritmos:
+lo que indica que la complejidad temporal de _selection sort_ también es cuadrática.
+
+La siguiente tabla muestra una comparación lado a lado entre los dos algoritmos estudiados:
 
 | N   | Pasos máximos en _bubble sort_ |           Pasos máximos en _selection sort_ |
-| --- | -----------------------------: | ------------------------------------------: |
+| --: | -----------------------------: | ------------------------------------------: |
 | 5   |                             20 |      14 (10 comparaciones + 4 intercambios) |
 | 10  |                             90 |      54 (45 comparaciones + 9 intercambios) |
 | 20  |                            380 |   209 (190 comparaciones + 19 intercambios) |
@@ -409,17 +429,17 @@ La siguiente tabla muestra una comparación lado a lado entre ambos algoritmos:
 | 50  |                           2450 | 1274 (1225 comparaciones + 49 intercambios) |
 | 100 |                           9900 | 5049 (4950 comparaciones + 99 intercambios) |
 
+: {.striped .hover}
 
 De esta comparación se observa que _selection sort_ requiere aproximadamente la mitad de los pasos
 que _bubble sort_, lo que indica que, en promedio, resulta alrededor de dos veces más rápido.
 
-
 ::: {.callout-note}
 
-#### ¿Complejidad $O(\frac{N^2}{2})$?
+#### ¿Complejidad $O(N^2 / 2)$?
 
-A pesar de que el algoritmo _selection sort_ realiza aproximadamente la mitad de pasos que _bubble sort_,
-ambos se consideran algoritmos de complejidad cuadrática.
+A pesar de que el algoritmo _selection sort_ realiza aproximadamente la mitad de pasos que
+_bubble sort_, ambos se consideran algoritmos de complejidad cuadrática.
 
 Al analizar la eficiencia mediante la notación _Big O_,
 solo importa cómo crece el número de pasos con el tamaño del problema, no la constante que los multiplica.
@@ -498,20 +518,29 @@ hasta abarcar todos los elementos, momento en el cual la lista queda completamen
 
 ```python
 def insertion_sort(arr):
-    arr = arr[:] # Crear copia
+    arr = arr[:]
 
-    for indice in range(1, len(arr)):
-        valor_actual = arr[indice]
-        puntero = indice
+    for i in range(1, len(arr)): # <1>
+        valor_i = arr[i]    # <1>
 
-        while puntero > 0 and arr[puntero - 1] > valor_actual:
-            arr[puntero] = arr[puntero - 1]
-            puntero = puntero - 1
+        puntero = i - 1 # <2>
+        while puntero >= 0 and arr[puntero] > valor_i: # <3>
+            arr[puntero + 1] = arr[puntero] # <3>
+            puntero -= 1 # <3>
 
-        arr[puntero] = valor_actual
+        arr[puntero + 1] = valor_i # <4>
 
     return arr
 ```
+
+1. La variable `i` es la posición original del elemento a insertar en la lista ordenada. 
+Se empieza del segundo elemento. Su valor lo representa `valor_i`.
+2. Un `puntero` recorre de derecha a izquierda los elementos a la izquierda de la posición `i`.
+3. Si el puntero no llegó al final y el valor en su posición es mayor al valor a insertar
+en la sublista ordenada (`valor_i`), se mueve el valor en la posición del puntero a la 
+derecha y se decrementa el puntero en 1 unidad.
+4. Una vez que termina el proceso de traslación de valores, se inserta el `valor_i` en 
+la posición que le corresponde, que es a la derecha del `puntero`.
 
 ```python
 insertion_sort([9, 7, 5, 999, 1, 10, 25])
@@ -522,17 +551,19 @@ insertion_sort([9, 7, 5, 999, 1, 10, 25])
 
 #### Versión interactiva
 
-Hacer [clic aquí](https://opendsa-server.cs.vt.edu/embed/insertionsortAV)
+Hacer [clic aquí](https://opendsa-server.cs.vt.edu/embed/insertionsortAV).
 
 :::
 
 ### Análisis de eficiencia
 
-El algoritmo _insertion sort_ realiza cuatro tipos de operaciones: extracciones, comparaciones, desplazamientos e inserciones.
+El algoritmo _insertion sort_ realiza cuatro tipos de operaciones: 
+extracciones, comparaciones, desplazamientos e inserciones.
 
-Las comparaciones ocurren cada vez que se compara el `valor_actual` con los elementos que tiene a su izquierda.
-En el peor de los casos, cuando la lista está ordenada en sentido descendente,
-todos los valores a la izquierda son mayores que `valor_actual`, lo que obliga con compararlo con todos ellos antes de volver a insertarlo.
+Las comparaciones ocurren cada vez que se compara el `valor_actual` con los elementos que
+tiene a su izquierda. En el peor de los casos, cuando la lista está ordenada en sentido 
+descendente, todos los valores a la izquierda son mayores que `valor_actual`, 
+lo que obliga con compararlo con todos ellos antes de volver a insertarlo.
 
 En la primera pasada se realiza 1 comparación, en la segunda 2, y así sucesivamente,
 hasta la última pasada donde se realizan $N - 1$ comparaciones.
@@ -544,7 +575,7 @@ $$
 
 Los desplazamientos ocurren cada vez que un valor se mueve a la derecha para dejar lugar al `valor_actual`.
 En el peor de los casos, el número de desplazamientos es igual al número de comparaciones.
-Sumando ambos tipos de operaciones, el número total de pasos es $N^2 - N$
+Sumando ambos tipos de operaciones, el número total de pasos es $N^2 - N$.
 
 Por su parte, las extracciones e inserciones se realizan una vez por pasada, es decir, $N - 1$ veces cada una.
 Estas operaciones tienen un peso menor frente al crecimiento cuadrático de las comparaciones y desplazamientos.
@@ -563,11 +594,15 @@ se concentra en el término de mayor orden, concluimos que el algoritmo es de or
 Hasta ahora, el análisis se centró siiempre en el peor escenario,
 pero el desempeño de _insertion sort_ depende en gran medida del orden inicial de los datos.
 
-En el peor de los casos, cuando el arreglo está ordenado de manera decreciente, _insertion sort_ tiene una complejidad de $O(N^2)$.
-En esta situación, su desempeño resulta inferior al de _selection sort_, que requiere menos operaciones (alrededor de $O(N^2/2)$).
+En el peor de los casos, cuando el arreglo está ordenado de manera decreciente, 
+_insertion sort_ tiene una complejidad de $O(N^2)$.
+En esta situación, su desempeño resulta inferior al de _selection sort_, 
+que requiere menos operaciones (alrededor de $O(N^2/2)$).
 
-Si los datos ya están ordenados, _insertion sort_ solo realiza una comparación por pasada y ningún desplazamiento, sumando en total $N - 1$ comparaciones.
-_Selection sort_, por su parte, efectuaría igualmente unas $\frac{N^2}{2} - \frac{N}{2}$ comparaciones.
+Si los datos ya están ordenados, _insertion sort_ solo realiza una comparación por pasada
+y ningún desplazamiento, sumando en total $N - 1$ comparaciones.
+_Selection sort_, por su parte, efectuaría igualmente unas 
+$\frac{N^2}{2} - \frac{N}{2}$ comparaciones.
 
 Cuando los datos no siguen ningún orden en particular, _insertion sort_ tiene pasadas en las que compara y traslada todos, algunos o ninguno de los valores.
 Si en el peor caso se comparan y trasladan todos los elementos, y en el mejor no se traslada ninguno, podemos estimar que, en un caso promedio, se comparará y trasladará aproximadamente la mitad de los elementos.
@@ -852,7 +887,7 @@ merge_sort([50, 3, 10, 11, 20, 99, 155, 8, 5, 9])
 
 #### Versión interactiva
 
-Hacer [clic aquí](https://opendsa-server.cs.vt.edu/embed/mergesortAV)
+Hacer [clic aquí](https://opendsa-server.cs.vt.edu/embed/mergesortAV).
 
 :::
 
@@ -1179,11 +1214,11 @@ quick_sort([8, 3, 1, 7, 0, 10, 2])
 # [0, 1, 2, 3, 7, 8, 10]
 ```
 
-::: {.callout-note}
+:::: {.callout-note}
 
 #### Versión interactiva
 
-[Versión interactiva](https://opendsa-server.cs.vt.edu/embed/quicksortAV)
+Hacer [clic aquí](https://opendsa-server.cs.vt.edu/embed/quicksortAV).
 
 :::
 
