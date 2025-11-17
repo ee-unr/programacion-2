@@ -591,7 +591,7 @@ se concentra en el término de mayor orden, concluimos que el algoritmo es de or
 
 #### Analizando el "caso promedio"
 
-Hasta ahora, el análisis se centró siiempre en el peor escenario,
+Hasta ahora, el análisis se centró siempre en el peor escenario,
 pero el desempeño de _insertion sort_ depende en gran medida del orden inicial de los datos.
 
 En el peor de los casos, cuando el arreglo está ordenado de manera decreciente, 
@@ -643,7 +643,7 @@ que en el contexto del ordenamiento pueden describirse así:
 
 1. **Dividir**: Si la secuencia $S$ es lo suficientemente pequeña (por ejemplo, contiene uno o dos elementos),
 se la ordena directamente y se devuelve un resultado. En caso contrario, se divide $S$ en dos o más subsecuencias disjuntas.
-2. **Conquistar**: se aplica el mismo procedimiento recursivamente sobre cada subsecuencia hasta que todas estén ordenadas
+2. **Conquistar**: se aplica el mismo procedimiento recursivamente sobre cada subsecuencia hasta que todas estén ordenadas.
 3. **Combinar**: se toman las subsecuencias ordenadas y se las une para formar una única secuencia ordenada,
 que constituye la solución final al problema original.
 
@@ -662,7 +662,7 @@ El procedimiento general del algoritmo puede resumirse así:
 
 1. Dividir: si la secuencia $S$ tiene 0 o 1 elementos, se devuelve directamente porque ya está ordenada.
 En otro caso, se divide en dos subsecuencias: la primera mitad en $S_1$ y la segunda en $S_2$.
-2. Ordenar: aplicar recursivamente _merge sort_ sobre $S_1$ y $S_2$.
+2. Ordenar (Conquistar): aplicar recursivamente _merge sort_ sobre $S_1$ y $S_2$.
 3. Fusionar: combinar las secuencias ordenadas $S_1$ y $S_2$ para obtener una nueva secuencia ordenada que contiene todos los elementos de $S$.
 
 Visualmente:
@@ -775,7 +775,7 @@ en orden ascendente
    derecho y determina cuál es **menor**.
    b. Tomar el valor menor y añadirlo al arreglo `fusionado`.
    c. Incrementar el puntero que estaba apuntando al valor menor para que señale el siguiente
-   índice de su arreglo. Si en algún momento los dos valores que se comparan son iguales, se puede añadir arbitrariamente el valor del arreglo `left` y avanzar su puntero.
+   índice de su arreglo. Si en algún momento los dos valores que se comparan son iguales, se puede añadir arbitrariamente el valor del arreglo `izq` e incrementar su puntero.
 4. Una vez que el bucle termina, uno de los dos arreglos ($S_1$ o $S_2$) quedará "incompleto", es decir,
 aún tendrá valores que no se copiaron al arreglo `fusionado`. Esto da inicio al último paso del algoritmo.
 5. Se toman todos los valores restantes del arreglo "incompleto" y es añaden, en orden, al arreglo `fusionado`.
@@ -896,7 +896,7 @@ Hacer [clic aquí](https://opendsa-server.cs.vt.edu/embed/mergesortAV).
 
 La versión de _merge sort_ que acabamos de ver se conoce como **_top-down_**, y utiliza recursión.
 
-Sin embargo,*no es la única forma de implementar este algoritmo.
+Sin embargo, no es la única forma de implementar este algoritmo.
 Existe también una versión llamada **_bottom-up_**, que no emplea recursión.
 
 En la práctica, suele ser algo más eficiente, ya que evita mantener un _stack_ de llamadas y
@@ -932,7 +932,7 @@ Es decir, si la lista tiene $N$ elementos, podemos dividirla como mucho $\log_2 
 #### Combinando ambos procesos
 
 En cada "nivel" de la recursión se realizan fusiones que, en conjunto, procesan todos los elementos de la lista.
-Por lo tanto, cada nivel tiene un costo de complejidad $O(n)$, y como hay $\log n$ niveles, el costo total del algoritmo es:
+Por lo tanto, cada nivel tiene un costo de complejidad $O(N)$, y como hay $\log N$ niveles, el costo total del algoritmo es:
 
 $$
 O(N) \times O(\log N) = O(N \log N)
@@ -944,7 +944,7 @@ Esta complejidad temporal indica que _merge sort_ es más eficiente, en cantidad
 
 La eficiencia en tiempo tiene un costo adicional, el uso de memoria.
 Durante la fusión, el algoritmo necesita espacio extra para almacenar las sublistas temporales que se van creando y combinando.
-Esto implica una complejidad espacial de $O(n)$, ya que se debe reservar memoria proporcional al tamaño total de la lista.
+Esto implica una complejidad espacial de $O(N)$, ya que se debe reservar memoria proporcional al tamaño total de la lista.
 
 
 ## _Quick sort_
@@ -954,13 +954,12 @@ La idea es dividir la secuencia en partes más pequeñas, ordenarlas de forma re
 luego combinarlas mediante una simple concatenación.
 
 
-
 ### Versión básica
 
 El algoritmo puede describirse en tres pasos:
 
 1. **Dividir**: se elige un elemento de la secuencia, llamado pivote.
-En la práctica, suele seleccionarse el último elemento o uno al azar (se se mueve al final).
+En la práctica, suele seleccionarse el último elemento o uno al azar (que se mueve al final).
 Luego, se recorre la secuencia y se distribuyen sus elementos en tres nuevas subsecuencias:
     * $L$: que contiene los valores menores que el pivote.
     * $E$: que contiene los valores iguales al pivote.
