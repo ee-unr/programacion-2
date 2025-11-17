@@ -1265,7 +1265,7 @@ N^2 - N + 2N - 2 = N^2 + N - 2
 <p>En términos de notación <em>Big O</em>, que no solo descarta términos constantes, sino que también se concentra en el término de mayor orden, concluimos que el algoritmo es de orden <span class="math inline">\(O(N^2)\)</span>.</p>
 <section id="analizando-el-caso-promedio" class="level4">
 <h4 class="anchored" data-anchor-id="analizando-el-caso-promedio">Analizando el “caso promedio”</h4>
-<p>Hasta ahora, el análisis se centró siiempre en el peor escenario, pero el desempeño de <em>insertion sort</em> depende en gran medida del orden inicial de los datos.</p>
+<p>Hasta ahora, el análisis se centró siempre en el peor escenario, pero el desempeño de <em>insertion sort</em> depende en gran medida del orden inicial de los datos.</p>
 <p>En el peor de los casos, cuando el arreglo está ordenado de manera decreciente, <em>insertion sort</em> tiene una complejidad de <span class="math inline">\(O(N^2)\)</span>. En esta situación, su desempeño resulta inferior al de <em>selection sort</em>, que requiere menos operaciones (alrededor de <span class="math inline">\(O(N^2/2)\)</span>).</p>
 <p>Si los datos ya están ordenados, <em>insertion sort</em> solo realiza una comparación por pasada y ningún desplazamiento, sumando en total <span class="math inline">\(N - 1\)</span> comparaciones. <em>Selection sort</em>, por su parte, efectuaría igualmente unas <span class="math inline">\(\frac{N^2}{2} - \frac{N}{2}\)</span> comparaciones.</p>
 <p>Cuando los datos no siguen ningún orden en particular, <em>insertion sort</em> tiene pasadas en las que compara y traslada todos, algunos o ninguno de los valores. Si en el peor caso se comparan y trasladan todos los elementos, y en el mejor no se traslada ninguno, podemos estimar que, en un caso promedio, se comparará y trasladará aproximadamente la mitad de los elementos. Por eso se representa con una complejidad de <span class="math inline">\(O(N^2/2)\)</span>.</p>
@@ -1285,7 +1285,7 @@ N^2 - N + 2N - 2 = N^2 + N - 2
 <p>De manera general, el método divide y vencerás se desarrolla en tres etapas, que en el contexto del ordenamiento pueden describirse así:</p>
 <ol type="1">
 <li><strong>Dividir</strong>: Si la secuencia <span class="math inline">\(S\)</span> es lo suficientemente pequeña (por ejemplo, contiene uno o dos elementos), se la ordena directamente y se devuelve un resultado. En caso contrario, se divide <span class="math inline">\(S\)</span> en dos o más subsecuencias disjuntas.</li>
-<li><strong>Conquistar</strong>: se aplica el mismo procedimiento recursivamente sobre cada subsecuencia hasta que todas estén ordenadas</li>
+<li><strong>Conquistar</strong>: se aplica el mismo procedimiento recursivamente sobre cada subsecuencia hasta que todas estén ordenadas.</li>
 <li><strong>Combinar</strong>: se toman las subsecuencias ordenadas y se las une para formar una única secuencia ordenada, que constituye la solución final al problema original.</li>
 </ol>
 <p>A continuación veremos cómo estos pasos se materializan en un caso particular: <em>merge sort</em>.</p>
@@ -1297,7 +1297,7 @@ N^2 - N + 2N - 2 = N^2 + N - 2
 <p>El procedimiento general del algoritmo puede resumirse así:</p>
 <ol type="1">
 <li>Dividir: si la secuencia <span class="math inline">\(S\)</span> tiene 0 o 1 elementos, se devuelve directamente porque ya está ordenada. En otro caso, se divide en dos subsecuencias: la primera mitad en <span class="math inline">\(S_1\)</span> y la segunda en <span class="math inline">\(S_2\)</span>.</li>
-<li>Ordenar: aplicar recursivamente <em>merge sort</em> sobre <span class="math inline">\(S_1\)</span> y <span class="math inline">\(S_2\)</span>.</li>
+<li>Ordenar (Conquistar): aplicar recursivamente <em>merge sort</em> sobre <span class="math inline">\(S_1\)</span> y <span class="math inline">\(S_2\)</span>.</li>
 <li>Fusionar: combinar las secuencias ordenadas <span class="math inline">\(S_1\)</span> y <span class="math inline">\(S_2\)</span> para obtener una nueva secuencia ordenada que contiene todos los elementos de <span class="math inline">\(S\)</span>.</li>
 </ol>
 <p>Visualmente:</p>
@@ -1498,7 +1498,7 @@ N^2 - N + 2N - 2 = N^2 + N - 2
 <ol type="a">
 <li>Comparar el valor apuntado por el puntero izquierdo con el valor apuntado por el puntero derecho y determina cuál es <strong>menor</strong>.</li>
 <li>Tomar el valor menor y añadirlo al arreglo <code>fusionado</code>.</li>
-<li>Incrementar el puntero que estaba apuntando al valor menor para que señale el siguiente índice de su arreglo. Si en algún momento los dos valores que se comparan son iguales, se puede añadir arbitrariamente el valor del arreglo <code>left</code> y avanzar su puntero.</li>
+<li>Incrementar el puntero que estaba apuntando al valor menor para que señale el siguiente índice de su arreglo. Si en algún momento los dos valores que se comparan son iguales, se puede añadir arbitrariamente el valor del arreglo <code>izq</code> e incrementar su puntero.</li>
 </ol></li>
 <li>Una vez que el bucle termina, uno de los dos arreglos (<span class="math inline">\(S_1\)</span> o <span class="math inline">\(S_2\)</span>) quedará “incompleto”, es decir, aún tendrá valores que no se copiaron al arreglo <code>fusionado</code>. Esto da inicio al último paso del algoritmo.</li>
 <li>Se toman todos los valores restantes del arreglo “incompleto” y es añaden, en orden, al arreglo <code>fusionado</code>.</li>
@@ -1671,7 +1671,7 @@ Versión interactiva
 </div>
 <div class="callout-body-container callout-body">
 <p>La versión de <em>merge sort</em> que acabamos de ver se conoce como <strong><em>top-down</em></strong>, y utiliza recursión.</p>
-<p>Sin embargo,*no es la única forma de implementar este algoritmo. Existe también una versión llamada <strong><em>bottom-up</em></strong>, que no emplea recursión.</p>
+<p>Sin embargo, no es la única forma de implementar este algoritmo. Existe también una versión llamada <strong><em>bottom-up</em></strong>, que no emplea recursión.</p>
 <p>En la práctica, suele ser algo más eficiente, ya que evita mantener un <em>stack</em> de llamadas y la memoria asociada a cada una de ellas.</p>
 </div>
 </div>
@@ -1698,7 +1698,7 @@ Versión interactiva
 </section>
 <section id="combinando-ambos-procesos" class="level4">
 <h4 class="anchored" data-anchor-id="combinando-ambos-procesos">Combinando ambos procesos</h4>
-<p>En cada “nivel” de la recursión se realizan fusiones que, en conjunto, procesan todos los elementos de la lista. Por lo tanto, cada nivel tiene un costo de complejidad <span class="math inline">\(O(n)\)</span>, y como hay <span class="math inline">\(\log n\)</span> niveles, el costo total del algoritmo es:</p>
+<p>En cada “nivel” de la recursión se realizan fusiones que, en conjunto, procesan todos los elementos de la lista. Por lo tanto, cada nivel tiene un costo de complejidad <span class="math inline">\(O(N)\)</span>, y como hay <span class="math inline">\(\log N\)</span> niveles, el costo total del algoritmo es:</p>
 <p><span class="math display">\[
 O(N) \times O(\log N) = O(N \log N)
 \]</span></p>
@@ -1706,7 +1706,7 @@ O(N) \times O(\log N) = O(N \log N)
 </section>
 <section id="complejidad-espacial" class="level4">
 <h4 class="anchored" data-anchor-id="complejidad-espacial">Complejidad espacial</h4>
-<p>La eficiencia en tiempo tiene un costo adicional, el uso de memoria. Durante la fusión, el algoritmo necesita espacio extra para almacenar las sublistas temporales que se van creando y combinando. Esto implica una complejidad espacial de <span class="math inline">\(O(n)\)</span>, ya que se debe reservar memoria proporcional al tamaño total de la lista.</p>
+<p>La eficiencia en tiempo tiene un costo adicional, el uso de memoria. Durante la fusión, el algoritmo necesita espacio extra para almacenar las sublistas temporales que se van creando y combinando. Esto implica una complejidad espacial de <span class="math inline">\(O(N)\)</span>, ya que se debe reservar memoria proporcional al tamaño total de la lista.</p>
 </section>
 </section>
 </section>
@@ -1717,7 +1717,7 @@ O(N) \times O(\log N) = O(N \log N)
 <h3 class="anchored" data-anchor-id="versión-básica">Versión básica</h3>
 <p>El algoritmo puede describirse en tres pasos:</p>
 <ol type="1">
-<li><strong>Dividir</strong>: se elige un elemento de la secuencia, llamado pivote. En la práctica, suele seleccionarse el último elemento o uno al azar (se se mueve al final). Luego, se recorre la secuencia y se distribuyen sus elementos en tres nuevas subsecuencias:
+<li><strong>Dividir</strong>: se elige un elemento de la secuencia, llamado pivote. En la práctica, suele seleccionarse el último elemento o uno al azar (que se mueve al final). Luego, se recorre la secuencia y se distribuyen sus elementos en tres nuevas subsecuencias:
 <ul>
 <li><span class="math inline">\(L\)</span>: que contiene los valores menores que el pivote.</li>
 <li><span class="math inline">\(E\)</span>: que contiene los valores iguales al pivote.</li>
