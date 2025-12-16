@@ -95,6 +95,8 @@ website:
             file: recursos/ejercicios/01_programacion_en_python/index.qmd
           - text: U2 - Programación funcional
             file: recursos/ejercicios/02_programacion_funcional/index.qmd
+          - text: U3 - Programación Orientada a Objetos
+            file: recursos/ejercicios/03_oop/index.qmd
         - text: Tutoriales
           file: recursos/tutoriales/tutorial_01.qmd
           contents:
