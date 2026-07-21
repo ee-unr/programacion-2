@@ -41,13 +41,13 @@ website:
           contents:
             - auto: teoria/01_programacion_en_python/*.ipynb
             - sort-ui: false
-        - text: U2 - Programación Funcional
+        - text: U2 - Programación Orientada a Objetos
           contents:
-            - auto: teoria/02_programacion_funcional/*.ipynb
+            - auto: teoria/02_oop/*.ipynb
             - sort-ui: false
-        - text: U3 - Programación Orientada a Objetos
+        - text: U3 - Programación Funcional
           contents:
-            - auto: teoria/03_oop/*.ipynb
+            - auto: teoria/03_programacion_funcional/*.ipynb
             - sort-ui: false
         - text: U4 - Estructuras de Datos y Algoritmos
           contents:
@@ -63,16 +63,16 @@ website:
             - practica/01_programacion_en_python/autoevaluacion.qmd
             - practica/01_programacion_en_python/ejercicios.qmd
             - practica/01_programacion_en_python/problemas.qmd
-        - text: U2 - Programación funcional
-          contents:
-            - practica/02_programacion_funcional/autoevaluacion.qmd
-            - practica/02_programacion_funcional/ejercicios.qmd
-            - practica/02_programacion_funcional/problemas.qmd
         - text: U3 - Programación Orientada a Objetos
           contents:
-            - practica/03_oop/autoevaluacion.qmd
-            - practica/03_oop/ejercicios.qmd
-            - practica/03_oop/problemas.qmd
+            - practica/02_oop/autoevaluacion.qmd
+            - practica/02_oop/ejercicios.qmd
+            - practica/02_oop/problemas.qmd
+        - text: U3 - Programación Funcional
+          contents:
+            - practica/03_programacion_funcional/autoevaluacion.qmd
+            - practica/03_programacion_funcional/ejercicios.qmd
+            - practica/03_programacion_funcional/problemas.qmd
         - text: U4 - Estructuras de Datos y Algoritmos
           contents:
             - practica/04_estructuras_y_algoritmos/autoevaluacion.qmd
@@ -89,14 +89,14 @@ website:
           contents:
             - auto: recursos/ejemplos/*.qmd
             - sort-ui: false
-        - text: Ejercicios
-          contents:
-          - text: U1 - Programación en Python
-            file: recursos/ejercicios/01_programacion_en_python/index.qmd
-          - text: U2 - Programación funcional
-            file: recursos/ejercicios/02_programacion_funcional/index.qmd
-          - text: U3 - Programación Orientada a Objetos
-            file: recursos/ejercicios/03_oop/index.qmd
+        # - text: Ejercicios
+        #   contents:
+        #   - text: U1 - Programación en Python
+        #     file: recursos/ejercicios/01_programacion_en_python/index.qmd
+        #   - text: U2 - Programación Orientada a Objetos
+        #     file: recursos/ejercicios/02_oop/index.qmd
+        #   - text: U3 - Programación Funcional
+        #     file: recursos/ejercicios/03_programacion_funcional/index.qmd
         - text: Tutoriales
           file: recursos/tutoriales/tutorial_01.qmd
           contents:
