@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Contenedores – Programación II</title>
+<title>🪞 Autoevaluación – Programación II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,7 +29,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/tutoriales/tutorial_03.html" rel="prev">
+<link href="../../practica/02_oop/ejercicios.html" rel="next">
+<link href="../../practica/01_programacion_en_python/problemas.html" rel="prev">
 <link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -75,7 +41,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6b91d3459308d67acd3b39ffd436d7b2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-7e63a461af3a7d798077275bdf3f9b10.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,9 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="../practica.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -133,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Teoría</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../practica/01_programacion_en_python/ejercicios.html"> 
+    <a class="nav-link active" href="../../practica/01_programacion_en_python/ejercicios.html" aria-current="page"> 
 <span class="menu-text">Práctica</span></a>
   </li>  
   <li class="nav-item">
@@ -141,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Trabajos Prácticos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../recursos/tutoriales/tutorial_01.html" aria-current="page"> 
+    <a class="nav-link" href="../../recursos/tutoriales/tutorial_01.html"> 
 <span class="menu-text">Recursos</span></a>
   </li>  
   <li class="nav-item compact">
@@ -160,7 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/tutoriales/tutorial_01.html">Tutoriales</a></li><li class="breadcrumb-item"><a href="../../recursos/tutoriales/tutorial_04.html">Contenedores</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../practica/02_oop/autoevaluacion.html">U3 - Programación Orientada a Objetos</a></li><li class="breadcrumb-item"><a href="../../practica/02_oop/autoevaluacion.html">🪞 Autoevaluación</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -174,8 +141,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../recursos/ejemplos/01_funciones_y_bucles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Ejemplos</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U1 - Programación en Python</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -183,8 +150,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/ejemplos/01_funciones_y_bucles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Funciones y bucles: Python vs R</span></a>
+  <a href="../../practica/01_programacion_en_python/autoevaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/01_programacion_en_python/ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/01_programacion_en_python/problemas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧩 Problemas</span></a>
   </div>
 </li>
       </ul>
@@ -192,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
- <span class="menu-text">Ejercicios</span></a>
+ <span class="menu-text">U3 - Programación Orientada a Objetos</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -200,28 +179,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/ejercicios/01_programacion_en_python/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">U1 - Programación en Python</span></a>
+  <a href="../../practica/02_oop/autoevaluacion.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/ejercicios/02_programacion_funcional/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">U2 - Programación funcional</span></a>
+  <a href="../../practica/02_oop/ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/ejercicios/03_oop/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">U3 - Programación Orientada a Objetos</span></a>
+  <a href="../../practica/02_oop/problemas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧩 Problemas</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../recursos/tutoriales/tutorial_01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tutoriales</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U3 - Programación Funcional</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,26 +208,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/tutoriales/tutorial_01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Instalación de Python y Positron en Windows</span></a>
+  <a href="../../practica/03_programacion_funcional/autoevaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/tutoriales/tutorial_02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fábrica de decoradores</span></a>
+  <a href="../../practica/03_programacion_funcional/ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/tutoriales/tutorial_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Arreglos manuales</span></a>
+  <a href="../../practica/03_programacion_funcional/problemas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧩 Problemas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U4 - Estructuras de Datos y Algoritmos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/04_estructuras_y_algoritmos/autoevaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🪞 Autoevaluación</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/tutoriales/tutorial_04.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Contenedores</span></a>
+  <a href="../../practica/04_estructuras_y_algoritmos/ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Ejercicios</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../practica/04_estructuras_y_algoritmos/problemas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🧩 Problemas</span></a>
   </div>
 </li>
       </ul>
@@ -258,13 +260,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/tutoriales/tutorial_01.html">Tutoriales</a></li><li class="breadcrumb-item"><a href="../../recursos/tutoriales/tutorial_04.html">Contenedores</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../practica/02_oop/autoevaluacion.html">U3 - Programación Orientada a Objetos</a></li><li class="breadcrumb-item"><a href="../../practica/02_oop/autoevaluacion.html">🪞 Autoevaluación</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Contenedores</h1>
+<h1 class="title">🪞 Autoevaluación</h1>
 </div>
 
 
@@ -281,49 +285,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>El objetivo de este mini-tutorial es implementar un contenedor de datos en Python para mostrar como funcionan los métodos <code>__getitem__</code>, <code>__setitem__</code> e <code>__iter__</code>.</p>
-<p>Dado un objeto <code>obj</code>, estos métodos especiales se llaman al ejecutarse las siguientes operaciones:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>obj[<span class="dv">2</span>]             <span class="co"># obj.__getitem__(2)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>obj[<span class="dv">1</span>] <span class="op">=</span> <span class="st">'cosa'</span>    <span class="co"># obj.__setitem__(1, 'cosa')</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">iter</span>(obj)          <span class="co"># obj.__iter__(), devuelve un iterador</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Este último se llama de manera implícita cuando se recorre el contenedor con un bucle, po ejemplo:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> obj:</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Supongamos que queremos implementar un contenedor que automáticamente convierte a todos sus elementos en cadenas de texto. Una implementación posible es la siguiente:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ContenedorTexto:</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, <span class="op">*</span>valores):</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._datos <span class="op">=</span> [<span class="bu">str</span>(x) <span class="cf">for</span> x <span class="kw">in</span> valores]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, indice):</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._datos[indice]</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__setitem__</span>(<span class="va">self</span>, indice, valor):</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._datos[indice] <span class="op">=</span> <span class="bu">str</span>(valor)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__iter__</span>(<span class="va">self</span>):</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">iter</span>(<span class="va">self</span>._datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Luego, podemos utilizarla. Primero, creamos un objeto y accedemos al elemento 0:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>contenedor <span class="op">=</span> ContenedorTexto(<span class="fl">22.1</span>, <span class="dv">195</span>, <span class="dv">13</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>contenedor[<span class="dv">0</span>] <span class="co"># (por debajo, esto ejecuta `__getitem__(0)`)</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># '22.1'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Vemos que efectivamente es de tipo <code>str</code>, aunque hayamos pasado un <code>float</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(contenedor[<span class="dv">0</span>])</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># str</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Como el contenedor soparta el método <code>__setitem__</code>, podemos escribir valores en el contenedor:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>contenedor[<span class="dv">1</span>] <span class="op">=</span> <span class="dv">212</span> <span class="co"># (ejecuta `__setitem__(1, 212)`)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>contenedor[<span class="dv">1</span>], <span class="bu">type</span>(contenedor[<span class="dv">1</span>])</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ('212', str)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Finalmente, podemos iterar a través de los elementos de nuestro contenedor:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> contenedor: <span class="co"># (necesita `__iter__()` para darle el iterador al 'for')</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">type</span>(x), x)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;class 'str'&gt; 22.1</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;class 'str'&gt; 212</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;class 'str'&gt; 13</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Otra opción para el método <code>__iter__</code> es implementar un generador manualmente:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__iter__</span>(<span class="va">self</span>):</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> <span class="va">self</span>._datos:</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            <span class="cf">yield</span> x</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>En este caso no es necesario porque la lista, que es el tipo de datos de <code>self._datos</code>, soporta la función <code>iter</code> para devolver un iterable.</p>
 
 
 
@@ -729,11 +690,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../recursos/tutoriales/tutorial_03.html" class="pagination-link" aria-label="Arreglos manuales">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Arreglos manuales</span>
+      <a href="../../practica/01_programacion_en_python/problemas.html" class="pagination-link" aria-label="🧩 Problemas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">🧩 Problemas</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../practica/02_oop/ejercicios.html" class="pagination-link" aria-label="🛠️ Ejercicios">
+        <span class="nav-page-text">🛠️ Ejercicios</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
