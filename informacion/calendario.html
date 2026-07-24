@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7e63a461af3a7d798077275bdf3f9b10.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-792e95db0e3b025da44b35681ac3980f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -133,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
@@ -169,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -190,117 +190,458 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<table class="table-striped table-hover caption-top table">
+<style>
+.calendario-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.calendario-table th:first-child,
+.calendario-table td:first-child,
+.calendario-table th:nth-child(2),
+.calendario-table td:nth-child(2) {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.calendario-table th:first-child,
+.calendario-table td:first-child {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.calendario-table th:nth-child(2),
+.calendario-table td:nth-child(2) {
+  white-space: nowrap;
+}
+
+.calendario-table th:last-child,
+.calendario-table td:last-child {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.calendario-table td[colspan="2"] {
+  text-align: center;
+  vertical-align: middle;
+}
+</style>
+<table class="table table-striped table-hover calendario-table">
 <colgroup>
-<col style="width: 5%">
-<col style="width: 15%">
-<col style="width: 60%">
-<col style="width: 20%">
+<col style="width: 7%;">
+<col style="width: 20%;">
+<col style="width: 48%;">
+<col style="width: 25%;">
 </colgroup>
 <thead>
-<tr class="header">
-<th style="text-align: center;">Semana</th>
-<th style="text-align: center;">Fecha</th>
-<th style="text-align: left;">Temas</th>
-<th style="text-align: left;">Otras actividades</th>
+<tr>
+<th>
+Semana
+</th>
+<th>
+Fecha
+</th>
+<th>
+Temas
+</th>
+<th>
+Otras actividades
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">4 de agosto</td>
-<td style="text-align: left;">• Lenguaje Python y su ecosistema.<br>• Uso de Python en la terminal.<br>• Uso de Positron.<br>• Python en Positron.<br>• Python: expresiones; variables y asignaciones; tipos de datos elementales; operadores numéricos, de comparación y lógicos.<br>• <em>Jupyter Notebooks</em>.<br>• Definición de funciones.<br>• Ejecución condicional de código.</td>
-<td style="text-align: left;"></td>
+<tr>
+<td>
+1
+</td>
+<td>
+27 de julio
+</td>
+<td>
+<ul>
+<li>
+Lenguaje Python y su ecosistema.
+</li>
+<li>
+Uso de Python en la terminal.
+</li>
+<li>
+Uso de Posit.
+</li>
+<li>
+Python en Posit.
+</li>
+<li>
+Otras alternativas.
+</li>
+<li>
+Python: expresiones; variables y asignaciones; tipos de datos elementales; operadores numéricos, de comparación y lógicos.
+</li>
+<li>
+Definición de funciones.
+</li>
+<li>
+Ejecución condicional de código.
+</li>
+</ul>
+</td>
+<td>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">11 de agosto</td>
-<td style="text-align: left;">• Colecciones de datos en Python: <code>list</code>, <code>tuple</code>, <code>dict</code> y <code>set</code>.<br>• Secuencias.<br>• Las secuencias <code>str</code> y <code>range</code>.<br>• Bucles definidos (<code>for</code>) y no definidos (<code>while</code>).<br>• Sentencias <code>break</code> y <code>continue</code>.</td>
-<td style="text-align: left;"></td>
+<tr>
+<td>
+2
+</td>
+<td>
+3 de agosto
+</td>
+<td>
+<ul>
+<li>
+Bucles definidos y no definidos: <code>for</code>, <code>while</code>, <code>break</code>, <code>continue</code>.
+</li>
+<li>
+Estructuras de datos nativas de Python: listas, tuplas, conjuntos y diccionarios.
+</li>
+<li>
+Las secuencias <code>str</code> y <code>range</code>.
+</li>
+</ul>
+</td>
+<td>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">17 de agosto</td>
-<td style="text-align: left;">• Uso de código externo (propio y de terceros).<br>• Módulos y librerías.<br>• Librería estándar de Python.<br>• Instalación y gestión de librerías.<br>• <em>Scripting</em>.<br>• Modularización de programas.<br>• Lectura y escritura de archivos de texto plano.</td>
-<td style="text-align: left;"></td>
+<tr>
+<td>
+3
+</td>
+<td>
+10 de agosto
+</td>
+<td>
+<ul>
+<li>
+Uso de código externo (propio y de terceros).
+</li>
+<li>
+Módulos y librerías.
+</li>
+<li>
+Librería estándar de Python.
+</li>
+<li>
+Instalación y gestión de librerías.
+</li>
+<li>
+<em>Scripting</em>.
+</li>
+<li>
+Lectura y escritura de archivos de texto plano.
+</li>
+<li>
+Modularización de programas.
+</li>
+</ul>
+</td>
+<td>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">25 de agosto</td>
-<td style="text-align: left;">• Funciones como ciudadanos de primera clase.<br>• Funciones puras.<br>• Funciones anónimas.<br>• <em>Closures</em>.<br>• Recursión.</td>
-<td style="text-align: left;"></td>
+<tr>
+<td>
+4
+</td>
+<td>
+17 de agosto
+</td>
+<td colspan="2">
+Trabajo en la práctica
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">1 de septiembre</td>
-<td style="text-align: left;">• Funciones de orden superior: <code>map</code>, <code>filter</code>, <code>reduce</code>.<br>• Evaluación estricta y no estricta.<br>• Evaluación perezosa (<em>lazy</em>) e inmediata (<em>eager</em>).<br>• Generadores.<br>• Aplicación parcial de funciones.<br>• Decoradores.</td>
-<td style="text-align: left;"></td>
+<tr>
+<td>
+5
+</td>
+<td>
+24 de agosto
+</td>
+<td>
+<ul>
+<li>
+Principios fundamentales.
+</li>
+<li>
+Objetos, clases e instancias.
+</li>
+<li>
+Atributos y métodos.
+</li>
+<li>
+Propiedades públicas y privadas.
+</li>
+<li>
+Métodos de clase y métodos de instancia.
+</li>
+</ul>
+</td>
+<td>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">6</td>
-<td style="text-align: center;">15 de septiembre</td>
-<td style="text-align: left;">• Objetos, clases e instancias.<br>• Atributos y métodos.<br>• Propiedades públicas y privadas.<br>• Métodos de clase y métodos de instancia.</td>
-<td style="text-align: left;"></td>
+<tr>
+<td>
+6
+</td>
+<td>
+31 de agosto
+</td>
+<td>
+<ul>
+<li>
+Herencia simple y múltiple.
+</li>
+<li>
+Polimorfismo.
+</li>
+<li>
+Sobrecarga de operadores.
+</li>
+</ul>
+</td>
+<td>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">22 de septiembre</td>
-<td style="text-align: left;">• Encapsulamiento.<br>• Herencia simple y múltiple.<br>• Polimorfismo.<br>• Abstracción.</td>
-<td style="text-align: left;"></td>
+<tr>
+<td>
+</td>
+<td>
+7 de septiembre
+</td>
+<td colspan="2">
+Mesa de exámenes finales
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">29 de septiembre</td>
-<td style="text-align: left;">• Métodos especiales (<em>dunder methods</em>).<br>• Decoradores aplicados a métodos.<br>• Sobrecarga de operadores.</td>
-<td style="text-align: left;">Parcial</td>
+<tr>
+<td>
+7
+</td>
+<td>
+14 de septiembre
+</td>
+<td>
+<ul>
+<li>
+Métodos especiales (<em>dunder methods</em>).
+</li>
+<li>
+Decoradores aplicados a métodos.
+</li>
+<li>
+Sobrecarga de operadores.
+</li>
+</ul>
+</td>
+<td>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">9</td>
-<td style="text-align: center;">6 de octubre</td>
-<td style="text-align: left;">• Concepto y clasificación.<br>• Estructuras lineales y no lineales.<br>• Listas y listas enlazadas.<br>• Operaciones básicas: agregar, quitar y recorrer.</td>
-<td style="text-align: left;">Presentación TP Grupal</td>
+<tr>
+<td>
+8
+</td>
+<td>
+21 de septiembre
+</td>
+<td>
+<ul>
+<li>
+Principios fundamentales.
+</li>
+<li>
+Funciones como ciudadanos de primera clase.
+</li>
+<li>
+Funciones puras.
+</li>
+<li>
+Funciones anónimas.
+</li>
+<li>
+<em>Closures</em>.
+</li>
+<li>
+Recursión.
+</li>
+</ul>
+</td>
+<td>
+Parcial
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">13 de octubre</td>
-<td style="text-align: left;">• <em>Hashing</em>.<br>• Diccionarios y conjuntos como estructuras asociativas.<br>• Árboles y grafos.</td>
-<td style="text-align: left;">Recuperatorio</td>
+<tr>
+<td>
+9
+</td>
+<td>
+28 de septiembre
+</td>
+<td>
+<ul>
+<li>
+Funciones de orden superior: <code>map</code>, <code>filter</code>, <code>reduce</code>.
+</li>
+<li>
+Evaluación estricta y no estricta.
+</li>
+<li>
+Evaluación perezosa (<em>lazy</em>) e inmediata (<em>eager</em>).
+</li>
+<li>
+Generadores.
+</li>
+<li>
+Aplicación parcial de funciones.
+</li>
+<li>
+Decoradores.
+</li>
+</ul>
+</td>
+<td>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">11</td>
-<td style="text-align: center;">20 de octubre</td>
-<td style="text-align: left;">• Arreglos multidimensionales de NumPy.</td>
-<td style="text-align: left;"></td>
+<tr>
+<td>
+10
+</td>
+<td>
+5 de octubre
+</td>
+<td>
+<ul>
+<li>
+Concepto de estructuras de datos y algoritmos.
+</li>
+<li>
+Complejidad computacional y notación <em>Big O</em>.
+</li>
+<li>
+Arreglos.
+</li>
+<li>
+Operaciones básicas sobre arreglos: lectura, búsqueda, inserción y eliminación.
+</li>
+<li>
+Búsqueda lineal y binaria.
+</li>
+</ul>
+</td>
+<td>
+Recuperatorio<br>Presentación TP Grupal
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">12</td>
-<td style="text-align: center;">27 de octubre</td>
-<td style="text-align: left;">• Concepto de algoritmo y complejidad.<br>• Algoritmos de búsqueda.<br>• Búsqueda lineal y binaria.<br>• Notación <em>Big O</em>.</td>
-<td style="text-align: left;"></td>
+<tr>
+<td>
+11
+</td>
+<td>
+12 de octubre
+</td>
+<td colspan="2">
+Trabajo en la práctica
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">13</td>
-<td style="text-align: center;">3 de noviembre</td>
-<td style="text-align: left;">• Algoritmos de ordenamiento.<br>• <em>bubble sort</em>, <em>insert sort</em>, <em>select sort</em>, <em>quick sort</em> y <em>merge sort</em>.<br>• Comparación de algoritmos de ordenamiento.</td>
-<td style="text-align: left;">Entrega TP Grupal<br>Presentación TP Individual</td>
+<tr>
+<td>
+12
+</td>
+<td>
+19 de octubre
+</td>
+<td>
+<ul>
+<li>
+Estructuras lineales: pilas, colas, listas enlazadas y listas doblemente enlazadas.
+</li>
+<li>
+Operaciones básicas sobre estructuras lineales.
+</li>
+</ul>
+</td>
+<td>
+Entrega TP Grupal
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">14</td>
-<td style="text-align: center;">10 de noviembre</td>
-<td style="text-align: left;">• Funciones de búsqueda y ordenamiento en Python.</td>
-<td style="text-align: left;"></td>
+<tr>
+<td>
+13
+</td>
+<td>
+26 de octubre
+</td>
+<td>
+<ul>
+<li>
+Algoritmos de ordenamiento: <em>bubble sort</em>, <em>insertion sort</em>, <em>selection sort</em>, <em>quick sort</em> y <em>merge sort</em>.
+</li>
+</ul>
+</td>
+<td>
+Presentación TP Individual
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">15</td>
-<td style="text-align: center;">17 de noviembre</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<tr>
+<td>
+14
+</td>
+<td>
+2 de noviembre
+</td>
+<td>
+<ul>
+<li>
+Concepto y representación de estructuras no lineales.
+</li>
+<li>
+Árboles: terminología, tipos y operaciones básicas.
+</li>
+<li>
+Recorridos de árboles.
+</li>
+</ul>
+</td>
+<td>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">16</td>
-<td style="text-align: center;">24 de noviembre</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Entrega y defensa TP Individual</td>
+<tr>
+<td>
+15
+</td>
+<td>
+9 de noviembre
+</td>
+<td>
+<ul>
+<li>
+Grafos: definición, representaciones y operaciones básicas.
+</li>
+<li>
+Recorridos de grafos.
+</li>
+</ul>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+16
+</td>
+<td>
+16 de noviembre
+</td>
+<td>
+</td>
+<td>
+Entrega y defensa TP Individual
+</td>
 </tr>
 </tbody>
 </table>
@@ -707,7 +1048,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
       <a href="../informacion/aprobacion.html" class="pagination-link" aria-label="Condiciones de aprobación">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Condiciones de aprobación</span>
