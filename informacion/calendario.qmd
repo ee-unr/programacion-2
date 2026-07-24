@@ -1,9 +1,252 @@
 ---
 title: Calendario
-tbl-colwidths: [5, 15, 60, 20]
-#page-layout: full
+page-layout: full
 ---
 
-{{< include _calendario.md >}}
+<style>
+.calendario-table {
+  table-layout: fixed;
+  width: 100%;
+}
 
-: {.striped .hover}
+.calendario-table th:first-child,
+.calendario-table td:first-child,
+.calendario-table th:nth-child(2),
+.calendario-table td:nth-child(2) {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.calendario-table th:first-child,
+.calendario-table td:first-child {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.calendario-table th:nth-child(2),
+.calendario-table td:nth-child(2) {
+  white-space: nowrap;
+}
+
+.calendario-table th:last-child,
+.calendario-table td:last-child {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.calendario-table td[colspan="2"] {
+  text-align: center;
+  vertical-align: middle;
+}
+</style>
+
+<table class="table table-striped table-hover calendario-table">
+  <colgroup>
+    <col style="width: 7%;">
+    <col style="width: 20%;">
+    <col style="width: 48%;">
+    <col style="width: 25%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Semana</th>
+      <th>Fecha</th>
+      <th>Temas</th>
+      <th>Otras actividades</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>27 de julio</td>
+      <td>
+        <ul>
+          <li>Lenguaje Python y su ecosistema.</li>
+          <li>Uso de Python en la terminal.</li>
+          <li>Uso de Posit.</li>
+          <li>Python en Posit.</li>
+          <li>Otras alternativas.</li>
+          <li>Python: expresiones; variables y asignaciones; tipos de datos elementales; operadores numéricos, de comparación y lógicos.</li>
+          <li>Definición de funciones.</li>
+          <li>Ejecución condicional de código.</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>3 de agosto</td>
+      <td>
+        <ul>
+          <li>Bucles definidos y no definidos: <code>for</code>, <code>while</code>, <code>break</code>, <code>continue</code>.</li>
+          <li>Estructuras de datos nativas de Python: listas, tuplas, conjuntos y diccionarios.</li>
+          <li>Las secuencias <code>str</code> y <code>range</code>.</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>10 de agosto</td>
+      <td>
+        <ul>
+          <li>Uso de código externo (propio y de terceros).</li>
+          <li>Módulos y librerías.</li>
+          <li>Librería estándar de Python.</li>
+          <li>Instalación y gestión de librerías.</li>
+          <li><em>Scripting</em>.</li>
+          <li>Lectura y escritura de archivos de texto plano.</li>
+          <li>Modularización de programas.</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>17 de agosto</td>
+      <td colspan="2">Trabajo en la práctica</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>24 de agosto</td>
+      <td>
+        <ul>
+          <li>Principios fundamentales.</li>
+          <li>Objetos, clases e instancias.</li>
+          <li>Atributos y métodos.</li>
+          <li>Propiedades públicas y privadas.</li>
+          <li>Métodos de clase y métodos de instancia.</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>31 de agosto</td>
+      <td>
+        <ul>
+          <li>Herencia simple y múltiple.</li>
+          <li>Polimorfismo.</li>
+          <li>Sobrecarga de operadores.</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>7 de septiembre</td>
+      <td colspan="2">Mesa de exámenes finales</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>14 de septiembre</td>
+      <td>
+        <ul>
+          <li>Métodos especiales (<em>dunder methods</em>).</li>
+          <li>Decoradores aplicados a métodos.</li>
+          <li>Sobrecarga de operadores.</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>21 de septiembre</td>
+      <td>
+        <ul>
+          <li>Principios fundamentales.</li>
+          <li>Funciones como ciudadanos de primera clase.</li>
+          <li>Funciones puras.</li>
+          <li>Funciones anónimas.</li>
+          <li><em>Closures</em>.</li>
+          <li>Recursión.</li>
+        </ul>
+      </td>
+      <td>Parcial</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>28 de septiembre</td>
+      <td>
+        <ul>
+          <li>Funciones de orden superior: <code>map</code>, <code>filter</code>, <code>reduce</code>.</li>
+          <li>Evaluación estricta y no estricta.</li>
+          <li>Evaluación perezosa (<em>lazy</em>) e inmediata (<em>eager</em>).</li>
+          <li>Generadores.</li>
+          <li>Aplicación parcial de funciones.</li>
+          <li>Decoradores.</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>5 de octubre</td>
+      <td>
+        <ul>
+          <li>Concepto de estructuras de datos y algoritmos.</li>
+          <li>Complejidad computacional y notación <em>Big O</em>.</li>
+          <li>Arreglos.</li>
+          <li>Operaciones básicas sobre arreglos: lectura, búsqueda, inserción y eliminación.</li>
+          <li>Búsqueda lineal y binaria.</li>
+        </ul>
+      </td>
+      <td>Recuperatorio<br>Presentación TP Grupal</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>12 de octubre</td>
+      <td colspan="2">Trabajo en la práctica</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>19 de octubre</td>
+      <td>
+        <ul>
+          <li>Estructuras lineales: pilas, colas, listas enlazadas y listas doblemente enlazadas.</li>
+          <li>Operaciones básicas sobre estructuras lineales.</li>
+        </ul>
+      </td>
+      <td>Entrega TP Grupal</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>26 de octubre</td>
+      <td>
+        <ul>
+          <li>Algoritmos de ordenamiento: <em>bubble sort</em>, <em>insertion sort</em>, <em>selection sort</em>, <em>quick sort</em> y <em>merge sort</em>.</li>
+        </ul>
+      </td>
+      <td>Presentación TP Individual</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>2 de noviembre</td>
+      <td>
+        <ul>
+          <li>Concepto y representación de estructuras no lineales.</li>
+          <li>Árboles: terminología, tipos y operaciones básicas.</li>
+          <li>Recorridos de árboles.</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>9 de noviembre</td>
+      <td>
+        <ul>
+          <li>Grafos: definición, representaciones y operaciones básicas.</li>
+          <li>Recorridos de grafos.</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>16 de noviembre</td>
+      <td></td>
+      <td>Entrega y defensa TP Individual</td>
+    </tr>
+  </tbody>
+</table>

@@ -49,11 +49,11 @@ website:
           contents:
             - auto: teoria/03_programacion_funcional/*.ipynb
             - sort-ui: false
-        - text: U4 - Estructuras de Datos y Algoritmos
-          contents:
-            - auto: teoria/04_estructuras_y_algoritmos/*.ipynb
-            - auto: teoria/04_estructuras_y_algoritmos/*.qmd
-            - sort-ui: false
+        # - text: U4 - Estructuras de Datos y Algoritmos
+        #   contents:
+        #     - auto: teoria/04_estructuras_y_algoritmos/*.ipynb
+        #     - auto: teoria/04_estructuras_y_algoritmos/*.qmd
+        #     - sort-ui: false
     - title: Práctica
       collapse-level: 2
       collapse: true
@@ -73,11 +73,11 @@ website:
             - practica/03_programacion_funcional/autoevaluacion.qmd
             - practica/03_programacion_funcional/ejercicios.qmd
             - practica/03_programacion_funcional/problemas.qmd
-        - text: U4 - Estructuras de Datos y Algoritmos
-          contents:
-            - practica/04_estructuras_y_algoritmos/autoevaluacion.qmd
-            - practica/04_estructuras_y_algoritmos/ejercicios.qmd
-            - practica/04_estructuras_y_algoritmos/problemas.qmd
+        # - text: U4 - Estructuras de Datos y Algoritmos
+        #   contents:
+        #     - practica/04_estructuras_y_algoritmos/autoevaluacion.qmd
+        #     - practica/04_estructuras_y_algoritmos/ejercicios.qmd
+        #     - practica/04_estructuras_y_algoritmos/problemas.qmd
     - title: Trabajos Prácticos
       contents:
         - trabajos_practicos/trabajo_grupal.qmd
