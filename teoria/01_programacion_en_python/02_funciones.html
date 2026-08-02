@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-792e95db0e3b025da44b35681ac3980f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e8d3d4f46dc9222bfa80df313a381e38.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -372,61 +372,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Modularidad</strong>: permiten construir programas como bloques independientes que pueden combinarse entre sí (¡funciones dentro de funciones!).</li>
 </ul>
 <p>Consideremos el siguiente caso donde se busca calcuar el precio final de un producto, considerando impuestos y descuentos.</p>
-<div id="53e8d045" class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>precio_base <span class="op">=</span> <span class="dv">800</span>   <span class="co"># Precio del producto ($800)</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>precio_base <span class="op">=</span> <span class="dv">800</span>   <span class="co"># Precio del producto ($800)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>impuesto <span class="op">=</span> <span class="fl">0.21</span>     <span class="co"># Impuesto (21%)</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>descuento <span class="op">=</span> <span class="fl">0.10</span>    <span class="co"># Descuento (10%)</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>precio_final <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>precio_final</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>871.2</code></pre>
-</div>
-</div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>precio_final <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>precio_final</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>871.2</code></pre>
 <p>¿Qué pasa si queremos calcular el precio final para otros productos con diferentes precios, impuestos o descuentos?</p>
 <p>Una opción es repetir el código tantas veces como sea necesario…</p>
-<div id="fd31beaf" class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>precio_base <span class="op">=</span> <span class="dv">500</span>   <span class="co"># Precio del producto ($500)</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>precio_base <span class="op">=</span> <span class="dv">500</span>   <span class="co"># Precio del producto ($500)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>impuesto <span class="op">=</span> <span class="fl">0.105</span>    <span class="co"># Impuesto (10.5%)</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>descuento <span class="op">=</span> <span class="fl">0.0</span>     <span class="co"># Descuento (0%)</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>precio_final <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>precio_final</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>552.5</code></pre>
-</div>
-</div>
-<div id="721090a0" class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>precio_base <span class="op">=</span> <span class="dv">2000</span>  <span class="co"># Precio del producto ($2000)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>precio_final <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>precio_final</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>552.5</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>precio_base <span class="op">=</span> <span class="dv">2000</span>  <span class="co"># Precio del producto ($2000)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>impuesto <span class="op">=</span> <span class="fl">0.21</span>     <span class="co"># Impuesto (21%)</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>descuento <span class="op">=</span> <span class="fl">0.20</span>    <span class="co"># Descuento (20%)</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>precio_final <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>precio_final</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>1936.0</code></pre>
-</div>
-</div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>precio_final <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>precio_final</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>1936.0</code></pre>
 <p>Otra opción, mucho mas conveniente, es utilizar funciones.</p>
-<div id="9b45b497" class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_precio(precio_base, impuesto, descuento):</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_precio(precio_base, impuesto, descuento):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> precio_base <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> impuesto) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> descuento)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resultado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Luego, para utilizar la función simplemente la <strong>llamamos</strong> (o <strong>invocamos</strong>).</p>
-<div id="4289dff9" class="cell" data-execution_count="80">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>calcular_precio(<span class="dv">800</span>, <span class="fl">0.21</span>, <span class="fl">0.10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>871.2</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>calcular_precio(<span class="dv">800</span>, <span class="fl">0.21</span>, <span class="fl">0.10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>871.2</code></pre>
 <p>También es posible indicar los valores de los argumentos utilizando sus nombres.</p>
-<div id="390f749f" class="cell" data-execution_count="81">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>calcular_precio(precio_base<span class="op">=</span><span class="dv">2000</span>, impuesto<span class="op">=</span><span class="fl">0.21</span>, descuento<span class="op">=</span><span class="fl">0.20</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>1936.0</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>calcular_precio(precio_base<span class="op">=</span><span class="dv">2000</span>, impuesto<span class="op">=</span><span class="fl">0.21</span>, descuento<span class="op">=</span><span class="fl">0.20</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>1936.0</code></pre>
 </section>
 <section id="definición-de-funciones" class="level2">
 <h2 class="anchored" data-anchor-id="definición-de-funciones">Definición de funciones</h2>
@@ -487,109 +462,62 @@ Observación 👀
 <section id="suma-de-números" class="level3">
 <h3 class="anchored" data-anchor-id="suma-de-números">1. Suma de números</h3>
 <p>Comencemos con una función super sencilla. La misma se llama <code>sumar</code>, recibe dos argumentos <code>x</code> e <code>y</code>, y devuelve la suma de ambos.</p>
-<div id="915e5c15" class="cell" data-execution_count="82">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumar(x, y):</span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumar(x, y):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="93c675b7" class="cell" data-execution_count="83">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sumar(<span class="dv">15</span>, <span class="fl">21.9</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>36.9</code></pre>
-</div>
-</div>
-<div id="ee85afc2" class="cell" data-execution_count="84">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(sumar(<span class="dv">15</span>, <span class="fl">21.9</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>float</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sumar(<span class="dv">15</span>, <span class="fl">21.9</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>36.9</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(sumar(<span class="dv">15</span>, <span class="fl">21.9</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>&lt;class 'float'&gt;</code></pre>
 <p>El valor que devuelve puede ser tratado como cualquier valor en Python. Por ejemplo, se lo puede asignar a una variable.</p>
-<div id="5f397efd" class="cell" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> sumar(<span class="dv">10</span>, <span class="dv">11</span>)</span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> sumar(<span class="dv">10</span>, <span class="dv">11</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>resultado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>21</code></pre>
-</div>
-</div>
+<pre class="text"><code>21</code></pre>
 <p>Y el valor de esa variable puede ser luego pasado a una nueva llamada a <code>sumar()</code> (o a cualquier otra función).</p>
-<div id="a97dc0eb" class="cell" data-execution_count="86">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sumar(resultado, <span class="fl">2.55</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>23.55</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sumar(resultado, <span class="fl">2.55</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>23.55</code></pre>
 <p>Incluso es posible pasar expresiones y llamadas a funciones a la hora de pasar un argumento:</p>
-<div id="4a2e9533" class="cell" data-execution_count="87">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sumar(sumar(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>6</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sumar(sumar(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">3</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>6</code></pre>
 <p>En la línea <code>sumar(sumar(1, 2), 3)</code>, Python comienza evaluando la función <code>sumar()</code>. Pero para poder hacerlo, primero necesita conocer los valores de los argumentos. Al revisar el primer argumento, detecta que no es un valor directamente, sino otra llamada a la función <code>sumar(1, 2)</code>, por lo que la evalúa primero. El resultado de esa operación es <code>3</code>, que se toma como valor del primer argumento de la llamada externa. El segundo argumento ya está dado: también es <code>3</code>. Entonces, Python invoca la función <code>sumar()</code> con los argumentos <code>3</code> y <code>3</code>, cuyo resultado es <code>6</code>. Finalmente, ese valor se muestra en pantalla.</p>
 </section>
 <section id="saludo-personalizado" class="level3">
 <h3 class="anchored" data-anchor-id="saludo-personalizado">2. Saludo personalizado</h3>
 <p>Otro ejemplo sencillo consiste en una función que recibe un nombre e imprime un saludo en pantalla.</p>
-<div id="2e6bcf92" class="cell" data-execution_count="88">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saludar(nombre):</span>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saludar(nombre):</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hola"</span>, nombre)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="47174693" class="cell" data-execution_count="89">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>saludar(<span class="st">"Pablo"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Hola Pablo</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>saludar(<span class="st">"Pablo"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Hola Pablo</code></pre>
 <p>Esta función no devuelve un resultado, sino que utiliza el argumento recibido para mostrar un mensaje en pantalla.</p>
-<div id="905fc70b" class="cell" data-execution_count="90">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>saludar(<span class="st">"Juan"</span> <span class="op">+</span> <span class="st">" Manuel"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Hola Juan Manuel</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>saludar(<span class="st">"Juan"</span> <span class="op">+</span> <span class="st">" Manuel"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Hola Juan Manuel</code></pre>
 </section>
 <section id="sin-parámetros" class="level3">
 <h3 class="anchored" data-anchor-id="sin-parámetros">3. Sin parámetros</h3>
 <p>Y podemos tener funciones que no utilicen ningún argumento.</p>
-<div id="d98fc50d" class="cell" data-execution_count="91">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> decir_hola():</span>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> decir_hola():</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"¡Hola!"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="f2d8dc1e" class="cell" data-execution_count="92">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>decir_hola()</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>decir_hola()</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>decir_hola()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>¡Hola!
-¡Hola!
-¡Hola!</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>decir_hola()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>¡Hola!</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>decir_hola()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>¡Hola!</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>decir_hola()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>¡Hola!</code></pre>
 </section>
 <section id="devolución-de-múltiples-valores" class="level3">
 <h3 class="anchored" data-anchor-id="devolución-de-múltiples-valores">4. Devolución de múltiples valores</h3>
 <p>En Python, las funciones pueden devolver múltiples valores separándolos por comas en la sentencia <code>return</code>. Por ejemplo:</p>
-<div id="fbe4e8d2" class="cell" data-execution_count="93">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> potencias(x):</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    cuadrado <span class="op">=</span> x <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    cubo <span class="op">=</span> x <span class="op">**</span> <span class="dv">3</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cuadrado, cubo</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>potencias(<span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>(4, 8)</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> potencias(x):</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    cuadrado <span class="op">=</span> x <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    cubo <span class="op">=</span> x <span class="op">**</span> <span class="dv">3</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cuadrado, cubo</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>potencias(<span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>(4, 8)</code></pre>
 <p>El resultado de este tipo de funciones puede ser asignado a múltiples variables. De esta forma, podemos obtener el <code>cuadrado</code> y el <code>cubo</code> de un número con una sola llamada a una función.</p>
-<div id="c2ca8e06" class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>cuadrado, cubo <span class="op">=</span> potencias(<span class="dv">8</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cuadrado)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cubo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>64
-512</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>cuadrado, cubo <span class="op">=</span> potencias(<span class="dv">8</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cuadrado)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>64</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cubo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>512</code></pre>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -631,10 +559,10 @@ Observación 👀
 <div class="callout-body-container callout-body">
 <p>Una función en Python puede realizar múltiples tareas, como devolver un valor e imprimir un mensaje en pantalla.</p>
 <p>Por ejemplo:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> producto(x, y):</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> x <span class="op">*</span> y</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"El producto es"</span>, resultado)</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resultado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> producto(x, y):</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> x <span class="op">*</span> y</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"El producto es"</span>, resultado)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resultado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>La función <code>producto()</code> no solo calcula y devuelve el resultado de multiplicar <code>x</code> por <code>y</code>, sino que además muestra un mensaje por pantalla.</p>
 <p>Sin embargo, en general no es una buena práctica combinar tareas distintas dentro de una misma función, especialmente si son de distinta naturaleza (como <em>devolver</em> un valor y <em>causar</em> un efecto colateral). Esto puede dificultar la reutilización y el mantenimiento del código.</p>
 </div>
@@ -645,58 +573,34 @@ Observación 👀
 <p>Al definir una función, debemos darle un nombre a cada uno de los argumentos que va a recibir.</p>
 <p>Al llamar a la función, podemos pasar los valores de dos formas: <strong>por posición</strong> o <strong>por nombre</strong>.</p>
 <p>Por ejemplo, las siguientes llamadas a la función <code>sumar()</code> son equivalentes:</p>
-<div id="a1a2d283" class="cell" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sumar(x <span class="op">=</span> <span class="dv">10</span>, y <span class="op">=</span> <span class="dv">15</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>25</code></pre>
-</div>
-</div>
-<div id="61c79913" class="cell" data-execution_count="96">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sumar(<span class="dv">10</span>, <span class="dv">15</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>25</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>sumar(x <span class="op">=</span> <span class="dv">10</span>, y <span class="op">=</span> <span class="dv">15</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>25</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sumar(<span class="dv">10</span>, <span class="dv">15</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>25</code></pre>
 <p>Si utilizamos los nombres para pasar los argumentos <strong>no hace falta que estén en el mismo orden que en la definición</strong> de la función.</p>
-<div id="6f0202b3" class="cell" data-execution_count="97">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sumar(y <span class="op">=</span> <span class="dv">15</span>, x <span class="op">=</span> <span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>25</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>sumar(y <span class="op">=</span> <span class="dv">15</span>, x <span class="op">=</span> <span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>25</code></pre>
 <p>¡Que sea posible no significa que sea una buena práctica!</p>
 </section>
 <section id="ausencia-de-return" class="level2">
 <h2 class="anchored" data-anchor-id="ausencia-de-return">Ausencia de <code>return</code></h2>
 <p>La función <code>sumar()</code> termina con la siguiente línea:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Es decir, utiliza la sentencia <code>return</code> para devolver un valor.</p>
 <p>Por otro lado, la función <code>saludar()</code> termina con un <code>print()</code> y no tiene ningún <code>return</code>.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hola"</span>, nombre)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="2d870a0d" class="cell" data-execution_count="98">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> sumar(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>resultado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>3</code></pre>
-</div>
-</div>
-<div id="a95d33ff" class="cell" data-execution_count="99">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>saludo <span class="op">=</span> saludar(<span class="st">"Juan"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Hola Juan</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Hola"</span>, nombre)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> sumar(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>resultado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>3</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>saludo <span class="op">=</span> saludar(<span class="st">"Juan"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Hola Juan</code></pre>
 <ul>
 <li>¿Cuál es el valor de la variable <code>saludo</code>?</li>
 <li>¿Por qué?</li>
 <li>¿Tiene sentido?</li>
 </ul>
-<div id="1b0c14fe" class="cell" data-execution_count="100">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(saludo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>None</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(saludo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>None</code></pre>
 <p>En Python no existe el concepto de <code>return</code> implícito.</p>
 <p>Si queremos que una función devuelva un valor, es necesario usar la instrucción <code>return</code> de forma explícita.</p>
 <p>En caso de no hacerlo, la función devuelve automáticamente <code>None</code>.</p>
@@ -707,39 +611,24 @@ Observación 👀
 <p>Si cuando llamamos a la función le pasamos un valor a ese parámetro, se utiliza el valor que pasamos. Sino, se usa el valor por defecto.</p>
 <p>Esta práctica es útil para simplificar las llamadas que realizamos a una función.</p>
 <p>Supongamos la siguiente función <code>describir_mascota()</code> que tiene los parámetros <code>nombre</code> y <code>tipo</code></p>
-<div id="c75786b8" class="cell" data-execution_count="101">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> describir_mascota(nombre, tipo):</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Tengo un"</span>, tipo)</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Y su nombre es"</span>, nombre)</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>describir_mascota(<span class="st">"Bruno"</span>, <span class="st">"perro"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Tengo un perro
+<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> describir_mascota(nombre, tipo):</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Tengo un"</span>, tipo)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Y su nombre es"</span>, nombre)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>describir_mascota(<span class="st">"Bruno"</span>, <span class="st">"perro"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Tengo un perro
 Y su nombre es Bruno</code></pre>
-</div>
-</div>
 <p>Ahora, hacemos que el parámetro <code>tipo</code> sea por defecto igual a <code>"perro"</code>.</p>
-<div id="6b70d457" class="cell" data-execution_count="102">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> describir_mascota(nombre, tipo<span class="op">=</span><span class="st">"perro"</span>):</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Tengo un"</span>, tipo)</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Y su nombre es"</span>, nombre)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> describir_mascota(nombre, tipo<span class="op">=</span><span class="st">"perro"</span>):</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Tengo un"</span>, tipo)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Y su nombre es"</span>, nombre)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>De este modo, es posible llamar a la función solamente pasando valores para aquellos parámetros sin valor por defecto:</p>
-<div id="4fe7fe89" class="cell" data-execution_count="103">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>describir_mascota(<span class="st">"Bruno"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Tengo un perro
+<div class="sourceCode" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>describir_mascota(<span class="st">"Bruno"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Tengo un perro
 Y su nombre es Bruno</code></pre>
-</div>
-</div>
 <p>Como es de esperar, también es posible pasar valores distintos a los establecidos por defecto:</p>
-<div id="aa32c73f" class="cell" data-execution_count="104">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>describir_mascota(<span class="st">"Nemo"</span>, <span class="st">"pez"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Tengo un pez
+<div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>describir_mascota(<span class="st">"Nemo"</span>, <span class="st">"pez"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Tengo un pez
 Y su nombre es Nemo</code></pre>
-</div>
-</div>
 
 
 </section>

@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-792e95db0e3b025da44b35681ac3980f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e8d3d4f46dc9222bfa80df313a381e38.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -412,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>y usamos la función <code>open()</code> para abrir el archivo.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>archivo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;</span>_io.TextIOWrapper name='pensamientos.txt' mode='r' encoding='cp1252'<span class="kw">&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>&lt;_io.TextIOWrapper name='pensamientos.txt' mode='r' encoding='cp1252'&gt;</code></pre>
 <p>Vemos que el objeto devuelto por <code>open()</code> no solo incluye el nombre del archivo (<code>pensamientos.txt</code>), sino también <code>mode="r"</code> y <code>encoding="cp1252"</code>.</p>
 <p>Tanto <code>mode</code> como <code>encoding</code> son argumentos de la función <code>open()</code>. El primero indica el modo en el que se abre el archivo. Por defecto, este valor es <code>"r"</code>, lo que significa que el archivo se abre en modo lectura de texto plano. En este modo es posible leer su contenido, pero no escribir sobre él.</p>
 <p>El segundo argumento, <code>encoding</code>, especifica la codificación que se usará para convertir los <em>bytes</em> del archivo en cadenas de texto de Python. En macOS y Linux el valor por defecto es <code>"utf-8"</code>. En cambio, en Windows, la codificación predeterminada es <code>"cp1252"</code> (ASCII extendido). Como esto puede generar errores al leer archivos de texto UTF-8 que contengan caracteres no ingleses en Windows, se recomienda siempre incluir explícitamente el argumento <code>encoding="utf-8"</code>.</p>
@@ -437,46 +437,34 @@ Puede fallar
 <section id="leer-todo-el-contenido" class="level4">
 <h4 class="anchored" data-anchor-id="leer-todo-el-contenido">Leer todo el contenido</h4>
 <p>Una forma de leer un archivo de texto plano en Python es cargar todo su contenido de una sola vez como una única cadena de texto. Para ello se utiliza el método <code>.read()</code> del objeto <code>TextIOWrapper</code>.</p>
-<div id="f18b55d3" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>contenido <span class="op">=</span> archivo.read()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>contenido</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>'Estoy aprendiendo a leer archivos en Python.\nNo se con qué me voy a encontrar.\nPero acá vamos.'</code></pre>
-</div>
-</div>
+<pre class="text"><code>'Estoy aprendiendo a leer archivos en Python.\nNo se con qué me voy a encontrar.\nPero acá vamos.'</code></pre>
 <p>Se puede observar que, salvo la última, cada línea termina con un carácter de nueva línea (<code>\n</code>). Si hubiéramos agregado un salto de línea al final del archivo <code>pensamientos.txt</code>, la cadena resultante también habría terminado en <code>"\n"</code>.</p>
 </section>
 <section id="leer-línea-a-línea" class="level4">
 <h4 class="anchored" data-anchor-id="leer-línea-a-línea">Leer línea a línea</h4>
 <p>Una alternativa al método <code>.read()</code>, que carga todo el contenido como una única cadena de texto, es el método <code>.readlines()</code>. Este devuelve una <strong>lista de cadenas</strong>, donde cada elemento corresponde a una línea del archivo.</p>
-<div id="acee3e64" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>archivo.readlines()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>['Estoy aprendiendo a leer archivos en Python.\n',
+<pre class="text"><code>['Estoy aprendiendo a leer archivos en Python.\n',
  'No se con qué me voy a encontrar.\n',
  'Pero acá vamos.']</code></pre>
-</div>
-</div>
 <p>Trabajar con una lista de cadenas suele ser más cómodo que manejar un único bloque de texto, ya que te permite acceder directamente a cada línea por separado.</p>
 </section>
 <section id="leer-solo-algunas-líneas" class="level4">
 <h4 class="anchored" data-anchor-id="leer-solo-algunas-líneas">Leer solo algunas líneas</h4>
 <p>También es posible leer un número limitado de líneas en lugar de cargar todo el archivo de una sola vez. Para ello se utiliza el método <code>.readline()</code>, en singular. Cada vez que se invoca, se obtiene la siguiente línea del archivo. Cuando ya no quedan más líneas, devuelve una cadena vacía.</p>
-<div id="6c98e02b" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    linea <span class="op">=</span> archivo.readline()</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> linea <span class="op">==</span> <span class="st">""</span>:</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(linea, end<span class="op">=</span><span class="st">""</span>) <span class="co"># `end=""` para que Python no agregue salto de línea</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Estoy aprendiendo a leer archivos en Python.
+<pre class="text"><code>Estoy aprendiendo a leer archivos en Python.
 No se con qué me voy a encontrar.
 Pero acá vamos.</code></pre>
-</div>
-</div>
 <p>Este método también acepta un argumento opcional <code>size</code>, que permite especificar la cantidad de caracteres a leer en cada llamada.</p>
 </section>
 <section id="cerrar-archivo" class="level4">
@@ -496,11 +484,11 @@ Lecturas sucesivas
 <p>Cuando se lee un archivo en Python, existe un puntero interno (a veces llamado <em>posición en el búfer</em>) que avanza a medida que se consume el contenido. Por eso, después de una primera lectura completa, las siguientes llamadas a métodos como <code>.read()</code> o <code>.readlines()</code> no devuelven nada: el puntero ya está al final del archivo.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"pensamientos.txt"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>archivo.read()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>'Estoy aprendiendo a leer archivos en Python.\nNo se con qué me voy a encontrar.\nPero acá vamos.'</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>'Estoy aprendiendo a leer archivos en Python.\nNo se con qué me voy a encontrar.\nPero acá vamos.'</code></pre>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>archivo.read()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>''</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>''</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>archivo.readlines()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>[]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[]</code></pre>
 <p>Para volver a leer desde el inicio, hay dos opciones:</p>
 <ul>
 <li>Cerrar y volver a abrir el archivo.</li>
@@ -520,34 +508,22 @@ Lecturas sucesivas
 </ul>
 <p>Si el archivo indicado en <strong><code>open()</code></strong> no existe, tanto el modo escritura como el modo adición crearán un <strong>archivo nuevo y vacío</strong>.</p>
 <p>Debajo, abrimos un archivo llamado <code>conclusiones.txt</code> en <strong>modo escritura</strong>. Como el archivo todavía no existe, Python lo crea automáticamente. Luego, llamamos a <strong><code>write()</code></strong> sobre el archivo abierto y le pasamos la cadena <code>"Escribir en Python no es tan grave como parece.\n"</code> y el texto se escribe dentro del archivo.</p>
-<div id="78c699d2" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"conclusiones.txt"</span>, mode<span class="op">=</span><span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="co"># Este paso ya crea el archivo</span></span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"conclusiones.txt"</span>, mode<span class="op">=</span><span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="co"># Este paso ya crea el archivo</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>archivo.write(<span class="st">"Escribir en Python no es tan grave como parece.</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>48</code></pre>
-</div>
-</div>
+<pre class="text"><code>48</code></pre>
 <p>El método <code>.write()</code> devuelve el número de caracteres escritos, incluyendo el salto de línea <code>\n</code>. Después, cerramos el archivo.</p>
-<div id="703d52de" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>archivo.close()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>archivo.close()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Para <strong>agregar texto sin reemplazar el contenido existente</strong>, abrimos el archivo en <strong>modo adición</strong>. Escribimos la cadena <code>"Es solo cuestión de practica."</code> y lo cerramos nuevamente.</p>
-<div id="0cfc9163" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"conclusiones.txt"</span>, mode<span class="op">=</span><span class="st">"a"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"conclusiones.txt"</span>, mode<span class="op">=</span><span class="st">"a"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>archivo.write(<span class="st">"Es solo cuestión de practica."</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>archivo.close()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Finalmente, para mostrar en pantalla el contenido de <code>conclusiones.txt</code>, abrimos el archivo en modo lectura, cargamos su contenido con <code>.read()</code>, lo guardamos en la variable <code>texto</code>, cerramos el archivo y luego imprimimos <code>texto</code>.</p>
-<div id="33808653" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"conclusiones.txt"</span>, mode<span class="op">=</span><span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"conclusiones.txt"</span>, mode<span class="op">=</span><span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>texto <span class="op">=</span> archivo.read()</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>archivo.close()</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(texto)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Escribir en Python no es tan grave como parece.
-Es solo cuestión de practica.</code></pre>
-</div>
-</div>
+<pre class="text"><code>Escribir en Python no es tan grave como parece.
+Es solo cuestión de practica</code></pre>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -567,28 +543,17 @@ Saltos de línea
 <p>Cuando abrimos un archivo con <code>open()</code>, debemos cerrarlo después con <code>.close()</code>. El problema es que a veces podemos olvidarlo o que el programa falle antes de llegar a esa línea.</p>
 <p>Para evitarlo, Python ofrece la sentencia <code>with</code>, que se encarga de cerrar el archivo automáticamente al terminar el bloque de código, incluso si ocurre un error en el medio.</p>
 <p>Debajo, utilizamos la sentencia <code>with</code> para crear un archivo y escribir texto en él.</p>
-<div id="cell-31" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"ejemplo.txt"</span>, mode<span class="op">=</span><span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> archivo:</span>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"ejemplo.txt"</span>, mode<span class="op">=</span><span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> archivo:</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    archivo.write(<span class="st">"¡Hola, mundo!</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(archivo.closed) <span class="co"># Verificar que el archivo está cerrado</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>True</code></pre>
-</div>
-</div>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(archivo.closed) <span class="co"># Verificar que el archivo está cerrado</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>True</code></pre>
 <p>Luego, podemos utilizar un patrón similar, pero pasando <code>mode="r"</code>, para leer el contenido del archivo.</p>
-<div id="8cba1f68" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"ejemplo.txt"</span>, mode<span class="op">=</span><span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> archivo:</span>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"ejemplo.txt"</span>, mode<span class="op">=</span><span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> archivo:</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    contenido <span class="op">=</span> archivo.read()</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(contenido)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(archivo.closed)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>¡Hola, mundo!
-
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(contenido)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(archivo.closed)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>¡Hola, mundo!
 True</code></pre>
-</div>
-</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -637,7 +602,7 @@ True</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Users/Tomi/Documentos/projecto.docx</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Si en Windows convertimos al objeto <code>ruta</code> a una cadena de caracteres, nos encontraremos con el siguiente resultado:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">str</span>(ruta)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="st">"Users</span><span class="sc">\\</span><span class="st">Tomi</span><span class="sc">\\</span><span class="st">Documentos</span><span class="sc">\\</span><span class="st">projecto.docx"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>'Users\\Tomi\\Documentos\\projecto.docx'</code></pre>
 <p>Las barras invertidas aparecen como dobles barras invertidas porque en Python cada barra invertida debe <strong>escaparse</strong> con otra barra invertida.</p>
 </section>
 </section>
@@ -645,9 +610,8 @@ True</code></pre>
 <h3 class="anchored" data-anchor-id="combinación-de-rutas-con-el-operador">Combinación de rutas con el operador <code>/</code></h3>
 <p>El operador <code>/</code>, que normalmente usamos para dividir números, también sirve en Python para <strong>combinar rutas</strong> cuando trabajamos con <code>pathlib.Path</code>. Esto permite construir rutas de forma clara y sin preocuparse por los separadores que cambian según el sistema operativo. Por ejemplo:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>ruta <span class="op">=</span> Path(<span class="st">"datos"</span>) <span class="op">/</span> <span class="st">"usuarios"</span> <span class="op">/</span> <span class="st">"reporte.txt"</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ruta)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>ruta <span class="op">=</span> Path(<span class="st">"datos"</span>) <span class="op">/</span> <span class="st">"usuarios"</span> <span class="op">/</span> <span class="st">"reporte.txt"</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ruta)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>El resultado será distinto según el sistema:</p>
 <p>En <strong>Windows</strong>:</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>datos\usuarios\reporte.txt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -717,7 +681,7 @@ Precauciones
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>ruta <span class="op">=</span> Path(<span class="st">"../datos.txt"</span>)</span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ruta.resolve()) <span class="co"># ruta absoluta y normalizada</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>C:\Users\Tomi\Desktop\datos.txt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>C:\Users\Tomi\Desktop\datos.txt</code></pre>
 </section>
 <section id="creación-de-directorios" class="level4">
 <h4 class="anchored" data-anchor-id="creación-de-directorios">Creación de directorios</h4>
