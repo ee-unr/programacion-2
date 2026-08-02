@@ -53,7 +53,7 @@
 
   node(
     (150pt, 340pt),
-    [¿Aprobaste\ el TP?],
+    [¿Aprobaste\ el TP grupal?],
     name: <tp>,
     width: 50mm,
     height: 25mm,
@@ -67,7 +67,7 @@
 
   node(
     (300pt, 160pt),
-    [¿Promedio\ mayor a 8?],
+    [¿Y el TP final?],
     name: <promedio>,
     width: 50mm,
     height: 25mm,
