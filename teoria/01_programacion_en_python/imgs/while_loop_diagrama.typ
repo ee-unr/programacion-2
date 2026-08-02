@@ -1,8 +1,9 @@
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
-#import fletcher.shapes: diamond, ellipse
+#import fletcher.shapes: diamond
 
-#set page(width: 140mm, height: 160mm, margin: 0mm)
+#set page(width: 170mm, height: 140mm, margin: 0mm)
 #set text(font: "Noto Sans", size: 18pt)
+#show raw: set text(size: 12pt)
 
 #let condition-fill = rgb("#efe4bf")
 #let condition-stroke = rgb("#d0aa43")
@@ -10,6 +11,7 @@
 #let block-stroke = rgb("#8f73a8")
 #let terminal-fill = rgb("#dcefd8")
 #let terminal-stroke = rgb("#6aa84f")
+
 
 #align(center + horizon)[
   #diagram(
@@ -29,7 +31,7 @@
     ),
     node(
       (0, 1),
-      [Condición],
+      [#raw("numero < 5", lang: "python")],
       name: <condicion>,
       width: 30mm,
       height: 25mm,
@@ -37,27 +39,26 @@
       stroke: condition-stroke,
       shape: diamond,
     ),
-    edge(<inicio.south>, <condicion.north>, "-|>"),
     node(
       (2, 1),
-      [Ejecutar\ bloque `if`],
-      name: <bloque-if>,
+      [#raw("numero += 1", lang: "python")],
+      name: <incremento>,
       width: 40mm,
-      height: 20mm,
+      height: 15mm,
       fill: block-fill,
       stroke: block-stroke,
     ),
     node(
-      (0, 2.5),
-      [Ejecutar\ bloque `else`],
-      name: <bloque-else>,
-      width: 40mm,
-      height: 20mm,
+      (2, 2),
+      [#raw("print(f'El número es {numero}')", lang: "python")],
+      name: <imprimir>,
+      width: 85mm,
+      height: 15mm,
       fill: block-fill,
       stroke: block-stroke,
     ),
     node(
-      (0, 4),
+      (0, 3),
       [Fin],
       name: <fin>,
       width: 35mm,
@@ -65,9 +66,10 @@
       fill: terminal-fill,
       stroke: terminal-stroke,
     ),
-    edge(<condicion.east>, <bloque-if.west>, "-|>", `True`, label-pos: 0.45, label-side: center),
-    edge(<condicion.south>, <bloque-else.north>, "-|>", `False`, label-pos: 0.45, label-side: center),
-    edge(<bloque-if.south>, (2, 4), <fin.east>, "-|>"),
-    edge(<bloque-else.south>, <fin.north>, "-|>"),
+    edge(<inicio.south>, <condicion.north>, "-|>"),
+    edge(<condicion.east>, <incremento.west>, "-|>", `True`, label-pos: 0.45, label-side: center),
+    edge(<condicion.south>, <fin.north>, "-|>", `False`, label-pos: 0.45, label-side: center),
+    edge(<incremento.south>, <imprimir.north>, "-|>"),
+    edge(<imprimir.west>,  (0, 1), "-|>"),
   )
 ]

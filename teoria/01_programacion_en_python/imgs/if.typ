@@ -1,10 +1,8 @@
-#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
-#import fletcher.shapes: ellipse
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
+#import fletcher.shapes: diamond, ellipse
 
-#set page(width: 150mm, height: 142mm, margin: 8mm)
+#set page(width: 140mm, height: 120mm, margin: 0mm)
 #set text(font: "Noto Sans", size: 18pt)
-
-#let edge-label(body) = text(size: 20pt, raw(body))
 
 #let condition-fill = rgb("#efe4bf")
 #let condition-stroke = rgb("#d0aa43")
@@ -13,21 +11,54 @@
 #let terminal-fill = rgb("#dcefd8")
 #let terminal-stroke = rgb("#6aa84f")
 
-#fletcher.diagram(
-  spacing: (12mm, 12mm),
-  node-stroke: 2pt,
-  edge-stroke: 1.5pt,
-  node-corner-radius: 4pt,
-  node-outset: 5pt,
+#align(center + horizon)[
+    #diagram(
+      // debug: true,
+      node-stroke: 2pt,
+      edge-stroke: 1.2pt,
+      node-corner-radius: 4pt,
+      node-outset: 5pt,
+      node(
+        (0, 0),
+        [Inicio],
+        name: <inicio>,
+        width: 35mm,
+        height: 15mm,
+        fill: terminal-fill,
+        stroke: terminal-stroke,
+      ),
+      node(
+        (0, 1),
+        [Condición],
+        name: <condicion>,
+        width: 30mm,
+        height: 25mm,
+        fill: condition-fill,
+        stroke: condition-stroke,
+        shape: diamond,
+      ),
+      edge(<inicio.south>, <condicion.north>, "-|>"),
+      node(
+        (2, 1),
+        [Ejecutar\ bloque `if`],
+        name: <bloque-if>,
+        width: 40mm,
+        height: 20mm,
+        fill: block-fill,
+        stroke: block-stroke,
+      ),
+      node(
+        (0, 3),
+        [Fin],
+        name: <fin>,
+        width: 35mm,
+        height: 15mm,
+        fill: terminal-fill,
+        stroke: terminal-stroke,
+      ),
+      edge(<condicion.east>, <bloque-if.west>, "-|>", `True`, label-pos: 0.45, label-side: center),
+      edge(<condicion.south>, <fin.north>, "-|>", `False`, label-pos: 0.45, label-side: center),
+      edge(<bloque-if.south>, (2, 3), <fin.east>, "-|>"),
+    )
+]
 
-  node((0pt, 300pt), [Inicio], name: <inicio>, width: 38mm, height: 20mm, fill: terminal-fill, stroke: terminal-stroke),
-  edge(<inicio.south>, <condicion.north>, "-|>"),
-
-  node((0pt, 150pt), [Condición], name: <condicion>, width: 50mm, height: 25mm, fill: condition-fill, stroke: condition-stroke, shape: ellipse),
-  node((240pt, 150pt), [Ejecutar\ bloque if], name: <bloque-if>, width: 48mm, height: 22mm, fill: block-fill, stroke: block-stroke),
-  node((0pt, 0pt), [Fin], name: <fin>, width: 38mm, height: 20mm, fill: terminal-fill, stroke: terminal-stroke),
-
-  edge(<condicion.east>, <bloque-if.west>, "-|>", edge-label("True")),
-  edge(<condicion.south>, <fin.north>, "-|>", edge-label("False"), label-side: right),
-  edge(<bloque-if.south>, (240pt, 0pt), <fin.east>, "-|>"),
-)

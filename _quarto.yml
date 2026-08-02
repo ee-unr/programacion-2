@@ -17,7 +17,7 @@ website:
       - text: Información
         file: informacion/programa.qmd
       - text: Teoría
-        file: teoria/01_programacion_en_python/01_introduccion.ipynb
+        file: teoria/01_programacion_en_python/01_introduccion.qmd
       - text: Práctica
         file: practica/01_programacion_en_python/ejercicios.qmd
       - text: Trabajos Prácticos
@@ -39,7 +39,7 @@ website:
       contents:
         - text: U1 - Programación en Python
           contents:
-            - auto: teoria/01_programacion_en_python/*.ipynb
+            - auto: teoria/01_programacion_en_python/*.qmd
             - sort-ui: false
         - text: U2 - Programación Orientada a Objetos
           contents:

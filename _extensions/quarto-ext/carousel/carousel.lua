@@ -20,7 +20,7 @@ function carousel(items, duration, id)
       [[<div class="carousel-item %s" data-bs-interval="%d">
             <img src="%s" class="d-block mx-auto">
          <div class="carousel-caption d-none d-md-block">
-            <p class="fw-light">%s</p>
+            <p>%s</p>
          </div>
         </div>]],
       active, duration, item.image, item.caption or ""
