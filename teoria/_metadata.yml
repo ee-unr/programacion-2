@@ -1,0 +1,12 @@
+format:
+  html: default
+  typst:
+    toc: true
+    number-sections: true
+    lang: es
+
+format-links:
+  - html
+  - format: typst
+    text: Descargar PDF
+    icon: file-pdf

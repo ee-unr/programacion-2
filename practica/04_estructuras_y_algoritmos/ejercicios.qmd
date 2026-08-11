@@ -718,7 +718,7 @@ Utilice este resultado para implementar un algoritmo más eficiente.
 
 ## El regreso de Fibonacci
 
-En el [Ejercicio 4 de la Unidad 2](../02_programacion_funcional/ejercicios.qmd#sucesión-de-fibonacci)
+En el [Ejercicio 4 de la Unidad 2](../03_programacion_funcional/ejercicios.qmd#sucesión-de-fibonacci)
 se implementó una función recursiva para calcular el $n$-ésimo número en la sucesión de Fibonacci.
 
 Esta implementación, sin embargo, es muy ineficiente.
@@ -796,7 +796,7 @@ mi_lista = np.random.randint(0, 10**N, size=10**N)
 
 Haga variar el valor de `N` entre 3 y 6 para ver cómo cambia el tiempo de cómputo en cada método.
 
-(En el [Ejercicio 10 de la Unidad 2](../02_programacion_funcional/ejercicios.qmd#el-tiempo-vuela) se explica cómo usar el módulo `time`.)
+(En el [Ejercicio 10 de la Unidad 2](../03_programacion_funcional/ejercicios.qmd#el-tiempo-vuela) se explica cómo usar el módulo `time`.)
 :::
 
 ## Seamos originales
