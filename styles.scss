@@ -225,17 +225,30 @@ figure {
 div.sidebar-item-container {
   color: $teal-secondary;
 
+  &:hover,
+  &:focus {
+    color: $teal-primary;
+  }
+
   a {
     color: $teal-secondary;
 
     &:hover,
     &:focus {
       color: $teal-primary;
-      text-decoration: none;
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: $teal-dark;
     }
   }
 
-  .active,
+  .active {
+    color: $teal-dark;
+    font-weight: bold;
+  }
+
   .show > .nav-link,
   .sidebar-link > code {
     color: $teal-dark;
@@ -244,6 +257,40 @@ div.sidebar-item-container {
   code {
     color: $teal-primary;
   }
+}
+
+// Tabla de contenidos del panel derecho
+#quarto-margin-sidebar #TOC {
+  .nav-link {
+    color: $teal-secondary;
+
+    &:hover,
+    &:focus {
+      color: $teal-primary;
+      text-decoration: underline;
+    }
+
+    &.active {
+      color: $teal-dark !important;
+      font-weight: bold;
+    }
+
+    &:active {
+      color: $teal-dark !important;
+    }
+  }
+}
+
+// Quarto aplica azul con !important al hover del TOC; conservar la paleta del sitio.
+.sidebar nav[role="doc-toc"] ul > li > a:hover,
+.sidebar nav[role="doc-toc"] ul > li > ul > li > a:hover {
+  color: $teal-primary !important;
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a.active,
+.sidebar nav[role="doc-toc"] ul > li > ul > li > a.active {
+  border-left-color: $teal-dark;
+  color: $teal-dark !important;
 }
 
 // Links en general
@@ -356,6 +403,17 @@ a {
   border-radius: 4.25px;
   border: 1px solid #3498db;
   border-left-width: 5px;
+}
+
+// Evitar que el resaltado de anotaciones de Quarto se extienda fuera del bloque.
+#code-annotation-line-highlight {
+  margin-left: 0;
+  width: 100%;
+}
+
+// El canal de anotaciones de Quarto queda un píxel por debajo del código.
+#code-annotation-line-highlight-gutter {
+  transform: translateY(-1px);
 }
 
 // Centrar figuras producidas con un bloque de código
