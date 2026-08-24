@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1020dc0f022157e8f9c961774ebbcf56.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-4c2f05ed616b0f5db9387aeffbd45621.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -583,7 +583,7 @@ window.Quarto = {
 </section>
 <section id="anotaciones-de-tipo" class="level3">
 <h3 class="anchored" data-anchor-id="anotaciones-de-tipo">Anotaciones de tipo</h3>
-<p>Si bien Python es un lenguaje de <strong>tipado dinámico e implícito</strong> —es decir, no es necesario especificar el tipo de las variables y este puede cambiar durante la ejecución—, es posible utilizar <strong>anotaciones de tipo</strong> (del inglés <em>type annotations</em>) para indicar qué tipo de dato se espera. Estas anotaciones son opcionales, pero ayudan a que el código sea más claro, fácil de entender y detectar errores antes de ejecutar el programa.</p>
+<p>Si bien Python es un lenguaje de <strong>tipado dinámico</strong> —es decir, no es necesario declarar el tipo de las variables y una variable puede referenciar objetos de distintos tipos durante la ejecución—, es posible utilizar <strong>anotaciones de tipo</strong> (del inglés <em>type annotations</em>) para indicar qué tipo de dato se espera. Estas anotaciones son opcionales, pero ayudan a que el código sea más claro, fácil de entender y detectar errores antes de ejecutar el programa.</p>
 <p>Para los parámetros de una función o método, las anotaciones de tipo se escriben con el formato <code>&lt;nombre_variable&gt;: &lt;tipo&gt;</code>. En el caso la salida, el tipo se indica después de una flecha (<code>-&gt; &lt;tipo&gt;</code>) al final de la definición.</p>
 <p>Por ejemplo, en la siguiente función se especifica que el parámetro <code>nombre</code> debe ser de tipo <code>str</code> y que la función devuelve también un objeto de tipo <code>str</code>:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saludar(nombre: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
@@ -633,7 +633,7 @@ window.Quarto = {
 <div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cuenta.depositar([<span class="st">"Otras cosas"</span>, <span class="st">"Aún más cosas"</span>])</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>cuenta.consultar_saldo()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>['Cosas', 'Otras cosas', 'Aún más cosas']</code></pre>
-<p>En resumen, si bien Python nos permite especificar la interfaz de funciones y métodos mediante <em>docstrings</em> y anotaciones de tipo, al ser un lenguaje de <strong>tipado dinámico</strong> nada impide que se utilicen con tipos de datos para los que no fueron diseñados. En algunos casos esto puede resultar en comportamientos inesperados y, en otros, simplemente generar un error en tiempo de ejecución.</p>
+<p>En otras palabras, si bien Python nos permite especificar la interfaz de funciones y métodos mediante <em>docstrings</em> y anotaciones de tipo, al ser un lenguaje de <strong>tipado dinámico</strong> nada impide que se utilicen con tipos de datos para los que no fueron diseñados. En algunos casos esto puede resultar en comportamientos inesperados y, en otros, simplemente generar un error en tiempo de ejecución.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

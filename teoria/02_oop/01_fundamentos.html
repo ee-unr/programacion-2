@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1020dc0f022157e8f9c961774ebbcf56.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-4c2f05ed616b0f5db9387aeffbd45621.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -733,7 +733,7 @@ False</code></pre>
 <h3 class="anchored" data-anchor-id="métodos-que-devuelven-al-objeto">Métodos que devuelven al objeto</h3>
 <p>Finalmente, como un método puede devolver cualquier tipo de objeto, también puede retornar la propia instancia sobre la que fue llamado (es decir, la que recibe en <code>self</code>).</p>
 <p>Este patrón se utiliza con frecuencia cuando se desea permitir el <strong>encadenamiento de métodos</strong>, ya que cada método devuelve el mismo objeto y permite seguir llamando otros métodos sobre él en una sola línea.</p>
-<div class="sourceCode" id="annotated-cell-56"><pre class="sourceCode python code-annotation-code code-with-copy"><code class="sourceCode python"><span id="annotated-cell-56-1"><a href="#annotated-cell-56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Budin:</span>
+<div class="sourceCode" id="annotated-cell-56"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-56-1"><a href="#annotated-cell-56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Budin:</span>
 <span id="annotated-cell-56-2"><a href="#annotated-cell-56-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, base, cobertura<span class="op">=</span><span class="va">None</span>):</span>
 <span id="annotated-cell-56-3"><a href="#annotated-cell-56-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.base <span class="op">=</span> base</span>
 <span id="annotated-cell-56-4"><a href="#annotated-cell-56-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cobertura <span class="op">=</span> cobertura</span>
@@ -745,15 +745,17 @@ False</code></pre>
 <span id="annotated-cell-56-10"><a href="#annotated-cell-56-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="annotated-cell-56-11"><a href="#annotated-cell-56-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> cambiar_cobertura(<span class="va">self</span>, cobertura):</span>
 <span id="annotated-cell-56-12"><a href="#annotated-cell-56-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cobertura <span class="op">=</span> cobertura</span>
-<span id="annotated-cell-56-13"><a href="#annotated-cell-56-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
-<span id="annotated-cell-56-14"><a href="#annotated-cell-56-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-56-15"><a href="#annotated-cell-56-15" aria-hidden="true" tabindex="-1"></a>Budin(<span class="st">"Marmolado"</span>).cambiar_cobertura(<span class="st">"Chocolate"</span>).mostrar_info()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-56" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-56-13" class="code-annotation-target"><a href="#annotated-cell-56-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-56" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-56" data-code-lines="13" data-code-annotation="1">Luego de actualizar la cobertura, se devuelve a la instancia con la que se llamó al método.</span>
+</dd>
+</dl>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>Budin(<span class="st">"Marmolado"</span>).cambiar_cobertura(<span class="st">"Chocolate"</span>).mostrar_info()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Budin
  - Base: Marmolado
  - Cobertura: Chocolate</code></pre>
-<ol type="1">
-<li>Luego de actualizar la cobertura, se devuelve a la instancia con la que se llamó al método.</li>
-</ol>
 <p>Como el método <code>cambiar_cobertura</code> devuelve la propia instancia, es posible encadenar su llamada con otros métodos de la clase, como por ejemplo <code>.mostrar_info</code>.</p>
 </section>
 </section>
@@ -773,43 +775,43 @@ False</code></pre>
 <li><code>transferir</code>: mueve dinero de una cuenta a otra</li>
 <li><code>resumen</code>: muestra el estado actual de la cuenta de forma clara y legible</li>
 </ul>
-<div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CuentaBancaria:</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, titular, saldo<span class="op">=</span><span class="dv">0</span>, moneda<span class="op">=</span><span class="st">"ARS"</span>):</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.titular <span class="op">=</span> titular</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saldo <span class="op">=</span> saldo</span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.moneda <span class="op">=</span> moneda</span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> depositar(<span class="va">self</span>, monto):</span>
-<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saldo <span class="op">=</span> <span class="va">self</span>.saldo <span class="op">+</span> monto</span>
-<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> retirar(<span class="va">self</span>, monto):</span>
-<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> monto <span class="op">&lt;=</span> <span class="va">self</span>.saldo:</span>
-<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.saldo <span class="op">=</span> <span class="va">self</span>.saldo <span class="op">-</span> monto</span>
-<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"El saldo es insuficiente (</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>saldo<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>moneda<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
-<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> transferir(<span class="va">self</span>, other, monto): <span class="co"># 'other' es tambien una 'CuentaBancaria'</span></span>
-<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.moneda <span class="op">!=</span> other.moneda:</span>
-<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Las cuentas usan monedas distintas (</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>moneda<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>other<span class="sc">.</span>moneda<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
-<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-23"><a href="#cb63-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.retirar(monto):</span>
-<span id="cb63-24"><a href="#cb63-24" aria-hidden="true" tabindex="-1"></a>            other.depositar(monto)</span>
-<span id="cb63-25"><a href="#cb63-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-26"><a href="#cb63-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb63-27"><a href="#cb63-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-28"><a href="#cb63-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> resumen(<span class="va">self</span>):</span>
-<span id="cb63-29"><a href="#cb63-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Cuenta bancaria"</span>)</span>
-<span id="cb63-30"><a href="#cb63-30" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Titular: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>titular<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb63-31"><a href="#cb63-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Saldo: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>saldo<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb63-32"><a href="#cb63-32" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Moneda: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>moneda<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>cuenta_A <span class="op">=</span> CuentaBancaria(<span class="st">"Guido Van Rossum"</span>, saldo<span class="op">=</span><span class="dv">20000</span>, moneda<span class="op">=</span><span class="st">"ARS"</span>)</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>cuenta_B <span class="op">=</span> CuentaBancaria(<span class="st">"Ross Ihaka"</span>, saldo<span class="op">=</span><span class="dv">8000</span>, moneda<span class="op">=</span><span class="st">"ARS"</span>)</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>cuenta_A.resumen()</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>)</span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>cuenta_B.resumen()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CuentaBancaria:</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, titular, saldo<span class="op">=</span><span class="dv">0</span>, moneda<span class="op">=</span><span class="st">"ARS"</span>):</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.titular <span class="op">=</span> titular</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saldo <span class="op">=</span> saldo</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.moneda <span class="op">=</span> moneda</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> depositar(<span class="va">self</span>, monto):</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saldo <span class="op">=</span> <span class="va">self</span>.saldo <span class="op">+</span> monto</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> retirar(<span class="va">self</span>, monto):</span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> monto <span class="op">&lt;=</span> <span class="va">self</span>.saldo:</span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.saldo <span class="op">=</span> <span class="va">self</span>.saldo <span class="op">-</span> monto</span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"El saldo es insuficiente (</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>saldo<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>moneda<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb64-17"><a href="#cb64-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-18"><a href="#cb64-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> transferir(<span class="va">self</span>, other, monto): <span class="co"># 'other' es tambien una 'CuentaBancaria'</span></span>
+<span id="cb64-19"><a href="#cb64-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.moneda <span class="op">!=</span> other.moneda:</span>
+<span id="cb64-20"><a href="#cb64-20" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Las cuentas usan monedas distintas (</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>moneda<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>other<span class="sc">.</span>moneda<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb64-21"><a href="#cb64-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb64-22"><a href="#cb64-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-23"><a href="#cb64-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.retirar(monto):</span>
+<span id="cb64-24"><a href="#cb64-24" aria-hidden="true" tabindex="-1"></a>            other.depositar(monto)</span>
+<span id="cb64-25"><a href="#cb64-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-26"><a href="#cb64-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb64-27"><a href="#cb64-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-28"><a href="#cb64-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> resumen(<span class="va">self</span>):</span>
+<span id="cb64-29"><a href="#cb64-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Cuenta bancaria"</span>)</span>
+<span id="cb64-30"><a href="#cb64-30" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Titular: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>titular<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb64-31"><a href="#cb64-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Saldo: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>saldo<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb64-32"><a href="#cb64-32" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f" - Moneda: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>moneda<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>cuenta_A <span class="op">=</span> CuentaBancaria(<span class="st">"Guido Van Rossum"</span>, saldo<span class="op">=</span><span class="dv">20000</span>, moneda<span class="op">=</span><span class="st">"ARS"</span>)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>cuenta_B <span class="op">=</span> CuentaBancaria(<span class="st">"Ross Ihaka"</span>, saldo<span class="op">=</span><span class="dv">8000</span>, moneda<span class="op">=</span><span class="st">"ARS"</span>)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>cuenta_A.resumen()</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>)</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>cuenta_B.resumen()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Cuenta bancaria
  - Titular: Guido Van Rossum
  - Saldo: 20000
@@ -819,27 +821,27 @@ Cuenta bancaria
  - Titular: Ross Ihaka
  - Saldo: 8000
  - Moneda: ARS</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>cuenta_A.retirar(<span class="dv">2500</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>cuenta_A.retirar(<span class="dv">2500</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>True</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>cuenta_A.resumen()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>cuenta_A.resumen()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Cuenta bancaria
  - Titular: Guido Van Rossum
  - Saldo: 17500
  - Moneda: ARS</code></pre>
 <p>En el caso de las transferencias, no solo se modifica el estado de la cuenta desde la que se realiza la operación (<code>cuenta_A</code>), sino también el estado de la cuenta que recibe el dinero (<code>cuenta_B</code>).</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>cuenta_A.transferir(cuenta_B, <span class="dv">10000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>cuenta_A.transferir(cuenta_B, <span class="dv">10000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>True</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>cuenta_A.resumen()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>cuenta_A.resumen()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Cuenta bancaria
  - Titular: Guido Van Rossum
  - Saldo: 7500
  - Moneda: ARS</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>cuenta_B.resumen()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>cuenta_B.resumen()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Cuenta bancaria
  - Titular: Ross Ihaka
  - Saldo: 18000
  - Moneda: ARS</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>cuenta_B.retirar(<span class="dv">20000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>cuenta_B.retirar(<span class="dv">20000</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>El saldo es insuficiente (18000 ARS)
 
 False</code></pre>
