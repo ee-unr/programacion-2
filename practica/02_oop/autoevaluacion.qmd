@@ -1,3 +1,459 @@
 ---
 title: "🪞 Autoevaluación"
 ---
+
+## Fundamentos
+
+1.  ¿Qué diferencia hay entre una clase y un objeto? ¿Y entre un método y una función?
+
+1.  ¿Qué ocurre al ejecutar la siguiente definición?
+    ¿Se crea algún objeto de tipo `Budin` en ese momento?
+
+    ```python
+    class Budin:
+        def __init__(self):
+            print("Creando budín")
+    ```
+
+1.  ¿En qué momento se ejecuta `__init__`? ¿Cuál es su propósito?
+    ¿Por qué no debería contener un `return`?
+
+1.  ¿Qué representa `self` dentro de un método?
+    ¿Por qué no se debe pasar explícitamente al llamar a un método desde un objeto?
+
+1.  Considere la siguiente clase:
+
+    ```python
+    class Budin:
+        def __init__(self, base):
+            self.base = base
+    ```
+
+    - ¿Cuál es la diferencia entre `base` y `self.base`?
+    - ¿Qué devuelve `Budin("vainilla").base`?
+    - ¿Qué ocurriría si se intentara acceder a `Budin("vainilla").cobertura`?
+
+1.  ¿Por qué los dos objetos siguientes pueden tener valores distintos para el atributo `base`?
+
+    ```python
+    b1 = Budin("vainilla")
+    b2 = Budin("chocolate")
+    ```
+
+1.  ¿Cuántos objetos crea el siguiente programa?
+
+    ```python
+    Budin("vainilla")
+    Budin("vainilla")
+    ```
+
+1.  ¿Qué problema puede generar agregar un atributo solo a una instancia?
+
+    ```python
+    b1.cobertura = "chocolate"
+    ```
+
+    ¿Cómo podría evitarse usando un valor por defecto en `__init__`?
+
+1.  ¿En qué casos tiene sentido que un método devuelva `self`? De un ejemplo.
+
+1.  Analice el método `transferir` de `CuentaBancaria`.
+    ¿Qué debería ocurrir si se intenta transferir más dinero del que hay disponible?
+    ¿El valor que devuelve el método representa correctamente el resultado de la operación?
+
+## Encapsulamiento
+
+1.  ¿Qué es el encapsulamiento?
+    Explíquelo usando la diferencia entre el interior y el exterior de un objeto.
+
+1.  ¿Por qué una función también puede considerarse una forma de encapsulamiento?
+
+1.  ¿Qué información debería poder obtener una persona que usa una clase sin necesidad de leer su implementación?
+
+1.  ¿Para qué sirven los _docstrings_?
+    ¿Qué información conviene incluir en el _docstring_ de un método?
+
+1.  ¿Qué muestra `help(CuentaBancaria)`?
+    ¿En qué se diferencia de ejecutar `help(CuentaBancaria.depositar)`?
+
+1.  ¿Por qué no se obtiene un error al ejecutar el siguiente programa?
+
+    ```python
+    def saludar(nombre: str) -> str:
+        return f"¡Hola, {nombre}!"
+    saludar(128)
+    ```
+
+1.  ¿Qué son un _getter_ y un _setter_?
+    ¿Qué ventaja ofrece un _setter_ frente a asignar directamente un atributo?
+
+1.  ¿Qué comunica por convención un atributo cuyo nombre comienza con `_`?
+    ¿Python impide acceder o modificar ese atributo desde afuera?
+
+1.  ¿Qué diferencia hay entre `_nombre` y `__nombre` en una clase de Python?
+
+1.  Considere el siguiente código:
+
+    ```python
+    e = Estudiante("María")
+    e.__nombre = "Juana"
+    ```
+
+    ¿Por qué `e.getNombre()` puede seguir devolviendo `"María"`?
+    ¿Cómo se llama el mecanismo involucrado?
+
+1.  ¿Cuándo se ejecuta el método decorado con `@nombre.setter`?
+    ¿Qué sucede si el _setter_ rechaza el nuevo valor?
+
+1.  ¿Cuál es la diferencia entre un atributo de instancia y un atributo de clase?
+    ¿Qué tipo de información conviene guardar en cada uno?
+
+1.  ¿Qué diferencia hay entre un método de instancia y un método de clase?
+    ¿Qué representa `cls` en un método decorado con `@classmethod`?
+
+1.  ¿Por qué `Estudiante.desde_texto("Ana, 2024")` puede considerarse un constructor alternativo?
+
+## Herencia
+
+1.  ¿Qué es la herencia?
+    ¿A qué aspectos de la clase padre puede acceder la clase hija?
+
+1.  Si `c` es una instancia de `Cuadrado`, ¿a qué evalúan las siguientes expresiones? Justifique.
+
+    ```python
+    class Rectangulo:
+        pass
+
+    class Cuadrado(Rectangulo):
+        pass
+
+    isinstance(c, Cuadrado)
+    isinstance(c, Rectangulo)
+    isinstance(c, object)
+    ```
+
+1.  ¿Qué es la sobreescritura de métodos? ¿Cuándo tiene sentido usarla?
+
+1.  ¿Qué es una clase abstracta? ¿Y un método abstracto? ¿Cuándo conviene utilizarlos?
+
+1.  ¿Qué es la herencia múltiple?
+
+1.  ¿Qué sucede si una clase hija hereda de dos clases padres que implementan un método con el mismo nombre?
+
+1.  ¿Para qué sirve `super()`?
+
+
+## Polimorfismo
+
+1.  ¿Qué significa polimorfismo en el contexto de programación?
+
+1.  ¿Por qué el siguiente bucle no necesita preguntar si cada mascota es un `Perro`, un `Gato` o un `Pajaro`?
+
+    ```python
+    for mascota in mascotas:
+        mascota.hablar()
+    ```
+
+1.  ¿Es necesario que dos clases compartan una misma clase padre para que puedan usarse polimórficamente?
+    Piense en el ejemplo de rectángulos y círculos que ambos implementan `area`.
+
+1.  ¿Por qué se puede ordenar una lista que contiene rectángulos y círculos con esta expresión?
+
+    ```python
+    sorted(formas, key=lambda forma: forma.area())
+    ```
+
+1.  ¿Qué método mágico se ejecuta al usar el operador `==`?
+    ¿Por qué dos objetos `Rectangulo(3, 2)` distintos dan `False` si no se implementa ese método?
+
+1. Relacione cada operación con el método mágico correspondiente:
+
+    ```python
+    a == b
+    a < b
+    a + b
+    a / b
+    ```
+
+1.  ¿Qué diferencia hay entre `__repr__` y `__str__`? ¿Cuándo se utilizan automáticamente por Python?
+    ¿Cómo podemos utilizarlos manualmente?
+
+1.  ¿Por qué la implementación de `__add__` de `Vector` devuelve un nuevo `Vector` en lugar de modificar alguno de los dos vectores originales?
+
+1.  ¿Qué significa "sobrecarga de operadores"?
+
+1.  Elija uno de los métodos `__len__`, `__contains__`, `__call__` o `__bool__`.
+    ¿Qué operación de Python habilitaría al implementarlo en una clase?
+
+## Para pensar...
+
+1.  Sin ejecutar el programa, anote qué debería imprimir cada `print`. Luego ejecútelo y explique
+    qué objetos cambiaron y cuáles no. Use `id` si lo considera útil.
+
+    ```python
+    class ListaDeCompras:
+        def __init__(self, productos):
+            self.productos = productos
+
+        def agregar(self, producto):
+            self.productos.append(producto)
+            return self
+
+    feria = ["naranjas"]
+    lunes = ListaDeCompras(feria)
+    martes = ListaDeCompras(feria)
+
+    lunes.agregar("pan")
+    print(lunes.productos)
+    print(martes.productos)
+    print(feria)
+    ```
+
+    ¿Es deseable el comportamiento del programa?
+    Proponga un cambio en `__init__` para que cada objeto conserve su propia lista,
+    sin impedir que se use una lista como argumento de entrada.
+
+1.  Una persona escribe esta clase para contar cuantas canciones agregó a cada lista:
+
+    ```python
+    class Playlist:
+        canciones = []
+
+        def agregar(self, cancion):
+            self.canciones.append(cancion)
+
+    viaje = Playlist()
+    estudio = Playlist()
+
+    viaje.agregar("Justo que te vas")
+    estudio.agregar("Se vos")
+
+    print(viaje.canciones)
+    print(estudio.canciones)
+    ```
+
+    Ejecútelo. ¿Qué error de diseño revela? Reescriba la clase para que las canciones sean un
+    atributo de instancia y agregue, además, un atributo de clase que cuente cuántas `Playlist`
+    se crearon.
+
+1.  Analice este intento de implementar un contador encadenable:
+
+    ```python
+    class Marcador:
+        def __init__(self):
+            self.puntos = 0
+
+        def sumar(self, cantidad):
+            self.puntos += cantidad
+
+        def reiniciar(self):
+            self.puntos = 0
+            return self
+
+    resultado = Marcador().sumar(3).reiniciar().sumar(2)
+    ```
+
+    ¿En qué expresión aparece el primer error y por qué?
+    Corrija el diseño para que la última línea sea válida.
+
+1.  Ejecute este programa con los valores `-1`, `0`, `3`, `True` y `2.5` como argumentos de `Boleto`.
+    ¿Cuáles deberían aceptarse si el atributo representa una cantidad de viajes disponibles?
+    Modifique el _setter_ para hacer cumplir ese contrato y para que no se pueda llegar a un estado
+    inválido después de crear el objeto.
+
+    ```python
+    class Boleto:
+        def __init__(self, viajes):
+            self.viajes = viajes
+
+        @property
+        def viajes(self):
+            return self._viajes
+
+        @viajes.setter
+        def viajes(self, valor):
+            self._viajes = valor
+    ```
+
+    ¿Qué condiciones debe cumplir `valor` para ser aceptado en el _setter_?
+    ¿Qué mensaje daría en el caso de que no se cumplan?
+    Justifique específicamente el caso de `True`, que en Python es una instancia de `int`.
+
+1.  La clase siguiente expone una propiedad de solo lectura, pero todavía permite modificar el
+    estado interno desde afuera:
+
+    ```python
+    class Equipo:
+        def __init__(self, integrantes):
+            self._integrantes = integrantes
+
+        @property
+        def integrantes(self):
+            return self._integrantes
+
+    equipo = Equipo(["Nora", "Lautaro"])
+    equipo.integrantes.pop()
+    print(equipo.integrantes)
+    ```
+
+    Explique por qué no intervino ningún _setter_. Cambie la implementación para que el código
+    cliente pueda consultar los integrantes pero no alterar la colección interna por accidente.
+    Verifique también qué ocurre si se modifica la lista original que se pasó al constructor.
+
+1.  Un sitio recibe una fecha de publicación en dos formatos. Complete el método de clase y
+    decida cómo debería responder ante una entrada mal formada.
+
+    ```python
+    class Publicacion:
+        def __init__(self, titulo, anio):
+            self.titulo = titulo
+            self.anio = anio
+
+        @classmethod
+        def desde_texto(cls, texto):
+            # admite, por ejemplo, "La invención de Morel | 1940"
+            pass
+    ```
+
+    Luego compare `Publicacion.desde_texto(...)` con una función externa que construye y devuelve
+    una `Publicacion`: ¿por qué el método de clase es una mejor decisión si después aparece la
+    subclase `LibroDigital`?
+
+1.  Antes de ejecutar, prediga las tres salidas. Después cambie el orden de las clases base de
+    `Registro` y vuelva a probar.
+
+    ```python
+    class ConMarcaDeTiempo:
+        def descripcion(self):
+            return "con fecha"
+
+    class ConAutor:
+        def descripcion(self):
+            return "con autor"
+
+    class Registro(ConMarcaDeTiempo, ConAutor):
+        pass
+
+    r = Registro()
+    print(r.descripcion())
+    print(Registro.mro())
+    print(isinstance(r, ConAutor))
+    ```
+
+    ¿Qué regla usa Python para escoger el método?
+
+1.  El siguiente código calcula mal el precio final de un artículo con descuento.
+    Localice el problema sin duplicar en la subclase la lógica de aplicar impuestos.
+    Corríjalo usando `super()`.
+
+    ```python
+    class Articulo:
+        def __init__(self, precio):
+            self.precio = precio
+
+        def precio_final(self):
+            return self.precio * 1.21
+
+    class ArticuloEnOferta(Articulo):
+        def __init__(self, precio, descuento):
+            self.descuento = descuento
+
+        def precio_final(self):
+            return self.precio * (1 - self.descuento)
+
+    ```
+
+    Para `ArticuloEnOferta(100, 0.20)`, ¿cuál debería ser el resultado si el descuento se aplica
+    antes del impuesto? Escriba una prueba pequeña que lo compruebe.
+
+1.  Considere una aplicación que exporta reportes:
+
+    ```python
+    class Reporte:
+        def exportar(self):
+            raise NotImplementedError
+
+    class ReporteTexto(Reporte):
+        def exportar(self):
+            return "texto plano"
+
+    class ReporteCSV(Reporte):
+        def exportar(self):
+            return "a,b,c"
+
+    def guardar_todos(reportes):
+        return [reporte.exportar() for reporte in reportes]
+    ```
+
+    Agregue una clase `ReporteJSON` sin modificar `guardar_todos`. Luego agregue por accidente un
+    `str` a la lista de reportes: ¿qué error aparece y en qué lugar? Proponga una estrategia para
+    detectar ese problema antes, ya sea con una clase base abstracta, anotaciones de tipo o una
+    validación explícita. ¿Qué garantiza realmente cada alternativa durante la ejecución?
+
+1.  Diseñe una jerarquía para un sistema de notificaciones que pueda enviar por correo, por
+    consola y por un canal que todavía no existe. Defina el contrato mínimo de la clase base y una
+    función `notificar_a_todos(notificadores, mensaje)` que aproveche polimorfismo.
+    ¿Qué parte del diseño cambiaría si algunos notificadores pudieran fallar y otros no?
+
+1.  Ejecute el siguiente código y explique cada resultado. Después implemente `__eq__` para que
+    dos coordenadas con los mismos valores se consideren iguales, sin que una coordenada pueda ser
+    igual a un objeto de una clase no relacionada.
+
+    ```python
+    class Coordenada:
+        def __init__(self, x, y):
+            self.x = x
+            self.y = y
+
+    origen_a = Coordenada(0, 0)
+    origen_b = Coordenada(0, 0)
+
+    print(origen_a == origen_b)
+    print(origen_a is origen_b)
+    print(origen_a.__dict__ == origen_b.__dict__)
+    ```
+
+    ¿Qué debería devolver `Coordenada(0, 0).__eq__((0, 0))`? Pruébelo y justifique la decisión.
+
+1.  Una clase usa el área para ordenar terrenos. Complete `__lt__`, pero piense primero qué
+    ocurriría con terrenos de igual área y distinta forma.
+
+    ```python
+    class Terreno:
+        def __init__(self, frente, fondo):
+            self.frente = frente
+            self.fondo = fondo
+
+        def area(self):
+            return self.frente * self.fondo
+    ```
+
+    Cree tres objetos, ordénelos con `sorted` y compare el criterio de orden con el de igualdad.
+    ¿Es necesario que dos objetos con la misma área sean iguales? ¿Por qué una respuesta distinta
+    a esta pregunta puede ser válida en otro dominio?
+
+1.  Diseñe una clase `Carrito` que haga que las siguientes expresiones sean coherentes:
+
+    ```python
+    len(carrito)
+    "yerba" in carrito
+    print(carrito)
+    ```
+
+    Indique qué métodos mágicos implementaría y qué debería devolver cada uno. Decida también si
+    `"yerba" in carrito` busca por nombre, por un objeto `Producto` completo o por ambas cosas;
+    explique cómo esa decisión afecta el contrato de la clase.
+
+1.  Se quiere representar una duración en minutos mediante una clase `Duracion`. Proponga las
+    implementaciones de `__add__`, `__repr__` y `__str__` para que se cumpla lo siguiente:
+
+    ```python
+    pausa = Duracion(15)
+    reunion = Duracion(45)
+    total = pausa + reunion
+    print(total)       # 1 h 0 min
+    repr(total)        # Duracion(60)
+    ```
+
+    ¿Debería permitirse `pausa + 10`? Elija una respuesta, impleméntela y describa qué error o
+    comportamiento espera quien use la clase.
