@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -232,8 +267,18 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="autoevaluacion.pdf"><i class="bi bi-file-pdf"></i>Descargar PDF</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#fundamentos" id="toc-fundamentos" class="nav-link active" data-scroll-target="#fundamentos"><span class="header-section-number">1</span> Fundamentos</a></li>
+  <li><a href="#encapsulamiento" id="toc-encapsulamiento" class="nav-link" data-scroll-target="#encapsulamiento"><span class="header-section-number">2</span> Encapsulamiento</a></li>
+  <li><a href="#herencia" id="toc-herencia" class="nav-link" data-scroll-target="#herencia"><span class="header-section-number">3</span> Herencia</a></li>
+  <li><a href="#polimorfismo" id="toc-polimorfismo" class="nav-link" data-scroll-target="#polimorfismo"><span class="header-section-number">4</span> Polimorfismo</a></li>
+  <li><a href="#para-pensar" id="toc-para-pensar" class="nav-link" data-scroll-target="#para-pensar"><span class="header-section-number">5</span> Para pensar…</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="autoevaluacion.pdf"><i class="bi bi-file-pdf"></i>Descargar PDF</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -256,8 +301,281 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="fundamentos" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="fundamentos"><span class="header-section-number">1</span> Fundamentos</h2>
+<ol type="1">
+<li><p>¿Qué diferencia hay entre una clase y un objeto? ¿Y entre un método y una función?</p></li>
+<li><p>¿Qué ocurre al ejecutar la siguiente definición? ¿Se crea algún objeto de tipo <code>Budin</code> en ese momento?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Budin:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Creando budín"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿En qué momento se ejecuta <code>__init__</code>? ¿Cuál es su propósito? ¿Por qué no debería contener un <code>return</code>?</p></li>
+<li><p>¿Qué representa <code>self</code> dentro de un método? ¿Por qué no se debe pasar explícitamente al llamar a un método desde un objeto?</p></li>
+<li><p>Considere la siguiente clase:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Budin:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, base):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.base <span class="op">=</span> base</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>¿Cuál es la diferencia entre <code>base</code> y <code>self.base</code>?</li>
+<li>¿Qué devuelve <code>Budin("vainilla").base</code>?</li>
+<li>¿Qué ocurriría si se intentara acceder a <code>Budin("vainilla").cobertura</code>?</li>
+</ul></li>
+<li><p>¿Por qué los dos objetos siguientes pueden tener valores distintos para el atributo <code>base</code>?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> Budin(<span class="st">"vainilla"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> Budin(<span class="st">"chocolate"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Cuántos objetos crea el siguiente programa?</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Budin(<span class="st">"vainilla"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Budin(<span class="st">"vainilla"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Qué problema puede generar agregar un atributo solo a una instancia?</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>b1.cobertura <span class="op">=</span> <span class="st">"chocolate"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Cómo podría evitarse usando un valor por defecto en <code>__init__</code>?</p></li>
+<li><p>¿En qué casos tiene sentido que un método devuelva <code>self</code>? De un ejemplo.</p></li>
+<li><p>Analice el método <code>transferir</code> de <code>CuentaBancaria</code>. ¿Qué debería ocurrir si se intenta transferir más dinero del que hay disponible? ¿El valor que devuelve el método representa correctamente el resultado de la operación?</p></li>
+</ol>
+</section>
+<section id="encapsulamiento" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="encapsulamiento"><span class="header-section-number">2</span> Encapsulamiento</h2>
+<ol type="1">
+<li><p>¿Qué es el encapsulamiento? Explíquelo usando la diferencia entre el interior y el exterior de un objeto.</p></li>
+<li><p>¿Por qué una función también puede considerarse una forma de encapsulamiento?</p></li>
+<li><p>¿Qué información debería poder obtener una persona que usa una clase sin necesidad de leer su implementación?</p></li>
+<li><p>¿Para qué sirven los <em>docstrings</em>? ¿Qué información conviene incluir en el <em>docstring</em> de un método?</p></li>
+<li><p>¿Qué muestra <code>help(CuentaBancaria)</code>? ¿En qué se diferencia de ejecutar <code>help(CuentaBancaria.depositar)</code>?</p></li>
+<li><p>¿Por qué no se obtiene un error al ejecutar el siguiente programa?</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saludar(nombre: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"¡Hola, </span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss">!"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>saludar(<span class="dv">128</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Qué son un <em>getter</em> y un <em>setter</em>? ¿Qué ventaja ofrece un <em>setter</em> frente a asignar directamente un atributo?</p></li>
+<li><p>¿Qué comunica por convención un atributo cuyo nombre comienza con <code>_</code>? ¿Python impide acceder o modificar ese atributo desde afuera?</p></li>
+<li><p>¿Qué diferencia hay entre <code>_nombre</code> y <code>__nombre</code> en una clase de Python?</p></li>
+<li><p>Considere el siguiente código:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> Estudiante(<span class="st">"María"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>e.__nombre <span class="op">=</span> <span class="st">"Juana"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Por qué <code>e.getNombre()</code> puede seguir devolviendo <code>"María"</code>? ¿Cómo se llama el mecanismo involucrado?</p></li>
+<li><p>¿Cuándo se ejecuta el método decorado con <code>@nombre.setter</code>? ¿Qué sucede si el <em>setter</em> rechaza el nuevo valor?</p></li>
+<li><p>¿Cuál es la diferencia entre un atributo de instancia y un atributo de clase? ¿Qué tipo de información conviene guardar en cada uno?</p></li>
+<li><p>¿Qué diferencia hay entre un método de instancia y un método de clase? ¿Qué representa <code>cls</code> en un método decorado con <code>@classmethod</code>?</p></li>
+<li><p>¿Por qué <code>Estudiante.desde_texto("Ana, 2024")</code> puede considerarse un constructor alternativo?</p></li>
+</ol>
+</section>
+<section id="herencia" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="herencia"><span class="header-section-number">3</span> Herencia</h2>
+<ol type="1">
+<li><p>¿Qué es la herencia? ¿A qué aspectos de la clase padre puede acceder la clase hija?</p></li>
+<li><p>Si <code>c</code> es una instancia de <code>Cuadrado</code>, ¿a qué evalúan las siguientes expresiones? Justifique.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rectangulo:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Cuadrado(Rectangulo):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">isinstance</span>(c, Cuadrado)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">isinstance</span>(c, Rectangulo)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">isinstance</span>(c, <span class="bu">object</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Qué es la sobreescritura de métodos? ¿Cuándo tiene sentido usarla?</p></li>
+<li><p>¿Qué es una clase abstracta? ¿Y un método abstracto? ¿Cuándo conviene utilizarlos?</p></li>
+<li><p>¿Qué es la herencia múltiple?</p></li>
+<li><p>¿Qué sucede si una clase hija hereda de dos clases padres que implementan un método con el mismo nombre?</p></li>
+<li><p>¿Para qué sirve <code>super()</code>?</p></li>
+</ol>
+</section>
+<section id="polimorfismo" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="polimorfismo"><span class="header-section-number">4</span> Polimorfismo</h2>
+<ol type="1">
+<li><p>¿Qué significa polimorfismo en el contexto de programación?</p></li>
+<li><p>¿Por qué el siguiente bucle no necesita preguntar si cada mascota es un <code>Perro</code>, un <code>Gato</code> o un <code>Pajaro</code>?</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> mascota <span class="kw">in</span> mascotas:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    mascota.hablar()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Es necesario que dos clases compartan una misma clase padre para que puedan usarse polimórficamente? Piense en el ejemplo de rectángulos y círculos que ambos implementan <code>area</code>.</p></li>
+<li><p>¿Por qué se puede ordenar una lista que contiene rectángulos y círculos con esta expresión?</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(formas, key<span class="op">=</span><span class="kw">lambda</span> forma: forma.area())</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Qué método mágico se ejecuta al usar el operador <code>==</code>? ¿Por qué dos objetos <code>Rectangulo(3, 2)</code> distintos dan <code>False</code> si no se implementa ese método?</p></li>
+<li><p>Relacione cada operación con el método mágico correspondiente:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">==</span> b</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">&lt;</span> b</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">+</span> b</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">/</span> b</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>¿Qué diferencia hay entre <code>__repr__</code> y <code>__str__</code>? ¿Cuándo se utilizan automáticamente por Python? ¿Cómo podemos utilizarlos manualmente?</p></li>
+<li><p>¿Por qué la implementación de <code>__add__</code> de <code>Vector</code> devuelve un nuevo <code>Vector</code> en lugar de modificar alguno de los dos vectores originales?</p></li>
+<li><p>¿Qué significa “sobrecarga de operadores”?</p></li>
+<li><p>Elija uno de los métodos <code>__len__</code>, <code>__contains__</code>, <code>__call__</code> o <code>__bool__</code>. ¿Qué operación de Python habilitaría al implementarlo en una clase?</p></li>
+</ol>
+</section>
+<section id="para-pensar" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="para-pensar"><span class="header-section-number">5</span> Para pensar…</h2>
+<ol type="1">
+<li><p>Sin ejecutar el programa, anote qué debería imprimir cada <code>print</code>. Luego ejecútelo y explique qué objetos cambiaron y cuáles no. Use <code>id</code> si lo considera útil.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ListaDeCompras:</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, productos):</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.productos <span class="op">=</span> productos</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> agregar(<span class="va">self</span>, producto):</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.productos.append(producto)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>feria <span class="op">=</span> [<span class="st">"naranjas"</span>]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>lunes <span class="op">=</span> ListaDeCompras(feria)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>martes <span class="op">=</span> ListaDeCompras(feria)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>lunes.agregar(<span class="st">"pan"</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lunes.productos)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(martes.productos)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(feria)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Es deseable el comportamiento del programa? Proponga un cambio en <code>__init__</code> para que cada objeto conserve su propia lista, sin impedir que se use una lista como argumento de entrada.</p></li>
+<li><p>Una persona escribe esta clase para contar cuantas canciones agregó a cada lista:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Playlist:</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    canciones <span class="op">=</span> []</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> agregar(<span class="va">self</span>, cancion):</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.canciones.append(cancion)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>viaje <span class="op">=</span> Playlist()</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>estudio <span class="op">=</span> Playlist()</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>viaje.agregar(<span class="st">"Justo que te vas"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>estudio.agregar(<span class="st">"Se vos"</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(viaje.canciones)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(estudio.canciones)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ejecútelo. ¿Qué error de diseño revela? Reescriba la clase para que las canciones sean un atributo de instancia y agregue, además, un atributo de clase que cuente cuántas <code>Playlist</code> se crearon.</p></li>
+<li><p>Analice este intento de implementar un contador encadenable:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Marcador:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.puntos <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> sumar(<span class="va">self</span>, cantidad):</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.puntos <span class="op">+=</span> cantidad</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> reiniciar(<span class="va">self</span>):</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.puntos <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> Marcador().sumar(<span class="dv">3</span>).reiniciar().sumar(<span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿En qué expresión aparece el primer error y por qué? Corrija el diseño para que la última línea sea válida.</p></li>
+<li><p>Ejecute este programa con los valores <code>-1</code>, <code>0</code>, <code>3</code>, <code>True</code> y <code>2.5</code> como argumentos de <code>Boleto</code>. ¿Cuáles deberían aceptarse si el atributo representa una cantidad de viajes disponibles? Modifique el <em>setter</em> para hacer cumplir ese contrato y para que no se pueda llegar a un estado inválido después de crear el objeto.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Boleto:</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, viajes):</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.viajes <span class="op">=</span> viajes</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> viajes(<span class="va">self</span>):</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._viajes</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">@viajes.setter</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> viajes(<span class="va">self</span>, valor):</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._viajes <span class="op">=</span> valor</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Qué condiciones debe cumplir <code>valor</code> para ser aceptado en el <em>setter</em>? ¿Qué mensaje daría en el caso de que no se cumplan? Justifique específicamente el caso de <code>True</code>, que en Python es una instancia de <code>int</code>.</p></li>
+<li><p>La clase siguiente expone una propiedad de solo lectura, pero todavía permite modificar el estado interno desde afuera:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Equipo:</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, integrantes):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._integrantes <span class="op">=</span> integrantes</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> integrantes(<span class="va">self</span>):</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>._integrantes</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>equipo <span class="op">=</span> Equipo([<span class="st">"Nora"</span>, <span class="st">"Lautaro"</span>])</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>equipo.integrantes.pop()</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(equipo.integrantes)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Explique por qué no intervino ningún <em>setter</em>. Cambie la implementación para que el código cliente pueda consultar los integrantes pero no alterar la colección interna por accidente. Verifique también qué ocurre si se modifica la lista original que se pasó al constructor.</p></li>
+<li><p>Un sitio recibe una fecha de publicación en dos formatos. Complete el método de clase y decida cómo debería responder ante una entrada mal formada.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Publicacion:</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, titulo, anio):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.titulo <span class="op">=</span> titulo</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.anio <span class="op">=</span> anio</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">@classmethod</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> desde_texto(cls, texto):</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># admite, por ejemplo, "La invención de Morel | 1940"</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Luego compare <code>Publicacion.desde_texto(...)</code> con una función externa que construye y devuelve una <code>Publicacion</code>: ¿por qué el método de clase es una mejor decisión si después aparece la subclase <code>LibroDigital</code>?</p></li>
+<li><p>Antes de ejecutar, prediga las tres salidas. Después cambie el orden de las clases base de <code>Registro</code> y vuelva a probar.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ConMarcaDeTiempo:</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> descripcion(<span class="va">self</span>):</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"con fecha"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ConAutor:</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> descripcion(<span class="va">self</span>):</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"con autor"</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Registro(ConMarcaDeTiempo, ConAutor):</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> Registro()</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r.descripcion())</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Registro.mro())</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">isinstance</span>(r, ConAutor))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Qué regla usa Python para escoger el método?</p></li>
+<li><p>El siguiente código calcula mal el precio final de un artículo con descuento. Localice el problema sin duplicar en la subclase la lógica de aplicar impuestos. Corríjalo usando <code>super()</code>.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Articulo:</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, precio):</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.precio <span class="op">=</span> precio</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> precio_final(<span class="va">self</span>):</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.precio <span class="op">*</span> <span class="fl">1.21</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ArticuloEnOferta(Articulo):</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, precio, descuento):</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.descuento <span class="op">=</span> descuento</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> precio_final(<span class="va">self</span>):</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.precio <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="va">self</span>.descuento)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para <code>ArticuloEnOferta(100, 0.20)</code>, ¿cuál debería ser el resultado si el descuento se aplica antes del impuesto? Escriba una prueba pequeña que lo compruebe.</p></li>
+<li><p>Considere una aplicación que exporta reportes:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Reporte:</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> exportar(<span class="va">self</span>):</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">NotImplementedError</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ReporteTexto(Reporte):</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> exportar(<span class="va">self</span>):</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"texto plano"</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ReporteCSV(Reporte):</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> exportar(<span class="va">self</span>):</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"a,b,c"</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> guardar_todos(reportes):</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [reporte.exportar() <span class="cf">for</span> reporte <span class="kw">in</span> reportes]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Agregue una clase <code>ReporteJSON</code> sin modificar <code>guardar_todos</code>. Luego agregue por accidente un <code>str</code> a la lista de reportes: ¿qué error aparece y en qué lugar? Proponga una estrategia para detectar ese problema antes, ya sea con una clase base abstracta, anotaciones de tipo o una validación explícita. ¿Qué garantiza realmente cada alternativa durante la ejecución?</p></li>
+<li><p>Diseñe una jerarquía para un sistema de notificaciones que pueda enviar por correo, por consola y por un canal que todavía no existe. Defina el contrato mínimo de la clase base y una función <code>notificar_a_todos(notificadores, mensaje)</code> que aproveche polimorfismo. ¿Qué parte del diseño cambiaría si algunos notificadores pudieran fallar y otros no?</p></li>
+<li><p>Ejecute el siguiente código y explique cada resultado. Después implemente <code>__eq__</code> para que dos coordenadas con los mismos valores se consideren iguales, sin que una coordenada pueda ser igual a un objeto de una clase no relacionada.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Coordenada:</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> x</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> y</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>origen_a <span class="op">=</span> Coordenada(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>origen_b <span class="op">=</span> Coordenada(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(origen_a <span class="op">==</span> origen_b)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(origen_a <span class="kw">is</span> origen_b)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(origen_a.__dict__ <span class="op">==</span> origen_b.__dict__)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Qué debería devolver <code>Coordenada(0, 0).__eq__((0, 0))</code>? Pruébelo y justifique la decisión.</p></li>
+<li><p>Una clase usa el área para ordenar terrenos. Complete <code>__lt__</code>, pero piense primero qué ocurriría con terrenos de igual área y distinta forma.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Terreno:</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, frente, fondo):</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.frente <span class="op">=</span> frente</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fondo <span class="op">=</span> fondo</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.frente <span class="op">*</span> <span class="va">self</span>.fondo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cree tres objetos, ordénelos con <code>sorted</code> y compare el criterio de orden con el de igualdad. ¿Es necesario que dos objetos con la misma área sean iguales? ¿Por qué una respuesta distinta a esta pregunta puede ser válida en otro dominio?</p></li>
+<li><p>Diseñe una clase <code>Carrito</code> que haga que las siguientes expresiones sean coherentes:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(carrito)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">"yerba"</span> <span class="kw">in</span> carrito</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(carrito)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Indique qué métodos mágicos implementaría y qué debería devolver cada uno. Decida también si <code>"yerba" in carrito</code> busca por nombre, por un objeto <code>Producto</code> completo o por ambas cosas; explique cómo esa decisión afecta el contrato de la clase.</p></li>
+<li><p>Se quiere representar una duración en minutos mediante una clase <code>Duracion</code>. Proponga las implementaciones de <code>__add__</code>, <code>__repr__</code> y <code>__str__</code> para que se cumpla lo siguiente:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pausa <span class="op">=</span> Duracion(<span class="dv">15</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>reunion <span class="op">=</span> Duracion(<span class="dv">45</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> pausa <span class="op">+</span> reunion</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(total)       <span class="co"># 1 h 0 min</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">repr</span>(total)        <span class="co"># Duracion(60)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Debería permitirse <code>pausa + 10</code>? Elija una respuesta, impleméntela y describa qué error o comportamiento espera quien use la clase.</p></li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
