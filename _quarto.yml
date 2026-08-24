@@ -43,7 +43,7 @@ website:
             - sort-ui: false
         - text: U2 - Programación Orientada a Objetos
           contents:
-            - auto: teoria/02_oop/*.ipynb
+            - auto: teoria/02_oop/*.qmd
             - sort-ui: false
         - text: U3 - Programación Funcional
           contents:
@@ -111,6 +111,3 @@ format:
     theme: styles.scss
     toc: false
     lang: es
-
-bibliography: citas/references.bib
-csl: citas/chicago-author-date.csl

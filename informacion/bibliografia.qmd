@@ -1,5 +1,7 @@
 ---
 title: Bibliografía
+bibliography: ../citas/references.bib
+csl: ../citas/chicago-author-date.csl
 filters:
     - section-bibliographies
 citeproc: false
@@ -31,4 +33,3 @@ citeproc: false
 @Vaughan2019Impractical
 @Wickham2019Advanced
 </div>
-
