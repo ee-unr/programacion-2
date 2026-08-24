@@ -316,10 +316,8 @@ escribimos, donde aparece la documentación de clases, métodos y funciones.
 
 ### Anotaciones de tipo
 
-Si bien Python es un lenguaje de **tipado dinámico e implícito** —es decir,
-no es necesario especificar el tipo de las variables y este puede cambiar durante la ejecución—,
-es posible utilizar **anotaciones de tipo** (del inglés _type annotations_) para indicar qué tipo de
-dato se espera. Estas anotaciones son opcionales, pero ayudan a que el código sea más claro,
+Si bien Python es un lenguaje de **tipado dinámico** —es decir, no es necesario declarar el tipo de las variables y una variable puede referenciar objetos de distintos tipos durante la ejecución—, es posible utilizar **anotaciones de tipo** (del inglés _type annotations_) para indicar qué tipo de dato se espera.
+Estas anotaciones son opcionales, pero ayudan a que el código sea más claro,
 fácil de entender y detectar errores antes de ejecutar el programa.
 
 Para los parámetros de una función o método,
@@ -405,9 +403,8 @@ cuenta.consultar_saldo()
 ['Cosas', 'Otras cosas', 'Aún más cosas']
 ```
 
-En resumen,
-si bien Python nos permite especificar la interfaz de funciones y métodos mediante *docstrings* y
-anotaciones de tipo,
+En otras palabras, si bien Python nos permite especificar la interfaz de funciones y
+métodos mediante *docstrings* y anotaciones de tipo,
 al ser un lenguaje de **tipado dinámico** nada impide que se utilicen con tipos de datos para los
 que no fueron diseñados. En algunos casos esto puede resultar en comportamientos inesperados y,
 en otros, simplemente generar un error en tiempo de ejecución.

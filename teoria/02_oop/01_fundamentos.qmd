@@ -702,7 +702,11 @@ class Budin:
     def cambiar_cobertura(self, cobertura):
         self.cobertura = cobertura
         return self # <1>
+```
 
+1. Luego de actualizar la cobertura, se devuelve a la instancia con la que se llamó al método.
+
+```python
 Budin("Marmolado").cambiar_cobertura("Chocolate").mostrar_info()
 ```
 
@@ -712,7 +716,6 @@ Budin
  - Cobertura: Chocolate
 ```
 
-1. Luego de actualizar la cobertura, se devuelve a la instancia con la que se llamó al método.
 
 Como el método `cambiar_cobertura` devuelve la propia instancia,
 es posible encadenar su llamada con otros métodos de la clase, como por ejemplo `.mostrar_info`.
