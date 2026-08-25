@@ -2449,7 +2449,7 @@
     "href": "practica/02_oop/ejercicios.html",
     "title": "🛠️ Ejercicios",
     "section": "",
-    "text": "El siguiente código calcula mal el precio final de un artículo con descuento.\nLocalice el problema sin duplicar en la subclase la lógica de aplicar impuestos.\nCorríjalo usando `super()`.\n\n```python\nclass Articulo:\n    def __init__(self, precio):\n        self.precio = precio\n\n    def precio_final(self):\n        return self.precio * 1.21\n\nclass ArticuloEnOferta(Articulo):\n    def __init__(self, precio, descuento):\n        self.descuento = descuento\n\n    def precio_final(self):\n        return self.precio * (1 - self.descuento)\n\n```\n\nPara `ArticuloEnOferta(100, 0.20)`, ¿cuál debería ser el resultado si el descuento se aplica\nantes del impuesto? Escriba una prueba pequeña que lo compruebe.",
+    "text": "El siguiente código calcula mal el precio final de un artículo con descuento. Localice el problema sin duplicar en la subclase la lógica de aplicar impuestos. Corríjalo usando super().\nclass Articulo:\n    def __init__(self, precio):\n        self.precio = precio\n\n    def precio_final(self):\n        return self.precio * 1.21\n\nclass ArticuloEnOferta(Articulo):\n    def __init__(self, precio, descuento):\n        self.descuento = descuento\n\n    def precio_final(self):\n        return self.precio * (1 - self.descuento)\nPara ArticuloEnOferta(100, 0.20), ¿cuál debería ser el resultado si el descuento se aplica antes del impuesto? Escriba una prueba pequeña que lo compruebe.",
     "crumbs": [
       "Práctica",
       "U2 - Programación Orientada a Objetos",
@@ -2461,7 +2461,7 @@
     "href": "practica/02_oop/ejercicios.html#problemas-con-el-descuento",
     "title": "🛠️ Ejercicios",
     "section": "",
-    "text": "El siguiente código calcula mal el precio final de un artículo con descuento.\nLocalice el problema sin duplicar en la subclase la lógica de aplicar impuestos.\nCorríjalo usando `super()`.\n\n```python\nclass Articulo:\n    def __init__(self, precio):\n        self.precio = precio\n\n    def precio_final(self):\n        return self.precio * 1.21\n\nclass ArticuloEnOferta(Articulo):\n    def __init__(self, precio, descuento):\n        self.descuento = descuento\n\n    def precio_final(self):\n        return self.precio * (1 - self.descuento)\n\n```\n\nPara `ArticuloEnOferta(100, 0.20)`, ¿cuál debería ser el resultado si el descuento se aplica\nantes del impuesto? Escriba una prueba pequeña que lo compruebe.",
+    "text": "El siguiente código calcula mal el precio final de un artículo con descuento. Localice el problema sin duplicar en la subclase la lógica de aplicar impuestos. Corríjalo usando super().\nclass Articulo:\n    def __init__(self, precio):\n        self.precio = precio\n\n    def precio_final(self):\n        return self.precio * 1.21\n\nclass ArticuloEnOferta(Articulo):\n    def __init__(self, precio, descuento):\n        self.descuento = descuento\n\n    def precio_final(self):\n        return self.precio * (1 - self.descuento)\nPara ArticuloEnOferta(100, 0.20), ¿cuál debería ser el resultado si el descuento se aplica antes del impuesto? Escriba una prueba pequeña que lo compruebe.",
     "crumbs": [
       "Práctica",
       "U2 - Programación Orientada a Objetos",
@@ -2473,7 +2473,7 @@
     "href": "practica/02_oop/ejercicios.html#reportes",
     "title": "🛠️ Ejercicios",
     "section": "2 Reportes",
-    "text": "2 Reportes\nConsidere una aplicación que exporta reportes:\n```python\nclass Reporte:\n    def exportar(self):\n        raise NotImplementedError\n\nclass ReporteTexto(Reporte):\n    def exportar(self):\n        return \"texto plano\"\n\nclass ReporteCSV(Reporte):\n    def exportar(self):\n        return \"a,b,c\"\n\ndef guardar_todos(reportes):\n    return [reporte.exportar() for reporte in reportes]\n```\n\nAgregue una clase `ReporteJSON` sin modificar `guardar_todos`. Luego agregue por accidente un\n`str` a la lista de reportes: ¿qué error aparece y en qué lugar? Proponga una estrategia para\ndetectar ese problema antes, ya sea con una clase base abstracta, anotaciones de tipo o una\nvalidación explícita. ¿Qué garantiza realmente cada alternativa durante la ejecución?",
+    "text": "2 Reportes\nConsidere una aplicación que exporta reportes:\nclass Reporte:\n    def exportar(self):\n        raise NotImplementedError\n\nclass ReporteTexto(Reporte):\n    def exportar(self):\n        return \"texto plano\"\n\nclass ReporteCSV(Reporte):\n    def exportar(self):\n        return \"a,b,c\"\n\ndef guardar_todos(reportes):\n    return [reporte.exportar() for reporte in reportes]\nAgregue una clase ReporteJSON sin modificar guardar_todos. Luego agregue por accidente un str a la lista de reportes: ¿qué error aparece y en qué lugar? Proponga una estrategia para detectar ese problema antes, ya sea con una clase base abstracta, anotaciones de tipo o una validación explícita. ¿Qué garantiza realmente cada alternativa durante la ejecución?",
     "crumbs": [
       "Práctica",
       "U2 - Programación Orientada a Objetos",
@@ -2485,7 +2485,7 @@
     "href": "practica/02_oop/ejercicios.html#notificaciones",
     "title": "🛠️ Ejercicios",
     "section": "3 Notificaciones",
-    "text": "3 Notificaciones\nDiseñe una jerarquía para un sistema de notificaciones que pueda enviar por correo, por\nconsola y por un canal que todavía no existe. Defina el contrato mínimo de la clase base y una\nfunción `notificar_a_todos(notificadores, mensaje)` que aproveche polimorfismo.\n¿Qué parte del diseño cambiaría si algunos notificadores pudieran fallar y otros no?",
+    "text": "3 Notificaciones\nDiseñe una jerarquía para un sistema de notificaciones que pueda enviar por correo, por consola y por un canal que todavía no existe. Defina el contrato mínimo de la clase base y una función notificar_a_todos(notificadores, mensaje) que aproveche polimorfismo. ¿Qué parte del diseño cambiaría si algunos notificadores pudieran fallar y otros no?",
     "crumbs": [
       "Práctica",
       "U2 - Programación Orientada a Objetos",
@@ -2497,7 +2497,7 @@
     "href": "practica/02_oop/ejercicios.html#coordenadas",
     "title": "🛠️ Ejercicios",
     "section": "4 Coordenadas",
-    "text": "4 Coordenadas\nEjecute el siguiente código y explique cada resultado. Después implemente `__eq__` para que\ndos coordenadas con los mismos valores se consideren iguales, sin que una coordenada pueda ser\nigual a un objeto de una clase no relacionada.\n\n```python\nclass Coordenada:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\norigen_a = Coordenada(0, 0)\norigen_b = Coordenada(0, 0)\n\nprint(origen_a == origen_b)\nprint(origen_a is origen_b)\nprint(origen_a.__dict__ == origen_b.__dict__)\n```\n\n¿Qué debería devolver `Coordenada(0, 0).__eq__((0, 0))`? Pruébelo y justifique la decisión.",
+    "text": "4 Coordenadas\nEjecute el siguiente código y explique cada resultado. Después implemente __eq__ para que dos coordenadas con los mismos valores se consideren iguales, sin que una coordenada pueda ser igual a un objeto de una clase no relacionada.\nclass Coordenada:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\norigen_a = Coordenada(0, 0)\norigen_b = Coordenada(0, 0)\nprint(origen_a == origen_b)\nprint(origen_a is origen_b)\nprint(origen_a.__dict__ == origen_b.__dict__)\n¿Qué debería devolver Coordenada(0, 0).__eq__((0, 0))? Pruébelo y justifique la decisión.",
     "crumbs": [
       "Práctica",
       "U2 - Programación Orientada a Objetos",
@@ -2509,7 +2509,7 @@
     "href": "practica/02_oop/ejercicios.html#terrenos",
     "title": "🛠️ Ejercicios",
     "section": "5 Terrenos",
-    "text": "5 Terrenos\nUna clase usa el área para ordenar terrenos. Complete `__lt__`, pero piense primero qué\nocurriría con terrenos de igual área y distinta forma.\n\n```python\nclass Terreno:\n    def __init__(self, frente, fondo):\n        self.frente = frente\n        self.fondo = fondo\n\n    def area(self):\n        return self.frente * self.fondo\n```\n\nCree tres objetos, ordénelos con `sorted` y compare el criterio de orden con el de igualdad.\n¿Es necesario que dos objetos con la misma área sean iguales? ¿Por qué una respuesta distinta\na esta pregunta puede ser válida en otro dominio?",
+    "text": "5 Terrenos\nUna clase usa el área para ordenar terrenos. Complete __lt__, pero piense primero qué ocurriría con terrenos de igual área y distinta forma.\nclass Terreno:\n    def __init__(self, frente, fondo):\n        self.frente = frente\n        self.fondo = fondo\n\n    def area(self):\n        return self.frente * self.fondo\nCree tres objetos, ordénelos con sorted y compare el criterio de orden con el de igualdad. ¿Es necesario que dos objetos con la misma área sean iguales? ¿Por qué una respuesta distinta a esta pregunta puede ser válida en otro dominio?",
     "crumbs": [
       "Práctica",
       "U2 - Programación Orientada a Objetos",
@@ -2521,7 +2521,7 @@
     "href": "practica/02_oop/ejercicios.html#compras",
     "title": "🛠️ Ejercicios",
     "section": "6 Compras",
-    "text": "6 Compras\nDiseñe una clase Carrito que haga que las siguientes expresiones sean coherentes:\n```python\nlen(carrito)\n\"yerba\" in carrito\nprint(carrito)\n```\n\nIndique qué métodos mágicos implementaría y qué debería devolver cada uno. Decida también si\n`\"yerba\" in carrito` busca por nombre, por un objeto `Producto` completo o por ambas cosas;\nexplique cómo esa decisión afecta el contrato de la clase.",
+    "text": "6 Compras\nDiseñe una clase Carrito que haga que las siguientes expresiones sean coherentes:\nlen(carrito)\n\"yerba\" in carrito\nprint(carrito)\nIndique qué métodos mágicos implementaría y qué debería devolver cada uno. Decida también si \"yerba\" in carrito busca por nombre, por un objeto Producto completo o por ambas cosas; explique cómo esa decisión afecta el contrato de la clase.",
     "crumbs": [
       "Práctica",
       "U2 - Programación Orientada a Objetos",
@@ -2533,7 +2533,7 @@
     "href": "practica/02_oop/ejercicios.html#tiempo",
     "title": "🛠️ Ejercicios",
     "section": "7 Tiempo",
-    "text": "7 Tiempo\nSe quiere representar una duración en minutos mediante una clase `Duracion`. Proponga las\nimplementaciones de `__add__`, `__repr__` y `__str__` para que se cumpla lo siguiente:\n\n```python\npausa = Duracion(15)\nreunion = Duracion(45)\ntotal = pausa + reunion\nprint(total)       # 1 h 0 min\nrepr(total)        # Duracion(60)\n```\n\n¿Debería permitirse `pausa + 10`? Elija una respuesta, impleméntela y describa qué error o\ncomportamiento espera quien use la clase.",
+    "text": "7 Tiempo\nSe quiere representar una duración en minutos mediante una clase Duracion. Proponga las implementaciones de __add__, __repr__ y __str__ para que se cumpla lo siguiente:\npausa = Duracion(15)\nreunion = Duracion(45)\ntotal = pausa + reunion\nprint(total)       # 1 h 0 min\nrepr(total)        # Duracion(60)\n¿Debería permitirse pausa + 10? Elija una respuesta, impleméntela y describa qué error o comportamiento espera quien use la clase.",
     "crumbs": [
       "Práctica",
       "U2 - Programación Orientada a Objetos",
