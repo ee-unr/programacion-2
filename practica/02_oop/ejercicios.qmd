@@ -3,134 +3,132 @@ title: "🛠️ Ejercicios"
 ---
 ## Problemas con el descuento
 
-    El siguiente código calcula mal el precio final de un artículo con descuento.
-    Localice el problema sin duplicar en la subclase la lógica de aplicar impuestos.
-    Corríjalo usando `super()`.
+El siguiente código calcula mal el precio final de un artículo con descuento.
+Localice el problema sin duplicar en la subclase la lógica de aplicar impuestos.
+Corríjalo usando `super()`.
 
-    ```python
-    class Articulo:
-        def __init__(self, precio):
-            self.precio = precio
+```python
+class Articulo:
+    def __init__(self, precio):
+        self.precio = precio
 
-        def precio_final(self):
-            return self.precio * 1.21
+    def precio_final(self):
+        return self.precio * 1.21
 
-    class ArticuloEnOferta(Articulo):
-        def __init__(self, precio, descuento):
-            self.descuento = descuento
+class ArticuloEnOferta(Articulo):
+    def __init__(self, precio, descuento):
+        self.descuento = descuento
 
-        def precio_final(self):
-            return self.precio * (1 - self.descuento)
+    def precio_final(self):
+        return self.precio * (1 - self.descuento)
 
-    ```
+```
 
-    Para `ArticuloEnOferta(100, 0.20)`, ¿cuál debería ser el resultado si el descuento se aplica
-    antes del impuesto? Escriba una prueba pequeña que lo compruebe.
+Para `ArticuloEnOferta(100, 0.20)`, ¿cuál debería ser el resultado si el descuento se aplica
+antes del impuesto? Escriba una prueba pequeña que lo compruebe.
 
 ## Reportes
 
 Considere una aplicación que exporta reportes:
 
-    ```python
-    class Reporte:
-        def exportar(self):
-            raise NotImplementedError
+```python
+class Reporte:
+    def exportar(self):
+        raise NotImplementedError
 
-    class ReporteTexto(Reporte):
-        def exportar(self):
-            return "texto plano"
+class ReporteTexto(Reporte):
+    def exportar(self):
+        return "texto plano"
 
-    class ReporteCSV(Reporte):
-        def exportar(self):
-            return "a,b,c"
+class ReporteCSV(Reporte):
+    def exportar(self):
+        return "a,b,c"
 
-    def guardar_todos(reportes):
-        return [reporte.exportar() for reporte in reportes]
-    ```
+def guardar_todos(reportes):
+    return [reporte.exportar() for reporte in reportes]
+```
 
-    Agregue una clase `ReporteJSON` sin modificar `guardar_todos`. Luego agregue por accidente un
-    `str` a la lista de reportes: ¿qué error aparece y en qué lugar? Proponga una estrategia para
-    detectar ese problema antes, ya sea con una clase base abstracta, anotaciones de tipo o una
-    validación explícita. ¿Qué garantiza realmente cada alternativa durante la ejecución?
+Agregue una clase `ReporteJSON` sin modificar `guardar_todos`. Luego agregue por accidente un
+`str` a la lista de reportes: ¿qué error aparece y en qué lugar? Proponga una estrategia para
+detectar ese problema antes, ya sea con una clase base abstracta, anotaciones de tipo o una
+validación explícita. ¿Qué garantiza realmente cada alternativa durante la ejecución?
 
-## Notificaciones 
+## Notificaciones
 
-    Diseñe una jerarquía para un sistema de notificaciones que pueda enviar por correo, por
-    consola y por un canal que todavía no existe. Defina el contrato mínimo de la clase base y una
-    función `notificar_a_todos(notificadores, mensaje)` que aproveche polimorfismo.
-    ¿Qué parte del diseño cambiaría si algunos notificadores pudieran fallar y otros no?
+Diseñe una jerarquía para un sistema de notificaciones que pueda enviar por correo, por
+consola y por un canal que todavía no existe. Defina el contrato mínimo de la clase base y una
+función `notificar_a_todos(notificadores, mensaje)` que aproveche polimorfismo.
+¿Qué parte del diseño cambiaría si algunos notificadores pudieran fallar y otros no?
 
 ## Coordenadas
 
-    Ejecute el siguiente código y explique cada resultado. Después implemente `__eq__` para que
-    dos coordenadas con los mismos valores se consideren iguales, sin que una coordenada pueda ser
-    igual a un objeto de una clase no relacionada.
+Ejecute el siguiente código y explique cada resultado. Después implemente `__eq__` para que
+dos coordenadas con los mismos valores se consideren iguales, sin que una coordenada pueda ser
+igual a un objeto de una clase no relacionada.
 
-    ```python
-    class Coordenada:
-        def __init__(self, x, y):
-            self.x = x
-            self.y = y
+```python
+class Coordenada:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
-    origen_a = Coordenada(0, 0)
-    origen_b = Coordenada(0, 0)
+origen_a = Coordenada(0, 0)
+origen_b = Coordenada(0, 0)
+print(origen_a == origen_b)
+print(origen_a is origen_b)
+print(origen_a.__dict__ == origen_b.__dict__)
+```
 
-    print(origen_a == origen_b)
-    print(origen_a is origen_b)
-    print(origen_a.__dict__ == origen_b.__dict__)
-    ```
+¿Qué debería devolver `Coordenada(0, 0).__eq__((0, 0))`? Pruébelo y justifique la decisión.
 
-    ¿Qué debería devolver `Coordenada(0, 0).__eq__((0, 0))`? Pruébelo y justifique la decisión.
+## Terrenos
 
-## Terrenos 
+Una clase usa el área para ordenar terrenos. Complete `__lt__`, pero piense primero qué
+ocurriría con terrenos de igual área y distinta forma.
 
-    Una clase usa el área para ordenar terrenos. Complete `__lt__`, pero piense primero qué
-    ocurriría con terrenos de igual área y distinta forma.
+```python
+class Terreno:
+    def __init__(self, frente, fondo):
+        self.frente = frente
+        self.fondo = fondo
 
-    ```python
-    class Terreno:
-        def __init__(self, frente, fondo):
-            self.frente = frente
-            self.fondo = fondo
+    def area(self):
+        return self.frente * self.fondo
+```
 
-        def area(self):
-            return self.frente * self.fondo
-    ```
-
-    Cree tres objetos, ordénelos con `sorted` y compare el criterio de orden con el de igualdad.
-    ¿Es necesario que dos objetos con la misma área sean iguales? ¿Por qué una respuesta distinta
-    a esta pregunta puede ser válida en otro dominio?
+Cree tres objetos, ordénelos con `sorted` y compare el criterio de orden con el de igualdad.
+¿Es necesario que dos objetos con la misma área sean iguales? ¿Por qué una respuesta distinta
+a esta pregunta puede ser válida en otro dominio?
 
 ## Compras
 
 Diseñe una clase `Carrito` que haga que las siguientes expresiones sean coherentes:
 
-    ```python
-    len(carrito)
-    "yerba" in carrito
-    print(carrito)
-    ```
+```python
+len(carrito)
+"yerba" in carrito
+print(carrito)
+```
 
-    Indique qué métodos mágicos implementaría y qué debería devolver cada uno. Decida también si
-    `"yerba" in carrito` busca por nombre, por un objeto `Producto` completo o por ambas cosas;
-    explique cómo esa decisión afecta el contrato de la clase.
+Indique qué métodos mágicos implementaría y qué debería devolver cada uno. Decida también si
+`"yerba" in carrito` busca por nombre, por un objeto `Producto` completo o por ambas cosas;
+explique cómo esa decisión afecta el contrato de la clase.
 
 ## Tiempo
 
-    Se quiere representar una duración en minutos mediante una clase `Duracion`. Proponga las
-    implementaciones de `__add__`, `__repr__` y `__str__` para que se cumpla lo siguiente:
+Se quiere representar una duración en minutos mediante una clase `Duracion`. Proponga las
+implementaciones de `__add__`, `__repr__` y `__str__` para que se cumpla lo siguiente:
 
-    ```python
-    pausa = Duracion(15)
-    reunion = Duracion(45)
-    total = pausa + reunion
-    print(total)       # 1 h 0 min
-    repr(total)        # Duracion(60)
-    ```
+```python
+pausa = Duracion(15)
+reunion = Duracion(45)
+total = pausa + reunion
+print(total)       # 1 h 0 min
+repr(total)        # Duracion(60)
+```
 
-    ¿Debería permitirse `pausa + 10`? Elija una respuesta, impleméntela y describa qué error o
-    comportamiento espera quien use la clase.
-
+¿Debería permitirse `pausa + 10`? Elija una respuesta, impleméntela y describa qué error o
+comportamiento espera quien use la clase.
 
 ## Contador
 
