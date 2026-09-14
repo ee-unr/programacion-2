@@ -287,6 +287,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sensores-descalibrados" id="toc-sensores-descalibrados" class="nav-link" data-scroll-target="#sensores-descalibrados"><span class="header-section-number">14</span> Sensores descalibrados</a></li>
   <li><a href="#python-para-matemáticos" id="toc-python-para-matemáticos" class="nav-link" data-scroll-target="#python-para-matemáticos"><span class="header-section-number">15</span> Python para matemáticos</a></li>
   <li><a href="#tiempo-al-tiempo" id="toc-tiempo-al-tiempo" class="nav-link" data-scroll-target="#tiempo-al-tiempo"><span class="header-section-number">16</span> Tiempo al tiempo ⏳</a></li>
+  <li><a href="#buscando-el-error" id="toc-buscando-el-error" class="nav-link" data-scroll-target="#buscando-el-error"><span class="header-section-number">17</span> Buscando el error</a></li>
+  <li><a href="#cada-problema-con-su-nombre" id="toc-cada-problema-con-su-nombre" class="nav-link" data-scroll-target="#cada-problema-con-su-nombre"><span class="header-section-number">18</span> Cada problema con su nombre</a></li>
+  <li><a href="#un-cajero-insistente" id="toc-un-cajero-insistente" class="nav-link" data-scroll-target="#un-cajero-insistente"><span class="header-section-number">19</span> Un cajero insistente</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="ejercicios.pdf"><i class="bi bi-file-pdf"></i>Descargar PDF</a></li></ul></div></nav>
     </div>
@@ -733,6 +736,63 @@ Ayuda
 <span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [d1, d2, d3, d4]</span>
 <span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(l) <span class="co"># Funciona, ¿por qué?</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="buscando-el-error" class="level2" data-number="17">
+<h2 data-number="17" class="anchored" data-anchor-id="buscando-el-error"><span class="header-section-number">17</span> Buscando el error</h2>
+<p>Cada uno de los siguientes programas contiene un error diferente. Sin ejecutarlos, indique qué tipo de error espera encontrar, en qué línea se origina y cuál es su causa. Luego ejecute cada fragmento por separado, lea el mensaje completo y compruebe su respuesta.</p>
+<p>Finalmente, corrija cada programa mediante el cambio más pequeño posible. No utilice <code>try</code> y <code>except</code>: en estos casos corresponde solucionar el error que existe en el código.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nombre <span class="op">=</span> <span class="st">"Ada"</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nomrbe)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>edades <span class="op">=</span> [<span class="dv">19</span>, <span class="dv">21</span>, <span class="dv">23</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ultima_edad <span class="op">=</span> edades[<span class="dv">3</span>]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ultima_edad)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="dv">1500</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total: $"</span> <span class="op">+</span> total)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>temperaturas <span class="op">=</span> (<span class="fl">18.5</span>, <span class="fl">19.2</span>, <span class="fl">20.0</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>temperaturas.append(<span class="fl">20.4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saludar(nombre)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"¡Hola, </span><span class="sc">{</span>nombre<span class="sc">}</span><span class="ss">!"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para cada caso, explique qué información del mensaje de error fue útil para encontrar el problema.</p>
+</section>
+<section id="cada-problema-con-su-nombre" class="level2" data-number="18">
+<h2 data-number="18" class="anchored" data-anchor-id="cada-problema-con-su-nombre"><span class="header-section-number">18</span> Cada problema con su nombre</h2>
+<p>Implemente una clase <code>Inventario</code> que represente las existencias de productos de un comercio. Su constructor debe recibir un diccionario cuyas claves sean nombres de productos y cuyos valores sean cantidades disponibles. Guarde una copia de ese diccionario en un atributo llamado <code>stock</code>.</p>
+<p>El constructor debe verificar los datos recibidos y lanzar una excepción apropiada cuando:</p>
+<ul>
+<li>el argumento no sea un diccionario;</li>
+<li>el nombre de algún producto no sea una cadena de texto no vacía;</li>
+<li>alguna cantidad no sea un número entero mayor o igual que cero.</li>
+</ul>
+<p>La clase debe implementar además un método <code>hay_stock(producto, cantidad)</code>. Este método debe verificar que <code>producto</code> sea una cadena no vacía, que <code>cantidad</code> sea un número entero mayor que cero y que el producto exista en el inventario. Si todos los datos son válidos, debe devolver <code>True</code> cuando exista suficiente stock y <code>False</code> en caso contrario.</p>
+<p>Distinga cuidadosamente los casos que corresponden a <code>TypeError</code>, <code>ValueError</code> y <code>KeyError</code>, e incluya en cada excepción un mensaje que describa el problema.</p>
+<p>Utilice estas llamadas para probar la clase:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>inventario <span class="op">=</span> Inventario({<span class="st">"cuadernos"</span>: <span class="dv">12</span>, <span class="st">"lápices"</span>: <span class="dv">30</span>, <span class="st">"carpetas"</span>: <span class="dv">5</span>})</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>inventario.hay_stock(<span class="st">"cuadernos"</span>, <span class="dv">8</span>)   <span class="co"># True</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>inventario.hay_stock(<span class="st">"carpetas"</span>, <span class="dv">9</span>)    <span class="co"># False</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>inventario.hay_stock(<span class="st">""</span>, <span class="dv">2</span>)            <span class="co"># Falla: producto vacío</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>inventario.hay_stock(<span class="st">"reglas"</span>, <span class="dv">1</span>)      <span class="co"># Falla: producto inexistente</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>inventario.hay_stock(<span class="st">"lápices"</span>, <span class="fl">2.5</span>)   <span class="co"># Falla: cantidad de tipo incorrecto</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>inventario.hay_stock(<span class="st">"lápices"</span>, <span class="op">-</span><span class="dv">2</span>)    <span class="co"># Falla: cantidad inválida</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>Inventario([<span class="st">"cuadernos"</span>, <span class="st">"lápices"</span>])  <span class="co"># Falla: no es un diccionario</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>Inventario({<span class="st">"cuadernos"</span>: <span class="op">-</span><span class="dv">3</span>})         <span class="co"># Falla: cantidad inválida</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="un-cajero-insistente" class="level2" data-number="19">
+<h2 data-number="19" class="anchored" data-anchor-id="un-cajero-insistente"><span class="header-section-number">19</span> Un cajero insistente</h2>
+<p>Este ejercicio debe resolverse como un programa interactivo completo. Escriba todo el código en un archivo llamado <code>cajero.py</code> y ejecútelo desde una terminal.</p>
+<p>Defina dos excepciones personalizadas llamadas <code>MontoInvalidoError</code> y <code>SaldoInsuficienteError</code>. Ambas deben heredar de una excepción común llamada <code>CuentaError</code>.</p>
+<p>Luego implemente una clase <code>CuentaBancaria</code> con un atributo <code>saldo</code> y un método <code>extraer(monto)</code>. El método debe:</p>
+<ul>
+<li>lanzar <code>MontoInvalidoError</code> si el monto no es mayor que cero;</li>
+<li>lanzar <code>SaldoInsuficienteError</code> si el monto supera el saldo disponible;</li>
+<li>descontar el monto y devolverlo cuando la extracción sea válida.</li>
+</ul>
+<p>Finalmente, escriba una función <code>solicitar_extraccion(cuenta)</code> que solicite un monto mediante <code>input</code>. Utilice un bucle <code>while True</code> para repetir la solicitud cuando el texto ingresado no pueda convertirse a número o cuando la cuenta rechace la operación. El bucle debe terminar solamente después de realizar una extracción válida.</p>
+<p>Pruebe el programa ingresando, en este orden, un texto que no sea numérico, un monto negativo, un monto superior al saldo y un monto válido. El mensaje mostrado en cada intento debe permitir distinguir claramente qué problema ocurrió.</p>
+<p>Al final de <code>cajero.py</code>, cree una cuenta con un saldo inicial, llame a <code>solicitar_extraccion</code> y muestre el saldo restante cuando la operación termine. Para ejecutar el programa, ubíquese desde la terminal en la carpeta donde guardó el archivo y escriba:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> cajero.py</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!--
 
 Completos
@@ -761,7 +821,6 @@ Sin cubrir
 -->
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
