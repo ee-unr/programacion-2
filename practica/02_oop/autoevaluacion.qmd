@@ -185,6 +185,62 @@ title: "🪞 Autoevaluación"
 1.  Elija uno de los métodos `__len__`, `__contains__`, `__call__` o `__bool__`.
     ¿Qué operación de Python habilitaría al implementarlo en una clase?
 
+## Excepciones
+
+1.  ¿Qué indica un `NameError`? ¿Por qué un nombre de variable escrito incorrectamente puede
+    producir esta excepción?
+
+1.  Sin ejecutar las expresiones, indique qué excepción produciría cada una y explique su causa.
+
+    ```python
+    5 + "5"
+
+    numeros = [10, 20, 30]
+    numeros[5]
+
+    numero = 42
+    numero.append(5)
+    ```
+
+1.  ¿Qué función cumplen los bloques `try` y `except`? ¿Qué ocurre si dentro del `try` se lanza una
+    excepción cuyo tipo no coincide con ninguno de los bloques `except`?
+
+1.  Considere el siguiente programa:
+
+    ```python
+    try:
+        numero = int(texto)
+        resultado = 100 / numero
+    except ValueError:
+        print("El texto no representa un número entero")
+    except ZeroDivisionError:
+        print("No se puede dividir por cero")
+    else:
+        print("Resultado:", resultado)
+    finally:
+        print("Fin del intento")
+    ```
+
+    ¿Qué bloques se ejecutan y qué se imprime cuando `texto` vale `"diez"`, `"0"` y `"4"`?
+
+1.  ¿Cuándo se ejecuta un bloque `finally`? ¿Por qué resulta útil para liberar recursos incluso
+    cuando una excepción no es capturada?
+
+1.  ¿Qué hace la instrucción `raise`? ¿Qué sucede con las instrucciones posteriores de la función
+    cuando se ejecuta?
+
+1.  Al lanzar una excepción, ¿por qué suele ser
+    preferible lanzar un `ValueError` específico en lugar de un `Exception` general?
+
+1.  ¿Qué efecto tiene ejecutar `raise` sin argumentos dentro de un bloque `except`? ¿En qué se
+    diferencia de lanzar una excepción nueva?
+
+1.  ¿Para qué se utiliza `raise NuevaExcepcion(...) from error_original`? ¿Qué información conserva
+    en el _traceback_?
+
+1.  ¿Por qué una excepción personalizada suele heredar de `Exception` o de alguna de sus
+    subclases? ¿Qué ventaja ofrece crear una jerarquía de excepciones relacionadas?
+
 ## Para pensar...
 
 1.  Sin ejecutar el programa, anote qué debería imprimir cada `print`. Luego ejecútelo y explique
@@ -341,5 +397,4 @@ title: "🪞 Autoevaluación"
     ```
 
     ¿Qué regla usa Python para escoger el método?
-
 

@@ -556,6 +556,111 @@ l = [d1, d2, d3, d4]
 sorted(l) # Funciona, ¿por qué?
 ```
 
+## Buscando el error
+
+Cada uno de los siguientes programas contiene un error diferente.
+Sin ejecutarlos, indique qué tipo de error espera encontrar, en qué línea se origina y cuál es su
+causa. Luego ejecute cada fragmento por separado, lea el mensaje completo y compruebe su respuesta.
+
+Finalmente, corrija cada programa mediante el cambio más pequeño posible. No utilice `try` y
+`except`: en estos casos corresponde solucionar el error que existe en el código.
+
+```python
+nombre = "Ada"
+print(nomrbe)
+```
+
+```python
+edades = [19, 21, 23]
+ultima_edad = edades[3]
+print(ultima_edad)
+```
+
+```python
+total = 1500
+print("Total: $" + total)
+```
+
+```python
+temperaturas = (18.5, 19.2, 20.0)
+temperaturas.append(20.4)
+```
+
+```python
+def saludar(nombre)
+    return f"¡Hola, {nombre}!"
+```
+
+Para cada caso, explique qué información del mensaje de error fue útil para encontrar el problema.
+
+## Cada problema con su nombre
+
+Implemente una clase `Inventario` que represente las existencias de productos de un comercio. Su
+constructor debe recibir un diccionario cuyas claves sean nombres de productos y cuyos valores sean
+cantidades disponibles. Guarde una copia de ese diccionario en un atributo llamado `stock`.
+
+El constructor debe verificar los datos recibidos y lanzar una excepción apropiada cuando:
+
+* el argumento no sea un diccionario;
+* el nombre de algún producto no sea una cadena de texto no vacía;
+* alguna cantidad no sea un número entero mayor o igual que cero.
+
+La clase debe implementar además un método `hay_stock(producto, cantidad)`. Este método debe
+verificar que `producto` sea una cadena no vacía, que `cantidad` sea un número entero mayor que cero
+y que el producto exista en el inventario. Si todos los datos son válidos, debe devolver `True`
+cuando exista suficiente stock y `False` en caso contrario.
+
+Distinga cuidadosamente los casos que corresponden a `TypeError`, `ValueError` y `KeyError`, e
+incluya en cada excepción un mensaje que describa el problema.
+
+Utilice estas llamadas para probar la clase:
+
+```python
+inventario = Inventario({"cuadernos": 12, "lápices": 30, "carpetas": 5})
+
+inventario.hay_stock("cuadernos", 8)   # True
+inventario.hay_stock("carpetas", 9)    # False
+inventario.hay_stock("", 2)            # Falla: producto vacío
+inventario.hay_stock("reglas", 1)      # Falla: producto inexistente
+inventario.hay_stock("lápices", 2.5)   # Falla: cantidad de tipo incorrecto
+inventario.hay_stock("lápices", -2)    # Falla: cantidad inválida
+
+Inventario(["cuadernos", "lápices"])  # Falla: no es un diccionario
+Inventario({"cuadernos": -3})         # Falla: cantidad inválida
+```
+
+## Un cajero insistente
+
+Este ejercicio debe resolverse como un programa interactivo completo. Escriba todo el código en un
+archivo llamado `cajero.py` y ejecútelo desde una terminal.
+
+Defina dos excepciones personalizadas llamadas `MontoInvalidoError` y
+`SaldoInsuficienteError`. Ambas deben heredar de una excepción común llamada `CuentaError`.
+
+Luego implemente una clase `CuentaBancaria` con un atributo `saldo` y un método `extraer(monto)`.
+El método debe:
+
+* lanzar `MontoInvalidoError` si el monto no es mayor que cero;
+* lanzar `SaldoInsuficienteError` si el monto supera el saldo disponible;
+* descontar el monto y devolverlo cuando la extracción sea válida.
+
+Finalmente, escriba una función `solicitar_extraccion(cuenta)` que solicite un monto mediante
+`input`. Utilice un bucle `while True` para repetir la solicitud cuando el texto ingresado no pueda
+convertirse a número o cuando la cuenta rechace la operación. El bucle debe terminar solamente
+después de realizar una extracción válida.
+
+Pruebe el programa ingresando, en este orden, un texto que no sea numérico, un monto negativo, un
+monto superior al saldo y un monto válido. El mensaje mostrado en cada intento debe permitir
+distinguir claramente qué problema ocurrió.
+
+Al final de `cajero.py`, cree una cuenta con un saldo inicial, llame a `solicitar_extraccion` y
+muestre el saldo restante cuando la operación termine. Para ejecutar el programa, ubíquese desde la
+terminal en la carpeta donde guardó el archivo y escriba:
+
+```bash
+python cajero.py
+```
+
 <!--
 
 Completos
