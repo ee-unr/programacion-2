@@ -630,9 +630,10 @@ Para finalizar, podemos usar la función `graficar_vectores`,
 que recibe una lista de vectores y los representa gráficamente en el plano,
 mostrando de forma visual el resultado de las operaciones realizadas.
 
-```python
-#| code-fold: true
+<details>
+<summary>Mostrar código</summary>
 
+```python
 import matplotlib.pyplot as plt
 def graficar_vectores(vectores):
     x_range = [0, 0]
@@ -669,6 +670,7 @@ def graficar_vectores(vectores):
     ax.legend(loc="upper left")
     plt.show()
 ```
+</details>
 
 Grafiquemos tres vectores cualesquiera:
 
