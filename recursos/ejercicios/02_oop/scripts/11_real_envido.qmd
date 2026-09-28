@@ -1,0 +1,57 @@
+## Real envido
+
+```python
+class ManoDeTruco:
+    def __init__(self, cartas):
+        self.cartas = cartas
+
+    def comparar_con(self, other):
+        if self.puntos() >= other.puntos():
+            return self
+        return other
+
+    def puntos(self):
+        n_altas = 0
+        for carta in self.cartas:
+            if carta >= 10:
+                n_altas += 1
+        if n_altas == 3:
+            return 20
+        elif n_altas == 2:
+            return 20 + min(self.cartas)
+        elif n_altas == 1:
+            return 20 + sum(sorted(self.cartas)[:2])
+        return 20 + sum(sorted(self.cartas)[-2:])
+```
+
+```python
+mano1 = ManoDeTruco([7, 5, 6])
+mano2 = ManoDeTruco([4, 11, 2])
+
+print(mano1.puntos())
+```
+
+```text
+33
+```
+
+```python
+print(mano2.puntos())
+```
+
+```text
+26
+```
+
+```python
+print(mano1.comparar_con(mano2) is mano1)
+```
+
+```text
+True
+```
+
+Para calcular los puntos contamos las cartas de valor 10 o más, que no suman puntos individuales.
+A los 20 puntos por tener cartas del mismo palo les sumamos los dos valores más altos que correspondan.
+
+En `comparar_con` usamos `>=` para devolver la mano que llamó al método cuando hay empate.

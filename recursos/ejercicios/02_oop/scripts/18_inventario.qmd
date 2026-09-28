@@ -1,0 +1,47 @@
+## Cada problema con su nombre
+
+```python
+class Inventario:
+    def __init__(self, stock):
+        if not isinstance(stock, dict):
+            raise TypeError("stock debe ser un diccionario")
+        for producto, cantidad in stock.items():
+            if not isinstance(producto, str):
+                raise TypeError("el nombre del producto debe ser texto")
+            if not producto:
+                raise ValueError("el nombre del producto no puede estar vacío")
+            if type(cantidad) is not int:
+                raise TypeError("la cantidad debe ser entera")
+            if cantidad < 0:
+                raise ValueError("la cantidad no puede ser negativa")
+        self.stock = stock.copy()
+
+    def hay_stock(self, producto, cantidad):
+        if not isinstance(producto, str):
+            raise TypeError("producto debe ser texto")
+        if not producto:
+            raise ValueError("producto no puede estar vacío")
+        if type(cantidad) is not int:
+            raise TypeError("cantidad debe ser entera")
+        if cantidad <= 0:
+            raise ValueError("cantidad debe ser positiva")
+        if producto not in self.stock:
+            raise KeyError(f"producto inexistente: {producto}")
+        return self.stock[producto] >= cantidad
+
+inventario = Inventario({"cuadernos": 12, "lápices": 30, "carpetas": 5})
+print(inventario.hay_stock("cuadernos", 8))  
+print(inventario.hay_stock("carpetas", 9))
+```
+
+```text
+True
+False
+```
+
+Guardamos una copia del diccionario para que los cambios en el original no modifiquen el stock del inventario.
+En `hay_stock` verificamos los argumentos antes de comparar la cantidad pedida con la disponible.
+Si los datos son válidos, devolvemos `True` o `False` según alcance el stock.
+
+Usamos `TypeError` cuando el dato tiene un tipo incorrecto, `ValueError` cuando el tipo es correcto pero el valor no es válido y `KeyError` cuando el producto no existe.
+El stock puede ser cero, pero la cantidad que pedimos debe ser mayor que cero.

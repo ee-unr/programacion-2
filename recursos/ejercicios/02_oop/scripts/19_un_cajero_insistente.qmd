@@ -1,0 +1,61 @@
+## Un cajero insistente
+
+```python
+class CuentaError(Exception):
+    pass
+
+class MontoInvalidoError(CuentaError):
+    pass
+
+class SaldoInsuficienteError(CuentaError):
+    pass
+
+class CuentaBancaria:
+    def __init__(self, saldo):
+        self.saldo = saldo
+
+    def extraer(self, monto):
+        if monto <= 0:
+            raise MontoInvalidoError("el monto debe ser mayor que cero")
+        if monto > self.saldo:
+            raise SaldoInsuficienteError("saldo insuficiente")
+        self.saldo -= monto
+        return monto
+
+def solicitar_extraccion(cuenta):
+    while True:
+        try:
+            monto = float(input("Monto a extraer: "))
+            extraido = cuenta.extraer(monto)
+        except ValueError as error:
+            print(f"Entrada no numérica: {error}")
+        except MontoInvalidoError as error:
+            print(f"Monto inválido: {error}")
+        except SaldoInsuficienteError as error:
+            print(f"Saldo insuficiente: {error}")
+        else:
+            return extraido
+
+if __name__ == "__main__":
+    cuenta = CuentaBancaria(100)
+    solicitar_extraccion(cuenta)
+    print(f"Saldo restante: {cuenta.saldo}")
+```
+
+```text
+Monto a extraer: abc
+Entrada no numérica: could not convert string to float: 'abc'
+Monto a extraer: -5
+Monto inválido: el monto debe ser mayor que cero
+Monto a extraer: 150
+Saldo insuficiente: saldo insuficiente
+Monto a extraer: 40
+Saldo restante: 60.0
+```
+
+Para distinguir los problemas de la cuenta definimos dos excepciones que heredan de `CuentaError`.
+En `extraer` verificamos el monto antes de descontarlo, así un intento inválido no modifica el saldo.
+
+Usamos `while True` para seguir pidiendo un monto y un `except` para cada problema.
+El `else` se ejecuta cuando no hubo una excepción y devuelve el monto extraído, terminando la función.
+Para probarlo, ingresamos un texto no numérico, un monto negativo, uno mayor al saldo y finalmente uno válido.

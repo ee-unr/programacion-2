@@ -1,0 +1,39 @@
+## Magia para programadores
+
+```python
+import math
+
+class Pocion:
+    def __init__(self, color, volumen):
+        self.color = color
+        self.volumen = volumen
+
+    def mezclar(self, other):
+        volumen_total = self.volumen + other.volumen
+        w1 = self.volumen / volumen_total
+        w2 = other.volumen / volumen_total
+
+        color = []
+        for i in range(3):
+            componente = math.ceil(self.color[i] * w1 + other.color[i] * w2)
+            color.append(componente)
+        return Pocion(color=color, volumen=volumen_total)
+
+felix_felicis = Pocion([255, 255, 255],  7)
+pocion_multijugos = Pocion([51, 102, 51], 12)
+nueva_pocion = felix_felicis.mezclar(pocion_multijugos)
+
+assert nueva_pocion.color == [127, 159, 127]
+assert nueva_pocion.volumen == 19
+print(nueva_pocion.color)
+print(nueva_pocion.volumen)
+```
+
+```text
+[127, 159, 127]
+19
+```
+
+Para obtener el volumen de la mezcla sumamos los volúmenes de las dos pociones.
+Para el color calculamos un promedio de cada componente RGB, dando más peso a la poción que tiene mayor volumen.
+Usamos `math.ceil` para redondear hacia arriba y devolvemos una nueva `Pocion` con el resultado.

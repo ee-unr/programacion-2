@@ -1,0 +1,208 @@
+## Tiempo al tiempo ⏳
+
+```python
+DOM = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30,
+       7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
+
+class Date:
+    def __init__(self, year, month, day):
+        self.year = year
+        self.month = month
+        self.day = day
+
+    @property
+    def year(self):
+        return self._year
+
+    @year.setter
+    def year(self, value):
+        if type(value) is not int:
+            raise ValueError("year debe ser un entero")
+        if value < 0:
+            raise ValueError("year debe ser mayor o igual que cero")
+        if hasattr(self, "_day") and self._day > self._dias_del_mes(value, self.month):
+            raise ValueError("day no es válido para el nuevo year")
+        self._year = value
+
+    @property
+    def month(self):
+        return self._month
+
+    @month.setter
+    def month(self, value):
+        if type(value) is not int:
+            raise ValueError("month debe ser un entero")
+        if not 1 <= value <= 12:
+            raise ValueError("month debe estar entre 1 y 12")
+        if hasattr(self, "_day") and self._day > self._dias_del_mes(self.year, value):
+            raise ValueError("day no es válido para el nuevo month")
+        self._month = value
+
+    @property
+    def day(self):
+        return self._day
+
+    @day.setter
+    def day(self, value):
+        if type(value) is not int:
+            raise ValueError("day debe ser un entero")
+        if not 1 <= value <= self._dias_del_mes(self.year, self.month):
+            raise ValueError("day no es válido para el mes")
+        self._day = value
+
+    @classmethod
+    def from_str(cls, value):
+        if not isinstance(value, str):
+            raise TypeError("la fecha debe ser texto")
+        try:
+            year, month, day = map(int, value.split("-"))
+        except (ValueError, TypeError) as error:
+            raise ValueError("use el formato YYYY-MM-DD") from error
+        return cls(year, month, day)
+
+    @staticmethod
+    def _es_bisiesto(year):
+        return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+
+    @staticmethod
+    def _dias_del_mes(year, month):
+        if month == 2 and Date._es_bisiesto(year):
+            return 29
+        return DOM[month]
+
+    def _clave(self):
+        return self.year, self.month, self.day
+
+    def __eq__(self, other):
+        if not isinstance(other, Date):
+            return NotImplemented
+        return self._clave() == other._clave()
+
+    def __ne__(self, other):
+        result = self.__eq__(other)
+        return NotImplemented if result is NotImplemented else not result
+
+    def __lt__(self, other):
+        if not isinstance(other, Date):
+            return NotImplemented
+        return self._clave() < other._clave()
+
+    def __le__(self, other):
+        if not isinstance(other, Date):
+            return NotImplemented
+        return self._clave() <= other._clave()
+
+    def __gt__(self, other):
+        if not isinstance(other, Date):
+            return NotImplemented
+        return self._clave() > other._clave()
+
+    def __ge__(self, other):
+        if not isinstance(other, Date):
+            return NotImplemented
+        return self._clave() >= other._clave()
+
+    def __str__(self):
+        return f"{self.year:04d}-{self.month:02d}-{self.day:02d}"
+
+    def __repr__(self):
+        return f"Date(year={self.year}, month={self.month}, day={self.day})"
+```
+
+```python
+d1 = Date(1990, 5, 20)
+d2 = Date(1998, 9, 21)
+d3 = Date(1998, 9, 20)
+d4 = Date(2022, 12, 18)
+fecha = Date(1995, 11, 6)
+print((fecha.year, fecha.month, fecha.day))
+```
+
+```text
+(1995, 11, 6)
+```
+
+```python
+print(str(fecha))
+```
+
+```text
+1995-11-06
+```
+
+```python
+print(repr(fecha))
+```
+
+```text
+Date(year=1995, month=11, day=6)
+```
+
+```python
+print(Date.from_str("2025-03-08"))
+```
+
+```text
+2025-03-08
+```
+
+```python
+print(d1 < d2)
+```
+
+```text
+True
+```
+
+```python
+print(d1 > d2)
+```
+
+```text
+False
+```
+
+```python
+print(d1 != d3)
+```
+
+```text
+True
+```
+
+```python
+print(d4 >= d3)
+```
+
+```text
+True
+```
+
+```python
+print(Date(2000, 2, 29))
+```
+
+```text
+2000-02-29
+```
+
+```python
+print(sorted([d1, d2, d3, d4]))
+```
+
+```text
+[Date(year=1990, month=5, day=20), Date(year=1998, month=9, day=20), Date(year=1998, month=9, day=21), Date(year=2022, month=12, day=18)]
+```
+
+Para mostrar la fecha implementamos `__str__` con el formato `YYYY-MM-DD` y `__repr__` con los argumentos de la clase.
+El formato `02d` agrega ceros a la izquierda hasta completar dos dígitos; `04d` hace lo mismo con cuatro.
+Para crear una fecha desde texto, `from_str` separa los valores por `-`, los convierte a enteros y llama al constructor.
+
+Para comparar fechas usamos las tuplas `(year, month, day)`.
+Python compara primero el año; si coincide, compara el mes y luego el día.
+Así también podemos ordenar fechas con `sorted`.
+
+Guardamos los valores en `_year`, `_month` y `_day`, y usamos propiedades con setters para verificar cada asignación.
+Si el valor no es válido, levantamos un `ValueError` antes de modificar el atributo.
+Para validar el día consultamos los días del mes y verificamos si el año es bisiesto cuando se trata de febrero.
+También revisamos el día al cambiar el mes o el año, para no dejar una fecha inválida.

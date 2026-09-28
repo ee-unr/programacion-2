@@ -1,0 +1,58 @@
+## Buscando el error
+
+```python
+nombre = "Ada"
+print(nombre)
+```
+
+```text
+Ada
+```
+
+```python
+edades = [19, 21, 23]
+ultima_edad = edades[2]
+print(ultima_edad)
+```
+
+```text
+23
+```
+
+```python
+total = 1500
+print("Total: $" + str(total))
+```
+
+```text
+Total: $1500
+```
+
+```python
+temperaturas = [18.5, 19.2, 20.0]
+temperaturas.append(20.4)
+print(temperaturas)
+```
+
+```text
+[18.5, 19.2, 20.0, 20.4]
+```
+
+```python
+def saludar(nombre):
+    return f"¡Hola, {nombre}!"
+
+print(saludar(nombre))
+```
+
+```text
+¡Hola, Ada!
+```
+
+En cada caso corregimos la causa del error:
+
+- `NameError`: escribimos `nombre` en lugar de `nomrbe`. El mensaje indica el nombre que no está definido.
+- `IndexError`: usamos el índice 2, porque la lista tiene tres elementos y los índices empiezan en cero. El mensaje indica que el índice está fuera del rango.
+- `TypeError`: convertimos `total` a texto con `str` para concatenarlo. El mensaje indica que no podemos concatenar una cadena y un entero.
+- `AttributeError`: usamos una lista en lugar de una tupla para poder llamar a `append`. El mensaje indica el método que la tupla no tiene.
+- `SyntaxError`: agregamos los dos puntos después de `def saludar(nombre)`. El mensaje señala dónde se esperaba `:`.

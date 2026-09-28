@@ -1,0 +1,60 @@
+## ¡Orden en el laboratorio!
+
+```python
+class Experimento:
+    total_creados = 0
+
+    def __init__(self, nombre, responsable=None):
+        Experimento.total_creados += 1
+        self.id = Experimento.total_creados
+        self.nombre = nombre
+        self.responsable = responsable
+
+    @classmethod
+    def desde_dict(cls, datos):
+        return cls(datos.get("nombre"), responsable=datos.get("responsable"))
+
+    def __repr__(self):
+        import json
+
+        nombre = json.dumps(self.nombre, ensure_ascii=False)
+        responsable = ("None" if self.responsable is None else
+                       json.dumps(self.responsable, ensure_ascii=False))
+        return (f"Experimento(id={self.id}, nombre={nombre}, "
+                f"responsable={responsable})")
+```
+
+```python
+e1 = Experimento("Piloto A", responsable="Dolores")
+e2 = Experimento("Piloto Z")
+e3 = Experimento.desde_dict({"nombre": "Piloto B", "responsable": "Ana"})
+
+print(Experimento.total_creados)
+```
+
+```text
+3
+```
+
+```python
+print(repr(e1))
+```
+
+```text
+Experimento(id=1, nombre="Piloto A", responsable="Dolores")
+```
+
+```python
+print(repr(e3))
+```
+
+```text
+Experimento(id=3, nombre="Piloto B", responsable="Ana")
+```
+
+Para asignar un identificador distinto a cada experimento usamos el atributo de clase `total_creados`.
+Como lo comparten todas las instancias, lo incrementamos cada vez que creamos una nueva y guardamos ese valor en `id`.
+
+Para crear un experimento desde un diccionario implementamos `desde_dict` con `@classmethod`.
+Usamos `cls(...)` para construir la instancia y `get` para que el responsable sea `None` si no se indica.
+Finalmente, `__repr__` devuelve la representación con los datos del experimento.

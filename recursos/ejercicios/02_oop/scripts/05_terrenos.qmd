@@ -1,0 +1,73 @@
+## Terrenos
+
+```python
+class Terreno:
+    def __init__(self, frente, fondo):
+        self.frente = frente
+        self.fondo = fondo
+
+    def area(self):
+        return self.frente * self.fondo
+
+    def __lt__(self, other):
+        if not isinstance(other, Terreno):
+            return NotImplemented
+        return self.area() < other.area()
+```
+
+```python
+terreno_a = Terreno(2, 6)
+terreno_b = Terreno(3, 4)
+terreno_c = Terreno(5, 5)
+terrenos = [terreno_c, terreno_a, terreno_b]
+
+areas = []
+for terreno in sorted(terrenos):
+    areas.append(terreno.area())
+
+print(areas)
+```
+
+```text
+[12, 12, 25]
+```
+
+```python
+print(terreno_a < terreno_b)
+```
+
+```text
+False
+```
+
+```python
+print(terreno_b < terreno_a)
+```
+
+```text
+False
+```
+
+```python
+print(terreno_a.area() == terreno_b.area())
+```
+
+```text
+True
+```
+
+```python
+print(terreno_a == terreno_b)
+```
+
+```text
+False
+```
+
+Para ordenar los terrenos con `sorted` implementamos `__lt__`, que compara sus áreas.
+Los terrenos de 2 × 6 y 3 × 4 tienen la misma área, por lo que ninguno es menor que el otro.
+En ese caso, `sorted` conserva el orden que tenían en la lista.
+
+Como no implementamos `__eq__`, `==` compara la identidad de los objetos y devuelve `False` para estos dos terrenos.
+No es necesario que tener la misma área implique ser iguales: también podrían importar las dimensiones o la ubicación.
+En otro dominio donde solo interese la superficie, podríamos implementar `__eq__` comparando las áreas.

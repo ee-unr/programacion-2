@@ -1,129 +1,41 @@
 ---
-title: U2 - Programación funcional
+title: U2 - Programación Orientada a Objetos
 ---
 
-## Trasfromando funciones
+{{< include scripts/01_problemas_con_el_descuento.qmd >}}
 
-```python
-{{< include scripts/01_transformando_funciones.py >}}
-```
+{{< include scripts/02_reportes.qmd >}}
 
+{{< include scripts/03_notificaciones.qmd >}}
 
-## Fábrica de promociones
+{{< include scripts/04_coordenadas.qmd >}}
 
-```python
-{{< include scripts/02_fabrica_de_promociones.py >}}
-```
+{{< include scripts/05_terrenos.qmd >}}
 
+{{< include scripts/06_compras.qmd >}}
 
-## Bendita media
+{{< include scripts/07_tiempo.qmd >}}
 
-```python
-{{< include scripts/03_bendita_media.py >}}
-```
+{{< include scripts/08_contador.qmd >}}
 
+{{< include scripts/09_magia_para_programadores.qmd >}}
 
-## Sucesión de Fibonacci
+{{< include scripts/10_mensaje_secreto.qmd >}}
 
-```python
-{{< include scripts/04_sucesion_fibonacci.py >}}
-```
+{{< include scripts/11_real_envido.qmd >}}
 
+{{< include scripts/12_muestra_infinita.qmd >}}
 
-## Palíndromos recursivos
+{{< include scripts/13_orden_en_el_laboratorio.qmd >}}
 
-```python
-{{< include scripts/05_palindromos_recursivos.py >}}
-```
+{{< include scripts/14_sensores_descalibrados.qmd >}}
 
+{{< include scripts/15_python_para_matematicos.qmd >}}
 
-## Área de aprendizaje
+{{< include scripts/16_tiempo_al_tiempo.qmd >}}
 
-```python
-{{< include scripts/06_area_de_aprendizaje.py >}}
-```
+{{< include scripts/17_buscando_el_error.qmd >}}
 
+{{< include scripts/18_inventario.qmd >}}
 
-## Socios ordenados
-
-```python
-{{< include scripts/07_socios_ordenados.py >}}
-```
-
-
-## Listado de rimas
-
-```python
-{{< include scripts/08_listado_rimas.py >}}
-```
-
-
-## Analistas de temperaturas
-
-```python
-{{< include scripts/09_analisis_temperaturas.py >}}
-```
-
-
-## El tiempo vuela
-
-```python
-{{< include scripts/10_el_tiempo_vuela.py >}}
-```
-
-
-## No perdamos el centro
-
-```python
-{{< include scripts/11_no_perdamos_el_centro.py >}}
-```
-
-
-## En Python es mejor
-
-```python
-{{< include scripts/12_en_python_es_mejor.py >}}
-```
-
-
-## Subiendo de rango
-
-```python
-{{< include scripts/13_subiendo_de_rango.py >}}
-```
-
-
-## La cajita musical
-
-```python
-{{< include scripts/14_la_cajita_musical.py >}}
-```
-
-
-## El mejor precio
-
-```python
-{{< include scripts/15_el_mejor_precio.py >}}
-```
-
-
-## Bromas pesadas 😱
-
-```python
-{{< include scripts/16_bromas_pesadas.py >}}
-```
-
-
-## _Pipelines_ de procesamiento 😱
-
-```python
-{{< include scripts/17_pipelines_de_procesamiento.py >}}
-```
-
-
-## ¿Espacio o tiempo? ⏳
-
-```python
-{{< include scripts/18_espacio_o_tiempo.py >}}
-```
-
+{{< include scripts/19_un_cajero_insistente.qmd >}}

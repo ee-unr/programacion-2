@@ -1,9 +1,10 @@
+## Python para matemáticos
+
+```python
 def mcd(a, b):
-    # Puede ser math.gcd
     while b != 0:
         a, b = b, a % b
     return abs(a)
-
 
 class Fraccion:
     def __init__(self, numerador, denominador):
@@ -18,7 +19,6 @@ class Fraccion:
         self.numerador = self.numerador // divisor
         self.denominador = self.denominador // divisor
 
-        # Normalizamos: denominador siempre positivo
         if self.denominador < 0:
             self.numerador *= -1
             self.denominador *= -1
@@ -60,22 +60,62 @@ class Fraccion:
         num = self.numerador * other.denominador
         den = self.denominador * other.numerador
         return Fraccion(num, den)
+```
 
-
+```python
 f1 = Fraccion(4, 5)
 f2 = Fraccion(1, 8)
 
-print(f1 + f2)   # 37/40
-print(f1 - f2)   # 27/40
-print(f1 * f2)   # 1/10
-print(f1 / f2)   # 32/5
+print(f1 + f2)
+```
 
-# Operandos no soportados:
-f1 + 2
-f1 - 2
-f1 * 2
-f1 / 2
+```text
+37/40
+```
 
+```python
+print(f1 - f2)
+```
 
-f1 / Fraccion(2, 1) # Pero esto sí :')
-f1 * Fraccion(5, 1) # Pero esto sí :')
+```text
+27/40
+```
+
+```python
+print(f1 * f2)
+```
+
+```text
+1/10
+```
+
+```python
+print(f1 / f2)
+```
+
+```text
+32/5
+```
+
+```python
+print(f1 / Fraccion(2, 1))
+```
+
+```text
+2/5
+```
+
+```python
+print(f1 * Fraccion(5, 1))
+```
+
+```text
+4/1
+```
+
+Para simplificar la fracción dividimos el numerador y el denominador por su máximo común divisor.
+Además, dejamos el signo en el numerador para que el denominador sea positivo.
+
+Para usar los operadores `+`, `-`, `*` y `/` implementamos `__add__`, `__sub__`, `__mul__` y `__truediv__`.
+Cada método devuelve una nueva `Fraccion`, por lo que el constructor también simplifica el resultado.
+Verificamos que el denominador no sea cero y que no se intente dividir por una fracción de valor cero.

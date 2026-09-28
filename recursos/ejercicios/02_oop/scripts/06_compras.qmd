@@ -1,0 +1,63 @@
+## Compras
+
+Para que `len(carrito)` devuelva la cantidad de productos en el carrito implementamos `__len__`.
+En este caso, también cuenta los duplicados.
+
+Para utilizar el operador `in` se implementa el método `__contains__`, que devuelve un booleano.
+La búsqueda se hace por nombre para que funcione la expresión `"yerba" in carrito`.
+Se podría implementar búsqueda por `Producto` pero escribir `Producto("yerba") in carrito`
+puede resultar más incómodo para el usuario.
+
+Finalmente, para obtener una descripción legible al usar `print()` podemos implementar el método `__str__`.
+
+
+```python
+class Producto:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+class Carrito:
+    def __init__(self, productos):
+        # Me aseguro que la secuencia es una lista internamente
+        self.productos = list(productos)
+
+    def __len__(self):
+        return len(self.productos)
+
+    def __contains__(self, nombre):
+        for producto in self.productos:
+            if producto.nombre == nombre:
+                return True
+        return False
+
+    def __str__(self):
+        nombres = []
+        for producto in self.productos:
+            nombres.append(producto.nombre)
+        return "Carrito con: " + ", ".join(nombres)
+```
+
+```python
+carrito = Carrito([Producto("yerba"), Producto("azúcar")])
+print(len(carrito))
+```
+
+```text
+2
+```
+
+```python
+print("yerba" in carrito)
+```
+
+```text
+True
+```
+
+```python
+print(carrito)
+```
+
+```text
+Carrito con: yerba, azúcar
+```

@@ -1,0 +1,53 @@
+## Coordenadas
+
+```python
+class Coordenada:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+origen_a = Coordenada(0, 0)
+origen_b = Coordenada(0, 0)
+print(origen_a == origen_b)
+print(origen_a is origen_b)
+print(origen_a.__dict__ == origen_b.__dict__)
+```
+
+```text
+False
+False
+True
+```
+
+Como no implementamos `__eq__`, `==` compara la identidad de los objetos.
+`origen_a` y `origen_b` son objetos distintos, por lo que tanto `==` como `is` devuelven `False`.
+En cambio, sus diccionarios de atributos tienen los mismos valores y la comparación devuelve `True`.
+
+Para que dos coordenadas con los mismos valores sean iguales implementamos `__eq__`:
+
+```python
+class Coordenada:
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+
+    def __eq__(self, other):
+        if not isinstance(other, Coordenada):
+            return NotImplemented
+        return self.x == other.x and self.y == other.y
+
+print(Coordenada(0, 0) == Coordenada(0, 0))
+print(Coordenada(0, 0).__eq__((0, 0)))
+print(Coordenada(0, 0) == (0, 0))
+```
+
+```text
+True
+NotImplemented
+False
+```
+
+Verificamos el tipo con `isinstance` para comparar los atributos solamente cuando el otro objeto también es una `Coordenada`.
+Si es de otro tipo, devolvemos `NotImplemented` para indicar que el método no define esa comparación.
+
+La llamada `Coordenada(0, 0).__eq__((0, 0))` devuelve `NotImplemented`.
+En cambio, la expresión `Coordenada(0, 0) == (0, 0)` devuelve `False`: el operador `==` intenta resolver la comparación y no encuentra una igualdad definida entre esos objetos.

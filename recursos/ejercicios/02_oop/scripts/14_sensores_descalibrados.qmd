@@ -1,0 +1,65 @@
+## Sensores descalibrados
+
+```python
+import random
+
+class Sensor:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self._offset = 0.0
+
+    def calibrar(self, offset):
+        self._offset = float(offset)
+
+    def leer(self):
+        raise NotImplementedError("Esta clase no implementa 'leer'. Use una subclase.")
+
+class SensorTemperatura(Sensor):
+    def leer(self):
+        base = random.uniform(18, 28)
+        return base + self._offset
+
+class SensorHumedad(Sensor):
+    def leer(self):
+        base = random.uniform(30, 70)
+        return base + self._offset
+
+def promedio_lecturas(sensores, n=5):
+    """Devuelve el promedio de n lecturas para cada sensor."""
+
+    if not isinstance(n, int):
+        raise TypeError("n debe ser un entero")
+    if n <= 0:
+        raise ValueError("n debe ser positivo")
+
+    resultados = {}
+
+    for sensor in sensores:
+        acumulado = 0
+        for _ in range(n):
+            acumulado += sensor.leer()
+        resultados[sensor.nombre] = acumulado / n
+    return resultados
+
+random.seed(0)
+
+t = SensorTemperatura("T1")
+h = SensorHumedad("H1")
+
+t.calibrar(0.5)
+
+promedios = promedio_lecturas([t, h], n=3)
+print(promedios)
+```
+
+```text
+{'T1': 25.24315945098732, 'H1': 45.66834145482648}
+```
+
+Guardamos el ajuste en `_offset` para sumarlo a cada lectura.
+Cada subclase implementa `leer` con el rango que corresponde a su sensor.
+El método de la clase base levanta `NotImplementedError` para indicar que las subclases deben implementarlo.
+
+En `promedio_lecturas` llamamos a `leer` la cantidad de veces indicada y guardamos cada promedio en un diccionario.
+Como ambos sensores tienen ese método, no necesitamos distinguirlos por tipo.
+Verificamos que `n` sea un entero positivo para poder calcular el promedio.

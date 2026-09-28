@@ -1,0 +1,34 @@
+## Problemas con el descuento
+
+Para inicializar el precio llamamos a `super().__init__(precio)` desde la subclase.
+Para calcular el precio final reutilizamos `super().precio_final()` y aplicamos el descuento al resultado.
+Así no repetimos la lógica del impuesto.
+
+Aplicar primero el descuento también da `100 * 0.8 * 1.21 = 96.8`, porque multiplicamos por los mismos factores.
+
+```python
+class Articulo:
+    def __init__(self, precio):
+        self.precio = precio
+
+    def precio_final(self):
+        return self.precio * 1.21
+
+class ArticuloEnOferta(Articulo):
+    def __init__(self, precio, descuento):
+        super().__init__(precio)
+        self.descuento = descuento
+
+    def precio_final(self):
+        return super().precio_final() * (1 - self.descuento)
+
+# Precio final debe ser igual a 100 * 1.21 * 0.8 = 96.8.
+# Por precisión numérica de la computadora, necesitamos usar un margen de error.
+eps = 0.0000001
+assert 96.8 - eps < ArticuloEnOferta(100, 0.20).precio_final() < 96.8 + eps
+print(round(ArticuloEnOferta(100, 0.20).precio_final(), 2))
+```
+
+```text
+96.8
+```

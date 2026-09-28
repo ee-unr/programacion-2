@@ -1,0 +1,43 @@
+## Reportes
+
+Para agregar otro tipo de reporte implementamos `exportar` en una nueva subclase.
+Como `guardar_todos` llama al mismo método para cada reporte, no necesitamos modificar la función.
+
+Si agregamos un `str` a la lista, aparece un `AttributeError` en `reporte.exportar()`, porque las cadenas no tienen ese método.
+La clase abstracta impide crear subclases que no implementen `exportar`, pero no controla qué objetos ponemos en la lista.
+Las anotaciones de tipo tampoco verifican los datos durante la ejecución.
+Para detectar el problema antes de exportar podemos recorrer la lista y verificar cada elemento con `isinstance(reporte, Reporte)`.
+
+```python
+from abc import ABC, abstractmethod
+
+class Reporte(ABC):
+    @abstractmethod
+    def exportar(self):
+        raise NotImplementedError
+
+class ReporteTexto(Reporte):
+    def exportar(self):
+        return "texto plano"
+
+class ReporteCSV(Reporte):
+    def exportar(self):
+        return "a,b,c"
+
+class ReporteJSON(Reporte):
+    def exportar(self):
+        return '{"datos": []}'
+
+def guardar_todos(reportes):
+    exportados = []
+    for reporte in reportes:
+        exportados.append(reporte.exportar())
+    return exportados
+
+reportes = [ReporteTexto(), ReporteCSV(), ReporteJSON()]
+print(guardar_todos(reportes))
+```
+
+```text
+['texto plano', 'a,b,c', '{"datos": []}']
+```

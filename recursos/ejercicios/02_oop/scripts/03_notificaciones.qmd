@@ -1,0 +1,37 @@
+## Notificaciones
+
+Para que todos los notificadores puedan usarse de la misma manera definimos el método `enviar(mensaje)` en la clase base.
+Cada subclase implementa su propia forma de enviar el mensaje.
+Así podemos agregar nuevos canales sin modificar `notificar_a_todos`.
+
+Si un envío puede fallar, podemos capturar la excepción dentro del `for` para continuar con los demás.
+Si queremos detener los envíos ante un error, dejamos que la excepción se propague.
+
+
+```python
+from abc import ABC, abstractmethod
+
+class Notificador(ABC):
+    @abstractmethod
+    def enviar(self, mensaje):
+        raise NotImplementedError
+
+class Email(Notificador):
+    def enviar(self, mensaje):
+        print(f"Email: {mensaje}")
+
+class Consola(Notificador):
+    def enviar(self, mensaje):
+        print(mensaje)
+
+def notificar_a_todos(notificadores, mensaje):
+    for notificador in notificadores:
+        notificador.enviar(mensaje)
+
+notificar_a_todos([Email(), Consola()], "Hola")
+```
+
+```text
+Email: Hola
+Hola
+```

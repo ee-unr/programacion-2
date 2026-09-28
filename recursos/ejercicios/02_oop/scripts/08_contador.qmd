@@ -1,0 +1,79 @@
+## Contador
+
+```python
+class Contador:
+    def __init__(self, valor_inicial=0):
+        self._inicial = valor_inicial
+        self._valor = valor_inicial
+
+    def incrementar(self, paso=1):
+        self._valor += paso
+        return self._valor
+
+    def decrementar(self, paso=1):
+        self._valor -= paso
+        return self._valor
+
+    def valor(self):
+        return self._valor
+
+    def reiniciar(self):
+        self._valor = self._inicial
+        return self._valor
+
+    def __str__(self):
+        return f"Contador(valor={self._valor})"
+
+```
+
+Creamos un contador en cero y cambiamos su valor:
+
+```python
+c = Contador()
+print(c.valor())
+print(c.incrementar(5))
+print(c.decrementar(2))
+print(c.reiniciar())
+```
+
+```text
+0
+5
+3
+0
+```
+
+Si no indicamos el paso, incrementamos o decrementamos de a uno:
+
+```python
+print(c.incrementar())
+print(c.incrementar())
+print(c.decrementar())
+print(c)
+```
+
+```text
+1
+2
+1
+Contador(valor=1)
+```
+
+También podemos empezar en otro valor. Al reiniciar volvemos a ese valor inicial:
+
+```python
+contador_iniciado_en_10 = Contador(10)
+print(contador_iniciado_en_10.valor())
+print(contador_iniciado_en_10.incrementar(3))
+print(contador_iniciado_en_10.reiniciar())
+```
+
+```text
+10
+13
+10
+```
+
+Guardamos el valor inicial en `_inicial` para poder recuperarlo al llamar a `reiniciar`, aunque sea distinto de cero.
+
+Los valores por defecto permiten crear un contador en cero e incrementar o decrementar de a uno cuando no indicamos otra cantidad.

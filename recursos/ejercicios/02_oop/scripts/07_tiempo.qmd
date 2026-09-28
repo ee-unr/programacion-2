@@ -1,0 +1,34 @@
+## Tiempo
+
+Para sumar dos duraciones implementamos `__add__`, que devuelve una nueva `Duracion` con la suma de los minutos.
+Para mostrarla con `print()` usamos `__str__`,
+y para obtener una representación como `Duracion(60)` usamos `__repr__`.
+
+En este caso decidimos permitir solamente la suma entre duraciones.
+Si el otro objeto es un entero, `__add__` devuelve `NotImplemented` y la expresión `Duracion(15) + 10` produce un `TypeError`.
+
+```python
+class Duracion:
+    def __init__(self, minutos):
+        self.minutos = minutos
+
+    def __add__(self, other):
+        if not isinstance(other, Duracion):
+            return NotImplemented
+        return Duracion(self.minutos + other.minutos)
+
+    def __repr__(self):
+        return f"Duracion({self.minutos})"
+
+    def __str__(self):
+        return f"{self.minutos // 60} h {self.minutos % 60} min"
+
+total = Duracion(15) + Duracion(45)
+print(total)
+print(repr(total))
+```
+
+```text
+1 h 0 min
+Duracion(60)
+```
