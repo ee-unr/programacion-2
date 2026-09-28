@@ -1,0 +1,13 @@
+---
+title: 6 - Otros tópicos
+toc: true
+---
+
+
+* Funciones con argumentos por defecto mutables
+* Funciones con únicamente argumentos posicionales
+* Funciones con únicamente argumentos nombrados
+* Desestructuraciones de secuencias y de mapeos al llamar a una función
+    * `f(*[1, 2, 3])`
+    * `g(**{"a": 1, "b": 2})`
+    * `h(*[1, 2, 3], **{"a": 1, "b": 2})`

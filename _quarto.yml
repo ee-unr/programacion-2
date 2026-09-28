@@ -47,7 +47,7 @@ website:
             - sort-ui: false
         - text: U3 - Programación Funcional
           contents:
-            - auto: teoria/03_programacion_funcional/*.ipynb
+            - auto: teoria/03_programacion_funcional/*.qmd
             - sort-ui: false
         # - text: U4 - Estructuras de Datos y Algoritmos
         #   contents:

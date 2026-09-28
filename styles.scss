@@ -455,3 +455,27 @@ div.carousel {
 .carousel-item {
   transition: none !important;
 }
+
+// Botón para abrir el applet de recursión
+.btn.recursion-open {
+  color: $teal-primary;
+  border-color: $teal-primary;
+
+  &:hover, &:focus-visible {
+    color: $white;
+    background-color: $teal-primary;
+    border-color: $teal-primary;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $green-light;
+    outline-offset: 2px;
+    box-shadow: none;
+  }
+
+  &:active {
+    color: $white;
+    background-color: $teal-dark;
+    border-color: $teal-dark;
+  }
+}
