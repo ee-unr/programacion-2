@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recursión paso a paso</title>
+<style>
+:root{color-scheme:light;--ink:#192b3a;--muted:#566879;--line:#dce4eb;--accent:#2e7d8a;--accent-bg:#e0f2e1;--gold:#946000;--gold-bg:#fff3d0;--green:#177451;--green-bg:#e5f5ed}
+*{box-sizing:border-box}body{margin:0;background:white;color:var(--ink);font:14px/1.4 system-ui,sans-serif}main{max-width:1320px;margin:auto;padding:12px}h2{font-size:14px;margin:0}p{margin:3px 0 0}.controls{display:flex;width:fit-content;max-width:100%;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 10px;padding:0}.field{display:flex;align-items:center;gap:7px}label{font-weight:600}select,input[type=number],button{font:inherit;border:1px solid #bdcad7;border-radius:5px;background:white;color:var(--ink);padding:5px 9px}input[type=number]{width:65px}button{cursor:pointer;font-weight:600}button:hover:not(:disabled){background:#e0f2e1;border-color:var(--accent)}button:disabled{opacity:.42;cursor:default}button.primary{background:var(--accent);color:white;border-color:var(--accent)}button.primary:hover:not(:disabled){background:#1a4a52;border-color:#1a4a52}:focus-visible{outline:3px solid #c8e6c9;outline-offset:2px}.hint{color:var(--muted);font-size:12px}#error{color:#aa2727;font-weight:600}.layout{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:16px;align-items:start}.sidebar{display:grid;gap:14px}.panel{min-width:0;overflow:hidden}.panel-title{min-height:28px;margin-bottom:4px;display:flex;align-items:center;justify-content:space-between;gap:8px}.code{padding:5px 0;background:#f7f9fc;border-radius:5px;font:15px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;overflow:auto}.code-line{display:flex;padding-right:10px;border-left:3px solid transparent}.code-line>span:last-child{white-space:pre-wrap;overflow-wrap:anywhere;min-width:0}.code-line.current{background:var(--accent-bg);border-left-color:var(--accent)}.line-number{width:26px;flex-shrink:0;text-align:right;margin-right:10px;color:#728394;user-select:none}.stack{max-height:160px;overflow:auto;display:flex;flex-direction:column;gap:3px}.frame{border-left:2px solid var(--line);padding:5px 8px;display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;flex-shrink:0}.frame.active{border-color:var(--accent);background:var(--accent-bg)}.frame.returning{border-color:var(--green);background:var(--green-bg)}.frame strong{font:600 13px ui-monospace,monospace}.frame small{color:var(--muted);font-size:12px}.empty{color:var(--muted);padding:5px 0;font-size:13px}.diagram-panel .panel-title{flex-wrap:wrap}#viewport{height:300px;overflow:auto;position:relative}svg{display:block;margin:0 auto}svg text{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}svg .node-title{font-size:13px;font-weight:600}svg .node-detail{font-size:12px}svg .node-state{font:11px system-ui,sans-serif}.transport{display:flex;align-items:center;gap:18px;padding:9px 0 12px;margin-bottom:8px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.navigation{display:flex;align-items:center;gap:6px;flex-shrink:0}.timeline{display:flex;align-items:center;gap:12px;flex:1;min-width:0}.step-count{color:var(--accent);font-size:12px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}.timeline input{--progress:0%;appearance:none;-webkit-appearance:none;flex:1;min-width:50px;height:28px;margin:0;background:transparent;cursor:pointer}.timeline input::-webkit-slider-runnable-track{height:8px;border-radius:10px;background:linear-gradient(to right,var(--accent) var(--progress),#c8e6c9 var(--progress))}.timeline input::-moz-range-track{height:8px;border-radius:10px;background:#c8e6c9}.timeline input::-moz-range-progress{height:8px;border-radius:10px;background:var(--accent)}.timeline input::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:20px;height:20px;margin-top:-6px;border:3px solid white;border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--accent)}.timeline input::-moz-range-thumb{width:14px;height:14px;border:3px solid white;border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px var(--accent)}.explanation{margin:8px 0 12px;padding:7px 10px;border-left:3px solid var(--accent);background:#e0f2e1}.explanation strong{font-size:17px;color:var(--accent)}.explanation p{color:var(--ink);font-size:15px;line-height:1.5}.zoom{font-size:11px;padding:3px 7px}#result{color:var(--green);font-size:12px;font-weight:700}.control-help{font-size:12px;color:var(--muted);margin:0}kbd{font:inherit;background:#edf1f6;padding:1px 4px;border-radius:3px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:1000px){.transport{gap:12px;flex-wrap:wrap}.timeline{flex-basis:100%}}@media(max-width:850px){main{padding:10px}.layout{grid-template-columns:1fr;gap:12px}.sidebar{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.code{font-size:13px}}@media(max-width:600px){main{padding:8px}.sidebar{grid-template-columns:1fr;gap:10px}.controls{gap:8px}.stack{max-height:110px}.navigation button{font-size:12px;padding:5px 7px}.transport{gap:5px}.timeline{flex-basis:100%;gap:10px}.code{font-size:14px}.controls .hint{font-size:11px}}
+</style>
+</head>
+<body>
+<main>
+<form class="controls" id="settings">
+<div class="field"><label for="example">Ejemplo</label><select id="example"><option value="factorial">Factorial</option><option value="fibonacci">Fibonacci</option></select></div>
+<div class="field"><label for="argument">n =</label><input id="argument" type="number" min="0" max="10" step="1" value="5" required aria-describedby="limit"></div>
+<button type="submit">Comenzar</button><span class="hint" id="limit"></span><span id="error" role="alert"></span>
+</form>
+<section class="transport" aria-label="Controles de ejecución">
+<div class="navigation"><button id="first" type="button" aria-label="Volver al inicio">↤ Inicio</button><button id="previous" type="button">← Anterior</button><button id="next" class="primary" type="button">Siguiente →</button><button id="last" type="button" aria-label="Ir al resultado final">Final ↦</button></div>
+<div class="timeline"><label for="timeline" class="sr-only">Paso de ejecución</label><input type="range" id="timeline" min="0" value="0" aria-label="Paso de ejecución"><span class="step-count" id="step-count"></span></div>
+</section>
+<p class="control-help">Avanzá y retrocedé con los botones o las teclas <kbd>←</kbd> y <kbd>→</kbd>. <span id="diagram-note"></span></p>
+<div class="explanation" aria-live="polite" aria-atomic="true"><strong id="event-title"></strong><p id="event-description"></p></div>
+<div class="layout">
+<aside class="sidebar">
+<section class="panel"><div class="panel-title"><h2>Código Python</h2><span class="hint">Línea en ejecución</span></div><div class="code" id="code" aria-label="Código del ejemplo"></div></section>
+<section class="panel"><div class="panel-title"><h2>Pila de llamadas</h2><span class="hint">Actual arriba</span></div><div class="stack" id="stack"></div></section>
+</aside>
+<section class="panel diagram-panel">
+<div class="panel-title"><h2 id="diagram-title">Árbol de llamadas</h2><button class="zoom" id="fit" type="button" aria-pressed="true">Tamaño original</button><span id="result"></span></div>
+<div id="viewport" tabindex="0" aria-label="Diagrama de llamadas, desplazable"><svg id="diagram" role="img" aria-labelledby="svg-title svg-description"></svg></div>
+</section>
+</div>
+<noscript>Activá JavaScript para usar el applet.</noscript>
+</main>
+<script src="recursion.js"></script>
+</body>
+</html>
