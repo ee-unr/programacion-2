@@ -921,7 +921,7 @@ La función `crear_multiplicador` es una fábrica de funciones que devuelve otra
 Lo interesante de esta implementación es que la función interna solo recibe uno de los dos valores necesarios para la multiplicación; el otro queda que fijado cuando se ejecuta la función externa `crear_multiplicador`.
 
 Para que `duplicar` y `triplicar` funcionen correctamente, ambas funciones internas deben conservar acceso al entorno en el que está definido el valor de `x`.
-Ese mecanismo, que permite a una tener acceso a las variables de su contexto incluso después de que la ejecución de la función externa haya concluído, es precisamente lo que se conoce como un **_closure_**.
+Un **_closure_** combina una función con el entorno de variables en el que fue definida. Esto permite que la función conserve acceso a esas variables incluso después de que termine la ejecución de la función externa.
 
 ```python
 def crear_multiplicador(x):
@@ -1022,7 +1022,7 @@ El valor es... 393
 ::: {.callout-note}
 ##### Una dosis de precisión 🎯😱
 
-A menudo se dice que un **_closure_**  es una función. Así, en el siguiente ejemplo, `duplicar` sería considerado un _closure_:
+A menudo se dice que un **_closure_** es una función. Así, en el siguiente ejemplo, `duplicar` suele describirse como un _closure_:
 
 ```python
 def crear_multiplicador(x):
@@ -1033,10 +1033,7 @@ def crear_multiplicador(x):
 duplicar = crear_multiplicador(2)
 ```
 
-Sin embargo, esa definición es un tanto imprecisa. 
-Un _closure_ no es simplemente una función, sino el mecanismo que permite a las funciones acceder a las variables del entorno en el que fueron definidas, incluso cuando ese entorno ya dejó de existir (por ejemplo, después de que termina la ejecución de la función externa que las creó).
-
-Uf... ¡qué complicado!
+Sin embargo, esta forma de expresarlo es algo imprecisa. Más precisamente, un _closure_ combina una función con el entorno de variables en el que fue definida. Esto permite que la función conserve acceso a esas variables incluso después de que termine la ejecución de la función externa. En el ejemplo, `interna` conserva acceso a `x` aun después de que finaliza la ejecución de `crear_multiplicador`.
 
 :::
 
@@ -1054,4 +1051,3 @@ Error in data[1] : object of type 'closure' is not subsettable
 Esto ocurre porque `data` es en realidad una función en R. En este lenguaje, el tipo de los objetos función se denomina `closure`, haciendo referencia la capacidad que tienen las funciones de acceder a valores del ambiente donde fueron definidas.
 
 :::
-
