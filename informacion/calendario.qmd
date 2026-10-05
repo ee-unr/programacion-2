@@ -34,7 +34,8 @@ page-layout: full
   vertical-align: middle;
 }
 
-.calendario-table td[colspan="2"] {
+.calendario-table td[colspan="2"],
+.calendario-table td.trabajo-practica {
   text-align: center;
   vertical-align: middle;
 }
@@ -152,6 +153,12 @@ page-layout: full
     <tr>
       <td>8</td>
       <td>21 de septiembre</td>
+      <td class="trabajo-practica">Trabajo en la práctica</td>
+      <td>Parcial</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>28 de septiembre</td>
       <td>
         <ul>
           <li>Principios fundamentales.</li>
@@ -162,11 +169,11 @@ page-layout: full
           <li>Recursión.</li>
         </ul>
       </td>
-      <td>Parcial</td>
+      <td></td>
     </tr>
     <tr>
-      <td>9</td>
-      <td>28 de septiembre</td>
+      <td>10</td>
+      <td>5 de octubre</td>
       <td>
         <ul>
           <li>Funciones de orden superior: <code>map</code>, <code>filter</code>, <code>reduce</code>.</li>
@@ -177,11 +184,17 @@ page-layout: full
           <li>Decoradores.</li>
         </ul>
       </td>
-      <td></td>
+      <td>Recuperatorio</td>
     </tr>
     <tr>
-      <td>10</td>
-      <td>5 de octubre</td>
+      <td>11</td>
+      <td>12 de octubre</td>
+      <td class="trabajo-practica">Trabajo en la práctica</td>
+      <td>Presentación TP Grupal</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>19 de octubre</td>
       <td>
         <ul>
           <li>Concepto de estructuras de datos y algoritmos.</li>
@@ -191,37 +204,32 @@ page-layout: full
           <li>Búsqueda lineal y binaria.</li>
         </ul>
       </td>
-      <td>Recuperatorio<br>Presentación TP Grupal</td>
-    </tr>
-    <tr>
-      <td>11</td>
-      <td>12 de octubre</td>
-      <td colspan="2">Trabajo en la práctica</td>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td>19 de octubre</td>
-      <td>
-        <ul>
-          <li>Estructuras lineales: pilas, colas, listas enlazadas y listas doblemente enlazadas.</li>
-          <li>Operaciones básicas sobre estructuras lineales.</li>
-        </ul>
-      </td>
-      <td>Entrega TP Grupal</td>
+      <td></td>
     </tr>
     <tr>
       <td>13</td>
       <td>26 de octubre</td>
       <td>
         <ul>
-          <li>Algoritmos de ordenamiento: <em>bubble sort</em>, <em>insertion sort</em>, <em>selection sort</em>, <em>quick sort</em> y <em>merge sort</em>.</li>
+          <li>Estructuras lineales: pilas, colas, listas enlazadas y listas doblemente enlazadas.</li>
+          <li>Operaciones básicas sobre estructuras lineales.</li>
         </ul>
       </td>
-      <td>Presentación TP Individual</td>
+      <td>Entrega TP Grupal<br>Presentación TP Individual</td>
     </tr>
     <tr>
       <td>14</td>
       <td>2 de noviembre</td>
+      <td>
+        <ul>
+          <li>Algoritmos de ordenamiento: <em>bubble sort</em>, <em>insertion sort</em>, <em>selection sort</em>, <em>quick sort</em> y <em>merge sort</em>.</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>9 de noviembre</td>
       <td>
         <ul>
           <li>Concepto y representación de estructuras no lineales.</li>
@@ -232,21 +240,15 @@ page-layout: full
       <td></td>
     </tr>
     <tr>
-      <td>15</td>
-      <td>9 de noviembre</td>
+      <td>16</td>
+      <td>16 de noviembre</td>
       <td>
         <ul>
           <li>Grafos: definición, representaciones y operaciones básicas.</li>
           <li>Recorridos de grafos.</li>
         </ul>
       </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>16</td>
-      <td>16 de noviembre</td>
-      <td></td>
-      <td>Entrega y defensa TP Individual</td>
+      <td>Entrega TP individual</td>
     </tr>
   </tbody>
 </table>
