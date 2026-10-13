@@ -26,7 +26,7 @@ La primera línea suele contener los nombres de las columnas.
 
 Por ejemplo, el archivo `productos.csv` contiene la siguiente tabla:
 
-```text
+```cmd
 nombre,precio,cantidad
 Cuaderno,2500.5,10
 Lapicera,800.0,25
@@ -40,7 +40,7 @@ La línea `nombre,precio,cantidad` es el encabezado y permite identificar qué r
 También es posible utilizar otros separadores. La misma tabla, con punto y coma, se ve de la
 siguiente manera:
 
-```text
+```cmd
 nombre;precio;cantidad
 Cuaderno;2500.5;10
 Lapicera;800.0;25
