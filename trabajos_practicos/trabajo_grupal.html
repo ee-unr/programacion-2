@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -154,8 +189,18 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a></li>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link" data-scroll-target="#objetivo"><span class="header-section-number">2</span> Objetivo</a></li>
+  <li><a href="#pautas" id="toc-pautas" class="nav-link" data-scroll-target="#pautas"><span class="header-section-number">3</span> Pautas</a></li>
+  <li><a href="#visualización-del-resultado" id="toc-visualización-del-resultado" class="nav-link" data-scroll-target="#visualización-del-resultado"><span class="header-section-number">4</span> Visualización del resultado</a></li>
+  <li><a href="#evaluación" id="toc-evaluación" class="nav-link" data-scroll-target="#evaluación"><span class="header-section-number">5</span> Evaluación</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -163,6 +208,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Trabajo práctico grupal</h1>
+<p class="subtitle lead">Lector de datos tabulares</p>
 </div>
 
 
@@ -179,9 +225,99 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>El trabajo práctico grupal aún no se encuentra disponible.</p>
+<section id="introducción" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">1</span> Introducción</h2>
+<p>Una tabla de datos permite organizar información en filas y columnas. En general, cada fila representa una observación y cada columna una variable. Por ejemplo, en una tabla de productos, cada fila puede corresponder a un producto y las columnas a su nombre, precio y cantidad disponible. En el análisis de datos se trabaja frecuentemente con este tipo de tablas. A partir de ellas podemos, por ejemplo, calcular el precio promedio de los productos o identificar aquellos que tienen pocas unidades disponibles.</p>
+<p>Existen distintas formas de almacenar tablas en una computadora. Se pueden utilizar planillas de cálculo, bases de datos o archivos de texto plano, entre otras opciones. En este trabajo nos vamos a concentrar en los archivos de texto plano, cuyo contenido se puede leer con cualquier editor de texto.</p>
+<p>Uno de los formatos más utilizados es CSV, del inglés <em>comma-separated values</em>. En su forma más sencilla, cada línea del archivo representa una fila y los valores se separan mediante comas. La primera línea suele contener los nombres de las columnas.</p>
+<p>Por ejemplo, el archivo <code>productos.csv</code> contiene la siguiente tabla:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nombre,precio,cantidad</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Cuaderno,2500.5,10</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Lapicera,800.0,25</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Carpeta,3200.0,8</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este caso, hay tres filas de datos y tres columnas. La primera fila de datos corresponde al producto <code>Cuaderno</code>, cuyo precio es <code>2500.5</code> y del que hay <code>10</code> unidades disponibles. La línea <code>nombre,precio,cantidad</code> es el encabezado y permite identificar qué representa cada columna.</p>
+<p>También es posible utilizar otros separadores. La misma tabla, con punto y coma, se ve de la siguiente manera:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nombre;precio;cantidad</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Cuaderno;2500.5;10</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Lapicera;800.0;25</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Carpeta;3200.0;8</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En ambos ejemplos, las filas y las columnas representan la misma información. Lo que cambia es el carácter utilizado para separar los valores. Otros archivos utilizan tabulaciones o espacios.</p>
+</section>
+<section id="objetivo" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="objetivo"><span class="header-section-number">2</span> Objetivo</h2>
+<p>El objetivo de este trabajo práctico es implementar un módulo de Python que permita leer tablas de datos almacenadas en archivos de texto plano. El lector deberá soportar como mínimo archivos CSV, y se valorará positivamente que permita utilizar otros separadores, como punto y coma o tabulaciones. Además, quienes quieran ampliar esta funcionalidad pueden permitir que el usuario indique un delimitador arbitrario, incluso de más de un carácter.</p>
+<p>El resultado de la lectura será una lista de diccionarios. Cada diccionario representa una fila, sus claves son los nombres de las columnas y sus valores son los datos correspondientes. Por ejemplo, al leer el archivo <code>productos.csv</code> se obtiene:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"Cuaderno"</span>, <span class="st">"precio"</span>: <span class="fl">2500.5</span>, <span class="st">"cantidad"</span>: <span class="dv">10</span>},</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"Lapicera"</span>, <span class="st">"precio"</span>: <span class="fl">800.0</span>, <span class="st">"cantidad"</span>: <span class="dv">25</span>},</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"nombre"</span>: <span class="st">"Carpeta"</span>, <span class="st">"precio"</span>: <span class="fl">3200.0</span>, <span class="st">"cantidad"</span>: <span class="dv">8</span>},</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notar que los precios y las cantidades se representan mediante números, aunque en el archivo original todos los valores están almacenados como texto.</p>
+</section>
+<section id="pautas" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="pautas"><span class="header-section-number">3</span> Pautas</h2>
+<section id="organización-del-código" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="organización-del-código"><span class="header-section-number">3.1</span> Organización del código</h3>
+<p>Pueden organizar la implementación en un único módulo o distribuirla en varios módulos. También pueden utilizar programación orientada a objetos, programación funcional o combinar ambos enfoques. Los nombres de las funciones, las clases y sus argumentos quedan a criterio de cada grupo.</p>
+<p>Cada grupo deberá decidir cómo organizar su solución y cómo se utilizará el lector desde otro programa. Para ello, tendrán que considerar distintas alternativas y evaluar sus ventajas y desventajas. Durante la presentación deberán poder explicar por qué eligieron una alternativa y no otra.</p>
+</section>
+<section id="lectura-del-archivo" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="lectura-del-archivo"><span class="header-section-number">3.2</span> Lectura del archivo</h3>
+<p>El análisis del texto y la separación de los campos deben ser implementados por el grupo. No se permite utilizar el módulo <code>csv</code>, los lectores de pandas ni otras bibliotecas que resuelvan esta tarea. Sí pueden utilizar expresiones regulares, si lo consideran conveniente.</p>
+<p>El lector utilizará la primera fila del archivo como encabezado. Deberán definir qué sucede si alguno de los nombres de las columnas está vacío o si hay nombres repetidos. Opcionalmente, pueden admitir la lectura de archivos sin encabezado.</p>
+</section>
+<section id="tipos-de-datos" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="tipos-de-datos"><span class="header-section-number">3.3</span> Tipos de datos</h3>
+<p>El lector deberá soportar valores enteros (<code>int</code>), flotantes (<code>float</code>), de texto (<code>str</code>) y booleanos (<code>bool</code>). También deberá contemplar valores nulos cuando una celda esté vacía.</p>
+<p>El lector deberá determinar automáticamente el tipo de las columnas para las que el usuario no haya indicado un tipo. Para ello, tendrán que definir y documentar los criterios utilizados. Por ejemplo, una columna puede contener los valores <code>10</code>, <code>20</code> y <code>30.5</code>. En ese caso, deberán decidir qué tipo permite representar todos sus valores. También deberán considerar qué sucede si aparecen números y texto en una misma columna, o si todas sus celdas están vacías.</p>
+<p>También deberán indicar qué representaciones se reconocen como booleanos y cómo se representan los valores nulos en el resultado.</p>
+<p>El lector deberá permitir que el usuario especifique el tipo de una o más columnas. Los tipos indicados por el usuario tendrán prioridad sobre la inferencia automática. Esto puede ser útil cuando la interpretación automática no coincide con lo que se necesita. Por ejemplo, un código como <code>00123</code> puede contener solo dígitos, pero al convertirlo a un entero se pierden los ceros iniciales. Si el usuario indica que esa columna es de texto, el lector deberá conservar <code>"00123"</code>.</p>
+<p>Si un valor no puede convertirse al tipo indicado, deberán tratarlo de acuerdo con el manejo de errores definido por el grupo. No deberán reemplazar el tipo solicitado por otro inferido automáticamente.</p>
+</section>
+<section id="selección-de-filas-y-columnas" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="selección-de-filas-y-columnas"><span class="header-section-number">3.4</span> Selección de filas y columnas</h3>
+<p>El lector deberá permitir:</p>
+<ol type="1">
+<li>Especificar la cantidad de filas a leer.</li>
+<li>Especificar un rango de filas a leer.</li>
+<li>Seleccionar las columnas que se quieren obtener.</li>
+<li>Filtrar las filas mediante una función que evalúe los valores de una o más columnas y devuelva un booleano. Se conservarán las filas para las que la función devuelva <code>True</code>.</li>
+</ol>
+<p>Por ejemplo, para la tabla de productos, el usuario podría querer obtener solamente los nombres y los precios de aquellos productos que tienen menos de diez unidades disponibles. La función de filtro permite expresar esa condición, mientras que la selección de columnas determina qué datos se incluyen en el resultado.</p>
+<p>Deberán documentar cómo se utiliza cada opción y qué sucede cuando se combinan. Por ejemplo, si se solicitan diez filas y se aplica un filtro, pueden examinar las primeras diez filas del archivo o continuar leyendo hasta obtener diez filas que cumplan la condición. Cada grupo deberá decidir cuál será el comportamiento de su lector.</p>
+<p>Del mismo modo, deberán indicar cómo se numeran las filas, si los extremos del rango están incluidos y si el rango se aplica antes o después del filtro. También tendrán que definir si es posible filtrar por una columna que no se incluye en el resultado.</p>
+</section>
+<section id="manejo-de-errores" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="manejo-de-errores"><span class="header-section-number">3.5</span> Manejo de errores</h3>
+<p>Deberán definir cómo se comportará el lector ante un archivo vacío, filas vacías, filas con distinta cantidad de campos y valores que no puedan convertirse al tipo esperado.</p>
+<p>No es necesario continuar la lectura ante cualquier problema. Pueden decidir detenerla e informar un error. En ese caso, el mensaje debe permitir identificar qué ocurrió y, cuando corresponda, en qué fila y columna se encuentra el problema.</p>
+</section>
+<section id="ejemplos-y-pruebas" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="ejemplos-y-pruebas"><span class="header-section-number">3.6</span> Ejemplos y pruebas</h3>
+<p>Para comprobar el correcto funcionamiento del lector, deberán incluir archivos pequeños y ejemplos de uso con sus resultados esperados. Las pruebas deben contemplar la lectura habitual, la combinación de opciones y las situaciones problemáticas mencionadas anteriormente.</p>
+</section>
+</section>
+<section id="visualización-del-resultado" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="visualización-del-resultado"><span class="header-section-number">4</span> Visualización del resultado</h2>
+<p>Para mostrar los datos de forma tabular, pueden convertir la lista de diccionarios a un <code>DataFrame</code> de pandas. Esta conversión debe realizarse en el programa utilizado para la demostración, fuera del código del lector.</p>
+<p>Por ejemplo, si la función que implementaron se llama <code>leer_tabla</code>, pueden utilizar:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>filas <span class="op">=</span> leer_tabla(<span class="st">"productos.csv"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>tabla <span class="op">=</span> pd.DataFrame(filas)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabla)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El nombre <code>leer_tabla</code> se utiliza solo como ejemplo. Cada grupo puede definir su propia interfaz.</p>
+<p>También deberán poder mostrar la lista de diccionarios original, ya que pandas puede cambiar la representación de los tipos y de los valores nulos al construir el <code>DataFrame</code>.</p>
+</section>
+<section id="evaluación" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="evaluación"><span class="header-section-number">5</span> Evaluación</h2>
+<p>La evaluación contempla no solo la correcta ejecución del programa, sino también la calidad del código desarrollado, considerando aspectos como la organización, claridad, robustez y el uso de estructuras de datos y algoritmos apropiados.</p>
+<p>Además, se tendrá en cuenta que puedan justificar las decisiones tomadas y que el lector se comporte de acuerdo con lo que documentaron.</p>
+<p>Cada grupo realizará una presentación en una reunión con los docentes. Durante la reunión se les proporcionarán archivos CSV que no hayan utilizado previamente, dentro del alcance establecido en estas pautas. Deberán leerlos con su implementación y explicar los resultados obtenidos.</p>
+<p>Todos los integrantes deberán poder explicar el funcionamiento del código y responder preguntas sobre las decisiones del grupo, las alternativas consideradas y las limitaciones de la solución.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
