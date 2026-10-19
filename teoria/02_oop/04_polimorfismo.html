@@ -77,6 +77,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-4d01223578e65d06e0f48f09272d160e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -339,6 +342,35 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../teoria/03_programacion_funcional/05_generadores.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5 - Generadores 🧩</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U4 - Estructuras de Datos Lineales</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_lineales/01_por_que_importan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - ¿Por qué importan?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_lineales/02_estructuras_lineales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Estructuras lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_lineales/03_ordenamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Algoritmos de ordenamiento</span></a>
   </div>
 </li>
       </ul>
@@ -884,7 +916,7 @@ Mostrar código
 <span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="vectores_1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><a href="vectores_1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="vectores_1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 <p>El vector <span class="math inline">\(\vec{v}\)</span> y su opuesto <span class="math inline">\(-\vec{v}\)</span>:</p>
@@ -892,21 +924,21 @@ Mostrar código
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>graficar_vectores([v, v <span class="op">*</span> (<span class="op">-</span><span class="dv">1</span>)])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="vectores_2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><a href="vectores_2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="vectores_2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 <p>El vector <span class="math inline">\(\vec{v}\)</span> y <span class="math inline">\(1.5 \times \vec{v}\)</span>:</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>graficar_vectores([v, v <span class="op">*</span> <span class="fl">1.5</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="vectores_3.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><a href="vectores_3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="vectores_3.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 <p>El vector <span class="math inline">\(\vec{v}\)</span> y <span class="math inline">\(0.5 \times \vec{v}\)</span>:</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>graficar_vectores([v, v <span class="op">*</span> <span class="fl">0.5</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="vectores_4.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><a href="vectores_4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="vectores_4.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 <p>Los vectores <span class="math inline">\(\vec{u}\)</span>, <span class="math inline">\(\vec{v}\)</span> y su suma:</p>
@@ -915,14 +947,14 @@ Mostrar código
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>graficar_vectores([u, v, u <span class="op">+</span> v])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="vectores_5.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><a href="vectores_5.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="vectores_5.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 <p>Y ahora su resta:</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>graficar_vectores([u, v, u <span class="op">-</span> v])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="vectores_6.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><a href="vectores_6.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="vectores_6.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></a></p>
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1442,6 +1474,38 @@ Sobrecarga de operadores
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

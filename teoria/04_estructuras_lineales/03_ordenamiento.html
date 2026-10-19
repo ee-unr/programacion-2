@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../teoria/04_estructuras_lineales/02_estructuras_lineales.html" rel="prev">
 <link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -75,6 +76,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-4d01223578e65d06e0f48f09272d160e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -135,7 +139,7 @@ window.Quarto = {
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -157,7 +161,7 @@ window.Quarto = {
 <span class="menu-text">Información</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../teoria/01_programacion_en_python/01_introduccion.html"> 
+    <a class="nav-link active" href="../../teoria/01_programacion_en_python/01_introduccion.html" aria-current="page"> 
 <span class="menu-text">Teoría</span></a>
   </li>  
   <li class="nav-item">
@@ -183,10 +187,197 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_lineales/01_por_que_importan.html">U4 - Estructuras de Datos Lineales</a></li><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_lineales/03_ordenamiento.html">3 - Algoritmos de ordenamiento</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U1 - Programación en Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Introducción</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Funciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Ejecución condicional</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/04_colecciones_de_datos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Colecciones de datos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/05_ejecucion_repetitiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Ejecución repetitiva</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/06_uso_de_codigo_externo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 - Uso de código externo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/07_scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 - <em>Scripting</em></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/08_io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 - Lectura y escritura de archivos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U2 - Programación Orientada a Objetos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_oop/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_oop/02_encapsulamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Encapsulamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_oop/03_herencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Herencia</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_oop/04_polimorfismo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Polimorfismo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_oop/05_excepciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Excepciones</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U3 - Programación Funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_programacion_funcional/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_programacion_funcional/02_recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Recursión</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_programacion_funcional/03_funciones_de_orden_superior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Funciones de orden superior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_programacion_funcional/04_estrategias_de_evaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Estrategias de evaluación 🧩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_programacion_funcional/05_generadores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Generadores 🧩</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U4 - Estructuras de Datos Lineales</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_lineales/01_por_que_importan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - ¿Por qué importan?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_lineales/02_estructuras_lineales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Estructuras lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_lineales/03_ordenamiento.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">3 - Algoritmos de ordenamiento</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -229,7 +420,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_lineales/01_por_que_importan.html">U4 - Estructuras de Datos Lineales</a></li><li class="breadcrumb-item"><a href="../../teoria/04_estructuras_lineales/03_ordenamiento.html">3 - Algoritmos de ordenamiento</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">3 - Algoritmos de ordenamiento</h1>
 </div>
@@ -1300,7 +1491,7 @@ N^2 - N + 2N - 2 = N^2 + N - 2
 <p>Por otro lado, no es trivial obtener una secuencia ordenada a partir de la fusión de dos secuencias también ordenadas. La operación excede a una simple concatenación.</p>
 <p>Para resolver este problema, <em>merge sort</em> usa un algoritmo conocido como fusión de arreglos (<em>merging arrays</em>). En este contexto, fusionar arreglos significa tomar dos arreglos que ya están ordenados, copiar todos sus valores en un tercer arreglo y obtener como resultado un tercer arreglo completamente ordenado.</p>
 <div style="max-width: 70%; margin: auto;">
-<p><img src="imgs/03/merge_sort_fusion-0.png" class="img-fluid"></p>
+<p><a href="imgs/03/merge_sort_fusion-0.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="imgs/03/merge_sort_fusion-0.png" class="img-fluid"></a></p>
 </div>
 <p>Para fusionar dos arreglos ordenados <span class="math inline">\(S_1\)</span> y <span class="math inline">\(S_2\)</span>, el algoritmo de fusión sigue estos pasos:</p>
 <ol type="1">
@@ -2390,6 +2581,15 @@ Versión interactiva
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../teoria/04_estructuras_lineales/02_estructuras_lineales.html" class="pagination-link" aria-label="2 - Estructuras lineales">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2 - Estructuras lineales</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -2404,6 +2604,38 @@ Versión interactiva
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
