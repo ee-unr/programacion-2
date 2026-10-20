@@ -72,17 +72,20 @@ website:
             - practica/03_programacion_funcional/autoevaluacion.qmd
             - practica/03_programacion_funcional/ejercicios.qmd
             - practica/03_programacion_funcional/problemas.qmd
-        # - text: U4 - Estructuras de Datos y Algoritmos
-        #   contents:
-        #     - practica/04_estructuras_y_algoritmos/autoevaluacion.qmd
-        #     - practica/04_estructuras_y_algoritmos/ejercicios.qmd
-        #     - practica/04_estructuras_y_algoritmos/problemas.qmd
+        - text: U4 - Estructuras de Datos Lineales
+          contents:
+            - practica/04_estructuras_lineales/autoevaluacion.qmd
+            - practica/04_estructuras_lineales/ejercicios.qmd
+            - practica/04_estructuras_lineales/problemas.qmd
     - title: Trabajos Prácticos
       contents:
         - trabajos_practicos/trabajo_grupal.qmd
         - trabajos_practicos/trabajo_individual.qmd
     - title: Recursos
       contents:
+        - text: Material de clase
+          contents:
+            - auto: recursos/clases/*.qmd
         - text: Ejemplos
           file: recursos/ejemplos/01_funciones_y_bucles.qmd
           contents:
@@ -94,8 +97,8 @@ website:
             file: recursos/ejercicios/01_programacion_en_python/index.qmd
           - text: U2 - Programación Orientada a Objetos
             file: recursos/ejercicios/02_oop/index.qmd
-        #   - text: U3 - Programación Funcional
-        #     file: recursos/ejercicios/03_programacion_funcional/index.qmd
+          - text: U3 - Programación Funcional
+            file: recursos/ejercicios/03_programacion_funcional/index.qmd
         - text: Tutoriales
           file: recursos/tutoriales/tutorial_01.qmd
           contents:
