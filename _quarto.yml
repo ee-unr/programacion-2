@@ -49,11 +49,10 @@ website:
           contents:
             - auto: teoria/03_programacion_funcional/*.qmd
             - sort-ui: false
-        # - text: U4 - Estructuras de Datos y Algoritmos
-        #   contents:
-        #     - auto: teoria/04_estructuras_y_algoritmos/*.ipynb
-        #     - auto: teoria/04_estructuras_y_algoritmos/*.qmd
-        #     - sort-ui: false
+        - text: U4 - Estructuras de Datos Lineales
+          contents:
+            - auto: teoria/04_estructuras_lineales/*.qmd
+            - sort-ui: false
     - title: Práctica
       collapse-level: 2
       collapse: true
@@ -111,3 +110,4 @@ format:
     theme: styles.scss
     toc: false
     lang: es
+    lightbox: true
