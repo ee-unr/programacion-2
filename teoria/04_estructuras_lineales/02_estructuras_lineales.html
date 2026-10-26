@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8c1cac2a4f2faa77b55bdd35b24075b9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-8b2ca300edd18ce9eac2c22602c8a4a5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -1031,8 +1031,9 @@ True</code></pre>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-27-12" class="code-annotation-target"><a href="#annotated-cell-27-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> indice_actual <span class="op">&lt;</span> (indice <span class="op">-</span> <span class="dv">1</span>):</span>
 <span id="annotated-cell-27-13"><a href="#annotated-cell-27-13" aria-hidden="true" tabindex="-1"></a>        nodo_actual <span class="op">=</span> nodo_actual.siguiente</span>
 <span id="annotated-cell-27-14"><a href="#annotated-cell-27-14" aria-hidden="true" tabindex="-1"></a>        indice_actual <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="annotated-cell-27-15"><a href="#annotated-cell-27-15" aria-hidden="true" tabindex="-1"></a>        nodo_nuevo.siguiente <span class="op">=</span> nodo_actual.siguiente</span>
-<span id="annotated-cell-27-16"><a href="#annotated-cell-27-16" aria-hidden="true" tabindex="-1"></a>        nodo_actual.siguiente <span class="op">=</span> nodo_nuevo</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="annotated-cell-27-15"><a href="#annotated-cell-27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-27-16"><a href="#annotated-cell-27-16" aria-hidden="true" tabindex="-1"></a>    nodo_nuevo.siguiente <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-27-17"><a href="#annotated-cell-27-17" aria-hidden="true" tabindex="-1"></a>    nodo_actual.siguiente <span class="op">=</span> nodo_nuevo</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-27" data-target-annotation="1">1</dt>
 <dd>
@@ -1048,7 +1049,7 @@ True</code></pre>
 </dd>
 <dt data-target-cell="annotated-cell-27" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-27" data-code-lines="12,13,14,15,16" data-code-annotation="4">Se avanza nodo a nodo hasta llegar al nodo anterior a la posición donde se desea insertar. Una vez allí, se ajustan las referencias: el nuevo nodo apunta al siguiente del nodo actual, y el nodo actual pasa a apuntar al nuevo nodo.</span>
+<span data-code-cell="annotated-cell-27" data-code-lines="12,13,14,16,17" data-code-annotation="4">Se avanza nodo a nodo hasta llegar al nodo anterior a la posición donde se desea insertar. Una vez allí, se ajustan las referencias: el nuevo nodo apunta al siguiente del nodo actual, y el nodo actual pasa a apuntar al nuevo nodo.</span>
 </dd>
 </dl>
 </section>
@@ -1144,23 +1145,24 @@ True</code></pre>
 <span id="annotated-cell-29-44"><a href="#annotated-cell-29-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> indice_actual <span class="op">&lt;</span> (indice <span class="op">-</span> <span class="dv">1</span>):</span>
 <span id="annotated-cell-29-45"><a href="#annotated-cell-29-45" aria-hidden="true" tabindex="-1"></a>            nodo_actual <span class="op">=</span> nodo_actual.siguiente</span>
 <span id="annotated-cell-29-46"><a href="#annotated-cell-29-46" aria-hidden="true" tabindex="-1"></a>            indice_actual <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="annotated-cell-29-47"><a href="#annotated-cell-29-47" aria-hidden="true" tabindex="-1"></a>            nodo_nuevo.siguiente <span class="op">=</span> nodo_actual.siguiente</span>
-<span id="annotated-cell-29-48"><a href="#annotated-cell-29-48" aria-hidden="true" tabindex="-1"></a>            nodo_actual.siguiente <span class="op">=</span> nodo_nuevo</span>
-<span id="annotated-cell-29-49"><a href="#annotated-cell-29-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-29-50"><a href="#annotated-cell-29-50" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> eliminar(<span class="va">self</span>, indice):</span>
-<span id="annotated-cell-29-51"><a href="#annotated-cell-29-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> indice <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="annotated-cell-29-52"><a href="#annotated-cell-29-52" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.primer_nodo <span class="op">=</span> <span class="va">self</span>.primer_nodo.next_node</span>
-<span id="annotated-cell-29-53"><a href="#annotated-cell-29-53" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
-<span id="annotated-cell-29-54"><a href="#annotated-cell-29-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-29-55"><a href="#annotated-cell-29-55" aria-hidden="true" tabindex="-1"></a>        nodo_actual <span class="op">=</span> <span class="va">self</span>.primer_nodo</span>
-<span id="annotated-cell-29-56"><a href="#annotated-cell-29-56" aria-hidden="true" tabindex="-1"></a>        indice_actual <span class="op">=</span> <span class="dv">0</span></span>
-<span id="annotated-cell-29-57"><a href="#annotated-cell-29-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-29-58"><a href="#annotated-cell-29-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> indice_actual <span class="op">&lt;</span> (indice <span class="op">-</span> <span class="dv">1</span>):</span>
-<span id="annotated-cell-29-59"><a href="#annotated-cell-29-59" aria-hidden="true" tabindex="-1"></a>            nodo_actual <span class="op">=</span> nodo_actual.siguiente</span>
-<span id="annotated-cell-29-60"><a href="#annotated-cell-29-60" aria-hidden="true" tabindex="-1"></a>            indice_actual <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="annotated-cell-29-61"><a href="#annotated-cell-29-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-29-62"><a href="#annotated-cell-29-62" aria-hidden="true" tabindex="-1"></a>        nodo_siguiente_al_eliminado <span class="op">=</span> nodo_actual.siguiente.siguiente</span>
-<span id="annotated-cell-29-63"><a href="#annotated-cell-29-63" aria-hidden="true" tabindex="-1"></a>        nodo_actual.siguiente <span class="op">=</span> nodo_siguiente_al_eliminado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="annotated-cell-29-47"><a href="#annotated-cell-29-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-29-48"><a href="#annotated-cell-29-48" aria-hidden="true" tabindex="-1"></a>        nodo_nuevo.siguiente <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-29-49"><a href="#annotated-cell-29-49" aria-hidden="true" tabindex="-1"></a>        nodo_actual.siguiente <span class="op">=</span> nodo_nuevo</span>
+<span id="annotated-cell-29-50"><a href="#annotated-cell-29-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-29-51"><a href="#annotated-cell-29-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> eliminar(<span class="va">self</span>, indice):</span>
+<span id="annotated-cell-29-52"><a href="#annotated-cell-29-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> indice <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="annotated-cell-29-53"><a href="#annotated-cell-29-53" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.primer_nodo <span class="op">=</span> <span class="va">self</span>.primer_nodo.siguiente</span>
+<span id="annotated-cell-29-54"><a href="#annotated-cell-29-54" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="annotated-cell-29-55"><a href="#annotated-cell-29-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-29-56"><a href="#annotated-cell-29-56" aria-hidden="true" tabindex="-1"></a>        nodo_actual <span class="op">=</span> <span class="va">self</span>.primer_nodo</span>
+<span id="annotated-cell-29-57"><a href="#annotated-cell-29-57" aria-hidden="true" tabindex="-1"></a>        indice_actual <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-29-58"><a href="#annotated-cell-29-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-29-59"><a href="#annotated-cell-29-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> indice_actual <span class="op">&lt;</span> (indice <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="annotated-cell-29-60"><a href="#annotated-cell-29-60" aria-hidden="true" tabindex="-1"></a>            nodo_actual <span class="op">=</span> nodo_actual.siguiente</span>
+<span id="annotated-cell-29-61"><a href="#annotated-cell-29-61" aria-hidden="true" tabindex="-1"></a>            indice_actual <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="annotated-cell-29-62"><a href="#annotated-cell-29-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-29-63"><a href="#annotated-cell-29-63" aria-hidden="true" tabindex="-1"></a>        nodo_siguiente_al_eliminado <span class="op">=</span> nodo_actual.siguiente.siguiente</span>
+<span id="annotated-cell-29-64"><a href="#annotated-cell-29-64" aria-hidden="true" tabindex="-1"></a>        nodo_actual.siguiente <span class="op">=</span> nodo_siguiente_al_eliminado</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="análisis-de-la-eficiencia" class="level3">
 <h3 class="anchored" data-anchor-id="análisis-de-la-eficiencia">Análisis de la eficiencia</h3>
