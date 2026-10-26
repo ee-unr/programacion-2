@@ -667,8 +667,9 @@ def insertar(self, indice, valor):
     while indice_actual < (indice - 1): # <4>
         nodo_actual = nodo_actual.siguiente # <4>
         indice_actual += 1 # <4>
-        nodo_nuevo.siguiente = nodo_actual.siguiente # <4>
-        nodo_actual.siguiente = nodo_nuevo # <4>
+
+    nodo_nuevo.siguiente = nodo_actual.siguiente # <4>
+    nodo_actual.siguiente = nodo_nuevo # <4>
 ```
 
 1. Se crea un nuevo nodo con el valor recibido.
@@ -768,12 +769,13 @@ class ListaEnlazada:
         while indice_actual < (indice - 1):
             nodo_actual = nodo_actual.siguiente
             indice_actual += 1
-            nodo_nuevo.siguiente = nodo_actual.siguiente
-            nodo_actual.siguiente = nodo_nuevo
+
+        nodo_nuevo.siguiente = nodo_actual.siguiente
+        nodo_actual.siguiente = nodo_nuevo
 
     def eliminar(self, indice):
         if indice == 0:
-            self.primer_nodo = self.primer_nodo.next_node
+            self.primer_nodo = self.primer_nodo.siguiente
             return None
 
         nodo_actual = self.primer_nodo

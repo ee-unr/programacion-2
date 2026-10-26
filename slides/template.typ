@@ -134,3 +134,20 @@
     #strong(bottom)
   ]
 }
+
+// Revelados acumulativos de código sin mover las líneas entre avances.
+// Ejemplo: #codigo-pasos((3, 6, 11))[```python ... ```]
+// Cada número indica la última línea visible en un avance; el último incluye todo.
+#import "@preview/touying:0.6.3": alternatives as code-alternatives
+
+#let codigo-pasos(cortes, body) = code-alternatives(
+  position: top + left,
+  ..cortes.map(ultima => {
+    show raw.line: linea => if linea.number <= ultima {
+      linea
+    } else {
+      hide(linea)
+    }
+    body
+  }),
+)
