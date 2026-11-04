@@ -46,20 +46,14 @@ Estas reglas valen para **todo** el trabajo. Si en algún punto tenés una duda,
 
 1. **Librerías permitidas.** Además de tus propios módulos, solo se puede importar un módulo de la
    librería estándar: `csv`, para leer el archivo (es opcional, ver sección [-@sec-funciones-carga]).
-   No se puede usar `pandas`, `polars`, `collections` ni `bisect`.
 2. **Nombres exactos.** Las clases, métodos, parámetros y atributos deben llamarse exactamente como
-   aparecen en esta consigna (sin tildes y respetando mayúsculas y minúsculas). Los textos que se
-   muestran en pantalla sí llevan tildes cuando la consigna las muestra.
-3. **Errores.** Cuando un dato es inválido, el método debe **lanzar una excepción** con `raise`
-   (no imprimir un mensaje ni devolver `None`).
+   aparecen en esta consigna.
+3. **Errores.** Cuando un dato es inválido, el método solo debe **lanzar una excepción** con `raise`.
 4. **Mensajes de error libres.** El texto del mensaje de cada excepción lo elegís vos, pero tiene
-   que explicar qué salió mal. Lo que se evalúa es el **tipo** de excepción.
+   que explicar qué salió mal. Lo que se evalúa es que el **tipo** de excepción tenga sentido.
 5. **Nuevo objeto o mismo objeto.** En la tabla de métodos de `Historial` (sección
    [-@sec-metodos-historial]), la columna Tipo indica si el método modifica el objeto original
-   (`modifica`) o devuelve un objeto nuevo sin modificar el original (`devuelve nuevo`). Por
-   ejemplo, `h.agregar(e)` modifica el historial `h`, mientras que `h.ordenado()` devuelve un
-   historial nuevo, ordenado, y `h` queda igual. Este comportamiento debe respetarse en la
-   implementación.
+   (`modifica`) o devuelve un objeto nuevo sin modificar el original (`devuelve nuevo`).
 6. **Los objetos no se copian.** Cuando una `Escucha` guarda una canción, o un `Historial` guarda
    escuchas, guardan **el mismo objeto**, no una copia. Lo que sí se copia es la **lista** que los
    contiene.
@@ -143,7 +137,7 @@ DatoInvalidoError: Género desconocido: 'tango'.
 >>> Cancion("Hola", "   ", "rock")
 DatoInvalidoError: artista no puede estar vacío.
 >>> Cancion("Hola", 42, "rock")
-TypeError: artista debe ser un texto.
+TypeError: artista debe ser de tipo str.
 ```
 
 ## Clase `Escucha` (archivo `escucha.py`) {#sec-escucha}
@@ -182,7 +176,7 @@ En `FRANJAS`, cada tupla tiene la hora de inicio y la de fin, **ambas incluidas*
 | `franja` | Propiedad: el nombre de la franja de `FRANJAS` a la que pertenece la hora. |
 | `__repr__(self)` | `Escucha(<dia> <hora con 2 dígitos>h, '<titulo>', <genero>)`. Ver ejemplos. |
 | `__eq__(self, other)` | Dos escuchas son iguales si tienen la **misma canción** (según `Cancion.__eq__`), el mismo día y la misma hora. Si `other` no es una `Escucha`, devuelve `False`. |
-| `__lt__(self, other)` | `True` si `self` ocurrió antes que `other` (compará sus `momento`). Si `other` no es una `Escucha`, error. Con este método alcanza para que funcione `sorted()`. |
+| `__lt__(self, other)` | `True` si `self` ocurrió antes que `other` (compará sus `momento`). Si `other` no es una `Escucha`, error. |
 
 ### Ejemplos
 
@@ -231,8 +225,6 @@ En este trabajo la cola se implementa como una **lista enlazada**, no con una li
 los demás, y eso es lento cuando hay muchos datos. Con nodos enlazados, sacar del frente es
 inmediato, sin importar cuántos elementos haya.
 
-Al principio de `cola.py`, explicá en un comentario, usando notación Big O, por qué desencolar con
-nodos es más eficiente que hacerlo con `lista.pop(0)`.
 
 ### Clase `Nodo`
 
