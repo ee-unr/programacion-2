@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -156,14 +191,32 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="trabajo_individual.pdf"><i class="bi bi-file-pdf"></i>Descargar PDF</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul class="collapse">
+  <li><a href="#sec-introduccion" id="toc-sec-introduccion" class="nav-link active" data-scroll-target="#sec-introduccion"><span class="header-section-number">1</span> Introducción</a></li>
+  <li><a href="#sec-reglas" id="toc-sec-reglas" class="nav-link" data-scroll-target="#sec-reglas"><span class="header-section-number">2</span> Reglas generales</a></li>
+  <li><a href="#sec-excepcion" id="toc-sec-excepcion" class="nav-link" data-scroll-target="#sec-excepcion"><span class="header-section-number">3</span> Excepción <code>DatoInvalidoError</code> (archivo <code>excepciones.py</code>)</a></li>
+  <li><a href="#sec-cancion" id="toc-sec-cancion" class="nav-link" data-scroll-target="#sec-cancion"><span class="header-section-number">4</span> Clase <code>Cancion</code> (archivo <code>cancion.py</code>)</a></li>
+  <li><a href="#sec-escucha" id="toc-sec-escucha" class="nav-link" data-scroll-target="#sec-escucha"><span class="header-section-number">5</span> Clase <code>Escucha</code> (archivo <code>escucha.py</code>)</a></li>
+  <li><a href="#sec-cola" id="toc-sec-cola" class="nav-link" data-scroll-target="#sec-cola"><span class="header-section-number">6</span> Clase <code>Cola</code> (archivo <code>cola.py</code>)</a></li>
+  <li><a href="#sec-historial" id="toc-sec-historial" class="nav-link" data-scroll-target="#sec-historial"><span class="header-section-number">7</span> Clase <code>Historial</code> y función <code>en_franja</code> (archivo <code>historial.py</code>)</a></li>
+  <li><a href="#sec-carga" id="toc-sec-carga" class="nav-link" data-scroll-target="#sec-carga"><span class="header-section-number">8</span> Carga de datos</a></li>
+  <li><a href="#sec-pruebas" id="toc-sec-pruebas" class="nav-link" data-scroll-target="#sec-pruebas"><span class="header-section-number">9</span> Pruebas</a></li>
+  <li><a href="#sec-entregable" id="toc-sec-entregable" class="nav-link" data-scroll-target="#sec-entregable"><span class="header-section-number">10</span> Entregable</a></li>
+  <li><a href="#sec-evaluacion" id="toc-sec-evaluacion" class="nav-link" data-scroll-target="#sec-evaluacion"><span class="header-section-number">11</span> Evaluación</a></li>
+  <li><a href="#sec-ayuda" id="toc-sec-ayuda" class="nav-link" data-scroll-target="#sec-ayuda"><span class="header-section-number">12</span> Ayuda</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="trabajo_individual.pdf"><i class="bi bi-file-pdf"></i>Descargar PDF</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Trabajo práctico final</h1>
+<p class="subtitle lead">Qué escuchamos y cuándo: análisis de escuchas musicales</p>
 </div>
 
 
@@ -180,9 +233,792 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>El trabajo práctico final aún no se encuentra disponible.</p>
+<section id="sec-introduccion" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="sec-introduccion"><span class="header-section-number">1</span> Introducción</h2>
+<p>En este trabajo vas a analizar una semana de escuchas de una plataforma de música: qué canción se escuchó, qué día y a qué hora. Los datos vienen en el archivo <code>escuchas.csv</code> y, como pasa con los datos reales, tienen <strong>errores y filas repetidas</strong>. Vas a construir en Python las clases y funciones para cargarlos, limpiarlos, ordenarlos y analizarlos, y al final vas a descubrir qué géneros se escuchan en cada momento del día.</p>
+<p>El trabajo integra varios temas de la materia y cada concepto debe aparecer donde hace falta para resolver el problema:</p>
+<ol type="1">
+<li><strong>De la Unidad 1:</strong> leer un archivo de texto y agrupar datos con diccionarios.</li>
+<li><strong>De la Unidad 2:</strong> diseñar clases con atributos privados y propiedades, sobrecargar operadores y crear una excepción a medida que hereda de <code>ValueError</code>.</li>
+<li><strong>De la Unidad 3:</strong> usar funciones como argumentos y como resultado (lambdas y un <em>closure</em>) y leer el archivo con un generador.</li>
+<li><strong>De la Unidad 4:</strong> implementar una cola como lista enlazada para una ventana deslizante y justificar su complejidad.</li>
+</ol>
+<p>Vas a programar estas piezas, en este orden:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Orden</th>
+<th>Pieza</th>
+<th>Archivo</th>
+<th>Para qué sirve</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>DatoInvalidoError</code></td>
+<td><code>excepciones.py</code></td>
+<td>Avisar que un dato es inválido y en qué campo</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>Cancion</code></td>
+<td><code>cancion.py</code></td>
+<td>Una canción con sus datos</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>Escucha</code></td>
+<td><code>escucha.py</code></td>
+<td>Un evento: una canción escuchada un día a una hora</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>Nodo</code> y <code>Cola</code></td>
+<td><code>cola.py</code></td>
+<td>Una cola genérica hecha con nodos enlazados</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><code>Historial</code> y <code>en_franja</code></td>
+<td><code>historial.py</code></td>
+<td>Una colección de escuchas con operaciones de análisis</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><code>leer_filas</code> y <code>cargar_escuchas</code></td>
+<td><code>lectura.py</code></td>
+<td>Cargar y limpiar el CSV</td>
+</tr>
+</tbody>
+</table>
+<p>Te recomendamos seguir ese orden y no pasar a la clase siguiente hasta que la anterior funcione con todos sus ejemplos.</p>
+</section>
+<section id="sec-reglas" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="sec-reglas"><span class="header-section-number">2</span> Reglas generales</h2>
+<p>Estas reglas valen para <strong>todo</strong> el trabajo. Si en algún punto tenés una duda, volvé a esta sección.</p>
+<ol type="1">
+<li><strong>Librerías permitidas.</strong> Además de tus propios módulos, solo se puede importar un módulo de la librería estándar: <code>csv</code>, para leer el archivo (es opcional, ver sección <a href="#sec-funciones-carga" class="quarto-xref">8.2</a>).</li>
+<li><strong>Nombres exactos.</strong> Las clases, métodos, parámetros y atributos deben llamarse exactamente como aparecen en esta consigna.</li>
+<li><strong>Errores.</strong> Cuando un dato es inválido, el método solo debe <strong>lanzar una excepción</strong> con <code>raise</code>.</li>
+<li><strong>Mensajes de error libres.</strong> El texto del mensaje de cada excepción lo elegís vos, pero tiene que explicar qué salió mal. Lo que se evalúa es que el <strong>tipo</strong> de excepción tenga sentido.</li>
+<li><strong>Nuevo objeto o mismo objeto.</strong> En la tabla de métodos de <code>Historial</code> (sección <a href="#sec-metodos-historial" class="quarto-xref">7.2</a>), la columna Tipo indica si el método modifica el objeto original (<code>modifica</code>) o devuelve un objeto nuevo sin modificar el original (<code>devuelve nuevo</code>).</li>
+<li><strong>Los objetos no se copian.</strong> Cuando una <code>Escucha</code> guarda una canción, o un <code>Historial</code> guarda escuchas, guardan <strong>el mismo objeto</strong>, no una copia. Lo que sí se copia es la <strong>lista</strong> que los contiene.</li>
+<li><strong>Encapsulamiento.</strong> Los atributos de las clases son privados y se leen a través de propiedades. Desde afuera de una clase no se accede a sus atributos privados: por ejemplo, <code>Historial</code> usa la <code>Cola</code> solo a través de sus métodos públicos (<code>encolar</code>, <code>desencolar</code>, <code>for</code>, <code>len()</code>), sin tocar sus nodos.</li>
+<li><strong>Reutilización.</strong> Si un método se puede escribir usando otro que ya hiciste, hacelo así. La consigna marca con <strong>♻️</strong> los casos en los que se espera esa reutilización.</li>
+<li><strong>Código de prueba.</strong> Los archivos de las clases pueden tener código de prueba solo dentro de <code>if __name__ == "__main__":</code>, para que no se ejecute al importarlos.</li>
+</ol>
+</section>
+<section id="sec-excepcion" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="sec-excepcion"><span class="header-section-number">3</span> Excepción <code>DatoInvalidoError</code> (archivo <code>excepciones.py</code>)</h2>
+<p>Cuando se cargan datos reales, no alcanza con saber que una fila es inválida: hay que saber <strong>por qué</strong>, para poder informarlo. Para eso vas a crear tu propia excepción.</p>
+<p><code>DatoInvalidoError</code> <strong>hereda de <code>ValueError</code></strong> y agrega un atributo <code>campo</code>, con el nombre del dato que estaba mal (<code>"hora"</code>, <code>"dia"</code>, <code>"genero"</code>, etc.).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Elemento</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>DatoInvalidoError(campo, mensaje)</code></td>
+<td>Crea la excepción. <code>mensaje</code> es el texto que se muestra al imprimirla (pasalo a <code>super().__init__</code>).</td>
+</tr>
+<tr class="even">
+<td><code>campo</code></td>
+<td>Atributo con el nombre del campo inválido.</td>
+</tr>
+</tbody>
+</table>
+<p>Cada vez que una clase recibe un dato que no puede aceptar, tiene que lanzar una excepción. Parte del trabajo es decidir cuál corresponde en cada caso: <code>DatoInvalidoError</code> o alguna de las excepciones propias de Python. Pensá qué tienen en común los casos que van a una u otra: en la presentación vas a tener que justificar tus decisiones.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> e <span class="op">=</span> DatoInvalidoError(<span class="st">"hora"</span>, <span class="st">"Hora fuera de rango: 25."</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(e)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Hora fuera de rango: <span class="fl">25.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> e.campo</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">'hora'</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>(e, <span class="pp">ValueError</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sec-cancion" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sec-cancion"><span class="header-section-number">4</span> Clase <code>Cancion</code> (archivo <code>cancion.py</code>)</h2>
+<p>Una <code>Cancion</code> guarda los datos de un tema musical: título, artista y género.</p>
+<section id="inicialización-canciontitulo-artista-genero" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="inicialización-canciontitulo-artista-genero"><span class="header-section-number">4.1</span> Inicialización: <code>Cancion(titulo, artista, genero)</code></h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parámetro</th>
+<th>Tipo esperado</th>
+<th>Reglas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>titulo</code></td>
+<td><code>str</code></td>
+<td>No puede estar vacío ni ser solo espacios</td>
+</tr>
+<tr class="even">
+<td><code>artista</code></td>
+<td><code>str</code></td>
+<td>Ídem <code>titulo</code></td>
+</tr>
+<tr class="odd">
+<td><code>genero</code></td>
+<td><code>str</code></td>
+<td>Debe ser uno de <code>Cancion.GENEROS</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="atributos-y-métodos" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="atributos-y-métodos"><span class="header-section-number">4.2</span> Atributos y métodos</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nombre</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>GENEROS</code></td>
+<td>Puede ser una tupla como <code>("rock", "pop", "folklore", "cumbia")</code>. Tener en cuenta que es la misma para todas las canciones.</td>
+</tr>
+<tr class="even">
+<td><code>titulo</code>, <code>artista</code>, <code>genero</code></td>
+<td>Propiedades de solo lectura.</td>
+</tr>
+<tr class="odd">
+<td><code>__repr__(self)</code></td>
+<td><code>Cancion('&lt;titulo&gt;', '&lt;artista&gt;', &lt;genero&gt;)</code>. Ver ejemplos.</td>
+</tr>
+<tr class="even">
+<td><code>__eq__(self, other)</code></td>
+<td>Dos canciones son iguales si tienen el mismo <code>titulo</code> y el mismo <code>artista</code>, <strong>sin distinguir mayúsculas de minúsculas</strong>. Si <code>other</code> no es una <code>Cancion</code>, devuelve <code>False</code>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-cancion-ejemplos" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="sec-cancion-ejemplos"><span class="header-section-number">4.3</span> Ejemplos</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> c <span class="op">=</span> Cancion(<span class="st">"Ji ji ji"</span>, <span class="st">"Los Redondos"</span>, <span class="st">"rock"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> c</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Cancion(<span class="st">'Ji ji ji'</span>, <span class="st">'Los Redondos'</span>, rock)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> c.genero</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">'rock'</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Cancion.GENEROS</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>(<span class="st">'rock'</span>, <span class="st">'pop'</span>, <span class="st">'folklore'</span>, <span class="st">'cumbia'</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> c.GENEROS</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>(<span class="st">'rock'</span>, <span class="st">'pop'</span>, <span class="st">'folklore'</span>, <span class="st">'cumbia'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> c <span class="op">==</span> Cancion(<span class="st">"JI JI JI"</span>, <span class="st">"los redondos"</span>, <span class="st">"pop"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Cancion(<span class="st">""</span>, <span class="st">"X"</span>, <span class="st">"rock"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>DatoInvalidoError: titulo no puede estar vacío.</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Cancion(<span class="st">"Hola"</span>, <span class="st">"X"</span>, <span class="st">"tango"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>DatoInvalidoError: Género desconocido: <span class="st">'tango'</span>.</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Cancion(<span class="st">"Hola"</span>, <span class="st">"   "</span>, <span class="st">"rock"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>DatoInvalidoError: artista no puede estar vacío.</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Cancion(<span class="st">"Hola"</span>, <span class="dv">42</span>, <span class="st">"rock"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="pp">TypeError</span>: artista debe ser de tipo <span class="bu">str</span>.</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="sec-escucha" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sec-escucha"><span class="header-section-number">5</span> Clase <code>Escucha</code> (archivo <code>escucha.py</code>)</h2>
+<p>Una <code>Escucha</code> es un <strong>evento</strong>: una canción que alguien escuchó un día de la semana a una hora. Cada fila del CSV se convierte en una <code>Escucha</code>.</p>
+<section id="atributos-de-clase" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="atributos-de-clase"><span class="header-section-number">5.1</span> Atributos de clase</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>DIAS <span class="op">=</span> (<span class="st">"lun"</span>, <span class="st">"mar"</span>, <span class="st">"mie"</span>, <span class="st">"jue"</span>, <span class="st">"vie"</span>, <span class="st">"sab"</span>, <span class="st">"dom"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>FRANJAS <span class="op">=</span> {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"madrugada"</span>: (<span class="dv">0</span>, <span class="dv">5</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mañana"</span>: (<span class="dv">6</span>, <span class="dv">11</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"tarde"</span>: (<span class="dv">12</span>, <span class="dv">17</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"noche"</span>: (<span class="dv">18</span>, <span class="dv">23</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En <code>FRANJAS</code>, cada tupla tiene la hora de inicio y la de fin, <strong>ambas incluidas</strong>.</p>
+</section>
+<section id="inicialización-escuchacancion-dia-hora" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="inicialización-escuchacancion-dia-hora"><span class="header-section-number">5.2</span> Inicialización: <code>Escucha(cancion, dia, hora)</code></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parámetro</th>
+<th>Reglas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cancion</code></td>
+<td>Debe ser una <code>Cancion</code></td>
+</tr>
+<tr class="even">
+<td><code>dia</code></td>
+<td>Debe ser uno de <code>Escucha.DIAS</code></td>
+</tr>
+<tr class="odd">
+<td><code>hora</code></td>
+<td>Un <code>int</code> entre 0 y 23, o un <code>str</code> formado solo por dígitos, que se convierte a <code>int</code> (así llega desde el CSV)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="propiedades-y-métodos-especiales" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="propiedades-y-métodos-especiales"><span class="header-section-number">5.3</span> Propiedades y métodos especiales</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nombre</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cancion</code>, <code>dia</code>, <code>hora</code></td>
+<td>Propiedades de solo lectura. <code>hora</code> siempre es un <code>int</code>.</td>
+</tr>
+<tr class="even">
+<td><code>momento</code></td>
+<td>Propiedad: la tupla <code>(posición del día en DIAS, hora)</code>. Por ejemplo, martes a las 9 → <code>(1, 9)</code>. Sirve para comparar escuchas en el tiempo.</td>
+</tr>
+<tr class="odd">
+<td><code>franja</code></td>
+<td>Propiedad: el nombre de la franja de <code>FRANJAS</code> a la que pertenece la hora.</td>
+</tr>
+<tr class="even">
+<td><code>__repr__(self)</code></td>
+<td><code>Escucha(&lt;dia&gt; &lt;hora con 2 dígitos&gt;h, '&lt;titulo&gt;', &lt;genero&gt;)</code>. Ver ejemplos.</td>
+</tr>
+<tr class="odd">
+<td><code>__eq__(self, other)</code></td>
+<td>Dos escuchas son iguales si tienen la <strong>misma canción</strong> (según <code>Cancion.__eq__</code>), el mismo día y la misma hora. Si <code>other</code> no es una <code>Escucha</code>, devuelve <code>False</code>.</td>
+</tr>
+<tr class="even">
+<td><code>__lt__(self, other)</code></td>
+<td><code>True</code> si <code>self</code> ocurrió antes que <code>other</code> (compará sus <code>momento</code>). Si <code>other</code> no es una <code>Escucha</code>, error.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ejemplos" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="ejemplos"><span class="header-section-number">5.4</span> Ejemplos</h3>
+<p>En estos ejemplos, <code>c</code> es la canción “Ji ji ji” de la sección <a href="#sec-cancion-ejemplos" class="quarto-xref">4.3</a>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> luna <span class="op">=</span> Cancion(<span class="st">"Luna tucumana"</span>, <span class="st">"Atahualpa Yupanqui"</span>, <span class="st">"folklore"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> e <span class="op">=</span> Escucha(luna, <span class="st">"lun"</span>, <span class="dv">8</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> e</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>Escucha(lun <span class="dv">0</span><span class="er">8h</span>, <span class="st">'Luna tucumana'</span>, folklore)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> e.franja</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">'mañana'</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> e.momento</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span>, <span class="dv">8</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Escucha(c, <span class="st">"sab"</span>, <span class="st">"2"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Escucha(sab <span class="dv">0</span><span class="er">2h</span>, <span class="st">'Ji ji ji'</span>, rock)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> [Escucha(c, <span class="st">"lun"</span>, h).franja <span class="cf">for</span> h <span class="kw">in</span> (<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">17</span>, <span class="dv">18</span>)]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>[<span class="st">'madrugada'</span>, <span class="st">'mañana'</span>, <span class="st">'tarde'</span>, <span class="st">'noche'</span>]</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Escucha(c, <span class="st">"vie"</span>, <span class="dv">23</span>) <span class="op">==</span> Escucha(c, <span class="st">"vie"</span>, <span class="dv">23</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Escucha(c, <span class="st">"vie"</span>, <span class="dv">23</span>) <span class="op">==</span> Escucha(c, <span class="st">"vie"</span>, <span class="dv">22</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="va">False</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Escucha(luna, <span class="st">"lun"</span>, <span class="dv">8</span>) <span class="op">&lt;</span> Escucha(c, <span class="st">"mar"</span>, <span class="dv">1</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">sorted</span>([Escucha(c, <span class="st">"vie"</span>, <span class="dv">23</span>), Escucha(luna, <span class="st">"lun"</span>, <span class="dv">8</span>), Escucha(c, <span class="st">"lun"</span>, <span class="dv">21</span>)])</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>[Escucha(lun <span class="dv">0</span><span class="er">8h</span>, <span class="st">'Luna tucumana'</span>, folklore), Escucha(lun <span class="dv">21</span><span class="er">h</span>, <span class="st">'Ji ji ji'</span>, rock), Escucha(vie <span class="dv">23</span><span class="er">h</span>, <span class="st">'Ji ji ji'</span>, rock)]</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Escucha(c, <span class="st">"lunes"</span>, <span class="dv">8</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>DatoInvalidoError: Día inválido: <span class="st">'lunes'</span>.</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Escucha(c, <span class="st">"lun"</span>, <span class="dv">25</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>DatoInvalidoError: Hora fuera de rango: <span class="fl">25.</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Escucha(c, <span class="st">"lun"</span>, <span class="st">"xx"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>DatoInvalidoError: Hora inválida: <span class="st">'xx'</span>.</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> Escucha(<span class="st">"Ji ji ji"</span>, <span class="st">"lun"</span>, <span class="dv">8</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="pp">TypeError</span>: cancion debe ser un objeto Cancion.</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="sec-cola" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-cola"><span class="header-section-number">6</span> Clase <code>Cola</code> (archivo <code>cola.py</code>)</h2>
+<p>Una <strong>cola</strong> guarda elementos en orden de llegada: el primero que entra es el primero que sale (<strong>FIFO</strong>). Se agrega por el <strong>fondo</strong> y se saca por el <strong>frente</strong>.</p>
+<p>En este trabajo la cola se implementa como una <strong>lista enlazada</strong>, no con una lista de Python. ¿Por qué? Con una lista, sacar el primer elemento (<code>lista.pop(0)</code>) obliga a correr un lugar todos los demás, y eso es lento cuando hay muchos datos. Con nodos enlazados, sacar del frente es inmediato, sin importar cuántos elementos haya.</p>
+<section id="clase-nodo" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="clase-nodo"><span class="header-section-number">6.1</span> Clase <code>Nodo</code></h3>
+<p>Un <code>Nodo</code> es “una cajita” que guarda un elemento y sabe cuál es el nodo que viene detrás:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Atributo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>valor</code></td>
+<td>El elemento guardado. Se recibe al crear el nodo: <code>Nodo(valor)</code>.</td>
+</tr>
+<tr class="even">
+<td><code>siguiente</code></td>
+<td>El nodo que viene detrás en la cola, o <code>None</code> si es el último. Empieza en <code>None</code>.</td>
+</tr>
+</tbody>
+</table>
+<pre class="text"><code>frente                                fondo
+  ↓                                     ↓
+[ 1 | siguiente ] → [ 2 | siguiente ] → [ 3 | None ]</code></pre>
+</section>
+<section id="clase-cola" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="clase-cola"><span class="header-section-number">6.2</span> Clase <code>Cola</code></h3>
+<p>La <code>Cola</code> guarda tres atributos privados: el nodo del frente (<code>_frente</code>), el nodo del fondo (<code>_fondo</code>) y la cantidad de elementos (<code>_cantidad</code>). <strong>No puede usar una lista de Python</strong> para guardar los elementos. Debe ser <strong>genérica</strong>: tiene que poder guardar cualquier tipo de objeto.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Cola()</code></td>
+<td>Crea una cola vacía: <code>_frente</code> y <code>_fondo</code> en <code>None</code> y <code>_cantidad</code> en 0.</td>
+</tr>
+<tr class="even">
+<td><code>encolar(self, x)</code></td>
+<td>Crea un <code>Nodo</code> con <code>x</code> y lo engancha detrás del fondo (si la cola estaba vacía, el nodo nuevo es frente y fondo a la vez). No devuelve nada.</td>
+</tr>
+<tr class="odd">
+<td><code>desencolar(self)</code></td>
+<td>Saca el elemento del frente y lo <strong>devuelve</strong>; el frente pasa a ser el nodo siguiente. Si la cola queda vacía, el fondo también vuelve a <code>None</code>. Si ya estaba vacía, error.</td>
+</tr>
+<tr class="even">
+<td><code>frente(self)</code></td>
+<td>Devuelve el elemento del frente <strong>sin sacarlo</strong>. Si la cola está vacía, error.</td>
+</tr>
+<tr class="odd">
+<td><code>esta_vacia(self)</code></td>
+<td><code>True</code> si no tiene elementos.</td>
+</tr>
+<tr class="even">
+<td><code>__len__(self)</code></td>
+<td>Cantidad de elementos.</td>
+</tr>
+<tr class="odd">
+<td><code>__iter__(self)</code></td>
+<td>Recorre los elementos del frente hacia el fondo, siguiendo los nodos, <strong>sin modificar</strong> la cola.</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cola <span class="op">=</span> Cola()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cola.esta_vacia()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cola.encolar(<span class="dv">1</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cola.encolar(<span class="dv">2</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cola.encolar(<span class="dv">3</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(cola)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(cola)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cola.frente()</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cola.desencolar()</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(cola)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(cola)          <span class="co"># recorrerla no la vació</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cola.desencolar()</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cola.desencolar()</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cola.esta_vacia()</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cola.desencolar()</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="pp">IndexError</span>: La cola está vacía.</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> cola.frente()</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="pp">IndexError</span>: La cola está vacía.</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="sec-historial" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="sec-historial"><span class="header-section-number">7</span> Clase <code>Historial</code> y función <code>en_franja</code> (archivo <code>historial.py</code>)</h2>
+<p>Un <code>Historial</code> es una colección de escuchas. Internamente guarda una <strong>lista privada</strong> de objetos <code>Escucha</code> (puede tener repetidas).</p>
+<p>Sus métodos de análisis reciben <strong>funciones como argumento</strong>, que indican qué mirar de cada escucha. Por ejemplo, <code>lambda e: e.cancion.genero</code> agrupa por género y <code>lambda e: e.franja</code> agrupa por franja horaria. Es la misma idea que elegir la columna por la que se agrupa en pandas, pero más flexible.</p>
+<section id="sec-datos-ejemplo" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="sec-datos-ejemplo"><span class="header-section-number">7.1</span> Datos de ejemplo</h3>
+<p>Los ejemplos de esta sección usan este historial chico, con una escucha repetida y en desorden. Copialo tal cual en <code>test_historial.py</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>luna <span class="op">=</span> Cancion(<span class="st">"Luna tucumana"</span>, <span class="st">"Atahualpa Yupanqui"</span>, <span class="st">"folklore"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>jiji <span class="op">=</span> Cancion(<span class="st">"Ji ji ji"</span>, <span class="st">"Los Redondos"</span>, <span class="st">"rock"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fuiste <span class="op">=</span> Cancion(<span class="st">"Fuiste"</span>, <span class="st">"Gilda"</span>, <span class="st">"cumbia"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>milhoras <span class="op">=</span> Cancion(<span class="st">"Mil horas"</span>, <span class="st">"Los Abuelos de la Nada"</span>, <span class="st">"pop"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> Historial([</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    Escucha(jiji, <span class="st">"vie"</span>, <span class="dv">23</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    Escucha(luna, <span class="st">"lun"</span>, <span class="dv">8</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    Escucha(milhoras, <span class="st">"lun"</span>, <span class="dv">15</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    Escucha(fuiste, <span class="st">"sab"</span>, <span class="dv">2</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    Escucha(jiji, <span class="st">"lun"</span>, <span class="dv">21</span>),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    Escucha(luna, <span class="st">"mar"</span>, <span class="dv">9</span>),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    Escucha(jiji, <span class="st">"vie"</span>, <span class="dv">23</span>),   <span class="co"># repetida</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    Escucha(fuiste, <span class="st">"sab"</span>, <span class="dv">1</span>),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sec-metodos-historial" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="sec-metodos-historial"><span class="header-section-number">7.2</span> Métodos</h3>
+<p><code>Historial(escuchas=None)</code> recibe una <strong>lista</strong> de objetos <code>Escucha</code> (si se omite, empieza vacío) y guarda una copia de esa lista.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>agregar(self, escucha)</code></td>
+<td>modifica</td>
+<td>Agrega <code>escucha</code> al final. Si no es una <code>Escucha</code>, error.</td>
+</tr>
+<tr class="even">
+<td><code>filtrar(self, f)</code></td>
+<td>devuelve nuevo</td>
+<td>Las escuchas para las que <code>f(e)</code> devuelve <code>True</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>sin_duplicados(self)</code></td>
+<td>devuelve nuevo</td>
+<td>Quita las escuchas repetidas (según <code>Escucha.__eq__</code>) y conserva la <strong>primera</strong> aparición de cada una.</td>
+</tr>
+<tr class="even">
+<td><code>ordenado(self)</code></td>
+<td>devuelve nuevo</td>
+<td>Las escuchas en orden cronológico. Si dos ocurrieron en el mismo momento, se mantiene su orden original. ♻️ Usá <code>sorted()</code>, que funciona gracias a <code>Escucha.__lt__</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>conteo_por(self, clave)</code></td>
+<td>devuelve <code>dict</code></td>
+<td>Cuántas escuchas hay por cada valor de <code>clave(e)</code>. Ordenado de <strong>mayor a menor cantidad</strong>; si hay empates, primero el valor que aparece antes en el historial.</td>
+</tr>
+<tr class="even">
+<td><code>tendencias(self, n, clave)</code></td>
+<td>devuelve <code>list</code></td>
+<td>Una <strong>ventana deslizante</strong> de <code>n</code> escuchas, hecha con una <code>Cola</code> (ver sección <a href="#sec-tendencias" class="quarto-xref">7.3</a>). Devuelve una lista con el valor de <code>clave</code> más frecuente en cada ventana. <code>n</code> debe ser un <code>int</code> mayor o igual a 1: si no es <code>int</code>, error; si es menor a 1, error.</td>
+</tr>
+<tr class="odd">
+<td><code>__len__</code>, <code>__iter__</code>, <code>__getitem__</code></td>
+<td>—</td>
+<td>Cantidad de escuchas, recorrerlas con <code>for</code> y acceder a una por posición (<code>h[0]</code>, <code>h[-1]</code>).</td>
+</tr>
+<tr class="even">
+<td><code>__repr__(self)</code></td>
+<td>—</td>
+<td><code>Historial(escuchas: &lt;cantidad&gt;)</code>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-tendencias" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="sec-tendencias"><span class="header-section-number">7.3</span> Cómo funciona <code>tendencias</code></h3>
+<p>Se recorren las escuchas en orden y se mantiene una <code>Cola</code> con las últimas <code>n</code>:</p>
+<ol type="1">
+<li>Se encola la escucha actual.</li>
+<li>Si la cola tiene más de <code>n</code> escuchas, se desencola la más vieja.</li>
+<li>Si la cola tiene exactamente <code>n</code> escuchas, se agrega al resultado el valor de <code>clave</code> más frecuente en la ventana. Si hay empate, gana el que aparece primero en la ventana, es decir, el más antiguo. ♻️ Armá un <code>Historial</code> con las escuchas de la cola y usá <code>conteo_por</code>.</li>
+</ol>
+<p>El resultado tiene <code>len(self) - n + 1</code> elementos, o ninguno si <code>n</code> es mayor que la cantidad de escuchas. Es lo mismo que hace <code>rolling()</code> en pandas, y por eso conviene una cola: en cada paso se saca un elemento del frente.</p>
+</section>
+<section id="función-en_franjanombre" class="level3" data-number="7.4">
+<h3 data-number="7.4" class="anchored" data-anchor-id="función-en_franjanombre"><span class="header-section-number">7.4</span> Función <code>en_franja(nombre)</code></h3>
+<p>Es una función que <strong>devuelve otra función</strong> (un <em>closure</em>). <code>en_franja("noche")</code> devuelve una función que recibe una escucha y devuelve <code>True</code> si es de noche, lista para pasar a <code>filtrar</code>. Si <code>nombre</code> no es una franja de <code>Escucha.FRANJAS</code>, error en el momento de llamar a <code>en_franja</code>.</p>
+</section>
+<section id="ejemplos-1" class="level3" data-number="7.5">
+<h3 data-number="7.5" class="anchored" data-anchor-id="ejemplos-1"><span class="header-section-number">7.5</span> Ejemplos</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> h</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Historial(escuchas: <span class="dv">8</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> h[<span class="dv">0</span>]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Escucha(vie <span class="dv">23</span><span class="er">h</span>, <span class="st">'Ji ji ji'</span>, rock)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> h.sin_duplicados()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>Historial(escuchas: <span class="dv">7</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> o <span class="op">=</span> h.sin_duplicados().ordenado()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="cf">for</span> e <span class="kw">in</span> o:</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>...     <span class="bu">print</span>(e)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>Escucha(lun <span class="dv">0</span><span class="er">8h</span>, <span class="st">'Luna tucumana'</span>, folklore)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>Escucha(lun <span class="dv">15</span><span class="er">h</span>, <span class="st">'Mil horas'</span>, pop)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>Escucha(lun <span class="dv">21</span><span class="er">h</span>, <span class="st">'Ji ji ji'</span>, rock)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>Escucha(mar <span class="dv">0</span><span class="er">9h</span>, <span class="st">'Luna tucumana'</span>, folklore)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>Escucha(vie <span class="dv">23</span><span class="er">h</span>, <span class="st">'Ji ji ji'</span>, rock)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>Escucha(sab <span class="dv">0</span><span class="er">1h</span>, <span class="st">'Fuiste'</span>, cumbia)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>Escucha(sab <span class="dv">0</span><span class="er">2h</span>, <span class="st">'Fuiste'</span>, cumbia)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> h[<span class="dv">0</span>]                  <span class="co"># h no cambió</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>Escucha(vie <span class="dv">23</span><span class="er">h</span>, <span class="st">'Ji ji ji'</span>, rock)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Filtrar, con una lambda o con el closure:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(o.filtrar(<span class="kw">lambda</span> e: e.dia <span class="op">==</span> <span class="st">"sab"</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>[Escucha(sab <span class="dv">0</span><span class="er">1h</span>, <span class="st">'Fuiste'</span>, cumbia), Escucha(sab <span class="dv">0</span><span class="er">2h</span>, <span class="st">'Fuiste'</span>, cumbia)]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">list</span>(o.filtrar(en_franja(<span class="st">"mañana"</span>)))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>[Escucha(lun <span class="dv">0</span><span class="er">8h</span>, <span class="st">'Luna tucumana'</span>, folklore), Escucha(mar <span class="dv">0</span><span class="er">9h</span>, <span class="st">'Luna tucumana'</span>, folklore)]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> noche <span class="op">=</span> en_franja(<span class="st">"noche"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> noche(o[<span class="dv">2</span>])</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> en_franja(<span class="st">"siesta"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="pp">ValueError</span>: Franja desconocida: <span class="st">'siesta'</span>.</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Agregaciones:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> o.conteo_por(<span class="kw">lambda</span> e: e.cancion.genero)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>{<span class="st">'folklore'</span>: <span class="dv">2</span>, <span class="st">'rock'</span>: <span class="dv">2</span>, <span class="st">'cumbia'</span>: <span class="dv">2</span>, <span class="st">'pop'</span>: <span class="dv">1</span>}</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> o.conteo_por(<span class="kw">lambda</span> e: e.franja)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>{<span class="st">'mañana'</span>: <span class="dv">2</span>, <span class="st">'noche'</span>: <span class="dv">2</span>, <span class="st">'madrugada'</span>: <span class="dv">2</span>, <span class="st">'tarde'</span>: <span class="dv">1</span>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Tendencias:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> o.tendencias(<span class="dv">3</span>, <span class="kw">lambda</span> e: e.cancion.genero)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>[<span class="st">'folklore'</span>, <span class="st">'pop'</span>, <span class="st">'rock'</span>, <span class="st">'folklore'</span>, <span class="st">'cumbia'</span>]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> o.tendencias(<span class="dv">10</span>, <span class="kw">lambda</span> e: e.cancion.genero)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>[]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> o.tendencias(<span class="dv">0</span>, <span class="kw">lambda</span> e: e.franja)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="pp">ValueError</span>: n debe ser al menos <span class="fl">1.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el primer ejemplo de <code>tendencias</code> con <code>n = 3</code>, cada elemento de la lista resultante corresponde a una ventana de 3 escuchas consecutivas de <code>o</code> (los datos de ejemplo de la sección <a href="#sec-datos-ejemplo" class="quarto-xref">7.1</a> sin la escucha repetida y ordenados). Como <code>o</code> tiene 7 escuchas, hay 5 ventanas. Cuando en una ventana hay empate, gana el género de la escucha más antigua:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ventana</th>
+<th>Escuchas en la ventana (de la más antigua a la más nueva)</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>folklore (lun 8h), pop (lun 15h), rock (lun 21h)</td>
+<td><code>folklore</code>: empate, gana la más antigua</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>pop (lun 15h), rock (lun 21h), folklore (mar 9h)</td>
+<td><code>pop</code>: empate, gana la más antigua</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>rock (lun 21h), folklore (mar 9h), rock (vie 23h)</td>
+<td><code>rock</code>: aparece 2 veces</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>folklore (mar 9h), rock (vie 23h), cumbia (sab 1h)</td>
+<td><code>folklore</code>: empate, gana la más antigua</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>rock (vie 23h), cumbia (sab 1h), cumbia (sab 2h)</td>
+<td><code>cumbia</code>: aparece 2 veces</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="sec-carga" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sec-carga"><span class="header-section-number">8</span> Carga de datos</h2>
+<section id="el-archivo-escuchas.csv" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="el-archivo-escuchas.csv"><span class="header-section-number">8.1</span> El archivo <code>escuchas.csv</code></h3>
+<p>Antes de seguir, descargá el archivo desde <a href="escuchas.csv" download="escuchas.csv">acá</a>.</p>
+<p>El archivo tiene un encabezado y una escucha por línea, con sus campos separados por coma (ningún título tiene comas):</p>
+<pre class="csv"><code>titulo,artista,genero,dia,hora
+Nunca me faltes,Antonio Ríos,cumbia,sab,8
+Ji ji ji,Los Redondos,rock,dom,16</code></pre>
+<p>Las filas están en desorden, algunas están repetidas y otras tienen errores a propósito, como pasa con los datos reales.</p>
+</section>
+<section id="sec-funciones-carga" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="sec-funciones-carga"><span class="header-section-number">8.2</span> Funciones de carga (archivo <code>lectura.py</code>)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Función</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>leer_filas(ruta)</code></td>
+<td>Un <strong>generador</strong>: abre el archivo (con <code>encoding="utf-8"</code>), saltea el encabezado y las líneas vacías, y entrega con <code>yield</code> cada fila como una lista de textos. Podés separar los campos de dos maneras: con <code>linea.strip().split(",")</code> o con <code>csv.reader</code>. Las dos son válidas y dan el mismo resultado con este archivo. En ambos casos, el archivo se lee de a una línea, sin cargarlo entero en memoria.</td>
+</tr>
+<tr class="even">
+<td><code>cargar_escuchas(ruta)</code></td>
+<td>Devuelve una tupla <code>(historial, descartes)</code>. Recorre las filas de <code>leer_filas</code> y, con cada una, crea la <code>Cancion</code> y la <code>Escucha</code> y la agrega al historial. Si una fila no tiene 5 campos, o si al crear los objetos se lanza <code>DatoInvalidoError</code>, la fila se <strong>descarta</strong> y se suma 1 en <code>descartes[campo]</code>. Contá las filas con una cantidad incorrecta de campos con la clave <code>"formato"</code>. Al final, <code>descartes</code> dice cuántas filas se descartaron por cada motivo, por ejemplo <code>{"hora": 2, "formato": 1}</code>. Las demás excepciones no se atrapan.</td>
+</tr>
+</tbody>
+</table>
+<p>Para que puedas verificar tu carga: con el archivo entregado, deberían quedar <strong>303 escuchas válidas</strong> y <strong>12 filas descartadas</strong>.</p>
+</section>
+</section>
+<section id="sec-pruebas" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="sec-pruebas"><span class="header-section-number">9</span> Pruebas</h2>
+<p>Las pruebas son dos archivos que, al ejecutarse, muestran en pantalla que las clases funcionan. Cada uno tiene que correr <strong>de principio a fin sin cortarse</strong>, con <code>python test_clases.py</code> y <code>python test_historial.py</code>.</p>
+<section id="qué-tiene-que-incluir-cada-archivo" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="qué-tiene-que-incluir-cada-archivo"><span class="header-section-number">9.1</span> Qué tiene que incluir cada archivo</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Archivo</th>
+<th>Debe incluir todos los ejemplos de</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>test_clases.py</code></td>
+<td>Secciones <a href="#sec-excepcion" class="quarto-xref">3</a> a <a href="#sec-escucha" class="quarto-xref">5</a> (<code>DatoInvalidoError</code>, <code>Cancion</code> y <code>Escucha</code>)</td>
+</tr>
+<tr class="even">
+<td><code>test_historial.py</code></td>
+<td>Sección <a href="#sec-cola" class="quarto-xref">6</a> (<code>Cola</code>), sección <a href="#sec-historial" class="quarto-xref">7</a> (<code>Historial</code> y <code>en_franja</code>), usando los datos de la sección <a href="#sec-datos-ejemplo" class="quarto-xref">7.1</a>, y sección <a href="#sec-mirada-datos" class="quarto-xref">9.3</a></td>
+</tr>
+</tbody>
+</table>
+<p>Además de los ejemplos de la consigna, cada archivo debe tener <strong>al menos 2 pruebas propias</strong> (inventadas por vos) que muestren algún caso no cubierto por los ejemplos. Marcalas con el comentario <code># Prueba propia</code>.</p>
+</section>
+<section id="cómo-escribir-cada-prueba" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="cómo-escribir-cada-prueba"><span class="header-section-number">9.2</span> Cómo escribir cada prueba</h3>
+<ol type="1">
+<li>Antes de cada prueba, un <strong>comentario</strong> que diga qué se prueba.</li>
+<li>Mostrá el resultado con <code>print</code>, junto con un texto que permita entenderlo.</li>
+<li>Las pruebas que <strong>deben lanzar un error</strong> se escriben dentro de <code>try</code>/<code>except</code>, para que el archivo siga ejecutándose. Si el error no aparece, la prueba tiene que avisarlo.</li>
+<li>Cada <code>test_*.py</code> crea sus propios datos: no depende de que otro archivo se haya ejecutado antes.</li>
+</ol>
+<p>Modelo a seguir:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># La franja de una escucha a las 8 es "mañana"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Franja de las 8 h:"</span>, Escucha(luna, <span class="st">"lun"</span>, <span class="dv">8</span>).franja)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Una hora fuera de rango debe lanzar un error</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    Escucha(luna, <span class="st">"lun"</span>, <span class="dv">25</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"ERROR: Escucha(luna, 'lun', 25) no lanzó ninguna excepción"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span> <span class="im">as</span> e:</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"OK, ValueError:"</span>, e)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Salida esperada:</p>
+<pre class="text"><code>Franja de las 8 h: mañana
+OK, ValueError: Hora fuera de rango: 25.</code></pre>
+</section>
+<section id="sec-mirada-datos" class="level3" data-number="9.3">
+<h3 data-number="9.3" class="anchored" data-anchor-id="sec-mirada-datos"><span class="header-section-number">9.3</span> Una mirada a los datos</h3>
+<p>Al final de <code>test_historial.py</code>, cargá <code>escuchas.csv</code> con <code>cargar_escuchas</code>, eliminá los duplicados y mostrá el género dominante de cada franja horaria (usá <code>en_franja</code> y <code>conteo_por</code>). Vas a ver que el archivo esconde un patrón.</p>
+</section>
+</section>
+<section id="sec-entregable" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="sec-entregable"><span class="header-section-number">10</span> Entregable</h2>
+<p>La entrega consiste <strong>exclusivamente</strong> en un archivo comprimido <code>.zip</code> con estos 8 archivos, con estos nombres exactos y sin carpetas adentro:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Archivo</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>excepciones.py</code></td>
+<td>Excepción <code>DatoInvalidoError</code></td>
+</tr>
+<tr class="even">
+<td><code>cancion.py</code></td>
+<td>Clase <code>Cancion</code></td>
+</tr>
+<tr class="odd">
+<td><code>escucha.py</code></td>
+<td>Clase <code>Escucha</code></td>
+</tr>
+<tr class="even">
+<td><code>cola.py</code></td>
+<td>Clases <code>Nodo</code> y <code>Cola</code></td>
+</tr>
+<tr class="odd">
+<td><code>historial.py</code></td>
+<td>Clase <code>Historial</code> y función <code>en_franja</code></td>
+</tr>
+<tr class="even">
+<td><code>lectura.py</code></td>
+<td>Funciones <code>leer_filas</code> y <code>cargar_escuchas</code></td>
+</tr>
+<tr class="odd">
+<td><code>test_clases.py</code></td>
+<td>Pruebas de las secciones <a href="#sec-excepcion" class="quarto-xref">3</a> a <a href="#sec-escucha" class="quarto-xref">5</a></td>
+</tr>
+<tr class="even">
+<td><code>test_historial.py</code></td>
+<td>Pruebas de las secciones <a href="#sec-cola" class="quarto-xref">6</a>, <a href="#sec-historial" class="quarto-xref">7</a> y <a href="#sec-mirada-datos" class="quarto-xref">9.3</a></td>
+</tr>
+</tbody>
+</table>
+<p>No hace falta incluir <code>escuchas.csv</code>: se corrige con el archivo original.</p>
+<p>No se deben agregar otros archivos ni usar otros nombres. El archivo comprimido se llama <code>{Apellido}_{Nombre}.zip</code>, por ejemplo <code>Alvarez_Julian.zip</code>.</p>
+</section>
+<section id="sec-evaluacion" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="sec-evaluacion"><span class="header-section-number">11</span> Evaluación</h2>
+<p>La evaluación tiene dos partes.</p>
+<ol type="1">
+<li><strong>Ejecución y revisión del código.</strong> Se verifica que los dos archivos de prueba se ejecuten completos y sin errores, y que las clases cumplan con esta consigna. También se tienen en cuenta la claridad y organización del código, los comentarios, las validaciones y la reutilización de métodos (los casos marcados con ♻️). Esta parte se califica de 0 a 10 y se aprueba con 6. Quienes la aprueben pasan a la presentación individual; quienes no, pueden rendir el examen final en condición regular.</li>
+<li><strong>Presentación individual.</strong> Hasta 10 minutos para explicar cómo implementaste las clases y mostrar las pruebas funcionando. Luego, hasta 10 minutos de preguntas sobre tu código.</li>
+</ol>
+<p><strong>Nota importante.</strong> Los archivos de prueba deberían incluir todos los ejemplos de la consigna. Se consideran válidas las entregas que incluyan <strong>al menos el 80 % de los ejemplos</strong>, siempre que todos los que estén se ejecuten correctamente. Las 2 pruebas propias por archivo son obligatorias.</p>
+</section>
+<section id="sec-ayuda" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="sec-ayuda"><span class="header-section-number">12</span> Ayuda</h2>
+<ul>
+<li><strong>Orden de trabajo.</strong> Seguí el orden de la tabla de la sección <a href="#sec-introduccion" class="quarto-xref">1</a>. Cada pieza usa las anteriores, así que un error en <code>Cancion</code> aparece después en el historial.</li>
+<li><strong><code>isinstance</code> y <code>bool</code>.</strong> Como <code>isinstance(True, int)</code> da <code>True</code>, para aceptar solo enteros hay que pedir <code>isinstance(x, int) and not isinstance(x, bool)</code>.</li>
+<li><strong>Excepción a medida.</strong> En el <code>__init__</code> de <code>DatoInvalidoError</code>, llamá a <code>super().__init__(mensaje)</code> para que el mensaje se muestre al imprimirla, y después guardá <code>campo</code>.</li>
+<li><strong>Leer un archivo.</strong> <code>with open(ruta, encoding="utf-8") as archivo:</code> abre el archivo y lo cierra solo. <code>next(archivo)</code> saltea una línea (el encabezado) y <code>for linea in archivo:</code> recorre las demás.</li>
+<li><strong>El módulo <code>csv</code>.</strong> Si preferís usarlo, abrí el archivo con <code>open(ruta, encoding="utf-8", newline="")</code> y creá un lector con <code>lector = csv.reader(archivo)</code>. El lector se recorre y entrega cada fila ya separada en una lista de textos; <code>next(lector)</code> saltea el encabezado. Ojo: las líneas vacías llegan como listas vacías (<code>[]</code>), así que hay que saltearlas igual. Como <code>csv.reader</code> también lee de a una fila, <code>leer_filas</code> sigue siendo un generador.</li>
+<li><strong>Ordenar un diccionario.</strong> <code>dict(sorted(d.items(), key=lambda par: par[1], reverse=True))</code> arma un diccionario nuevo ordenado por los valores, de mayor a menor. Mantiene el orden original en los empates.</li>
+<li><strong>Lista enlazada.</strong> Antes de programar <code>encolar</code> y <code>desencolar</code>, podés dibujar en papel los nodos y las flechas para tres casos: la cola vacía, con un solo elemento y con varios. La mayoría de los errores aparecen en los dos primeros.</li>
+<li><strong>Formato con ceros.</strong> <code>f"{7:02d}"</code> da <code>'07'</code>: <code>:02d</code> significa “mostrá el entero con al menos 2 dígitos, completando con ceros a la izquierda” (sin ese formato, <code>f"{7}"</code> da <code>'7'</code>). Te sirve para el <code>__repr__</code> de <code>Escucha</code>: así, una escucha a las 8 se muestra como <code>08h</code>.</li>
+<li><strong>Reutilizá.</strong> Antes de escribir un método, preguntate si se puede armar con otros que ya tengas. Por ejemplo, <code>tendencias</code> usa <code>conteo_por</code> para contar cada ventana, y el género dominante de una franja sale de combinar <code>filtrar</code> con <code>conteo_por</code>.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
