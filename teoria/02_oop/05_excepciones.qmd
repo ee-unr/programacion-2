@@ -5,14 +5,16 @@ toc: true
 
 ## Introducción
 
-Al programar es inevitable encontrarse con situaciones que impiden que una operación pueda
-completarse. A veces el problema está en el código: olvidamos cerrar un paréntesis, escribimos mal
-el nombre de una variable o intentamos usar un método que un objeto no posee. Otras veces el código
-es correcto, pero recibe un dato con el que no puede trabajar: un divisor igual a cero, una posición
-que no existe en una lista o la ruta a un archivo inexistente.
+Hasta ahora escribimos programas que, en general, reciben los datos que esperamos.
+Pero ¿qué ocurre si intentamos dividir por cero, leer una posición que no existe en una lista
+u operar con un archivo que fue eliminado?
 
-Hasta ahora, cuando una función detectaba una situación inválida, muchas veces la indicábamos con
-un `print`:
+Estas situaciones pueden aparecer incluso cuando el código está bien escrito.
+Por eso, además de indicar qué hacer cuando todo sale bien, necesitamos decidir cómo responder
+cuando una operación no puede completarse.
+
+Retomemos un ejemplo conocido: una cuenta bancaria que permite extraer dinero.
+Una primera forma de avisar que el saldo es insuficiente podría ser la siguiente:
 
 ```python
 class CuentaBancaria:
@@ -29,13 +31,15 @@ class CuentaBancaria:
         return monto
 ```
 
-Este código informa el problema a una persona que esté mirando la pantalla, pero no se lo comunica
-de una manera útil al resto del programa.
-Además, la clase `CuentaBancaria` queda obligada a elegir cómo mostrar el mensaje, aunque quizás
-se la quiera usar en un sitio web, una aplicación gráfica o un programa que no tenga consola.
+Si creamos una cuenta con un saldo de \$5000 e intentamos extraer \$7000, el método muestra
+el mensaje y termina sin modificar el saldo. Para una persona que está mirando la consola,
+el problema queda claro. Pero ¿cómo se entera el código que llamó al método de que la extracción falló?
 
-Las **excepciones**, en particular los errores,
-permiten comunicar estas situaciones de manera explícita:
+El `print` solamente escribe un mensaje. Además, nos obliga a mostrarlo en la consola,
+aunque después queramos usar la cuenta en una aplicación con una interfaz gráfica.
+
+Para comunicar el problema al resto del programa podemos usar una **excepción** (_exception_).
+Veamos qué cambia al reemplazar el `print` y el `return` por una instrucción `raise`:
 
 ```python
 class CuentaBancaria:
@@ -51,13 +55,17 @@ class CuentaBancaria:
         return monto
 ```
 
-Ahora, el método detecta el problema y **lanza una excepción**. La parte del programa que utiliza
-la cuenta puede decidir si muestra un mensaje, solicita otro monto, registra el incidente o deja que
-la ejecución termine.
+Ahora, si `monto` es mayor que `self.saldo`, el método **lanza una excepción** de tipo `ValueError`.
+La ejecución se interrumpe en el `raise`, por lo que no se llega a descontar el monto del saldo.
+El código que usa la cuenta puede capturar esa excepción y decidir cómo responder:
+mostrar un mensaje, solicitar otro monto o cancelar la operación.
+
+A lo largo del apunte vamos a ver cómo se lanzan las excepciones, cómo se propagan entre llamadas
+y cómo podemos capturarlas.
 
 ::: {.callout-important}
 
-#### Más que un color alarmante
+#### Una excepción es un objeto
 
 Una excepción no es solamente un texto impreso en color rojo. Es un objeto que representa
 una situación excepcional y que modifica el flujo normal de ejecución del programa.
@@ -117,10 +125,13 @@ ZeroDivisionError: division by zero
 
 :::
 
-En este ejemplo, Python crea un objeto de tipo `ZeroDivisionError` y lo lanza o eleva.
-**Capturar una excepción** significa interceptarla mientras se propaga para ejecutar una respuesta
-alternativa, en lugar de dejar que termine el programa. Si ninguna parte del programa la captura,
-la ejecución termina y se muestra el _traceback_.
+Python puede asignar `10` a `dividendo` y `0` a `divisor` sin ningún problema.
+La dificultad aparece al evaluar `dividendo / divisor`: la división por cero hace que se lance
+un objeto de tipo `ZeroDivisionError`. Como la operación se interrumpe, no se llega a asignar
+un valor a `resultado`.
+
+**Capturar una excepción** (_catch_) significa interceptarla para ejecutar una respuesta alternativa.
+Si ninguna parte del programa la captura, la ejecución termina y se muestra el detalle del error.
 Más adelante veremos cómo hacerlo con `try` y `except`.
 
 ### Errores lógicos o _bugs_
@@ -133,12 +144,14 @@ def promedio(numeros):
     return sum(numeros) / (len(numeros) + 1)
 ```
 
-Si se llama a la función con una lista no vacía de números, la misma se ejecuta sin lanzar una
-excepción, pero el cálculo es incorrecto. En este caso es necesario revisar la implementación del algoritmo.
+Si llamamos a `promedio([4, 6])`, la suma es `10` y la cantidad de elementos es `2`.
+Sin embargo, la función divide por `2 + 1`, de modo que devuelve aproximadamente `3.33`
+en lugar de `5`. Python puede realizar ese cálculo y no lanza ninguna excepción.
+Para corregir el resultado tenemos que revisar la fórmula de la función.
 
 ### _Warnings_
 
-Un **_warning_** o advertencia comunica una situación que merece atención, pero normalmente no
+Una **advertencia** (_warning_) comunica una situación que merece atención, pero normalmente no
 interrumpe el programa. Por ejemplo, un paquete puede advertir que una función o método continuará
 funcionando por el momento, aunque será eliminado en una versión futura.
 
@@ -146,8 +159,8 @@ Más adelante veremos cómo crear y filtrar estas advertencias.
 
 ## Cómo leer un _traceback_
 
-Cuando una excepción no es capturada, Python muestra un **_traceback_**. Aunque al principio puede
-parecer intimidante, contiene información muy útil para investigar lo ocurrido.
+Cuando una excepción no es capturada, Python muestra la **traza de las llamadas** o _traceback_.
+Este mensaje permite reconstruir qué llamadas llevaron hasta la operación que falló.
 
 Consideremos el siguiente programa:
 
@@ -182,6 +195,11 @@ ValueError: invalid literal for int() with base 10: 'diez'
 
 :::
 
+La llamada `duplicar("diez")` empieza por ejecutar `convertir_a_entero("diez")`.
+Dentro de esa función, `int` intenta convertir `"diez"` en un entero y lanza un `ValueError`.
+Por eso `convertir_a_entero` no devuelve un número, `duplicar` no llega a multiplicar por dos
+y el `print` del código principal tampoco llega a mostrar un resultado.
+
 El _traceback_ contiene:
 
 1. La secuencia de llamadas: indica el camino que siguió el programa. En este caso, el código
@@ -196,10 +214,11 @@ luego recorrer de abajo hacia arriba las llamadas que llevaron hasta el problema
 código mencionada suele indicar dónde se lanzó la excepción, pero la causa conceptual puede estar
 antes. Por ejemplo, el dato inválido podría haberse originado en otra función.
 
-## Tipos de errores _built-in_
+## Tipos de excepciones incorporadas
 
-Python incluye una jerarquía amplia de excepciones. No es necesario memorizarla de manera completa,
-pero sí conviene reconocer algunos tipos habituales y prestar atención al mensaje que los acompaña.
+Python incluye distintos tipos de excepciones incorporadas, también llamadas _built-in_.
+Ya vimos `ZeroDivisionError` y `ValueError`, pero hay otros tipos que vamos a encontrar con frecuencia.
+La siguiente tabla reúne algunos de ellos y las situaciones en las que suelen aparecer.
 
 | Excepción             | Situación frecuente                                                 |
 |-----------------------|---------------------------------------------------------------------|
@@ -296,9 +315,12 @@ AttributeError: 'int' object has no attribute 'append'
 
 ##### ¿`TypeError` o `ValueError`? 🤔
 
-Usamos `TypeError` cuando el objeto es de un tipo que no admite la operación. Por ejemplo, una edad expresada como `"veinte"` cuando se espera un número entero. En cambio, usamos `ValueError` cuando el tipo es correcto, pero el valor no es válido. Por ejemplo, una edad igual a `-20`.
+La diferencia depende de qué espera la operación. Si una función recibe una edad y espera
+un entero, podemos usar `TypeError` cuando recibe una cadena como `"veinte"`.
+Si recibe el entero `-20`, el tipo es el esperado, pero su valor no representa una edad válida.
+En ese caso podemos usar `ValueError`.
 
-Por ejemplo:
+Veamos cómo expresar ambas condiciones:
 
 ```python
 def validar_edad(edad):
@@ -307,6 +329,10 @@ def validar_edad(edad):
     if edad < 0:
         raise ValueError("La edad no puede ser negativa")
 ```
+
+Con `validar_edad("veinte")`, la primera condición se cumple y se lanza `TypeError`.
+Con `validar_edad(-20)`, la primera condición no se cumple, pero la segunda sí: se lanza `ValueError`.
+En cambio, `validar_edad(20)` llega al final sin lanzar ninguna excepción.
 
 :::
 
@@ -357,15 +383,16 @@ ValueError: El porcentaje debe estar entre 0 y 100
 ```
 :::
 
-La función no necesita imprimir nada ni decidir cómo se presentará el problema. Su responsabilidad
-es señalar que no puede cumplir su contrato con los datos recibidos.
+En `calcular_descuento(2000, 120)`, el precio pasa la primera validación.
+Luego se comprueba el porcentaje: `120` está fuera del intervalo permitido y se ejecuta el segundo `raise`.
+La función termina en ese punto, sin llegar al `return` que calcula el descuento.
+El código que la llamó podrá decidir qué hacer con ese porcentaje inválido.
 
 ### Cómo construir una excepción
 
-Una excepción debería aportar dos piezas de información:
-
-- **el tipo** permite que el programa distinga clases de problemas;
-- **el mensaje** ofrece detalles para que una persona pueda comprender el caso concreto.
+Cuando lanzamos una excepción, elegimos su **tipo** y su **mensaje**.
+El tipo permite que el programa distinga qué problema ocurrió.
+El mensaje agrega los detalles que necesita una persona para entender ese caso concreto.
 
 `Exception` es la clase base de la que heredan casi todas las excepciones que representan fallos
 ordinarios de un programa, como `ValueError`, `TypeError` o `FileNotFoundError`. Por eso es posible
@@ -375,7 +402,7 @@ crear y lanzar directamente una excepción general:
 raise Exception("El porcentaje es incorrecto")
 ```
 
-Sin embargo, su tipo sólo comunica que ocurrió algún problema. Siempre que exista una alternativa
+Sin embargo, su tipo solo comunica que ocurrió algún problema. Siempre que exista una alternativa
 adecuada, es preferible lanzar una excepción más específica:
 
 ```python
@@ -386,16 +413,16 @@ El mensaje debe explicar qué condición no se cumplió. Cuando resulte útil, p
 problemático:
 
 ```python
-raise ValueError(f"El porcentaje debe estar entre 0 y 100; se recibió {porcentaje}")
+raise ValueError(f"El porcentaje debe estar entre 0 y 100. Se recibió {porcentaje}")
 ```
 
 ### Qué ocurre al lanzar una excepción
 
-Cuando se ejecuta `raise`, Python interrumpe inmediatamente el flujo normal del programa y no se
-ejecutan las instrucciones posteriores de la función actual. En su lugar, Python busca un bloque
-`except` que pueda capturar la excepción. Mientras lo busca, también abandona las funciones que
-habían realizado las llamadas pendientes. Si no encuentra un `except` apropiado, el programa
-termina y muestra el _traceback_.
+Al ejecutar `raise`, Python deja de seguir las instrucciones en su orden habitual y busca
+un bloque `except` que pueda capturar la excepción.
+Si la función actual no tiene un bloque apropiado, la búsqueda continúa en la función que la llamó.
+Si tampoco lo encuentra allí, continúa hacia las llamadas anteriores.
+Cuando ninguna parte del programa captura la excepción, la ejecución termina y se muestra el _traceback_.
 
 ```python
 def raiz_cuadrada(numero):
@@ -406,9 +433,10 @@ def raiz_cuadrada(numero):
     return numero ** 0.5
 ```
 
-Para un número negativo no se ejecuta ni el `print` posterior al `raise` ni el `return` de la
-función. La única forma de continuar la ejecución de manera controlada es que alguna parte del
-programa capture la excepción.
+Si llamamos a `raiz_cuadrada(-9)`, la condición `numero < 0` se cumple y se ejecuta el `raise`.
+El `print` que aparece debajo nunca se ejecuta, porque la excepción ya interrumpió ese bloque.
+Tampoco se llega al `return`. En cambio, con `raiz_cuadrada(9)` la condición no se cumple
+y la función devuelve `3.0`.
 
 Este recorrido de la excepción hacia las funciones que realizaron las llamadas se denomina
 **propagación**. Podemos observarlo con varias funciones encadenadas:
@@ -435,9 +463,13 @@ Como allí tampoco existe un bloque capaz de manejarla, el programa termina y mu
 
 ## Manejo de excepciones
 
-Para **capturar** una excepción, se encierra la operación que podría lanzarla en un bloque `try` y
-se indica en un bloque `except` qué tipo de excepción se espera y cómo responder.
-De esta manera, la excepción deja de propagarse y el programa puede continuar de forma controlada.
+Hasta ahora dejamos que las excepciones llegaran al código principal y terminaran el programa.
+Pero si una persona escribe una palabra cuando le pedimos un número, quizás alcance con avisarle
+que el dato no es válido.
+
+Para responder a esa situación usamos los bloques `try` y `except`.
+Dentro de `try` colocamos la operación que podría fallar.
+En `except` indicamos qué tipo de excepción queremos capturar y qué hacer si aparece.
 
 ```python
 try:
@@ -446,13 +478,13 @@ except ValueError:
     print("La entrada no representa un número entero")
 ```
 
-Python ejecuta primero el bloque `try`:
+Python empieza por ejecutar `input` dentro del `try`.
+Si ingresamos `"25"`, `int` lo convierte en `25`, se asigna ese valor a `numero` y se omite el `except`.
+Si ingresamos `"veinticinco"`, `int` lanza un `ValueError` y la asignación no se completa.
+Python encuentra el `except ValueError`, muestra el mensaje y continúa después de la estructura.
 
-- si no se lanza una excepción, omite el bloque `except` y continúa;
-- si se lanza un `ValueError`, interrumpe el `try`, ejecuta el `except` correspondiente y después
-  continúa con el código que se encuentre luego de la estructura;
-- si se lanza una excepción de otro tipo, este `except` no la captura y la excepción continúa
-  propagándose.
+Este bloque captura únicamente `ValueError`. Si se lanza una excepción de otro tipo,
+continúa propagándose hasta encontrar un bloque que pueda capturarla.
 
 ::: {.callout-note}
 
@@ -481,9 +513,11 @@ No se pudo realizar la conversión
 Detalle: invalid literal for int() with base 10: 'cuarenta'
 ```
 
-Durante la ejecución del bloque `except`, el nombre `error` referencia al objeto capturado.
-Al finalizar el bloque, Python elimina esa asociación. También se usan con frecuencia los nombres
-`excepcion` o `e`.
+La conversión de `"cuarenta"` falla y Python entra en el `except`.
+El nombre `error` permite acceder al objeto capturado, de modo que el segundo `print` muestra
+el mensaje con el valor que no pudo convertirse.
+Al finalizar el bloque, Python elimina esa asociación.
+El nombre lo elegimos nosotros: también podríamos usar `excepcion` o `e`.
 
 ### Múltiples bloques `except`
 
@@ -501,8 +535,14 @@ except IndexError:
     print("La posición no existe en la lista")
 ```
 
-Python prueba los bloques `except` de arriba hacia abajo y ejecuta solamente el primero cuyo tipo
-coincida con la excepción.
+Si ingresamos `"dos"`, falla la conversión con `int` y se ejecuta el primer `except`.
+La lista ni siquiera llega a crearse en ese intento.
+Si ingresamos `"8"`, la conversión funciona, pero `colores[8]` lanza un `IndexError`
+y se ejecuta el segundo `except`.
+Con `"1"`, en cambio, se muestra `verde` y no se ejecuta ninguno de los dos.
+
+Python revisa los bloques `except` de arriba hacia abajo y ejecuta solamente el primero
+que pueda capturar la excepción.
 
 ### Múltiples tipos en un mismo `except`
 
@@ -516,12 +556,17 @@ except (ValueError, ZeroDivisionError) as error:
     print("No se pudo realizar el cálculo:", error)
 ```
 
-Agrupar excepciones reduce la repetición, pero también pierde la posibilidad de dar una respuesta
-diferente a cada problema. Conviene hacerlo únicamente cuando el manejo sea realmente el mismo.
+Si ingresamos `"cero"`, `int` lanza un `ValueError`.
+Si ingresamos `"0"`, la conversión funciona, pero la división lanza un `ZeroDivisionError`.
+Como ambos tipos están en la tupla del `except`, en los dos casos se muestra el mensaje
+junto con el detalle de la excepción.
+Esta agrupación resulta útil cuando queremos responder de la misma manera a distintos problemas.
 
 ### Bloque `else`
 
-El bloque `else` se ejecuta solamente si el `try` finaliza sin lanzar ninguna excepción:
+En el ejemplo anterior avisamos cuando el cálculo falla, pero también podríamos querer mostrar
+el resultado cuando funciona. Para eso podemos agregar un bloque `else`, que se ejecuta
+solamente si el `try` termina sin lanzar una excepción:
 
 ```python
 try:
@@ -535,8 +580,13 @@ else:
     print("Resultado:", resultado)
 ```
 
-Podríamos colocar el último `print` dentro del `try`, pero usar `else` permite que el bloque `try`
-contenga sólo las instrucciones que esperamos que produzcan las excepciones capturadas.
+Si ingresamos `"4"`, `numero` recibe el valor `4` y `resultado` recibe `25.0`.
+Como el `try` termina sin problemas, se ejecuta el `else` y se muestra `Resultado: 25.0`.
+Si ingresamos `"0"`, se ejecuta el `except ZeroDivisionError` y se omite el `else`.
+
+También podríamos colocar el último `print` dentro del `try`.
+Usar `else` permite dejar allí solamente la conversión y la división, que son las operaciones
+cuyas excepciones queremos capturar.
 
 ### Volver a intentar una operación
 
@@ -556,13 +606,19 @@ while True:
 print("Número ingresado:", numero)
 ```
 
-Si la conversión lanza un `ValueError`, se muestra el mensaje y comienza una nueva iteración. El
-`break` sólo se ejecuta cuando el bloque `try` finaliza correctamente, por lo que el bucle termina
-una vez que se ha ingresado un número entero.
+Supongamos que primero ingresamos `"tres"`. La conversión falla, se muestra el mensaje
+y el `while` vuelve a pedir un dato.
+Si en el segundo intento ingresamos `"3"`, la conversión funciona y `numero` recibe `3`.
+Esta vez se ejecuta el `else`: el `break` termina el bucle y el último `print` muestra
+`Número ingresado: 3`.
 
 ### Bloque `finally`
 
-El bloque `finally` se ejecuta siempre, tanto si ocurrió una excepción como si no ocurrió:
+Al trabajar con un archivo, tenemos que cerrarlo tanto si logramos procesar su contenido como
+si aparece un problema. Si ponemos `archivo.close()` después de la conversión, una excepción
+podría impedir que lleguemos a esa línea.
+
+Para indicar una tarea que debe ejecutarse al salir del `try`, podemos usar un bloque `finally`:
 
 ```python
 archivo = open("datos.txt", encoding="utf-8")
@@ -576,17 +632,24 @@ finally:
     archivo.close()
 ```
 
-Su uso principal es liberar recursos o realizar tareas de limpieza que deben suceder bajo cualquier
-resultado. En el caso particular de los archivos,
-normalmente es preferible usar un _context manager_ que se ocupa del cierre automáticamente:
+Si `datos.txt` contiene `"42"`, la conversión funciona y `numero` recibe `42`.
+Si contiene `"cuarenta"`, se lanza un `ValueError` y se muestra el mensaje del `except`.
+En ambos casos se ejecuta el `finally` y se cierra el archivo.
+También se ejecutaría si apareciera otra excepción dentro del `try`, antes de que continuara propagándose.
+
+En este ejemplo abrimos el archivo antes del `try`.
+Si falla `open`, no llegamos a entrar en esa estructura ni hay un archivo abierto que cerrar.
+
+Para el caso particular de los archivos, ya conocemos una alternativa más sencilla:
+un **administrador de contexto** (_context manager_) con `with`, que se ocupa del cierre automáticamente:
 
 ```python
 with open("datos.txt", encoding="utf-8") as archivo:
     contenido = archivo.read()
 ```
 
-`finally` sigue siendo útil cuando la adquisición y liberación del recurso no puede expresarse con
-un _context manager_.
+`finally` también permite realizar otras tareas que deben completarse al salir del `try`,
+aunque no estemos trabajando con un archivo.
 
 ### Ejemplo final
 
@@ -603,6 +666,10 @@ else:
 finally:
     print("Fin del intento")
 ```
+
+Si ingresamos `"12"`, se muestra `El doble es 24` y luego `Fin del intento`.
+Si ingresamos `"doce"`, se muestra el mensaje de entrada inválida y después `Fin del intento`.
+El `else` aparece solamente en el primer caso, mientras que el `finally` se ejecuta en ambos.
 
 La estructura comienza siempre con `try`. A continuación puede incluir uno o más bloques `except`
 y, si estos existen, un bloque `else` opcional. Al final puede agregarse un bloque `finally`.
@@ -635,9 +702,13 @@ except ValueError:
 
 ## Excepciones a medida
 
-Los tipos de excepciones _built-in_ son suficientes para muchísimos problemas.
-Sin embargo, si una situación posee un significado propio del dominio de nuestra aplicación,
-podemos definir una excepción personalizada.
+Volvamos a la cuenta bancaria del comienzo.
+Hasta ahora usamos `ValueError` para indicar que no alcanza el saldo.
+Pero una función que opera con cuentas podría recibir un `ValueError` por otros motivos,
+como un monto negativo.
+
+Si queremos distinguir la falta de saldo por su tipo, podemos crear una **excepción personalizada**
+(_custom exception_). Para hacerlo vamos a recuperar algo que ya conocemos: clases y herencia.
 
 ### Las excepciones son objetos
 
@@ -705,12 +776,17 @@ except SaldoInsuficienteError as error:
 Extracción rechazada: No hay saldo suficiente
 ```
 
-La clase personalizada permite distinguir la falta de saldo de cualquier otro `ValueError` que
-pudiera ocurrir.
+La cuenta de Ana empieza con \$5000. Al intentar extraer \$7000, se ejecuta el `raise`
+y el saldo queda sin cambios. El `except SaldoInsuficienteError` captura esa excepción
+y muestra el mensaje de rechazo.
+Ahora podemos identificar este problema por su clase, sin tener que comparar el texto del mensaje.
 
 ### Jerarquía de excepciones
 
-La herencia permite agrupar problemas relacionados:
+Además de distinguir problemas, podemos agruparlos.
+Por ejemplo, la falta de saldo y un monto inválido son situaciones diferentes, pero ambas
+están relacionadas con las operaciones de una cuenta.
+Podemos representar esa relación mediante herencia:
 
 ```python
 class CuentaError(Exception):
@@ -763,13 +839,21 @@ Si `CuentaError` apareciera primero, también capturaría los objetos de tipo
 
 ## _Warnings_
 
-Las **advertencias** o _warnings_ informan situaciones sospechosas, obsoletas o potencialmente
-problemáticas que no impiden necesariamente continuar. A diferencia de una excepción no capturada,
-un _warning_ se muestra y el programa normalmente sigue ejecutándose.
+Hasta ahora usamos excepciones para interrumpir operaciones que no podían completarse.
+En otras ocasiones podemos continuar, pero queremos avisar que hay algo a lo que conviene prestar atención.
+Por ejemplo, una función podría usar un valor por defecto porque no recibió uno de sus argumentos.
+
+Como adelantamos al comienzo, para estos casos existen las **advertencias** o _warnings_.
+Su tratamiento se puede configurar, pero normalmente permiten que el programa siga ejecutándose.
 
 ### Crear una advertencia
 
-Las advertencias se emiten mediante el módulo `warnings`:
+Supongamos que una función convierte un monto en pesos usando una cotización.
+Para este ejemplo, si no recibe la cotización va a usar `1`, pero queremos que esa decisión quede visible.
+Podríamos mostrar un mensaje con `print`, aunque después no tendríamos una forma de configurar
+cómo tratarlo sin modificar la función.
+
+El módulo `warnings` permite emitir una advertencia y decidir por separado cómo se la tratará:
 
 ```python
 import warnings
@@ -777,7 +861,7 @@ import warnings
 def convertir_pesos(monto, cotizacion=None):
     if cotizacion is None:
         warnings.warn(
-            "No se indicó una cotización; se usará el valor 1",
+            "No se indicó una cotización. Se usará el valor 1",
             UserWarning,
         )
         cotizacion = 1
@@ -790,7 +874,13 @@ resultado = convertir_pesos(1000)
 print("Resultado:", resultado)
 ```
 
-La advertencia se muestra, pero el cálculo continúa.
+Como no pasamos una cotización, `cotizacion` empieza con el valor `None`.
+Se cumple la condición del `if` y `warnings.warn` emite una advertencia de tipo `UserWarning`.
+Luego se asigna `1` a `cotizacion` y la función devuelve `1000 / 1`, es decir, `1000.0`.
+Finalmente, el `print` muestra `Resultado: 1000.0`.
+
+Este valor por defecto sirve para observar el mecanismo de las advertencias.
+En una aplicación real tendríamos que decidir si tiene sentido completar la conversión sin una cotización.
 
 ::: {.callout-note}
 
@@ -802,7 +892,7 @@ herramientas que ejecutan el programa.
 
 ### Categorías frecuentes
 
-Algunosco _built-in_ son:
+Algunas categorías incorporadas son:
 
 | Categoría            | Uso habitual                                                       |
 |----------------------|--------------------------------------------------------------------|
@@ -832,11 +922,14 @@ warnings.warn(
 )
 ```
 
-Una categoría propia permite aplicar filtros únicamente a las advertencias de nuestra aplicación.
+`CotizacionWarning` hereda de `UserWarning`, de modo que sigue siendo una categoría de advertencia.
+La clase propia nos permite distinguir estos avisos y aplicarles un filtro sin afectar a los demás.
 
 ### Filtrar advertencias
 
-`warnings.simplefilter` permite controlar cómo se tratarán:
+Hasta ahora dejamos que Python decidiera cómo mostrar las advertencias.
+Si queremos que los avisos de cotización aparezcan cada vez que se emiten,
+podemos indicarlo con `warnings.simplefilter`:
 
 ```python
 import warnings
@@ -846,13 +939,13 @@ warnings.simplefilter("always", CotizacionWarning)
 
 Algunas acciones disponibles son:
 
-- `"always"`: muestra la advertencia cada vez que se emite;
-- `"default"`: muestra la primera aparición de cada advertencia en cada línea del código;
+- `"always"`: muestra la advertencia cada vez que se emite.
+- `"default"`: muestra la primera aparición de cada advertencia en cada línea del código.
 - `"module"`: muestra la primera aparición de cada advertencia dentro de cada módulo, sin importar
-  desde qué línea se emita;
+  desde qué línea se emita.
 - `"once"`: muestra la primera aparición de cada advertencia durante el programa, sin importar el
-  módulo o la línea donde se emita;
-- `"ignore"`: no muestra las advertencias coincidentes;
+  módulo o la línea donde se emita.
+- `"ignore"`: no muestra las advertencias coincidentes.
 - `"error"`: las convierte en excepciones.
 
 Para decidir si dos advertencias son la misma, Python compara su mensaje y su categoría. La
@@ -890,7 +983,10 @@ resultados potencialmente incorrectos.
 
 ### Agregar información a la excepción
 
-Como cualquier objeto, una excepción puede guardar estado en sus atributos:
+El mensaje de `SaldoInsuficienteError` informa que la operación falló, pero el código que la captura
+podría necesitar saber cuánto dinero falta.
+Podemos guardar el saldo y el monto solicitado como atributos del objeto excepción, sin tener
+que extraer esos datos de una cadena de texto:
 
 ```python
 class SaldoInsuficienteError(Exception):
@@ -921,9 +1017,12 @@ class CuentaBancaria:
         return monto
 ```
 
-Quien captura la excepción puede usar tanto el mensaje como sus atributos:
+Quien captura la excepción puede usar tanto el mensaje como sus atributos.
+Creemos una cuenta con la versión de `CuentaBancaria` que acabamos de definir:
 
 ```python
+cuenta = CuentaBancaria("Ana", 5000)
+
 try:
     cuenta.extraer(7000)
 except SaldoInsuficienteError as error:
@@ -931,6 +1030,15 @@ except SaldoInsuficienteError as error:
     print(error)
     print("Faltan $", faltante, sep="")
 ```
+
+```text
+Saldo insuficiente: disponible $5000, solicitado $7000
+Faltan $2000
+```
+
+El método crea la excepción con `saldo=5000` y `monto=7000`.
+En el `except`, `error.saldo` y `error.monto` conservan esos valores,
+por lo que podemos calcular `7000 - 5000` y mostrar cuánto dinero falta.
 
 ### Propagación avanzada
 
@@ -952,14 +1060,18 @@ def procesar_archivo(ruta):
         raise
 ```
 
-La función registra información útil y después permite que `FileNotFoundError` continúe
-propagándose. El código de un nivel superior conserva el tipo, el mensaje y el _traceback_
-originales.
+Si la ruta no existe, `open` lanza un `FileNotFoundError`.
+El `except` muestra la ruta que se intentó abrir y luego el `raise` vuelve a lanzar la excepción.
+Así, el código que llamó a `procesar_archivo` todavía puede capturarla.
+El tipo, el mensaje y la información del _traceback_ original se conservan.
 
 #### Transformar y encadenar excepciones
 
-Una capa de la aplicación puede querer expresar un problema técnico mediante una excepción más
-significativa para su dominio. `raise ... from ...` conserva la relación entre ambas:
+También podríamos querer comunicar un problema usando un tipo propio, pero conservar
+la excepción que lo originó.
+Por ejemplo, si falla la conversión del puerto de una configuración, podemos lanzar
+`ConfiguracionError` e indicar que fue causado por el `ValueError` de la conversión.
+Para relacionar ambas excepciones usamos `raise ... from ...`:
 
 ```python
 class ConfiguracionError(Exception):
@@ -974,9 +1086,11 @@ def leer_puerto(texto):
         ) from error_original
 ```
 
-Si se llama a `leer_puerto("ochenta")`, el _traceback_ muestra el `ValueError` original y luego el
-`ConfiguracionError` que se produjo como consecuencia directa. Esto agrega contexto sin borrar la
-causa inicial.
+Con `leer_puerto("ochenta")`, la llamada a `int` lanza un `ValueError`.
+El `except` lo captura con el nombre `error_original` y crea un `ConfiguracionError`.
+La parte `from error_original` conserva la relación entre ambos objetos.
+Si nadie captura la nueva excepción, el _traceback_ muestra primero el `ValueError`
+y después el `ConfiguracionError` que se lanzó a partir de él.
 
 También existe `raise NuevaExcepcion(...) from None`, que oculta el contexto anterior en el
 _traceback_ mostrado. Debe usarse con cuidado, porque simplifica el mensaje visible pero también
@@ -984,9 +1098,12 @@ puede eliminar información valiosa para diagnosticar el problema.
 
 ### Administrar _warnings_ temporalmente
 
-Los filtros configurados con `warnings.simplefilter()` modifican el comportamiento general del
-programa. Si sólo queremos aplicar un filtro durante una operación determinada, podemos usar
-`warnings.catch_warnings()` como administrador de contexto:
+Si configuramos `warnings.simplefilter("ignore", CotizacionWarning)`, el filtro seguirá activo
+para las operaciones posteriores.
+Pero quizás solo queramos silenciar esa categoría durante una llamada y luego recuperar
+la configuración que teníamos antes.
+
+Para limitar el cambio a un bloque podemos usar `warnings.catch_warnings()` con `with`:
 
 ```python
 with warnings.catch_warnings():
