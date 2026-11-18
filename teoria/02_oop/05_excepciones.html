@@ -343,6 +343,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">U5 - Estructuras de Datos No Lineales</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/05_estructuras_no_lineales/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Introducción</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -362,7 +379,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#warnings" id="toc-warnings" class="nav-link" data-scroll-target="#warnings"><em>Warnings</em></a></li>
   </ul></li>
   <li><a href="#cómo-leer-un-traceback" id="toc-cómo-leer-un-traceback" class="nav-link" data-scroll-target="#cómo-leer-un-traceback">Cómo leer un <em>traceback</em></a></li>
-  <li><a href="#tipos-de-errores-built-in" id="toc-tipos-de-errores-built-in" class="nav-link" data-scroll-target="#tipos-de-errores-built-in">Tipos de errores <em>built-in</em></a></li>
+  <li><a href="#tipos-de-excepciones-incorporadas" id="toc-tipos-de-excepciones-incorporadas" class="nav-link" data-scroll-target="#tipos-de-excepciones-incorporadas">Tipos de excepciones incorporadas</a></li>
   <li><a href="#lanzamiento-de-excepciones" id="toc-lanzamiento-de-excepciones" class="nav-link" data-scroll-target="#lanzamiento-de-excepciones">Lanzamiento de excepciones</a>
   <ul class="collapse">
   <li><a href="#cómo-construir-una-excepción" id="toc-cómo-construir-una-excepción" class="nav-link" data-scroll-target="#cómo-construir-una-excepción">Cómo construir una excepción</a></li>
@@ -424,8 +441,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
-<p>Al programar es inevitable encontrarse con situaciones que impiden que una operación pueda completarse. A veces el problema está en el código: olvidamos cerrar un paréntesis, escribimos mal el nombre de una variable o intentamos usar un método que un objeto no posee. Otras veces el código es correcto, pero recibe un dato con el que no puede trabajar: un divisor igual a cero, una posición que no existe en una lista o la ruta a un archivo inexistente.</p>
-<p>Hasta ahora, cuando una función detectaba una situación inválida, muchas veces la indicábamos con un <code>print</code>:</p>
+<p>Hasta ahora escribimos programas que, en general, reciben los datos que esperamos. Pero ¿qué ocurre si intentamos dividir por cero, leer una posición que no existe en una lista u operar con un archivo que fue eliminado?</p>
+<p>Estas situaciones pueden aparecer incluso cuando el código está bien escrito. Por eso, además de indicar qué hacer cuando todo sale bien, necesitamos decidir cómo responder cuando una operación no puede completarse.</p>
+<p>Retomemos un ejemplo conocido: una cuenta bancaria que permite extraer dinero. Una primera forma de avisar que el saldo es insuficiente podría ser la siguiente:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CuentaBancaria:</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, titular, saldo<span class="op">=</span><span class="dv">0</span>):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.titular <span class="op">=</span> titular</span>
@@ -438,8 +456,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saldo <span class="op">-=</span> monto</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> monto</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Este código informa el problema a una persona que esté mirando la pantalla, pero no se lo comunica de una manera útil al resto del programa. Además, la clase <code>CuentaBancaria</code> queda obligada a elegir cómo mostrar el mensaje, aunque quizás se la quiera usar en un sitio web, una aplicación gráfica o un programa que no tenga consola.</p>
-<p>Las <strong>excepciones</strong>, en particular los errores, permiten comunicar estas situaciones de manera explícita:</p>
+<p>Si creamos una cuenta con un saldo de $5000 e intentamos extraer $7000, el método muestra el mensaje y termina sin modificar el saldo. Para una persona que está mirando la consola, el problema queda claro. Pero ¿cómo se entera el código que llamó al método de que la extracción falló?</p>
+<p>El <code>print</code> solamente escribe un mensaje. Además, nos obliga a mostrarlo en la consola, aunque después queramos usar la cuenta en una aplicación con una interfaz gráfica.</p>
+<p>Para comunicar el problema al resto del programa podemos usar una <strong>excepción</strong> (<em>exception</em>). Veamos qué cambia al reemplazar el <code>print</code> y el <code>return</code> por una instrucción <code>raise</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CuentaBancaria:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, titular, saldo<span class="op">=</span><span class="dv">0</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.titular <span class="op">=</span> titular</span>
@@ -451,14 +470,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saldo <span class="op">-=</span> monto</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> monto</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ahora, el método detecta el problema y <strong>lanza una excepción</strong>. La parte del programa que utiliza la cuenta puede decidir si muestra un mensaje, solicita otro monto, registra el incidente o deja que la ejecución termine.</p>
+<p>Ahora, si <code>monto</code> es mayor que <code>self.saldo</code>, el método <strong>lanza una excepción</strong> de tipo <code>ValueError</code>. La ejecución se interrumpe en el <code>raise</code>, por lo que no se llega a descontar el monto del saldo. El código que usa la cuenta puede capturar esa excepción y decidir cómo responder: mostrar un mensaje, solicitar otro monto o cancelar la operación.</p>
+<p>A lo largo del apunte vamos a ver cómo se lanzan las excepciones, cómo se propagan entre llamadas y cómo podemos capturarlas.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Más que un color alarmante
+Una excepción es un objeto
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -494,24 +514,25 @@ Más que un color alarmante
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                <span class="op">~~~~~~~~~~^~~~~~~~~</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="pp">ZeroDivisionError</span>: division by zero</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>En este ejemplo, Python crea un objeto de tipo <code>ZeroDivisionError</code> y lo lanza o eleva. <strong>Capturar una excepción</strong> significa interceptarla mientras se propaga para ejecutar una respuesta alternativa, en lugar de dejar que termine el programa. Si ninguna parte del programa la captura, la ejecución termina y se muestra el <em>traceback</em>. Más adelante veremos cómo hacerlo con <code>try</code> y <code>except</code>.</p>
+<p>Python puede asignar <code>10</code> a <code>dividendo</code> y <code>0</code> a <code>divisor</code> sin ningún problema. La dificultad aparece al evaluar <code>dividendo / divisor</code>: la división por cero hace que se lance un objeto de tipo <code>ZeroDivisionError</code>. Como la operación se interrumpe, no se llega a asignar un valor a <code>resultado</code>.</p>
+<p><strong>Capturar una excepción</strong> (<em>catch</em>) significa interceptarla para ejecutar una respuesta alternativa. Si ninguna parte del programa la captura, la ejecución termina y se muestra el detalle del error. Más adelante veremos cómo hacerlo con <code>try</code> y <code>except</code>.</p>
 </section>
 <section id="errores-lógicos-o-bugs" class="level3">
 <h3 class="anchored" data-anchor-id="errores-lógicos-o-bugs">Errores lógicos o <em>bugs</em></h3>
 <p>Un <strong>error lógico</strong>, también llamado <em>bug</em>, no necesariamente produce una excepción. El programa puede ejecutarse hasta el final y devolver un resultado equivocado.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> promedio(numeros):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(numeros) <span class="op">/</span> (<span class="bu">len</span>(numeros) <span class="op">+</span> <span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Si se llama a la función con una lista no vacía de números, la misma se ejecuta sin lanzar una excepción, pero el cálculo es incorrecto. En este caso es necesario revisar la implementación del algoritmo.</p>
+<p>Si llamamos a <code>promedio([4, 6])</code>, la suma es <code>10</code> y la cantidad de elementos es <code>2</code>. Sin embargo, la función divide por <code>2 + 1</code>, de modo que devuelve aproximadamente <code>3.33</code> en lugar de <code>5</code>. Python puede realizar ese cálculo y no lanza ninguna excepción. Para corregir el resultado tenemos que revisar la fórmula de la función.</p>
 </section>
 <section id="warnings" class="level3">
 <h3 class="anchored" data-anchor-id="warnings"><em>Warnings</em></h3>
-<p>Un <strong><em>warning</em></strong> o advertencia comunica una situación que merece atención, pero normalmente no interrumpe el programa. Por ejemplo, un paquete puede advertir que una función o método continuará funcionando por el momento, aunque será eliminado en una versión futura.</p>
+<p>Una <strong>advertencia</strong> (<em>warning</em>) comunica una situación que merece atención, pero normalmente no interrumpe el programa. Por ejemplo, un paquete puede advertir que una función o método continuará funcionando por el momento, aunque será eliminado en una versión futura.</p>
 <p>Más adelante veremos cómo crear y filtrar estas advertencias.</p>
 </section>
 </section>
 <section id="cómo-leer-un-traceback" class="level2">
 <h2 class="anchored" data-anchor-id="cómo-leer-un-traceback">Cómo leer un <em>traceback</em></h2>
-<p>Cuando una excepción no es capturada, Python muestra un <strong><em>traceback</em></strong>. Aunque al principio puede parecer intimidante, contiene información muy útil para investigar lo ocurrido.</p>
+<p>Cuando una excepción no es capturada, Python muestra la <strong>traza de las llamadas</strong> o <em>traceback</em>. Este mensaje permite reconstruir qué llamadas llevaron hasta la operación que falló.</p>
 <p>Consideremos el siguiente programa:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convertir_a_entero(texto):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">int</span>(texto)</span>
@@ -535,6 +556,7 @@ Más que un color alarmante
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>           <span class="op">^^^^^^^^^^</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="pp">ValueError</span>: invalid literal <span class="cf">for</span> <span class="bu">int</span>() <span class="cf">with</span> base <span class="dv">10</span>: <span class="st">'diez'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>La llamada <code>duplicar("diez")</code> empieza por ejecutar <code>convertir_a_entero("diez")</code>. Dentro de esa función, <code>int</code> intenta convertir <code>"diez"</code> en un entero y lanza un <code>ValueError</code>. Por eso <code>convertir_a_entero</code> no devuelve un número, <code>duplicar</code> no llega a multiplicar por dos y el <code>print</code> del código principal tampoco llega a mostrar un resultado.</p>
 <p>El <em>traceback</em> contiene:</p>
 <ol type="1">
 <li>La secuencia de llamadas: indica el camino que siguió el programa. En este caso, el código principal llamó a <code>duplicar</code>, que a su vez llamó a <code>convertir_a_entero</code>.</li>
@@ -545,9 +567,9 @@ Más que un color alarmante
 </ol>
 <p>Una estrategia útil consiste en comenzar por la última línea, para conocer el tipo y el mensaje, y luego recorrer de abajo hacia arriba las llamadas que llevaron hasta el problema. La última línea de código mencionada suele indicar dónde se lanzó la excepción, pero la causa conceptual puede estar antes. Por ejemplo, el dato inválido podría haberse originado en otra función.</p>
 </section>
-<section id="tipos-de-errores-built-in" class="level2">
-<h2 class="anchored" data-anchor-id="tipos-de-errores-built-in">Tipos de errores <em>built-in</em></h2>
-<p>Python incluye una jerarquía amplia de excepciones. No es necesario memorizarla de manera completa, pero sí conviene reconocer algunos tipos habituales y prestar atención al mensaje que los acompaña.</p>
+<section id="tipos-de-excepciones-incorporadas" class="level2">
+<h2 class="anchored" data-anchor-id="tipos-de-excepciones-incorporadas">Tipos de excepciones incorporadas</h2>
+<p>Python incluye distintos tipos de excepciones incorporadas, también llamadas <em>built-in</em>. Ya vimos <code>ZeroDivisionError</code> y <code>ValueError</code>, pero hay otros tipos que vamos a encontrar con frecuencia. La siguiente tabla reúne algunos de ellos y las situaciones en las que suelen aparecer.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -640,13 +662,14 @@ Más que un color alarmante
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Usamos <code>TypeError</code> cuando el objeto es de un tipo que no admite la operación. Por ejemplo, una edad expresada como <code>"veinte"</code> cuando se espera un número entero. En cambio, usamos <code>ValueError</code> cuando el tipo es correcto, pero el valor no es válido. Por ejemplo, una edad igual a <code>-20</code>.</p>
-<p>Por ejemplo:</p>
+<p>La diferencia depende de qué espera la operación. Si una función recibe una edad y espera un entero, podemos usar <code>TypeError</code> cuando recibe una cadena como <code>"veinte"</code>. Si recibe el entero <code>-20</code>, el tipo es el esperado, pero su valor no representa una edad válida. En ese caso podemos usar <code>ValueError</code>.</p>
+<p>Veamos cómo expresar ambas condiciones:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> validar_edad(edad):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(edad, <span class="bu">int</span>):</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="st">"La edad debe ser un número entero"</span>)</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> edad <span class="op">&lt;</span> <span class="dv">0</span>:</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"La edad no puede ser negativa"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Con <code>validar_edad("veinte")</code>, la primera condición se cumple y se lanza <code>TypeError</code>. Con <code>validar_edad(-20)</code>, la primera condición no se cumple, pero la segunda sí: se lanza <code>ValueError</code>. En cambio, <code>validar_edad(20)</code> llega al final sin lanzar ninguna excepción.</p>
 </div>
 </div>
 </section>
@@ -672,31 +695,27 @@ Más que un color alarmante
 <div class="code-error">
 <div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="pp">ValueError</span>: El porcentaje debe estar entre <span class="dv">0</span> y <span class="dv">100</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>La función no necesita imprimir nada ni decidir cómo se presentará el problema. Su responsabilidad es señalar que no puede cumplir su contrato con los datos recibidos.</p>
+<p>En <code>calcular_descuento(2000, 120)</code>, el precio pasa la primera validación. Luego se comprueba el porcentaje: <code>120</code> está fuera del intervalo permitido y se ejecuta el segundo <code>raise</code>. La función termina en ese punto, sin llegar al <code>return</code> que calcula el descuento. El código que la llamó podrá decidir qué hacer con ese porcentaje inválido.</p>
 <section id="cómo-construir-una-excepción" class="level3">
 <h3 class="anchored" data-anchor-id="cómo-construir-una-excepción">Cómo construir una excepción</h3>
-<p>Una excepción debería aportar dos piezas de información:</p>
-<ul>
-<li><strong>el tipo</strong> permite que el programa distinga clases de problemas;</li>
-<li><strong>el mensaje</strong> ofrece detalles para que una persona pueda comprender el caso concreto.</li>
-</ul>
+<p>Cuando lanzamos una excepción, elegimos su <strong>tipo</strong> y su <strong>mensaje</strong>. El tipo permite que el programa distinga qué problema ocurrió. El mensaje agrega los detalles que necesita una persona para entender ese caso concreto.</p>
 <p><code>Exception</code> es la clase base de la que heredan casi todas las excepciones que representan fallos ordinarios de un programa, como <code>ValueError</code>, <code>TypeError</code> o <code>FileNotFoundError</code>. Por eso es posible crear y lanzar directamente una excepción general:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"El porcentaje es incorrecto"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Sin embargo, su tipo sólo comunica que ocurrió algún problema. Siempre que exista una alternativa adecuada, es preferible lanzar una excepción más específica:</p>
+<p>Sin embargo, su tipo solo comunica que ocurrió algún problema. Siempre que exista una alternativa adecuada, es preferible lanzar una excepción más específica:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"El porcentaje debe estar entre 0 y 100"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>El mensaje debe explicar qué condición no se cumplió. Cuando resulte útil, puede incluir el valor problemático:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"El porcentaje debe estar entre 0 y 100; se recibió </span><span class="sc">{</span>porcentaje<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"El porcentaje debe estar entre 0 y 100. Se recibió </span><span class="sc">{</span>porcentaje<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="qué-ocurre-al-lanzar-una-excepción" class="level3">
 <h3 class="anchored" data-anchor-id="qué-ocurre-al-lanzar-una-excepción">Qué ocurre al lanzar una excepción</h3>
-<p>Cuando se ejecuta <code>raise</code>, Python interrumpe inmediatamente el flujo normal del programa y no se ejecutan las instrucciones posteriores de la función actual. En su lugar, Python busca un bloque <code>except</code> que pueda capturar la excepción. Mientras lo busca, también abandona las funciones que habían realizado las llamadas pendientes. Si no encuentra un <code>except</code> apropiado, el programa termina y muestra el <em>traceback</em>.</p>
+<p>Al ejecutar <code>raise</code>, Python deja de seguir las instrucciones en su orden habitual y busca un bloque <code>except</code> que pueda capturar la excepción. Si la función actual no tiene un bloque apropiado, la búsqueda continúa en la función que la llamó. Si tampoco lo encuentra allí, continúa hacia las llamadas anteriores. Cuando ninguna parte del programa captura la excepción, la ejecución termina y se muestra el <em>traceback</em>.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> raiz_cuadrada(numero):</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> numero <span class="op">&lt;</span> <span class="dv">0</span>:</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"No se calcula la raíz real de un número negativo"</span>)</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Esta línea nunca se ejecuta"</span>)</span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> numero <span class="op">**</span> <span class="fl">0.5</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Para un número negativo no se ejecuta ni el <code>print</code> posterior al <code>raise</code> ni el <code>return</code> de la función. La única forma de continuar la ejecución de manera controlada es que alguna parte del programa capture la excepción.</p>
+<p>Si llamamos a <code>raiz_cuadrada(-9)</code>, la condición <code>numero &lt; 0</code> se cumple y se ejecuta el <code>raise</code>. El <code>print</code> que aparece debajo nunca se ejecuta, porque la excepción ya interrumpió ese bloque. Tampoco se llega al <code>return</code>. En cambio, con <code>raiz_cuadrada(9)</code> la condición no se cumple y la función devuelve <code>3.0</code>.</p>
 <p>Este recorrido de la excepción hacia las funciones que realizaron las llamadas se denomina <strong>propagación</strong>. Podemos observarlo con varias funciones encadenadas:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convertir(texto):</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">int</span>(texto)</span>
@@ -714,17 +733,14 @@ Más que un color alarmante
 </section>
 <section id="manejo-de-excepciones" class="level2">
 <h2 class="anchored" data-anchor-id="manejo-de-excepciones">Manejo de excepciones</h2>
-<p>Para <strong>capturar</strong> una excepción, se encierra la operación que podría lanzarla en un bloque <code>try</code> y se indica en un bloque <code>except</code> qué tipo de excepción se espera y cómo responder. De esta manera, la excepción deja de propagarse y el programa puede continuar de forma controlada.</p>
+<p>Hasta ahora dejamos que las excepciones llegaran al código principal y terminaran el programa. Pero si una persona escribe una palabra cuando le pedimos un número, quizás alcance con avisarle que el dato no es válido.</p>
+<p>Para responder a esa situación usamos los bloques <code>try</code> y <code>except</code>. Dentro de <code>try</code> colocamos la operación que podría fallar. En <code>except</code> indicamos qué tipo de excepción queremos capturar y qué hacer si aparece.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    numero <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingrese un número: "</span>))</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ValueError</span>:</span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"La entrada no representa un número entero"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Python ejecuta primero el bloque <code>try</code>:</p>
-<ul>
-<li>si no se lanza una excepción, omite el bloque <code>except</code> y continúa;</li>
-<li>si se lanza un <code>ValueError</code>, interrumpe el <code>try</code>, ejecuta el <code>except</code> correspondiente y después continúa con el código que se encuentre luego de la estructura;</li>
-<li>si se lanza una excepción de otro tipo, este <code>except</code> no la captura y la excepción continúa propagándose.</li>
-</ul>
+<p>Python empieza por ejecutar <code>input</code> dentro del <code>try</code>. Si ingresamos <code>"25"</code>, <code>int</code> lo convierte en <code>25</code>, se asigna ese valor a <code>numero</code> y se omite el <code>except</code>. Si ingresamos <code>"veinticinco"</code>, <code>int</code> lanza un <code>ValueError</code> y la asignación no se completa. Python encuentra el <code>except ValueError</code>, muestra el mensaje y continúa después de la estructura.</p>
+<p>Este bloque captura únicamente <code>ValueError</code>. Si se lanza una excepción de otro tipo, continúa propagándose hasta encontrar un bloque que pueda capturarla.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -748,7 +764,7 @@ Nota
 <span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Detalle:"</span>, error)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>No se pudo realizar la conversión
 Detalle: invalid literal for int() with base 10: 'cuarenta'</code></pre>
-<p>Durante la ejecución del bloque <code>except</code>, el nombre <code>error</code> referencia al objeto capturado. Al finalizar el bloque, Python elimina esa asociación. También se usan con frecuencia los nombres <code>excepcion</code> o <code>e</code>.</p>
+<p>La conversión de <code>"cuarenta"</code> falla y Python entra en el <code>except</code>. El nombre <code>error</code> permite acceder al objeto capturado, de modo que el segundo <code>print</code> muestra el mensaje con el valor que no pudo convertirse. Al finalizar el bloque, Python elimina esa asociación. El nombre lo elegimos nosotros: también podríamos usar <code>excepcion</code> o <code>e</code>.</p>
 </section>
 <section id="múltiples-bloques-except" class="level3">
 <h3 class="anchored" data-anchor-id="múltiples-bloques-except">Múltiples bloques <code>except</code></h3>
@@ -761,7 +777,8 @@ Detalle: invalid literal for int() with base 10: 'cuarenta'</code></pre>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"La posición debe ser un número entero"</span>)</span>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">IndexError</span>:</span>
 <span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"La posición no existe en la lista"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Python prueba los bloques <code>except</code> de arriba hacia abajo y ejecuta solamente el primero cuyo tipo coincida con la excepción.</p>
+<p>Si ingresamos <code>"dos"</code>, falla la conversión con <code>int</code> y se ejecuta el primer <code>except</code>. La lista ni siquiera llega a crearse en ese intento. Si ingresamos <code>"8"</code>, la conversión funciona, pero <code>colores[8]</code> lanza un <code>IndexError</code> y se ejecuta el segundo <code>except</code>. Con <code>"1"</code>, en cambio, se muestra <code>verde</code> y no se ejecuta ninguno de los dos.</p>
+<p>Python revisa los bloques <code>except</code> de arriba hacia abajo y ejecuta solamente el primero que pueda capturar la excepción.</p>
 </section>
 <section id="múltiples-tipos-en-un-mismo-except" class="level3">
 <h3 class="anchored" data-anchor-id="múltiples-tipos-en-un-mismo-except">Múltiples tipos en un mismo <code>except</code></h3>
@@ -771,11 +788,11 @@ Detalle: invalid literal for int() with base 10: 'cuarenta'</code></pre>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> <span class="dv">100</span> <span class="op">/</span> numero</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> (<span class="pp">ValueError</span>, <span class="pp">ZeroDivisionError</span>) <span class="im">as</span> error:</span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No se pudo realizar el cálculo:"</span>, error)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Agrupar excepciones reduce la repetición, pero también pierde la posibilidad de dar una respuesta diferente a cada problema. Conviene hacerlo únicamente cuando el manejo sea realmente el mismo.</p>
+<p>Si ingresamos <code>"cero"</code>, <code>int</code> lanza un <code>ValueError</code>. Si ingresamos <code>"0"</code>, la conversión funciona, pero la división lanza un <code>ZeroDivisionError</code>. Como ambos tipos están en la tupla del <code>except</code>, en los dos casos se muestra el mensaje junto con el detalle de la excepción. Esta agrupación resulta útil cuando queremos responder de la misma manera a distintos problemas.</p>
 </section>
 <section id="bloque-else" class="level3">
 <h3 class="anchored" data-anchor-id="bloque-else">Bloque <code>else</code></h3>
-<p>El bloque <code>else</code> se ejecuta solamente si el <code>try</code> finaliza sin lanzar ninguna excepción:</p>
+<p>En el ejemplo anterior avisamos cuando el cálculo falla, pero también podríamos querer mostrar el resultado cuando funciona. Para eso podemos agregar un bloque <code>else</code>, que se ejecuta solamente si el <code>try</code> termina sin lanzar una excepción:</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    numero <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Ingrese un divisor: "</span>))</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    resultado <span class="op">=</span> <span class="dv">100</span> <span class="op">/</span> numero</span>
@@ -785,7 +802,8 @@ Detalle: invalid literal for int() with base 10: 'cuarenta'</code></pre>
 <span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"El divisor no puede ser cero"</span>)</span>
 <span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Resultado:"</span>, resultado)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Podríamos colocar el último <code>print</code> dentro del <code>try</code>, pero usar <code>else</code> permite que el bloque <code>try</code> contenga sólo las instrucciones que esperamos que produzcan las excepciones capturadas.</p>
+<p>Si ingresamos <code>"4"</code>, <code>numero</code> recibe el valor <code>4</code> y <code>resultado</code> recibe <code>25.0</code>. Como el <code>try</code> termina sin problemas, se ejecuta el <code>else</code> y se muestra <code>Resultado: 25.0</code>. Si ingresamos <code>"0"</code>, se ejecuta el <code>except ZeroDivisionError</code> y se omite el <code>else</code>.</p>
+<p>También podríamos colocar el último <code>print</code> dentro del <code>try</code>. Usar <code>else</code> permite dejar allí solamente la conversión y la división, que son las operaciones cuyas excepciones queremos capturar.</p>
 </section>
 <section id="volver-a-intentar-una-operación" class="level3">
 <h3 class="anchored" data-anchor-id="volver-a-intentar-una-operación">Volver a intentar una operación</h3>
@@ -799,11 +817,12 @@ Detalle: invalid literal for int() with base 10: 'cuarenta'</code></pre>
 <span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
 <span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Número ingresado:"</span>, numero)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Si la conversión lanza un <code>ValueError</code>, se muestra el mensaje y comienza una nueva iteración. El <code>break</code> sólo se ejecuta cuando el bloque <code>try</code> finaliza correctamente, por lo que el bucle termina una vez que se ha ingresado un número entero.</p>
+<p>Supongamos que primero ingresamos <code>"tres"</code>. La conversión falla, se muestra el mensaje y el <code>while</code> vuelve a pedir un dato. Si en el segundo intento ingresamos <code>"3"</code>, la conversión funciona y <code>numero</code> recibe <code>3</code>. Esta vez se ejecuta el <code>else</code>: el <code>break</code> termina el bucle y el último <code>print</code> muestra <code>Número ingresado: 3</code>.</p>
 </section>
 <section id="bloque-finally" class="level3">
 <h3 class="anchored" data-anchor-id="bloque-finally">Bloque <code>finally</code></h3>
-<p>El bloque <code>finally</code> se ejecuta siempre, tanto si ocurrió una excepción como si no ocurrió:</p>
+<p>Al trabajar con un archivo, tenemos que cerrarlo tanto si logramos procesar su contenido como si aparece un problema. Si ponemos <code>archivo.close()</code> después de la conversión, una excepción podría impedir que lleguemos a esa línea.</p>
+<p>Para indicar una tarea que debe ejecutarse al salir del <code>try</code>, podemos usar un bloque <code>finally</code>:</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>archivo <span class="op">=</span> <span class="bu">open</span>(<span class="st">"datos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
@@ -813,10 +832,12 @@ Detalle: invalid literal for int() with base 10: 'cuarenta'</code></pre>
 <span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"El archivo no contiene un número entero"</span>)</span>
 <span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
 <span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    archivo.close()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Su uso principal es liberar recursos o realizar tareas de limpieza que deben suceder bajo cualquier resultado. En el caso particular de los archivos, normalmente es preferible usar un <em>context manager</em> que se ocupa del cierre automáticamente:</p>
+<p>Si <code>datos.txt</code> contiene <code>"42"</code>, la conversión funciona y <code>numero</code> recibe <code>42</code>. Si contiene <code>"cuarenta"</code>, se lanza un <code>ValueError</code> y se muestra el mensaje del <code>except</code>. En ambos casos se ejecuta el <code>finally</code> y se cierra el archivo. También se ejecutaría si apareciera otra excepción dentro del <code>try</code>, antes de que continuara propagándose.</p>
+<p>En este ejemplo abrimos el archivo antes del <code>try</code>. Si falla <code>open</code>, no llegamos a entrar en esa estructura ni hay un archivo abierto que cerrar.</p>
+<p>Para el caso particular de los archivos, ya conocemos una alternativa más sencilla: un <strong>administrador de contexto</strong> (<em>context manager</em>) con <code>with</code>, que se ocupa del cierre automáticamente:</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"datos.txt"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> archivo:</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    contenido <span class="op">=</span> archivo.read()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>finally</code> sigue siendo útil cuando la adquisición y liberación del recurso no puede expresarse con un <em>context manager</em>.</p>
+<p><code>finally</code> también permite realizar otras tareas que deben completarse al salir del <code>try</code>, aunque no estemos trabajando con un archivo.</p>
 </section>
 <section id="ejemplo-final" class="level3">
 <h3 class="anchored" data-anchor-id="ejemplo-final">Ejemplo final</h3>
@@ -830,6 +851,7 @@ Detalle: invalid literal for int() with base 10: 'cuarenta'</code></pre>
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"El doble es"</span>, numero <span class="op">*</span> <span class="dv">2</span>)</span>
 <span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
 <span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Fin del intento"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si ingresamos <code>"12"</code>, se muestra <code>El doble es 24</code> y luego <code>Fin del intento</code>. Si ingresamos <code>"doce"</code>, se muestra el mensaje de entrada inválida y después <code>Fin del intento</code>. El <code>else</code> aparece solamente en el primer caso, mientras que el <code>finally</code> se ejecuta en ambos.</p>
 <p>La estructura comienza siempre con <code>try</code>. A continuación puede incluir uno o más bloques <code>except</code> y, si estos existen, un bloque <code>else</code> opcional. Al final puede agregarse un bloque <code>finally</code>. También es válida la combinación <code>try</code> y <code>finally</code> sin ningún <code>except</code>.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -854,7 +876,8 @@ Detalle: invalid literal for int() with base 10: 'cuarenta'</code></pre>
 </section>
 <section id="excepciones-a-medida" class="level2">
 <h2 class="anchored" data-anchor-id="excepciones-a-medida">Excepciones a medida</h2>
-<p>Los tipos de excepciones <em>built-in</em> son suficientes para muchísimos problemas. Sin embargo, si una situación posee un significado propio del dominio de nuestra aplicación, podemos definir una excepción personalizada.</p>
+<p>Volvamos a la cuenta bancaria del comienzo. Hasta ahora usamos <code>ValueError</code> para indicar que no alcanza el saldo. Pero una función que opera con cuentas podría recibir un <code>ValueError</code> por otros motivos, como un monto negativo.</p>
+<p>Si queremos distinguir la falta de saldo por su tipo, podemos crear una <strong>excepción personalizada</strong> (<em>custom exception</em>). Para hacerlo vamos a recuperar algo que ya conocemos: clases y herencia.</p>
 <section id="las-excepciones-son-objetos" class="level3">
 <h3 class="anchored" data-anchor-id="las-excepciones-son-objetos">Las excepciones son objetos</h3>
 <p>Los tipos de excepción forman una jerarquía de clases. Una versión muy simplificada es:</p>
@@ -895,11 +918,11 @@ Detalle: invalid literal for int() with base 10: 'cuarenta'</code></pre>
 <span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> SaldoInsuficienteError <span class="im">as</span> error:</span>
 <span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Extracción rechazada:"</span>, error)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Extracción rechazada: No hay saldo suficiente</code></pre>
-<p>La clase personalizada permite distinguir la falta de saldo de cualquier otro <code>ValueError</code> que pudiera ocurrir.</p>
+<p>La cuenta de Ana empieza con $5000. Al intentar extraer $7000, se ejecuta el <code>raise</code> y el saldo queda sin cambios. El <code>except SaldoInsuficienteError</code> captura esa excepción y muestra el mensaje de rechazo. Ahora podemos identificar este problema por su clase, sin tener que comparar el texto del mensaje.</p>
 </section>
 <section id="jerarquía-de-excepciones" class="level3">
 <h3 class="anchored" data-anchor-id="jerarquía-de-excepciones">Jerarquía de excepciones</h3>
-<p>La herencia permite agrupar problemas relacionados:</p>
+<p>Además de distinguir problemas, podemos agruparlos. Por ejemplo, la falta de saldo y un monto inválido son situaciones diferentes, pero ambas están relacionadas con las operaciones de una cuenta. Podemos representar esa relación mediante herencia:</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CuentaError(<span class="pp">Exception</span>):</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -934,16 +957,18 @@ Detalle: invalid literal for int() with base 10: 'cuarenta'</code></pre>
 </section>
 <section id="warnings-1" class="level2">
 <h2 class="anchored" data-anchor-id="warnings-1"><em>Warnings</em></h2>
-<p>Las <strong>advertencias</strong> o <em>warnings</em> informan situaciones sospechosas, obsoletas o potencialmente problemáticas que no impiden necesariamente continuar. A diferencia de una excepción no capturada, un <em>warning</em> se muestra y el programa normalmente sigue ejecutándose.</p>
+<p>Hasta ahora usamos excepciones para interrumpir operaciones que no podían completarse. En otras ocasiones podemos continuar, pero queremos avisar que hay algo a lo que conviene prestar atención. Por ejemplo, una función podría usar un valor por defecto porque no recibió uno de sus argumentos.</p>
+<p>Como adelantamos al comienzo, para estos casos existen las <strong>advertencias</strong> o <em>warnings</em>. Su tratamiento se puede configurar, pero normalmente permiten que el programa siga ejecutándose.</p>
 <section id="crear-una-advertencia" class="level3">
 <h3 class="anchored" data-anchor-id="crear-una-advertencia">Crear una advertencia</h3>
-<p>Las advertencias se emiten mediante el módulo <code>warnings</code>:</p>
+<p>Supongamos que una función convierte un monto en pesos usando una cotización. Para este ejemplo, si no recibe la cotización va a usar <code>1</code>, pero queremos que esa decisión quede visible. Podríamos mostrar un mensaje con <code>print</code>, aunque después no tendríamos una forma de configurar cómo tratarlo sin modificar la función.</p>
+<p>El módulo <code>warnings</code> permite emitir una advertencia y decidir por separado cómo se la tratará:</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convertir_pesos(monto, cotizacion<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> cotizacion <span class="kw">is</span> <span class="va">None</span>:</span>
 <span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>        warnings.warn(</span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"No se indicó una cotización; se usará el valor 1"</span>,</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"No se indicó una cotización. Se usará el valor 1"</span>,</span>
 <span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>            <span class="pp">UserWarning</span>,</span>
 <span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>        cotizacion <span class="op">=</span> <span class="dv">1</span></span>
@@ -951,7 +976,8 @@ Detalle: invalid literal for int() with base 10: 'cuarenta'</code></pre>
 <span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> monto <span class="op">/</span> cotizacion</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> convertir_pesos(<span class="dv">1000</span>)</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Resultado:"</span>, resultado)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>La advertencia se muestra, pero el cálculo continúa.</p>
+<p>Como no pasamos una cotización, <code>cotizacion</code> empieza con el valor <code>None</code>. Se cumple la condición del <code>if</code> y <code>warnings.warn</code> emite una advertencia de tipo <code>UserWarning</code>. Luego se asigna <code>1</code> a <code>cotizacion</code> y la función devuelve <code>1000 / 1</code>, es decir, <code>1000.0</code>. Finalmente, el <code>print</code> muestra <code>Resultado: 1000.0</code>.</p>
+<p>Este valor por defecto sirve para observar el mecanismo de las advertencias. En una aplicación real tendríamos que decidir si tiene sentido completar la conversión sin una cotización.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -968,7 +994,7 @@ Nota
 </section>
 <section id="categorías-frecuentes" class="level3">
 <h3 class="anchored" data-anchor-id="categorías-frecuentes">Categorías frecuentes</h3>
-<p>Algunosco <em>built-in</em> son:</p>
+<p>Algunas categorías incorporadas son:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 24%">
@@ -1014,21 +1040,21 @@ Nota
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"La cotización tiene más de 24 horas"</span>,</span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    CotizacionWarning,</span>
 <span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Una categoría propia permite aplicar filtros únicamente a las advertencias de nuestra aplicación.</p>
+<p><code>CotizacionWarning</code> hereda de <code>UserWarning</code>, de modo que sigue siendo una categoría de advertencia. La clase propia nos permite distinguir estos avisos y aplicarles un filtro sin afectar a los demás.</p>
 </section>
 <section id="filtrar-advertencias" class="level3">
 <h3 class="anchored" data-anchor-id="filtrar-advertencias">Filtrar advertencias</h3>
-<p><code>warnings.simplefilter</code> permite controlar cómo se tratarán:</p>
+<p>Hasta ahora dejamos que Python decidiera cómo mostrar las advertencias. Si queremos que los avisos de cotización aparezcan cada vez que se emiten, podemos indicarlo con <code>warnings.simplefilter</code>:</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>warnings.simplefilter(<span class="st">"always"</span>, CotizacionWarning)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Algunas acciones disponibles son:</p>
 <ul>
-<li><code>"always"</code>: muestra la advertencia cada vez que se emite;</li>
-<li><code>"default"</code>: muestra la primera aparición de cada advertencia en cada línea del código;</li>
-<li><code>"module"</code>: muestra la primera aparición de cada advertencia dentro de cada módulo, sin importar desde qué línea se emita;</li>
-<li><code>"once"</code>: muestra la primera aparición de cada advertencia durante el programa, sin importar el módulo o la línea donde se emita;</li>
-<li><code>"ignore"</code>: no muestra las advertencias coincidentes;</li>
+<li><code>"always"</code>: muestra la advertencia cada vez que se emite.</li>
+<li><code>"default"</code>: muestra la primera aparición de cada advertencia en cada línea del código.</li>
+<li><code>"module"</code>: muestra la primera aparición de cada advertencia dentro de cada módulo, sin importar desde qué línea se emita.</li>
+<li><code>"once"</code>: muestra la primera aparición de cada advertencia durante el programa, sin importar el módulo o la línea donde se emita.</li>
+<li><code>"ignore"</code>: no muestra las advertencias coincidentes.</li>
 <li><code>"error"</code>: las convierte en excepciones.</li>
 </ul>
 <p>Para decidir si dos advertencias son la misma, Python compara su mensaje y su categoría. La diferencia entre <code>"default"</code>, <code>"module"</code> y <code>"once"</code> es si también tiene en cuenta la línea, el módulo o ninguna ubicación, respectivamente.</p>
@@ -1062,7 +1088,7 @@ Nota
 <h2 class="anchored" data-anchor-id="tópicos-avanzados">Tópicos avanzados 🧩</h2>
 <section id="agregar-información-a-la-excepción" class="level3">
 <h3 class="anchored" data-anchor-id="agregar-información-a-la-excepción">Agregar información a la excepción</h3>
-<p>Como cualquier objeto, una excepción puede guardar estado en sus atributos:</p>
+<p>El mensaje de <code>SaldoInsuficienteError</code> informa que la operación falló, pero el código que la captura podría necesitar saber cuánto dinero falta. Podemos guardar el saldo y el monto solicitado como atributos del objeto excepción, sin tener que extraer esos datos de una cadena de texto:</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SaldoInsuficienteError(<span class="pp">Exception</span>):</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, saldo, monto):</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saldo <span class="op">=</span> saldo</span>
@@ -1084,13 +1110,18 @@ Nota
 <span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.saldo <span class="op">-=</span> monto</span>
 <span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> monto</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Quien captura la excepción puede usar tanto el mensaje como sus atributos:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    cuenta.extraer(<span class="dv">7000</span>)</span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> SaldoInsuficienteError <span class="im">as</span> error:</span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>    faltante <span class="op">=</span> error.monto <span class="op">-</span> error.saldo</span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(error)</span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Faltan $"</span>, faltante, sep<span class="op">=</span><span class="st">""</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Quien captura la excepción puede usar tanto el mensaje como sus atributos. Creemos una cuenta con la versión de <code>CuentaBancaria</code> que acabamos de definir:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>cuenta <span class="op">=</span> CuentaBancaria(<span class="st">"Ana"</span>, <span class="dv">5000</span>)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>    cuenta.extraer(<span class="dv">7000</span>)</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> SaldoInsuficienteError <span class="im">as</span> error:</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>    faltante <span class="op">=</span> error.monto <span class="op">-</span> error.saldo</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(error)</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Faltan $"</span>, faltante, sep<span class="op">=</span><span class="st">""</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>Saldo insuficiente: disponible $5000, solicitado $7000
+Faltan $2000</code></pre>
+<p>El método crea la excepción con <code>saldo=5000</code> y <code>monto=7000</code>. En el <code>except</code>, <code>error.saldo</code> y <code>error.monto</code> conservan esos valores, por lo que podemos calcular <code>7000 - 5000</code> y mostrar cuánto dinero falta.</p>
 </section>
 <section id="propagación-avanzada" class="level3">
 <h3 class="anchored" data-anchor-id="propagación-avanzada">Propagación avanzada</h3>
@@ -1098,47 +1129,48 @@ Nota
 <section id="relanzar-una-excepción" class="level4">
 <h4 class="anchored" data-anchor-id="relanzar-una-excepción">Relanzar una excepción</h4>
 <p>La instrucción <code>raise</code> sin argumentos, utilizada dentro de un <code>except</code>, vuelve a lanzar la misma excepción:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> procesar_archivo(ruta):</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(ruta, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> archivo:</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> archivo.read()</span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Se intentó abrir:"</span>, ruta)</span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>La función registra información útil y después permite que <code>FileNotFoundError</code> continúe propagándose. El código de un nivel superior conserva el tipo, el mensaje y el <em>traceback</em> originales.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> procesar_archivo(ruta):</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(ruta, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> archivo:</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> archivo.read()</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Se intentó abrir:"</span>, ruta)</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si la ruta no existe, <code>open</code> lanza un <code>FileNotFoundError</code>. El <code>except</code> muestra la ruta que se intentó abrir y luego el <code>raise</code> vuelve a lanzar la excepción. Así, el código que llamó a <code>procesar_archivo</code> todavía puede capturarla. El tipo, el mensaje y la información del <em>traceback</em> original se conservan.</p>
 </section>
 <section id="transformar-y-encadenar-excepciones" class="level4">
 <h4 class="anchored" data-anchor-id="transformar-y-encadenar-excepciones">Transformar y encadenar excepciones</h4>
-<p>Una capa de la aplicación puede querer expresar un problema técnico mediante una excepción más significativa para su dominio. <code>raise ... from ...</code> conserva la relación entre ambas:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ConfiguracionError(<span class="pp">Exception</span>):</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> leer_puerto(texto):</span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">int</span>(texto)</span>
-<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span> <span class="im">as</span> error_original:</span>
-<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> ConfiguracionError(</span>
-<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"El puerto configurado debe ser un número entero"</span></span>
-<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>        ) <span class="im">from</span> error_original</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Si se llama a <code>leer_puerto("ochenta")</code>, el <em>traceback</em> muestra el <code>ValueError</code> original y luego el <code>ConfiguracionError</code> que se produjo como consecuencia directa. Esto agrega contexto sin borrar la causa inicial.</p>
+<p>También podríamos querer comunicar un problema usando un tipo propio, pero conservar la excepción que lo originó. Por ejemplo, si falla la conversión del puerto de una configuración, podemos lanzar <code>ConfiguracionError</code> e indicar que fue causado por el <code>ValueError</code> de la conversión. Para relacionar ambas excepciones usamos <code>raise ... from ...</code>:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ConfiguracionError(<span class="pp">Exception</span>):</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> leer_puerto(texto):</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">int</span>(texto)</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span> <span class="im">as</span> error_original:</span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> ConfiguracionError(</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"El puerto configurado debe ser un número entero"</span></span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>        ) <span class="im">from</span> error_original</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Con <code>leer_puerto("ochenta")</code>, la llamada a <code>int</code> lanza un <code>ValueError</code>. El <code>except</code> lo captura con el nombre <code>error_original</code> y crea un <code>ConfiguracionError</code>. La parte <code>from error_original</code> conserva la relación entre ambos objetos. Si nadie captura la nueva excepción, el <em>traceback</em> muestra primero el <code>ValueError</code> y después el <code>ConfiguracionError</code> que se lanzó a partir de él.</p>
 <p>También existe <code>raise NuevaExcepcion(...) from None</code>, que oculta el contexto anterior en el <em>traceback</em> mostrado. Debe usarse con cuidado, porque simplifica el mensaje visible pero también puede eliminar información valiosa para diagnosticar el problema.</p>
 </section>
 </section>
 <section id="administrar-warnings-temporalmente" class="level3">
 <h3 class="anchored" data-anchor-id="administrar-warnings-temporalmente">Administrar <em>warnings</em> temporalmente</h3>
-<p>Los filtros configurados con <code>warnings.simplefilter()</code> modifican el comportamiento general del programa. Si sólo queremos aplicar un filtro durante una operación determinada, podemos usar <code>warnings.catch_warnings()</code> como administrador de contexto:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> warnings.catch_warnings():</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>    warnings.simplefilter(<span class="st">"ignore"</span>, CotizacionWarning)</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    warnings.warn(<span class="st">"Cotización desactualizada"</span>, CotizacionWarning)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si configuramos <code>warnings.simplefilter("ignore", CotizacionWarning)</code>, el filtro seguirá activo para las operaciones posteriores. Pero quizás solo queramos silenciar esa categoría durante una llamada y luego recuperar la configuración que teníamos antes.</p>
+<p>Para limitar el cambio a un bloque podemos usar <code>warnings.catch_warnings()</code> con <code>with</code>:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> warnings.catch_warnings():</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    warnings.simplefilter(<span class="st">"ignore"</span>, CotizacionWarning)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>    warnings.warn(<span class="st">"Cotización desactualizada"</span>, CotizacionWarning)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Dentro del bloque <code>with</code>, las advertencias de tipo <code>CotizacionWarning</code> son ignoradas. Al finalizar el bloque, <code>catch_warnings()</code> restaura automáticamente la configuración anterior, incluso si durante la ejecución se produce una excepción. De esta manera, el cambio no afecta al resto del programa.</p>
 <p>También es posible guardar temporalmente las advertencias emitidas en una lista. Esta variante es especialmente útil para comprobar su contenido durante una prueba:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> warnings.catch_warnings(record<span class="op">=</span><span class="va">True</span>) <span class="im">as</span> advertencias:</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    warnings.simplefilter(<span class="st">"always"</span>)</span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>    warnings.warn(<span class="st">"Cotización desactualizada"</span>, CotizacionWarning)</span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>    advertencia <span class="op">=</span> advertencias[<span class="dv">0</span>]</span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(advertencia.message)</span>
-<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(advertencia.category.<span class="va">__name__</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> warnings.catch_warnings(record<span class="op">=</span><span class="va">True</span>) <span class="im">as</span> advertencias:</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    warnings.simplefilter(<span class="st">"always"</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    warnings.warn(<span class="st">"Cotización desactualizada"</span>, CotizacionWarning)</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    advertencia <span class="op">=</span> advertencias[<span class="dv">0</span>]</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(advertencia.message)</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(advertencia.category.<span class="va">__name__</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="text"><code>Cotización desactualizada
 CotizacionWarning</code></pre>
 <p>El argumento <code>record=True</code> evita que las advertencias se muestren de la manera habitual y agrega un registro por cada una a la lista <code>advertencias</code>. Cada registro permite consultar, entre otros datos, el mensaje, la categoría, el archivo y la línea donde se originó.</p>
