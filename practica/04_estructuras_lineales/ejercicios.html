@@ -693,15 +693,18 @@ window.Quarto = {
 <p>Nueva funcionalidad: Control de acceso con violaciones</p>
 <p>Impelmente las siguentes funciones:</p>
 <ol start="6" type="1">
-<li><code>salir_especifico(nombre)</code></li>
-</ol>
+<li><code>salir_especifico(nombre)</code>
 <ul>
 <li>Si nombre es el TOP: sacarlo sin registrar violación, retornar <code>True</code>.</li>
-<li>Si no es el TOP pero está en la pila: - Desapilar a un buffer hasta encontrar nombre. - Remover nombre. - Reapilar en orden original todo lo que sacaste.</li>
+<li>Si no es el TOP pero está en la pila:
+<ul>
+<li>Desapilar a un buffer hasta encontrar nombre.</li>
+<li>Remover nombre.</li>
+<li>Reapilar en orden original todo lo que sacaste.</li>
+</ul></li>
 <li>Registrar violación en <code>_log_violaciones</code> con formato: <code>"{HH:MM} - Violación: {nombre} salió fuera de orden"</code> (usar <code>datetime.now().strftime("%H:%M")</code>). Retornar <code>True</code>.</li>
 <li>Si no se encuentra: retornar <code>False</code>.</li>
-</ul>
-<ol start="7" type="1">
+</ul></li>
 <li><code>historial_violaciones()</code>
 <ul>
 <li>Muestra todas las violaciones de seguridad registradas</li>
@@ -1120,7 +1123,8 @@ Ayuda
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> promedios</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Determine la complejidad de este algoritmo.</p>
 <ol start="2" type="a">
-<li><p>Siendo <span class="math inline">\(\overline{X}_n\)</span> el promedio de los primeros <span class="math inline">\(n\)</span> números en la lista, vale la siguiente identidad recursiva: <span class="math display">\[
+<li><p>Siendo <span class="math inline">\(\overline{X}_n\)</span> el promedio de los primeros <span class="math inline">\(n\)</span> números en la lista, vale la siguiente identidad recursiva:</p>
+<p><span class="math display">\[
 \overline{X}_{n+1} = \frac{n \cdot \overline{X}_n + x_{n+1}}{n+1}
 \]</span></p>
 <p>donde <span class="math inline">\(x_{n+1}\)</span> es el elemento <span class="math inline">\((n+1)\)</span>-ésimo de la lista.</p></li>
