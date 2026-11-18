@@ -220,7 +220,7 @@ cafeterias[1].upper()
 'INFINITA'
 ```
 
-Como es de esperarse, también podemos incluir una operación de indexación dentro de una f-_string_.
+Como es de esperarse, también podemos incluir una operación de indexación dentro de una *f-string*.
 
 ```python
 f"¡Qué rico que es el café de {cafeterias[1]}!"

@@ -29,7 +29,7 @@ En síntesis, la principal diferencia entre un módulo y un _script_ es que los 
 
 ## _Script_ y módulo
 
-Python es un lenguaje tan flexible que un mismo programa puede funcionar como ***script*** y como **módulo** al mismo tiempo.
+Python es un lenguaje tan flexible que un mismo programa puede funcionar como *__script__* y como **módulo** al mismo tiempo.
 Esto ocurre cuando el archivo define herramientas reutilizables (por ejemplo, funciones o clases) y, además, incluye código que se ejecuta directamente al correrlo desde la línea de comandos.
 
 Para ilustrarlo, consideremos un pequeño programa en Python que solicita una fecha al usuario y luego indica cuántos días faltan para llegar a ella:

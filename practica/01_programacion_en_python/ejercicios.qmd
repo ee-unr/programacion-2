@@ -174,30 +174,39 @@ las funciones `min()` ni `max()`?
 Cree funciones que, dada una lista de números, calculen los siguientes resúmenes estadísticos:
 
 i. La media
-    $$
-    \text{media}(X) = \frac{1}{n}\sum_{i=1}^n{x_i}
-    $$
-i. El rango
-    $$
-    \text{rango}(X) = \text{max}(X) - \text{min}(X)
-    $$
-i. La varianza
-    $$
-    \text{var}(X) = \frac{1}{n}\sum_{i=1}^n{(x_i - \bar{x})^2}
-    $$
-i. El desvío estándar
-    $$
-    \text{sd}(X) = \sqrt{\text{var}(X)}
-    $$
-i. La mediana
-    $$
-    \begin{array}{lr}
-    \text{mediana}(X) = x_{(\frac{n + 1}{2})} & \text{Si } n \text{ es impar} \\
-    \text{mediana}(X) = \frac{x_{(\frac{n}{2})} + x_{(\frac{n}{2}+1)}}{2} & \text{Si } n \text{ es par}
-    \end{array}
-    $$
 
-    donde los $x_{(i)}$ están ordenados de manera ascendente.
+   $$
+   \text{media}(X) = \frac{1}{n}\sum_{i=1}^n{x_i}
+   $$
+
+i. El rango
+
+   $$
+   \text{rango}(X) = \text{max}(X) - \text{min}(X)
+   $$
+
+i. La varianza
+
+   $$
+   \text{var}(X) = \frac{1}{n}\sum_{i=1}^n{(x_i - \bar{x})^2}
+   $$
+
+i. El desvío estándar
+
+   $$
+   \text{sd}(X) = \sqrt{\text{var}(X)}
+   $$
+
+i. La mediana
+
+   $$
+   \begin{array}{lr}
+   \text{mediana}(X) = x_{(\frac{n + 1}{2})} & \text{Si } n \text{ es impar} \\
+   \text{mediana}(X) = \frac{x_{(\frac{n}{2})} + x_{(\frac{n}{2}+1)}}{2} & \text{Si } n \text{ es par}
+   \end{array}
+   $$
+
+   donde los $x_{(i)}$ están ordenados de manera ascendente.
 
 ## Validación de DNI
 

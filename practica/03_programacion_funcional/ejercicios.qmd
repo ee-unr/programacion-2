@@ -454,7 +454,7 @@ def mostrar_fase():
 Un supermercado ofrece múltiples promociones:
 
 - 15% de descuento los días lunes y miércoles.
-- 10% de descuento en compras con monto superior a $50.000.
+- 10% de descuento en compras con monto superior a \$50.000.
 - 20% de descuento a clientes mayores de 65 años.
 
 Para determinar la promoción a aplicar, el supermercado utiliza un programa con la siguiente 
@@ -675,15 +675,15 @@ ventas = generar_ventas(n=100_000, seed=1234)
 Realice dos operaciones sobre este conjunto de datos, cada una en dos variantes.
 
 a. Calcular precios con IVA (21%):
-    * **Versión A.** Use una *list comprehension* para crear una nueva lista llamada
-    `precios_con_iva_1` que contenga todos los precios con el 21 % de IVA ya calculado.
-    * **Versión B.** Use una expresión generadora para crear un objeto `precios_con_iva_2`
-    que represente la operación, pero sin calcular ni almacenar los resultados todavía.
+   * **Versión A.** Use una *list comprehension* para crear una nueva lista llamada
+     `precios_con_iva_1` que contenga todos los precios con el 21 % de IVA ya calculado.
+   * **Versión B.** Use una expresión generadora para crear un objeto `precios_con_iva_2`
+     que represente la operación, pero sin calcular ni almacenar los resultados todavía.
 b. Filtrar ventas de "electrónica":
-    * **Versión A.** Use una *list comprehension* para crear una nueva lista llamada `electronica_1`
-    que contenga todas las ventas de la categoría "electrónica".
-    * **Versión B.** Use una expresión generadora para crear un objeto `electronica_2` que
-    represente el filtro, sin materializar la lista.
+   * **Versión A.** Use una *list comprehension* para crear una nueva lista llamada `electronica_1`
+     que contenga todas las ventas de la categoría "electrónica".
+   * **Versión B.** Use una expresión generadora para crear un objeto `electronica_2` que
+     represente el filtro, sin materializar la lista.
 
 **3. Análisis y comparación**
 

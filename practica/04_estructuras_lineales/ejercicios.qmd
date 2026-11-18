@@ -291,16 +291,16 @@ Nueva funcionalidad: Control de acceso con violaciones
 Impelmente las siguentes funciones:
 
 6. `salir_especifico(nombre)`
-  -  Si nombre es el TOP: sacarlo sin registrar violación, retornar `True`.
-  -  Si no es el TOP pero está en la pila:
-    -  Desapilar a un buffer hasta encontrar nombre.
-    -  Remover nombre.
-    -  Reapilar en orden original todo lo que sacaste.
-  -  Registrar violación en `_log_violaciones` con formato:
+   - Si nombre es el TOP: sacarlo sin registrar violación, retornar `True`.
+   - Si no es el TOP pero está en la pila:
+     - Desapilar a un buffer hasta encontrar nombre.
+     - Remover nombre.
+     - Reapilar en orden original todo lo que sacaste.
+   - Registrar violación en `_log_violaciones` con formato:
      `"{HH:MM} - Violación: {nombre} salió fuera de orden"`
      (usar `datetime.now().strftime("%H:%M")`).
      Retornar `True`.
-  -  Si no se encuentra: retornar `False`.
+   - Si no se encuentra: retornar `False`.
 7. `historial_violaciones()`
    - Muestra todas las violaciones de seguridad registradas
    - Formato: `["17:30 - Violación: Trinity salió fuera de orden"]`
@@ -708,11 +708,12 @@ Determine la complejidad de este algoritmo.
 
 b. Siendo $\overline{X}_n$ el promedio de los primeros $n$ números en la lista,
 vale la siguiente identidad recursiva:
-    $$
-    \overline{X}_{n+1} = \frac{n \cdot \overline{X}_n + x_{n+1}}{n+1}
-    $$
 
-    donde $x_{n+1}$ es el elemento $(n+1)$-ésimo de la lista.
+   $$
+   \overline{X}_{n+1} = \frac{n \cdot \overline{X}_n + x_{n+1}}{n+1}
+   $$
+
+   donde $x_{n+1}$ es el elemento $(n+1)$-ésimo de la lista.
 
 Utilice este resultado para implementar un algoritmo más eficiente.
 

@@ -3,6 +3,7 @@ title: Calendario
 page-layout: full
 ---
 
+```{=html}
 <style>
 .calendario-table {
   table-layout: fixed;
@@ -252,3 +253,4 @@ page-layout: full
     </tr>
   </tbody>
 </table>
+```

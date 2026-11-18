@@ -11,7 +11,9 @@ include-in-header: meta.html
 ::: {.course-meta}
 
 ::: {.course-title}
+```{=html}
 <p>Programación II</p>
+```
 :::
 
 {{< fa graduation-cap >}} &nbsp; Ciclo de Formación Técnica - Estadística y Ciencia de Datos  
@@ -22,7 +24,9 @@ include-in-header: meta.html
 :::
 
 ::: {.g-col-12 .g-col-sm-4 .order-1 .order-sm-2 .text-align-center}
+```{=html}
 <img src="imgs/serpiente.png" class="front-image">
+```
 :::
 
 :::

@@ -13,7 +13,7 @@ se encuentra un número fijo de posiciones más adelante en el alfabeto.
 Por ejemplo, con un desplazamiento de 3, la A sería sustituida por la D
 (situada 3 lugares a la derecha de la A), la B sería reemplazada por la E, etc.
 
-![](imgs/cifrado_cesar.png){width=400, fig-align="center"}
+![](imgs/cifrado_cesar.png){width=400 fig-align="center"}
 
 Escriba una función, y luego un _script_, que permita cifrar y descifrar cadenas usando el
 cifrado César con un número arbitrario de posiciones.

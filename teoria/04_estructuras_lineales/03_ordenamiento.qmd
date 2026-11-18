@@ -609,7 +609,7 @@ Si en el peor caso se comparan y trasladan todos los elementos, y en el mejor no
 Por eso se representa con una complejidad de $O(N^2/2)$.
 
 En resumen, mientras _selection sort_ mantiene una complejidad constante de $O(N^2/2)$ sin importar el orden inicial de los datos,
-_insertion sort? varía entre $O(N)$ en el mejor de los casos, $O(N^2/2)$ en el promedio y $O(N^2)$ en el peor.
+_insertion sort_ varía entre $O(N)$ en el mejor de los casos, $O(N^2/2)$ en el promedio y $O(N^2)$ en el peor.
 
 La elección de cuál usar depende, en definitiva, de las características de los datos a ordenar.
 Por su eficiencia en listas casi ordenadas,
