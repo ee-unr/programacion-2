@@ -17,15 +17,15 @@ Para empezar, recuperemos algunos tipos de excepción que conocimos al estudiar
 errores = ["Exception", "LookupError", "IndexError", "KeyError", "ValueError"]
 ```
 
-Esta lista permite recordar los nombres, consultar uno por su posición o recorrerlos con un `for`.
+Esta lista permite almacenar los nombres, consultar uno por su posición o recorrerlos con un `for`.
 Sin embargo, esta secuencia no permite determinar relaciones de herencia entre clases.
 
 Por ejemplo, `IndexError` y `KeyError` heredan de `LookupError`, que a su vez hereda de
 `Exception`. Por otro lado, `ValueError` hereda directamente de `Exception`.
-¿Cómo podemos guardar también esas relaciones?
+¿Cómo podemos guardar los errores de un modo tal que se representen esas relaciones?
 
-Una posibilidad es usar listas anidadas. Para hacerlo, necesitamos acordar cómo interpretarlas:
-cada elemento será una lista con dos posiciones, una para el nombre y otra para la lista
+Una posibilidad es usar listas anidadas. Para hacerlo, necesitamos acordar cómo interpretarlas.
+Por ejemplo, podemos utilizar listas de longitud dos: una para el nombre y otra para la lista
 de sus descendientes directos.
 
 ```python
@@ -58,12 +58,11 @@ desde `Exception`.
 Esta organización es una **jerarquía** y podemos representarla mediante un **árbol**
 (del inglés, _tree_). Cada elemento del árbol es un **nodo** (_node_) y los enlaces
 permiten organizar sus relaciones. En nuestro ejemplo, los nodos representan tipos de excepción.
-El dibujo muestra solo una parte de la jerarquía de Python.
 
 ### Carpetas y archivos
 
-También encontramos jerarquías cuando organizamos archivos en carpetas. Supongamos que tenemos
-una carpeta `proyecto` con el siguiente contenido:
+También encontramos jerarquías cuando organizamos archivos en carpetas.
+Supongamos que tenemos una carpeta `proyecto` con el siguiente contenido:
 
 ![Carpetas y archivos de un proyecto.](imgs/01/carpetas.svg){fig-align="center" width="80%" fig-alt="La carpeta proyecto contiene documentos, imagenes y README.md. Documentos contiene informe.pdf e imagenes está vacía."}
 
@@ -74,7 +73,8 @@ La carpeta `imagenes` está vacía.
 Los nodos que no tienen hijos se llaman **hojas** (_leaves_) o nodos terminales.
 En este ejemplo, `README.md` y `informe.pdf` son hojas, pero también lo es la carpeta `imagenes`.
 Ser una hoja depende de no tener hijos en el árbol que representamos, no de ser un archivo
-o una carpeta. Los nodos `proyecto` y `documentos`, en cambio, sí tienen hijos: son nodos internos.
+o una carpeta. Los nodos `proyecto` y `documentos`, en cambio, sí tienen hijos y reciben el
+nombre de nodos internos.
 
 ## Ciudades conectadas por vuelos
 
@@ -125,7 +125,7 @@ Aquí los vértices representan ciudades y las aristas representan conexiones a�
 
 En esta red, Buenos Aires no es una categoría que contiene a Rosario, ni Córdoba depende de
 Mendoza como una subclase depende de su clase base. Las conexiones representan la posibilidad
-de viajar entre ciudades. No tenemos una jerarquía ni una ciudad que deba ocupar el primer lugar.
+de viajar entre ciudades. No tenemos una jerarquía ni un orden predeterminado.
 
 Podemos hacernos distintas preguntas sobre la red. ¿Qué destinos tienen conexión directa con
 Rosario? ¿Podemos llegar de Rosario a Mendoza aunque no haya un vuelo directo?

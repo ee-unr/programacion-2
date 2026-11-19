@@ -1,0 +1,715 @@
+---
+title: 3 - Grafos
+toc: true
+filters:
+  - carousel
+format:
+  typst:
+    include-in-header:
+      text: |
+        #show image: it => block(sticky: true, it)
+---
+
+## Descripción de un grafo
+
+En la introducción de la unidad representamos ciudades conectadas por vuelos.
+Podíamos consultar destinos directos, pero también viajar a otra ciudad pasando por lugares intermedios.
+Ahora vamos a guardar esas conexiones en Python y escribir operaciones para consultarlas,
+modificarlas y recorrer la red.
+
+Para seguir los ejemplos con más facilidad, vamos a conservar seis ciudades de aquella red:
+Rosario, Salta, Córdoba, Mendoza, San Pablo y Ushuaia. Quitamos Buenos Aires y Lima junto con sus conexiones.
+Trabajaremos con las conexiones que quedan entre las ciudades elegidas, tratadas en ambos sentidos.
+Seguimos usando el modelo de la introducción, sin considerar horarios, precios ni distancias.
+
+![Red de seis ciudades y ocho conexiones.](imgs/03/red.svg){fig-align="center" width="65%" fig-alt="Rosario conecta con Salta y San Pablo. Salta conecta también con Córdoba y Mendoza. Córdoba conecta con Mendoza y San Pablo. Mendoza conecta con San Pablo y San Pablo con Ushuaia. Las conexiones no tienen dirección."}
+
+Un **grafo** (_graph_) está formado por **vértices** (_vertices_), también llamados nodos,
+y **aristas** (_edges_) que los conectan. En este ejemplo, cada ciudad es un vértice
+y cada conexión directa es una arista.
+
+Podemos describir el dibujo con algunos términos:
+
+| Término | Qué indica                                                               | Ejemplo                                     |
+|---------|--------------------------------------------------------------------------|---------------------------------------------|
+| Vecinos | Vértices unidos por una arista                                           | Salta y San Pablo son vecinos de Rosario    |
+| Camino  | Una sucesión de vértices unidos por aristas                              | Rosario, Salta, Mendoza                     |
+| Ciclo   | Un camino que vuelve al inicio sin repetir aristas ni los demás vértices | Rosario, Salta, Mendoza, San Pablo, Rosario |
+
+
+En este grafo, un ciclo incluye al menos tres vértices distintos.
+Por ejemplo, Rosario–Salta–Mendoza–San Pablo–Rosario vuelve al punto de partida
+sin repetir aristas ni otros vértices.
+Ir de Rosario a Salta y volver por la misma arista no forma un ciclo.
+
+No hay una conexión directa entre Rosario y Mendoza, pero podemos llegar pasando por Salta
+o por San Pablo. Es decir, hay distintos caminos entre las mismas ciudades.
+
+![Camino de Rosario a Mendoza pasando por Salta.](imgs/03/camino.svg){fig-align="center" width="65%" fig-alt="Se destacan los enlaces Rosario–Salta y Salta–Mendoza dentro de la misma red."}
+
+A diferencia de los árboles con raíz que estudiamos, esta red no tiene una raíz ni relaciones
+de padres e hijos. Para recorrerla podemos elegir cualquier ciudad como origen.
+También podemos volver a una ciudad por otro camino, algo que tendremos que considerar al programar.
+
+En este apunte usamos un grafo **no dirigido**, porque cada conexión se puede seguir en ambos sentidos.
+En un grafo **dirigido**, una conexión de un vértice a otro no implica que exista la conexión inversa.
+Nuestro ejemplo solamente registra qué ciudades están conectadas.
+
+## Representación en Python
+
+En la introducción guardamos las conexiones como pares. Para esta red, la lista sería:
+
+```python
+conexiones = [
+    ("Rosario", "Salta"),
+    ("Rosario", "San Pablo"),
+    ("Salta", "Córdoba"),
+    ("Salta", "Mendoza"),
+    ("Córdoba", "Mendoza"),
+    ("Córdoba", "San Pablo"),
+    ("Mendoza", "San Pablo"),
+    ("San Pablo", "Ushuaia"),
+]
+```
+
+Esta lista permite guardar las aristas, pero para encontrar todos los vecinos de una ciudad
+tenemos que revisar los pares y comprobar en cuál de sus dos posiciones aparece.
+Por ejemplo, San Pablo aparece como segundo elemento en varios pares y como primero en otro.
+
+Podemos representar cada ciudad con un objeto que guarde su valor y referencias a sus vecinos.
+Como los nodos del árbol, estos objetos se conectan entre sí, pero ahora pueden tener cualquier
+cantidad de vecinos. Vamos a llamarlos `Vertice` (_vertex_ en inglés):
+
+```python
+class Vertice:
+    def __init__(self, valor):
+        self.valor = valor
+        self.vecinos = []
+```
+
+La lista `vecinos` contiene referencias a otros objetos `Vertice`, no sus nombres.
+Esta representación se conoce como **listas de adyacencia** (_adjacency lists_).
+Primero creamos un objeto por ciudad:
+
+```python
+rosario = Vertice("Rosario")
+salta = Vertice("Salta")
+cordoba = Vertice("Córdoba")
+mendoza = Vertice("Mendoza")
+san_pablo = Vertice("San Pablo")
+ushuaia = Vertice("Ushuaia")
+```
+
+Para conectar los vértices, agregamos el método `conectar` a la clase `Vertice`.
+Guardamos la referencia en ambos sentidos porque el grafo es no dirigido:
+
+```python
+    def conectar(self, otro):
+        if otro not in self.vecinos:
+            self.vecinos.append(otro)
+            otro.vecinos.append(self)
+```
+
+Ahora podemos construir las conexiones de la red:
+
+```python
+rosario.conectar(san_pablo)
+rosario.conectar(salta)
+san_pablo.conectar(ushuaia)
+salta.conectar(cordoba)
+salta.conectar(mendoza)
+cordoba.conectar(mendoza)
+cordoba.conectar(san_pablo)
+mendoza.conectar(san_pablo)
+
+```
+
+`rosario.vecinos[0]` referencia al mismo objeto que `san_pablo`.
+Desde allí podemos seguir sus referencias hasta Ushuaia, Córdoba o Mendoza.
+Así, desde un solo vértice podemos descubrir toda la parte de la red conectada con él.
+
+Cada ciudad se representa una sola vez, aunque varios vértices la tengan como vecina.
+Lo que se repite son las referencias: una por cada sentido de la arista.
+Esto permite compartir los datos del vértice sin copiarlos en cada vecino.
+
+El orden de los vecinos no cambia qué conexiones existen, pero sí puede cambiar el orden de un recorrido.
+Vamos a conservar el orden de estas listas para que el código y las figuras produzcan los mismos resultados.
+Desde Rosario empezaremos por San Pablo, y desde San Pablo visitaremos primero Ushuaia.
+Como Ushuaia no tiene otros vecinos, DFS tendrá que volver para continuar por otra rama.
+
+### Matriz de adyacencia
+
+También podemos representar las conexiones con una **matriz de adyacencia** (_adjacency matrix_).
+Asignamos una fila y una columna a cada ciudad, en el mismo orden.
+Un `1` indica que existe una arista desde la ciudad de la fila hacia la de la columna.
+Un `0` indica que no existe esa conexión directa.
+
+Usamos este orden para las filas y las columnas: Rosario, Salta, Córdoba, Mendoza, San Pablo y Ushuaia.
+La matriz de adyacencia es:
+
+$$
+A = \begin{pmatrix}
+0 & 1 & 0 & 0 & 1 & 0 \\
+1 & 0 & 1 & 1 & 0 & 0 \\
+0 & 1 & 0 & 1 & 1 & 0 \\
+0 & 1 & 1 & 0 & 1 & 0 \\
+1 & 0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 0 & 0 & 1 & 0
+\end{pmatrix}
+$$
+
+En la primera fila, el `1` de la segunda columna representa la conexión Rosario–Salta.
+La segunda fila también tiene un `1` en la primera columna porque la conexión se puede seguir en ambos sentidos.
+Esto ocurre con todas las aristas: como el grafo es no dirigido, la matriz es **simétrica**
+respecto de su diagonal principal. La diagonal tiene ceros porque no conectamos una ciudad consigo misma.
+
+Los grafos dirigidos también se pueden representar con matrices.
+En ese caso, un `1` en la primera fila y la segunda columna no obliga a tener un `1` en la segunda fila y la primera columna.
+
+La matriz permite comprobar una conexión consultando una sola celda, en $O(1)$,
+pero reserva $V^2$ posiciones si hay $V$ vértices, aunque existan pocas aristas.
+Las listas de adyacencia ocupan $O(V + E)$, donde $E$ es la cantidad de aristas,
+y permiten recorrer directamente los vecinos de una ciudad. Para comprobar una conexión,
+en cambio, hay que buscar el destino dentro de la lista de vecinos del origen.
+
+En Python podríamos guardar la matriz con listas de listas o con un arreglo de NumPy.
+Para las operaciones y los recorridos vamos a seguir usando los objetos `Vertice` y sus referencias.
+
+## Operaciones básicas
+
+Vamos a consultar y modificar los enlaces entre vértices.
+Suponemos que no conectamos un vértice consigo mismo y usamos `conectar` y `desconectar`
+para conservar las referencias en ambos sentidos.
+
+### Consultar vecinos y conexiones
+
+Para consultar los vecinos directos de Rosario accedemos a `rosario.vecinos`.
+Si queremos mostrar sus nombres, leemos el atributo `valor` de cada uno:
+
+```python
+print([vecino.valor for vecino in rosario.vecinos])
+print(salta in rosario.vecinos)
+print(mendoza in rosario.vecinos)
+```
+
+```text
+['San Pablo', 'Salta']
+True
+False
+```
+
+El último resultado solamente indica que no hay una arista entre Rosario y Mendoza.
+Para saber si podemos llegar mediante conexiones intermedias necesitaremos recorrer el grafo.
+
+### Agregar un vértice
+
+Agregar una ciudad consiste en crear un objeto:
+
+```python
+parana = Vertice("Paraná")
+print(parana.vecinos)
+```
+
+```text
+[]
+```
+
+Paraná ya es un vértice, pero está aislado. No podemos descubrirlo siguiendo los enlaces desde Rosario.
+
+### Agregar y quitar una arista
+
+Para conectar Rosario con Paraná usamos `conectar`:
+
+```python
+rosario.conectar(parana)
+print([vecino.valor for vecino in rosario.vecinos])
+print([vecino.valor for vecino in parana.vecinos])
+```
+
+```text
+['San Pablo', 'Salta', 'Paraná']
+['Rosario']
+```
+
+El método agrega Paraná a los vecinos de Rosario y Rosario a los de Paraná.
+La comprobación evita repetir la arista si llamamos otra vez al método.
+Para quitarla, agregamos el método `desconectar` a `Vertice`. Elimina las dos referencias:
+
+```python
+    def desconectar(self, otro):
+        if otro in self.vecinos:
+            self.vecinos.remove(otro)
+            otro.vecinos.remove(self)
+```
+
+Lo usamos sobre los mismos vértices:
+
+```python
+rosario.desconectar(parana)
+print([vecino.valor for vecino in rosario.vecinos])
+print(parana.vecinos)
+```
+
+```text
+['San Pablo', 'Salta']
+[]
+```
+
+Paraná vuelve a quedar aislado. El objeto sigue existiendo porque la variable `parana` lo referencia.
+Para quitar todas las conexiones de un vértice, agregamos el método `aislar`:
+
+```python
+    def aislar(self):
+        # Copiamos la lista porque desconectar modifica los vecinos
+        for vecino in self.vecinos.copy():
+            self.desconectar(vecino)
+```
+
+Por ejemplo:
+
+```python
+rosario.conectar(parana)
+parana.aislar()
+print(parana in rosario.vecinos)
+print(parana.vecinos)
+```
+
+```text
+False
+[]
+```
+
+El método recorre una copia de la lista de vecinos para poder modificar los enlaces mientras avanza.
+Al terminar, ningún otro vértice tiene una referencia a Paraná en su lista de vecinos.
+
+## Recorridos
+
+Supongamos que queremos listar todas las ciudades a las que podemos llegar desde Rosario,
+incluida la ciudad de origen. Tenemos que seguir sus conexiones y las de sus vecinos.
+Pero, a diferencia del árbol, seguir un enlace puede llevarnos a un vértice que ya visitamos.
+
+Por ejemplo, desde Rosario podemos ir a Salta y desde Salta volver a Rosario.
+Si llamáramos de nuevo a la función sin registrar las visitas, repetiríamos las mismas llamadas indefinidamente.
+
+Para evitarlo vamos a guardar los vértices descubiertos en un conjunto llamado `visitados`.
+Antes de continuar hacia un vecino comprobaremos si ya está registrado.
+Además, usaremos una lista `orden` para conservar el orden del resultado.
+Ambas colecciones guardan objetos `Vertice`: el conjunto permite consultar si una ciudad ya apareció
+y la lista permite recordar cuándo la incorporamos. Para mostrar los nombres, usamos sus atributos `valor`.
+
+Vamos a comparar dos recorridos sobre el grafo original de seis ciudades.
+En las figuras, el verde indica que una ciudad ya está registrada en `visitados`
+y el borde verde oscuro marca la ciudad actual.
+A la derecha aparecen el resultado y las llamadas activas o la cola de pendientes.
+
+### Recorrido en profundidad
+
+El **recorrido en profundidad** (_depth-first search_, DFS) avanza hacia un vecino nuevo
+y continúa desde él antes de revisar los siguientes vecinos del vértice anterior.
+Cuando no quedan vecinos nuevos, vuelve a la llamada anterior.
+Podemos implementarlo con recursión, como hicimos con los árboles.
+
+#### DFS paso a paso
+
+Empezamos desde Rosario y agregamos cada ciudad al resultado al entrar a su llamada.
+La columna de llamadas muestra el camino actual, con la llamada más reciente abajo.
+
+:::: {.carousel .dark autoplay="false" id="grafos-dfs" image-width="100%"}
+
+::: {.item image="imgs/03/dfs-1.svg" caption="Todavía no visitamos ninguna ciudad.<br>El resultado y las llamadas activas están vacíos."}
+:::
+
+::: {.item image="imgs/03/dfs-2.svg" caption="Visitamos Rosario y lo agregamos al resultado.<br>Su primer vecino es San Pablo."}
+:::
+
+::: {.item image="imgs/03/dfs-3.svg" caption="Registramos San Pablo. Rosario ya está visitado.<br>Seguimos hacia Ushuaia."}
+:::
+
+::: {.item image="imgs/03/dfs-4.svg" caption="Registramos Ushuaia. San Pablo ya está visitado.<br>Sin más vecinos, esta llamada termina."}
+:::
+
+::: {.item image="imgs/03/dfs-5.svg" caption="Volvemos a San Pablo y retomamos su lista de vecinos.<br>El siguiente vecino nuevo es Córdoba."}
+:::
+
+::: {.item image="imgs/03/dfs-6.svg" caption="Registramos Córdoba. San Pablo ya está visitado.<br>Seguimos hacia Salta."}
+:::
+
+::: {.item image="imgs/03/dfs-7.svg" caption="Registramos Salta. Rosario y Córdoba ya se visitaron.<br>Seguimos hacia Mendoza."}
+:::
+
+::: {.item image="imgs/03/dfs-8.svg" caption="Registramos Mendoza. Sus vecinos ya están visitados.<br>Esta llamada termina."}
+:::
+
+::: {.item image="imgs/03/dfs-9.svg" caption="Volvemos a Salta. No quedan vecinos pendientes.<br>Su llamada termina."}
+:::
+
+::: {.item image="imgs/03/dfs-10.svg" caption="Volvemos a Córdoba. Mendoza y San Pablo se visitaron.<br>Su llamada termina."}
+:::
+
+::: {.item image="imgs/03/dfs-11.svg" caption="Volvemos a San Pablo. Mendoza ya está visitado.<br>Su llamada termina."}
+:::
+
+::: {.item image="imgs/03/dfs-12.svg" caption="Volvemos a Rosario. Salta ya está visitada.<br>Su llamada termina."}
+:::
+
+::: {.item image="imgs/03/dfs-13.svg" caption="Ya no hay llamadas activas.<br>Devolvemos la lista completa."}
+:::
+
+::::
+
+Al volver de Ushuaia, la llamada de San Pablo retoma su `for` y continúa hacia Córdoba.
+Por eso Córdoba aparece después de Ushuaia en el resultado, aunque no haya una arista entre ellas:
+el recorrido volvió a San Pablo antes de avanzar por otra rama.
+
+#### Implementación de DFS
+
+```python
+def dfs(origen):
+    visitados = set()
+    orden = []
+
+    def visitar(actual):
+        # Registramos el vértice antes de seguir sus conexiones
+        visitados.add(actual)
+        orden.append(actual)
+
+        for vecino in actual.vecinos:
+            if vecino not in visitados:
+                visitar(vecino)
+
+    visitar(origen)
+    return orden
+```
+
+La función interna `visitar` comparte `visitados` y `orden` entre todas las llamadas.
+Cuando encuentra un vecino nuevo, la llamada recursiva se completa antes de que el `for`
+continúe con el siguiente.
+
+Si el recorrido requiere muchas llamadas anidadas, esta versión puede superar el límite de recursión
+de Python y producir un `RecursionError`. Una implementación con una pila explícita evita ese límite.
+
+```python
+print([vertice.valor for vertice in dfs(rosario)])
+```
+
+```text
+['Rosario', 'San Pablo', 'Ushuaia', 'Córdoba', 'Salta', 'Mendoza']
+```
+
+El resultado depende del orden de las listas de vecinos, aunque las conexiones sean las mismas.
+
+### Recorrido en anchura
+
+Ahora queremos procesar primero todos los vecinos directos de Rosario y después los que vamos
+descubriendo desde ellos. Para lograrlo, en lugar de continuar inmediatamente desde cada vecino,
+lo guardamos al final de una cola.
+
+El **recorrido en anchura** (_breadth-first search_, BFS) usa esa cola para recordar los pendientes.
+La primera ciudad que entra es la primera que sale.
+
+#### BFS paso a paso
+
+Empezamos registrando Rosario en `visitados` y agregándolo a la cola.
+En cada paso sacamos una ciudad, la agregamos al resultado y revisamos sus vecinos.
+Los vecinos nuevos se registran y se agregan al final de la cola.
+En la figura, la próxima ciudad en salir está arriba.
+
+:::: {.carousel .dark autoplay="false" id="grafos-bfs" image-width="100%"}
+
+::: {.item image="imgs/03/bfs-1.svg" caption="Registramos Rosario y lo ponemos en la cola.<br>Todavía no hay ciudades en el resultado."}
+:::
+
+::: {.item image="imgs/03/bfs-2.svg" caption="Sacamos Rosario. Registramos San Pablo y Salta.<br>Los encolamos en ese orden."}
+:::
+
+::: {.item image="imgs/03/bfs-3.svg" caption="Sacamos San Pablo. Rosario ya está registrado.<br>Registramos y encolamos Ushuaia, Córdoba y Mendoza."}
+:::
+
+::: {.item image="imgs/03/bfs-4.svg" caption="Sacamos Salta. Sus vecinos ya están registrados.<br>No agregamos ciudades a la cola."}
+:::
+
+::: {.item image="imgs/03/bfs-5.svg" caption="Sacamos Ushuaia. San Pablo ya está registrado.<br>En la cola quedan Córdoba y Mendoza."}
+:::
+
+::: {.item image="imgs/03/bfs-6.svg" caption="Sacamos Córdoba. Sus vecinos ya están registrados.<br>En la cola solo queda Mendoza."}
+:::
+
+::: {.item image="imgs/03/bfs-7.svg" caption="Sacamos Mendoza. Sus vecinos ya están registrados.<br>La cola queda vacía y el recorrido termina."}
+:::
+
+::::
+
+Al procesar Salta, Córdoba y Mendoza ya están registrados aunque todavía esperen en la cola.
+Si esperáramos a registrarlos hasta sacarlos, podríamos encolarlos de nuevo desde Salta.
+Por eso registramos cada vértice cuando lo agregamos a la cola.
+
+#### Implementación de BFS
+
+Usamos `deque`, del módulo `collections` de Python, como cola.
+Con `append` agregamos un vértice al final y con `popleft` sacamos el primero:
+
+```python
+from collections import deque
+
+
+def bfs(origen):
+    # Registramos cada vértice al agregarlo a la cola
+    visitados = {origen}
+    cola = deque([origen])
+    orden = []
+
+    while cola:
+        actual = cola.popleft()
+        orden.append(actual)
+
+        for vecino in actual.vecinos:
+            if vecino not in visitados:
+                visitados.add(vecino)
+                cola.append(vecino)
+
+    return orden
+```
+
+Después de procesar Rosario, en la cola quedan San Pablo y Salta, en ese orden.
+Sacamos San Pablo con `popleft` y agregamos Ushuaia, Córdoba y Mendoza al final.
+El próximo turno sigue siendo de Salta. El recorrido termina cuando la cola queda vacía.
+Las figuras muestran los nombres de los vértices que esperan en ella.
+
+La cola `cola` guarda los vértices pendientes de procesar, mientras que la lista `orden`
+guarda los que ya procesamos, en el orden en que salieron de la cola.
+Al terminar, la cola queda vacía y devolvemos la lista con el resultado.
+
+Como ejercicio, podemos reemplazar `deque` por una clase `Cola` propia,
+con operaciones para encolar y desencolar como las que vimos en la Unidad 4.
+
+```python
+print([vertice.valor for vertice in bfs(rosario)])
+```
+
+```text
+['Rosario', 'San Pablo', 'Salta', 'Ushuaia', 'Córdoba', 'Mendoza']
+```
+
+### Comparación de los recorridos
+
+Los dos recorridos alcanzan las mismas ciudades desde un mismo origen:
+
+| Recorrido | Cómo recuerda dónde continuar | Cómo avanza                                                                                            |
+|-----------|-------------------------------|--------------------------------------------------------------------------------------------------------|
+| DFS       | Llamadas recursivas           | Continúa desde un vecino nuevo antes de revisar los demás                                              |
+| BFS       | Cola                          | Procesa primero las ciudades a una arista del origen, después las que están a dos, y así sucesivamente |
+
+: {tbl-colwidths="[15, 40, 45]"}
+
+Desde Rosario, BFS procesa Salta y San Pablo, que están a un tramo, antes que Córdoba,
+Mendoza y Ushuaia, cuya menor cantidad de tramos desde el origen es dos.
+Ese orden permite encontrar caminos con la menor cantidad de aristas.
+La función `bfs` que escribimos devuelve el orden de visita. Para reconstruir un camino mínimo,
+también necesitaríamos guardar desde qué vértice descubrimos cada vecino y seguir esas
+referencias desde el destino hasta el origen.
+
+Para buscar algo cercano al origen, BFS permite revisar primero los vecinos directos y después
+las conexiones más lejanas. DFS profundiza en una rama antes de probar otra y puede encontrar
+antes un destino profundo si está en esa rama. Ninguno es siempre más rápido: depende del grafo,
+del destino y del orden de los vecinos.
+
+## Aplicaciones
+
+Los recorridos permiten listar todos los vértices alcanzables. Si solamente queremos saber
+si podemos llegar a un destino, podemos detenernos apenas lo encontramos.
+
+### Viajar mediante conexiones
+
+Para comprobar si podemos viajar de Rosario a Mendoza, podemos adaptar DFS.
+La función devuelve `True` al encontrar el destino. Cada llamada transmite ese resultado
+a la anterior y termina, sin explorar las ramas pendientes. Si agota las posibilidades, devuelve `False`.
+Recibe los objetos de origen y destino. La condición `actual is destino` comprueba si llegamos al mismo objeto.
+
+```python
+def hay_camino(origen, destino):
+    visitados = set()
+
+    def visitar(actual):
+        if actual is destino:
+            return True
+
+        visitados.add(actual)
+        for vecino in actual.vecinos:
+            if vecino not in visitados:
+                if visitar(vecino):
+                    return True
+
+        return False
+
+    return visitar(origen)
+
+print(hay_camino(rosario, mendoza))
+print(hay_camino(rosario, ushuaia))
+```
+
+```text
+True
+True
+```
+
+En la segunda búsqueda visitamos Rosario, San Pablo y Ushuaia. Al encontrar Ushuaia,
+terminamos sin visitar Córdoba, Salta ni Mendoza.
+Esto comprueba que existe un camino, pero no devuelve un itinerario.
+Tampoco la lista de un recorrido es un itinerario: DFS visita Ushuaia y Córdoba una después de la otra,
+aunque no haya una arista entre ellas.
+
+En nuestro ejemplo todas las ciudades están conectadas entre sí mediante algún camino.
+Si agregamos otra ciudad sin aristas, el recorrido desde Rosario no la alcanzará:
+
+```python
+parana = Vertice("Paraná")
+print(hay_camino(rosario, parana))
+```
+
+```text
+False
+```
+
+Un recorrido desde un origen solamente alcanza la parte del grafo conectada con él.
+Si hay vértices aislados, necesitamos conservar referencias a ellos para poder accederlos.
+
+### Encontrar contactos indirectos
+
+Supongamos ahora que los vértices representan personas y una arista indica que dos personas
+son contactos en una red. Queremos saber qué personas puede alcanzar Ana mediante sus contactos,
+aunque todavía no tenga una conexión directa con ellas.
+
+![Red de contactos de cinco personas.](imgs/03/contactos.svg){fig-align="center" width="65%" fig-alt="Ana conecta con Bruno y Carla. Bruno conecta con Diego. Carla conecta con Diego y Elena. Todas las conexiones son mutuas."}
+
+Usamos la misma clase `Vertice`, ahora con nombres de personas:
+
+```python
+ana = Vertice("Ana")
+bruno = Vertice("Bruno")
+carla = Vertice("Carla")
+diego = Vertice("Diego")
+elena = Vertice("Elena")
+
+ana.conectar(bruno)
+ana.conectar(carla)
+bruno.conectar(diego)
+carla.conectar(diego)
+carla.conectar(elena)
+
+print([persona.valor for persona in bfs(ana)])
+```
+
+```text
+['Ana', 'Bruno', 'Carla', 'Diego', 'Elena']
+```
+
+El recorrido empieza en Ana y registra a Bruno y Carla, sus contactos directos.
+Al procesar Bruno descubre a Diego. Cuando llega el turno de Carla, Diego ya está registrado,
+por lo que solamente agrega a Elena a la cola.
+
+Para quedarnos con los contactos indirectos, podemos quitar del resultado a Ana y a quienes
+ya aparecen en su lista de vecinos:
+
+```python
+alcanzables = bfs(ana)
+indirectos = [
+    persona.valor for persona in alcanzables
+    if persona is not ana and persona not in ana.vecinos
+]
+print(indirectos)
+```
+
+```text
+['Diego', 'Elena']
+```
+
+Diego es alcanzable por Bruno o por Carla, mientras que Elena es alcanzable por Carla.
+Si hubiera más personas conectadas a través de ellos, el recorrido también las alcanzaría.
+La lista reúne candidatos para sugerir contactos, pero todavía no establece a quiénes conviene recomendar.
+
+## Eficiencia de los recorridos
+
+Para contar el trabajo de DFS y BFS no alcanza con contar las ciudades visitadas.
+En cada ciudad también revisamos sus vecinos, incluso los que ya estaban registrados.
+
+Nuestra red tiene seis vértices y ocho aristas. Un recorrido completo visita las seis ciudades
+y revisa dieciséis entradas en las listas de vecinos: cada arista aparece en ambos extremos.
+Si agregáramos más conexiones entre esas mismas ciudades, habría más vecinos que revisar,
+aunque la cantidad de vértices siguiera siendo seis.
+
+Por eso usamos dos cantidades: $V$ para los vértices y $E$ para las aristas.
+El trabajo crece como $V + 2E$. Al omitir el factor constante, lo expresamos como $O(V + E)$.
+Esto vale para ambos recorridos. Si hay partes desconectadas, solo procesamos la parte alcanzable desde el origen.
+Una búsqueda puede terminar antes si encuentra el destino, pero en el peor caso necesita explorar toda esa parte.
+
+## Clase `Vertice` completa
+
+Reunimos los métodos que fuimos agregando:
+
+```python
+class Vertice:
+    def __init__(self, valor):
+        self.valor = valor
+        self.vecinos = []
+
+    def conectar(self, otro):
+        # La conexión se guarda en ambos sentidos
+        if otro not in self.vecinos:
+            self.vecinos.append(otro)
+            otro.vecinos.append(self)
+
+    def desconectar(self, otro):
+        if otro in self.vecinos:
+            self.vecinos.remove(otro)
+            otro.vecinos.remove(self)
+
+    def aislar(self):
+        # Copiamos la lista porque desconectar modifica los vecinos
+        for vecino in self.vecinos.copy():
+            self.desconectar(vecino)
+```
+
+Podés descargar la clase y las funciones de recorridos y búsqueda en [grafos.py](grafos.py).
+
+## Siguientes pasos
+
+Un grafo permite representar relaciones entre elementos, incluso cuando hay ciclos y distintos
+caminos entre dos vértices. En este apunte guardamos las conexiones mediante listas de vecinos
+y usamos DFS y BFS para recorrer la parte alcanzable desde un origen.
+También adaptamos un recorrido para comprobar si existe un camino entre dos ciudades.
+
+Estas ideas aparecen en aplicaciones con otros datos y otras preguntas:
+
+- **Mapas y transporte.** Los vértices pueden representar intersecciones, estaciones o aeropuertos,
+  y las aristas, los tramos que permiten viajar entre ellos. Además de saber si existe un camino,
+  podemos buscar uno que reduzca la distancia, el tiempo o el costo del viaje.
+- **Redes de computadoras.** Podemos representar equipos y sus conexiones para estudiar
+  qué destinos son alcanzables y qué partes de la red quedan incomunicadas si falla un enlace.
+- **Dependencias entre tareas.** Una arista puede indicar que una tarea debe terminar antes
+  de empezar otra. Queremos encontrar un orden que respete esas dependencias y detectar
+  ciclos que impidan cumplirlas. La misma idea sirve para organizar materias con correlatividades.
+- **Redes de contactos.** Además de encontrar contactos indirectos, podemos estudiar grupos
+  de personas conectadas entre sí o cómo se difunde información a través de sus vínculos.
+
+Para responder esas preguntas, muchas veces necesitamos ampliar el modelo.
+Si una conexión representa una calle de sentido único o una dependencia entre tareas,
+el grafo es dirigido: debemos guardar qué enlaces salen de cada vértice y seguirlos en ese sentido.
+Nuestro método `conectar`, que agrega referencias en ambos extremos, tendría que cambiar.
+
+Si volvemos a los vuelos y agregamos precios o duraciones, cada arista necesita guardar
+un **peso** (_weight_). Hablamos entonces de un **grafo ponderado** (_weighted graph_).
+Un vuelo directo puede costar más que un viaje con una escala: el camino con menos aristas
+puede tener un costo total mayor. BFS sigue sirviendo para minimizar la cantidad de tramos,
+pero para minimizar la suma de esos pesos necesitamos otros algoritmos.
+
+Otras consultas requieren más información que un peso por arista.
+Para planificar un viaje con horarios, no alcanza con sumar duraciones: hay que comprobar
+si llegamos a tiempo para tomar el siguiente vuelo. Si además se cancela una conexión,
+puede ser necesario buscar otra alternativa.
+
+El tamaño de la red también plantea dificultades. Si crece hasta tener millones de vértices,
+importa cuánta memoria ocupa la representación y cuánto de ella necesitamos recorrer.
+
+Las preguntas que guían estas ampliaciones son las mismas que empezamos a trabajar acá:
+qué representa cada vértice, qué información guarda una arista y qué queremos averiguar
+al seguir las conexiones. Las respuestas determinan tanto la representación como el algoritmo.
