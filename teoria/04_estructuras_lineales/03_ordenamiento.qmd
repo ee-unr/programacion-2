@@ -68,7 +68,7 @@ Veamos cómo funciona este procedimiento con la lista original `[7, 2, 4, 5]`:
 
 
 :::: {style="margin: auto;"}
-:::: {.carousel id="carousel-01"}
+:::: {.carousel .dark autoplay="false" id="carousel-01"}
 
 :::: {.item image="imgs/03/bubble_sort-0.png" caption="Inicialmente, la lista se encuentra desordenada."}
 :::
@@ -104,7 +104,7 @@ Ahora, debemos notar que obtuvimos una lista ordenada en tan pocos pasos de pura
 Para ver por qué, apliquemos el mismo conjunto de pasos sobre una lista con la misma
 cantidad de elementos, en un orden apenas diferente.
 
-:::: {.carousel id="carousel-02"}
+:::: {.carousel .dark autoplay="false" id="carousel-02"}
 
 :::: {.item image="imgs/03/bubble_sort_2-0.png" caption="La lista contiene los mismos valores, en otro orden."}
 :::
@@ -143,7 +143,7 @@ solo entonces puede concluirse que la lista está completamente ordenada.
 
 Continuando el ejemplo, tenemos:
 
-:::: {.carousel id="carousel-02-b"}
+:::: {.carousel .dark autoplay="false" id="carousel-02-b"}
 :::: {.item image="imgs/03/bubble_sort_2-7.png" caption="Se vuelven a comparar los valores en las posiciones 0 y 1."}
 :::
 
@@ -303,7 +303,7 @@ lo coloca en la posición que le corresponde.
 Luego, continúa con el resto de la lista, repitiendo el proceso hasta que todos los elementos quedan ordenados.
 
 
-:::: {.carousel id="carousel-03"}
+:::: {.carousel .dark autoplay="false" id="carousel-03"}
 
 :::: {.item image="imgs/03/selection_sort-0.png" caption="Se cuenta con una lista desordenada."}
 :::
@@ -462,7 +462,7 @@ A medida que se procesan los siguientes elementos, se van insertando en la posic
 manteniendo el orden. De esta forma, la parte ordenada va creciendo progresivamente
 hasta abarcar todos los elementos, momento en el cual la lista queda completamente ordenada.
 
-:::: {.carousel id="carousel-04"}
+:::: {.carousel .dark autoplay="false" id="carousel-04"}
 
 :::: {.item image="imgs/03/insertion_sort-0.png" caption="Todo comienza con una lista desordenada."}
 :::
@@ -667,7 +667,7 @@ En otro caso, se divide en dos subsecuencias: la primera mitad en $S_1$ y la seg
 
 Visualmente:
 
-:::: {.carousel id="carousel-05"}
+:::: {.carousel .dark autoplay="false" id="carousel-05"}
 
 :::: {.item image="imgs/03/merge_sort_tree-0.png" caption="Se tiene una lista desordenada."}
 :::
@@ -695,7 +695,7 @@ considerando su naturaleza recursiva.
 El siguiente conjunto de imágenes nos ayudarán a entender como fuciona _merge sort_ de manera recursiva.
 
 
-:::: {.carousel id="carousel-05-b"}
+:::: {.carousel .dark autoplay="false" id="carousel-05-b"}
 
 :::: {.item image="imgs/03/merge_sort_tree_recursivo-0.png" caption="Todo empieza con una lista desordenada.<br>Como su longitud es mayor a 1, se parte a la mitad."}
 :::
@@ -782,7 +782,7 @@ aún tendrá valores que no se copiaron al arreglo `fusionado`. Esto da inicio a
 
 Veamos el ejemplo desarrollado paso a paso:
 
-:::: {.carousel id="carousel-06"}
+:::: {.carousel .dark autoplay="false" id="carousel-06"}
 
 :::: {.item image="imgs/03/merge_sort_fusion-1.png" caption="Se inicializa un puntero que apunta al principio de cada arreglo y se crea un tercer arreglo vacío."}
 :::
@@ -968,7 +968,7 @@ Luego, se recorre la secuencia y se distribuyen sus elementos en tres nuevas sub
 3. **Combinar**: se unen las subsecuencias en una sola secuencia ordenada, concatenando los elementos de $L$, $E$ y $G$ en ese orden.
 
 
-:::: {.carousel id="carousel-07-b"}
+:::: {.carousel .dark autoplay="false" id="carousel-07-b"}
 
 :::: {.item image="imgs/03/quick_sort_recursivo-0.png"}
 :::
@@ -1065,7 +1065,7 @@ Cuando ambos punteros se detienen:
 En ese momento se completa una partición: los valores menores al pivote quedan a su izquierda y los mayores, a su derecha.
 Luego, el algoritmo se aplica recursivamente sobre cada una de las dos partes resultantes.
 
-:::: {.carousel id="carousel-08"}
+:::: {.carousel .dark autoplay="false" id="carousel-08"}
 
 :::: {.item image="imgs/03/quick_sort_in_place-0.png" caption="Todo comienza con una lista desordenada."}
 :::
@@ -1115,7 +1115,7 @@ El proceso que acabamos de describir es una partición.
 El valor del pivote ahora se encuentra en su lugar definitivo en la lista ordenada.
 Ahora, el algoritmo _quick sort_ particiona recursivamente las secciones restantes.
 
-:::: {.carousel id="carousel-09"}
+:::: {.carousel .dark autoplay="false" id="carousel-09"}
 
 :::: {.item image="imgs/03/quick_sort_in_place-14.png" caption="Se comienza por la sublista a la izquierda del anterior pivote. El puntero izquiero es menor al pivote y se mueve a la derecha."}
 :::

@@ -109,7 +109,7 @@ De manera general, una estructura condicional `if` se programa utilizando la sig
 
 
 ::: {style="margin: auto;"}
-::: {.carousel id="carousel-01"}
+::: {.carousel .dark autoplay="false" id="carousel-01"}
 
 ::: {.item image="imgs/typst/svg/condicional-if-generico-1.svg" caption="Estructura condicional <code>if</code>."}
 :::
@@ -132,7 +132,7 @@ De manera general, una estructura condicional `if` se programa utilizando la sig
 Por ejemplo:
 
 ::: {style="margin: auto;"}
-::: {.carousel id="carousel-02"}
+::: {.carousel .dark autoplay="false" id="carousel-02"}
 
 ::: {.item image="imgs/typst/svg/condicional-if-1.svg" caption="Programa de ejemplo."}
 :::
@@ -230,7 +230,7 @@ De manera general, una estructura condicional `if`-`else` se programa utilizando
 
 
 ::: {style="margin: auto;"}
-::: {.carousel id="carousel-03"}
+::: {.carousel .dark autoplay="false" id="carousel-03"}
 
 ::: {.item image="imgs/typst/svg/condicional-if-else-generico-1.svg" caption="Estructura condicional <code>if</code>-<code>else</code>."}
 :::
@@ -263,7 +263,7 @@ Por ejemplo:
 
 
 ::: {style="margin: auto;"}
-::: {.carousel id="carousel-04"}
+::: {.carousel .dark autoplay="false" id="carousel-04"}
 
 ::: {.item image="imgs/typst/svg/condicional-if-else-1.svg" caption="Programa de ejemplo."}
 :::
@@ -333,7 +333,7 @@ De manera general, una estructura condicional `if`-`elif`-`else` se programa uti
 
 
 ::: {style="margin: auto;"}
-::: {.carousel id="carousel-05"}
+::: {.carousel .dark autoplay="false" id="carousel-05"}
 
 ::: {.item image="imgs/typst/svg/condicional-if-elif-else-generico-1.svg" caption="Estructura condicional <code>if</code>-<code>elif</code>-<code>else</code>."}
 :::
@@ -406,7 +406,7 @@ Podemos recorrer este ejemplo paso a paso:
 
 
 :::: {style="margin: auto;"}
-:::: {.carousel id="carousel-06"}
+:::: {.carousel .dark autoplay="false" id="carousel-06"}
 
 :::: {.item image="imgs/typst/svg/condicional-if-elif-else-1.svg" caption="Programa de ejemplo."}
 :::

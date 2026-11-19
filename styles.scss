@@ -447,12 +447,22 @@ div.carousel {
   margin-top: 2rem; 
 }
 
+// Reservar los laterales para que los controles no tapen las figuras de árboles.
+.carousel[id^="arboles-"] {
+  padding-inline: 3rem;
+
+  > .carousel-control-prev,
+  > .carousel-control-next {
+    width: 2.5rem;
+  }
+}
+
 // .carousel.card {
 //   padding-top: 2em;
 // }
 
-.carousel img {
-  max-width: 75%;
+.carousel .carousel-item img {
+  max-width: min(100%, var(--carousel-image-width, 75%));
   margin-bottom: 110px;
 }
 
