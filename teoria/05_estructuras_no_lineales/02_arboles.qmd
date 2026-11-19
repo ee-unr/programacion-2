@@ -26,19 +26,26 @@ Consideremos el siguiente árbol. Por ahora, los números solamente sirven para 
 
 ![Partes de un árbol.](imgs/02/terminologia-0.svg){fig-align="center" width="90%" fig-alt="La raíz es 50. Sus hijos son 30 y 70. Los hijos de 30 son 20 y 40, y los de 70 son 60 y 80. El hijo derecho de 40 es 45. Los nodos internos son 50, 30, 70 y 40. Las hojas son 20, 60, 80 y 45."}
 
+::::{.callout-note}
+##### Patas para arriba 🌳
+En computación, un árbol tiene la raíz arriba de todo y sus ramas y hojas crecen para abajo 😅.
+:::
+
+
 ### Terminología
 
 Podemos describir las relaciones del dibujo de la siguiente manera:
 
-| Término | Qué indica | Ejemplo |
-| --- | --- | --- |
-| Raíz | El nodo que no tiene padre | `50` |
-| Padre e hijo (_parent_, _child_) | Una relación directa entre dos nodos | `30` es padre de `20` |
-| Hermanos (_siblings_) | Nodos con el mismo padre | `20` y `40` |
-| Hoja (_leaf_) | Un nodo que no tiene hijos | `20`, `60`, `80` y `45` |
-| Nodo interno | Un nodo que tiene al menos un hijo | `50`, `30`, `70` y `40` |
-| Ancestro | Un nodo que aparece antes en el camino desde la raíz | `50` es ancestro de `40` |
-| Descendiente | Un nodo al que llegamos siguiendo uno o más enlaces hacia los hijos | `40` es descendiente de `50` |
+| Término                          | Qué indica                                                          | Ejemplo                      |
+|----------------------------------|---------------------------------------------------------------------|------------------------------|
+| Raíz                             | El nodo que no tiene padre                                          | `50`                         |
+| Padre e hijo (_parent_, _child_) | Una relación directa entre dos nodos                                | `30` es padre de `20`        |
+| Hermanos (_siblings_)            | Nodos con el mismo padre                                            | `20` y `40`                  |
+| Hoja (_leaf_)                    | Un nodo que no tiene hijos                                          | `20`, `60`, `80` y `45`      |
+| Nodo interno                     | Un nodo que tiene al menos un hijo                                  | `50`, `30`, `70` y `40`      |
+| Ancestro                         | Un nodo que aparece antes en el camino desde la raíz                | `50` es ancestro de `40`     |
+| Descendiente                     | Un nodo al que llegamos siguiendo uno o más enlaces hacia los hijos | `40` es descendiente de `50` |
+
 
 La **profundidad** (_depth_) de un nodo es la cantidad de enlaces que lo separan de la raíz.
 En el ejemplo, `50` tiene profundidad 0, `30` tiene profundidad 1, `20` tiene profundidad 2
@@ -77,7 +84,7 @@ El árbol de números que venimos usando es binario.
 
 ### Árboles binarios de búsqueda
 
-En U4 vimos que un arreglo ordenado permite usar búsqueda binaria, pero insertar un elemento
+En la Unidad 4 vimos que un arreglo ordenado permite usar búsqueda binaria, pero insertar un elemento
 puede requerir desplazar muchos valores para conservar el orden.
 ¿Podemos organizar los datos de otra manera para facilitar también las inserciones?
 
@@ -119,33 +126,50 @@ El valor `None` indica que no hay un hijo en esa posición.
 Por ejemplo, podemos construir el árbol que venimos dibujando de esta manera:
 
 ```python
-raiz = Nodo(50)
-raiz.izquierdo = Nodo(30)
-raiz.derecho = Nodo(70)
-raiz.izquierdo.izquierdo = Nodo(20)
-raiz.izquierdo.derecho = Nodo(40)
-raiz.derecho.izquierdo = Nodo(60)
-raiz.derecho.derecho = Nodo(80)
-raiz.izquierdo.derecho.derecho = Nodo(45)
+n50 = Nodo(50)
+n30 = Nodo(30)
+n70 = Nodo(70)
+n20 = Nodo(20)
+n40 = Nodo(40)
+n60 = Nodo(60)
+n80 = Nodo(80)
+n45 = Nodo(45)
+
+n50.izquierdo = n30
+n50.derecho = n70
+n30.izquierdo = n20
+n30.derecho = n40
+n70.izquierdo = n60
+n70.derecho = n80
+n40.derecho = n45
+
+raiz = n50
 ```
 
-`raiz.izquierdo` referencia al nodo `30` y `raiz.izquierdo.derecho` referencia al nodo `40`.
-Para leer su valor, usamos `raiz.izquierdo.derecho.valor` y obtenemos `40`.
+Primero creamos los ocho nodos y después los conectamos.
+Por ejemplo, `n30.derecho = n40` hace que el hijo derecho del nodo `30` sea el nodo `40`.
+Luego, `n40.derecho = n45` conecta ese nodo con su hijo derecho, `45`.
+
+La asignación `raiz = n50` hace que ambas variables referencien al mismo objeto, sin crear otro nodo.
+Desde `raiz` podemos seguir los enlaces para llegar a los demás nodos.
+Por ejemplo, `raiz.izquierdo.derecho` referencia al mismo objeto que `n40`.
+Para leer su valor, podemos usar `raiz.izquierdo.derecho.valor` o `n40.valor`: en ambos casos obtenemos `40`.
 Al igual que en las listas enlazadas, los enlaces entre objetos son los que organizan la estructura.
 
-Como en las listas enlazadas de U4, vamos a trabajar con estos nodos y modificar sus enlaces
-para agregar o quitar valores.
+Como en las listas enlazadas de la Unidad 4, vamos a trabajar con estos nodos y
+modificar sus enlaces para agregar o quitar valores.
 
 ## Operaciones sobre un árbol binario de búsqueda
 
 Las operaciones de esta sección aprovechan la regla que acabamos de describir.
 En un árbol general, sin esa regla de orden, tendríamos que usar otras estrategias.
-Para analizar sus costos, vamos a llamar $N$ a la cantidad de nodos y $h$ a la altura del árbol,
-contada en enlaces. Un camino desde la raíz puede visitar hasta $h + 1$ nodos.
+
+Para analizar la eficiencia, nos vamos a concentrar en cuántos nodos visitamos.
+Vamos a llamar $N$ a la cantidad de nodos del árbol.
 
 ### Búsqueda
 
-Supongamos que queremos buscar `40`.
+Supongamos que queremos determinar si el árbol contiene el valor `40`.
 Empezamos en la raíz y comparamos el valor buscado con el del nodo actual.
 Si son iguales, terminamos. Si el valor es menor, seguimos por el hijo izquierdo.
 Si es mayor, seguimos por el derecho.
@@ -173,9 +197,8 @@ Una implementación es la siguiente:
 def buscar(raiz, valor):
     actual = raiz
     while actual is not None:
-
-        # Si el valor buscado coincide con el del nodo, lo encontramos
         if valor == actual.valor:
+            # Si el valor buscado coincide con el del nodo, lo encontramos
             return actual
 
         if valor < actual.valor:
@@ -189,24 +212,43 @@ def buscar(raiz, valor):
     return None
 ```
 
+```python
+buscar(raiz, 40).valor
+```
+```cmd
+40
+```
+```python
+print(buscar(raiz, 47))
+```
+```cmd
+None
+```
+
 La función devuelve el nodo encontrado o `None` si no existe.
 Por ejemplo, `buscar(raiz, 40).valor` devuelve `40`, mientras que `buscar(raiz, 47)` devuelve `None`.
 En la segunda búsqueda seguimos `50`, `30`, `40` y `45`. Como `47 > 45`,
 intentamos avanzar hacia la derecha y nos encontramos con `None`.
 
-En la búsqueda binaria de U4 reducíamos un intervalo de índices dentro de un arreglo.
+En la búsqueda binaria de la Unidad 4 reducíamos un intervalo de índices dentro de un arreglo.
 Aquí también descartamos una parte de los valores en cada paso, pero lo hacemos siguiendo
 los enlaces del árbol.
 
-En cada nodo hacemos una cantidad constante de trabajo y elegimos un solo hijo.
-Como podemos visitar hasta $h + 1$ nodos, el costo de la búsqueda en el peor caso es $O(h + 1)$.
-Si encontramos el valor en la raíz, en cambio, terminamos en $O(1)$.
+La regla de un BST permite decidir por qué hijo continuar, pero no garantiza que el árbol esté equilibrado.
+Si está equilibrado, sus ramas tienen alturas parecidas y su altura es aproximadamente $\log_2 N$.
+Como en cada paso bajamos un nivel, la búsqueda requiere a lo sumo una cantidad de visitas
+del orden de $\log N$. Por eso su costo es $O(\log N)$.
 
-Si la altura $h$ es del orden de $\log N$, la búsqueda cuesta $O(\log N)$.
-Pero el árbol podría formar una cadena de $N$ nodos, con altura $N - 1$.
-En ese caso, buscar el último valor o uno que no existe puede costar $O(N)$.
-La implementación con `while` solo guarda la referencia `actual`, además del valor buscado,
-por lo que usa $O(1)$ de memoria adicional.
+En cambio, si insertamos los valores de menor a mayor, cada nuevo nodo queda como hijo derecho
+del anterior. Si los insertamos de mayor a menor, ocurre lo mismo hacia la izquierda.
+Así podemos obtener una cadena de $N$ nodos, con altura $N - 1$.
+Buscar el último valor de esa cadena puede requerir visitar todos los nodos y costar $O(N)$.
+
+![Dos BST con los mismos siete valores y distintas alturas.](imgs/02/altura-0.svg){fig-align="center" width="90%" fig-alt="A la izquierda, un BST equilibrado de altura 2, con raíz 50, hijos 30 y 70, y hojas 20, 40, 60 y 80. A la derecha, los mismos siete valores forman una cadena hacia la derecha, desde 20 hasta 80, de altura 6."}
+
+En el árbol de la izquierda, buscar `80` requiere visitar `50`, `70` y `80`.
+En el de la derecha, tenemos que pasar por los siete nodos para llegar al mismo valor.
+Ambos cumplen la regla de un BST, pero la forma del árbol cambia el costo de la búsqueda.
 
 ### Inserción
 
@@ -221,10 +263,10 @@ que en una búsqueda. Cuando encontramos una referencia vacía, la reemplazamos 
 ::: {.item image="imgs/02/insercion-2.svg" caption="35 es mayor que 30. Seguimos hacia 40."}
 :::
 
-::: {.item image="imgs/02/insercion-3.svg" caption="35 es menor que 40. Su referencia izquierda está vacía."}
+::: {.item image="imgs/02/insercion-3.svg" caption="35 es menor que 40.<br>Su referencia izquierda está vacía."}
 :::
 
-::: {.item image="imgs/02/insercion-4.svg" caption="Creamos el nodo 35 y lo enlazamos como hijo izquierdo de 40."}
+::: {.item image="imgs/02/insercion-4.svg" caption="Creamos el nodo 35.<br>Lo enlazamos como hijo izquierdo de 40."}
 :::
 
 ::::
@@ -266,12 +308,9 @@ raiz = insertar(raiz, 35)
 Guardar el resultado también permite empezar con un árbol vacío, representado por `None`.
 En ese caso, la función crea el primer nodo y pasa a ser la raíz.
 
-Crear el nodo `35` y guardarlo en el enlace izquierdo de `40` cuesta $O(1)$.
-Pero antes tuvimos que encontrar ese lugar, y después deben regresar las llamadas recursivas.
-Como en la búsqueda, el costo total es $O(h + 1)$. Insertar en un árbol vacío cuesta $O(1)$.
-
-Esta versión recursiva también conserva las llamadas pendientes del camino que seguimos,
-por lo que necesita $O(h + 1)$ de memoria adicional. A eso se agrega el espacio constante del nuevo nodo.
+Para insertar primero buscamos el lugar y después conectamos el nuevo nodo.
+Por eso, como en la búsqueda, el costo es $O(\log N)$ si el árbol está equilibrado
+y puede llegar a $O(N)$ si forma una cadena.
 
 ### Eliminación
 
@@ -302,16 +341,16 @@ Recién entonces podemos quitar el enlace que llega a esa hoja.
 
 :::: {.carousel .dark autoplay="false" id="arboles-eliminacion" image-height="300px"}
 
-::: {.item image="imgs/02/eliminacion-1.svg" caption="Buscamos 20. Como 20 es menor que 50, seguimos por el hijo izquierdo."}
+::: {.item image="imgs/02/eliminacion-1.svg" caption="Buscamos 20.<br>20 es menor que 50: seguimos por el hijo izquierdo."}
 :::
 
 ::: {.item image="imgs/02/eliminacion-2.svg" caption="20 es menor que 30. Seguimos por el hijo izquierdo."}
 :::
 
-::: {.item image="imgs/02/eliminacion-3.svg" caption="Encontramos 20. No tiene hijos, por lo que es una hoja."}
+::: {.item image="imgs/02/eliminacion-3.svg" caption="Encontramos 20.<br>No tiene hijos, por lo que es una hoja."}
 :::
 
-::: {.item image="imgs/02/eliminacion-4.svg" caption="La referencia izquierda de 30 pasa a ser None. Los demás enlaces se conservan."}
+::: {.item image="imgs/02/eliminacion-4.svg" caption="La referencia izquierda de 30 pasa a ser None.<br>Los demás enlaces se conservan."}
 :::
 
 ::::
@@ -330,19 +369,19 @@ Para conservarlo, hacemos que el enlace derecho de `30` apunte directamente al n
 
 :::: {.carousel .dark autoplay="false" id="arboles-eliminacion-un-hijo" image-height="300px"}
 
-::: {.item image="imgs/02/eliminacion-un-hijo-1.svg" caption="Buscamos 40. Como 40 es menor que 50, seguimos por el hijo izquierdo."}
+::: {.item image="imgs/02/eliminacion-un-hijo-1.svg" caption="Buscamos 40.<br>40 es menor que 50: seguimos por el hijo izquierdo."}
 :::
 
 ::: {.item image="imgs/02/eliminacion-un-hijo-2.svg" caption="40 es mayor que 30. Seguimos por el hijo derecho."}
 :::
 
-::: {.item image="imgs/02/eliminacion-un-hijo-3.svg" caption="Encontramos 40. Tiene un hijo derecho y no tiene hijo izquierdo."}
+::: {.item image="imgs/02/eliminacion-un-hijo-3.svg" caption="Encontramos 40.<br>Tiene un hijo derecho y no tiene hijo izquierdo."}
 :::
 
-::: {.item image="imgs/02/eliminacion-un-hijo-4.svg" caption="El hijo 45 debe seguir conectado al árbol cuando quitemos 40."}
+::: {.item image="imgs/02/eliminacion-un-hijo-4.svg" caption="El hijo 45 debe seguir conectado cuando quitemos 40."}
 :::
 
-::: {.item image="imgs/02/eliminacion-un-hijo-5.svg" caption="El enlace derecho de 30 pasa a apuntar a 45. El nodo 40 queda fuera del árbol."}
+::: {.item image="imgs/02/eliminacion-un-hijo-5.svg" caption="El enlace derecho de 30 pasa a apuntar a 45.<br>El nodo 40 queda fuera del árbol."}
 :::
 
 ::::
@@ -352,9 +391,8 @@ La llamada anterior guarda ese resultado en el atributo `derecho` del nodo `30`.
 Si el único hijo fuera el izquierdo, devolveríamos `raiz.izquierdo`.
 El mismo cambio sirve si ese hijo tiene descendientes, porque sus enlaces se conservan.
 
-Reemplazar el enlace cuesta $O(1)$, incluso si el hijo tiene muchos descendientes.
-Lo mismo ocurre al quitar una hoja. En ambos casos, el costo total de $O(h + 1)$
-incluye localizar el nodo y regresar por las llamadas.
+Una vez encontrado el nodo, alcanza con cambiar un enlace, incluso si el hijo tiene muchos descendientes.
+Lo mismo ocurre al quitar una hoja. El trabajo principal está en localizar el nodo.
 
 #### Nodo con dos hijos
 
@@ -372,22 +410,22 @@ En este ejemplo, el hijo derecho es `40` y no tiene hijo izquierdo, por lo que `
 
 :::: {.carousel .dark autoplay="false" id="arboles-eliminacion-dos-hijos" image-height="300px"}
 
-::: {.item image="imgs/02/eliminacion-dos-hijos-1.svg" caption="Buscamos 30. Como 30 es menor que 50, seguimos por el hijo izquierdo."}
+::: {.item image="imgs/02/eliminacion-dos-hijos-1.svg" caption="Buscamos 30.<br>30 es menor que 50: seguimos por el hijo izquierdo."}
 :::
 
 ::: {.item image="imgs/02/eliminacion-dos-hijos-2.svg" caption="Encontramos 30. Tiene dos hijos, 20 y 40."}
 :::
 
-::: {.item image="imgs/02/eliminacion-dos-hijos-3.svg" caption="Para buscar el sucesor, empezamos en el subárbol derecho, por el nodo 40."}
+::: {.item image="imgs/02/eliminacion-dos-hijos-3.svg" caption="Para buscar el sucesor,<br>empezamos en el subárbol derecho, por el nodo 40."}
 :::
 
-::: {.item image="imgs/02/eliminacion-dos-hijos-4.svg" caption="40 no tiene hijo izquierdo. Es el menor valor del subárbol derecho y el sucesor de 30."}
+::: {.item image="imgs/02/eliminacion-dos-hijos-4.svg" caption="40 no tiene hijo izquierdo: es el menor del subárbol.<br>Es el sucesor de 30."}
 :::
 
-::: {.item image="imgs/02/eliminacion-dos-hijos-5.svg" caption="Copiamos 40 en el nodo que contenía 30. Falta quitar el nodo original del sucesor."}
+::: {.item image="imgs/02/eliminacion-dos-hijos-5.svg" caption="Copiamos 40 en el nodo que contenía 30.<br>Falta quitar el nodo original del sucesor."}
 :::
 
-::: {.item image="imgs/02/eliminacion-dos-hijos-6.svg" caption="Quitamos el nodo original de 40 y enlazamos su hijo 45. El subárbol queda con raíz 40 e hijos 20 y 45."}
+::: {.item image="imgs/02/eliminacion-dos-hijos-6.svg" caption="Quitamos el 40 original y enlazamos a su hijo 45.<br>El subárbol queda con raíz 40 e hijos 20 y 45."}
 :::
 
 ::::
@@ -403,16 +441,15 @@ los valores que quedan en el derecho después de quitarlo.
 Además, el sucesor nunca tiene hijo izquierdo. Si lo tuviera, no sería el menor de ese subárbol.
 Por eso, quitarlo de su posición original siempre se reduce a uno de los dos casos anteriores.
 
-En este caso también tenemos que localizar el sucesor y quitarlo de su posición original.
-En el ejemplo lo encontramos inmediatamente en `40`, pero en otro árbol podríamos tener que
-seguir varios enlaces izquierdos. La implementación recorre ese tramo para encontrarlo y después para eliminarlo.
-Sumamos esos recorridos al de la búsqueda inicial, todos limitados por la altura del árbol.
-Por eso el costo total sigue siendo $O(h + 1)$.
+En este caso también buscamos y quitamos el sucesor. Eso agrega pasos, pero seguimos recorriendo
+caminos limitados por la altura del árbol. La eliminación cuesta $O(\log N)$ si el árbol
+está equilibrado y puede llegar a $O(N)$ si forma una cadena.
 
 #### Implementación
 
 Podemos reunir los tres casos en una sola función.
-Como en la inserción, cada llamada devuelve la raíz que debe quedar en ese subárbol:
+Cada llamada devuelve la raíz del subárbol que queda después de eliminar el valor,
+o `None` si ese subárbol queda vacío. Los enlaces se modifican sobre los mismos nodos:
 
 ```python
 def eliminar(raiz, valor):
@@ -427,7 +464,7 @@ def eliminar(raiz, valor):
         # Si el valor es mayor, lo buscamos en el subárbol derecho
         raiz.derecho = eliminar(raiz.derecho, valor)
     else:
-        # Encontramos el valor. Si es una hoja, quitamos el enlace
+        # Si es una hoja, devolvemos None para que el padre vacíe su enlace
         if raiz.izquierdo is None and raiz.derecho is None:
             return None
 
@@ -450,20 +487,17 @@ def eliminar(raiz, valor):
     return raiz
 ```
 
-La usamos guardando siempre el resultado:
+Guardamos el resultado para conservar la raíz del árbol modificado:
 
 ```python
 raiz = eliminar(raiz, 20)
 ```
 
-Si el valor no existe, la función devuelve el árbol sin cambios.
-Guardar el resultado también permite eliminar la raíz.
-Si era el único nodo, `raiz` pasa a ser `None`. Si tenía un solo hijo, ese hijo pasa a ser la nueva raíz.
-Si tenía dos hijos, se conserva el nodo raíz y se reemplaza su valor por el del sucesor.
+En este ejemplo, la llamada que encuentra `20` devuelve `None` y la de `30` lo guarda
+en su enlace izquierdo. La llamada principal devuelve el nodo `50`, que sigue siendo la raíz.
 
-Las llamadas recursivas necesitan memoria para recordar dónde continuar cuando regresan.
-En el peor caso hay una cantidad de llamadas pendientes proporcional a la altura,
-por lo que esta implementación usa $O(h + 1)$ de memoria adicional.
+Si eliminamos la raíz, el resultado puede ser otro nodo o `None` si era el único del árbol.
+Si el valor no existe, el árbol queda sin cambios.
 
 ## Recorridos
 
@@ -471,13 +505,13 @@ Buscar un valor nos permite seguir solamente una parte del árbol.
 Pero si queremos mostrar todos sus elementos, necesitamos visitar cada nodo.
 Ese proceso se llama **recorrido** (_traversal_).
 
-Primero vamos a comparar los tres recorridos sobre el mismo árbol de números y escribir sus funciones.
-Después veremos aplicaciones de esos órdenes de visita.
-Cada llamada devuelve una lista con los valores de su subárbol. Para construirla, combina
-los resultados de las llamadas a sus hijos con `[nodo.valor]`, una lista que contiene solamente
-el valor del nodo actual. Si recibe `None`, devuelve `[]`.
-Al terminar, la ejecución vuelve a la llamada anterior.
-El orden en que combinamos esas tres partes determina el recorrido: preorden, inorden o postorden.
+Vamos a comparar tres recorridos sobre el mismo árbol de números: preorden, inorden y postorden.
+Los implementaremos con **recursión**: como cada subárbol también es un árbol, la función
+se llama a sí misma sobre el hijo izquierdo y el derecho. Si recibe `None`, devuelve `[]`: ese es el caso base.
+
+Cada llamada combina las listas devueltas por sus hijos con `[nodo.valor]` y devuelve el resultado
+a la llamada anterior, que continúa desde donde había quedado.
+El orden de esas tres partes distingue los recorridos. Después veremos sus aplicaciones.
 
 Para seguir los recorridos vamos a reconstruir el árbol original, sin las modificaciones anteriores:
 
@@ -486,13 +520,6 @@ raiz = None
 for valor in [50, 30, 70, 20, 40, 60, 80, 45]:
     raiz = insertar(raiz, valor)
 ```
-
-En las figuras, el borde más grueso marca el nodo actual: azul si todavía está celeste
-y verde oscuro si ya está verde. Las flechas son negras y las más gruesas muestran el camino desde la raíz.
-El verde señala los valores ya visitados y el celeste los que faltan.
-En las secuencias numéricas, la lista debajo del árbol muestra los valores visitados hasta ese paso.
-Cada función construye el resultado combinando las listas de sus subárboles.
-En las aplicaciones, el panel de la derecha muestra cómo avanza la tarea que hacemos en cada visita.
 
 ### Preorden
 
@@ -508,49 +535,49 @@ antes de recorrer sus hijos `20` y `40`.
 ::: {.item image="imgs/02/preorden-1.svg" caption="Empezamos en 50. La lista todavía está vacía."}
 :::
 
-::: {.item image="imgs/02/preorden-2.svg" caption="Visitamos 50 y agregamos el primer valor antes de recorrer sus hijos."}
+::: {.item image="imgs/02/preorden-2.svg" caption="Visitamos 50.<br>Agregamos su valor antes de recorrer sus hijos."}
 :::
 
 ::: {.item image="imgs/02/preorden-3.svg" caption="Seguimos hacia el hijo izquierdo, 30."}
 :::
 
-::: {.item image="imgs/02/preorden-4.svg" caption="Visitamos 30 y lo agregamos después de 50. Sus hijos todavía están pendientes."}
+::: {.item image="imgs/02/preorden-4.svg" caption="Visitamos 30 y lo agregamos después de 50.<br>Sus hijos todavía están pendientes."}
 :::
 
-::: {.item image="imgs/02/preorden-5.svg" caption="Seguimos hacia el hijo izquierdo de 30 y llegamos a 20."}
+::: {.item image="imgs/02/preorden-5.svg" caption="Seguimos hacia el hijo izquierdo de 30: el nodo 20."}
 :::
 
-::: {.item image="imgs/02/preorden-6.svg" caption="Visitamos 20 y lo agregamos como tercer valor. Como es una hoja, esta llamada termina."}
+::: {.item image="imgs/02/preorden-6.svg" caption="Visitamos 20 y lo agregamos como tercer valor.<br>Como es una hoja, esta llamada termina."}
 :::
 
 ::: {.item image="imgs/02/preorden-7.svg" caption="Volvemos a 30 y seguimos con su hijo derecho, 40."}
 :::
 
-::: {.item image="imgs/02/preorden-8.svg" caption="Visitamos 40 y agregamos el cuarto valor antes de recorrer su hijo derecho."}
+::: {.item image="imgs/02/preorden-8.svg" caption="Visitamos 40 y agregamos el cuarto valor.<br>Su hijo derecho todavía está pendiente."}
 :::
 
 ::: {.item image="imgs/02/preorden-9.svg" caption="Seguimos el enlace derecho de 40 y llegamos a 45."}
 :::
 
-::: {.item image="imgs/02/preorden-10.svg" caption="Visitamos 45 y agregamos el quinto valor. Terminó el subárbol de 30."}
+::: {.item image="imgs/02/preorden-10.svg" caption="Visitamos 45 y agregamos el quinto valor.<br>Terminó el subárbol de 30."}
 :::
 
 ::: {.item image="imgs/02/preorden-11.svg" caption="Volvemos a 50 y seguimos con su hijo derecho, 70."}
 :::
 
-::: {.item image="imgs/02/preorden-12.svg" caption="Visitamos 70 y agregamos el sexto valor. Todavía faltan sus dos hijos."}
+::: {.item image="imgs/02/preorden-12.svg" caption="Visitamos 70 y agregamos el sexto valor.<br>Todavía faltan sus dos hijos."}
 :::
 
-::: {.item image="imgs/02/preorden-13.svg" caption="Seguimos hacia el hijo izquierdo de 70 y llegamos a 60."}
+::: {.item image="imgs/02/preorden-13.svg" caption="Seguimos hacia el hijo izquierdo de 70: el nodo 60."}
 :::
 
-::: {.item image="imgs/02/preorden-14.svg" caption="Visitamos 60 y agregamos el séptimo valor. Como es una hoja, volvemos a 70."}
+::: {.item image="imgs/02/preorden-14.svg" caption="Visitamos 60 y agregamos el séptimo valor.<br>Como es una hoja, volvemos a 70."}
 :::
 
 ::: {.item image="imgs/02/preorden-15.svg" caption="Seguimos con el hijo derecho de 70 y llegamos a 80."}
 :::
 
-::: {.item image="imgs/02/preorden-16.svg" caption="Visitamos 80 y agregamos el octavo valor. Terminan las llamadas pendientes y el recorrido está completo."}
+::: {.item image="imgs/02/preorden-16.svg" caption="Visitamos 80 y agregamos el octavo valor.<br>Terminan las llamadas pendientes, recorrido completo."}
 :::
 
 ::::
@@ -599,52 +626,52 @@ En esos primeros pasos todavía no agregamos ningún valor a la lista de visitas
 
 :::: {.carousel .dark autoplay="false" id="arboles-inorden" image-height="320px"}
 
-::: {.item image="imgs/02/inorden-1.svg" caption="Empezamos en 50. Su valor queda pendiente porque primero debemos recorrer el subárbol izquierdo."}
+::: {.item image="imgs/02/inorden-1.svg" caption="Empezamos en 50. Su valor queda pendiente.<br>Primero recorremos el subárbol izquierdo."}
 :::
 
-::: {.item image="imgs/02/inorden-2.svg" caption="Seguimos el enlace izquierdo de 50 y llegamos a 30. Su valor también queda pendiente. Todavía no agregamos ninguno."}
+::: {.item image="imgs/02/inorden-2.svg" caption="Seguimos el enlace izquierdo de 50 y llegamos a 30.<br>Su valor también queda pendiente."}
 :::
 
-::: {.item image="imgs/02/inorden-3.svg" caption="Seguimos el enlace izquierdo de 30 y llegamos a 20. Como 20 no tiene hijo izquierdo, ya podemos agregar su valor a la lista."}
+::: {.item image="imgs/02/inorden-3.svg" caption="Seguimos el enlace izquierdo de 30 y llegamos a 20.<br>No tiene hijo izquierdo: ya podemos visitar 20."}
 :::
 
-::: {.item image="imgs/02/inorden-4.svg" caption="Visitamos 20: agregamos el primer valor. Tampoco tiene hijo derecho, por lo que esta llamada termina."}
+::: {.item image="imgs/02/inorden-4.svg" caption="Visitamos 20: agregamos el primer valor.<br>Tampoco tiene hijo derecho, esta llamada termina."}
 :::
 
-::: {.item image="imgs/02/inorden-5.svg" caption="Volvemos a la llamada de 30. Ya terminó su subárbol izquierdo, así que agregamos 30 como segundo valor."}
+::: {.item image="imgs/02/inorden-5.svg" caption="Volvemos a 30. Terminó su subárbol izquierdo.<br>Agregamos 30 como segundo valor."}
 :::
 
-::: {.item image="imgs/02/inorden-6.svg" caption="La llamada de 30 continúa con su hijo derecho, 40. Llegamos a 40, que no tiene hijo izquierdo."}
+::: {.item image="imgs/02/inorden-6.svg" caption="La llamada de 30 continúa con su hijo derecho, 40.<br>40 no tiene hijo izquierdo."}
 :::
 
-::: {.item image="imgs/02/inorden-7.svg" caption="Visitamos 40: agregamos el tercer valor. Todavía falta recorrer su subárbol derecho."}
+::: {.item image="imgs/02/inorden-7.svg" caption="Visitamos 40: agregamos el tercer valor.<br>Todavía falta recorrer su subárbol derecho."}
 :::
 
-::: {.item image="imgs/02/inorden-8.svg" caption="Seguimos el enlace derecho de 40 y llegamos a 45. No tiene hijo izquierdo."}
+::: {.item image="imgs/02/inorden-8.svg" caption="Seguimos el enlace derecho de 40 y llegamos a 45.<br>No tiene hijo izquierdo."}
 :::
 
-::: {.item image="imgs/02/inorden-9.svg" caption="Visitamos 45: agregamos el cuarto valor. Como no tiene hijo derecho, regresamos por las llamadas de 40 y 30."}
+::: {.item image="imgs/02/inorden-9.svg" caption="Visitamos 45: agregamos el cuarto valor.<br>Sin hijo derecho, regresamos por 40 y 30."}
 :::
 
-::: {.item image="imgs/02/inorden-10.svg" caption="Terminó todo el subárbol izquierdo de 50. Retomamos esa llamada y agregamos 50 como quinto valor."}
+::: {.item image="imgs/02/inorden-10.svg" caption="Terminó todo el subárbol izquierdo de 50.<br>Retomamos su llamada y agregamos 50 como quinto valor."}
 :::
 
-::: {.item image="imgs/02/inorden-11.svg" caption="La llamada de 50 continúa con su hijo derecho, 70. Dejamos pendiente el valor de 70 para recorrer primero su izquierda."}
+::: {.item image="imgs/02/inorden-11.svg" caption="La llamada de 50 continúa con su hijo derecho, 70.<br>Antes de visitar 70, recorremos su izquierda."}
 :::
 
-::: {.item image="imgs/02/inorden-12.svg" caption="Seguimos el enlace izquierdo de 70 y llegamos a 60. No tiene hijo izquierdo."}
+::: {.item image="imgs/02/inorden-12.svg" caption="Seguimos el enlace izquierdo de 70 y llegamos a 60.<br>No tiene hijo izquierdo."}
 :::
 
-::: {.item image="imgs/02/inorden-13.svg" caption="Visitamos 60: agregamos el sexto valor. Tampoco tiene hijo derecho, por lo que esta llamada termina."}
+::: {.item image="imgs/02/inorden-13.svg" caption="Visitamos 60: agregamos el sexto valor.<br>No tiene hijo derecho. Esta llamada termina."}
 :::
 
-::: {.item image="imgs/02/inorden-14.svg" caption="Volvemos a la llamada de 70. Su subárbol izquierdo terminó y agregamos 70 como séptimo valor."}
+::: {.item image="imgs/02/inorden-14.svg" caption="Volvemos a 70. Terminó su subárbol izquierdo.<br>Agregamos 70 como séptimo valor."}
 :::
 
-::: {.item image="imgs/02/inorden-15.svg" caption="La llamada de 70 continúa con su hijo derecho, 80. No tiene hijo izquierdo."}
+::: {.item image="imgs/02/inorden-15.svg" caption="La llamada de 70 continúa con su hijo derecho, 80.<br>No tiene hijo izquierdo."}
 :::
 
-::: {.item image="imgs/02/inorden-16.svg" caption="Visitamos 80: agregamos el octavo valor. Sin más hijos pendientes, terminan las llamadas de 80, 70 y 50."}
+::: {.item image="imgs/02/inorden-16.svg" caption="Visitamos 80: agregamos el octavo valor.<br>Terminan las llamadas de 80, 70 y 50."}
 :::
 
 ::::
@@ -696,22 +723,22 @@ Lo mismo ocurre en `30`: antes de agregarlo tenemos que procesar `20` y todo el 
 
 :::: {.carousel .dark autoplay="false" id="arboles-postorden" image-height="320px"}
 
-::: {.item image="imgs/02/postorden-1.svg" caption="Empezamos en 50. Su valor queda pendiente hasta terminar ambos subárboles."}
+::: {.item image="imgs/02/postorden-1.svg" caption="Empezamos en 50 y dejamos su valor pendiente.<br>Primero debemos terminar ambos subárboles."}
 :::
 
-::: {.item image="imgs/02/postorden-2.svg" caption="Seguimos hacia 30. También dejamos su valor pendiente para recorrer primero sus hijos."}
+::: {.item image="imgs/02/postorden-2.svg" caption="Seguimos hacia 30 y dejamos su valor pendiente.<br>Primero recorremos sus hijos."}
 :::
 
-::: {.item image="imgs/02/postorden-3.svg" caption="Llegamos a 20. Como es una hoja, no tiene subárboles pendientes."}
+::: {.item image="imgs/02/postorden-3.svg" caption="Llegamos a 20.<br>Como es una hoja, no tiene subárboles pendientes."}
 :::
 
 ::: {.item image="imgs/02/postorden-4.svg" caption="Visitamos 20 y agregamos el primer valor a la lista."}
 :::
 
-::: {.item image="imgs/02/postorden-5.svg" caption="Volvemos a 30. Terminó su izquierda, pero todavía falta recorrer su derecha."}
+::: {.item image="imgs/02/postorden-5.svg" caption="Volvemos a 30. Terminó su subárbol izquierdo.<br>Todavía falta recorrer su subárbol derecho."}
 :::
 
-::: {.item image="imgs/02/postorden-6.svg" caption="Seguimos hacia 40. Su valor queda pendiente porque tiene un hijo derecho."}
+::: {.item image="imgs/02/postorden-6.svg" caption="Seguimos hacia 40.<br>Su valor queda pendiente porque tiene un hijo derecho."}
 :::
 
 ::: {.item image="imgs/02/postorden-7.svg" caption="Llegamos a 45, que no tiene hijos."}
@@ -720,16 +747,16 @@ Lo mismo ocurre en `30`: antes de agregarlo tenemos que procesar `20` y todo el 
 ::: {.item image="imgs/02/postorden-8.svg" caption="Visitamos 45 y agregamos el segundo valor."}
 :::
 
-::: {.item image="imgs/02/postorden-9.svg" caption="Volvemos a 40. Ya terminaron sus subárboles, así que agregamos 40 como tercer valor."}
+::: {.item image="imgs/02/postorden-9.svg" caption="Volvemos a 40. Ya terminaron sus subárboles.<br>Agregamos 40 como tercer valor."}
 :::
 
-::: {.item image="imgs/02/postorden-10.svg" caption="Volvemos a 30. Sus dos subárboles terminaron y agregamos 30 como cuarto valor."}
+::: {.item image="imgs/02/postorden-10.svg" caption="Volvemos a 30. Ya terminaron sus dos subárboles.<br>Agregamos 30 como cuarto valor."}
 :::
 
-::: {.item image="imgs/02/postorden-11.svg" caption="Volvemos a 50. Su valor sigue pendiente porque todavía falta el subárbol derecho."}
+::: {.item image="imgs/02/postorden-11.svg" caption="Volvemos a 50 y dejamos su valor pendiente.<br>Todavía falta recorrer el subárbol derecho."}
 :::
 
-::: {.item image="imgs/02/postorden-12.svg" caption="Seguimos hacia 70 y dejamos su valor pendiente para recorrer sus hijos."}
+::: {.item image="imgs/02/postorden-12.svg" caption="Seguimos hacia 70 y dejamos su valor pendiente.<br>Primero recorremos sus hijos."}
 :::
 
 ::: {.item image="imgs/02/postorden-13.svg" caption="Llegamos a 60, que no tiene hijos."}
@@ -738,7 +765,7 @@ Lo mismo ocurre en `30`: antes de agregarlo tenemos que procesar `20` y todo el 
 ::: {.item image="imgs/02/postorden-14.svg" caption="Visitamos 60 y agregamos el quinto valor."}
 :::
 
-::: {.item image="imgs/02/postorden-15.svg" caption="Volvemos a 70. Antes de agregarlo, falta recorrer su hijo derecho."}
+::: {.item image="imgs/02/postorden-15.svg" caption="Volvemos a 70.<br>Antes de agregarlo, falta recorrer su hijo derecho."}
 :::
 
 ::: {.item image="imgs/02/postorden-16.svg" caption="Llegamos a 80, que tampoco tiene hijos."}
@@ -747,10 +774,10 @@ Lo mismo ocurre en `30`: antes de agregarlo tenemos que procesar `20` y todo el 
 ::: {.item image="imgs/02/postorden-17.svg" caption="Visitamos 80 y agregamos el sexto valor."}
 :::
 
-::: {.item image="imgs/02/postorden-18.svg" caption="Volvemos a 70. Ya terminaron ambos subárboles y agregamos 70 como séptimo valor."}
+::: {.item image="imgs/02/postorden-18.svg" caption="Volvemos a 70. Ya terminaron ambos subárboles.<br>Agregamos 70 como séptimo valor."}
 :::
 
-::: {.item image="imgs/02/postorden-19.svg" caption="Volvemos a 50. Agregamos su valor al final, después de todos sus descendientes."}
+::: {.item image="imgs/02/postorden-19.svg" caption="Volvemos a 50 y agregamos su valor al final.<br>Ya visitamos a todos sus descendientes."}
 :::
 
 ::::
@@ -797,26 +824,62 @@ Después vamos a usar esos mismos órdenes para realizar otras tareas en cada vi
 | Inorden | Izquierdo, nodo, derecho | `20, 30, 40, 45, 50, 60, 70, 80` |
 | Postorden | Izquierdo, derecho, nodo | `20, 45, 40, 30, 60, 80, 70, 50` |
 
+: {tbl-colwidths="[15, 35, 50]"}
+
 En las tres versiones visitamos cada nodo una vez.
 Si contamos esas visitas, el recorrido completo requiere $O(N)$ pasos.
 Cambiar el orden en que incorporamos los valores modifica el resultado, pero no la cantidad de nodos visitados.
-Usamos concatenaciones para que el orden de cada recorrido se pueda leer directamente en el `return`.
-El operador `+` crea listas nuevas con referencias a los mismos objetos, sin duplicar esos objetos.
-Copiar esas referencias agrega trabajo y requiere listas intermedias.
-En la sección siguiente distinguimos el costo del recorrido del de nuestra implementación.
+
+::: {.callout-note}
+##### Costo de las concatenaciones
+
+Para simplificar el código, combinamos los resultados con `+`. Las concatenaciones agregan trabajo
+que no estamos considerando al contar las visitas: el $O(N)$ describe esas visitas, no el costo total de estas funciones.
+Podemos evitar las concatenaciones pasando una misma lista a todas las llamadas para acumular los valores,
+o usando generadores.
+:::
 
 ### Aplicaciones de los recorridos
 
 Hasta acá usamos cada visita para ubicar un número en una lista.
 Podemos conservar el orden de las visitas y cambiar qué hacemos con cada nodo.
-Veamos cómo preorden permite mostrar una jerarquía, inorden produce un listado ordenado
-y postorden permite evaluar una expresión.
+Veamos cómo preorden permite mostrar una jerarquía y postorden permite evaluar una expresión.
+
+En estas aplicaciones vamos a trabajar con distintos tipos de árboles.
+El árbol de carpetas puede tener más de dos hijos por nodo.
+Para evaluar la expresión usaremos un árbol binario cuyos nodos representan operaciones y operandos.
 
 #### Mostrar una jerarquía con preorden
 
 Retomemos las carpetas del apunte anterior.
-Queremos mostrar el contenido de `proyecto` de manera que cada carpeta aparezca antes que lo que contiene.
-Además, la sangría de cada línea debe permitir reconocer a qué carpeta pertenece.
+
+![Carpetas y archivos de un proyecto.](imgs/01/carpetas.svg){fig-align="center" width="80%" fig-alt="La carpeta proyecto contiene documentos, imagenes y README.md. Documentos contiene informe.pdf e imagenes está vacía."}
+
+Este es un árbol general: una carpeta puede contener cualquier cantidad de archivos y subcarpetas.
+Por ejemplo, `proyecto` tiene tres hijos: `documentos`, `imagenes` y `README.md`.
+Por eso no podemos representarlo con nuestra clase `Nodo`, que solo tiene las referencias
+`izquierdo` y `derecho`. En este caso necesitamos guardar una colección de hijos por nodo.
+
+El comando `tree` muestra esta jerarquía en la terminal. Si ejecutamos `tree .` dentro de `proyecto`,
+obtenemos una salida como esta:
+
+```bash
+tree .
+```
+
+```text
+.
+├── README.md
+├── documentos
+│   └── informe.pdf
+└── imagenes
+
+3 directories, 2 files
+```
+
+El punto representa la carpeta actual, `proyecto`. Cada carpeta aparece antes que su contenido,
+y las líneas y la sangría permiten reconocer a qué carpeta pertenece cada elemento.
+Vamos a construir un listado similar, usando solamente sangría y siguiendo el orden de los hijos del dibujo.
 
 Podemos usar preorden para escribir cada nodo antes de recorrer sus hijos.
 Primero escribimos `proyecto`, después `documentos` y todo su contenido.
@@ -830,67 +893,42 @@ Al volver de una llamada, continuamos con el siguiente hijo sin volver a escribi
 
 :::: {.carousel .dark autoplay="false" id="arboles-aplicacion-directorios" image-width="100%"}
 
-::: {.item image="imgs/02/aplicacion-directorios-1.svg" caption="Empezamos en proyecto/. El listado de la derecha todavía está vacío."}
+::: {.item image="imgs/02/aplicacion-directorios-1.svg" caption="Empezamos en proyecto/.<br>El listado de la derecha todavía está vacío."}
 :::
 
-::: {.item image="imgs/02/aplicacion-directorios-2.svg" caption="Visitamos proyecto/ y escribimos su nombre sin sangría, antes de recorrer su contenido."}
+::: {.item image="imgs/02/aplicacion-directorios-2.svg" caption="Escribimos proyecto/ sin sangría.<br>Después recorreremos su contenido."}
 :::
 
-::: {.item image="imgs/02/aplicacion-directorios-3.svg" caption="Seguimos hacia documentos/, la primera carpeta hija de proyecto/."}
+::: {.item image="imgs/02/aplicacion-directorios-3.svg" caption="Seguimos hacia documentos/.<br>Es la primera carpeta hija de proyecto/."}
 :::
 
-::: {.item image="imgs/02/aplicacion-directorios-4.svg" caption="Escribimos documentos/ con dos espacios de sangría, porque está un nivel debajo de proyecto/."}
+::: {.item image="imgs/02/aplicacion-directorios-4.svg" caption="Escribimos documentos/ con dos espacios de sangría.<br>Está un nivel debajo de proyecto/."}
 :::
 
 ::: {.item image="imgs/02/aplicacion-directorios-5.svg" caption="Entramos en documentos/ y llegamos a informe.pdf."}
 :::
 
-::: {.item image="imgs/02/aplicacion-directorios-6.svg" caption="Escribimos informe.pdf con cuatro espacios de sangría. Terminó el contenido de documentos/."}
+::: {.item image="imgs/02/aplicacion-directorios-6.svg" caption="Escribimos informe.pdf con cuatro espacios de sangría.<br>Terminó el contenido de documentos/."}
 :::
 
-::: {.item image="imgs/02/aplicacion-directorios-7.svg" caption="Volvemos a proyecto/ y seguimos con su siguiente hija, imagenes/."}
+::: {.item image="imgs/02/aplicacion-directorios-7.svg" caption="Volvemos a proyecto/.<br>Seguimos con su siguiente hija, imagenes/."}
 :::
 
-::: {.item image="imgs/02/aplicacion-directorios-8.svg" caption="Escribimos imagenes/ con dos espacios de sangría. Como está vacía, volvemos a proyecto/."}
+::: {.item image="imgs/02/aplicacion-directorios-8.svg" caption="Escribimos imagenes/ con dos espacios de sangría.<br>Como está vacía, volvemos a proyecto/."}
 :::
 
 ::: {.item image="imgs/02/aplicacion-directorios-9.svg" caption="Seguimos con README.md, el último hijo de proyecto/."}
 :::
 
-::: {.item image="imgs/02/aplicacion-directorios-10.svg" caption="Escribimos README.md con dos espacios de sangría. El listado conserva la jerarquía del árbol."}
+::: {.item image="imgs/02/aplicacion-directorios-10.svg" caption="Escribimos README.md con dos espacios de sangría.<br>El listado conserva la jerarquía del árbol."}
 :::
 
 ::::
 
 Al terminar, `informe.pdf` queda debajo de `documentos/` y con un nivel más de sangría.
 En cambio, `imagenes/` y `README.md` quedan alineados con `documentos/`, porque los tres son hijos de `proyecto/`.
-Para este árbol general recorremos una colección de hijos.
 La diferencia con nuestra función `preorden` está en que aquí recorremos una colección de hijos
 y escribimos los nombres con sangría, en lugar de devolver una lista de números.
-
-#### Obtener valores ordenados con inorden
-
-Supongamos que los números de nuestro árbol binario de búsqueda son códigos de productos.
-Ya podemos consultar si está registrado el código `40`, agregar uno nuevo o eliminarlo.
-Ahora queremos preparar un listado con todos los códigos de menor a mayor.
-
-La regla del árbol nos dice cómo hacerlo: los valores del subárbol izquierdo son menores
-que el del nodo y los del derecho son mayores. Inorden procesa esas tres partes en ese mismo orden.
-Por eso produce los valores ordenados, sin aplicar después un algoritmo de ordenamiento.
-En otro árbol binario también podemos hacer el recorrido, pero no se garantiza ese resultado.
-
-Para preparar el listado de códigos de productos, guardamos la lista que devuelve inorden:
-
-```python
-codigos = inorden(raiz)
-print(codigos)
-```
-
-```text
-[20, 30, 40, 45, 50, 60, 70, 80]
-```
-
-El resultado queda guardado en `codigos`.
 
 #### Evaluar una expresión con postorden {#sec-postorden}
 
@@ -909,9 +947,17 @@ y su hijo derecho es la resta `2 * b - c`.
 Dentro de esa resta, el hijo izquierdo representa `2 * b` y el derecho representa `c`.
 Las hojas contienen variables o constantes.
 
+A esta representación la llamamos **árbol de sintaxis abstracta** (_abstract syntax tree_, AST).
+Cuando escribimos expresiones en R o Python, estos lenguajes construyen internamente árboles
+de este tipo para representar las operaciones y sus operandos.
+
+Este árbol es binario porque cada operación del ejemplo tiene dos operandos.
+Pero no es un árbol binario de búsqueda: la ubicación de los nodos indica qué operandos
+corresponden a cada operación, sin seguir una regla de orden entre sus valores.
+
 Para resolver una operación primero necesitamos los valores de sus operandos.
 La división debe esperar a que se resuelva la resta y la resta necesita el resultado de la multiplicación.
-Podemos usar postorden para respetar esas dependencias: procesamos una operación
+Una forma de evaluar la expresión es recorrer el árbol en postorden: procesamos una operación
 después de obtener los resultados de sus dos subárboles.
 
 ##### Evaluación paso a paso
@@ -922,54 +968,49 @@ A la derecha mostramos la expresión como código y reemplazamos cada variable u
 
 :::: {.carousel .dark autoplay="false" id="arboles-aplicacion-expresion" image-width="100%"}
 
-::: {.item image="imgs/02/aplicacion-expresion-1.svg" caption="La raíz es la división. Para resolverla necesitamos primero los valores de sus dos operandos."}
+::: {.item image="imgs/02/aplicacion-expresion-1.svg" caption="La raíz es la división.<br>Primero necesitamos los valores de sus dos operandos."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-2.svg" caption="Seguimos el hijo izquierdo de la división y llegamos a la variable a."}
+::: {.item image="imgs/02/aplicacion-expresion-2.svg" caption="Seguimos el hijo izquierdo de la división.<br>Llegamos a la variable a."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-3.svg" caption="Consultamos a = 15 y reemplazamos esa hoja por 15. Ya conocemos el numerador."}
+::: {.item image="imgs/02/aplicacion-expresion-3.svg" caption="Consultamos el valor de a y obtenemos 15.<br>La hoja pasa a ser 15: ya tenemos el numerador."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-4.svg" caption="Seguimos el hijo derecho de la división y llegamos a la resta. Sus operandos todavía están pendientes."}
+::: {.item image="imgs/02/aplicacion-expresion-4.svg" caption="Seguimos el hijo derecho de la división: la resta.<br>Sus operandos todavía están pendientes."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-5.svg" caption="Para resolver la resta empezamos por su hijo izquierdo, la multiplicación."}
+::: {.item image="imgs/02/aplicacion-expresion-5.svg" caption="Empezamos por el hijo izquierdo de la resta.<br>Es la multiplicación."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-6.svg" caption="Seguimos el hijo izquierdo de la multiplicación y llegamos a la constante 2."}
+::: {.item image="imgs/02/aplicacion-expresion-6.svg" caption="Seguimos el hijo izquierdo de la multiplicación.<br>Llegamos a la constante 2."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-7.svg" caption="La constante ya tiene su valor, 2. La marcamos como procesada."}
+::: {.item image="imgs/02/aplicacion-expresion-7.svg" caption="La constante ya tiene su valor, 2.<br>La marcamos como procesada."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-8.svg" caption="Seguimos el hijo derecho de la multiplicación y llegamos a b."}
+::: {.item image="imgs/02/aplicacion-expresion-8.svg" caption="Seguimos el hijo derecho de la multiplicación.<br>Llegamos a b."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-9.svg" caption="Consultamos b = 27 y reemplazamos esa hoja por 27. Ya conocemos ambos factores."}
+::: {.item image="imgs/02/aplicacion-expresion-9.svg" caption="Consultamos el valor de b y obtenemos 27.<br>La hoja pasa a ser 27: ya tenemos ambos factores."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-10.svg" caption="Volvemos a la multiplicación y calculamos 2 * 27 = 54. Ese subárbol queda reemplazado por 54."}
+::: {.item image="imgs/02/aplicacion-expresion-10.svg" caption="Volvemos a la multiplicación y calculamos 2 * 27 = 54.<br>Ese subárbol queda reemplazado por 54."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-11.svg" caption="Para completar la resta seguimos su hijo derecho y llegamos a c."}
+::: {.item image="imgs/02/aplicacion-expresion-11.svg" caption="Para completar la resta, seguimos su hijo derecho.<br>Llegamos a c."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-12.svg" caption="Consultamos c = 2.5 y reemplazamos esa hoja por 2.5."}
+::: {.item image="imgs/02/aplicacion-expresion-12.svg" caption="Consultamos el valor de c y obtenemos 2.5.<br>Reemplazamos la hoja por ese valor."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-13.svg" caption="Volvemos a la resta y calculamos 54 - 2.5 = 51.5. El denominador queda resuelto."}
+::: {.item image="imgs/02/aplicacion-expresion-13.svg" caption="Volvemos a la resta y calculamos 54 - 2.5 = 51.5.<br>El denominador queda resuelto."}
 :::
 
-::: {.item image="imgs/02/aplicacion-expresion-14.svg" caption="Finalmente calculamos 15 / 51.5. La raíz queda reemplazada por el resultado aproximado, 0.291262."}
+::: {.item image="imgs/02/aplicacion-expresion-14.svg" caption="Calculamos 15 / 51.5.<br>Reemplazamos la raíz por el resultado ≈ 0.291262."}
 :::
 
 ::::
-
-Primero resolvimos las hojas necesarias para calcular `2 * 27`, que dio `54`.
-Después obtuvimos el denominador, `54 - 2.5 = 51.5`, y finalmente hicimos la división.
-El resultado es aproximadamente `0.291262`.
-En el árbol mostramos solo algunos decimales. A la derecha aparece el resultado decimal de la división en Python.
 
 El recorrido establece en qué orden podemos procesar los nodos.
 Para evaluar la expresión, la tarea de cada visita consiste en consultar una variable,
@@ -979,46 +1020,20 @@ Un evaluador usaría los resultados numéricos de los hijos para calcular el res
 
 ## Eficiencia
 
-La búsqueda, la inserción y la eliminación por valor tienen costos que dependen de la altura del árbol.
-En la eliminación de un nodo con dos hijos también buscamos y quitamos su sucesor,
-pero el costo total sigue siendo $O(h + 1)$.
+La cantidad de nodos que visitamos al buscar, insertar o eliminar depende de la forma del BST.
+La siguiente tabla resume el costo en el peor caso para cada forma:
 
-Cuando el árbol tiene una altura del orden de $\log N$, estas operaciones cuestan $O(\log N)$.
-Pero un árbol binario de búsqueda no garantiza esa altura.
-Si empezamos con un árbol vacío e insertamos `20`, `30`, `40` y `50` en ese orden, obtenemos la siguiente forma:
+| Operación   | Árbol equilibrado | Árbol en cadena |
+|-------------|-------------------|-----------------|
+| Búsqueda    | $O(\log N)$       | $O(N)$          |
+| Inserción   | $O(\log N)$       | $O(N)$          |
+| Eliminación | $O(\log N)$       | $O(N)$          |
 
-![Un árbol de búsqueda que forma una cadena.](imgs/02/cadena-0.svg){fig-align="center" width="60%" fig-alt="20 tiene como hijo derecho a 30, que tiene a 40, que a su vez tiene a 50."}
+En cambio, los recorridos visitan los $N$ nodos, cualquiera sea la forma del árbol.
+Contando esas visitas, su costo es $O(N)$, con la salvedad sobre las concatenaciones que mencionamos antes.
 
-Para encontrar `50` tenemos que pasar por los cuatro nodos.
-Si la cadena tuviera $N$ nodos, podríamos necesitar $N$ visitas y el costo sería $O(N)$.
-La ventaja de las búsquedas depende, entonces, de cómo haya quedado organizado el árbol.
-Existen árboles que se reorganizan para mantener una altura pequeña, pero no los desarrollaremos aquí.
-
-La tabla resume los costos en el peor caso para un árbol no vacío.
-La memoria adicional no incluye los nodos del árbol.
-
-| Operación | Tiempo con altura del orden de $\log N$ | Tiempo en una cadena | Memoria adicional |
-| --- | --- | --- | --- |
-| Búsqueda iterativa | $O(\log N)$ | $O(N)$ | $O(1)$ |
-| Inserción recursiva | $O(\log N)$ | $O(N)$ | $O(h + 1)$ |
-| Eliminación recursiva | $O(\log N)$ | $O(N)$ | $O(h + 1)$ |
-
-Para los recorridos conviene distinguir el costo de visitar los nodos del costo de construir
-el resultado con las concatenaciones de nuestro código:
-
-| Preorden, inorden o postorden | Tiempo con altura del orden de $\log N$ | Tiempo en una cadena |
-| --- | --- | --- |
-| Recorrido con trabajo constante por visita, por ejemplo acumulando en una sola lista | $O(N)$ | $O(N)$ |
-| Nuestra implementación con concatenaciones (`+`) | $O(N \log N)$ | $O(N^2)$ |
-
-En ambos casos visitamos cada nodo una vez. La diferencia está en que nuestra implementación
-copia referencias al combinar las listas de cada subárbol. En una cadena, por ejemplo,
-las listas que se combinan crecen al regresar de cada llamada y la cantidad total de referencias
-copiadas es del orden de $1 + 2 + \cdots + N$.
-**Este costo adicional proviene de las concatenaciones, no del algoritmo de recorrido.**
-
-Las llamadas recursivas ocupan $O(h + 1)$ de memoria y la lista final ocupa $O(N)$.
-Nuestra implementación también crea listas intermedias, cuyo espacio simultáneo puede llegar a $O(N)$.
+Un BST no garantiza que el árbol quede equilibrado. Existen árboles que se reorganizan
+para mantener una altura pequeña, pero no los desarrollaremos aquí.
 
 ## Implementación completa
 
@@ -1030,8 +1045,6 @@ que los valores queden ordenados.
 Podés descargar el código en [arboles.py](arboles.py).
 
 ```python
-"""Implementación de los ejemplos del apunte de árboles."""
-
 class Nodo:
     def __init__(self, valor):
         self.valor = valor
@@ -1148,7 +1161,7 @@ El ejemplo empieza con el árbol original.
 La inserción agrega `35` como hijo izquierdo de `40` y la eliminación quita la hoja `20`.
 El recorrido inorden conserva el orden creciente de los valores.
 
-## Resumen y siguientes pasos
+## Siguientes pasos
 
 Un árbol permite organizar datos mediante nodos que se ramifican.
 Trabajamos con una variante, el árbol binario de búsqueda, cuya regla de orden nos permite
@@ -1167,13 +1180,13 @@ Aunque trabajamos con pocos números, estas mismas ideas aparecen en aplicacione
 - **Gráficos 3D y videojuegos.** Se usan árboles que agrupan objetos dentro de regiones del espacio.
   Para comprobar qué puede tocar un rayo o qué objetos podrían chocar, se descartan ramas completas
   cuyas regiones no participan de la consulta. Así se evitan muchas comprobaciones individuales.
-- **Aprendizaje automático.** Un árbol de decisión organiza preguntas sucesivas sobre los datos.
-  Cada respuesta conduce a una rama hasta llegar a una predicción.
-  Los bosques aleatorios combinan las predicciones de muchos de esos árboles.
+- **Aprendizaje automático.** Los árboles de decisión también tienen nodos, ramas y hojas.
+  Para predecir, seguimos desde la raíz las ramas indicadas por condiciones sobre los datos.
+  La estructura resulta familiar, aunque las reglas para construir estos árboles son distintas de las de un BST.
 
 En esas aplicaciones, un nodo guarda más información que los números de nuestro ejemplo
 y las reglas para organizar los enlaces pueden ser distintas.
-Pero para entenderlas vamos a volver a varias de las preguntas que ya trabajamos:
+Para entenderlas sirven varias de las preguntas que ya trabajamos:
 qué guarda cada nodo, por qué enlaces conviene seguir y en qué orden necesitamos procesar los datos.
 
 En el próximo apunte vamos a trabajar con grafos.

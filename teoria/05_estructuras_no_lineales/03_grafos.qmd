@@ -297,43 +297,43 @@ La columna de llamadas muestra el camino actual, con la llamada más reciente ab
 
 :::: {.carousel .dark autoplay="false" id="grafos-dfs" image-width="100%"}
 
-::: {.item image="imgs/03/dfs-1.svg" caption="Antes de empezar, el resultado y las llamadas activas están vacíos."}
+::: {.item image="imgs/03/dfs-1.svg" caption="Todavía no visitamos ninguna ciudad.<br>El resultado y las llamadas activas están vacíos."}
 :::
 
-::: {.item image="imgs/03/dfs-2.svg" caption="Visitamos Rosario y lo agregamos al resultado. Su primer vecino es Salta."}
+::: {.item image="imgs/03/dfs-2.svg" caption="Visitamos Rosario y lo agregamos al resultado.<br>Su primer vecino es Salta."}
 :::
 
-::: {.item image="imgs/03/dfs-3.svg" caption="Seguimos Rosario–Salta y registramos Salta. Rosario ya está visitado. El siguiente vecino es Córdoba."}
+::: {.item image="imgs/03/dfs-3.svg" caption="Seguimos Rosario–Salta y registramos Salta.<br>Rosario ya está visitado. Seguimos hacia Córdoba."}
 :::
 
-::: {.item image="imgs/03/dfs-4.svg" caption="Registramos Córdoba. Salta ya está visitada, así que seguimos hacia Mendoza."}
+::: {.item image="imgs/03/dfs-4.svg" caption="Registramos Córdoba. Salta ya está visitada.<br>Seguimos hacia Mendoza."}
 :::
 
-::: {.item image="imgs/03/dfs-5.svg" caption="Registramos Mendoza. Salta y Córdoba ya están visitadas. El siguiente vecino nuevo es San Pablo."}
+::: {.item image="imgs/03/dfs-5.svg" caption="Registramos Mendoza. Salta y Córdoba ya se visitaron.<br>El siguiente vecino nuevo es San Pablo."}
 :::
 
-::: {.item image="imgs/03/dfs-6.svg" caption="Registramos San Pablo. Rosario, Córdoba y Mendoza ya están visitados. Continuamos hacia Ushuaia."}
+::: {.item image="imgs/03/dfs-6.svg" caption="Registramos San Pablo y seguimos hacia Ushuaia.<br>Rosario, Córdoba y Mendoza ya están visitados."}
 :::
 
-::: {.item image="imgs/03/dfs-7.svg" caption="Registramos Ushuaia. Su único vecino es San Pablo y ya está visitado. Esta llamada termina."}
+::: {.item image="imgs/03/dfs-7.svg" caption="Registramos Ushuaia. San Pablo ya está visitado.<br>Sin más vecinos, esta llamada termina."}
 :::
 
-::: {.item image="imgs/03/dfs-8.svg" caption="Volvemos a San Pablo. No quedan vecinos pendientes en esta llamada."}
+::: {.item image="imgs/03/dfs-8.svg" caption="Volvemos a San Pablo.<br>No quedan vecinos pendientes en esta llamada."}
 :::
 
-::: {.item image="imgs/03/dfs-9.svg" caption="Volvemos a Mendoza. Ya revisamos todos sus vecinos y su llamada termina."}
+::: {.item image="imgs/03/dfs-9.svg" caption="Volvemos a Mendoza.<br>Ya revisamos todos sus vecinos y su llamada termina."}
 :::
 
-::: {.item image="imgs/03/dfs-10.svg" caption="Volvemos a Córdoba. Su siguiente vecino es San Pablo, que ya está visitado. No hacemos otra llamada."}
+::: {.item image="imgs/03/dfs-10.svg" caption="Volvemos a Córdoba. San Pablo ya está visitado.<br>No quedan vecinos pendientes. La llamada termina."}
 :::
 
-::: {.item image="imgs/03/dfs-11.svg" caption="Volvemos a Salta. Su siguiente vecino es Mendoza, que también está visitado. Su llamada termina."}
+::: {.item image="imgs/03/dfs-11.svg" caption="Volvemos a Salta. Mendoza ya está visitado.<br>No quedan vecinos pendientes. La llamada termina."}
 :::
 
-::: {.item image="imgs/03/dfs-12.svg" caption="Volvemos a Rosario. San Pablo ya está visitado. Su llamada termina."}
+::: {.item image="imgs/03/dfs-12.svg" caption="Volvemos a Rosario. San Pablo ya está visitado.<br>Su llamada termina."}
 :::
 
-::: {.item image="imgs/03/dfs-13.svg" caption="Ya no hay llamadas activas y devolvemos la lista completa."}
+::: {.item image="imgs/03/dfs-13.svg" caption="Ya no hay llamadas activas.<br>Devolvemos la lista completa."}
 :::
 
 ::::
@@ -424,25 +424,25 @@ En la figura, la próxima ciudad en salir está arriba.
 
 :::: {.carousel .dark autoplay="false" id="grafos-bfs" image-width="100%"}
 
-::: {.item image="imgs/03/bfs-1.svg" caption="Registramos Rosario y lo ponemos en la cola. Todavía no hay ciudades en el resultado."}
+::: {.item image="imgs/03/bfs-1.svg" caption="Registramos Rosario y lo ponemos en la cola.<br>Todavía no hay ciudades en el resultado."}
 :::
 
-::: {.item image="imgs/03/bfs-2.svg" caption="Sacamos Rosario. Registramos sus vecinos Salta y San Pablo y los encolamos en ese orden."}
+::: {.item image="imgs/03/bfs-2.svg" caption="Sacamos Rosario. Registramos Salta y San Pablo.<br>Los encolamos en ese orden."}
 :::
 
-::: {.item image="imgs/03/bfs-3.svg" caption="Sacamos Salta. Rosario ya está registrado. Descubrimos Córdoba y Mendoza y los agregamos detrás de San Pablo."}
+::: {.item image="imgs/03/bfs-3.svg" caption="Sacamos Salta. Rosario ya está registrado.<br>Registramos y encolamos Córdoba y Mendoza."}
 :::
 
-::: {.item image="imgs/03/bfs-4.svg" caption="Sacamos San Pablo. Rosario, Córdoba y Mendoza ya están registrados. Descubrimos Ushuaia y lo agregamos al final de la cola."}
+::: {.item image="imgs/03/bfs-4.svg" caption="Sacamos San Pablo. Registramos y encolamos Ushuaia.<br>Rosario, Córdoba y Mendoza ya están registrados."}
 :::
 
-::: {.item image="imgs/03/bfs-5.svg" caption="Sacamos Córdoba. Sus vecinos Salta, Mendoza y San Pablo ya están registrados. No agregamos ciudades a la cola."}
+::: {.item image="imgs/03/bfs-5.svg" caption="Sacamos Córdoba. Sus vecinos ya están registrados.<br>No agregamos ciudades a la cola."}
 :::
 
-::: {.item image="imgs/03/bfs-6.svg" caption="Sacamos Mendoza. Tampoco tiene vecinos nuevos. En la cola solo queda Ushuaia."}
+::: {.item image="imgs/03/bfs-6.svg" caption="Sacamos Mendoza. No tiene vecinos nuevos.<br>En la cola solo queda Ushuaia."}
 :::
 
-::: {.item image="imgs/03/bfs-7.svg" caption="Sacamos Ushuaia. San Pablo ya está registrado. La cola queda vacía y el recorrido termina."}
+::: {.item image="imgs/03/bfs-7.svg" caption="Sacamos Ushuaia. San Pablo ya está registrado.<br>La cola queda vacía y el recorrido termina."}
 :::
 
 ::::
