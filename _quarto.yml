@@ -81,6 +81,10 @@ website:
             - practica/04_estructuras_lineales/autoevaluacion.qmd
             - practica/04_estructuras_lineales/ejercicios.qmd
             - practica/04_estructuras_lineales/problemas.qmd
+        - section: U5 - Estructuras de Datos No Lineales
+          contents:
+            - practica/05_estructuras_no_lineales/autoevaluacion.qmd
+            - practica/05_estructuras_no_lineales/ejercicios.qmd
     - title: Trabajos Prácticos
       contents:
         - trabajos_practicos/trabajo_grupal.qmd

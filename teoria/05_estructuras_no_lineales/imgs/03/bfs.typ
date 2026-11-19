@@ -2,15 +2,15 @@
 #show: documento
 
 // Cada cuadro muestra la cola después de revisar todos los vecinos del actual.
-// Los nodos verdes ya están registrados, aunque algunos sigan esperando en la cola.
+// Los nodos verdes ya están registrados, aunque sigan esperando en la cola.
 #let pasos = (
   (actual: none, orden: (), cola: ("Rosario",), vistos: ("Rosario",)),
-  (actual: "Rosario", orden: ("Rosario",), cola: ("Salta", "San Pablo",), vistos: ("Rosario", "Salta", "San Pablo",)),
-  (actual: "Salta", orden: ("Rosario", "Salta",), cola: ("San Pablo", "Córdoba", "Mendoza",), vistos: ("Rosario", "Salta", "San Pablo", "Córdoba", "Mendoza",)),
-  (actual: "San Pablo", orden: ("Rosario", "Salta", "San Pablo",), cola: ("Córdoba", "Mendoza", "Ushuaia",), vistos: ("Rosario", "Salta", "San Pablo", "Córdoba", "Mendoza", "Ushuaia",)),
-  (actual: "Córdoba", orden: ("Rosario", "Salta", "San Pablo", "Córdoba",), cola: ("Mendoza", "Ushuaia",), vistos: ("Rosario", "Salta", "San Pablo", "Córdoba", "Mendoza", "Ushuaia",)),
-  (actual: "Mendoza", orden: ("Rosario", "Salta", "San Pablo", "Córdoba", "Mendoza",), cola: ("Ushuaia",), vistos: ("Rosario", "Salta", "San Pablo", "Córdoba", "Mendoza", "Ushuaia",)),
-  (actual: "Ushuaia", orden: ("Rosario", "Salta", "San Pablo", "Córdoba", "Mendoza", "Ushuaia",), cola: (), vistos: ("Rosario", "Salta", "San Pablo", "Córdoba", "Mendoza", "Ushuaia",)),
+  (actual: "Rosario", orden: ("Rosario",), cola: ("San Pablo", "Salta",), vistos: ("Rosario", "San Pablo", "Salta",)),
+  (actual: "San Pablo", orden: ("Rosario", "San Pablo",), cola: ("Salta", "Ushuaia", "Córdoba", "Mendoza",), vistos: ("Rosario", "San Pablo", "Salta", "Ushuaia", "Córdoba", "Mendoza",)),
+  (actual: "Salta", orden: ("Rosario", "San Pablo", "Salta",), cola: ("Ushuaia", "Córdoba", "Mendoza",), vistos: ("Rosario", "San Pablo", "Salta", "Ushuaia", "Córdoba", "Mendoza",)),
+  (actual: "Ushuaia", orden: ("Rosario", "San Pablo", "Salta", "Ushuaia",), cola: ("Córdoba", "Mendoza",), vistos: ("Rosario", "San Pablo", "Salta", "Ushuaia", "Córdoba", "Mendoza",)),
+  (actual: "Córdoba", orden: ("Rosario", "San Pablo", "Salta", "Ushuaia", "Córdoba",), cola: ("Mendoza",), vistos: ("Rosario", "San Pablo", "Salta", "Ushuaia", "Córdoba", "Mendoza",)),
+  (actual: "Mendoza", orden: ("Rosario", "San Pablo", "Salta", "Ushuaia", "Córdoba", "Mendoza",), cola: (), vistos: ("Rosario", "San Pablo", "Salta", "Ushuaia", "Córdoba", "Mendoza",)),
 )
 
 #for (i, estado) in pasos.enumerate() {

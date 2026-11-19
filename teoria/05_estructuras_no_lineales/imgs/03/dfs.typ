@@ -1,21 +1,20 @@
 #import "base.typ": *
 #show: documento
 
-// Al entrar a una llamada, agregamos la ciudad a visitados y al resultado.
-// Al volver, el camino pierde su último elemento y el resultado se conserva.
-#let orden = ("Rosario", "Salta", "Córdoba", "Mendoza", "San Pablo", "Ushuaia",)
+// Al entrar registramos la ciudad. Al volver se conserva el resultado.
+#let orden = ("Rosario", "San Pablo", "Ushuaia", "Córdoba", "Salta", "Mendoza",)
 #let pasos = (
   (cantidad: 0, camino: ()),
   (cantidad: 1, camino: ("Rosario",)),
-  (cantidad: 2, camino: ("Rosario", "Salta",)),
-  (cantidad: 3, camino: ("Rosario", "Salta", "Córdoba",)),
-  (cantidad: 4, camino: ("Rosario", "Salta", "Córdoba", "Mendoza",)),
-  (cantidad: 5, camino: ("Rosario", "Salta", "Córdoba", "Mendoza", "San Pablo",)),
-  (cantidad: 6, camino: ("Rosario", "Salta", "Córdoba", "Mendoza", "San Pablo", "Ushuaia",)),
-  (cantidad: 6, camino: ("Rosario", "Salta", "Córdoba", "Mendoza", "San Pablo",)),
-  (cantidad: 6, camino: ("Rosario", "Salta", "Córdoba", "Mendoza",)),
-  (cantidad: 6, camino: ("Rosario", "Salta", "Córdoba",)),
-  (cantidad: 6, camino: ("Rosario", "Salta",)),
+  (cantidad: 2, camino: ("Rosario", "San Pablo",)),
+  (cantidad: 3, camino: ("Rosario", "San Pablo", "Ushuaia",)),
+  (cantidad: 3, camino: ("Rosario", "San Pablo",)),
+  (cantidad: 4, camino: ("Rosario", "San Pablo", "Córdoba",)),
+  (cantidad: 5, camino: ("Rosario", "San Pablo", "Córdoba", "Salta",)),
+  (cantidad: 6, camino: ("Rosario", "San Pablo", "Córdoba", "Salta", "Mendoza",)),
+  (cantidad: 6, camino: ("Rosario", "San Pablo", "Córdoba", "Salta",)),
+  (cantidad: 6, camino: ("Rosario", "San Pablo", "Córdoba",)),
+  (cantidad: 6, camino: ("Rosario", "San Pablo",)),
   (cantidad: 6, camino: ("Rosario",)),
   (cantidad: 6, camino: ()),
 )

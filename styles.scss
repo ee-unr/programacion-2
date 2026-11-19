@@ -222,6 +222,17 @@ figure {
 }
 
 // Sidebar
+@media (min-width: 992px) {
+  body.floating #quarto-sidebar {
+    // Usar el margen izquierdo sin desplazar el contenido del apunte.
+    grid-column: screen-start-inset / body-start;
+    justify-self: end;
+    width: 100%;
+    max-width: 360px;
+    min-width: 0;
+  }
+}
+
 div.sidebar-item-container {
   color: $teal-secondary;
 

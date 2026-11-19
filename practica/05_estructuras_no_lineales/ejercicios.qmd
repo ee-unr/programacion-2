@@ -1,0 +1,249 @@
+---
+title: "🛠️ Ejercicios"
+---
+
+## Un árbol con sus métodos
+
+En el [apunte de árboles](../../teoria/05_estructuras_no_lineales/02_arboles.qmd)
+implementamos las operaciones de un árbol binario de búsqueda mediante funciones que reciben
+su raíz. Reúna esas operaciones en una clase llamada `ArbolBusqueda`.
+
+La clase debe comenzar con un atributo `raiz` igual a `None` e implementar estos métodos:
+
+* `insertar(valor)`: agrega el valor si todavía no está en el árbol.
+* `buscar(valor)`: devuelve el nodo que contiene el valor, o `None` si no lo encuentra.
+* `eliminar(valor)`: quita el valor si existe. Si no existe, no modifica el árbol.
+* `inorden()`: devuelve una lista con los valores ordenados de menor a mayor.
+
+Puede reutilizar las funciones del apunte. Recuerde actualizar `self.raiz` cuando una operación
+pueda cambiarla.
+
+```python
+arbol = ArbolBusqueda()
+for valor in [50, 30, 70, 20, 40, 60, 80, 45]:
+    arbol.insertar(valor)
+
+arbol.insertar(30)
+print(arbol.inorden())  # [20, 30, 40, 45, 50, 60, 70, 80]
+print(arbol.buscar(45).valor)  # 45
+print(arbol.buscar(35))       # None
+```
+
+Compruebe también que se pueda eliminar la única raíz de un árbol de un nodo y luego insertar
+un nuevo valor. En un árbol vacío, `buscar` debe devolver `None` e `inorden` debe devolver `[]`.
+
+## Contar ramas y hojas
+
+Utilice la clase `Nodo` del apunte para implementar las siguientes funciones recursivas:
+
+* `contar_nodos(raiz)`: devuelve la cantidad total de nodos.
+* `contar_hojas(raiz)`: devuelve la cantidad de nodos que no tienen hijos.
+* `altura(raiz)`: devuelve la mayor cantidad de enlaces desde la raíz hasta una hoja.
+
+Para un árbol vacío, las funciones de conteo deben devolver `0`. En la función `altura`,
+use `-1` para el árbol vacío, de modo que un árbol con un solo nodo tenga altura `0`.
+
+Construya un BST insertando los valores `[50, 30, 70, 20, 40, 60, 80, 45]`, en ese orden.
+Verifique que tiene 8 nodos, 4 hojas y altura 3. Pruebe también las tres funciones sobre
+un árbol vacío y sobre uno con un único nodo.
+
+### Punto extra
+
+Construya dos BST con los mismos valores: inserte `[4, 2, 6, 1, 3, 5, 7]` en uno
+y `[1, 2, 3, 4, 5, 6, 7]` en el otro. Dibújelos y use `altura` para comprobar
+que sus alturas son 2 y 6, respectivamente.
+
+## Los extremos del árbol
+
+Escriba las funciones `minimo(raiz)` y `maximo(raiz)` para un árbol binario de búsqueda.
+Cada una debe devolver el **valor** correspondiente, o `None` si el árbol está vacío.
+
+Impleméntelas sin construir una lista con todos los valores y sin utilizar `min` ni `max`.
+Para buscar el mínimo, siga solamente los enlaces hacia la izquierda; para el máximo,
+los enlaces hacia la derecha.
+
+Compruebe que, para el árbol de ocho nodos del ejercicio anterior, devuelvan `20` y `80`.
+Elimine esos dos valores y vuelva a consultar los extremos: ahora deben ser `30` y `70`.
+
+## ¿Cumple la regla?
+
+Implemente una función `es_bst(raiz)` que reciba la raíz de un árbol binario y devuelva
+`True` si todos sus nodos cumplen la regla de un árbol binario de búsqueda.
+No admita valores repetidos y considere que un árbol vacío cumple la regla.
+
+Utilice este ejemplo para comprobar que no alcanza con comparar cada nodo con sus hijos:
+
+```python
+raiz = Nodo(50)
+raiz.izquierdo = Nodo(30)
+raiz.derecho = Nodo(70)
+raiz.izquierdo.derecho = Nodo(60)
+
+print(es_bst(raiz))  # False
+```
+
+Reemplace el `60` por un `40` y verifique que el resultado sea `True`.
+Luego, reemplace ese `40` por un `50` y compruebe que vuelva a ser `False`.
+
+::: {.callout-tip collapse="true"}
+### Ayuda
+
+Use una función interna que reciba un nodo y los límites inferior y superior que debe respetar
+su valor. Al bajar hacia un hijo, uno de esos límites cambia y el otro se conserva.
+Puede usar `None` para indicar que todavía no hay un límite en ese extremo.
+:::
+
+## Preorden sin recursión
+
+Implemente `preorden_iterativo(raiz)` utilizando una pila en lugar de llamadas recursivas.
+La función debe devolver una lista de valores y producir el mismo resultado que `preorden`
+en el apunte. Para un árbol vacío debe devolver `[]`.
+
+Puede usar una lista de Python como pila, con `append` para apilar y `pop` para desapilar.
+En cada paso, saque un nodo, agregue su valor al resultado y apile sus hijos, si existen.
+Apile primero el hijo derecho para procesar antes el izquierdo.
+
+Para el BST construido con `[50, 30, 70, 20, 40, 60, 80, 45]`, la salida debe ser:
+
+```python
+[50, 30, 20, 40, 45, 70, 60, 80]
+```
+
+## Más de dos hijos
+
+Defina una clase `NodoGeneral` con un atributo `valor` y una lista de `hijos`, inicialmente vacía.
+Agregue un método `agregar_hijo(nodo)` que reciba otro nodo y lo incorpore a esa lista.
+Suponga que cada nodo se agrega a un único padre y que no se crean ciclos.
+
+Construya este árbol, donde `proyecto`, `documentos` e `imagenes` representan carpetas:
+
+```text
+proyecto
+├── documentos
+│   └── informe.pdf
+├── imagenes
+└── README.md
+```
+
+Implemente una función `listar_preorden(raiz)` que devuelva los valores, visitando los hijos
+en el orden en que se agregaron. El resultado debe ser:
+
+```python
+["proyecto", "documentos", "informe.pdf", "imagenes", "README.md"]
+```
+
+### Punto extra
+
+Adapte `contar_hojas` para esta representación. Debe devolver `3` para el ejemplo:
+la carpeta vacía `imagenes` también es una hoja.
+
+## Un grafo que guarda sus vértices
+
+En el [apunte de grafos](../../teoria/05_estructuras_no_lineales/03_grafos.qmd)
+guardamos las referencias a los vértices en variables separadas. Implemente una clase `Grafo`
+que los reúna en un diccionario `vertices`, con sus valores como claves y los objetos `Vertice`
+como valores. Use cadenas de texto para identificar los vértices y reutilice la clase `Vertice`
+del apunte.
+
+Implemente estos métodos:
+
+* `agregar_vertice(valor)`: crea y devuelve el vértice. Si ya existe uno con ese valor,
+  devuelve el objeto existente.
+* `conectar(valor_a, valor_b)`: conecta los vértices en ambos sentidos, sin repetir la arista.
+* `desconectar(valor_a, valor_b)`: quita la arista si existe.
+* `eliminar_vertice(valor)`: quita todas sus conexiones y después lo elimina del diccionario.
+* `vecinos_de(valor)`: devuelve una lista con los valores de sus vecinos.
+
+Los últimos cuatro métodos deben levantar `KeyError` si alguno de los valores recibidos
+no está registrado. `conectar` debe levantar `ValueError` si se intenta conectar un vértice
+consigo mismo.
+
+```python
+red = Grafo()
+for ciudad in ["Rosario", "Salta", "Paraná"]:
+    red.agregar_vertice(ciudad)
+
+red.conectar("Rosario", "Salta")
+red.conectar("Rosario", "Salta")
+print(red.vecinos_de("Rosario"))  # ['Salta']
+print(red.vecinos_de("Paraná"))   # []
+
+red.eliminar_vertice("Salta")
+print(red.vecinos_de("Rosario"))  # []
+```
+
+Compruebe además que agregar dos veces `"Rosario"` devuelve el mismo objeto.
+
+## Una cola propia para BFS
+
+Adapte la función `bfs` del apunte para utilizar una clase `Cola` propia en lugar de `deque`.
+La cola debe ofrecer las operaciones `encolar`, `desencolar` y `esta_vacia`.
+Puede reutilizar una implementación de la Unidad 4 o escribir una con nodos enlazados.
+
+Conserve el conjunto `visitados` y registre cada vértice al encolarlo.
+La función debe seguir devolviendo una lista de objetos `Vertice`, en el mismo orden
+que la versión original.
+
+Use la red original de seis ciudades y compruebe que, al mostrar los valores desde Rosario,
+obtiene esta salida:
+
+```python
+['Rosario', 'San Pablo', 'Salta', 'Ushuaia', 'Córdoba', 'Mendoza']
+```
+
+Pruebe también un origen sin vecinos: el resultado debe contener solamente ese vértice.
+
+## Un camino para viajar
+
+Implemente una función `encontrar_camino(origen, destino)` que reciba dos objetos `Vertice`
+y devuelva una lista de vértices que forme un camino entre ellos. Si no hay un camino,
+debe devolver `None`. Si el origen y el destino son el mismo objeto, debe devolver `[origen]`.
+
+Utilice BFS para que el camino tenga la menor cantidad de aristas posible.
+Mantenga el orden de las listas de vecinos y guarde en un diccionario desde qué vértice
+descubrió cada vértice nuevo. Al encontrar el destino, use ese diccionario para reconstruir
+el camino desde el origen.
+
+Para la red del apunte, verifique estos resultados al mostrar los valores:
+
+* Desde Rosario hasta Ushuaia: `['Rosario', 'San Pablo', 'Ushuaia']`.
+* Desde Rosario hasta Mendoza: `['Rosario', 'San Pablo', 'Mendoza']`.
+* Desde Rosario hasta un vértice aislado: `None`.
+
+::: {.callout-tip collapse="true"}
+### Ayuda
+
+Registre al origen con `None` como predecesor. Para reconstruir el camino, empiece por el destino
+y siga los predecesores hasta llegar al origen. La lista que construya así tendrá el orden
+inverso al que debe devolver.
+:::
+
+## Grupos conectados
+
+Escriba una función `componentes(vertices)` que reciba una lista con **todos** los objetos
+`Vertice` de un grafo no dirigido, incluidos los aislados, y devuelva una lista de grupos.
+Cada grupo debe ser una lista con los vértices que están conectados entre sí mediante caminos.
+
+Recorra los vértices en el orden recibido. Cuando encuentre uno que todavía no pertenece
+a ningún grupo, use DFS o BFS para obtener su grupo y registre sus integrantes antes de continuar.
+Cada vértice debe aparecer en un único grupo.
+
+```python
+a = Vertice("A")
+b = Vertice("B")
+c = Vertice("C")
+d = Vertice("D")
+e = Vertice("E")
+f = Vertice("F")
+
+a.conectar(b)
+b.conectar(c)
+d.conectar(e)
+
+grupos = componentes([a, b, c, d, e, f])
+print([[v.valor for v in grupo] for grupo in grupos])
+# [['A', 'B', 'C'], ['D', 'E'], ['F']]
+```
+
+Conecte `c` con `d` y vuelva a ejecutar la función: ahora debe obtener dos grupos.
+Si la lista de entrada está vacía, el resultado debe ser `[]`.

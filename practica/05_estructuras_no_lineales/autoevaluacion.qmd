@@ -1,0 +1,163 @@
+---
+title: "🪞 Autoevaluación"
+---
+
+## Estructuras no lineales
+
+1. ¿Qué relación representa un enlace en un árbol de carpetas? ¿Y en un grafo de ciudades
+   conectadas por vuelos? ¿Qué información se pierde si en cada caso guardamos solamente
+   una lista con los nombres?
+
+1. Una estructura se representa en Python mediante listas. ¿Eso alcanza para afirmar que
+   la estructura es lineal? Considere las listas de vecinos que usamos para representar un grafo.
+
+1. ¿Qué diferencia hay entre guardar el nombre de un vecino y guardar una referencia
+   al objeto que lo representa? Si cambia el atributo `valor` de ese objeto, ¿qué verán
+   los vértices que lo tienen como vecino?
+
+## Árboles
+
+1. Considere el siguiente árbol binario. Los números identifican los nodos.
+
+    ```text
+            8
+           / \
+          3   10
+           \    \
+            6    14
+           /
+          4
+    ```
+
+    Identifique la raíz, las hojas y los nodos internos. ¿Cuál es el padre de `6`?
+    ¿Cuáles son los ancestros de `4`? Indique la profundidad de `4` y la altura del árbol,
+    contando enlaces como en el apunte.
+
+1. En el árbol anterior, ¿qué nodos forman el subárbol cuya raíz es `3`?
+   ¿El nodo `3` deja de tener padre cuando lo estudiamos como raíz de ese subárbol?
+
+1. Una carpeta vacía y un archivo pueden ser hojas del mismo árbol. ¿Por qué?
+   ¿Puede la raíz ser también una hoja?
+
+1. ¿Todo árbol binario es un árbol binario de búsqueda? ¿La regla de un BST limita
+   solamente los valores de los hijos directos o también los de los demás descendientes?
+   Use el árbol del primer punto para explicar qué ocurriría si reemplazamos el `4` por un `9`.
+
+1. ¿Qué valores obtendría al recorrer el árbol del primer punto en preorden, inorden
+   y postorden? ¿En cuál de los tres recorridos se procesa primero la raíz?
+   ¿En cuál se procesa al final?
+
+1. El recorrido inorden de un BST devuelve valores ordenados. ¿También los devuelve ordenados
+   si el árbol binario no cumple la regla de búsqueda?
+
+## Operaciones sobre un BST
+
+1. Usando el árbol de la sección anterior, indique qué nodos consulta la búsqueda del `4`
+   y cuáles consulta la búsqueda del `7`. ¿Cómo determina que el `7` no está?
+
+1. ¿Dónde se insertaría el `7` en ese árbol? ¿Y el `1`? Considere cada inserción por separado,
+   sobre el árbol original. ¿Cambia la raíz en alguno de esos dos casos?
+
+1. Explique por qué guardamos el resultado de `insertar` y `eliminar` de esta manera:
+
+    ```python
+    raiz = insertar(raiz, 25)
+    raiz = eliminar(raiz, 50)
+    ```
+
+    ¿En qué casos podría cambiar el objeto al que referencia `raiz`? ¿Qué pasaría si
+    llamamos a `insertar(None, 25)` sin guardar lo que devuelve?
+
+1. Al eliminar un nodo, distinguimos si tiene cero, uno o dos hijos. ¿Qué enlaces hay que
+   modificar en cada caso? Para el caso de dos hijos, ¿por qué podemos usar el menor valor
+   del subárbol derecho como reemplazo?
+
+1. ¿Qué hace la implementación del apunte cuando intentamos insertar un valor que ya existe?
+   Si necesitáramos guardar repeticiones, ¿cómo podríamos adaptar los nodos para contar
+   cuántas veces aparece cada valor? ¿Qué debería hacer entonces la eliminación de una aparición?
+
+1. Dos BST contienen los mismos valores, pero uno se construyó insertándolos en orden creciente.
+   ¿Tienen necesariamente la misma forma? ¿Qué relación hay entre la altura y la cantidad
+   de nodos que puede revisar una búsqueda? ¿Está garantizado un costo de $O(\log N)$?
+
+## Grafos
+
+1. Considere este grafo no dirigido. Las aristas son A–B, A–C, B–D y C–D.
+   Hay además un vértice E sin conexiones.
+
+    * ¿Cuáles son los vecinos de A? ¿Y los de D?
+    * ¿Existe un camino de A a D? Escriba dos posibilidades.
+    * Escriba un ciclo. ¿Ir de A a B y volver por la misma arista forma un ciclo?
+    * ¿Podemos llegar desde A hasta E?
+
+1. Para el mismo grafo, escriba la matriz de adyacencia usando el orden A, B, C, D, E.
+   ¿Por qué es simétrica? ¿Cómo queda la fila de E?
+
+1. Considere la clase `Vertice` del apunte. Antes de ejecutar, prediga los resultados:
+
+    ```python
+    a = Vertice("Rosario")
+    b = Vertice("Rosario")
+    c = Vertice("Salta")
+    a.conectar(c)
+
+    print(a is b)
+    print(a in c.vecinos)
+    print(b in c.vecinos)
+    ```
+
+    ¿Tener el mismo `valor` hace que dos variables representen el mismo vértice?
+    ¿Qué cambiaría si escribiéramos `b = a`?
+
+1. ¿Por qué `conectar` guarda dos referencias por arista? ¿Qué ocurriría si al desconectar
+   quitáramos solamente una? ¿Por qué `aislar` recorre una copia de la lista de vecinos?
+
+1. Creamos `parana = Vertice("Paraná")`, sin conectarlo con ninguna ciudad.
+   ¿Por qué un recorrido desde Rosario no puede descubrirlo? ¿Es suficiente guardar
+   una referencia a Rosario para conservar acceso a todos los vértices de un grafo desconectado?
+
+1. En una red de seguidores, que Ana siga a Bruno no implica que Bruno siga a Ana.
+   ¿Conviene representarla mediante un grafo dirigido o no dirigido?
+   ¿Qué cambiaría en `conectar` y en la matriz de adyacencia?
+
+## Recorridos y búsquedas
+
+1. Construya mentalmente el grafo que resulta de estas llamadas, respetando el orden:
+
+    ```python
+    a.conectar(b)
+    a.conectar(c)
+    b.conectar(d)
+    c.conectar(d)
+    ```
+
+    Suponga que A, B, C y D son vértices nuevos y que sus valores son esas letras.
+    ¿En qué orden los devuelven `dfs(a)` y `bfs(a)`? Para BFS, anote también el contenido
+    de la cola después de procesar cada vértice.
+
+1. ¿Por qué necesitamos `visitados` al recorrer un grafo? ¿Puede un recorrido sin ese
+   conjunto repetir llamadas indefinidamente incluso si el grafo no tiene ciclos?
+   Considere dos vértices unidos por una sola arista no dirigida.
+
+1. En BFS registramos cada vértice al encolarlo. Si esperáramos hasta sacarlo de la cola,
+   ¿qué vértice del ejemplo con A, B, C y D podría encolarse dos veces y desde cuáles vecinos?
+
+1. ¿La lista que devuelve un recorrido es siempre un camino que podemos seguir entre
+   ciudades consecutivas? Use el recorrido DFS del apunte para dar un ejemplo.
+   ¿Qué información adicional necesitamos guardar para reconstruir un camino?
+
+1. ¿Qué devuelve `hay_camino(origen, destino)` si ambos argumentos son el mismo objeto,
+   incluso si no tiene vecinos? ¿Por qué una búsqueda que encuentra el destino puede
+   terminar sin visitar todos los vértices alcanzables?
+
+1. En un grafo no ponderado, BFS permite encontrar caminos con la menor cantidad de aristas.
+   ¿Eso garantiza el viaje más barato si cada vuelo tiene un precio diferente?
+   Proponga un ejemplo con un vuelo directo y una alternativa con una escala.
+
+1. Un grafo no dirigido conectado tiene 10 vértices y 12 aristas. En un recorrido completo,
+   ¿cuántos vértices se procesan y cuántas entradas de las listas de vecinos se revisan?
+   ¿Por qué expresamos el costo como $O(V + E)$ y no solamente como $O(V)$?
+
+1. La versión recursiva de DFS puede producir un `RecursionError` en una red con un camino
+   muy largo. ¿Qué estructura permitiría recordar los pendientes sin usar llamadas recursivas?
+   ¿BFS utiliza esa misma estructura?
