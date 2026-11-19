@@ -1,0 +1,2590 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2 - Árboles – Programación II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../teoria/05_estructuras_no_lineales/03_grafos.html" rel="next">
+<link href="../../teoria/05_estructuras_no_lineales/01_introduccion.html" rel="prev">
+<link href="../../imgs/terminal-64.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e70926193bca0f91ac121875bf738c84.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/carousel-1.1.0/quarto-carousel.js"></script>
+<link href="../../site_libs/quarto-contrib/carousel-1.1.0/quarto-carousel.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Programación II</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../informacion/programa.html"> 
+<span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../teoria/01_programacion_en_python/01_introduccion.html" aria-current="page"> 
+<span class="menu-text">Teoría</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../practica/01_programacion_en_python/ejercicios.html"> 
+<span class="menu-text">Práctica</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../trabajos_practicos/trabajo_grupal.html"> 
+<span class="menu-text">Trabajos Prácticos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../recursos/tutoriales/tutorial_01.html"> 
+<span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ee-unr/programacion-2"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/05_estructuras_no_lineales/01_introduccion.html">U5 - Estructuras de Datos No Lineales</a></li><li class="breadcrumb-item"><a href="../../teoria/05_estructuras_no_lineales/02_arboles.html">2 - Árboles</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">U1 - Programación en Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Introducción</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/02_funciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Funciones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/03_ejecucion_condicional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Ejecución condicional</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/04_colecciones_de_datos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Colecciones de datos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/05_ejecucion_repetitiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Ejecución repetitiva</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/06_uso_de_codigo_externo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 - Uso de código externo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/07_scripting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 - <em>Scripting</em></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/01_programacion_en_python/08_io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 - Lectura y escritura de archivos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">U2 - Programación Orientada a Objetos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_oop/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_oop/02_encapsulamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Encapsulamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_oop/03_herencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Herencia</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_oop/04_polimorfismo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Polimorfismo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/02_oop/05_excepciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Excepciones</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">U3 - Programación Funcional</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_programacion_funcional/01_fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Fundamentos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_programacion_funcional/02_recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Recursión</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_programacion_funcional/03_funciones_de_orden_superior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Funciones de orden superior</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_programacion_funcional/04_estrategias_de_evaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Estrategias de evaluación 🧩</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/03_programacion_funcional/05_generadores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Generadores 🧩</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">U4 - Estructuras de Datos Lineales</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_lineales/01_arreglos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Arreglos</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_lineales/02_estructuras_lineales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Estructuras lineales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/04_estructuras_lineales/03_ordenamiento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Algoritmos de ordenamiento</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">U5 - Estructuras de Datos No Lineales</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/05_estructuras_no_lineales/01_introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - Introducción</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/05_estructuras_no_lineales/02_arboles.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">2 - Árboles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../teoria/05_estructuras_no_lineales/03_grafos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - Grafos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#descripción-de-un-árbol" id="toc-descripción-de-un-árbol" class="nav-link" data-scroll-target="#descripción-de-un-árbol">Descripción de un árbol</a>
+  <ul class="collapse">
+  <li><a href="#terminología" id="toc-terminología" class="nav-link" data-scroll-target="#terminología">Terminología</a></li>
+  <li><a href="#subárboles" id="toc-subárboles" class="nav-link" data-scroll-target="#subárboles">Subárboles</a></li>
+  </ul></li>
+  <li><a href="#árboles-binarios" id="toc-árboles-binarios" class="nav-link" data-scroll-target="#árboles-binarios">Árboles binarios</a>
+  <ul class="collapse">
+  <li><a href="#árboles-binarios-de-búsqueda" id="toc-árboles-binarios-de-búsqueda" class="nav-link" data-scroll-target="#árboles-binarios-de-búsqueda">Árboles binarios de búsqueda</a></li>
+  </ul></li>
+  <li><a href="#representación-de-los-nodos" id="toc-representación-de-los-nodos" class="nav-link" data-scroll-target="#representación-de-los-nodos">Representación de los nodos</a></li>
+  <li><a href="#operaciones-sobre-un-árbol-binario-de-búsqueda" id="toc-operaciones-sobre-un-árbol-binario-de-búsqueda" class="nav-link" data-scroll-target="#operaciones-sobre-un-árbol-binario-de-búsqueda">Operaciones sobre un árbol binario de búsqueda</a>
+  <ul class="collapse">
+  <li><a href="#búsqueda" id="toc-búsqueda" class="nav-link" data-scroll-target="#búsqueda">Búsqueda</a></li>
+  <li><a href="#inserción" id="toc-inserción" class="nav-link" data-scroll-target="#inserción">Inserción</a></li>
+  <li><a href="#eliminación" id="toc-eliminación" class="nav-link" data-scroll-target="#eliminación">Eliminación</a></li>
+  </ul></li>
+  <li><a href="#recorridos" id="toc-recorridos" class="nav-link" data-scroll-target="#recorridos">Recorridos</a>
+  <ul class="collapse">
+  <li><a href="#preorden" id="toc-preorden" class="nav-link" data-scroll-target="#preorden">Preorden</a></li>
+  <li><a href="#inorden" id="toc-inorden" class="nav-link" data-scroll-target="#inorden">Inorden</a></li>
+  <li><a href="#postorden" id="toc-postorden" class="nav-link" data-scroll-target="#postorden">Postorden</a></li>
+  <li><a href="#comparación-de-los-recorridos" id="toc-comparación-de-los-recorridos" class="nav-link" data-scroll-target="#comparación-de-los-recorridos">Comparación de los recorridos</a></li>
+  <li><a href="#aplicaciones-de-los-recorridos" id="toc-aplicaciones-de-los-recorridos" class="nav-link" data-scroll-target="#aplicaciones-de-los-recorridos">Aplicaciones de los recorridos</a></li>
+  </ul></li>
+  <li><a href="#eficiencia" id="toc-eficiencia" class="nav-link" data-scroll-target="#eficiencia">Eficiencia</a></li>
+  <li><a href="#implementación-completa" id="toc-implementación-completa" class="nav-link" data-scroll-target="#implementación-completa">Implementación completa</a></li>
+  <li><a href="#siguientes-pasos" id="toc-siguientes-pasos" class="nav-link" data-scroll-target="#siguientes-pasos">Siguientes pasos</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="02_arboles.pdf"><i class="bi bi-file-pdf"></i>Descargar PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../teoria/05_estructuras_no_lineales/01_introduccion.html">U5 - Estructuras de Datos No Lineales</a></li><li class="breadcrumb-item"><a href="../../teoria/05_estructuras_no_lineales/02_arboles.html">2 - Árboles</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">2 - Árboles</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>En el apunte anterior representamos la jerarquía de excepciones y la organización de carpetas mediante árboles. En ambos casos había elementos que dependían de otros y podían tener, a su vez, sus propios descendientes.</p>
+<p>En este apunte vamos a estudiar las partes de un árbol y cómo representarlo con nodos en Python. Después usaremos un árbol binario de búsqueda para consultar, agregar y eliminar valores, y veremos distintas formas de recorrer todos sus nodos.</p>
+</section>
+<section id="descripción-de-un-árbol" class="level2">
+<h2 class="anchored" data-anchor-id="descripción-de-un-árbol">Descripción de un árbol</h2>
+<p>Un <strong>árbol</strong> (<em>tree</em>) organiza un conjunto de nodos mediante relaciones entre padres e hijos. Tiene un nodo inicial llamado <strong>raíz</strong> (<em>root</em>). Cada uno de los demás nodos tiene un único padre, aunque un padre puede tener varios hijos. Si seguimos las conexiones de padres a hijos, nos alejamos de la raíz sin volver a un nodo anterior.</p>
+<p>Consideremos el siguiente árbol. Por ahora, los números solamente sirven para identificar los nodos:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="imgs/02/terminologia-0.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Partes de un árbol."><img src="imgs/02/terminologia-0.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="La raíz es 50. Sus hijos son 30 y 70. Los hijos de 30 son 20 y 40, y los de 70 son 60 y 80. El hijo derecho de 40 es 45. Los nodos internos son 50, 30, 70 y 40. Las hojas son 20, 60, 80 y 45."></a></p>
+</figure>
+</div>
+<figcaption>Partes de un árbol.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Patas para arriba 🌳
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En computación, un árbol tiene la raíz arriba de todo y sus ramas y hojas crecen para abajo 😅.</p>
+</div>
+</div>
+<section id="terminología" class="level3">
+<h3 class="anchored" data-anchor-id="terminología">Terminología</h3>
+<p>Podemos describir las relaciones del dibujo de la siguiente manera:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 51%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Término</th>
+<th>Qué indica</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Raíz</td>
+<td>El nodo que no tiene padre</td>
+<td><code>50</code></td>
+</tr>
+<tr class="even">
+<td>Padre e hijo (<em>parent</em>, <em>child</em>)</td>
+<td>Una relación directa entre dos nodos</td>
+<td><code>30</code> es padre de <code>20</code></td>
+</tr>
+<tr class="odd">
+<td>Hermanos (<em>siblings</em>)</td>
+<td>Nodos con el mismo padre</td>
+<td><code>20</code> y <code>40</code></td>
+</tr>
+<tr class="even">
+<td>Hoja (<em>leaf</em>)</td>
+<td>Un nodo que no tiene hijos</td>
+<td><code>20</code>, <code>60</code>, <code>80</code> y <code>45</code></td>
+</tr>
+<tr class="odd">
+<td>Nodo interno</td>
+<td>Un nodo que tiene al menos un hijo</td>
+<td><code>50</code>, <code>30</code>, <code>70</code> y <code>40</code></td>
+</tr>
+<tr class="even">
+<td>Ancestro</td>
+<td>Un nodo que aparece antes en el camino desde la raíz</td>
+<td><code>50</code> es ancestro de <code>40</code></td>
+</tr>
+<tr class="odd">
+<td>Descendiente</td>
+<td>Un nodo al que llegamos siguiendo uno o más enlaces hacia los hijos</td>
+<td><code>40</code> es descendiente de <code>50</code></td>
+</tr>
+</tbody>
+</table>
+<p>La <strong>profundidad</strong> (<em>depth</em>) de un nodo es la cantidad de enlaces que lo separan de la raíz. En el ejemplo, <code>50</code> tiene profundidad 0, <code>30</code> tiene profundidad 1, <code>20</code> tiene profundidad 2 y <code>45</code> tiene profundidad 3. Podemos agrupar los nodos de igual profundidad en un mismo <strong>nivel</strong> (<em>level</em>).</p>
+<p>La <strong>altura</strong> (<em>height</em>) de un nodo es la mayor cantidad de enlaces que podemos seguir desde él hasta una hoja. La altura del árbol es la altura de su raíz: en este caso es 3. Una hoja tiene altura 0. En este apunte contamos enlaces, de modo que un árbol con un único nodo tiene altura 0 y un solo nivel.</p>
+<p>Las hojas no tienen por qué estar a la misma profundidad. <code>20</code>, <code>60</code> y <code>80</code> están en el nivel 2, mientras que <code>45</code> está en el nivel 3. El nodo <code>40</code> es interno porque tiene un hijo, aunque no tenga dos. La raíz también es un nodo interno en este árbol.</p>
+</section>
+<section id="subárboles" class="level3">
+<h3 class="anchored" data-anchor-id="subárboles">Subárboles</h3>
+<p>Si tomamos el nodo <code>30</code> junto con todos sus descendientes, obtenemos otro árbol. Esta parte de la estructura es un <strong>subárbol</strong> (<em>subtree</em>):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="imgs/02/subarbol-0.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="El subárbol cuya raíz es 30 está destacado con trazos más gruesos."><img src="imgs/02/subarbol-0.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%" alt="Se destacan 30, sus hijos 20 y 40 y su descendiente 45 dentro del árbol original."></a></p>
+</figure>
+</div>
+<figcaption>El subárbol cuya raíz es 30 está destacado con trazos más gruesos.</figcaption>
+</figure>
+</div>
+<p>El nodo <code>30</code> es un hijo de <code>50</code>, pero también es la raíz de su propio subárbol. Esta observación nos va a resultar útil al programar: muchas operaciones sobre un árbol pueden resolverse repitiendo la misma operación sobre un subárbol más pequeño.</p>
+</section>
+</section>
+<section id="árboles-binarios" class="level2">
+<h2 class="anchored" data-anchor-id="árboles-binarios">Árboles binarios</h2>
+<p>En un árbol general, un nodo puede tener cualquier cantidad de hijos. Por ejemplo, una carpeta puede contener tres subcarpetas y varios archivos.</p>
+<p>Un <strong>árbol binario</strong> (<em>binary tree</em>) limita esa cantidad: cada nodo puede tener, como máximo, dos hijos. Además, distinguimos un hijo izquierdo de un hijo derecho. Un nodo puede tener ambos, solamente uno de ellos o ninguno. El árbol de números que venimos usando es binario.</p>
+<section id="árboles-binarios-de-búsqueda" class="level3">
+<h3 class="anchored" data-anchor-id="árboles-binarios-de-búsqueda">Árboles binarios de búsqueda</h3>
+<p>En la Unidad 4 vimos que un arreglo ordenado permite usar búsqueda binaria, pero insertar un elemento puede requerir desplazar muchos valores para conservar el orden. ¿Podemos organizar los datos de otra manera para facilitar también las inserciones?</p>
+<p>Un <strong>árbol binario de búsqueda</strong> (<em>binary search tree</em>, BST) agrega una regla al árbol binario: para cada nodo, todos los valores de su subárbol izquierdo son menores que su valor, y todos los del subárbol derecho son mayores. En nuestros ejemplos vamos a guardar números y no vamos a agregar valores repetidos.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="imgs/02/base-0.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Árbol binario de búsqueda que usaremos en las operaciones."><img src="imgs/02/base-0.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%" alt="Árbol con raíz 50, subárbol izquierdo 30 con hijos 20 y 40, y subárbol derecho 70 con hijos 60 y 80. El nodo 40 tiene como hijo derecho a 45."></a></p>
+</figure>
+</div>
+<figcaption>Árbol binario de búsqueda que usaremos en las operaciones.</figcaption>
+</figure>
+</div>
+<p>En la raíz, <code>20</code>, <code>30</code>, <code>40</code> y <code>45</code> son menores que <code>50</code>, mientras que <code>60</code>, <code>70</code> y <code>80</code> son mayores. La regla también se cumple dentro de cada subárbol: <code>20 &lt; 30 &lt; 40 &lt; 45</code> y <code>60 &lt; 70 &lt; 80</code>. El nodo <code>45</code> queda a la derecha de <code>40</code>, pero sigue perteneciendo al subárbol izquierdo de <code>50</code>.</p>
+<p>La regla debe cumplirse para todos los descendientes, no solamente para los hijos directos. Veamos qué ocurre si reemplazamos el valor de la raíz, <code>50</code>, por <code>42</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="imgs/02/no-busqueda-0.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Un árbol binario que no cumple la regla de búsqueda."><img src="imgs/02/no-busqueda-0.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%" alt="El nodo 45 aparece en el subárbol izquierdo de la nueva raíz 42, aunque su valor es mayor que 42."></a></p>
+</figure>
+</div>
+<figcaption>Un árbol binario que no cumple la regla de búsqueda.</figcaption>
+</figure>
+</div>
+<p><code>45</code> sigue siendo mayor que su padre <code>40</code>, por lo que esa relación directa parece correcta. Sin embargo, pertenece al subárbol izquierdo de la nueva raíz <code>42</code>. Como <code>45 &gt; 42</code>, rompe la regla. Sigue siendo un árbol binario, pero no es un árbol binario de búsqueda.</p>
+</section>
+</section>
+<section id="representación-de-los-nodos" class="level2">
+<h2 class="anchored" data-anchor-id="representación-de-los-nodos">Representación de los nodos</h2>
+<p>En una lista enlazada, cada nodo guardaba un valor y una referencia al siguiente. Para representar un árbol binario podemos conservar el valor y reemplazar esa referencia por dos: una al hijo izquierdo y otra al derecho.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Nodo:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, valor):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.valor <span class="op">=</span> valor</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.izquierdo <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.derecho <span class="op">=</span> <span class="va">None</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El valor <code>None</code> indica que no hay un hijo en esa posición. Por ejemplo, podemos construir el árbol que venimos dibujando de esta manera:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n50 <span class="op">=</span> Nodo(<span class="dv">50</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n30 <span class="op">=</span> Nodo(<span class="dv">30</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>n70 <span class="op">=</span> Nodo(<span class="dv">70</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>n20 <span class="op">=</span> Nodo(<span class="dv">20</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>n40 <span class="op">=</span> Nodo(<span class="dv">40</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>n60 <span class="op">=</span> Nodo(<span class="dv">60</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>n80 <span class="op">=</span> Nodo(<span class="dv">80</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>n45 <span class="op">=</span> Nodo(<span class="dv">45</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>n50.izquierdo <span class="op">=</span> n30</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>n50.derecho <span class="op">=</span> n70</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>n30.izquierdo <span class="op">=</span> n20</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>n30.derecho <span class="op">=</span> n40</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>n70.izquierdo <span class="op">=</span> n60</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>n70.derecho <span class="op">=</span> n80</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>n40.derecho <span class="op">=</span> n45</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>raiz <span class="op">=</span> n50</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Primero creamos los ocho nodos y después los conectamos. Por ejemplo, <code>n30.derecho = n40</code> hace que el hijo derecho del nodo <code>30</code> sea el nodo <code>40</code>. Luego, <code>n40.derecho = n45</code> conecta ese nodo con su hijo derecho, <code>45</code>.</p>
+<p>La asignación <code>raiz = n50</code> hace que ambas variables referencien al mismo objeto, sin crear otro nodo. Desde <code>raiz</code> podemos seguir los enlaces para llegar a los demás nodos. Por ejemplo, <code>raiz.izquierdo.derecho</code> referencia al mismo objeto que <code>n40</code>. Para leer su valor, podemos usar <code>raiz.izquierdo.derecho.valor</code> o <code>n40.valor</code>: en ambos casos obtenemos <code>40</code>. Al igual que en las listas enlazadas, los enlaces entre objetos son los que organizan la estructura.</p>
+<p>Como en las listas enlazadas de la Unidad 4, vamos a trabajar con estos nodos y modificar sus enlaces para agregar o quitar valores.</p>
+</section>
+<section id="operaciones-sobre-un-árbol-binario-de-búsqueda" class="level2">
+<h2 class="anchored" data-anchor-id="operaciones-sobre-un-árbol-binario-de-búsqueda">Operaciones sobre un árbol binario de búsqueda</h2>
+<p>Las operaciones de esta sección aprovechan la regla que acabamos de describir. En un árbol general, sin esa regla de orden, tendríamos que usar otras estrategias.</p>
+<p>Para analizar la eficiencia, nos vamos a concentrar en cuántos nodos visitamos. Vamos a llamar <span class="math inline">\(N\)</span> a la cantidad de nodos del árbol.</p>
+<section id="búsqueda" class="level3">
+<h3 class="anchored" data-anchor-id="búsqueda">Búsqueda</h3>
+<p>Supongamos que queremos determinar si el árbol contiene el valor <code>40</code>. Empezamos en la raíz y comparamos el valor buscado con el del nodo actual. Si son iguales, terminamos. Si el valor es menor, seguimos por el hijo izquierdo. Si es mayor, seguimos por el derecho. Si llegamos a <code>None</code>, sabemos que el valor no está en el árbol.</p>
+<div id="arboles-busqueda" class="carousel carousel-dark slide" data-bs-ride="false" style=";--carousel-image-height:300px">
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#arboles-busqueda" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
+  
+  <button type="button" data-bs-target="#arboles-busqueda" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+  
+  <button type="button" data-bs-target="#arboles-busqueda" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+  
+</div>
+<div class="carousel-inner">
+<div class="carousel-item active" data-bs-interval="3000">
+<p><a href="imgs/02/busqueda-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="imgs/02/busqueda-1.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+40 es menor que 50. Seguimos por el hijo izquierdo.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/busqueda-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="imgs/02/busqueda-2.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+40 es mayor que 30. Seguimos por el hijo derecho.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/busqueda-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="imgs/02/busqueda-3.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+El nodo actual contiene 40. La búsqueda termina.
+</div>
+</div>
+</div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#arboles-busqueda" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      </button>
+    
+      <button class="carousel-control-next" type="button" data-bs-target="#arboles-busqueda" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+      </button>
+    
+</div>
+<p>Para encontrar <code>40</code> seguimos el camino <code>50</code>, <code>30</code>, <code>40</code>. La regla de orden nos permite descartar el subárbol de <code>70</code> desde la primera comparación.</p>
+<p>Una implementación es la siguiente:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> buscar(raiz, valor):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    actual <span class="op">=</span> raiz</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> actual <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> valor <span class="op">==</span> actual.valor:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Si el valor buscado coincide con el del nodo, lo encontramos</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> actual</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> valor <span class="op">&lt;</span> actual.valor:</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Si el valor buscado es menor, seguimos por el hijo izquierdo</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            actual <span class="op">=</span> actual.izquierdo</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Si el valor buscado es mayor, seguimos por el hijo derecho</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            actual <span class="op">=</span> actual.derecho</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Llegamos a una referencia vacía sin encontrar el valor</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>buscar(raiz, <span class="dv">40</span>).valor</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>40</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(buscar(raiz, <span class="dv">47</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cmd code-with-copy"><code class="sourceCode dosbat"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>None</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La función devuelve el nodo encontrado o <code>None</code> si no existe. Por ejemplo, <code>buscar(raiz, 40).valor</code> devuelve <code>40</code>, mientras que <code>buscar(raiz, 47)</code> devuelve <code>None</code>. En la segunda búsqueda seguimos <code>50</code>, <code>30</code>, <code>40</code> y <code>45</code>. Como <code>47 &gt; 45</code>, intentamos avanzar hacia la derecha y nos encontramos con <code>None</code>.</p>
+<p>En la búsqueda binaria de la Unidad 4 reducíamos un intervalo de índices dentro de un arreglo. Aquí también descartamos una parte de los valores en cada paso, pero lo hacemos siguiendo los enlaces del árbol.</p>
+<p>La regla de un BST permite decidir por qué hijo continuar, pero no garantiza que el árbol esté equilibrado. Si está equilibrado, sus ramas tienen alturas parecidas y su altura es aproximadamente <span class="math inline">\(\log_2 N\)</span>. Como en cada paso bajamos un nivel, la búsqueda requiere a lo sumo una cantidad de visitas del orden de <span class="math inline">\(\log N\)</span>. Por eso su costo es <span class="math inline">\(O(\log N)\)</span>.</p>
+<p>En cambio, si insertamos los valores de menor a mayor, cada nuevo nodo queda como hijo derecho del anterior. Si los insertamos de mayor a menor, ocurre lo mismo hacia la izquierda. Así podemos obtener una cadena de <span class="math inline">\(N\)</span> nodos, con altura <span class="math inline">\(N - 1\)</span>. Buscar el último valor de esa cadena puede requerir visitar todos los nodos y costar <span class="math inline">\(O(N)\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="imgs/02/altura-0.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Dos BST con los mismos siete valores y distintas alturas."><img src="imgs/02/altura-0.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="A la izquierda, un BST equilibrado de altura 2, con raíz 50, hijos 30 y 70, y hojas 20, 40, 60 y 80. A la derecha, los mismos siete valores forman una cadena hacia la derecha, desde 20 hasta 80, de altura 6."></a></p>
+</figure>
+</div>
+<figcaption>Dos BST con los mismos siete valores y distintas alturas.</figcaption>
+</figure>
+</div>
+<p>En el árbol de la izquierda, buscar <code>80</code> requiere visitar <code>50</code>, <code>70</code> y <code>80</code>. En el de la derecha, tenemos que pasar por los siete nodos para llegar al mismo valor. Ambos cumplen la regla de un BST, pero la forma del árbol cambia el costo de la búsqueda.</p>
+</section>
+<section id="inserción" class="level3">
+<h3 class="anchored" data-anchor-id="inserción">Inserción</h3>
+<p>Ahora queremos insertar <code>35</code>. Para encontrar su lugar usamos las mismas comparaciones que en una búsqueda. Cuando encontramos una referencia vacía, la reemplazamos por un nuevo nodo.</p>
+<div id="arboles-insercion" class="carousel carousel-dark slide" data-bs-ride="false" style=";--carousel-image-height:300px">
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#arboles-insercion" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
+  
+  <button type="button" data-bs-target="#arboles-insercion" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+  
+  <button type="button" data-bs-target="#arboles-insercion" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+  
+  <button type="button" data-bs-target="#arboles-insercion" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+  
+</div>
+<div class="carousel-inner">
+<div class="carousel-item active" data-bs-interval="3000">
+<p><a href="imgs/02/insercion-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="imgs/02/insercion-1.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+35 es menor que 50. Seguimos hacia 30.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/insercion-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="imgs/02/insercion-2.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+35 es mayor que 30. Seguimos hacia 40.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/insercion-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="imgs/02/insercion-3.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+35 es menor que 40.<br>
+Su referencia izquierda está vacía.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/insercion-4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="imgs/02/insercion-4.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Creamos el nodo 35.<br>
+Lo enlazamos como hijo izquierdo de 40.
+</div>
+</div>
+</div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#arboles-insercion" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      </button>
+    
+      <button class="carousel-control-next" type="button" data-bs-target="#arboles-insercion" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+      </button>
+    
+</div>
+<p>El lugar de <code>35</code> está a la izquierda de <code>40</code>, cuyo enlace izquierdo es <code>None</code>. Para insertarlo cambiamos ese enlace, sin desplazar los demás valores como ocurría en un arreglo.</p>
+<p>Podemos expresar la inserción de forma recursiva:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> insertar(raiz, valor):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si llegamos a una referencia vacía, creamos el nuevo nodo</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> raiz <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> Nodo(valor)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> valor <span class="op">&lt;</span> raiz.valor:</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si el valor es menor, insertamos en el subárbol izquierdo</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        raiz.izquierdo <span class="op">=</span> insertar(raiz.izquierdo, valor)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> valor <span class="op">&gt;</span> raiz.valor:</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si el valor es mayor, insertamos en el subárbol derecho</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        raiz.derecho <span class="op">=</span> insertar(raiz.derecho, valor)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Devolvemos la raíz del subárbol para que la llamada anterior guarde el enlace</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si el valor ya existía, no agregamos otro nodo</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> raiz</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cada llamada devuelve la raíz del subárbol después de la inserción. Cuando <code>insertar(None, 35)</code> crea el nodo, su resultado queda guardado en el enlace izquierdo de <code>40</code>. Las llamadas anteriores devuelven los nodos <code>40</code>, <code>30</code> y <code>50</code>, que siguen siendo las raíces de sus subárboles. Si el valor ya existe, la función devuelve el mismo nodo sin agregar otro.</p>
+<p>Por eso usamos la función de esta manera:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>raiz <span class="op">=</span> insertar(raiz, <span class="dv">35</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Guardar el resultado también permite empezar con un árbol vacío, representado por <code>None</code>. En ese caso, la función crea el primer nodo y pasa a ser la raíz.</p>
+<p>Para insertar primero buscamos el lugar y después conectamos el nuevo nodo. Por eso, como en la búsqueda, el costo es <span class="math inline">\(O(\log N)\)</span> si el árbol está equilibrado y puede llegar a <span class="math inline">\(O(N)\)</span> si forma una cadena.</p>
+</section>
+<section id="eliminación" class="level3">
+<h3 class="anchored" data-anchor-id="eliminación">Eliminación</h3>
+<p>Supongamos que queremos eliminar un valor del árbol. Como en la búsqueda, primero tenemos que localizar el nodo que lo contiene. Empezamos en la raíz y seguimos por el hijo izquierdo o derecho según el resultado de cada comparación. Si llegamos a <code>None</code>, el valor no existe y no hay nada que eliminar.</p>
+<p>Una vez encontrado el nodo, ¿alcanza con cambiar por <code>None</code> el enlace que llega a él? Si es una hoja, sí. Pero si tiene hijos, ese cambio también dejaría desconectados a todos sus descendientes. Para conservarlos tenemos que distinguir tres casos: un nodo sin hijos, con un hijo o con dos hijos.</p>
+<p>Vamos a analizar cada caso sobre el árbol original, sin el <code>35</code> que insertamos antes. Antes de probar cada ejemplo, volvemos a construirlo:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>raiz <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> valor <span class="kw">in</span> [<span class="dv">50</span>, <span class="dv">30</span>, <span class="dv">70</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">45</span>]:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    raiz <span class="op">=</span> insertar(raiz, valor)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="nodo-sin-hijos" class="level4">
+<h4 class="anchored" data-anchor-id="nodo-sin-hijos">Nodo sin hijos</h4>
+<p>Empecemos por eliminar <code>20</code>. Primero lo buscamos: como <code>20 &lt; 50</code>, seguimos hacia <code>30</code>. Como <code>20 &lt; 30</code>, seguimos hacia su hijo izquierdo. Allí encontramos <code>20</code> y comprobamos que sus dos referencias son <code>None</code>. Recién entonces podemos quitar el enlace que llega a esa hoja.</p>
+<div id="arboles-eliminacion" class="carousel carousel-dark slide" data-bs-ride="false" style=";--carousel-image-height:300px">
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#arboles-eliminacion" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
+  
+  <button type="button" data-bs-target="#arboles-eliminacion" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+  
+  <button type="button" data-bs-target="#arboles-eliminacion" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+  
+  <button type="button" data-bs-target="#arboles-eliminacion" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+  
+</div>
+<div class="carousel-inner">
+<div class="carousel-item active" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="imgs/02/eliminacion-1.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Buscamos 20.<br>
+20 es menor que 50: seguimos por el hijo izquierdo.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="imgs/02/eliminacion-2.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+20 es menor que 30. Seguimos por el hijo izquierdo.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="imgs/02/eliminacion-3.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Encontramos 20.<br>
+No tiene hijos, por lo que es una hoja.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="imgs/02/eliminacion-4.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+La referencia izquierda de 30 pasa a ser None.<br>
+Los demás enlaces se conservan.
+</div>
+</div>
+</div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#arboles-eliminacion" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      </button>
+    
+      <button class="carousel-control-next" type="button" data-bs-target="#arboles-eliminacion" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+      </button>
+    
+</div>
+<p>El cambio concreto es que el atributo <code>izquierdo</code> del nodo <code>30</code> deja de referenciar al nodo <code>20</code> y pasa a ser <code>None</code>. En el código, la llamada que recibe el nodo <code>20</code> devuelve <code>None</code> y la llamada anterior guarda ese resultado en <code>raiz.izquierdo</code>, donde <code>raiz</code> es el nodo <code>30</code>.</p>
+</section>
+<section id="nodo-con-un-hijo" class="level4">
+<h4 class="anchored" data-anchor-id="nodo-con-un-hijo">Nodo con un hijo</h4>
+<p>Ahora volvemos al árbol original y queremos eliminar <code>40</code>. Seguimos el camino <code>50</code>, <code>30</code>, <code>40</code>, igual que en la búsqueda que vimos antes. Esta vez el nodo tiene un hijo derecho, <code>45</code>, y no tiene hijo izquierdo. Si reemplazáramos el enlace por <code>None</code>, también perderíamos el acceso a <code>45</code>. Para conservarlo, hacemos que el enlace derecho de <code>30</code> apunte directamente al nodo <code>45</code>.</p>
+<div id="arboles-eliminacion-un-hijo" class="carousel carousel-dark slide" data-bs-ride="false" style=";--carousel-image-height:300px">
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#arboles-eliminacion-un-hijo" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
+  
+  <button type="button" data-bs-target="#arboles-eliminacion-un-hijo" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+  
+  <button type="button" data-bs-target="#arboles-eliminacion-un-hijo" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+  
+  <button type="button" data-bs-target="#arboles-eliminacion-un-hijo" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+  
+  <button type="button" data-bs-target="#arboles-eliminacion-un-hijo" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+  
+</div>
+<div class="carousel-inner">
+<div class="carousel-item active" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-un-hijo-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="imgs/02/eliminacion-un-hijo-1.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Buscamos 40.<br>
+40 es menor que 50: seguimos por el hijo izquierdo.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-un-hijo-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="imgs/02/eliminacion-un-hijo-2.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+40 es mayor que 30. Seguimos por el hijo derecho.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-un-hijo-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="imgs/02/eliminacion-un-hijo-3.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Encontramos 40.<br>
+Tiene un hijo derecho y no tiene hijo izquierdo.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-un-hijo-4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="imgs/02/eliminacion-un-hijo-4.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+El hijo 45 debe seguir conectado cuando quitemos 40.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-un-hijo-5.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="imgs/02/eliminacion-un-hijo-5.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+El enlace derecho de 30 pasa a apuntar a 45.<br>
+El nodo 40 queda fuera del árbol.
+</div>
+</div>
+</div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#arboles-eliminacion-un-hijo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      </button>
+    
+      <button class="carousel-control-next" type="button" data-bs-target="#arboles-eliminacion-un-hijo" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+      </button>
+    
+</div>
+<p>La llamada que recibe el nodo <code>40</code> devuelve <code>raiz.derecho</code>, que referencia a <code>45</code>. La llamada anterior guarda ese resultado en el atributo <code>derecho</code> del nodo <code>30</code>. Si el único hijo fuera el izquierdo, devolveríamos <code>raiz.izquierdo</code>. El mismo cambio sirve si ese hijo tiene descendientes, porque sus enlaces se conservan.</p>
+<p>Una vez encontrado el nodo, alcanza con cambiar un enlace, incluso si el hijo tiene muchos descendientes. Lo mismo ocurre al quitar una hoja. El trabajo principal está en localizar el nodo.</p>
+</section>
+<section id="nodo-con-dos-hijos" class="level4">
+<h4 class="anchored" data-anchor-id="nodo-con-dos-hijos">Nodo con dos hijos</h4>
+<p>Volvamos otra vez al árbol original y eliminemos <code>30</code>. Después de comparar con <code>50</code>, encontramos <code>30</code> como su hijo izquierdo. Este nodo tiene dos hijos, <code>20</code> y <code>40</code>. No podemos reemplazarlo directamente por uno de ellos sin decidir qué hacer con el otro subárbol.</p>
+<p>Necesitamos un valor que pueda ocupar el lugar de <code>30</code> y conserve la regla de orden. Podemos usar el menor valor del subárbol derecho, llamado <strong>sucesor inorden</strong> (<em>inorder successor</em>). En este caso es el menor valor del árbol que supera a <code>30</code>. El nombre se relaciona con el recorrido inorden, que veremos más adelante. Para encontrarlo, empezamos por el hijo derecho y seguimos por los hijos izquierdos hasta que no haya otro. En este ejemplo, el hijo derecho es <code>40</code> y no tiene hijo izquierdo, por lo que <code>40</code> es el sucesor.</p>
+<div id="arboles-eliminacion-dos-hijos" class="carousel carousel-dark slide" data-bs-ride="false" style=";--carousel-image-height:300px">
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#arboles-eliminacion-dos-hijos" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
+  
+  <button type="button" data-bs-target="#arboles-eliminacion-dos-hijos" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+  
+  <button type="button" data-bs-target="#arboles-eliminacion-dos-hijos" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+  
+  <button type="button" data-bs-target="#arboles-eliminacion-dos-hijos" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+  
+  <button type="button" data-bs-target="#arboles-eliminacion-dos-hijos" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+  
+  <button type="button" data-bs-target="#arboles-eliminacion-dos-hijos" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+  
+</div>
+<div class="carousel-inner">
+<div class="carousel-item active" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-dos-hijos-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="imgs/02/eliminacion-dos-hijos-1.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Buscamos 30.<br>
+30 es menor que 50: seguimos por el hijo izquierdo.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-dos-hijos-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="imgs/02/eliminacion-dos-hijos-2.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Encontramos 30. Tiene dos hijos, 20 y 40.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-dos-hijos-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="imgs/02/eliminacion-dos-hijos-3.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Para buscar el sucesor,<br>
+empezamos en el subárbol derecho, por el nodo 40.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-dos-hijos-4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-25"><img src="imgs/02/eliminacion-dos-hijos-4.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+40 no tiene hijo izquierdo: es el menor del subárbol.<br>
+Es el sucesor de 30.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-dos-hijos-5.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-26"><img src="imgs/02/eliminacion-dos-hijos-5.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Copiamos 40 en el nodo que contenía 30.<br>
+Falta quitar el nodo original del sucesor.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/eliminacion-dos-hijos-6.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-27"><img src="imgs/02/eliminacion-dos-hijos-6.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Quitamos el 40 original y enlazamos a su hijo 45.<br>
+El subárbol queda con raíz 40 e hijos 20 y 45.
+</div>
+</div>
+</div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#arboles-eliminacion-dos-hijos" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      </button>
+    
+      <button class="carousel-control-next" type="button" data-bs-target="#arboles-eliminacion-dos-hijos" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+      </button>
+    
+</div>
+<p>Primero copiamos <code>40</code> en el nodo que contenía <code>30</code>. Durante ese paso aparecen dos nodos con valor <code>40</code>. Para completar la operación, eliminamos el nodo original del sucesor dentro del subárbol derecho. Como ese nodo solo tiene un hijo, <code>45</code>, lo quitamos con el procedimiento del caso anterior. Al terminar, el hijo izquierdo de <code>50</code> es el nodo cuyo valor ahora es <code>40</code>, con <code>20</code> a la izquierda y <code>45</code> a la derecha.</p>
+<p>El reemplazo conserva la regla de búsqueda: <code>20</code> sigue siendo menor que <code>40</code>, y <code>45</code> es mayor. En general, el sucesor es mayor que todos los valores del subárbol izquierdo y menor que los valores que quedan en el derecho después de quitarlo. Además, el sucesor nunca tiene hijo izquierdo. Si lo tuviera, no sería el menor de ese subárbol. Por eso, quitarlo de su posición original siempre se reduce a uno de los dos casos anteriores.</p>
+<p>En este caso también buscamos y quitamos el sucesor. Eso agrega pasos, pero seguimos recorriendo caminos limitados por la altura del árbol. La eliminación cuesta <span class="math inline">\(O(\log N)\)</span> si el árbol está equilibrado y puede llegar a <span class="math inline">\(O(N)\)</span> si forma una cadena.</p>
+</section>
+<section id="implementación" class="level4">
+<h4 class="anchored" data-anchor-id="implementación">Implementación</h4>
+<p>Podemos reunir los tres casos en una sola función. Cada llamada devuelve la raíz del subárbol que queda después de eliminar el valor, o <code>None</code> si ese subárbol queda vacío. Los enlaces se modifican sobre los mismos nodos:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eliminar(raiz, valor):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si llegamos a una referencia vacía, el valor no está en el árbol</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> raiz <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> valor <span class="op">&lt;</span> raiz.valor:</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si el valor es menor, lo buscamos en el subárbol izquierdo</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        raiz.izquierdo <span class="op">=</span> eliminar(raiz.izquierdo, valor)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> valor <span class="op">&gt;</span> raiz.valor:</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si el valor es mayor, lo buscamos en el subárbol derecho</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        raiz.derecho <span class="op">=</span> eliminar(raiz.derecho, valor)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si es una hoja, devolvemos None para que el padre vacíe su enlace</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> raiz.izquierdo <span class="kw">is</span> <span class="va">None</span> <span class="kw">and</span> raiz.derecho <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si tiene un solo hijo, ese hijo ocupa su lugar</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> raiz.izquierdo <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> raiz.derecho</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> raiz.derecho <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> raiz.izquierdo</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si tiene dos hijos, buscamos el menor valor del subárbol derecho</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        sucesor <span class="op">=</span> raiz.derecho</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> sucesor.izquierdo <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>            sucesor <span class="op">=</span> sucesor.izquierdo</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Copiamos el valor y quitamos el sucesor de su posición original</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>        raiz.valor <span class="op">=</span> sucesor.valor</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>        raiz.derecho <span class="op">=</span> eliminar(raiz.derecho, sucesor.valor)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Devolvemos la raíz del subárbol, con los cambios realizados</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> raiz</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Guardamos el resultado para conservar la raíz del árbol modificado:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>raiz <span class="op">=</span> eliminar(raiz, <span class="dv">20</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este ejemplo, la llamada que encuentra <code>20</code> devuelve <code>None</code> y la de <code>30</code> lo guarda en su enlace izquierdo. La llamada principal devuelve el nodo <code>50</code>, que sigue siendo la raíz.</p>
+<p>Si eliminamos la raíz, el resultado puede ser otro nodo o <code>None</code> si era el único del árbol. Si el valor no existe, el árbol queda sin cambios.</p>
+</section>
+</section>
+</section>
+<section id="recorridos" class="level2">
+<h2 class="anchored" data-anchor-id="recorridos">Recorridos</h2>
+<p>Buscar un valor nos permite seguir solamente una parte del árbol. Pero si queremos mostrar todos sus elementos, necesitamos visitar cada nodo. Ese proceso se llama <strong>recorrido</strong> (<em>traversal</em>).</p>
+<p>Vamos a comparar tres recorridos sobre el mismo árbol de números: preorden, inorden y postorden. Los implementaremos con <strong>recursión</strong>: como cada subárbol también es un árbol, la función se llama a sí misma sobre el hijo izquierdo y el derecho. Si recibe <code>None</code>, devuelve <code>[]</code>: ese es el caso base.</p>
+<p>Cada llamada combina las listas devueltas por sus hijos con <code>[nodo.valor]</code> y devuelve el resultado a la llamada anterior, que continúa desde donde había quedado. El orden de esas tres partes distingue los recorridos. Después veremos sus aplicaciones.</p>
+<p>Para seguir los recorridos vamos a reconstruir el árbol original, sin las modificaciones anteriores:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>raiz <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> valor <span class="kw">in</span> [<span class="dv">50</span>, <span class="dv">30</span>, <span class="dv">70</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">45</span>]:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    raiz <span class="op">=</span> insertar(raiz, valor)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="preorden" class="level3">
+<h3 class="anchored" data-anchor-id="preorden">Preorden</h3>
+<p>En <strong>preorden</strong> (<em>preorder</em>) visitamos primero el nodo actual, después recorremos su subárbol izquierdo y por último el derecho. En nuestro árbol empezamos agregando <code>50</code> a la lista. Luego seguimos hacia <code>30</code>, que agregamos antes de recorrer sus hijos <code>20</code> y <code>40</code>.</p>
+<section id="preorden-paso-a-paso" class="level4">
+<h4 class="anchored" data-anchor-id="preorden-paso-a-paso">Preorden paso a paso</h4>
+<div id="arboles-preorden" class="carousel carousel-dark slide" data-bs-ride="false" style=";--carousel-image-height:320px">
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="7" class="" aria-label="Slide 8"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="8" class="" aria-label="Slide 9"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="9" class="" aria-label="Slide 10"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="10" class="" aria-label="Slide 11"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="11" class="" aria-label="Slide 12"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="12" class="" aria-label="Slide 13"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="13" class="" aria-label="Slide 14"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="14" class="" aria-label="Slide 15"></button>
+  
+  <button type="button" data-bs-target="#arboles-preorden" data-bs-slide-to="15" class="" aria-label="Slide 16"></button>
+  
+</div>
+<div class="carousel-inner">
+<div class="carousel-item active" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-28"><img src="imgs/02/preorden-1.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Empezamos en 50. La lista todavía está vacía.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-29"><img src="imgs/02/preorden-2.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 50.<br>
+Agregamos su valor antes de recorrer sus hijos.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-30"><img src="imgs/02/preorden-3.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos hacia el hijo izquierdo, 30.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-31"><img src="imgs/02/preorden-4.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 30 y lo agregamos después de 50.<br>
+Sus hijos todavía están pendientes.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-5.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-32"><img src="imgs/02/preorden-5.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos hacia el hijo izquierdo de 30: el nodo 20.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-6.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-33"><img src="imgs/02/preorden-6.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 20 y lo agregamos como tercer valor.<br>
+Como es una hoja, esta llamada termina.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-7.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-34"><img src="imgs/02/preorden-7.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a 30 y seguimos con su hijo derecho, 40.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-8.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-35"><img src="imgs/02/preorden-8.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 40 y agregamos el cuarto valor.<br>
+Su hijo derecho todavía está pendiente.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-9.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-36"><img src="imgs/02/preorden-9.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos el enlace derecho de 40 y llegamos a 45.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-10.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-37"><img src="imgs/02/preorden-10.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 45 y agregamos el quinto valor.<br>
+Terminó el subárbol de 30.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-11.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-38"><img src="imgs/02/preorden-11.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a 50 y seguimos con su hijo derecho, 70.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-12.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-39"><img src="imgs/02/preorden-12.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 70 y agregamos el sexto valor.<br>
+Todavía faltan sus dos hijos.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-13.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-40"><img src="imgs/02/preorden-13.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos hacia el hijo izquierdo de 70: el nodo 60.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-14.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-41"><img src="imgs/02/preorden-14.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 60 y agregamos el séptimo valor.<br>
+Como es una hoja, volvemos a 70.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-15.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-42"><img src="imgs/02/preorden-15.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos con el hijo derecho de 70 y llegamos a 80.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/preorden-16.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-43"><img src="imgs/02/preorden-16.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 80 y agregamos el octavo valor.<br>
+Terminan las llamadas pendientes, recorrido completo.
+</div>
+</div>
+</div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#arboles-preorden" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      </button>
+    
+      <button class="carousel-control-next" type="button" data-bs-target="#arboles-preorden" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+      </button>
+    
+</div>
+</section>
+<section id="implementación-de-preorden" class="level4">
+<h4 class="anchored" data-anchor-id="implementación-de-preorden">Implementación de preorden</h4>
+<p>En el código, la lista con el valor actual aparece antes que los resultados de sus subárboles:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> preorden(nodo):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Un subárbol vacío no aporta valores</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nodo <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Nodo actual, subárbol izquierdo y subárbol derecho</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [nodo.valor] <span class="op">+</span> preorden(nodo.izquierdo) <span class="op">+</span> preorden(nodo.derecho)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Podemos comprobar el resultado llamando a la función con la raíz:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(preorden(raiz))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[50, 30, 20, 40, 45, 70, 60, 80]</code></pre>
+<p>La llamada de <code>30</code> devuelve <code>[30, 20, 40, 45]</code> y la de <code>70</code> devuelve <code>[70, 60, 80]</code>. La llamada inicial coloca <code>[50]</code> antes de esas dos listas. Por eso cada nodo aparece antes que todos sus descendientes.</p>
+</section>
+</section>
+<section id="inorden" class="level3">
+<h3 class="anchored" data-anchor-id="inorden">Inorden</h3>
+<p>En <strong>inorden</strong> (<em>inorder</em>) recorremos primero el subárbol izquierdo, después visitamos el nodo actual y por último recorremos el derecho. A diferencia de preorden, al llegar a <code>50</code> todavía no agregamos su valor. Primero necesitamos obtener los valores de su izquierda.</p>
+<section id="inorden-paso-a-paso" class="level4">
+<h4 class="anchored" data-anchor-id="inorden-paso-a-paso">Inorden paso a paso</h4>
+<p>Empezamos en <code>50</code>, pero dejamos pendiente su valor para recorrer primero el subárbol izquierdo. Llamamos a <code>inorden</code> con <code>30</code> y esa llamada necesita recorrer primero el subárbol de <code>20</code>. A eso nos referimos con bajar: seguir un enlace hacia un hijo mediante una llamada recursiva. En esos primeros pasos todavía no agregamos ningún valor a la lista de visitas.</p>
+<div id="arboles-inorden" class="carousel carousel-dark slide" data-bs-ride="false" style=";--carousel-image-height:320px">
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="7" class="" aria-label="Slide 8"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="8" class="" aria-label="Slide 9"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="9" class="" aria-label="Slide 10"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="10" class="" aria-label="Slide 11"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="11" class="" aria-label="Slide 12"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="12" class="" aria-label="Slide 13"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="13" class="" aria-label="Slide 14"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="14" class="" aria-label="Slide 15"></button>
+  
+  <button type="button" data-bs-target="#arboles-inorden" data-bs-slide-to="15" class="" aria-label="Slide 16"></button>
+  
+</div>
+<div class="carousel-inner">
+<div class="carousel-item active" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-44"><img src="imgs/02/inorden-1.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Empezamos en 50. Su valor queda pendiente.<br>
+Primero recorremos el subárbol izquierdo.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-45"><img src="imgs/02/inorden-2.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos el enlace izquierdo de 50 y llegamos a 30.<br>
+Su valor también queda pendiente.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-46"><img src="imgs/02/inorden-3.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos el enlace izquierdo de 30 y llegamos a 20.<br>
+No tiene hijo izquierdo: ya podemos visitar 20.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-47"><img src="imgs/02/inorden-4.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 20: agregamos el primer valor.<br>
+Tampoco tiene hijo derecho, esta llamada termina.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-5.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-48"><img src="imgs/02/inorden-5.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a 30. Terminó su subárbol izquierdo.<br>
+Agregamos 30 como segundo valor.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-6.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-49"><img src="imgs/02/inorden-6.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+La llamada de 30 continúa con su hijo derecho, 40.<br>
+40 no tiene hijo izquierdo.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-7.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-50"><img src="imgs/02/inorden-7.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 40: agregamos el tercer valor.<br>
+Todavía falta recorrer su subárbol derecho.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-8.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-51"><img src="imgs/02/inorden-8.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos el enlace derecho de 40 y llegamos a 45.<br>
+No tiene hijo izquierdo.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-9.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-52"><img src="imgs/02/inorden-9.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 45: agregamos el cuarto valor.<br>
+Sin hijo derecho, regresamos por 40 y 30.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-10.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-53"><img src="imgs/02/inorden-10.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Terminó todo el subárbol izquierdo de 50.<br>
+Retomamos su llamada y agregamos 50 como quinto valor.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-11.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-54"><img src="imgs/02/inorden-11.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+La llamada de 50 continúa con su hijo derecho, 70.<br>
+Antes de visitar 70, recorremos su izquierda.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-12.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-55"><img src="imgs/02/inorden-12.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos el enlace izquierdo de 70 y llegamos a 60.<br>
+No tiene hijo izquierdo.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-13.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-56"><img src="imgs/02/inorden-13.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 60: agregamos el sexto valor.<br>
+No tiene hijo derecho. Esta llamada termina.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-14.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-57"><img src="imgs/02/inorden-14.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a 70. Terminó su subárbol izquierdo.<br>
+Agregamos 70 como séptimo valor.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-15.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-58"><img src="imgs/02/inorden-15.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+La llamada de 70 continúa con su hijo derecho, 80.<br>
+No tiene hijo izquierdo.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/inorden-16.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-59"><img src="imgs/02/inorden-16.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 80: agregamos el octavo valor.<br>
+Terminan las llamadas de 80, 70 y 50.
+</div>
+</div>
+</div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#arboles-inorden" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      </button>
+    
+      <button class="carousel-control-next" type="button" data-bs-target="#arboles-inorden" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+      </button>
+    
+</div>
+</section>
+<section id="implementación-de-inorden" class="level4">
+<h4 class="anchored" data-anchor-id="implementación-de-inorden">Implementación de inorden</h4>
+<p>La lista con el valor actual queda entre los resultados del subárbol izquierdo y el derecho:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inorden(nodo):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Un subárbol vacío no aporta valores</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nodo <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Subárbol izquierdo, nodo actual y subárbol derecho</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> inorden(nodo.izquierdo) <span class="op">+</span> [nodo.valor] <span class="op">+</span> inorden(nodo.derecho)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Las primeras tres llamadas trabajan con <code>50</code>, <code>30</code> y <code>20</code>, pero todavía no procesan sus valores. En <code>20</code>, la llamada con su hijo izquierdo recibe <code>None</code> y devuelve <code>[]</code>. Después ubicamos <code>20</code> en el resultado y la llamada con su hijo derecho también devuelve <code>[]</code>. La llamada de <code>20</code> combina esas partes y devuelve <code>[] + [20] + []</code>, es decir, <code>[20]</code>.</p>
+<p>Volver a <code>30</code> significa retomar la llamada que esperaba el resultado de su subárbol izquierdo. No hay un enlace desde <code>20</code> hacia su padre. Es la ejecución de las funciones la que regresa a la llamada anterior. La llamada de <code>30</code> ya tiene <code>[20]</code> para su izquierda. Ubica su propio valor después y continúa con el subárbol de <code>40</code>. Esa rama devuelve <code>[40, 45]</code>, por lo que el resultado de <code>30</code> es <code>[20] + [30] + [40, 45]</code>.</p>
+<p>Recién cuando esa llamada devuelve <code>[20, 30, 40, 45]</code> podemos continuar con el valor de <code>50</code> y después recorrer su subárbol derecho, que devuelve <code>[60, 70, 80]</code>. La llamada inicial combina esas tres partes y devuelve la lista completa.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inorden(raiz))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[20, 30, 40, 45, 50, 60, 70, 80]</code></pre>
+</section>
+</section>
+<section id="postorden" class="level3">
+<h3 class="anchored" data-anchor-id="postorden">Postorden</h3>
+<p>En <strong>postorden</strong> (<em>postorder</em>) recorremos primero el subárbol izquierdo, después el derecho y por último visitamos el nodo actual. Cuando llegamos a <code>50</code>, dejamos su valor pendiente hasta terminar las dos ramas. Lo mismo ocurre en <code>30</code>: antes de agregarlo tenemos que procesar <code>20</code> y todo el subárbol de <code>40</code>.</p>
+<section id="postorden-paso-a-paso" class="level4">
+<h4 class="anchored" data-anchor-id="postorden-paso-a-paso">Postorden paso a paso</h4>
+<div id="arboles-postorden" class="carousel carousel-dark slide" data-bs-ride="false" style=";--carousel-image-height:320px">
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="7" class="" aria-label="Slide 8"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="8" class="" aria-label="Slide 9"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="9" class="" aria-label="Slide 10"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="10" class="" aria-label="Slide 11"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="11" class="" aria-label="Slide 12"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="12" class="" aria-label="Slide 13"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="13" class="" aria-label="Slide 14"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="14" class="" aria-label="Slide 15"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="15" class="" aria-label="Slide 16"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="16" class="" aria-label="Slide 17"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="17" class="" aria-label="Slide 18"></button>
+  
+  <button type="button" data-bs-target="#arboles-postorden" data-bs-slide-to="18" class="" aria-label="Slide 19"></button>
+  
+</div>
+<div class="carousel-inner">
+<div class="carousel-item active" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-60"><img src="imgs/02/postorden-1.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Empezamos en 50 y dejamos su valor pendiente.<br>
+Primero debemos terminar ambos subárboles.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-61"><img src="imgs/02/postorden-2.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos hacia 30 y dejamos su valor pendiente.<br>
+Primero recorremos sus hijos.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-62"><img src="imgs/02/postorden-3.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Llegamos a 20.<br>
+Como es una hoja, no tiene subárboles pendientes.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-63"><img src="imgs/02/postorden-4.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 20 y agregamos el primer valor a la lista.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-5.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-64"><img src="imgs/02/postorden-5.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a 30. Terminó su subárbol izquierdo.<br>
+Todavía falta recorrer su subárbol derecho.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-6.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-65"><img src="imgs/02/postorden-6.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos hacia 40.<br>
+Su valor queda pendiente porque tiene un hijo derecho.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-7.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-66"><img src="imgs/02/postorden-7.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Llegamos a 45, que no tiene hijos.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-8.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-67"><img src="imgs/02/postorden-8.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 45 y agregamos el segundo valor.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-9.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-68"><img src="imgs/02/postorden-9.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a 40. Ya terminaron sus subárboles.<br>
+Agregamos 40 como tercer valor.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-10.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-69"><img src="imgs/02/postorden-10.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a 30. Ya terminaron sus dos subárboles.<br>
+Agregamos 30 como cuarto valor.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-11.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-70"><img src="imgs/02/postorden-11.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a 50 y dejamos su valor pendiente.<br>
+Todavía falta recorrer el subárbol derecho.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-12.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-71"><img src="imgs/02/postorden-12.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos hacia 70 y dejamos su valor pendiente.<br>
+Primero recorremos sus hijos.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-13.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-72"><img src="imgs/02/postorden-13.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Llegamos a 60, que no tiene hijos.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-14.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-73"><img src="imgs/02/postorden-14.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 60 y agregamos el quinto valor.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-15.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-74"><img src="imgs/02/postorden-15.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a 70.<br>
+Antes de agregarlo, falta recorrer su hijo derecho.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-16.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-75"><img src="imgs/02/postorden-16.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Llegamos a 80, que tampoco tiene hijos.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-17.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-76"><img src="imgs/02/postorden-17.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Visitamos 80 y agregamos el sexto valor.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-18.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-77"><img src="imgs/02/postorden-18.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a 70. Ya terminaron ambos subárboles.<br>
+Agregamos 70 como séptimo valor.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/postorden-19.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-78"><img src="imgs/02/postorden-19.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a 50 y agregamos su valor al final.<br>
+Ya visitamos a todos sus descendientes.
+</div>
+</div>
+</div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#arboles-postorden" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      </button>
+    
+      <button class="carousel-control-next" type="button" data-bs-target="#arboles-postorden" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+      </button>
+    
+</div>
+</section>
+<section id="implementación-de-postorden" class="level4">
+<h4 class="anchored" data-anchor-id="implementación-de-postorden">Implementación de postorden</h4>
+<p>En el código, la lista con el valor actual aparece después de los resultados de ambos subárboles:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> postorden(nodo):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Un subárbol vacío no aporta valores</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nodo <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Subárbol izquierdo, subárbol derecho y nodo actual</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> postorden(nodo.izquierdo) <span class="op">+</span> postorden(nodo.derecho) <span class="op">+</span> [nodo.valor]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Veamos el resultado para el mismo árbol:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(postorden(raiz))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>[20, 45, 40, 30, 60, 80, 70, 50]</code></pre>
+<p>La llamada de <code>40</code> obtiene <code>[]</code> de su izquierda y <code>[45]</code> de su derecha. Después agrega su propio valor y devuelve <code>[45, 40]</code>. La de <code>30</code> combina <code>[20] + [45, 40] + [30]</code> y devuelve <code>[20, 45, 40, 30]</code>. En la raíz, el resultado del subárbol izquierdo se combina con <code>[60, 80, 70]</code> y finalmente con <code>[50]</code>. Por eso la raíz aparece al final de la lista.</p>
+</section>
+</section>
+<section id="comparación-de-los-recorridos" class="level3">
+<h3 class="anchored" data-anchor-id="comparación-de-los-recorridos">Comparación de los recorridos</h3>
+<p>En los tres recorridos hacemos las mismas tareas, pero cambiamos el momento de la visita. En nuestro código, visitar significa ubicar el valor del nodo en el resultado. Después vamos a usar esos mismos órdenes para realizar otras tareas en cada visita.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 35%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Recorrido</th>
+<th>Orden de las tareas</th>
+<th>Resultado para el árbol del ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Preorden</td>
+<td>Nodo, izquierdo, derecho</td>
+<td><code>50, 30, 20, 40, 45, 70, 60, 80</code></td>
+</tr>
+<tr class="even">
+<td>Inorden</td>
+<td>Izquierdo, nodo, derecho</td>
+<td><code>20, 30, 40, 45, 50, 60, 70, 80</code></td>
+</tr>
+<tr class="odd">
+<td>Postorden</td>
+<td>Izquierdo, derecho, nodo</td>
+<td><code>20, 45, 40, 30, 60, 80, 70, 50</code></td>
+</tr>
+</tbody>
+</table>
+<p>En las tres versiones visitamos cada nodo una vez. Si contamos esas visitas, el recorrido completo requiere <span class="math inline">\(O(N)\)</span> pasos. Cambiar el orden en que incorporamos los valores modifica el resultado, pero no la cantidad de nodos visitados.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Costo de las concatenaciones
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para simplificar el código, combinamos los resultados con <code>+</code>. Las concatenaciones agregan trabajo que no estamos considerando al contar las visitas: el <span class="math inline">\(O(N)\)</span> describe esas visitas, no el costo total de estas funciones. Podemos evitar las concatenaciones pasando una misma lista a todas las llamadas para acumular los valores, o usando generadores.</p>
+</div>
+</div>
+</section>
+<section id="aplicaciones-de-los-recorridos" class="level3">
+<h3 class="anchored" data-anchor-id="aplicaciones-de-los-recorridos">Aplicaciones de los recorridos</h3>
+<p>Hasta acá usamos cada visita para ubicar un número en una lista. Podemos conservar el orden de las visitas y cambiar qué hacemos con cada nodo. Veamos cómo preorden permite mostrar una jerarquía y postorden permite evaluar una expresión.</p>
+<p>En estas aplicaciones vamos a trabajar con distintos tipos de árboles. El árbol de carpetas puede tener más de dos hijos por nodo. Para evaluar la expresión usaremos un árbol binario cuyos nodos representan operaciones y operandos.</p>
+<section id="mostrar-una-jerarquía-con-preorden" class="level4">
+<h4 class="anchored" data-anchor-id="mostrar-una-jerarquía-con-preorden">Mostrar una jerarquía con preorden</h4>
+<p>Retomemos las carpetas del apunte anterior.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="imgs/01/carpetas.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-79" title="Carpetas y archivos de un proyecto."><img src="imgs/01/carpetas.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="La carpeta proyecto contiene documentos, imagenes y README.md. Documentos contiene informe.pdf e imagenes está vacía."></a></p>
+</figure>
+</div>
+<figcaption>Carpetas y archivos de un proyecto.</figcaption>
+</figure>
+</div>
+<p>Este es un árbol general: una carpeta puede contener cualquier cantidad de archivos y subcarpetas. Por ejemplo, <code>proyecto</code> tiene tres hijos: <code>documentos</code>, <code>imagenes</code> y <code>README.md</code>. Por eso no podemos representarlo con nuestra clase <code>Nodo</code>, que solo tiene las referencias <code>izquierdo</code> y <code>derecho</code>. En este caso necesitamos guardar una colección de hijos por nodo.</p>
+<p>El comando <code>tree</code> muestra esta jerarquía en la terminal. Si ejecutamos <code>tree .</code> dentro de <code>proyecto</code>, obtenemos una salida como esta:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tree</span> .</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>.
+├── README.md
+├── documentos
+│   └── informe.pdf
+└── imagenes
+
+3 directories, 2 files</code></pre>
+<p>El punto representa la carpeta actual, <code>proyecto</code>. Cada carpeta aparece antes que su contenido, y las líneas y la sangría permiten reconocer a qué carpeta pertenece cada elemento. Vamos a construir un listado similar, usando solamente sangría y siguiendo el orden de los hijos del dibujo.</p>
+<p>Podemos usar preorden para escribir cada nodo antes de recorrer sus hijos. Primero escribimos <code>proyecto</code>, después <code>documentos</code> y todo su contenido. Cuando terminamos esa rama, seguimos con <code>imagenes</code> y después con <code>README.md</code>.</p>
+<section id="listado-paso-a-paso" class="level5">
+<h5 class="anchored" data-anchor-id="listado-paso-a-paso">Listado paso a paso</h5>
+<p>A la izquierda recorremos el árbol. A la derecha escribimos una línea por cada visita, con dos espacios de sangría por cada nivel de profundidad. Al volver de una llamada, continuamos con el siguiente hijo sin volver a escribir al padre.</p>
+<div id="arboles-aplicacion-directorios" class="carousel carousel-dark slide" data-bs-ride="false" style=";--carousel-image-width:100%">
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#arboles-aplicacion-directorios" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-directorios" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-directorios" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-directorios" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-directorios" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-directorios" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-directorios" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-directorios" data-bs-slide-to="7" class="" aria-label="Slide 8"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-directorios" data-bs-slide-to="8" class="" aria-label="Slide 9"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-directorios" data-bs-slide-to="9" class="" aria-label="Slide 10"></button>
+  
+</div>
+<div class="carousel-inner">
+<div class="carousel-item active" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-directorios-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-80"><img src="imgs/02/aplicacion-directorios-1.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Empezamos en proyecto/.<br>
+El listado de la derecha todavía está vacío.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-directorios-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-81"><img src="imgs/02/aplicacion-directorios-2.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Escribimos proyecto/ sin sangría.<br>
+Después recorreremos su contenido.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-directorios-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-82"><img src="imgs/02/aplicacion-directorios-3.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos hacia documentos/.<br>
+Es la primera carpeta hija de proyecto/.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-directorios-4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-83"><img src="imgs/02/aplicacion-directorios-4.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Escribimos documentos/ con dos espacios de sangría.<br>
+Está un nivel debajo de proyecto/.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-directorios-5.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-84"><img src="imgs/02/aplicacion-directorios-5.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Entramos en documentos/ y llegamos a informe.pdf.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-directorios-6.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-85"><img src="imgs/02/aplicacion-directorios-6.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Escribimos informe.pdf con cuatro espacios de sangría.<br>
+Terminó el contenido de documentos/.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-directorios-7.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-86"><img src="imgs/02/aplicacion-directorios-7.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a proyecto/.<br>
+Seguimos con su siguiente hija, imagenes/.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-directorios-8.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-87"><img src="imgs/02/aplicacion-directorios-8.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Escribimos imagenes/ con dos espacios de sangría.<br>
+Como está vacía, volvemos a proyecto/.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-directorios-9.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-88"><img src="imgs/02/aplicacion-directorios-9.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos con README.md, el último hijo de proyecto/.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-directorios-10.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-89"><img src="imgs/02/aplicacion-directorios-10.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Escribimos README.md con dos espacios de sangría.<br>
+El listado conserva la jerarquía del árbol.
+</div>
+</div>
+</div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#arboles-aplicacion-directorios" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      </button>
+    
+      <button class="carousel-control-next" type="button" data-bs-target="#arboles-aplicacion-directorios" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+      </button>
+    
+</div>
+<p>Al terminar, <code>informe.pdf</code> queda debajo de <code>documentos/</code> y con un nivel más de sangría. En cambio, <code>imagenes/</code> y <code>README.md</code> quedan alineados con <code>documentos/</code>, porque los tres son hijos de <code>proyecto/</code>. La diferencia con nuestra función <code>preorden</code> está en que aquí recorremos una colección de hijos y escribimos los nombres con sangría, en lugar de devolver una lista de números.</p>
+</section>
+</section>
+<section id="sec-postorden" class="level4">
+<h4 class="anchored" data-anchor-id="sec-postorden">Evaluar una expresión con postorden</h4>
+<p>Supongamos que un lenguaje de programación tiene que evaluar esta expresión:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">27</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">2.5</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>a <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> b <span class="op">-</span> c)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Podemos representarla con un árbol. La raíz es la división, su hijo izquierdo es <code>a</code> y su hijo derecho es la resta <code>2 * b - c</code>. Dentro de esa resta, el hijo izquierdo representa <code>2 * b</code> y el derecho representa <code>c</code>. Las hojas contienen variables o constantes.</p>
+<p>A esta representación la llamamos <strong>árbol de sintaxis abstracta</strong> (<em>abstract syntax tree</em>, AST). Cuando escribimos expresiones en R o Python, estos lenguajes construyen internamente árboles de este tipo para representar las operaciones y sus operandos.</p>
+<p>Este árbol es binario porque cada operación del ejemplo tiene dos operandos. Pero no es un árbol binario de búsqueda: la ubicación de los nodos indica qué operandos corresponden a cada operación, sin seguir una regla de orden entre sus valores.</p>
+<p>Para resolver una operación primero necesitamos los valores de sus operandos. La división debe esperar a que se resuelva la resta y la resta necesita el resultado de la multiplicación. Una forma de evaluar la expresión es recorrer el árbol en postorden: procesamos una operación después de obtener los resultados de sus dos subárboles.</p>
+<section id="evaluación-paso-a-paso" class="level5">
+<h5 class="anchored" data-anchor-id="evaluación-paso-a-paso">Evaluación paso a paso</h5>
+<p>A la izquierda, cada hoja consultada y cada operación resuelta queda en verde. Cuando obtenemos el resultado de una operación, reemplazamos ese subárbol por su valor. A la derecha mostramos la expresión como código y reemplazamos cada variable u operación cuando obtenemos su valor.</p>
+<div id="arboles-aplicacion-expresion" class="carousel carousel-dark slide" data-bs-ride="false" style=";--carousel-image-width:100%">
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="1" class="" aria-label="Slide 2"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="2" class="" aria-label="Slide 3"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="3" class="" aria-label="Slide 4"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="4" class="" aria-label="Slide 5"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="5" class="" aria-label="Slide 6"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="6" class="" aria-label="Slide 7"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="7" class="" aria-label="Slide 8"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="8" class="" aria-label="Slide 9"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="9" class="" aria-label="Slide 10"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="10" class="" aria-label="Slide 11"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="11" class="" aria-label="Slide 12"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="12" class="" aria-label="Slide 13"></button>
+  
+  <button type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide-to="13" class="" aria-label="Slide 14"></button>
+  
+</div>
+<div class="carousel-inner">
+<div class="carousel-item active" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-1.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-90"><img src="imgs/02/aplicacion-expresion-1.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+La raíz es la división.<br>
+Primero necesitamos los valores de sus dos operandos.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-2.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-91"><img src="imgs/02/aplicacion-expresion-2.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos el hijo izquierdo de la división.<br>
+Llegamos a la variable a.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-3.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-92"><img src="imgs/02/aplicacion-expresion-3.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Consultamos el valor de a y obtenemos 15.<br>
+La hoja pasa a ser 15: ya tenemos el numerador.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-4.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-93"><img src="imgs/02/aplicacion-expresion-4.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos el hijo derecho de la división: la resta.<br>
+Sus operandos todavía están pendientes.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-5.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-94"><img src="imgs/02/aplicacion-expresion-5.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Empezamos por el hijo izquierdo de la resta.<br>
+Es la multiplicación.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-6.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-95"><img src="imgs/02/aplicacion-expresion-6.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos el hijo izquierdo de la multiplicación.<br>
+Llegamos a la constante 2.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-7.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-96"><img src="imgs/02/aplicacion-expresion-7.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+La constante ya tiene su valor, 2.<br>
+La marcamos como procesada.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-8.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-97"><img src="imgs/02/aplicacion-expresion-8.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Seguimos el hijo derecho de la multiplicación.<br>
+Llegamos a b.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-9.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-98"><img src="imgs/02/aplicacion-expresion-9.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Consultamos el valor de b y obtenemos 27.<br>
+La hoja pasa a ser 27: ya tenemos ambos factores.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-10.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-99"><img src="imgs/02/aplicacion-expresion-10.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a la multiplicación y calculamos 2 * 27 = 54.<br>
+Ese subárbol queda reemplazado por 54.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-11.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-100"><img src="imgs/02/aplicacion-expresion-11.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Para completar la resta, seguimos su hijo derecho.<br>
+Llegamos a c.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-12.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-101"><img src="imgs/02/aplicacion-expresion-12.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Consultamos el valor de c y obtenemos 2.5.<br>
+Reemplazamos la hoja por ese valor.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-13.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-102"><img src="imgs/02/aplicacion-expresion-13.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Volvemos a la resta y calculamos 54 - 2.5 = 51.5.<br>
+El denominador queda resuelto.
+</div>
+</div>
+<div class="carousel-item" data-bs-interval="3000">
+<p><a href="imgs/02/aplicacion-expresion-14.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-103"><img src="imgs/02/aplicacion-expresion-14.svg" class="d-block mx-auto img-fluid"></a></p>
+<div class="carousel-caption d-none d-md-block">
+Calculamos 15 / 51.5.<br>
+Reemplazamos la raíz por el resultado ≈ 0.291262.
+</div>
+</div>
+</div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      </button>
+    
+      <button class="carousel-control-next" type="button" data-bs-target="#arboles-aplicacion-expresion" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+      </button>
+    
+</div>
+<p>El recorrido establece en qué orden podemos procesar los nodos. Para evaluar la expresión, la tarea de cada visita consiste en consultar una variable, leer una constante o aplicar una operación a los resultados de sus hijos. La función <code>postorden</code> que escribimos antes devuelve una lista con los valores en ese orden. Un evaluador usaría los resultados numéricos de los hijos para calcular el resultado de cada operación.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="eficiencia" class="level2">
+<h2 class="anchored" data-anchor-id="eficiencia">Eficiencia</h2>
+<p>La cantidad de nodos que visitamos al buscar, insertar o eliminar depende de la forma del BST. La siguiente tabla resume el costo en el peor caso para cada forma:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Operación</th>
+<th>Árbol equilibrado</th>
+<th>Árbol en cadena</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Búsqueda</td>
+<td><span class="math inline">\(O(\log N)\)</span></td>
+<td><span class="math inline">\(O(N)\)</span></td>
+</tr>
+<tr class="even">
+<td>Inserción</td>
+<td><span class="math inline">\(O(\log N)\)</span></td>
+<td><span class="math inline">\(O(N)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Eliminación</td>
+<td><span class="math inline">\(O(\log N)\)</span></td>
+<td><span class="math inline">\(O(N)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>En cambio, los recorridos visitan los <span class="math inline">\(N\)</span> nodos, cualquiera sea la forma del árbol. Contando esas visitas, su costo es <span class="math inline">\(O(N)\)</span>, con la salvedad sobre las concatenaciones que mencionamos antes.</p>
+<p>Un BST no garantiza que el árbol quede equilibrado. Existen árboles que se reorganizan para mantener una altura pequeña, pero no los desarrollaremos aquí.</p>
+</section>
+<section id="implementación-completa" class="level2">
+<h2 class="anchored" data-anchor-id="implementación-completa">Implementación completa</h2>
+<p>Podemos reunir las funciones anteriores en un mismo archivo. <code>buscar</code>, <code>insertar</code> y <code>eliminar</code> suponen que se cumple la regla del árbol binario de búsqueda. Los recorridos también sirven para otros árboles binarios, aunque en ese caso inorden no garantiza que los valores queden ordenados.</p>
+<p>Podés descargar el código en <a href="arboles.py">arboles.py</a>.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Nodo:</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, valor):</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.valor <span class="op">=</span> valor</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.izquierdo <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.derecho <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> buscar(raiz, valor):</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    actual <span class="op">=</span> raiz</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> actual <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> valor <span class="op">==</span> actual.valor:</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> actual</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> valor <span class="op">&lt;</span> actual.valor:</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>            actual <span class="op">=</span> actual.izquierdo</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>            actual <span class="op">=</span> actual.derecho</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> insertar(raiz, valor):</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> raiz <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> Nodo(valor)</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> valor <span class="op">&lt;</span> raiz.valor:</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>        raiz.izquierdo <span class="op">=</span> insertar(raiz.izquierdo, valor)</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> valor <span class="op">&gt;</span> raiz.valor:</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>        raiz.derecho <span class="op">=</span> insertar(raiz.derecho, valor)</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> raiz</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eliminar(raiz, valor):</span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Si llegamos a una referencia vacía, el valor no está en el árbol</span></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> raiz <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> valor <span class="op">&lt;</span> raiz.valor:</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si el valor es menor, lo buscamos en el subárbol izquierdo</span></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>        raiz.izquierdo <span class="op">=</span> eliminar(raiz.izquierdo, valor)</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> valor <span class="op">&gt;</span> raiz.valor:</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si el valor es mayor, lo buscamos en el subárbol derecho</span></span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>        raiz.derecho <span class="op">=</span> eliminar(raiz.derecho, valor)</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Encontramos el valor. Si es una hoja, quitamos el enlace</span></span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> raiz.izquierdo <span class="kw">is</span> <span class="va">None</span> <span class="kw">and</span> raiz.derecho <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si tiene un solo hijo, ese hijo ocupa su lugar</span></span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> raiz.izquierdo <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> raiz.derecho</span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> raiz.derecho <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> raiz.izquierdo</span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Si tiene dos hijos, buscamos el menor valor del subárbol derecho</span></span>
+<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>        sucesor <span class="op">=</span> raiz.derecho</span>
+<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> sucesor.izquierdo <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>            sucesor <span class="op">=</span> sucesor.izquierdo</span>
+<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Copiamos el valor y quitamos el sucesor de su posición original</span></span>
+<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a>        raiz.valor <span class="op">=</span> sucesor.valor</span>
+<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a>        raiz.derecho <span class="op">=</span> eliminar(raiz.derecho, sucesor.valor)</span>
+<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Devolvemos la raíz del subárbol, con los cambios realizados</span></span>
+<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> raiz</span>
+<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> preorden(nodo):</span>
+<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Un subárbol vacío no aporta valores</span></span>
+<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nodo <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
+<span id="cb26-69"><a href="#cb26-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Nodo actual, subárbol izquierdo y subárbol derecho</span></span>
+<span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [nodo.valor] <span class="op">+</span> preorden(nodo.izquierdo) <span class="op">+</span> preorden(nodo.derecho)</span>
+<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-73"><a href="#cb26-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inorden(nodo):</span>
+<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Un subárbol vacío no aporta valores</span></span>
+<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nodo <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
+<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Subárbol izquierdo, nodo actual y subárbol derecho</span></span>
+<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> inorden(nodo.izquierdo) <span class="op">+</span> [nodo.valor] <span class="op">+</span> inorden(nodo.derecho)</span>
+<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> postorden(nodo):</span>
+<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Un subárbol vacío no aporta valores</span></span>
+<span id="cb26-85"><a href="#cb26-85" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nodo <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> []</span>
+<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Subárbol izquierdo, subárbol derecho y nodo actual</span></span>
+<span id="cb26-89"><a href="#cb26-89" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> postorden(nodo.izquierdo) <span class="op">+</span> postorden(nodo.derecho) <span class="op">+</span> [nodo.valor]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para construir un árbol y usar las operaciones:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>raiz <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> valor <span class="kw">in</span> [<span class="dv">50</span>, <span class="dv">30</span>, <span class="dv">70</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">45</span>]:</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    raiz <span class="op">=</span> insertar(raiz, valor)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>nodo <span class="op">=</span> buscar(raiz, <span class="dv">40</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nodo.valor)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>raiz <span class="op">=</span> insertar(raiz, <span class="dv">35</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>raiz <span class="op">=</span> eliminar(raiz, <span class="dv">20</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>codigos <span class="op">=</span> inorden(raiz)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(codigos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>40
+[30, 35, 40, 45, 50, 60, 70, 80]</code></pre>
+<p>El ejemplo empieza con el árbol original. La inserción agrega <code>35</code> como hijo izquierdo de <code>40</code> y la eliminación quita la hoja <code>20</code>. El recorrido inorden conserva el orden creciente de los valores.</p>
+</section>
+<section id="siguientes-pasos" class="level2">
+<h2 class="anchored" data-anchor-id="siguientes-pasos">Siguientes pasos</h2>
+<p>Un árbol permite organizar datos mediante nodos que se ramifican. Trabajamos con una variante, el árbol binario de búsqueda, cuya regla de orden nos permite buscar, insertar y eliminar valores siguiendo una parte de sus enlaces. También vimos tres recorridos: preorden para procesar un nodo antes que sus descendientes, inorden para obtener los valores ordenados de un árbol de búsqueda y postorden para resolver una operación después de conocer los resultados de sus operandos.</p>
+<p>Aunque trabajamos con pocos números, estas mismas ideas aparecen en aplicaciones mucho más grandes:</p>
+<ul>
+<li><strong>Bases de datos.</strong> Muchos índices usan variantes de árboles, como los árboles B y B+, para localizar registros y consultar rangos de valores sin recorrer toda una tabla. La organización de sus nodos también busca reducir los accesos al almacenamiento.</li>
+<li><strong>Compiladores e intérpretes.</strong> El código de un programa puede representarse mediante un árbol de sintaxis. Ya usamos esta idea al <a href="#sec-postorden">evaluar una expresión en postorden</a>, resolviendo los operandos antes de cada operación.</li>
+<li><strong>Gráficos 3D y videojuegos.</strong> Se usan árboles que agrupan objetos dentro de regiones del espacio. Para comprobar qué puede tocar un rayo o qué objetos podrían chocar, se descartan ramas completas cuyas regiones no participan de la consulta. Así se evitan muchas comprobaciones individuales.</li>
+<li><strong>Aprendizaje automático.</strong> Los árboles de decisión también tienen nodos, ramas y hojas. Para predecir, seguimos desde la raíz las ramas indicadas por condiciones sobre los datos. La estructura resulta familiar, aunque las reglas para construir estos árboles son distintas de las de un BST.</li>
+</ul>
+<p>En esas aplicaciones, un nodo guarda más información que los números de nuestro ejemplo y las reglas para organizar los enlaces pueden ser distintas. Para entenderlas sirven varias de las preguntas que ya trabajamos: qué guarda cada nodo, por qué enlaces conviene seguir y en qué orden necesitamos procesar los datos.</p>
+<p>En el próximo apunte vamos a trabajar con grafos. Retomaremos la red de ciudades conectadas por vuelos, donde puede haber ciclos y distintos caminos entre dos lugares. Nos servirán las ideas de nodos, enlaces y recorridos que empezamos a desarrollar acá.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ee-unr\.github\.io\/programacion-2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../teoria/05_estructuras_no_lineales/01_introduccion.html" class="pagination-link" aria-label="1 - Introducción">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1 - Introducción</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../teoria/05_estructuras_no_lineales/03_grafos.html" class="pagination-link" aria-label="3 - Grafos">
+        <span class="nav-page-text">3 - Grafos</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Esta página es hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
