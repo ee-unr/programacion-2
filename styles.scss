@@ -447,8 +447,9 @@ div.carousel {
   margin-top: 2rem; 
 }
 
-// Reservar los laterales para que los controles no tapen las figuras de árboles.
-.carousel[id^="arboles-"] {
+// Reservar los laterales para que los controles no tapen las figuras de U5.
+.carousel[id^="arboles-"],
+.carousel[id^="grafos-"] {
   padding-inline: 3rem;
 
   > .carousel-control-prev,
